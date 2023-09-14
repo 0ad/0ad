@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,29 +18,28 @@
 #ifndef INCLUDED_OBJECTENTRY
 #define INCLUDED_OBJECTENTRY
 
-class CModelAbstract;
-class CSkeletonAnim;
-class CObjectBase;
-class CObjectManager;
-class CSimulation2;
+#include "graphics/Color.h"
+#include "graphics/ObjectBase.h"
+#include "lib/file/vfs/vfs_path.h"
+#include "ps/CStr.h"
 
 #include <map>
 #include <memory>
 #include <set>
 #include <vector>
 
-#include "graphics/Color.h"
-#include "lib/file/vfs/vfs_path.h"
-#include "ps/CStr.h"
-
-#include "graphics/ObjectBase.h"
+class CModelAbstract;
+class CSkeletonAnim;
+class CObjectBase;
+class CObjectManager;
+class CSimulation2;
 
 class CObjectEntry
 {
 	NONCOPYABLE(CObjectEntry);
 
 public:
-	CObjectEntry(const std::shared_ptr<CObjectBase>& base, CSimulation2& simulation);
+	CObjectEntry(const std::shared_ptr<CObjectBase>& base, const CSimulation2& simulation);
 	~CObjectEntry();
 
 	// Construct this actor, using the specified variation selections
@@ -78,16 +77,14 @@ public:
 	std::vector<CSkeletonAnim*> GetAnimations(const CStr& animationName, const CStr& ID = "") const;
 
 	// corresponding model
-	CModelAbstract* m_Model;
+	std::unique_ptr<CModelAbstract> m_Model;
 
 private:
-
-	CSimulation2& m_Simulation;
+	const CSimulation2& m_Simulation;
 
 	using SkeletonAnimMap = std::multimap<CStr, std::unique_ptr<CSkeletonAnim>>;
 	SkeletonAnimMap m_Animations;
 		// TODO: something more memory-efficient than storing loads of similar strings for each unit?
 };
 
-
-#endif
+#endif // INCLUDED_OBJECTENTRY
