@@ -157,7 +157,8 @@ std::unique_ptr<CTexture> CTexture::Create(
 		&texture->m_Image, &texture->m_Allocation, nullptr);
 	if (createImageResult != VK_SUCCESS)
 	{
-		LOGERROR("Failed to create VkImage: %d", static_cast<int>(createImageResult));
+		LOGERROR("Failed to create VkImage: %d (%s)",
+			static_cast<int>(createImageResult), Utilities::GetVkResultName(createImageResult));
 		return nullptr;
 	}
 
@@ -321,7 +322,8 @@ std::unique_ptr<CTexture> CTexture::CreateReadback(
 		&texture->m_Image, &texture->m_Allocation, &texture->m_AllocationInfo);
 	if (createImageResult != VK_SUCCESS)
 	{
-		LOGERROR("Failed to create VkImage: %d", static_cast<int>(createImageResult));
+		LOGERROR("Failed to create VkImage: %d (%s)",
+			static_cast<int>(createImageResult), Utilities::GetVkResultName(createImageResult));
 		return nullptr;
 	}
 
