@@ -37,62 +37,33 @@
 #include "simulation2/Simulation2.h"
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Constructor
-CModel::CModel(CSimulation2& simulation)
-	: m_Flags(0), m_Anim(NULL), m_AnimTime(0), m_Simulation(simulation),
-	m_BoneMatrices(NULL), m_AmmoPropPoint(NULL), m_AmmoLoadedProp(0)
+CModel::CModel(const CSimulation2& simulation, const CMaterial& material, const CModelDefPtr& modeldef)
+	: m_Simulation{simulation}, m_Material{material}, m_pModelDef{modeldef}
 {
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Destructor
-CModel::~CModel()
-{
-	ReleaseData();
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ReleaseData: delete anything allocated by the model
-void CModel::ReleaseData()
-{
-	rtl_FreeAligned(m_BoneMatrices);
-
-	for (size_t i = 0; i < m_Props.size(); ++i)
-		delete m_Props[i].m_Model;
-	m_Props.clear();
-
-	m_pModelDef = CModelDefPtr();
-}
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// InitModel: setup model from given geometry
-bool CModel::InitModel(const CModelDefPtr& modeldef)
-{
-	// clean up any existing data first
-	ReleaseData();
-
-	m_pModelDef = modeldef;
-
-	size_t numBones = modeldef->GetNumBones();
-	if (numBones != 0)
+	const size_t numberOfBones = modeldef->GetNumBones();
+	if (numberOfBones != 0)
 	{
-		size_t numBlends = modeldef->GetNumBlends();
+		const size_t numberOfBlends = modeldef->GetNumBlends();
 
 		// allocate matrices for bone transformations
 		// (one extra matrix is used for the special case of bind-shape relative weighting)
-		m_BoneMatrices = (CMatrix3D*)rtl_AllocateAligned(sizeof(CMatrix3D) * (numBones + 1 + numBlends), 16);
-		for (size_t i = 0; i < numBones + 1 + numBlends; ++i)
+		m_BoneMatrices = (CMatrix3D*)rtl_AllocateAligned(sizeof(CMatrix3D) * (numberOfBones + 1 + numberOfBlends), 16);
+		for (size_t i = 0; i < numberOfBones + 1 + numberOfBlends; ++i)
 		{
 			m_BoneMatrices[i].SetIdentity();
 		}
 	}
 
 	m_PositionValid = true;
-
-	return true;
 }
 
+CModel::~CModel()
+{
+	rtl_FreeAligned(m_BoneMatrices);
+
+	for (Prop& prop : m_Props)
+		delete prop.m_Model;
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CalcBound: calculate the world space bounds of this model
@@ -497,10 +468,8 @@ CModelAbstract* CModel::FindFirstAmmoProp()
 // Clone: return a clone of this model
 CModelAbstract* CModel::Clone() const
 {
-	CModel* clone = new CModel(m_Simulation);
+	CModel* clone = new CModel(m_Simulation, m_Material, m_pModelDef);
 	clone->m_ObjectBounds = m_ObjectBounds;
-	clone->InitModel(m_pModelDef);
-	clone->SetMaterial(m_Material);
 	clone->SetAnimation(m_Anim);
 	clone->SetFlags(m_Flags);
 
@@ -553,11 +522,6 @@ void CModel::RemoveShadowsRec()
 		else if (m_Props[i].m_Model->ToCModelDecal())
 			m_Props[i].m_Model->ToCModelDecal()->RemoveShadows();
 	}
-}
-
-void CModel::SetMaterial(const CMaterial &material)
-{
-	m_Material = material;
 }
 
 void CModel::SetPlayerID(player_id_t id)

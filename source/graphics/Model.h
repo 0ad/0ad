@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,9 +40,8 @@ class CSimulation2;
 #define MODELFLAG_SILHOUETTE_OCCLUDER	(1<<3)
 #define MODELFLAG_IGNORE_LOS		(1<<4)
 #define MODELFLAG_FLOATONWATER		(1<<5)
-///////////////////////////////////////////////////////////////////////////////
-// CModel: basically, a mesh object - holds the texturing and skinning
-// information for a model in game
+
+// Holds world information for a particular instance of a model in the game.
 class CModel : public CModelAbstract
 {
 	NONCOPYABLE(CModel);
@@ -75,11 +74,8 @@ public:
 	};
 
 public:
-	// constructor
-	CModel(CSimulation2& simulation);
-	// destructor
+	CModel(const CSimulation2& simulation, const CMaterial& material, const CModelDefPtr& modeldef);
 	~CModel();
-
 
 	/// Dynamic cast
 	virtual CModel* ToCModel()
@@ -87,22 +83,18 @@ public:
 		return this;
 	}
 
-	// setup model from given geometry
-	bool InitModel(const CModelDefPtr& modeldef);
 	// update this model's state; 'time' is the absolute time since the start of the animation, in MS
 	void UpdateTo(float time);
 
 	// get the model's geometry data
 	const CModelDefPtr& GetModelDef() { return m_pModelDef; }
 
-	// set the model's material
-	void SetMaterial(const CMaterial &material);
 	// set the model's player ID, recursively through props
 	void SetPlayerID(player_id_t id);
 	// set the models mod color
 	virtual void SetShadingColor(const CColor& color);
 	// get the model's material
-	CMaterial& GetMaterial() { return m_Material; }
+	const CMaterial& GetMaterial() { return m_Material; }
 
 	// set the given animation as the current animation on this model
 	bool SetAnimation(CSkeletonAnim* anim, bool once = false);
@@ -118,6 +110,7 @@ public:
 	void SetFlags(int flags) { m_Flags=flags; }
 	// get object flags
 	int GetFlags() const { return m_Flags; }
+
 	// add object flags, recursively through props
 	void AddFlagsRec(int flags);
 	// remove shadow casting and receiving, recursively through props
@@ -232,26 +225,23 @@ public:
 	virtual void InvalidatePosition();
 
 private:
-	// delete anything allocated by the model
-	void ReleaseData();
-
 	// Needed for terrain aligned props
-	CSimulation2& m_Simulation;
+	const CSimulation2& m_Simulation;
 
 	// object flags
-	int m_Flags;
+	int m_Flags{0};
 	// model's material
 	CMaterial m_Material;
 	// pointer to the model's raw 3d data
-	CModelDefPtr m_pModelDef;
+	const CModelDefPtr m_pModelDef;
 	// object space bounds of model - accounts for bounds of all possible animations
 	// that can play on a model. Not always up-to-date - currently CalcBounds()
 	// updates it when necessary.
 	CBoundingBoxAligned m_ObjectBounds;
 	// animation currently playing on this model, if any
-	CSkeletonAnim* m_Anim;
+	CSkeletonAnim* m_Anim = nullptr;
 	// time (in MS) into the current animation
-	float m_AnimTime;
+	float m_AnimTime{0.0f};
 
 	/**
 	 * Current state of all bones on this model; null if associated modeldef isn't skeletal.
@@ -261,19 +251,19 @@ private:
 	 *
 	 * @see SPropPoint
 	 */
-	CMatrix3D* m_BoneMatrices;
+	CMatrix3D* m_BoneMatrices{nullptr};
 	// list of current props on model
 	std::vector<Prop> m_Props;
 
 	/**
 	 * The prop point to which the ammo prop is attached, or NULL if none
 	 */
-	const SPropPoint* m_AmmoPropPoint;
+	const SPropPoint* m_AmmoPropPoint{nullptr};
 
 	/**
 	 * If m_AmmoPropPoint is not NULL, then the index in m_Props of the ammo prop
 	 */
-	size_t m_AmmoLoadedProp;
+	size_t m_AmmoLoadedProp{0};
 };
 
-#endif
+#endif // INCLUDED_MODEL
