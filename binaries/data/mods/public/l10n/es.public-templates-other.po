@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: David Abián, 2023\n"
 "Language-Team: Spanish (http://app.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -1038,9 +1038,28 @@ msgstr "Constructor"
 msgid "Bush"
 msgstr "Arbusto"
 
+#: simulation/templates/mixins/chariot.xml:16
+msgid "Chariot"
+msgstr "Carro"
+
 #: simulation/templates/mixins/mercenary.xml:13
 msgid "Mercenary"
 msgstr "Mercenario"
+
+#: simulation/templates/mixins/rotary_mill.xml:17
+#: simulation/templates/mixins/rotary_mill.xml:18
+msgid "Rotary Mill"
+msgstr "Molino rotatorio"
+
+#: simulation/templates/mixins/rotary_mill.xml:19
+msgid "RotaryMill"
+msgstr "molino rotatorio"
+
+#: simulation/templates/mixins/rotary_mill.xml:22
+msgid ""
+"Dropsite for harvested Food. Capture one of these to increase nearby food "
+"production."
+msgstr "Almacén para la comida recolectada. Captura uno de ellos para incrementar la producción de comida en la zona."
 
 #: simulation/templates/mixins/shrine.xml:12
 #: simulation/templates/mixins/shrine.xml:13

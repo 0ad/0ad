@@ -32,7 +32,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Matteo Nigro, 2023\n"
 "Language-Team: Italian (http://app.transifex.com/wildfire-games/0ad/language/it/)\n"
@@ -253,7 +253,7 @@ msgstr "Spadaccino"
 #: simulation/templates/template_unit_infantry_ranged.xml:8
 #: simulation/templates/template_unit_ship_warship.xml:38
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
-#: simulation/templates/template_unit_siege_stonethrower.xml:45
+#: simulation/templates/template_unit_siege_stonethrower.xml:53
 #: simulation/templates/template_unit_siege_tower.xml:62
 msgid "Ranged"
 msgstr "A distanza"
@@ -399,7 +399,9 @@ msgstr "Proboscide"
 #: simulation/templates/template_unit_champion_elephant_melee.xml:12
 #: simulation/templates/template_unit_hero_elephant_melee.xml:12
 #: simulation/templates/template_unit_ship_fire.xml:22
+#: simulation/templates/template_unit_ship_warship_heavy.xml:27
 #: simulation/templates/template_unit_siege_flamethrower.xml:35
+#: simulation/templates/template_unit_siege_stonethrower.xml:29
 msgid "Circular"
 msgstr "Circolare"
 
@@ -526,12 +528,12 @@ msgstr "Cavalleria Eroe"
 #: simulation/templates/template_unit_hero_elephant_melee.xml:60
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
-#: simulation/templates/units/brit/hero_boudicca.xml:20
+#: simulation/templates/units/brit/hero_boudicca.xml:19
 #: simulation/templates/units/han/support_minister.xml:74
-#: simulation/templates/units/kush/hero_amanirenas.xml:21
-#: simulation/templates/units/maur/hero_ashoka.xml:20
-#: simulation/templates/units/pers/hero_darius_i.xml:20
-#: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:20
+#: simulation/templates/units/kush/hero_amanirenas.xml:20
+#: simulation/templates/units/maur/hero_ashoka.xml:19
+#: simulation/templates/units/pers/hero_darius_i.xml:19
+#: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:19
 msgid ""
 "\n"
 "        "
@@ -734,16 +736,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Pietra"
 
-#: simulation/templates/template_unit_ship_warship_heavy.xml:53
+#: simulation/templates/template_unit_ship_warship_heavy.xml:61
 msgid "Heavy Warship"
 msgstr "Nave da Guerra Pesante"
 
-#: simulation/templates/template_unit_ship_warship_heavy.xml:54
+#: simulation/templates/template_unit_ship_warship_heavy.xml:62
 msgid ""
 "Garrison units for transport. Garrison Stone Throwers to increase firepower."
 msgstr "Unità della guarnigione per il trasporto. Lanciatori di pietre della guarnigione per aumentare la potenza di fuoco."
 
-#: simulation/templates/template_unit_ship_warship_heavy.xml:55
+#: simulation/templates/template_unit_ship_warship_heavy.xml:63
 msgid "Heavy"
 msgstr "Pesante"
 
@@ -802,11 +804,11 @@ msgstr "Non può attaccare coltivazioni o unità organiche"
 msgid "Ram"
 msgstr "Ariete"
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:45
+#: simulation/templates/template_unit_siege_stonethrower.xml:53
 msgid "StoneThrower"
 msgstr "Fromboliere"
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:46
+#: simulation/templates/template_unit_siege_stonethrower.xml:54
 msgid "Siege Catapult"
 msgstr "Catapulta d'assedio"
 
@@ -1333,20 +1335,6 @@ msgstr "Carro Celtico"
 msgid "Essedon"
 msgstr "Essedon"
 
-#: simulation/templates/units/brit/champion_chariot.xml:12
-#: simulation/templates/units/brit/hero_boudicca.xml:15
-#: simulation/templates/units/han/champion_chariot_academy.xml:11
-#: simulation/templates/units/han/hero_wei_qing_chariot.xml:21
-#: simulation/templates/units/kush/hero_amanirenas.xml:16
-#: simulation/templates/units/maur/champion_chariot.xml:12
-#: simulation/templates/units/maur/hero_ashoka.xml:15
-#: simulation/templates/units/pers/champion_chariot.xml:12
-#: simulation/templates/units/pers/hero_darius_i.xml:15
-#: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:15
-#: simulation/templates/units/sele/champion_chariot.xml:12
-msgid "Chariot"
-msgstr "Carro"
-
 #: simulation/templates/units/brit/champion_infantry_swordsman.xml:5
 msgid "Brythonic Champion"
 msgstr "Campione bretone"
@@ -1438,10 +1426,10 @@ msgstr "Donna Celtica"
 msgid "Bena"
 msgstr "Bena"
 
-#: simulation/templates/units/brit/support_healer_b.xml:5
-#: simulation/templates/units/brit/support_healer_b.xml:6
-#: simulation/templates/units/gaul/support_healer_b.xml:5
-#: simulation/templates/units/gaul/support_healer_b.xml:6
+#: simulation/templates/units/brit/support_healer_b.xml:8
+#: simulation/templates/units/brit/support_healer_b.xml:9
+#: simulation/templates/units/gaul/support_healer_b.xml:8
+#: simulation/templates/units/gaul/support_healer_b.xml:9
 msgid "Druid"
 msgstr "Druido"
 
@@ -3319,11 +3307,11 @@ msgstr "Commando Skiritai"
 msgid "Ékdromos Skirítēs"
 msgstr "Assaltatore skiritai"
 
-#: simulation/templates/units/spart/hero_agis.xml:6
+#: simulation/templates/units/spart/hero_agis.xml:10
 msgid "Agis III"
 msgstr "Agis III"
 
-#: simulation/templates/units/spart/hero_agis.xml:7
+#: simulation/templates/units/spart/hero_agis.xml:11
 msgid "Agis"
 msgstr "Agis"
 

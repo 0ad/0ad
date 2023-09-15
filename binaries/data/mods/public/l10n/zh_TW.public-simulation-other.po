@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2023\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -35,340 +35,378 @@ msgid ""
 "your share of the loot."
 msgstr "我已經對 %(_player_)s 送出大量的軍隊要來粉碎他了。加入我，你就可以分享戰利品。"
 
-#: simulation/ai/petra/chatHelper.js:7
+#: simulation/ai/petra/chatHelper.js:5
+#, javascript-format
+msgid ""
+"I am launching an unprecedented attack against %(_player_)s. Bring your "
+"armies and we may soon win this war."
+msgstr "我正在對 %(_player_)s 發起前所未有的攻擊。帶上你的軍隊，我們可能很快就會贏得這場戰爭。"
+
+#: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
 msgstr "我正發起攻擊對付 %(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:8
+#: simulation/ai/petra/chatHelper.js:9
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
 msgstr "我已經命令軍隊對抗 %(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:14
+#: simulation/ai/petra/chatHelper.js:10
+#, javascript-format
+msgid "I am sending an army against %(_player_)s."
+msgstr "我已經命令軍隊對抗 %(_player_)s。"
+
+#: simulation/ai/petra/chatHelper.js:16
 #, javascript-format
 msgid "Let me regroup my army and I will then join you against %(_player_)s."
 msgstr "讓我重新組織我的軍隊，然後，我將會加入你來對抗 %(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:15
+#: simulation/ai/petra/chatHelper.js:17
 #, javascript-format
 msgid "I am finishing preparations to attack %(_player_)s."
 msgstr "我對 %(_player_)s 的攻擊準備就快完成了。"
 
-#: simulation/ai/petra/chatHelper.js:18
+#: simulation/ai/petra/chatHelper.js:20
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
 msgstr "抱歉，我目前沒有足夠的士兵，但我的下一波攻擊將會以 %(_player_)s 做為目標。"
 
-#: simulation/ai/petra/chatHelper.js:19
+#: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
 msgstr "抱歉，我還需要繼續增強我的軍隊。不過我下次將會攻擊 %(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:22
+#: simulation/ai/petra/chatHelper.js:24
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, I am planning to "
 "attack %(_player_2)s first."
 msgstr "我這次無法協助你對抗 %(_player_)s，我計畫先攻擊 %(_player_2)s。"
 
-#: simulation/ai/petra/chatHelper.js:27
+#: simulation/ai/petra/chatHelper.js:29
 #, javascript-format
 msgid "Here is a gift for you, %(_player_)s. Make good use of it."
 msgstr "這是給你的禮物，%(_player_)s。好好使用它吧。"
 
-#: simulation/ai/petra/chatHelper.js:28
+#: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "I see you are in a bad situation, %(_player_)s. I hope this helps."
 msgstr "我看到你的狀況似乎不太好，%(_player_)s。我希望這可以幫上忙。"
 
-#: simulation/ai/petra/chatHelper.js:29
+#: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
 msgid ""
 "I can help you this time, %(_player_)s, but you should manage your resources"
 " more carefully in the future."
 msgstr "這次我可以幫助你，%(_player_)s，但你未來必須更小心地使用你的資源。"
 
-#: simulation/ai/petra/chatHelper.js:33
+#: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
 msgstr "我需要%(resource)s，您可以幫忙嗎？ 我會歸功於您的。"
 
-#: simulation/ai/petra/chatHelper.js:34
+#: simulation/ai/petra/chatHelper.js:36
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
 msgstr "如果您能提供給我一些%(resource)s，我將會更積極參與我們的共同戰爭行動。"
 
-#: simulation/ai/petra/chatHelper.js:35
+#: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
 msgstr "若你可以給我一些%(resource)s，我就可以強化我的軍隊了。"
 
-#: simulation/ai/petra/chatHelper.js:39
+#: simulation/ai/petra/chatHelper.js:41
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
 msgstr "我已經與 %(_player_)s 設定了一條新的路線。這交易對我們來說都有利可圖。"
 
-#: simulation/ai/petra/chatHelper.js:40
+#: simulation/ai/petra/chatHelper.js:42
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits."
 msgstr "與 %(_player_)s 成立一條新的貿易路線。獲取您的那一份利潤吧。"
 
-#: simulation/ai/petra/chatHelper.js:45
+#: simulation/ai/petra/chatHelper.js:47
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
 msgstr "%(_player_)s 和我現在是盟友了。"
 
-#: simulation/ai/petra/chatHelper.js:48
+#: simulation/ai/petra/chatHelper.js:50
 #, javascript-format
 msgid "%(_player_)s and I are now neutral."
 msgstr "%(_player_)s 和我現在互相中立了。"
 
-#: simulation/ai/petra/chatHelper.js:51
+#: simulation/ai/petra/chatHelper.js:53
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
 msgstr "%(_player_)s 和我現在是敵人了。"
 
-#: simulation/ai/petra/chatHelper.js:58
+#: simulation/ai/petra/chatHelper.js:60
 #, javascript-format
 msgid "I cannot accept your offer to become allies, %(_player_)s."
 msgstr "我無法接受你對成為同盟提供的條件，%(_player_)s。"
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
+msgid "I must decline your offer of alliance, %(_player_)s."
+msgstr "我必須拒絕您的盟友提議，%(_player_)s。"
+
+#: simulation/ai/petra/chatHelper.js:62
+#, javascript-format
+msgid "An alliance with you is not in my best interest, %(_player_)s."
+msgstr "跟你同盟不是我最大的興趣，%(_player_)s。"
+
+#: simulation/ai/petra/chatHelper.js:65
+#, javascript-format
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
 msgstr "我將不會成為你的盟友，%(_player_)s。但是，我可以考慮中立條約。"
 
-#: simulation/ai/petra/chatHelper.js:62
+#: simulation/ai/petra/chatHelper.js:66
 #, javascript-format
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
 msgstr "我會拒絕你的同盟請求，%(_player_)s，但我們可以互為中立。"
 
-#: simulation/ai/petra/chatHelper.js:63
+#: simulation/ai/petra/chatHelper.js:67
 #, javascript-format
 msgid "%(_player_)s, only a neutrality agreement is conceivable to me."
 msgstr "%(_player_)s，我只接受中立協議。"
 
-#: simulation/ai/petra/chatHelper.js:66
+#: simulation/ai/petra/chatHelper.js:70
 #, javascript-format
 msgid ""
 "Our previous alliance did not work out, %(_player_)s. I must decline your "
 "offer."
 msgstr "我們先前的同盟對我並沒有好處，%(_player_)s。所以我必須拒絕你的提議。"
 
-#: simulation/ai/petra/chatHelper.js:67
+#: simulation/ai/petra/chatHelper.js:71
 #, javascript-format
 msgid "I won’t ally you again, %(_player_)s!"
 msgstr "我不會再次跟你同盟，%(_player_)s！"
 
-#: simulation/ai/petra/chatHelper.js:68
+#: simulation/ai/petra/chatHelper.js:72
 #, javascript-format
 msgid "No more alliances between us, %(_player_)s!"
 msgstr "我們不再是同盟了，%(_player_)s！"
 
-#: simulation/ai/petra/chatHelper.js:69
+#: simulation/ai/petra/chatHelper.js:73
 #, javascript-format
 msgid "Your request for peace means nothing to me anymore, %(_player_)s!"
 msgstr "你的和平請求對我來說一點意義都沒有，%(_player_)s！"
 
-#: simulation/ai/petra/chatHelper.js:70
+#: simulation/ai/petra/chatHelper.js:74
 #, javascript-format
 msgid ""
 "My answer to your repeated peace proposal will remain war, %(_player_)s!"
 msgstr "對你重複的和平提議請求，我的答案是繼續戰爭，%(_player_)s！"
 
-#: simulation/ai/petra/chatHelper.js:73
+#: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid ""
 "I will accept your offer to become allies, %(_player_)s. We will both "
 "benefit from this partnership."
 msgstr "我將會接受您的盟友提議，%(_player_)s。我們兩個都可以從這次的合作中得到好處。"
 
-#: simulation/ai/petra/chatHelper.js:74
+#: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
 msgstr "我們成為盟友真是好主意，%(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:75
+#: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
 msgid ""
 "Let both of our people prosper from a peaceful association, %(_player_)s."
 msgstr "讓我們兩個都可以從這次的和平協議中獲益吧，%(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:76
+#: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid "We have found common ground, %(_player_)s. I accept the alliance."
 msgstr "我找到了共同點，%(_player_)s。我接受同盟。"
 
-#: simulation/ai/petra/chatHelper.js:77
+#: simulation/ai/petra/chatHelper.js:81
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
 msgstr "%(_player_)s，我們從現在開始是盟友了。"
 
-#: simulation/ai/petra/chatHelper.js:80
+#: simulation/ai/petra/chatHelper.js:84
 #, javascript-format
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
 msgstr "我將會與您，%(_player_)s，成為同盟，不過您要先向我進貢 %(_amount_)s %(_resource_)s的資源。"
 
-#: simulation/ai/petra/chatHelper.js:81
+#: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
 msgstr "%(_player_)s，您必須進貢 %(_amount_)s %(_resource_)s的資源給我，這樣我才會接受同盟提議。"
 
-#: simulation/ai/petra/chatHelper.js:82
+#: simulation/ai/petra/chatHelper.js:86
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s."
 msgstr "除非你進貢給我 %(_amount_)s %(_resource_)s，否則我們將不會是同盟，%(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:85
+#: simulation/ai/petra/chatHelper.js:89
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you only if you send "
 "me a tribute of %(_amount_)s %(_resource_)s."
 msgstr "%(_player_)s，我的提議仍然有效。我將會在您進貢 %(_amount_)s %(_resource_)s的資源後與您結為同盟。"
 
-#: simulation/ai/petra/chatHelper.js:86
+#: simulation/ai/petra/chatHelper.js:90
 #, javascript-format
 msgid ""
 "I’m still waiting for %(_amount_)s %(_resource_)s before accepting your "
 "alliance, %(_player_)s."
 msgstr "我仍在等待 %(_amount_)s %(_resource_)s，然後我才會接受你的同盟提議，%(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:87 simulation/ai/petra/chatHelper.js:108
+#: simulation/ai/petra/chatHelper.js:91 simulation/ai/petra/chatHelper.js:112
 #, javascript-format
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
 msgstr "%(_player_)s，如果你不快點進貢部份 %(_amount_)s %(_resource_)s貢品給我，我將會中止談判。"
 
-#: simulation/ai/petra/chatHelper.js:92
+#: simulation/ai/petra/chatHelper.js:96
 #, javascript-format
 msgid "I will not become neutral with you, %(_player_)s."
 msgstr "我將不會與你互相中立，%(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:93
+#: simulation/ai/petra/chatHelper.js:97
 #, javascript-format
 msgid "%(_player_)s, I must decline your request for a neutrality pact."
 msgstr "%(_player_)s，我必須拒絕你對中立條約的要求。"
 
-#: simulation/ai/petra/chatHelper.js:96
+#: simulation/ai/petra/chatHelper.js:100
 #, javascript-format
 msgid ""
 "Our previous neutrality agreement ended in failure, %(_player_)s; I will not"
 " consider another one."
 msgstr "我們先前的中立條約以失敗收場，%(_player_)s；我將不會再考慮另外一個了。"
 
-#: simulation/ai/petra/chatHelper.js:99
+#: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
 msgid ""
 "I welcome your request for peace between our civilizations, %(_player_)s. I "
 "will accept."
 msgstr "我很歡迎您對我們兩個的文明間保持和平的請求，%(_player_)s。我將會接受。"
 
-#: simulation/ai/petra/chatHelper.js:100
+#: simulation/ai/petra/chatHelper.js:104
 #, javascript-format
 msgid ""
 "%(_player_)s, I will accept your neutrality request. May both our "
 "civilizations benefit."
 msgstr "%(_player_)s，我將會接受你的中立請求。應該會對我們兩個的文明都有所助益。"
 
-#: simulation/ai/petra/chatHelper.js:103
+#: simulation/ai/petra/chatHelper.js:107
 #, javascript-format
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
 msgstr "如果你進貢給我 %(_amount_)s %(_resource_)s的資源，我將會接受你的中立請求，%(_player_)s。"
 
-#: simulation/ai/petra/chatHelper.js:104
+#: simulation/ai/petra/chatHelper.js:108
 #, javascript-format
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
 msgstr "%(_player_)s，如果你進貢給我 %(_amount_)s %(_resource_)s的資源，我將會接受中立條約。"
 
-#: simulation/ai/petra/chatHelper.js:107
+#: simulation/ai/petra/chatHelper.js:111
 #, javascript-format
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
 msgstr "%(_player_)s，除非你快點進貢給我 %(_amount_)s %(_resource_)s的資源，否則我將不會接受你的中立請求。"
 
-#: simulation/ai/petra/chatHelper.js:116
+#: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid ""
 "%(_player_)s, it would help both of our civilizations if we formed an "
 "alliance. If you become allies with me, I will respond in kind."
 msgstr "%(_player_)s，結為同盟可以同時協助我們的文明。若您變成我的盟友，我會很高興做出回應。"
 
-#: simulation/ai/petra/chatHelper.js:119
+#: simulation/ai/petra/chatHelper.js:123
 #, javascript-format
 msgid "%(_player_)s, my offer for an alliance has expired."
 msgstr "%(_player_)s，我的同盟提議已經過期了。"
 
-#: simulation/ai/petra/chatHelper.js:120
+#: simulation/ai/petra/chatHelper.js:124
 #, javascript-format
 msgid ""
 "%(_player_)s, I have rescinded my previous offer for an alliance between us."
 msgstr "%(_player_)s，我已經取消了我之前同盟的提議了。"
 
-#: simulation/ai/petra/chatHelper.js:125
+#: simulation/ai/petra/chatHelper.js:129
 #, javascript-format
 msgid ""
 "%(_player_)s, I would like to request a neutrality pact between our "
 "civilizations. If you become neutral with me, I will respond in kind."
 msgstr "%(_player_)s，我想要請求我們的文明間的中立條約。若您對我變成中立，我會很高興做出回應。"
 
-#: simulation/ai/petra/chatHelper.js:126
+#: simulation/ai/petra/chatHelper.js:130
 #, javascript-format
 msgid ""
 "%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
 "pact. I will become neutral with you if you do the same."
 msgstr "%(_player_)s，如果我們談判中立條約成功，對我們兩個都有好處。如果您變為中立，我也會。"
 
-#: simulation/ai/petra/chatHelper.js:129
+#: simulation/ai/petra/chatHelper.js:133
 #, javascript-format
 msgid "%(_player_)s, I have decided to revoke my offer for a neutrality pact."
 msgstr "%(_player_)s，我已經決定要撤銷我的中立條約提議。"
 
-#: simulation/ai/petra/chatHelper.js:130
+#: simulation/ai/petra/chatHelper.js:134
 #, javascript-format
 msgid ""
 "%(_player_)s, as you have failed to respond to my request for peace between "
 "us, I have abrogated my offer."
 msgstr "%(_player_)s，因為您沒有回應我的請求，所以我廢除了我們的條約。"
 
-#: simulation/ai/petra/chatHelper.js:137
+#: simulation/ai/petra/chatHelper.js:141
 msgid ""
 "My armies failed while defending my empire. Please honor our alliance and "
 "send help!"
 msgstr "我的軍隊在保衛我的帝國時失敗了。請以我們的聯盟為傲並提供幫助！"
 
-#: simulation/ai/petra/chatHelper.js:140
+#: simulation/ai/petra/chatHelper.js:142
+msgid ""
+"My humble armies feel weak and tired. My civilization depends on our "
+"alliance, please send help!"
+msgstr "我卑微的軍隊感到虛弱和疲倦。我的文明依賴於我們的聯盟，請發送幫助！"
+
+#: simulation/ai/petra/chatHelper.js:143
+msgid "I need your help. Please do not let my armies fall!"
+msgstr "我需要你的幫助。請不要讓我的軍隊倒下！"
+
+#: simulation/ai/petra/chatHelper.js:146
 msgid ""
 "My empire regained its old strength, now it is time to seek revenge "
 "together!"
 msgstr "我的帝國恢復了昔日的實力，現在是時候一起復仇了！"
+
+#: simulation/ai/petra/chatHelper.js:147
+msgid ""
+"My civilization raised from the ashes. Now my armies feel stronger and eager"
+" to fight for our alliance."
+msgstr "我的文明從灰燼中崛起。現在我的軍隊感覺更加強大，並渴望為我們的聯盟而戰。"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""

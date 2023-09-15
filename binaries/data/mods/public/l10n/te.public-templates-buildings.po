@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: జయంత్ వర్మ బెల్లపుకొండ <jayanthvarma.b@gmail.com>, 2017,2020\n"
 "Language-Team: Telugu (http://app.transifex.com/wildfire-games/0ad/language/te/)\n"
@@ -553,45 +553,6 @@ msgstr ""
 msgid "Fallen Doric Column"
 msgstr ""
 
-#: simulation/templates/structures/farmstead_desert.xml:10
-#: simulation/templates/structures/farmstead_saharan.xml:10
-#: simulation/templates/structures/kush/farmstead.xml:9
-msgid "snwt"
-msgstr ""
-
-#: simulation/templates/structures/farmstead_field_wheat.xml:7
-#: simulation/templates/structures/generic_field.xml:8
-msgid "Wheat Field"
-msgstr ""
-
-#: simulation/templates/structures/athen/farmstead.xml:11
-#: simulation/templates/structures/farmstead_greek.xml:8
-#: simulation/templates/structures/mace/farmstead.xml:11
-#: simulation/templates/structures/ptol/farmstead.xml:8
-#: simulation/templates/structures/sele/farmstead.xml:8
-#: simulation/templates/structures/spart/farmstead.xml:11
-msgid "Epoikion"
-msgstr ""
-
-#: simulation/templates/structures/farmstead_indian.xml:8
-#: simulation/templates/structures/maur/farmstead.xml:11
-msgid "Kantu"
-msgstr ""
-
-#: simulation/templates/structures/farmstead_italian.xml:8
-msgid "Villa"
-msgstr "విల్లా"
-
-#: simulation/templates/structures/farmstead_middle_eastern.xml:9
-#: simulation/templates/structures/pers/farmstead.xml:8
-msgid "Kaštašta"
-msgstr ""
-
-#: simulation/templates/structures/brit/rotarymill.xml:5
-#: simulation/templates/structures/farmstead_temperate_europe.xml:4
-msgid "Melonas"
-msgstr ""
-
 #: simulation/templates/structures/fence_long.xml:14
 #: simulation/templates/structures/fence_short.xml:14
 msgid "Fence"
@@ -667,6 +628,11 @@ msgstr ""
 
 #: simulation/templates/structures/gaul/wonder.xml:10
 msgid "Celicnon"
+msgstr ""
+
+#: simulation/templates/structures/generic_field.xml:8
+#: simulation/templates/structures/mill_field_wheat.xml:6
+msgid "Wheat Field"
 msgstr ""
 
 #: simulation/templates/structures/han/academy.xml:27
@@ -1297,6 +1263,40 @@ msgstr ""
 #: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "హెల్లెనిస్టిక్ ఈజిప్ట్ యొక్క కిరాయి మనుషులకు శిక్షణ ఇవ్వటానికి ఈ భవంతిని ఆక్రమించండి."
+
+#: simulation/templates/structures/kush/farmstead.xml:9
+#: simulation/templates/structures/mill_desert.xml:8
+#: simulation/templates/structures/mill_saharan.xml:8
+msgid "snwt"
+msgstr ""
+
+#: simulation/templates/structures/athen/farmstead.xml:11
+#: simulation/templates/structures/mace/farmstead.xml:11
+#: simulation/templates/structures/mill_greek.xml:8
+#: simulation/templates/structures/ptol/farmstead.xml:8
+#: simulation/templates/structures/sele/farmstead.xml:8
+#: simulation/templates/structures/spart/farmstead.xml:11
+msgid "Epoikion"
+msgstr ""
+
+#: simulation/templates/structures/maur/farmstead.xml:11
+#: simulation/templates/structures/mill_indian.xml:8
+msgid "Kantu"
+msgstr ""
+
+#: simulation/templates/structures/mill_italian.xml:8
+msgid "Villa"
+msgstr "విల్లా"
+
+#: simulation/templates/structures/mill_middle_eastern.xml:8
+#: simulation/templates/structures/pers/farmstead.xml:8
+msgid "Kaštašta"
+msgstr ""
+
+#: simulation/templates/structures/brit/rotarymill.xml:5
+#: simulation/templates/structures/mill_temperate_europe.xml:4
+msgid "Melonas"
+msgstr ""
 
 #: simulation/templates/structures/obelisk.xml:11
 msgid "Obelisk"
@@ -1956,6 +1956,7 @@ msgstr "స్టోవా"
 #: simulation/templates/structures/han/laozigate.xml:24
 #: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
+#: simulation/templates/structures/mace/arsenal.xml:6
 #: simulation/templates/structures/maur/elephant_stable.xml:7
 #: simulation/templates/structures/merc_camp_egyptian.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:75
@@ -2105,8 +2106,6 @@ msgstr "ఆర్ధిక"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:26
 #: simulation/templates/template_structure_economic_farmstead.xml:30
-#: simulation/templates/template_structure_special_rotarymill.xml:32
-#: simulation/templates/template_structure_special_rotarymill.xml:34
 msgid "Farmstead"
 msgstr "వ్యవసాయ స్థలము"
 
@@ -2297,16 +2296,6 @@ msgstr ""
 #: simulation/templates/template_structure_special_library.xml:27
 msgid "Library"
 msgstr "గ్రంధాలయం"
-
-#: simulation/templates/template_structure_special_rotarymill.xml:33
-msgid "Rotary Mill"
-msgstr ""
-
-#: simulation/templates/template_structure_special_rotarymill.xml:38
-msgid ""
-"Dropsite for harvested Food. Capture one of these to increase nearby food "
-"production."
-msgstr ""
 
 #: simulation/templates/template_structure_special_theater.xml:25
 #: simulation/templates/template_structure_special_theater.xml:27

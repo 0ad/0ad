@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS, 2020-2022\n"
 "Language-Team: Greek (http://app.transifex.com/wildfire-games/0ad/language/el/)\n"
@@ -241,7 +241,7 @@ msgstr "Ξιφομάχος"
 #: simulation/templates/template_unit_infantry_ranged.xml:8
 #: simulation/templates/template_unit_ship_warship.xml:38
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
-#: simulation/templates/template_unit_siege_stonethrower.xml:45
+#: simulation/templates/template_unit_siege_stonethrower.xml:53
 #: simulation/templates/template_unit_siege_tower.xml:62
 msgid "Ranged"
 msgstr "Εκήβολο"
@@ -387,7 +387,9 @@ msgstr "Προβοσκίδα"
 #: simulation/templates/template_unit_champion_elephant_melee.xml:12
 #: simulation/templates/template_unit_hero_elephant_melee.xml:12
 #: simulation/templates/template_unit_ship_fire.xml:22
+#: simulation/templates/template_unit_ship_warship_heavy.xml:27
 #: simulation/templates/template_unit_siege_flamethrower.xml:35
+#: simulation/templates/template_unit_siege_stonethrower.xml:29
 msgid "Circular"
 msgstr "Κυκλικό"
 
@@ -514,12 +516,12 @@ msgstr "Ήρωας Ιππέας"
 #: simulation/templates/template_unit_hero_elephant_melee.xml:60
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
-#: simulation/templates/units/brit/hero_boudicca.xml:20
+#: simulation/templates/units/brit/hero_boudicca.xml:19
 #: simulation/templates/units/han/support_minister.xml:74
-#: simulation/templates/units/kush/hero_amanirenas.xml:21
-#: simulation/templates/units/maur/hero_ashoka.xml:20
-#: simulation/templates/units/pers/hero_darius_i.xml:20
-#: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:20
+#: simulation/templates/units/kush/hero_amanirenas.xml:20
+#: simulation/templates/units/maur/hero_ashoka.xml:19
+#: simulation/templates/units/pers/hero_darius_i.xml:19
+#: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:19
 msgid ""
 "\n"
 "        "
@@ -722,16 +724,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Πέτρα"
 
-#: simulation/templates/template_unit_ship_warship_heavy.xml:53
+#: simulation/templates/template_unit_ship_warship_heavy.xml:61
 msgid "Heavy Warship"
 msgstr "Βαρύ πολεμικό πλοίο"
 
-#: simulation/templates/template_unit_ship_warship_heavy.xml:54
+#: simulation/templates/template_unit_ship_warship_heavy.xml:62
 msgid ""
 "Garrison units for transport. Garrison Stone Throwers to increase firepower."
 msgstr ""
 
-#: simulation/templates/template_unit_ship_warship_heavy.xml:55
+#: simulation/templates/template_unit_ship_warship_heavy.xml:63
 msgid "Heavy"
 msgstr ""
 
@@ -790,11 +792,11 @@ msgstr "Δε μπορεί να επιτεθεί σε Χωράφια ή Οργα�
 msgid "Ram"
 msgstr "Κριός"
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:45
+#: simulation/templates/template_unit_siege_stonethrower.xml:53
 msgid "StoneThrower"
 msgstr "Πετροβόλος"
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:46
+#: simulation/templates/template_unit_siege_stonethrower.xml:54
 msgid "Siege Catapult"
 msgstr "Καταπέλτης"
 
@@ -1321,20 +1323,6 @@ msgstr "Κέλτικο Άρμα"
 msgid "Essedon"
 msgstr "Essedon"
 
-#: simulation/templates/units/brit/champion_chariot.xml:12
-#: simulation/templates/units/brit/hero_boudicca.xml:15
-#: simulation/templates/units/han/champion_chariot_academy.xml:11
-#: simulation/templates/units/han/hero_wei_qing_chariot.xml:21
-#: simulation/templates/units/kush/hero_amanirenas.xml:16
-#: simulation/templates/units/maur/champion_chariot.xml:12
-#: simulation/templates/units/maur/hero_ashoka.xml:15
-#: simulation/templates/units/pers/champion_chariot.xml:12
-#: simulation/templates/units/pers/hero_darius_i.xml:15
-#: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:15
-#: simulation/templates/units/sele/champion_chariot.xml:12
-msgid "Chariot"
-msgstr "Άρμα"
-
 #: simulation/templates/units/brit/champion_infantry_swordsman.xml:5
 msgid "Brythonic Champion"
 msgstr "Βρυθονικός Πρωταθλητής "
@@ -1426,10 +1414,10 @@ msgstr "Κέλτισσα Γυναίκα"
 msgid "Bena"
 msgstr "Μπίνα"
 
-#: simulation/templates/units/brit/support_healer_b.xml:5
-#: simulation/templates/units/brit/support_healer_b.xml:6
-#: simulation/templates/units/gaul/support_healer_b.xml:5
-#: simulation/templates/units/gaul/support_healer_b.xml:6
+#: simulation/templates/units/brit/support_healer_b.xml:8
+#: simulation/templates/units/brit/support_healer_b.xml:9
+#: simulation/templates/units/gaul/support_healer_b.xml:8
+#: simulation/templates/units/gaul/support_healer_b.xml:9
 msgid "Druid"
 msgstr "Δρυίδις"
 
@@ -3307,11 +3295,11 @@ msgstr "Σκιρλιτης καταδρομέας"
 msgid "Ékdromos Skirítēs"
 msgstr "Έκδρομος Σκιρίτης"
 
-#: simulation/templates/units/spart/hero_agis.xml:6
+#: simulation/templates/units/spart/hero_agis.xml:10
 msgid "Agis III"
 msgstr "Άγις Γ'"
 
-#: simulation/templates/units/spart/hero_agis.xml:7
+#: simulation/templates/units/spart/hero_agis.xml:11
 msgid "Agis"
 msgstr "Άγις Α'"
 

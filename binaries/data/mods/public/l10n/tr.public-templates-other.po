@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: yakup <mutouk@yandex.ru>, 2014-2017,2021-2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
@@ -1031,9 +1031,28 @@ msgstr "İnşaacı"
 msgid "Bush"
 msgstr "Böğürtlen"
 
+#: simulation/templates/mixins/chariot.xml:16
+msgid "Chariot"
+msgstr "Savaş Arabası"
+
 #: simulation/templates/mixins/mercenary.xml:13
 msgid "Mercenary"
 msgstr "Paralı asker"
+
+#: simulation/templates/mixins/rotary_mill.xml:17
+#: simulation/templates/mixins/rotary_mill.xml:18
+msgid "Rotary Mill"
+msgstr "Döner Değirmen"
+
+#: simulation/templates/mixins/rotary_mill.xml:19
+msgid "RotaryMill"
+msgstr "Döner Değirmen"
+
+#: simulation/templates/mixins/rotary_mill.xml:22
+msgid ""
+"Dropsite for harvested Food. Capture one of these to increase nearby food "
+"production."
+msgstr "Hasat edilen yiyecekler için b,r depo. Yakındaki yiyecek üretimini artırmak için bunlardan birini ele geçir."
 
 #: simulation/templates/mixins/shrine.xml:12
 #: simulation/templates/mixins/shrine.xml:13

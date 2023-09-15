@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Quim Reb, 2023\n"
 "Language-Team: Catalan (http://app.transifex.com/wildfire-games/0ad/language/ca/)\n"
@@ -240,7 +240,7 @@ msgstr "Soldat amb espasa"
 #: simulation/templates/template_unit_infantry_ranged.xml:8
 #: simulation/templates/template_unit_ship_warship.xml:38
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
-#: simulation/templates/template_unit_siege_stonethrower.xml:45
+#: simulation/templates/template_unit_siege_stonethrower.xml:53
 #: simulation/templates/template_unit_siege_tower.xml:62
 msgid "Ranged"
 msgstr "A distància"
@@ -386,7 +386,9 @@ msgstr "Trompa"
 #: simulation/templates/template_unit_champion_elephant_melee.xml:12
 #: simulation/templates/template_unit_hero_elephant_melee.xml:12
 #: simulation/templates/template_unit_ship_fire.xml:22
+#: simulation/templates/template_unit_ship_warship_heavy.xml:27
 #: simulation/templates/template_unit_siege_flamethrower.xml:35
+#: simulation/templates/template_unit_siege_stonethrower.xml:29
 msgid "Circular"
 msgstr "Circular"
 
@@ -513,12 +515,12 @@ msgstr "Heroi de cavalleria"
 #: simulation/templates/template_unit_hero_elephant_melee.xml:60
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
-#: simulation/templates/units/brit/hero_boudicca.xml:20
+#: simulation/templates/units/brit/hero_boudicca.xml:19
 #: simulation/templates/units/han/support_minister.xml:74
-#: simulation/templates/units/kush/hero_amanirenas.xml:21
-#: simulation/templates/units/maur/hero_ashoka.xml:20
-#: simulation/templates/units/pers/hero_darius_i.xml:20
-#: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:20
+#: simulation/templates/units/kush/hero_amanirenas.xml:20
+#: simulation/templates/units/maur/hero_ashoka.xml:19
+#: simulation/templates/units/pers/hero_darius_i.xml:19
+#: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:19
 msgid ""
 "\n"
 "        "
@@ -721,16 +723,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Pedra"
 
-#: simulation/templates/template_unit_ship_warship_heavy.xml:53
+#: simulation/templates/template_unit_ship_warship_heavy.xml:61
 msgid "Heavy Warship"
 msgstr "Vaixell de guerra pesat"
 
-#: simulation/templates/template_unit_ship_warship_heavy.xml:54
+#: simulation/templates/template_unit_ship_warship_heavy.xml:62
 msgid ""
 "Garrison units for transport. Garrison Stone Throwers to increase firepower."
 msgstr "Refugieu-hi unitats per transportar-les.  Refugieu-hi llançadors de pedres per augmentar potència de foc."
 
-#: simulation/templates/template_unit_ship_warship_heavy.xml:55
+#: simulation/templates/template_unit_ship_warship_heavy.xml:63
 msgid "Heavy"
 msgstr "Pesat"
 
@@ -789,11 +791,11 @@ msgstr "No pot atacar horts ni unitats vives."
 msgid "Ram"
 msgstr "Ariet"
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:45
+#: simulation/templates/template_unit_siege_stonethrower.xml:53
 msgid "StoneThrower"
 msgstr "Tirador de pedres"
 
-#: simulation/templates/template_unit_siege_stonethrower.xml:46
+#: simulation/templates/template_unit_siege_stonethrower.xml:54
 msgid "Siege Catapult"
 msgstr "Catapulta"
 
@@ -1320,20 +1322,6 @@ msgstr "Carro de guerra celta"
 msgid "Essedon"
 msgstr "Essedon"
 
-#: simulation/templates/units/brit/champion_chariot.xml:12
-#: simulation/templates/units/brit/hero_boudicca.xml:15
-#: simulation/templates/units/han/champion_chariot_academy.xml:11
-#: simulation/templates/units/han/hero_wei_qing_chariot.xml:21
-#: simulation/templates/units/kush/hero_amanirenas.xml:16
-#: simulation/templates/units/maur/champion_chariot.xml:12
-#: simulation/templates/units/maur/hero_ashoka.xml:15
-#: simulation/templates/units/pers/champion_chariot.xml:12
-#: simulation/templates/units/pers/hero_darius_i.xml:15
-#: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:15
-#: simulation/templates/units/sele/champion_chariot.xml:12
-msgid "Chariot"
-msgstr "Carro de guerra"
-
 #: simulation/templates/units/brit/champion_infantry_swordsman.xml:5
 msgid "Brythonic Champion"
 msgstr "Campió britó"
@@ -1425,10 +1413,10 @@ msgstr "Dona celta"
 msgid "Bena"
 msgstr "Bena"
 
-#: simulation/templates/units/brit/support_healer_b.xml:5
-#: simulation/templates/units/brit/support_healer_b.xml:6
-#: simulation/templates/units/gaul/support_healer_b.xml:5
-#: simulation/templates/units/gaul/support_healer_b.xml:6
+#: simulation/templates/units/brit/support_healer_b.xml:8
+#: simulation/templates/units/brit/support_healer_b.xml:9
+#: simulation/templates/units/gaul/support_healer_b.xml:8
+#: simulation/templates/units/gaul/support_healer_b.xml:9
 msgid "Druid"
 msgstr "Druida"
 
@@ -3306,11 +3294,11 @@ msgstr "Comando dels Skiritai"
 msgid "Ékdromos Skirítēs"
 msgstr "Ékdromos Skirítēs"
 
-#: simulation/templates/units/spart/hero_agis.xml:6
+#: simulation/templates/units/spart/hero_agis.xml:10
 msgid "Agis III"
 msgstr "Agis III"
 
-#: simulation/templates/units/spart/hero_agis.xml:7
+#: simulation/templates/units/spart/hero_agis.xml:11
 msgid "Agis"
 msgstr "Agis"
 

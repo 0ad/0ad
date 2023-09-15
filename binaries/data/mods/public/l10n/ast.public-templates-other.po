@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: 80ff3f6c158be5d15b8f5a2de9eeb874_b065276 <94c1654d814b574acd26b68ba9729cbf_397246>, 2017-2023\n"
 "Language-Team: Asturian (http://app.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -1020,9 +1020,28 @@ msgstr "Constructor"
 msgid "Bush"
 msgstr "Parrotal"
 
+#: simulation/templates/mixins/chariot.xml:16
+msgid "Chariot"
+msgstr "Carru"
+
 #: simulation/templates/mixins/mercenary.xml:13
 msgid "Mercenary"
 msgstr "Mercenariu"
+
+#: simulation/templates/mixins/rotary_mill.xml:17
+#: simulation/templates/mixins/rotary_mill.xml:18
+msgid "Rotary Mill"
+msgstr "Molino de rabil"
+
+#: simulation/templates/mixins/rotary_mill.xml:19
+msgid "RotaryMill"
+msgstr "MolinoRabil"
+
+#: simulation/templates/mixins/rotary_mill.xml:22
+msgid ""
+"Dropsite for harvested Food. Capture one of these to increase nearby food "
+"production."
+msgstr "Depósito pa la cuölya de CIBEIRA. Possea-te d’uno para xubire la produccion de cibeira na redolada."
 
 #: simulation/templates/mixins/shrine.xml:12
 #: simulation/templates/mixins/shrine.xml:13
