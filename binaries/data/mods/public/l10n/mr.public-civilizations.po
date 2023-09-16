@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-09-08 07:08+0000\n"
+"POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: sabretou <sabretou@gmail.com>, 2023\n"
 "Language-Team: Marathi (http://app.transifex.com/wildfire-games/0ad/language/mr/)\n"
@@ -125,6 +125,21 @@ msgstr "दुबनोवेल्लाउनुस"
 #: simulation/data/civs/brit.jsonAINames[7]
 msgid "Vosenius"
 msgstr "वोसेनिउस"
+
+#: simulation/data/civs/brit.jsonCivBonuses[0].Description
+#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
+msgid "Druids increase attack rates of soldiers near them by 5%."
+msgstr ""
+
+#: simulation/data/civs/brit.jsonCivBonuses[0].History
+#: simulation/data/civs/gaul.jsonCivBonuses[0].History
+msgid "Celtic religion and druidry inspired their warlike mindset."
+msgstr ""
+
+#: simulation/data/civs/brit.jsonCivBonuses[0].Name
+#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
+msgid "Deas Celtica"
+msgstr ""
 
 #: simulation/data/civs/cart.jsonAINames[0]
 msgid "Hasdrubal Barca"

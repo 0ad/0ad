@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-09-08 07:08+0000\n"
+"POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2023\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -140,6 +140,21 @@ msgstr "杜布諾維拉努斯"
 #: simulation/data/civs/brit.jsonAINames[7]
 msgid "Vosenius"
 msgstr "沃森紐斯"
+
+#: simulation/data/civs/brit.jsonCivBonuses[0].Description
+#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
+msgid "Druids increase attack rates of soldiers near them by 5%."
+msgstr "德魯依增加其附近士兵的攻擊速度 5%。"
+
+#: simulation/data/civs/brit.jsonCivBonuses[0].History
+#: simulation/data/civs/gaul.jsonCivBonuses[0].History
+msgid "Celtic religion and druidry inspired their warlike mindset."
+msgstr "凱爾特人的宗教信仰及德魯伊激發了他們的好戰心態。"
+
+#: simulation/data/civs/brit.jsonCivBonuses[0].Name
+#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
+msgid "Deas Celtica"
+msgstr "凱爾特諸神"
 
 #: simulation/data/civs/cart.jsonAINames[0]
 msgid "Hasdrubal Barca"

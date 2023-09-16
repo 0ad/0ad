@@ -62,7 +62,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-09-08 07:08+0000\n"
+"POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Cave Johnson, 2023\n"
 "Language-Team: French (http://app.transifex.com/wildfire-games/0ad/language/fr/)\n"
@@ -115,8 +115,8 @@ msgid "Garrison within the Corral to gain a slow trickle of +1 food."
 msgstr "Garnison à l'intérieur du Corral pour gagner un lent ravitaillement de nourriture +1."
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
-msgid "Gatherers +75% farming rate around a captured Farmstead."
-msgstr "Cueilleurs +75% de taux d'agriculture autour d'une ferme capturée."
+msgid "Workers +75% grain gather rate around a captured Rotary Mill."
+msgstr ""
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
@@ -612,6 +612,14 @@ msgstr "Pour davantage soutenir l'égalité, Lycurgue interdit l'utilisation d'o
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"
 msgstr "Pélanors en fer"
+
+#: simulation/data/auras/units/celtic_healer.jsonauraDescription
+msgid "Soldiers +5% attack damage."
+msgstr ""
+
+#: simulation/data/auras/units/celtic_healer.jsonauraName
+msgid "Deas Celtica"
+msgstr "Deas Celtica"
 
 #: simulation/data/auras/units/centurion.jsonauraDescription
 msgid ""

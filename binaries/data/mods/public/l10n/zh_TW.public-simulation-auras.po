@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-09-08 07:08+0000\n"
+"POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2023\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -76,8 +76,8 @@ msgid "Garrison within the Corral to gain a slow trickle of +1 food."
 msgstr "畜欄內的駐守可獲得 +1 食物的緩慢細流。"
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
-msgid "Gatherers +75% farming rate around a captured Farmstead."
-msgstr "採集者在佔領的農舍周圍 +75% 耕種率。"
+msgid "Workers +75% grain gather rate around a captured Rotary Mill."
+msgstr "工人在旋轉式磨坊周圍 +75% 作物採集速率。"
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
@@ -573,6 +573,14 @@ msgstr "為了進一步支持平等，來古格士禁止使用黃金與白銀，
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraName
 msgid "Iron Pelanors"
 msgstr "鐵幣"
+
+#: simulation/data/auras/units/celtic_healer.jsonauraDescription
+msgid "Soldiers +5% attack damage."
+msgstr "士兵 +5% 攻擊傷害。"
+
+#: simulation/data/auras/units/celtic_healer.jsonauraName
+msgid "Deas Celtica"
+msgstr "凱爾特人迪斯"
 
 #: simulation/data/auras/units/centurion.jsonauraDescription
 msgid ""
