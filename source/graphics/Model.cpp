@@ -60,9 +60,6 @@ CModel::CModel(const CSimulation2& simulation, const CMaterial& material, const 
 CModel::~CModel()
 {
 	rtl_FreeAligned(m_BoneMatrices);
-
-	for (Prop& prop : m_Props)
-		delete prop.m_Model;
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -385,7 +382,7 @@ void CModel::CopyAnimationFrom(CModel* source)
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // AddProp: add a prop to the model on the given point
-void CModel::AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry, float minHeight, float maxHeight, bool selectable)
+void CModel::AddProp(const SPropPoint* point, std::unique_ptr<CModelAbstract> model, CObjectEntry* objectentry, float minHeight, float maxHeight, bool selectable)
 {
 	// position model according to prop point position
 
@@ -395,17 +392,17 @@ void CModel::AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntr
 
 	Prop prop;
 	prop.m_Point = point;
-	prop.m_Model = model;
+	prop.m_Model = std::move(model);
 	prop.m_ObjectEntry = objectentry;
 	prop.m_MinHeight = minHeight;
 	prop.m_MaxHeight = maxHeight;
 	prop.m_Selectable = selectable;
-	m_Props.push_back(prop);
+	m_Props.push_back(std::move(prop));
 }
 
-void CModel::AddAmmoProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry)
+void CModel::AddAmmoProp(const SPropPoint* point, std::unique_ptr<CModelAbstract> model, CObjectEntry* objectentry)
 {
-	AddProp(point, model, objectentry);
+	AddProp(point, std::move(model), objectentry);
 	m_AmmoPropPoint = point;
 	m_AmmoLoadedProp = m_Props.size() - 1;
 	m_Props[m_AmmoLoadedProp].m_Hidden = true;
@@ -448,7 +445,7 @@ void CModel::HideAmmoProp()
 CModelAbstract* CModel::FindFirstAmmoProp()
 {
 	if (m_AmmoPropPoint)
-		return m_Props[m_AmmoLoadedProp].m_Model;
+		return m_Props[m_AmmoLoadedProp].m_Model.get();
 
 	for (size_t i = 0; i < m_Props.size(); ++i)
 	{
@@ -466,9 +463,9 @@ CModelAbstract* CModel::FindFirstAmmoProp()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Clone: return a clone of this model
-CModelAbstract* CModel::Clone() const
+std::unique_ptr<CModelAbstract> CModel::Clone() const
 {
-	CModel* clone = new CModel(m_Simulation, m_Material, m_pModelDef);
+	std::unique_ptr<CModel> clone = std::make_unique<CModel>(m_Simulation, m_Material, m_pModelDef);
 	clone->m_ObjectBounds = m_ObjectBounds;
 	clone->SetAnimation(m_Anim);
 	clone->SetFlags(m_Flags);

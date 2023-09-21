@@ -45,7 +45,6 @@ CUnit::CUnit(CObjectManager& objectManager, const CActorDef& actor, const entity
 CUnit::~CUnit()
 {
 	delete m_Animation;
-	delete m_Model;
 }
 
 CUnit* CUnit::Create(const CStrW& actorName, const entity_id_t id, const uint32_t seed, CObjectManager& objectManager)
@@ -128,7 +127,7 @@ void CUnit::ReloadObject()
 	else if (m_Object && newObject != m_Object)
 	{
 		// Clone the new object's base (non-instance) model
-		CModelAbstract* newModel = newObject->m_Model->Clone();
+		std::unique_ptr<CModelAbstract> newModel = newObject->m_Model->Clone();
 
 		// Copy the old instance-specific settings from the old model to the new instance
 		newModel->SetTransform(m_Model->GetTransform());
@@ -142,8 +141,7 @@ void CUnit::ReloadObject()
 			newModel->ToCModel()->AddFlagsRec(instanceFlags);
 		}
 
-		delete m_Model;
-		m_Model = newModel;
+		m_Model = std::move(newModel);
 		m_Object = newObject;
 
 		if (m_Model->ToCModel())

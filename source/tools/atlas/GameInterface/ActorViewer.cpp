@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -118,7 +118,8 @@ public:
 
 	SOverlayLine SelectionBoxOverlay;
 	SOverlayLine AxesMarkerOverlays[3];
-	std::vector<CModel::Prop> Props;
+
+	std::vector<CModelAbstract*> PropModels;
 	std::vector<SOverlayLine> PropPointOverlays;
 
 	// Simplistic implementation of the Scene interface
@@ -159,16 +160,16 @@ public:
 			}
 
 			// add prop point overlays
-			if (PropPointsMode > 0 && Props.size() > 0)
+			if (PropPointsMode > 0 && PropModels.size() > 0)
 			{
 				PropPointOverlays.clear(); // doesn't clear capacity, but should be ok since the number of prop points is usually pretty limited
-				for (size_t i = 0; i < Props.size(); ++i)
+				for (size_t i = 0; i < PropModels.size(); ++i)
 				{
-					CModel::Prop& prop = Props[i];
-					if (prop.m_Model) // should always be the case
+					CModelAbstract* model = PropModels[i];
+					if (model) // should always be the case
 					{
 						// prop point positions are automatically updated during animations etc. by CModel::ValidatePosition
-						const CMatrix3D& propCoordSystem = prop.m_Model->GetTransform();
+						const CMatrix3D& propCoordSystem = model->GetTransform();
 
 						SOverlayLine pointGimbal;
 						pointGimbal.m_Color = CColor(1.f, 0.f, 1.f, 1.f);
@@ -231,7 +232,7 @@ public:
 
 void ActorViewerImpl::UpdatePropList()
 {
-	Props.clear();
+	PropModels.clear();
 
 	CmpPtr<ICmpVisual> cmpVisual(Simulation2, Entity);
 	if (cmpVisual)
@@ -255,9 +256,9 @@ void ActorViewerImpl::UpdatePropListRecursive(CModelAbstract* modelAbstract)
 		std::vector<CModel::Prop>& modelProps = model->GetProps();
 		for (CModel::Prop& modelProp : modelProps)
 		{
-			Props.push_back(modelProp);
+			PropModels.push_back(modelProp.m_Model.get());
 			if (modelProp.m_Model)
-				UpdatePropListRecursive(modelProp.m_Model);
+				UpdatePropListRecursive(modelProp.m_Model.get());
 		}
 	}
 }

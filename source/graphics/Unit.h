@@ -22,6 +22,7 @@
 #include "simulation2/system/Entity.h"	// entity_id_t
 
 #include <map>
+#include <memory>
 #include <set>
 
 class CActorDef;
@@ -83,8 +84,8 @@ private:
 	const CActorDef& m_Actor;
 	// object from which unit was created; never NULL once fully created.
 	CObjectEntry* m_Object = nullptr;
-	// object model representation; never NULL once fully created.
-	CModelAbstract* m_Model = nullptr;
+	// object model representation; never nullptr once fully created.
+	std::unique_ptr<CModelAbstract> m_Model;
 
 	CUnitAnimation* m_Animation = nullptr;
 

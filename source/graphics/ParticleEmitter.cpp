@@ -281,9 +281,9 @@ void CModelParticleEmitter::SetEntityVariable(const std::string& name, float val
 	m_Emitter->SetEntityVariable(name, value);
 }
 
-CModelAbstract* CModelParticleEmitter::Clone() const
+std::unique_ptr<CModelAbstract> CModelParticleEmitter::Clone() const
 {
-	return new CModelParticleEmitter(m_Type);
+	return std::make_unique<CModelParticleEmitter>(m_Type);
 }
 
 void CModelParticleEmitter::CalcBounds()

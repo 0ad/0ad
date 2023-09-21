@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,8 @@
 #include "graphics/RenderableObject.h"
 #include "maths/BoundingBoxOriented.h"
 #include "simulation2/helpers/Player.h"
+
+#include <memory>
 
 class CModelDummy;
 class CModel;
@@ -71,7 +73,7 @@ public:
 		delete m_CustomSelectionShape; // allocated and set externally by CCmpVisualActor, but our responsibility to clean up
 	}
 
-	virtual CModelAbstract* Clone() const = 0;
+	virtual std::unique_ptr<CModelAbstract> Clone() const = 0;
 
 	/// Dynamic cast
 	virtual CModelDummy* ToCModelDummy() { return nullptr; }

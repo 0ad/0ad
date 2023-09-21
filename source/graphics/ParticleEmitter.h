@@ -197,7 +197,7 @@ public:
 		return this;
 	}
 
-	virtual CModelAbstract* Clone() const;
+	virtual std::unique_ptr<CModelAbstract> Clone() const;
 
 	virtual void SetTerrainDirty(ssize_t UNUSED(i0), ssize_t UNUSED(j0), ssize_t UNUSED(i1), ssize_t UNUSED(j1))
 	{

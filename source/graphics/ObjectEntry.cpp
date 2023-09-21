@@ -245,13 +245,13 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 		const SPropPoint* proppoint = modeldef->FindPropPoint(ppn.c_str());
 		if (proppoint)
 		{
-			CModelAbstract* propmodel = oe->m_Model->Clone();
-			if (isAmmo)
-				model->AddAmmoProp(proppoint, propmodel, oe);
-			else
-				model->AddProp(proppoint, propmodel, oe, prop.m_minHeight, prop.m_maxHeight, prop.m_selectable);
+			std::unique_ptr<CModelAbstract> propmodel = oe->m_Model->Clone();
 			if (propmodel->ToCModel())
 				propmodel->ToCModel()->SetAnimation(oe->GetRandomAnimation("idle"));
+			if (isAmmo)
+				model->AddAmmoProp(proppoint, std::move(propmodel), oe);
+			else
+				model->AddProp(proppoint, std::move(propmodel), oe, prop.m_minHeight, prop.m_maxHeight, prop.m_selectable);
 		}
 		else
 			LOGERROR("Failed to find matching prop point called \"%s\" in model \"%s\" for actor \"%s\"", ppn, m_ModelName.string8(), m_Base->GetIdentifier());
