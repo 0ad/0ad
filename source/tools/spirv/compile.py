@@ -116,7 +116,7 @@ def compile_and_reflect(input_mod_path, output_mod_path, dependencies, stage, pa
         preprocessor_output_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'preprocessed_file.glsl'))
         execute(command[:-2] + ['-g', '-E', '-o', preprocessor_output_path])
         raise ValueError(err)
-    ret, out, err = execute(['spirv-reflect', '-y', output_path])
+    ret, out, err = execute(['spirv-reflect', '-y','-v', '1', output_path])
     if ret:
         sys.stderr.write('Command returned {}:\nCommand: {}\nInput path: {}\nOutput path: {}\nError: {}\n'.format(
             ret, ' '.join(command), input_path, output_path, err))
@@ -142,7 +142,7 @@ def compile_and_reflect(input_mod_path, output_mod_path, dependencies, stage, pa
                     'offset': node['absolute_offset'],
                     'size': node['size'],
                 })
-        assert module['push_constants'][0]['name'] == 'DrawUniforms'
+        assert module['push_constants'][0]['type_description']['type_name'] == 'DrawUniforms'
         assert module['push_constants'][0]['size'] <= 128
         add_push_constants(module['push_constants'][0], push_constants)
     descriptor_sets = []
@@ -258,7 +258,7 @@ def output_xml_tree(tree, path):
             attributes = ''
             for attribute_name in sorted(node.attrib.keys()):
                 attributes += ' {}="{}"'.format(attribute_name, node.attrib[attribute_name])
-            if node:
+            if len(node) > 0:
                 handle.write('{}<{}{}>\n'.format(indent, node.tag, attributes))
                 for child in node:
                     output_xml_node(child, handle, depth + 1)
