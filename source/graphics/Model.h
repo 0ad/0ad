@@ -49,28 +49,26 @@ class CModel : public CModelAbstract
 public:
 	struct Prop
 	{
-		Prop() : m_MinHeight(0.f), m_MaxHeight(0.f), m_Point(0), m_Model(0), m_ObjectEntry(0), m_Hidden(false), m_Selectable(true) {}
-
-		float m_MinHeight;
-		float m_MaxHeight;
+		float m_MinHeight{0.0f};
+		float m_MaxHeight{0.0f};
 
 		/**
 		 * Location of the prop point within its parent model, relative to either a bone in the parent model or to the
 		 * parent model's origin. See the documentation for @ref SPropPoint for more details.
 		 * @see SPropPoint
 		 */
-		const SPropPoint* m_Point;
+		const SPropPoint* m_Point{nullptr};
 
 		/**
 		 * Pointer to the model associated with this prop. Note that the transform matrix held by this model is the full object-to-world
 		 * space transform, taking into account all parent model positioning (see @ref CModel::ValidatePosition for positioning logic).
 		 * @see CModel::ValidatePosition
 		 */
-		CModelAbstract* m_Model;
-		CObjectEntry* m_ObjectEntry;
+		std::unique_ptr<CModelAbstract> m_Model;
+		CObjectEntry* m_ObjectEntry{nullptr};
 
-		bool m_Hidden; ///< Should this prop be temporarily removed from rendering?
-		bool m_Selectable; /// < should this prop count in the selection size?
+		bool m_Hidden{false}; ///< Should this prop be temporarily removed from rendering?
+		bool m_Selectable{true}; /// < should this prop count in the selection size?
 	};
 
 public:
@@ -182,13 +180,13 @@ public:
 	/**
 	 * Add a prop to the model on the given point.
 	 */
-	void AddProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry, float minHeight = 0.f, float maxHeight = 0.f, bool selectable = true);
+	void AddProp(const SPropPoint* point, std::unique_ptr<CModelAbstract> model, CObjectEntry* objectentry, float minHeight = 0.f, float maxHeight = 0.f, bool selectable = true);
 
 	/**
 	 * Add a prop to the model on the given point, and treat it as the ammo prop.
 	 * The prop will be hidden by default.
 	 */
-	void AddAmmoProp(const SPropPoint* point, CModelAbstract* model, CObjectEntry* objectentry);
+	void AddAmmoProp(const SPropPoint* point, std::unique_ptr<CModelAbstract> model, CObjectEntry* objectentry);
 
 	/**
 	 * Show the ammo prop (if any), and hide any other props on that prop point.
@@ -210,7 +208,7 @@ public:
 	const std::vector<Prop>& GetProps() const { return m_Props; }
 
 	// return a clone of this model
-	virtual CModelAbstract* Clone() const;
+	virtual std::unique_ptr<CModelAbstract> Clone() const;
 
 	/**
 	 * Ensure that both the transformation and the bone

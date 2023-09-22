@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ void SceneCollector::SubmitRecursive(CModelAbstract* model)
 		for (size_t i = 0; i < props.size(); i++)
 		{
 			if (!props[i].m_Hidden)
-				SubmitRecursive(props[i].m_Model);
+				SubmitRecursive(props[i].m_Model.get());
 		}
 	}
 	else if (model->ToCModelDecal())

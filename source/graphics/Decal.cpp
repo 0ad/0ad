@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,10 +23,9 @@
 #include "maths/MathUtil.h"
 #include "ps/CStrInternStatic.h"
 
-CModelAbstract* CModelDecal::Clone() const
+std::unique_ptr<CModelAbstract> CModelDecal::Clone() const
 {
-	CModelDecal* clone = new CModelDecal(m_Terrain, m_Decal);
-	return clone;
+	return std::make_unique<CModelDecal>(m_Terrain, m_Decal);
 }
 
 void CModelDecal::CalcVertexExtents(ssize_t& i0, ssize_t& j0, ssize_t& i1, ssize_t& j1)
