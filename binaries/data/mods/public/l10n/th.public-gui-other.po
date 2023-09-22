@@ -3,11 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Alpaca Chorus
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"Last-Translator: Alpaca Chorus, 2023\n"
 "Language-Team: Thai (http://app.transifex.com/wildfire-games/0ad/language/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -165,7 +167,7 @@ msgstr[0] ""
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr ""
+msgstr "Endless Game"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
@@ -270,7 +272,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:294
 msgid "Map Name"
-msgstr ""
+msgstr "ชื่อแผนที่"
 
 #: gui/common/gamedescription.js:300
 msgid "Map Description"
@@ -538,7 +540,7 @@ msgstr ""
 #: gui/loadgame/SavegameDetails.js:41 gui/reference/common/tooltips.js:13
 #: gui/replaymenu/replay_menu.js:284
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/common/settings.js:116
 msgctxt "aiDiff"
@@ -583,7 +585,7 @@ msgstr ""
 #: gui/common/settings.js:156
 msgctxt "aiBehavior"
 msgid "Defensive"
-msgstr ""
+msgstr "การป้องกัน"
 
 #: gui/common/settings.js:160
 msgctxt "aiBehavior"
@@ -761,7 +763,7 @@ msgstr ""
 #: gui/common/tooltips.js:253 gui/common/tooltips.js:393
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "จับ"
 
 #: gui/common/tooltips.js:268
 msgid "Status Effects:"
@@ -1166,7 +1168,7 @@ msgstr ""
 #: gui/common/tooltips.js:973
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "ความต้องการ %(technology)s"
 
 #: gui/common/tooltips.js:993
 #, javascript-format
@@ -1627,7 +1629,7 @@ msgstr "ยกเลิก"
 #: gui/hotkeys/hotkeys.xml:(heading):39
 msgctxt "hotkey list"
 msgid "Name"
-msgstr ""
+msgstr "ชื่อ"
 
 #: gui/hotkeys/hotkeys.xml:(heading):43
 msgctxt "hotkey list"
@@ -3596,12 +3598,12 @@ msgstr ""
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):32
 #: gui/replaymenu/replay_menu.xml:(caption):153
 msgid "Map Type:"
-msgstr ""
+msgstr "ประเภทแผนที่:"
 
 #: gui/loadgame/load.xml:(caption):86
 #: gui/replaymenu/replay_menu.xml:(caption):168
 msgid "Map Size:"
-msgstr ""
+msgstr "ขนาดแผนที่:"
 
 #: gui/loadgame/load.xml:(caption):90
 #: gui/replaymenu/replay_menu.xml:(caption):183
@@ -3623,7 +3625,7 @@ msgstr "รูปแบบแผนที่"
 #: gui/replaymenu/replay_menu.xml:(heading):79
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "ชื่อแผนที่"
 
 #: gui/loadgame/load.xml:(heading):39
 msgctxt "replay"
@@ -3660,7 +3662,7 @@ msgstr ""
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):25
 msgid "Country:"
-msgstr ""
+msgstr "ประเทศ:"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):34
 msgid "Script:"
@@ -3838,7 +3840,7 @@ msgstr ""
 
 #: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
-msgstr ""
+msgstr "เลือกแผนที่แบบสุ่ม"
 
 #: gui/options/options.js:109
 #, javascript-format
@@ -4624,7 +4626,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[3].label
 msgid "Defensive"
-msgstr ""
+msgstr "การป้องกัน"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].tooltip
 msgid "Default behavior of the AI."
@@ -5250,7 +5252,7 @@ msgstr ""
 #. Translation: Join a game by specifying the host's IP address.
 #: gui/pregame/MainMenuItems.js:163
 msgid "Join Game"
-msgstr ""
+msgstr "เข้าร่วมเกม"
 
 #: gui/pregame/MainMenuItems.js:164
 msgid "Joining an existing multiplayer game."
@@ -5258,7 +5260,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:172
 msgid "Host Game"
-msgstr ""
+msgstr "โฮสต์เกม"
 
 #: gui/pregame/MainMenuItems.js:173
 msgid "Host a multiplayer game."
@@ -5418,7 +5420,7 @@ msgstr ""
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
 msgid "FAQ"
-msgstr ""
+msgstr "คำถามที่พบบ่อย"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to visit the Frequently Asked Questions page in your browser."
@@ -5684,12 +5686,12 @@ msgstr ""
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr ""
+msgstr "เวอร์ชันของคุณ: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:97
 #, javascript-format
 msgid "Required version: %(version)s"
-msgstr ""
+msgstr "เวอร์ชันที่ต้องการ: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:100
 msgid "Incompatible replay"
@@ -5710,27 +5712,27 @@ msgstr ""
 #: gui/replaymenu/replay_filters.js:52
 msgctxt "datetime"
 msgid "Any"
-msgstr ""
+msgstr "Any"
 
 #: gui/replaymenu/replay_filters.js:68
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Any"
 
 #: gui/replaymenu/replay_filters.js:84
 msgctxt "map name"
 msgid "Any"
-msgstr ""
+msgstr "Any"
 
 #: gui/replaymenu/replay_filters.js:100
 msgctxt "population capacity"
 msgid "Any"
-msgstr ""
+msgstr "Any"
 
 #: gui/replaymenu/replay_filters.js:119
 msgctxt "duration"
 msgid "Any"
-msgstr ""
+msgstr "Any"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:123
@@ -5758,7 +5760,7 @@ msgstr ""
 #: gui/replaymenu/replay_filters.js:145
 msgctxt "replay filter"
 msgid "Any"
-msgstr ""
+msgstr "Any"
 
 #: gui/replaymenu/replay_filters.js:146
 msgctxt "replay filter"
@@ -5846,12 +5848,12 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "ผู้เล่น"
 
 #: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "ขนาด"
 
 #: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
@@ -5865,7 +5867,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "ค้นหาผู้เล่น"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):98
 msgid "File path for the currently selected replay."
@@ -6011,7 +6013,7 @@ msgstr "ทหารม้า"
 
 #: gui/summary/layout.js:76
 msgid "Champion"
-msgstr ""
+msgstr "แชมเปี้ยน"
 
 #: gui/summary/layout.js:77
 msgid "Heroes"
@@ -6217,7 +6219,7 @@ msgstr ""
 #: gui/summary/summary.js:234
 msgctxt "Player listing"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/summary/summary.js:340
 msgid "Time elapsed"
@@ -6311,7 +6313,7 @@ msgstr ""
 #: gui/summary/summary.xml:(tooltip):147
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
+msgstr "ชนิด"
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
