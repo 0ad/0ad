@@ -2,12 +2,12 @@
 	"genericName": "The Loom",
 	"description": "The loom allowed the creation of finer clothing for settlers. Women of the household were taught from a young age how to weave on the loom, and subsequently spent a large share of their lives working with it.",
 	"cost": {
-		"food": 200
+		"food": 150
 	},
 	"requirements": { "tech": "phase_village" },
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "loom.png",
-	"researchTime": 40,
+	"researchTime": 20,
 	"tooltip": "Female Citizens +100% health.",
 	"modifications": [
 		{ "value": "Health/Max", "multiply": 2 }
