@@ -10,6 +10,18 @@
   <Obstruction>
     <Static width="13.0" depth="13.0"/>
   </Obstruction>
+  <Upgrade>
+    <Apartment>
+      <Entity>structures/cart/apartment</Entity>
+      <Tooltip>Add a second story to make an Apartment with a greater population bonus.</Tooltip>
+      <Cost>
+        <wood>50</wood>
+        <stone>50</stone>
+      </Cost>
+      <Variant>upgrading</Variant>
+      <Time>55</Time>
+    </Apartment>
+  </Upgrade>
   <VisualActor>
     <FoundationActor>structures/carthaginians/fndn_house.xml</FoundationActor>
     <Actor>structures/carthaginians/house.xml</Actor>
