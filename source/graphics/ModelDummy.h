@@ -30,15 +30,15 @@ class CModelDummy final : public CModelAbstract
 public:
 
 	CModelDummy() = default;
-	virtual ~CModelDummy() = default;
+	~CModelDummy() override = default;
 
-	virtual std::unique_ptr<CModelAbstract> Clone() const { return std::make_unique<CModelDummy>(); }
-	virtual CModelDummy* ToCModelDummy() { return this; }
+	std::unique_ptr<CModelAbstract> Clone() const override { return std::make_unique<CModelDummy>(); }
+	CModelDummy* ToCModelDummy() override { return this; }
 
-	virtual void CalcBounds() {}
-	virtual void SetTerrainDirty(ssize_t, ssize_t, ssize_t, ssize_t) {}
-	virtual void ValidatePosition() {}
-	virtual void InvalidatePosition() {}
+	void CalcBounds() override {}
+	void SetTerrainDirty(ssize_t, ssize_t, ssize_t, ssize_t) override {}
+	void ValidatePosition() override {}
+	void InvalidatePosition() override {}
 };
 
 #endif // INCLUDED_MODELDUMMY

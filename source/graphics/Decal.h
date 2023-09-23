@@ -56,19 +56,19 @@ public:
 	}
 
 	/// Dynamic cast
-	virtual CModelDecal* ToCModelDecal()
+	CModelDecal* ToCModelDecal() override
 	{
 		return this;
 	}
 
-	virtual std::unique_ptr<CModelAbstract> Clone() const;
+	std::unique_ptr<CModelAbstract> Clone() const override;
 
-	virtual void SetTerrainDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1);
+	void SetTerrainDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1) override;
 
-	virtual void CalcBounds();
-	virtual void ValidatePosition();
-	virtual void InvalidatePosition();
-	virtual void SetTransform(const CMatrix3D& transform);
+	void CalcBounds() override;
+	void ValidatePosition() override;
+	void InvalidatePosition() override;
+	void SetTransform(const CMatrix3D& transform) override;
 
 	// remove shadow receiving
 	void RemoveShadows();

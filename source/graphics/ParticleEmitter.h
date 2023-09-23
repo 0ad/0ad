@@ -189,26 +189,26 @@ class CModelParticleEmitter : public CModelAbstract
 {
 public:
 	CModelParticleEmitter(const CParticleEmitterTypePtr& type);
-	~CModelParticleEmitter();
+	~CModelParticleEmitter() override;
 
 	/// Dynamic cast
-	virtual CModelParticleEmitter* ToCModelParticleEmitter()
+	CModelParticleEmitter* ToCModelParticleEmitter() override
 	{
 		return this;
 	}
 
-	virtual std::unique_ptr<CModelAbstract> Clone() const;
+	std::unique_ptr<CModelAbstract> Clone() const override;
 
-	virtual void SetTerrainDirty(ssize_t UNUSED(i0), ssize_t UNUSED(j0), ssize_t UNUSED(i1), ssize_t UNUSED(j1))
+	void SetTerrainDirty(ssize_t UNUSED(i0), ssize_t UNUSED(j0), ssize_t UNUSED(i1), ssize_t UNUSED(j1)) override
 	{
 	}
 
-	virtual void SetEntityVariable(const std::string& name, float value);
+	void SetEntityVariable(const std::string& name, float value) override;
 
-	virtual void CalcBounds();
-	virtual void ValidatePosition();
-	virtual void InvalidatePosition();
-	virtual void SetTransform(const CMatrix3D& transform);
+	void CalcBounds() override;
+	void ValidatePosition() override;
+	void InvalidatePosition() override;
+	void SetTransform(const CMatrix3D& transform) override;
 
 	CParticleEmitterTypePtr m_Type;
 	CParticleEmitterPtr m_Emitter;

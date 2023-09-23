@@ -48,7 +48,8 @@ public:
 	 */
 	struct CustomSelectionShape
 	{
-		enum EType {
+		enum EType
+		{
 			/// The selection shape is determined by an oriented box of custom, user-specified size.
 			BOX,
 			/// The selection shape is determined by a cylinder of custom, user-specified size.
@@ -68,7 +69,7 @@ public:
 		  m_SelectionBoxValid(false), m_CustomSelectionShape(NULL)
 	{ }
 
-	~CModelAbstract()
+	virtual ~CModelAbstract()
 	{
 		delete m_CustomSelectionShape; // allocated and set externally by CCmpVisualActor, but our responsibility to clean up
 	}
