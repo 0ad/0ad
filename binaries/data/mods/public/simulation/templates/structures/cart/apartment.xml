@@ -4,9 +4,9 @@
     <CapturePoints op="mul">2</CapturePoints>
   </Capturable>
   <Cost>
-    <BuildTime op="mul">1.5</BuildTime>
+    <BuildTime>90</BuildTime>
     <Resources>
-      <wood op="add">50</wood>
+      <wood op="add">25</wood>
       <stone op="add">50</stone>
     </Resources>
   </Cost>
@@ -23,11 +23,7 @@
     <GenericName>Apartment Building</GenericName>
     <SpecificName>Bet</SpecificName>
     <Classes datatype="tokens">CivSpecific</Classes>
-    <VisibleClasses datatype="tokens">-Village Town</VisibleClasses>
     <Icon>structures/apartment.png</Icon>
-    <Requirements>
-      <Techs datatype="tokens">-phase_village phase_town</Techs>
-    </Requirements>
   </Identity>
   <Loot>
     <wood op="add">10</wood>
