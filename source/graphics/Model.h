@@ -73,10 +73,10 @@ public:
 
 public:
 	CModel(const CSimulation2& simulation, const CMaterial& material, const CModelDefPtr& modeldef);
-	~CModel();
+	~CModel() override;
 
 	/// Dynamic cast
-	virtual CModel* ToCModel()
+	CModel* ToCModel() override
 	{
 		return this;
 	}
@@ -88,9 +88,9 @@ public:
 	const CModelDefPtr& GetModelDef() { return m_pModelDef; }
 
 	// set the model's player ID, recursively through props
-	void SetPlayerID(player_id_t id);
+	void SetPlayerID(player_id_t id) override;
 	// set the models mod color
-	virtual void SetShadingColor(const CColor& color);
+	void SetShadingColor(const CColor& color) override;
 	// get the model's material
 	const CMaterial& GetMaterial() { return m_Material; }
 
@@ -115,13 +115,13 @@ public:
 	// TODO: replace with more generic shader define + flags setting
 	void RemoveShadowsRec();
 
-	virtual void SetTerrainDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1)
+	void SetTerrainDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1) override
 	{
 		for (size_t i = 0; i < m_Props.size(); ++i)
 			m_Props[i].m_Model->SetTerrainDirty(i0, j0, i1, j1);
 	}
 
-	virtual void SetEntityVariable(const std::string& name, float value)
+	void SetEntityVariable(const std::string& name, float value) override
 	{
 		for (size_t i = 0; i < m_Props.size(); ++i)
 			m_Props[i].m_Model->SetEntityVariable(name, value);
@@ -131,7 +131,7 @@ public:
 
 	/// Overridden to calculate both the world-space and object-space bounds of this model, and stores the result in
 	/// m_Bounds and m_ObjectBounds, respectively.
-	virtual void CalcBounds();
+	void CalcBounds() override;
 
 	/// Returns the object-space bounds for this model, excluding its children.
 	const CBoundingBoxAligned& GetObjectBounds()
@@ -140,7 +140,7 @@ public:
 		return m_ObjectBounds;
 	}
 
-	virtual const CBoundingBoxAligned GetWorldBoundsRec();		// reimplemented here
+	const CBoundingBoxAligned GetWorldBoundsRec() override;		// reimplemented here
 
 	/// Auxiliary method; calculates object space bounds of this model, based solely on vertex positions, and stores
 	/// the result in m_ObjectBounds. Called by CalcBounds (instead of CalcAnimatedObjectBounds) if it has been determined
@@ -155,7 +155,7 @@ public:
 	// --- SELECTION BOX/BOUNDS ----------------------------------------------------------------------
 
 	/// Reimplemented here since proper models should participate in selection boxes.
-	virtual const CBoundingBoxAligned GetObjectSelectionBoundsRec();
+	const CBoundingBoxAligned GetObjectSelectionBoundsRec() override;
 
 	/**
 	 * Set transform of this object.
@@ -163,7 +163,7 @@ public:
 	 * @note In order to ensure that all child props are updated properly,
 	 * you must call ValidatePosition().
 	 */
-	virtual void SetTransform(const CMatrix3D& transform);
+	void SetTransform(const CMatrix3D& transform) override;
 
 	/**
 	 * Return whether this is a skinned/skeletal model. If it is, Get*BoneMatrices()
@@ -172,7 +172,8 @@ public:
 	bool IsSkinned() { return (m_BoneMatrices != NULL); }
 
 	// return the models bone matrices; 16-byte aligned for SSE reads
-	const CMatrix3D* GetAnimatedBoneMatrices() {
+	const CMatrix3D* GetAnimatedBoneMatrices()
+	{
 		ENSURE(m_PositionValid);
 		return m_BoneMatrices;
 	}
@@ -208,19 +209,19 @@ public:
 	const std::vector<Prop>& GetProps() const { return m_Props; }
 
 	// return a clone of this model
-	virtual std::unique_ptr<CModelAbstract> Clone() const;
+	std::unique_ptr<CModelAbstract> Clone() const override;
 
 	/**
 	 * Ensure that both the transformation and the bone
 	 * matrices are correct for this model and all its props.
 	 */
-	virtual void ValidatePosition();
+	void ValidatePosition() override;
 
 	/**
 	 * Mark this model's position and bone matrices,
 	 * and all props' positions as invalid.
 	 */
-	virtual void InvalidatePosition();
+	void InvalidatePosition() override;
 
 private:
 	// Needed for terrain aligned props
