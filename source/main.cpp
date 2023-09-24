@@ -385,15 +385,14 @@ static void Frame()
 	ENSURE(realTimeSinceLastFrame > 0.0f);
 
 	// Decide if update is necessary
-	bool need_update = true;
+	const bool needUpdate{g_app_has_focus || g_NetClient || !g_PauseOnFocusLoss};
 
 	// If we are not running a multiplayer game, disable updates when the game is
 	// minimized or out of focus and relinquish the CPU a bit, in order to make
 	// debugging easier.
-	if (g_PauseOnFocusLoss && !g_NetClient && !g_app_has_focus)
+	if (!needUpdate)
 	{
 		PROFILE3("non-focus delay");
-		need_update = false;
 		// don't use SDL_WaitEvent: don't want the main loop to freeze until app focus is restored
 		SDL_Delay(10);
 	}
@@ -429,7 +428,7 @@ static void Frame()
 	if (g_RLInterface)
 		g_RLInterface->TryApplyMessage();
 
-	if (g_Game && g_Game->IsGameStarted() && need_update)
+	if (g_Game && g_Game->IsGameStarted() && needUpdate)
 	{
 		if (!g_RLInterface)
 			g_Game->Update(realTimeSinceLastFrame);
