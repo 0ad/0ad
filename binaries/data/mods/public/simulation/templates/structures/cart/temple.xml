@@ -7,7 +7,7 @@
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Maqdaš</SpecificName>
-    <Tooltip>Train Healers and Champion Infantry and research healing technologies.</Tooltip>
+    <Tooltip>Train Healers and Champions, and research healing technologies.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="17.0" depth="30.0"/>
@@ -15,6 +15,7 @@
   <Trainer>
     <Entities datatype="tokens">
       units/{civ}/champion_infantry
+      units/{civ}/champion_cavalry
     </Entities>
   </Trainer>
   <VisualActor>

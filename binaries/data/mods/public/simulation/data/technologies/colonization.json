@@ -2,8 +2,8 @@
 	"genericName": "Colonization",
 	"description": "Carthaginians established many trading centers as colonies and ultimately held dominion over 300 cities and towns in North Africa alone.",
 	"cost": {
-		"wood": 250,
-		"metal": 250
+		"wood": 200,
+		"metal": 200
 	},
 	"requirements": {
 		"all": [
@@ -11,8 +11,8 @@
 		]
 	},
 	"icon": "political_face.png",
-	"researchTime": 40,
-	"tooltip": "Civic Structures −25% build time and resources cost",
+	"researchTime": 20,
+	"tooltip": "Civic Structures (Civic Center, Temples, and Houses) −25% build time and resource costs.",
 	"modifications": [
 		{ "value": "Cost/BuildTime", "multiply": 0.75 },
 		{ "value": "Cost/Resources/food", "multiply": 0.75 },
