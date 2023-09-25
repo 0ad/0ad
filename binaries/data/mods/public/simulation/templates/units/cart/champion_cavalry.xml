@@ -5,6 +5,9 @@
     <GenericName>Sacred Band Cavalry</GenericName>
     <SpecificName>Sacred Band of Astarte</SpecificName>
     <Icon>units/cart/champion_cavalry.png</Icon>
+    <Requirements>
+      <Techs datatype="tokens">phase_city -unlock_champion_cavalry</Techs>
+    </Requirements>
   </Identity>
   <VisualActor>
     <Actor>units/carthaginians/cavalry_spearman_c_m.xml</Actor>
