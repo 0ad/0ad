@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-09-11 07:08+0000\n"
+"POT-Creation-Date: 2023-09-22 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: JungHee Lee <daemul72@gmail.com>, 2021-2023\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -842,7 +842,11 @@ msgstr "수명이 한정된 채집꾼입니다. 채광과 벌목에 보너스를
 msgid "Trade resources between your own markets and those of your allies."
 msgstr "자국의 시장과 동맹국 시장의 자원을 교역합니다."
 
-#: simulation/templates/units/athen/catafalque.xml:8
+#: simulation/templates/units/athen/catafalque.xml:9
+msgid "Athenian Catafalque"
+msgstr "아테네의 영구대"
+
+#: simulation/templates/units/athen/catafalque.xml:10
 msgid "Solon"
 msgstr "솔론"
 
@@ -1293,6 +1297,10 @@ msgid "Émporos"
 msgstr "엠포로스"
 
 #: simulation/templates/units/brit/catafalque.xml:9
+msgid "Briton Catafalque"
+msgstr "브리턴족의 영구대"
+
+#: simulation/templates/units/brit/catafalque.xml:10
 msgid "Cassiuellaunos"
 msgstr "카시우엘라우노스"
 
@@ -1430,6 +1438,10 @@ msgid "Agrocuna"
 msgstr "아그로쿠나"
 
 #: simulation/templates/units/cart/catafalque.xml:8
+msgid "Carthaginian Catafalque"
+msgstr "카르타고의 영구대"
+
+#: simulation/templates/units/cart/catafalque.xml:9
 msgid "Hasdrubal (Quartermaster)"
 msgstr "하스드루발 (병참장교)"
 
@@ -1627,6 +1639,10 @@ msgid "Mekir"
 msgstr "메키르"
 
 #: simulation/templates/units/gaul/catafalque.xml:9
+msgid "Gallic Catafalque"
+msgstr "갈리아의 영구대"
+
+#: simulation/templates/units/gaul/catafalque.xml:10
 msgid "Ambiorix"
 msgstr "암비오릭스"
 
@@ -1681,6 +1697,10 @@ msgid "Britomaros"
 msgstr "브리토마로스"
 
 #: simulation/templates/units/han/catafalque.xml:9
+msgid "Han Catafalque"
+msgstr "한족의 영구대"
+
+#: simulation/templates/units/han/catafalque.xml:10
 msgid "Emperor Wǔ (Liu Che)"
 msgstr "전한 무제 (유철)"
 
@@ -1849,6 +1869,10 @@ msgid "Shāngrén"
 msgstr "상인"
 
 #: simulation/templates/units/iber/catafalque.xml:9
+msgid "Iberian Catafalque"
+msgstr "이베리아의 영구대"
+
+#: simulation/templates/units/iber/catafalque.xml:10
 msgid "Mandonius"
 msgstr "만도니우스"
 
@@ -1937,7 +1961,11 @@ msgstr "에마쿠메즈코 아파이즈 데 아타에키나"
 msgid "Merkatari"
 msgstr "메르카타리"
 
-#: simulation/templates/units/kush/catafalque.xml:10
+#: simulation/templates/units/kush/catafalque.xml:9
+msgid "Kushite Catafalque"
+msgstr "쿠시의 영구대"
+
+#: simulation/templates/units/kush/catafalque.xml:11
 msgid "Shanakdakheto"
 msgstr "샤나크다크헤토"
 
@@ -2141,6 +2169,10 @@ msgid "rmt sbt"
 msgstr "레메테 세베테"
 
 #: simulation/templates/units/mace/catafalque.xml:9
+msgid "Macedonian Catafalque"
+msgstr "마케도니아의 영구대"
+
+#: simulation/templates/units/mace/catafalque.xml:10
 msgid "Philip V"
 msgstr "필립 5세"
 
@@ -2286,6 +2318,10 @@ msgid "Macedonian Woman"
 msgstr "마케도니아 여성"
 
 #: simulation/templates/units/maur/catafalque.xml:9
+msgid "Mauryan Catafalque"
+msgstr "마우리아의 영구대"
+
+#: simulation/templates/units/maur/catafalque.xml:10
 #: simulation/templates/units/maur/hero_bindusara_infantry.xml:5
 #: simulation/templates/units/maur/hero_bindusara_infantry.xml:6
 msgid "Bindusara"
@@ -2499,7 +2535,11 @@ msgstr "페르시아 사과 짐꾼"
 msgid "Arštibara"
 msgstr "아르스티바라"
 
-#: simulation/templates/units/pers/catafalque.xml:9
+#: simulation/templates/units/pers/catafalque.xml:8
+msgid "Persian Catafalque"
+msgstr "페르시아의 영구대"
+
+#: simulation/templates/units/pers/catafalque.xml:10
 msgid "Artaxšaçā"
 msgstr "아르탁사카"
 
@@ -2733,6 +2773,10 @@ msgid "A World War II American fighter plane."
 msgstr "제2차 세계 대전 미국 전투기입니다."
 
 #: simulation/templates/units/ptol/catafalque.xml:8
+msgid "Ptolemaic Catafalque"
+msgstr "프톨레마이오스의 영구대"
+
+#: simulation/templates/units/ptol/catafalque.xml:9
 msgid "Ptolemy III Euergetes (Benefactor)"
 msgstr "프톨레마이오스 3세 에우르게테스 (은혜자)"
 
@@ -2878,6 +2922,10 @@ msgid "Egyptian Woman"
 msgstr "이집트 여성"
 
 #: simulation/templates/units/rome/catafalque.xml:9
+msgid "Roman Catafalque"
+msgstr "로마의 영구대"
+
+#: simulation/templates/units/rome/catafalque.xml:10
 msgid "Lūcius Iūnius Brūtus"
 msgstr "루시우스 이우니우스 브루투스"
 
@@ -3099,6 +3147,10 @@ msgid "Samnite Swordsman"
 msgstr "삼니움 검병"
 
 #: simulation/templates/units/sele/catafalque.xml:10
+msgid "Seleucid Catafalque"
+msgstr "셀레우코스의 영구대"
+
+#: simulation/templates/units/sele/catafalque.xml:11
 msgid "Antiochus I Soter (Savior)"
 msgstr "안티오코스 1세 소테르 (구세주)"
 
@@ -3247,6 +3299,10 @@ msgid "Syrian Woman"
 msgstr "시리아 여성"
 
 #: simulation/templates/units/spart/catafalque.xml:10
+msgid "Spartan Catafalque"
+msgstr "스파르타의 영구대"
+
+#: simulation/templates/units/spart/catafalque.xml:11
 msgid "Lycurgus"
 msgstr "리쿠르구스"
 
