@@ -335,10 +335,10 @@ TerrainTextureOverlay::~TerrainTextureOverlay() = default;
 void TerrainTextureOverlay::RenderAfterWater(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext, int cullGroup)
 {
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	const CTerrain& terrain = g_Game->GetWorld()->GetTerrain();
 
-	ssize_t w = (ssize_t)(terrain->GetTilesPerSide() * m_TexelsPerTile);
-	ssize_t h = (ssize_t)(terrain->GetTilesPerSide() * m_TexelsPerTile);
+	const ssize_t w = static_cast<ssize_t>(terrain.GetTilesPerSide() * m_TexelsPerTile);
+	const ssize_t h = static_cast<ssize_t>(terrain.GetTilesPerSide() * m_TexelsPerTile);
 
 	const uint32_t requiredWidth = round_up_to_pow2(w);
 	const uint32_t requiredHeight = round_up_to_pow2(h);

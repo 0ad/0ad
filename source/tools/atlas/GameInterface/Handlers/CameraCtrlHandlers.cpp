@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,12 +44,12 @@ MESSAGEHANDLER(CameraReset)
 	CVector3D focus = g_Game->GetView()->GetCamera()->GetFocus();
 
 	CVector3D target;
-	if (!g_Game->GetWorld()->GetTerrain()->IsOnMap(focus.X, focus.Z))
+	if (!g_Game->GetWorld()->GetTerrain().IsOnMap(focus.X, focus.Z))
 	{
 		target = CVector3D(
-			g_Game->GetWorld()->GetTerrain()->GetMaxX()/2.f,
+			g_Game->GetWorld()->GetTerrain().GetMaxX()/2.f,
 			focus.Y,
-			g_Game->GetWorld()->GetTerrain()->GetMaxZ()/2.f);
+			g_Game->GetWorld()->GetTerrain().GetMaxZ()/2.f);
 	}
 	else
 	{

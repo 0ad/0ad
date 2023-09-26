@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,10 +41,10 @@ static const int MARGIN_SIZE = 64;
 
 ///////////////////////////////////////////////////////////////////////////////
 // CHFTracer constructor
-CHFTracer::CHFTracer(CTerrain *pTerrain):
-	m_pTerrain(pTerrain),
-	m_Heightfield(m_pTerrain->GetHeightMap()),
-	m_MapSize(m_pTerrain->GetVerticesPerSide()),
+CHFTracer::CHFTracer(CTerrain& terrain):
+	m_Terrain(terrain),
+	m_Heightfield(m_Terrain.GetHeightMap()),
+	m_MapSize(m_Terrain.GetVerticesPerSide()),
 	m_CellSize((float)TERRAIN_TILE_SIZE),
 	m_HeightScale(HEIGHT_SCALE)
 {
@@ -109,10 +109,10 @@ bool CHFTracer::CellIntersect(int cx, int cz, const CVector3D& origin, const CVe
 
 	// get vertices for this cell
 	CVector3D vpos[4];
-	m_pTerrain->CalcPosition(cx,cz,vpos[0]);
-	m_pTerrain->CalcPosition(cx+1,cz,vpos[1]);
-	m_pTerrain->CalcPosition(cx+1,cz+1,vpos[2]);
-	m_pTerrain->CalcPosition(cx,cz+1,vpos[3]);
+	m_Terrain.CalcPosition(cx,cz,vpos[0]);
+	m_Terrain.CalcPosition(cx+1,cz,vpos[1]);
+	m_Terrain.CalcPosition(cx+1,cz+1,vpos[2]);
+	m_Terrain.CalcPosition(cx,cz+1,vpos[3]);
 
 	dist=1.0e30f;
 	if (RayTriIntersect(vpos[0],vpos[1],vpos[2],origin,dir,dist)) {

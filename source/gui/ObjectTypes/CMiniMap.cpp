@@ -211,11 +211,11 @@ void CMiniMap::GetMouseWorldCoordinates(float& x, float& z) const
 
 void CMiniMap::SetCameraPositionFromMousePosition()
 {
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	const CTerrain& terrain = g_Game->GetWorld()->GetTerrain();
 
 	CVector3D target;
 	GetMouseWorldCoordinates(target.X, target.Z);
-	target.Y = terrain->GetExactGroundLevel(target.X, target.Z);
+	target.Y = terrain.GetExactGroundLevel(target.X, target.Z);
 	g_Game->GetView()->MoveCameraTarget(target);
 }
 
@@ -354,8 +354,8 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	ENSURE(cmpRangeManager);
 
 	// Set our globals in case they hadn't been set before
-	const CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	m_MapSize = terrain->GetVerticesPerSide();
+	const CTerrain& terrain = g_Game->GetWorld()->GetTerrain();
+	m_MapSize = terrain.GetVerticesPerSide();
 	m_MapScale = (cmpRangeManager->GetLosCircular() ? 1.f : 1.414f);
 
 	// Draw the main textured quad

@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -202,14 +202,14 @@ MESSAGEHANDLER(ImportHeightmap)
 	// resize terrain to heightmap size
 	// Notice that the number of tiles/pixels per side of the heightmap image is
 	// one less than the number of vertices per side of the heightmap.
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	CTerrain& terrain = g_Game->GetWorld()->GetTerrain();
 	const ssize_t newSize = (sqrt(heightmap_source.size()) - 1) / PATCH_SIZE;
-	const ssize_t offset = (newSize - terrain->GetPatchesPerSide()) / 2;
-	terrain->ResizeAndOffset(newSize, offset, offset);
+	const ssize_t offset = (newSize - terrain.GetPatchesPerSide()) / 2;
+	terrain.ResizeAndOffset(newSize, offset, offset);
 
 	// copy heightmap data into map
-	u16* heightmap = g_Game->GetWorld()->GetTerrain()->GetHeightMap();
-	ENSURE(heightmap_source.size() == (std::size_t) SQR(g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()));
+	u16* const heightmap = g_Game->GetWorld()->GetTerrain().GetHeightMap();
+	ENSURE(heightmap_source.size() == (std::size_t) SQR(g_Game->GetWorld()->GetTerrain().GetVerticesPerSide()));
 	std::copy(heightmap_source.begin(), heightmap_source.end(), heightmap);
 
 	// update simulation
@@ -225,7 +225,7 @@ MESSAGEHANDLER(SaveMap)
 	CMapWriter writer;
 	VfsPath pathname = VfsPath(*msg->filename).ChangeExtension(L".pmp");
 	writer.SaveMap(pathname,
-		g_Game->GetWorld()->GetTerrain(),
+		&g_Game->GetWorld()->GetTerrain(),
 		&g_Renderer.GetSceneRenderer().GetWaterManager(), &g_Renderer.GetSceneRenderer().GetSkyManager(),
 		&g_LightEnv, g_Game->GetView()->GetCamera(), g_Game->GetView()->GetCinema(),
 		&g_Renderer.GetPostprocManager(),
@@ -287,8 +287,8 @@ QUERYHANDLER(RasterizeMinimap)
 {
 	// TODO: remove the code duplication of the rasterization algorithm, using
 	// CMinimap version.
-	const CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	const ssize_t dimension = terrain->GetVerticesPerSide() - 1;
+	const CTerrain& terrain = g_Game->GetWorld()->GetTerrain();
+	const ssize_t dimension = terrain.GetVerticesPerSide() - 1;
 	const ssize_t bpp = 24;
 	const ssize_t imageDataSize = dimension * dimension * (bpp / 8);
 
@@ -306,10 +306,10 @@ QUERYHANDLER(RasterizeMinimap)
 		ssize_t position = 3 * (h - j - 1) * dimension;
 		for (ssize_t i = 0; i < w; ++i)
 		{
-			float avgHeight = (terrain->GetVertexGroundLevel(i, j)
-				+ terrain->GetVertexGroundLevel(i + 1, j)
-				+ terrain->GetVertexGroundLevel(i, j + 1)
-				+ terrain->GetVertexGroundLevel(i + 1, j + 1)
+			const float avgHeight = (terrain.GetVertexGroundLevel(i, j)
+				+ terrain.GetVertexGroundLevel(i + 1, j)
+				+ terrain.GetVertexGroundLevel(i, j + 1)
+				+ terrain.GetVertexGroundLevel(i + 1, j + 1)
 				) / 4.0f;
 
 			if (avgHeight < waterHeight && avgHeight > waterHeight - shallowPassageHeight)
@@ -329,10 +329,10 @@ QUERYHANDLER(RasterizeMinimap)
 			else
 			{
 				u32 color = std::numeric_limits<u32>::max();
-				u32 hmap = static_cast<u32>(terrain->GetHeightMap()[j * dimension + i]) >> 8;
+				const u32 hmap = static_cast<u32>(terrain.GetHeightMap()[j * dimension + i]) >> 8;
 				float scale = hmap / 3.0f + 170.0f / 255.0f;
 
-				CMiniPatch* mp = terrain->GetTile(i, j);
+				CMiniPatch* const mp = terrain.GetTile(i, j);
 				if (mp)
 				{
 					CTerrainTextureEntry* tex = mp->GetTextureEntry();
@@ -359,7 +359,7 @@ QUERYHANDLER(GetRMSData)
 
 QUERYHANDLER(GetCurrentMapSize)
 {
-	msg->size = g_Game->GetWorld()->GetTerrain()->GetTilesPerSide();
+	msg->size = g_Game->GetWorld()->GetTerrain().GetTilesPerSide();
 }
 
 BEGIN_COMMAND(ResizeMap)
@@ -420,8 +420,8 @@ BEGIN_COMMAND(ResizeMap)
 
 	void ResizeTerrain(ssize_t patches, int offsetX, int offsetY)
 	{
-		CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-		terrain->ResizeAndOffset(patches, -offsetX, -offsetY);
+		CTerrain& terrain = g_Game->GetWorld()->GetTerrain();
+		terrain.ResizeAndOffset(patches, -offsetX, -offsetY);
 	}
 
 	void DeleteObjects(const std::vector<DeletedObject>& deletedObjects)

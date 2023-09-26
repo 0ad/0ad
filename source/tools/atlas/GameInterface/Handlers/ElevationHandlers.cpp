@@ -41,8 +41,8 @@ class TerrainArray : public DeltaArray2D<u16>
 public:
 	void Init()
 	{
-		m_Heightmap = g_Game->GetWorld()->GetTerrain()->GetHeightMap();
-		m_VertsPerSide = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
+		m_Heightmap = g_Game->GetWorld()->GetTerrain().GetHeightMap();
+		m_VertsPerSide = g_Game->GetWorld()->GetTerrain().GetVerticesPerSide();
 	}
 
 	void RaiseVertex(ssize_t x, ssize_t y, int amount)
@@ -111,7 +111,7 @@ BEGIN_COMMAND(AlterElevation)
 
 	void MakeDirty()
 	{
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
+		g_Game->GetWorld()->GetTerrain().MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
 		g_Game->GetWorld()->GetUnitManager().MakeTerrainDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 		if (cmpTerrain)
@@ -194,7 +194,7 @@ BEGIN_COMMAND(SmoothElevation)
 
 	void MakeDirty()
 	{
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
+		g_Game->GetWorld()->GetTerrain().MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
 		g_Game->GetWorld()->GetUnitManager().MakeTerrainDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 		if (cmpTerrain)
@@ -307,7 +307,7 @@ BEGIN_COMMAND(FlattenElevation)
 
 	void MakeDirty()
 	{
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
+		g_Game->GetWorld()->GetTerrain().MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
 		g_Game->GetWorld()->GetUnitManager().MakeTerrainDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 		if (cmpTerrain)
@@ -382,7 +382,7 @@ BEGIN_COMMAND(PikeElevation)
 
 	void MakeDirty()
 	{
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
+		g_Game->GetWorld()->GetTerrain().MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
 		g_Game->GetWorld()->GetUnitManager().MakeTerrainDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_VERTICES);
 		CmpPtr<ICmpTerrain> cmpTerrain(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 		if (cmpTerrain)

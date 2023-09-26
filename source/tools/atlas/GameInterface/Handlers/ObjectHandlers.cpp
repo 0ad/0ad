@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -381,7 +381,7 @@ static CVector3D GetUnitPos(const Position& pos, bool floating)
 	// Use 'Clamp' with a value slightly less than the width, so that converting
 	// to integer (rounding towards zero) will put it on the tile inside the edge
 	// instead of just outside
-	float mapWidth = (g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide()-1)*TERRAIN_TILE_SIZE;
+	const float mapWidth = (g_Game->GetWorld()->GetTerrain().GetVerticesPerSide()-1)*TERRAIN_TILE_SIZE;
 	float delta = 1e-6f; // fraction of map width - must be > FLT_EPSILON
 
 	float xOnMap = Clamp(vec.X, 0.f, mapWidth * (1.f - delta));
@@ -392,7 +392,7 @@ static CVector3D GetUnitPos(const Position& pos, bool floating)
 	{
 		vec.X = xOnMap;
 		vec.Z = zOnMap;
-		vec.Y = g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel(xOnMap, zOnMap);
+		vec.Y = g_Game->GetWorld()->GetTerrain().GetExactGroundLevel(xOnMap, zOnMap);
 	}
 
 	return vec;

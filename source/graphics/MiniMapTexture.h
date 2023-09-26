@@ -78,11 +78,11 @@ public:
 private:
 	void CreateTextures(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
-		const CTerrain* terrain);
+		const CTerrain& terrain);
 	void DestroyTextures();
 	void RebuildTerrainTexture(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
-		const CTerrain* terrain);
+		const CTerrain& terrain);
 	void RenderFinalTexture(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		CLOSTexture& losTexture, CTerritoryTexture& territoryTexture);
