@@ -356,10 +356,7 @@ void CMiniMapTexture::Render(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	CLOSTexture& losTexture, CTerritoryTexture& territoryTexture)
 {
-	const CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	if (!terrain)
-		return;
-
+	const CTerrain& terrain = g_Game->GetWorld()->GetTerrain();
 	if (!m_TerrainTexture)
 		CreateTextures(deviceCommandContext, terrain);
 
@@ -370,11 +367,11 @@ void CMiniMapTexture::Render(
 }
 
 void CMiniMapTexture::CreateTextures(
-	Renderer::Backend::IDeviceCommandContext* deviceCommandContext, const CTerrain* terrain)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext, const CTerrain& terrain)
 {
 	DestroyTextures();
 
-	m_MapSize = terrain->GetVerticesPerSide();
+	m_MapSize = terrain.GetVerticesPerSide();
 	const size_t textureSize = round_up_to_pow2(static_cast<size_t>(m_MapSize));
 
 	const Renderer::Backend::Sampler::Desc defaultSamplerDesc =
@@ -428,7 +425,7 @@ void CMiniMapTexture::DestroyTextures()
 
 void CMiniMapTexture::RebuildTerrainTexture(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
-	const CTerrain* terrain)
+	const CTerrain& terrain)
 {
 	const u32 x = 0;
 	const u32 y = 0;
@@ -443,10 +440,11 @@ void CMiniMapTexture::RebuildTerrainTexture(
 		u32* dataPtr = m_TerrainData.get() + ((y + j) * width) + x;
 		for (u32 i = 0; i < width; ++i)
 		{
-			const float avgHeight = ( terrain->GetVertexGroundLevel((int)i, (int)j)
-					+ terrain->GetVertexGroundLevel((int)i+1, (int)j)
-					+ terrain->GetVertexGroundLevel((int)i, (int)j+1)
-					+ terrain->GetVertexGroundLevel((int)i+1, (int)j+1)
+			const float avgHeight = (
+				terrain.GetVertexGroundLevel(static_cast<int>(i), static_cast<int>(j))
+				+ terrain.GetVertexGroundLevel(static_cast<int>(i+1), static_cast<int>(j))
+				+ terrain.GetVertexGroundLevel(static_cast<int>(i), static_cast<int>(j+1))
+				+ terrain.GetVertexGroundLevel(static_cast<int>(i+1), static_cast<int>(j+1))
 				) / 4.0f;
 
 			if (avgHeight < m_WaterHeight && avgHeight > m_WaterHeight - m_ShallowPassageHeight)
@@ -461,12 +459,13 @@ void CMiniMapTexture::RebuildTerrainTexture(
 			}
 			else
 			{
-				int hmap = ((int)terrain->GetHeightMap()[(y + j) * m_MapSize + x + i]) >> 8;
+				const int hmap =
+					static_cast<int>(terrain.GetHeightMap()[(y + j) * m_MapSize + x + i]) >> 8;
 				int val = (hmap / 3) + 170;
 
 				u32 color = 0xFFFFFFFF;
 
-				CMiniPatch* mp = terrain->GetTile(x + i, y + j);
+				CMiniPatch* const mp = terrain.GetTile(x + i, y + j);
 				if (mp)
 				{
 					CTerrainTextureEntry* tex = mp->GetTextureEntry();

@@ -259,16 +259,16 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 	{
 	PROFILE3("submit terrain");
 
-	CTerrain* pTerrain = m->Game->GetWorld()->GetTerrain();
+	const CTerrain& terrain = m->Game->GetWorld()->GetTerrain();
 	float waterHeight = g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterHeight + 0.001f;
-	const ssize_t patchesPerSide = pTerrain->GetPatchesPerSide();
+	const ssize_t patchesPerSide = terrain.GetPatchesPerSide();
 
 	// find out which patches will be drawn
 	for (ssize_t j=0; j<patchesPerSide; ++j)
 	{
 		for (ssize_t i=0; i<patchesPerSide; ++i)
 		{
-			CPatch* patch=pTerrain->GetPatch(i,j);	// can't fail
+			CPatch* const patch = terrain.GetPatch(i,j);	// can't fail
 
 			// If the patch is underwater, calculate a bounding box that also contains the water plane
 			CBoundingBoxAligned bounds = patch->GetWorldBounds();

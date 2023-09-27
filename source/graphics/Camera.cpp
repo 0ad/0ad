@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -277,7 +277,7 @@ CVector3D CCamera::GetWorldCoordinates(int px, int py, bool aboveWater) const
 
 	// Clamp the water intersection to within the map's bounds, so that
 	// we'll always return a valid position on the map
-	ssize_t mapSize = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
+	const ssize_t mapSize = g_Game->GetWorld()->GetTerrain().GetVerticesPerSide();
 	if (gotWater)
 	{
 		waterPoint.X = Clamp<float>(waterPoint.X, 0.f, (mapSize - 1) * TERRAIN_TILE_SIZE);
@@ -355,7 +355,7 @@ CVector3D CCamera::GetFocus() const
 
 	// Clamp the water intersection to within the map's bounds, so that
 	// we'll always return a valid position on the map
-	ssize_t mapSize = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
+	const ssize_t mapSize = g_Game->GetWorld()->GetTerrain().GetVerticesPerSide();
 	if (gotWater)
 	{
 		waterPoint.X = Clamp<float>(waterPoint.X, 0.f, (mapSize - 1) * TERRAIN_TILE_SIZE);

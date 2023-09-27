@@ -1,19 +1,19 @@
-/* Copyright (C) 2022 Wildfire Games.
-* This file is part of 0 A.D.
-*
-* 0 A.D. is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 2 of the License, or
-* (at your option) any later version.
-*
-* 0 A.D. is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
-*/
+/* Copyright (C) 2023 Wildfire Games.
+ * This file is part of 0 A.D.
+ *
+ * 0 A.D. is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * 0 A.D. is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "precompiled.h"
 
@@ -293,7 +293,7 @@ void CCameraController::Update(const float deltaRealTime)
 		CCamera targetCam = m_Camera;
 		SetupCameraMatrixSmoothRot(&targetCam.m_Orientation);
 
-		CTerrain* pTerrain = g_Game->GetWorld()->GetTerrain();
+		const CTerrain& terrain = g_Game->GetWorld()->GetTerrain();
 
 		CVector3D pivot = GetSmoothPivot(targetCam);
 		CVector3D delta = targetCam.GetOrientation().GetTranslation() - pivot;
@@ -304,7 +304,7 @@ void CCameraController::Update(const float deltaRealTime)
 		if (cmpRangeManager && cmpRangeManager->GetLosCircular())
 		{
 			// Clamp to a circular region around the center of the map
-			float r = pTerrain->GetMaxX() / 2;
+			const float r = terrain.GetMaxX() / 2.f;
 			CVector3D center(r, desiredPivot.Y, r);
 			float dist = (desiredPivot - center).Length();
 			if (dist > r - CAMERA_EDGE_MARGIN)
@@ -313,8 +313,10 @@ void CCameraController::Update(const float deltaRealTime)
 		else
 		{
 			// Clamp to the square edges of the map
-			desiredPivot.X = Clamp(desiredPivot.X, pTerrain->GetMinX() + CAMERA_EDGE_MARGIN, pTerrain->GetMaxX() - CAMERA_EDGE_MARGIN);
-			desiredPivot.Z = Clamp(desiredPivot.Z, pTerrain->GetMinZ() + CAMERA_EDGE_MARGIN, pTerrain->GetMaxZ() - CAMERA_EDGE_MARGIN);
+			desiredPivot.X = Clamp(desiredPivot.X, terrain.GetMinX() + CAMERA_EDGE_MARGIN,
+				terrain.GetMaxX() - CAMERA_EDGE_MARGIN);
+			desiredPivot.Z = Clamp(desiredPivot.Z, terrain.GetMinZ() + CAMERA_EDGE_MARGIN,
+				terrain.GetMaxZ() - CAMERA_EDGE_MARGIN);
 		}
 
 		// Update the position so that pivot is within the margin
@@ -580,12 +582,12 @@ void CCameraController::FocusHeight(bool smooth)
 	const CVector3D pivotPoint = position + forwards * m_Zoom.GetSmoothedValue();
 
 	const float ground = std::max(
-		g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel(nearPoint.X, nearPoint.Z),
+		g_Game->GetWorld()->GetTerrain().GetExactGroundLevel(nearPoint.X, nearPoint.Z),
 		g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterHeight);
 
 	// filter ground levels for smooth camera movement
-	const float filtered_near_ground = g_Game->GetWorld()->GetTerrain()->GetFilteredGroundLevel(nearPoint.X, nearPoint.Z, near_radius);
-	const float filtered_pivot_ground = g_Game->GetWorld()->GetTerrain()->GetFilteredGroundLevel(pivotPoint.X, pivotPoint.Z, pivot_radius);
+	const float filtered_near_ground = g_Game->GetWorld()->GetTerrain().GetFilteredGroundLevel(nearPoint.X, nearPoint.Z, near_radius);
+	const float filtered_pivot_ground = g_Game->GetWorld()->GetTerrain().GetFilteredGroundLevel(pivotPoint.X, pivotPoint.Z, pivot_radius);
 
 	// filtered maximum visible ground level in view
 	const float filtered_ground = std::max(

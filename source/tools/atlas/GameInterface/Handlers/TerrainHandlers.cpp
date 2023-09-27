@@ -205,8 +205,8 @@ QUERYHANDLER(GetTerrainTexture)
 	g_CurrentBrush.m_Centre = msg->pos->GetWorldSpace();
 	g_CurrentBrush.GetCentre(x, y);
 
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	CMiniPatch* tile = terrain->GetTile(x, y);
+	const CTerrain& terrain = g_Game->GetWorld()->GetTerrain();
+	CMiniPatch* const tile = terrain.GetTile(x, y);
 	if (tile)
 	{
 		CTerrainTextureEntry* tex = tile->GetTextureEntry();
@@ -244,8 +244,8 @@ class TerrainArray : public DeltaArray2D<TerrainTile>
 public:
 	void Init()
 	{
-		m_Terrain = g_Game->GetWorld()->GetTerrain();
-		m_VertsPerSide = g_Game->GetWorld()->GetTerrain()->GetVerticesPerSide();
+		m_Terrain = &g_Game->GetWorld()->GetTerrain();
+		m_VertsPerSide = m_Terrain->GetVerticesPerSide();
 	}
 
 	void UpdatePriority(ssize_t x, ssize_t y, CTerrainTextureEntry* tex, ssize_t priorityScale, ssize_t& priority)
@@ -325,7 +325,8 @@ BEGIN_COMMAND(PaintTerrain)
 
 	void MakeDirty()
 	{
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_INDICES);
+		g_Game->GetWorld()->GetTerrain().MakeDirty(m_i0, m_j0, m_i1, m_j1,
+			RENDERDATA_UPDATE_INDICES);
 	}
 
 	void Do()
@@ -411,7 +412,8 @@ BEGIN_COMMAND(ReplaceTerrain)
 
 	void MakeDirty()
 	{
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_INDICES);
+		g_Game->GetWorld()->GetTerrain().MakeDirty(m_i0, m_j0, m_i1, m_j1,
+			RENDERDATA_UPDATE_INDICES);
 	}
 
 	void Do()
@@ -487,7 +489,8 @@ BEGIN_COMMAND(FillTerrain)
 
 	void MakeDirty()
 	{
-		g_Game->GetWorld()->GetTerrain()->MakeDirty(m_i0, m_j0, m_i1, m_j1, RENDERDATA_UPDATE_INDICES);
+		g_Game->GetWorld()->GetTerrain().MakeDirty(m_i0, m_j0, m_i1, m_j1,
+			RENDERDATA_UPDATE_INDICES);
 	}
 
 	void Do()

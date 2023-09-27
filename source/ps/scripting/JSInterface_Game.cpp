@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -171,7 +171,7 @@ void RewindTimeWarp()
 void DumpTerrainMipmap()
 {
 	VfsPath filename(L"screenshots/terrainmipmap.png");
-	g_Game->GetWorld()->GetTerrain()->GetHeightMipmap().DumpToDisk(filename);
+	g_Game->GetWorld()->GetTerrain().GetHeightMipmap().DumpToDisk(filename);
 	OsPath realPath;
 	g_VFS->GetRealPath(filename, realPath);
 	LOGMESSAGERENDER("Terrain mipmap written to '%s'", realPath.string8());

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -84,20 +84,24 @@ public:
 	int DeleteMapReader();
 
 	/**
-	 * Get the pointer to the terrain object.
+	 * Get a reference to the terrain object.
 	 *
-	 * @return CTerrain * the value of m_Terrain.
+	 * @return CTerrain& dereferenced m_Terrain.
 	 **/
-	inline CTerrain *GetTerrain()
-	{	return m_Terrain; }
+	CTerrain& GetTerrain()
+	{
+		return *m_Terrain;
+	}
 
 	/**
 	 * Get a reference to the unit manager object.
 	 *
-	 * @return CUnitManager & dereferenced m_UnitManager.
+	 * @return CUnitManager& dereferenced m_UnitManager.
 	 **/
-	inline CUnitManager &GetUnitManager()
-	{	return *m_UnitManager; }
+	CUnitManager& GetUnitManager()
+	{
+		return *m_UnitManager;
+	}
 };
 
 // rationale: see definition.

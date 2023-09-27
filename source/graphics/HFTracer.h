@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ class CHFTracer
 {
 public:
 	// constructor; setup data
-	CHFTracer(CTerrain *pTerrain);
+	CHFTracer(CTerrain& terrain);
 
 	// intersect ray with this heightfield; return true if intersection
 	// occurs (and fill in grid coordinates and point of intersection), or false otherwise
@@ -60,7 +60,7 @@ private:
 	bool CellIntersect(int cx, int cz, const CVector3D& origin, const CVector3D& dir, float& dist) const;
 
 	// The terrain we're operating on
-	CTerrain *m_pTerrain;
+	CTerrain& m_Terrain;
 	// the heightfield were tracing
 	const u16* m_Heightfield;
 	// size of the heightfield

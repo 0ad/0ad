@@ -469,8 +469,8 @@ static inline void ComputeDirection(float* distanceMap, const u16* heightmap, fl
 // Calculate our binary heightmap from the terrain heightmap.
 void WaterManager::RecomputeDistanceHeightmap()
 {
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	if (!terrain || !terrain->GetHeightMap())
+	const CTerrain& terrain = g_Game->GetWorld()->GetTerrain();
+	if (!terrain.GetHeightMap())
 		return;
 
 	size_t SideSize = m_MapSize;
@@ -487,7 +487,7 @@ void WaterManager::RecomputeDistanceHeightmap()
 	// Create a manhattan-distance heightmap.
 	// This could be refined to only be done near the coast itself, but it's probably not necessary.
 
-	u16* heightmap = terrain->GetHeightMap();
+	const u16* const heightmap = terrain.GetHeightMap();
 
 	ComputeDirection<false>(m_DistanceHeightmap.get(), heightmap, m_WaterHeight, SideSize, maxLevel);
 	ComputeDirection<true>(m_DistanceHeightmap.get(), heightmap, m_WaterHeight, SideSize, maxLevel);
@@ -499,8 +499,8 @@ void WaterManager::CreateWaveMeshes()
 	if (m_MapSize == 0)
 		return;
 
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	if (!terrain || !terrain->GetHeightMap())
+	const CTerrain& terrain = g_Game->GetWorld()->GetTerrain();
+	if (!terrain.GetHeightMap())
 		return;
 
 	m_ShoreWaves.clear();
@@ -702,15 +702,19 @@ void WaterManager::CreateWaveMeshes()
 					break;
 				}
 
-				if (terrain->GetExactGroundLevel(pos.X+perp.X*1.5f, pos.Y+perp.Y*1.5f) > m_WaterHeight)
+				if (terrain.GetExactGroundLevel(pos.X+perp.X*1.5f, pos.Y+perp.Y*1.5f)
+					> m_WaterHeight)
 					sign = -1;
 
-				avgDepth += terrain->GetExactGroundLevel(pos.X+sign*perp.X*20.0f, pos.Y+sign*perp.Y*20.0f) - m_WaterHeight;
+				avgDepth += terrain.GetExactGroundLevel(pos.X+sign*perp.X*20.0f,
+					pos.Y+sign*perp.Y*20.0f) - m_WaterHeight;
 
 				float localOutmost = -2.0f;
 				while (localOutmost < 0.0f)
 				{
-					float depth = terrain->GetExactGroundLevel(pos.X+sign*perp.X*localOutmost, pos.Y+sign*perp.Y*localOutmost) - m_WaterHeight;
+					const float depth = terrain.GetExactGroundLevel(
+						pos.X+sign*perp.X*localOutmost,
+						pos.Y+sign*perp.Y*localOutmost) - m_WaterHeight;
 					if (depth < 0.0f || depth > 0.6f)
 						localOutmost += 0.2f;
 					else
@@ -811,27 +815,31 @@ void WaterManager::CreateWaveMeshes()
 
 				for (size_t t = 0; t < 9; ++t)
 				{
-					float terrHeight = 0.05f + terrain->GetExactGroundLevel(pos.X+sign*perp.X*(perpT1[t]+outmost),
+					const float terrHeight = 0.05f + terrain.GetExactGroundLevel(
+						pos.X+sign*perp.X*(perpT1[t]+outmost),
 																			pos.Y+sign*perp.Y*(perpT1[t]+outmost));
 					point[t].m_BasePosition = CVector3D(pos.X+sign*perp.X*(perpT1[t]+outmost), baseHeight + heightT1[t]*sideNess + std::max(m_WaterHeight,terrHeight),
 														pos.Y+sign*perp.Y*(perpT1[t]+outmost));
 				}
 				for (size_t t = 0; t < 9; ++t)
 				{
-					float terrHeight = 0.05f + terrain->GetExactGroundLevel(pos.X+sign*perp.X*(perpT2[t]+outmost),
+					const float terrHeight = 0.05f + terrain.GetExactGroundLevel(
+						pos.X+sign*perp.X*(perpT2[t]+outmost),
 																			pos.Y+sign*perp.Y*(perpT2[t]+outmost));
 					point[t].m_ApexPosition = CVector3D(pos.X+sign*perp.X*(perpT2[t]+outmost), baseHeight + heightT1[t]*sideNess + std::max(m_WaterHeight,terrHeight),
 														pos.Y+sign*perp.Y*(perpT2[t]+outmost));
 				}
 				for (size_t t = 0; t < 9; ++t)
 				{
-					float terrHeight = 0.05f + terrain->GetExactGroundLevel(pos.X+sign*perp.X*(perpT3[t]+outmost*sideNess),
+					const float terrHeight = 0.05f + terrain.GetExactGroundLevel(
+						pos.X+sign*perp.X*(perpT3[t]+outmost*sideNess),
 																			pos.Y+sign*perp.Y*(perpT3[t]+outmost*sideNess));
 					point[t].m_SplashPosition = CVector3D(pos.X+sign*perp.X*(perpT3[t]+outmost*sideNess), baseHeight + heightT2[t]*sideNess + std::max(m_WaterHeight,terrHeight), pos.Y+sign*perp.Y*(perpT3[t]+outmost*sideNess));
 				}
 				for (size_t t = 0; t < 9; ++t)
 				{
-					float terrHeight = 0.05f + terrain->GetExactGroundLevel(pos.X+sign*perp.X*(perpT4[t]+outmost),
+					const float terrHeight = 0.05f + terrain.GetExactGroundLevel(
+						pos.X+sign*perp.X*(perpT4[t]+outmost),
 																			pos.Y+sign*perp.Y*(perpT4[t]+outmost));
 					point[t].m_RetreatPosition = CVector3D(pos.X+sign*perp.X*(perpT4[t]+outmost), baseHeight + heightT3[t]*sideNess + std::max(m_WaterHeight,terrHeight),
 														   pos.Y+sign*perp.Y*(perpT4[t]+outmost));
@@ -970,8 +978,8 @@ void WaterManager::RecomputeWindStrength()
 	if (!m_WindStrength)
 		m_WindStrength = std::make_unique<float[]>(m_MapSize * m_MapSize);
 
-	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
-	if (!terrain || !terrain->GetHeightMap())
+	const CTerrain& terrain = g_Game->GetWorld()->GetTerrain();
+	if (!terrain.GetHeightMap())
 		return;
 
 	CVector2D windDir = CVector2D(cos(m_WindAngle), sin(m_WindAngle));
@@ -1042,7 +1050,7 @@ void WaterManager::RecomputeWindStrength()
 	{
 		// Starting velocity is 1.0 unless in shallow water.
 		m_WindStrength[point.Y * m_MapSize + point.X] = 1.f;
-		float depth = m_WaterHeight - terrain->GetVertexGroundLevel(point.X, point.Y);
+		const float depth = m_WaterHeight - terrain.GetVertexGroundLevel(point.X, point.Y);
 		if (depth > 0.f && depth < 2.f)
 			m_WindStrength[point.Y * m_MapSize + point.X] = depth / 2.f;
 		point.windStrength = m_WindStrength[point.Y * m_MapSize + point.X];
@@ -1056,8 +1064,9 @@ void WaterManager::RecomputeWindStrength()
 
 				// Adjust speed based on height difference, a positive height difference slowly increases speed (simulate venturi effect)
 				// and a lower height reduces speed (wind protection from hills/...)
-				float heightDiff = std::max(m_WaterHeight, terrain->GetVertexGroundLevel(point.X + movement[step].first, point.Y + movement[step].second)) -
-					std::max(m_WaterHeight, terrain->GetVertexGroundLevel(point.X, point.Y));
+				const float heightDiff = std::max(m_WaterHeight, terrain.GetVertexGroundLevel(
+					point.X + movement[step].first, point.Y + movement[step].second)) -
+					std::max(m_WaterHeight, terrain.GetVertexGroundLevel(point.X, point.Y));
 				if (heightDiff > 0.f)
 					point.windStrength = std::min(2.f, point.windStrength + std::min(4.f, heightDiff) / 40.f);
 				else
