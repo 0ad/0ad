@@ -41,7 +41,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-09-11 07:08+0000\n"
+"POT-Creation-Date: 2023-09-25 07:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2023\n"
 "Language-Team: Spanish (http://app.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -651,17 +651,16 @@ msgid "Humans +0.5 health regeneration rate."
 msgstr "Humanos (Regeneración de salud: +0.5)."
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraName
-#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
-msgid "Regeneration"
-msgstr "Regeneración"
+msgid "Father of Medicine"
+msgstr "Padre de la medicina"
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraDescription
-msgid "Own and Allied Healers +2 heal health."
-msgstr "Sanadores propios y aliados (Curación: +2)."
+msgid "Own and Allied Healers +1 healing effect."
+msgstr "Sanadores propios y aliados (Curación: +1)."
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraName
-msgid "Medicine Father"
-msgstr "Padre médico"
+msgid "Hippocratic Oath"
+msgstr "Juramento hipocrático"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid "Soldiers +2 crush, hack, pierce resistance."
@@ -1009,6 +1008,10 @@ msgstr "Todas las tecnologías (Coste de recursos: −20%; Tiempo de investigaci
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
 msgstr "Instructor"
+
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
+msgid "Regeneration"
+msgstr "Regeneración"
 
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
 msgid ""

@@ -41,7 +41,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-09-11 07:08+0000\n"
+"POT-Creation-Date: 2023-09-25 07:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Matteo Nigro, 2023\n"
 "Language-Team: Italian (http://app.transifex.com/wildfire-games/0ad/language/it/)\n"
@@ -95,7 +95,7 @@ msgstr "Presidia il Recinto per il bestiame per ottenere un lento rifornimento d
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Workers +75% grain gather rate around a captured Rotary Mill."
-msgstr ""
+msgstr "Lavoratori +75% di tasso di raccolta dei cereali intorno a un Mulino catturato."
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
@@ -594,7 +594,7 @@ msgstr "Pelanor di Ferro"
 
 #: simulation/data/auras/units/celtic_healer.jsonauraDescription
 msgid "Soldiers +5% attack damage."
-msgstr ""
+msgstr "Soldati +5% danni da attacco."
 
 #: simulation/data/auras/units/celtic_healer.jsonauraName
 msgid "Deas Celtica"
@@ -651,17 +651,16 @@ msgid "Humans +0.5 health regeneration rate."
 msgstr "Umani +0.5 tasso di rigenerazione della salute."
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraName
-#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
-msgid "Regeneration"
-msgstr "Rigenerazione"
+msgid "Father of Medicine"
+msgstr "Padre della medicina"
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraDescription
-msgid "Own and Allied Healers +2 heal health."
-msgstr "I propri guaritori e quelli alleati curano la salute +2."
+msgid "Own and Allied Healers +1 healing effect."
+msgstr "Guaritori propri e alleati +1 effetto di guarigione."
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraName
-msgid "Medicine Father"
-msgstr "Padre medico"
+msgid "Hippocratic Oath"
+msgstr "Giuramento di Ippocrate"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid "Soldiers +2 crush, hack, pierce resistance."
@@ -1009,6 +1008,10 @@ msgstr "Tutte le tecnologie hanno un costo di risorse del -20%  e un tempo di ri
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
 msgstr "Maestro"
+
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
+msgid "Regeneration"
+msgstr "Rigenerazione"
 
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
 msgid ""

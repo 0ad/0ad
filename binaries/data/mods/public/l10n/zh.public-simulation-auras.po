@@ -81,7 +81,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-09-11 07:08+0000\n"
+"POT-Creation-Date: 2023-09-25 07:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022-2023\n"
 "Language-Team: Chinese (http://app.transifex.com/wildfire-games/0ad/language/zh/)\n"
@@ -691,17 +691,16 @@ msgid "Humans +0.5 health regeneration rate."
 msgstr "有生单位生命回复速率 +0.5 ."
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraName
-#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
-msgid "Regeneration"
-msgstr "再生"
+msgid "Father of Medicine"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraDescription
-msgid "Own and Allied Healers +2 heal health."
-msgstr "己方和盟友的医生治疗效果 +2 。"
+msgid "Own and Allied Healers +1 healing effect."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraName
-msgid "Medicine Father"
-msgstr "医学之父"
+msgid "Hippocratic Oath"
+msgstr "希波克拉底誓言"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid "Soldiers +2 crush, hack, pierce resistance."
@@ -1049,6 +1048,10 @@ msgstr "全部科技研究成本 -20% ，研究用时 -30% ."
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
 msgstr "教师"
+
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
+msgid "Regeneration"
+msgstr "再生"
 
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
 msgid ""
