@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Entity>
+  <Attack>
+    <Melee>
+      <MaxRange op="add">3.0</MaxRange>
+    </Melee>
+  </Attack>
+  <Cost>
+    <Resources>
+      <metal op="add">10</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <GenericName>Cataphract Cavalry</GenericName>
+    <VisibleClasses datatype="tokens">Cataphract</VisibleClasses>
+  </Identity>
+  <Position>
+    <TurnRate op="mul">0.8</TurnRate>
+  </Position>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack op="add">1</Hack>
+        <Pierce op="add">1</Pierce>
+        <Crush op="add">1</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
+  <UnitMotion>
+    <WalkSpeed op="mul">0.95</WalkSpeed>
+    <Acceleration op="mul">0.8</Acceleration>
+  </UnitMotion>
+</Entity>
