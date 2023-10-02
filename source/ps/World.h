@@ -27,6 +27,8 @@
 #include "ps/CStrForward.h"
 #include "ps/Errors.h"
 
+#include <memory>
+
 #ifndef ERROR_GROUP_GAME_DEFINED
 #define ERROR_GROUP_GAME_DEFINED
 ERROR_GROUP(Game);
@@ -46,26 +48,8 @@ class ScriptContext;
  **/
 class CWorld
 {
-	NONCOPYABLE(CWorld);
-	/**
-	 * pointer to the CGame object representing the game.
-	 **/
-	CGame *m_pGame;
-
-	/**
-	 * pointer to the CTerrain object representing the height map.
-	 **/
-	CTerrain *m_Terrain;
-
-	/**
-	 * pointer to the CUnitManager that holds all the units in the world.
-	 **/
-	CUnitManager *m_UnitManager;
-
-	CMapReader* m_MapReader;
-
 public:
-	CWorld(CGame *pGame);
+	CWorld(CGame& game);
 	~CWorld();
 
 	/*
@@ -102,6 +86,27 @@ public:
 	{
 		return *m_UnitManager;
 	}
+
+private:
+	/**
+	 * Reference to the CGame object representing the game.
+	 */
+	CGame& m_Game;
+
+	/**
+	 * The CTerrain object represents the height map.
+	 */
+	const std::unique_ptr<CTerrain> m_Terrain;
+
+	/**
+	 * The CUnitManager that holds all the units in the world.
+	 */
+	const std::unique_ptr<CUnitManager> m_UnitManager;
+
+	/**
+	 * The map reader gets deleted just after the map is read.
+	 */
+	std::unique_ptr<CMapReader> m_MapReader;
 };
 
 // rationale: see definition.
