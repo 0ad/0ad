@@ -62,7 +62,7 @@ msgstr "학살"
 #: simulation/templates/template_unit_champion_cavalry.xml:20
 #: simulation/templates/template_unit_hero_cavalry.xml:19
 msgid "Cavalry"
-msgstr "기마병"
+msgstr "기병"
 
 #: simulation/templates/template_unit_cavalry.xml:34
 #: simulation/templates/template_unit_elephant.xml:9
@@ -85,11 +85,11 @@ msgstr "병사"
 #: simulation/templates/template_unit_infantry.xml:37
 #: simulation/templates/template_unit_support_female_citizen.xml:38
 msgid "Citizen"
-msgstr "시민"
+msgstr "주민"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:7
 msgid "Melee Cavalry"
-msgstr "근접 기마병"
+msgstr "근접 기병"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:8
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:20
@@ -132,7 +132,7 @@ msgstr "도끼"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:23
 msgid "Cavalry Axeman"
-msgstr "기마 도끼병"
+msgstr "도끼 기병"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:24
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:20
@@ -156,7 +156,7 @@ msgstr "철퇴"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:21
 msgid "Cavalry Maceman"
-msgstr "철퇴 기마병"
+msgstr "철퇴 기병"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:22
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
@@ -179,7 +179,7 @@ msgstr "창"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:28
 msgid "Cavalry Spearman"
-msgstr "기마 창병"
+msgstr "창 기병"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
@@ -210,7 +210,7 @@ msgstr "검"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:22
 msgid "Cavalry Swordsman"
-msgstr "기마 검병"
+msgstr "검 기병"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:23
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:19
@@ -247,7 +247,7 @@ msgstr "원거리"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:8
 msgid "Ranged Cavalry"
-msgstr "원거리 기마병"
+msgstr "원거리 기병"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:5
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:5
@@ -275,7 +275,7 @@ msgstr "궁사"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:29
 msgid "Cavalry Archer"
-msgstr "기마 궁병"
+msgstr "궁 기병"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:5
@@ -289,7 +289,7 @@ msgstr "석궁"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:28
 msgid "Cavalry Crossbowman"
-msgstr "기마 석궁병"
+msgstr "석궁 기병"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:24
@@ -312,7 +312,7 @@ msgstr "투장"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:28
 msgid "Cavalry Javelineer"
-msgstr "기마 투창병"
+msgstr "투창 기병"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:29
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:24
@@ -333,35 +333,35 @@ msgstr "챔피언 유닛"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:21
 msgid "Champion Cavalry"
-msgstr "챔피언 기마병"
+msgstr "챔피언 기병"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer"
-msgstr "챔피언 기마 궁병"
+msgstr "챔피언 궁 기병"
 
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
 msgid "Champion Cavalry Axeman"
-msgstr "챔피언 기마 도끼병"
+msgstr "챔피언 도끼 기병"
 
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:23
 msgid "Champion Cavalry Crossbowman"
-msgstr "챔피언 기마 석궁병"
+msgstr "챔피언 석궁 기병"
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:23
 msgid "Champion Cavalry Javelineer"
-msgstr "챔피언 기마 투창병"
+msgstr "챔피언 투창 기병"
 
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:19
 msgid "Champion Cavalry Maceman"
-msgstr "챔피언 철퇴 기마병"
+msgstr "챔피언 철퇴 기병"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
 msgid "Champion Cavalry Spearman"
-msgstr "챔피언 기마 창병"
+msgstr "챔피언 창 기병"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:20
 msgid "Champion Cavalry Swordsman"
-msgstr "챔피언 기마 검병"
+msgstr "챔피언 검 기병"
 
 #: simulation/templates/template_unit_champion_elephant.xml:19
 #: simulation/templates/template_unit_elephant.xml:8
@@ -413,15 +413,15 @@ msgstr "챔피언 도끼병"
 
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:26
 msgid "Champion Infantry Crossbowman"
-msgstr "챔피언 석궁병"
+msgstr "챔피언 석궁 보병"
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:26
 msgid "Champion Infantry Javelineer"
-msgstr "챔피언 투창병"
+msgstr "챔피언 투창 보병"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:19
 msgid "Champion Infantry Maceman"
-msgstr "챔피언 철퇴병"
+msgstr "챔피언 철퇴 보병"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:5
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:5
@@ -464,7 +464,7 @@ msgstr "나팔수"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:28
 msgid "Champion Infantry Trumpeter"
-msgstr "챔피언 나팔병"
+msgstr "챔피언 나팔수 보병"
 
 #: simulation/templates/template_unit_dog.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -509,7 +509,7 @@ msgstr "영웅"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:20
 msgid "Hero Cavalry"
-msgstr "영웅 기마병"
+msgstr "영웅 기병"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:36
 #: simulation/templates/template_unit_hero_elephant_melee.xml:60
@@ -528,27 +528,27 @@ msgstr "\n        "
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:24
 msgid "Hero Cavalry Archer"
-msgstr "영웅 기마 궁병"
+msgstr "영웅 궁 기병"
 
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
 msgid "Hero Cavalry Axeman"
-msgstr "영웅 기마 도끼병"
+msgstr "영웅 도끼 기병"
 
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:23
 msgid "Hero Cavalry Crossbowman"
-msgstr "영웅 기마 석궁병"
+msgstr "영웅 석궁 기병"
 
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:23
 msgid "Hero Cavalry Javelineer"
-msgstr "영웅 기마 투창병"
+msgstr "영웅 투창 기병"
 
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:16
 msgid "Hero Cavalry Maceman"
-msgstr "영웅 철퇴 기마병"
+msgstr "영웅 철퇴 기병"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:23
 msgid "Hero Cavalry Spearman"
-msgstr "영웅 기마 창병"
+msgstr "영웅 창 기병"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
 msgid "Counters: 1.75× vs Cavalry."
@@ -556,7 +556,7 @@ msgstr "카운터: 기병에 대해 1.75배의 효과를 가집니다."
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:23
 msgid "Hero Cavalry Swordsman"
-msgstr "영웅 기마 검병"
+msgstr "영웅 검 기병"
 
 #: simulation/templates/template_unit_hero_elephant_melee.xml:39
 msgid "Hero Elephant"
@@ -584,11 +584,11 @@ msgstr "영웅 도끼병"
 
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:23
 msgid "Hero Infantry Crossbowman"
-msgstr "영웅 석궁병"
+msgstr "영웅 석궁 보병"
 
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:23
 msgid "Hero Infantry Javelineer"
-msgstr "영웅 투창병"
+msgstr "영웅 투창 보병"
 
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:16
 msgid "Hero Infantry Maceman"
@@ -614,7 +614,7 @@ msgstr "일꾼"
 
 #: simulation/templates/template_unit_infantry_melee.xml:7
 msgid "Melee Infantry"
-msgstr "근접병"
+msgstr "근접 보병"
 
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:21
 msgid "Infantry Maceman"
@@ -622,11 +622,11 @@ msgstr "철퇴 보병"
 
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:28
 msgid "Infantry Crossbowman"
-msgstr "석궁병"
+msgstr "석궁 보병"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:28
 msgid "Infantry Javelineer"
-msgstr "투창병"
+msgstr "투창 보병"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -822,7 +822,7 @@ msgstr "단검"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:35
 msgid "Female Citizen"
-msgstr "여성 시민"
+msgstr "여성 주민"
 
 #: simulation/templates/template_unit_support_healer.xml:31
 msgid "Heal units."
@@ -1101,7 +1101,7 @@ msgstr "검"
 
 #: simulation/templates/units/athen/cavalry_swordsman_b.xml:10
 msgid "Greek Cavalry"
-msgstr "그리스 기마병"
+msgstr "그리스 기병"
 
 #: simulation/templates/units/athen/cavalry_swordsman_b.xml:11
 msgid "Hippeús"
@@ -1109,7 +1109,7 @@ msgstr "히페우스"
 
 #: simulation/templates/units/athen/champion_infantry.xml:4
 msgid "City Guard"
-msgstr "도시 경호"
+msgstr "도시 경비병"
 
 #: simulation/templates/units/athen/champion_infantry.xml:5
 msgid "Epílektos"
@@ -1192,7 +1192,7 @@ msgstr "펠타스테스 트락스"
 
 #: simulation/templates/units/athen/infantry_slinger_b.xml:5
 msgid "Athenian Slinger Militia"
-msgstr "아테네 투석 민병"
+msgstr "아테네 투석 의용병"
 
 #: simulation/templates/units/athen/infantry_slinger_b.xml:6
 msgid "Psilòs Athēnaîos"
@@ -1311,7 +1311,7 @@ msgstr "마루카코스"
 
 #: simulation/templates/units/brit/cavalry_javelineer_b.xml:7
 msgid "Raiding Cavalry"
-msgstr "기습 기마병"
+msgstr "기습 기병"
 
 #: simulation/templates/units/brit/cavalry_swordsman_b.xml:6
 #: simulation/templates/units/gaul/cavalry_swordsman_b.xml:6
@@ -1320,7 +1320,7 @@ msgstr "에포레도스"
 
 #: simulation/templates/units/brit/cavalry_swordsman_b.xml:7
 msgid "Celtic Cavalry"
-msgstr "켈트족 기마병"
+msgstr "켈트족 기병"
 
 #: simulation/templates/units/brit/champion_chariot.xml:9
 msgid "Celtic Chariot"
@@ -1447,7 +1447,7 @@ msgstr "하스드루발 (병참장교)"
 
 #: simulation/templates/units/cart/cavalry_javelineer_b.xml:6
 msgid "Numidian Cavalry"
-msgstr "누미디아 기마병"
+msgstr "누미디아 기병"
 
 #: simulation/templates/units/cart/cavalry_javelineer_b.xml:7
 msgid "Ḥayyāl Raḫūv Masili"
@@ -1455,7 +1455,7 @@ msgstr "하얄 라후브 마시리"
 
 #: simulation/templates/units/cart/cavalry_spearman_ital_b.xml:5
 msgid "Italic Cavalry"
-msgstr "이탈리아 기마병"
+msgstr "이탈리아 기병"
 
 #: simulation/templates/units/cart/cavalry_spearman_ital_b.xml:6
 msgid "Ḥayyāl Romaḥ Raḫūv"
@@ -1472,11 +1472,11 @@ msgstr "하얄 헤레브 라후브"
 
 #: simulation/templates/units/cart/cavalry_swordsman_iber_b.xml:10
 msgid "Iberian Heavy Cavalry"
-msgstr "이베리아 중갑 기마병"
+msgstr "이베리아 중갑 기병"
 
 #: simulation/templates/units/cart/champion_cavalry.xml:5
 msgid "Sacred Band Cavalry"
-msgstr "전사 기마병"
+msgstr "전사 기병"
 
 #: simulation/templates/units/cart/champion_cavalry.xml:6
 msgid "Sacred Band of Astarte"
@@ -1648,7 +1648,7 @@ msgstr "암비오릭스"
 
 #: simulation/templates/units/gaul/champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
-msgstr "갈리아 상류층 기마병"
+msgstr "갈리아 귀족 기병"
 
 #: simulation/templates/units/gaul/champion_cavalry.xml:6
 msgid "Uerouicos"
@@ -1710,7 +1710,7 @@ msgstr "기마 궁병"
 
 #: simulation/templates/units/han/cavalry_crossbowman_b.xml:6
 msgid "Han Cavalry Crossbowman"
-msgstr "한나라 기마 석궁병"
+msgstr "한나라 석궁 기병"
 
 #: simulation/templates/units/han/cavalry_spearman_b.xml:6
 msgid "Máo Qíbīng"
@@ -1722,7 +1722,7 @@ msgstr "도기마병"
 
 #: simulation/templates/units/han/champion_cavalry_spearman_academy.xml:5
 msgid "Wu Wei Yin Cao Cao Guard"
-msgstr "무위영 조조군"
+msgstr "무위영 조조 경비병"
 
 #: simulation/templates/units/han/champion_chariot_academy.xml:9
 msgid "Han War Chariot"
@@ -1734,7 +1734,7 @@ msgstr "전차"
 
 #: simulation/templates/units/han/champion_infantry_archer_academy.xml:5
 msgid "Palace Guard Archer"
-msgstr "궁전 경호 궁병"
+msgstr "궁전 경비 궁병"
 
 #: simulation/templates/units/han/champion_infantry_archer_academy.xml:6
 msgid "Yǔ Lín"
@@ -1746,7 +1746,7 @@ msgstr "장각"
 
 #: simulation/templates/units/han/champion_infantry_spearman_academy.xml:5
 msgid "Palace Guard Spearman"
-msgstr "궁전 경호 창병"
+msgstr "궁전 경비 창병"
 
 #: simulation/templates/units/han/champion_infantry_spearman_academy.xml:6
 msgid "Hǔ Bēn"
@@ -1975,7 +1975,7 @@ msgstr "이리 헤레 세세무테테"
 
 #: simulation/templates/units/kush/cavalry_javelineer_b.xml:8
 msgid "Napatan Light Cavalry"
-msgstr "나파탄 경갑 기마병"
+msgstr "나파탄 경갑 기병"
 
 #: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:17
 msgid "Blemmye Desert Raider"
@@ -1992,7 +1992,7 @@ msgstr "낙타"
 
 #: simulation/templates/units/kush/cavalry_spearman_b.xml:7
 msgid "Meroitic Heavy Cavalry"
-msgstr "메로에족 중갑 기마병"
+msgstr "메로에족 중갑 기병"
 
 #: simulation/templates/units/kush/cavalry_spearman_b.xml:8
 msgid "Htr"
@@ -2000,7 +2000,7 @@ msgstr "헤테레"
 
 #: simulation/templates/units/kush/champion_cavalry.xml:6
 msgid "Noble Cavalry"
-msgstr "상류층 기마병"
+msgstr "귀족 기병"
 
 #: simulation/templates/units/kush/champion_cavalry.xml:7
 msgid "Htr Msʿ n mh-ib"
@@ -2016,7 +2016,7 @@ msgstr "아보레 하"
 
 #: simulation/templates/units/kush/champion_infantry_amun.xml:12
 msgid "Napatan Temple Guard"
-msgstr "나파탄 사원 경호대"
+msgstr "나파탄 사원 경비병"
 
 #: simulation/templates/units/kush/champion_infantry_amun.xml:13
 msgid "rs ʿImn"
@@ -2024,7 +2024,7 @@ msgstr "레세 이메네"
 
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:6
 msgid "Meroitic Temple Guard"
-msgstr "메로에족 사원 경호병"
+msgstr "메로에족 사원 경비병"
 
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:7
 msgid "rs ʿIprmk"
@@ -2032,7 +2032,7 @@ msgstr "레세 이페레메케"
 
 #: simulation/templates/units/kush/champion_infantry_archer.xml:6
 msgid "Noble Archer"
-msgstr "상류층 궁병"
+msgstr "귀족 궁병"
 
 #: simulation/templates/units/kush/champion_infantry_archer.xml:7
 msgid "Hry pdty"
@@ -2178,7 +2178,7 @@ msgstr "필립 5세"
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:7
 msgid "Odrysian Skirmish Cavalry"
-msgstr "오드뤼사이 교전 기마병"
+msgstr "오드뤼사이 교전 기병"
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:8
 msgid "Hippakontistḕs Odrysós"
@@ -2195,7 +2195,7 @@ msgstr "싸이스토포로스 테스사리코스"
 #: simulation/templates/units/mace/champion_cavalry.xml:6
 #: simulation/templates/units/sele/cavalry_spearman_merc_b.xml:7
 msgid "Companion Cavalry"
-msgstr "충격 기마병"
+msgstr "충격 기병"
 
 #: simulation/templates/units/mace/champion_cavalry.xml:7
 msgid "Hetaîros"
@@ -2329,7 +2329,7 @@ msgstr "빈두사라"
 
 #: simulation/templates/units/maur/cavalry_javelineer_b.xml:6
 msgid "Indian Light Cavalry"
-msgstr "인도 경갑 기마병"
+msgstr "인도 경갑 기병"
 
 #: simulation/templates/units/maur/cavalry_javelineer_b.xml:7
 msgid "Ashwarohi"
@@ -2337,7 +2337,7 @@ msgstr "아슈와로히"
 
 #: simulation/templates/units/maur/cavalry_swordsman_b.xml:6
 msgid "Indian Raiding Cavalry"
-msgstr "인도 습격 기마병"
+msgstr "인도 습격 기병"
 
 #: simulation/templates/units/maur/cavalry_swordsman_b.xml:7
 msgid "Aśvārohagaṇaḥ"
@@ -2553,7 +2553,7 @@ msgstr "아사바라 파르싸바"
 
 #: simulation/templates/units/pers/cavalry_axeman_b.xml:7
 msgid "Hyrcanian Cavalry"
-msgstr "히르카니아 기마병"
+msgstr "히르카니아 기병"
 
 #: simulation/templates/units/pers/cavalry_axeman_b.xml:8
 msgid "Asabāra Varkaniya"
@@ -2561,7 +2561,7 @@ msgstr "아사바라 바르카니야"
 
 #: simulation/templates/units/pers/cavalry_javelineer_b.xml:7
 msgid "Median Light Cavalry"
-msgstr "메디아 경갑 기마병"
+msgstr "메디아 경갑 기병"
 
 #: simulation/templates/units/pers/cavalry_javelineer_b.xml:8
 msgid "Asabāra Māda"
@@ -2569,7 +2569,7 @@ msgstr "아사바라 마다"
 
 #: simulation/templates/units/pers/cavalry_spearman_b.xml:7
 msgid "Cappadocian Cavalry"
-msgstr "카파도키아 기마병"
+msgstr "카파도키아 기병"
 
 #: simulation/templates/units/pers/cavalry_spearman_b.xml:8
 msgid "Asabāra Katpatuka"
@@ -2586,7 +2586,7 @@ msgstr "아사바라 박트리스"
 
 #: simulation/templates/units/pers/champion_cavalry_archer.xml:6
 msgid "Bactrian Heavy Cavalry Archer"
-msgstr "박트리아 중갑 기마 궁병"
+msgstr "박트리아 중갑 궁 기병"
 
 #: simulation/templates/units/pers/champion_chariot.xml:10
 msgid "Babylonian Scythed Chariot"
@@ -2790,7 +2790,7 @@ msgstr "무차비크 가말 나바투"
 
 #: simulation/templates/units/ptol/cavalry_javelineer_merc_b.xml:6
 msgid "Tarantine Settler Cavalry"
-msgstr "타란틴 정착 기마병"
+msgstr "타란틴 정착민 기병"
 
 #: simulation/templates/units/ptol/cavalry_javelineer_merc_b.xml:7
 msgid "Hippeús Tarantînos"
@@ -2798,7 +2798,7 @@ msgstr "히페우스 타란티노스"
 
 #: simulation/templates/units/ptol/cavalry_spearman_merc_b.xml:6
 msgid "Macedonian Settler Cavalry"
-msgstr "마케도니아 정착 기마병"
+msgstr "마케도니아 정착민 기병"
 
 #: simulation/templates/units/ptol/cavalry_spearman_merc_b.xml:7
 msgid "Hippeús Makedonikós"
@@ -2806,7 +2806,7 @@ msgstr "히페우스 마케도니코스"
 
 #: simulation/templates/units/ptol/champion_cavalry.xml:5
 msgid "Royal Guard Cavalry"
-msgstr "왕실 경호 기마병"
+msgstr "왕실 경비 기병"
 
 #: simulation/templates/units/ptol/champion_cavalry.xml:6
 msgid "Ágēma Basiléōs"
@@ -2886,7 +2886,7 @@ msgstr "헤브라이코스 스펜도네테스"
 
 #: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:12
 msgid "Mercenary Thureos Spearman"
-msgstr "투레오스 장창 용병"
+msgstr "투레오스 창 용병"
 
 #: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:13
 msgid "Thureophóros Misthophóros"
@@ -2931,7 +2931,7 @@ msgstr "루시우스 이우니우스 브루투스"
 
 #: simulation/templates/units/rome/cavalry_javelineer_b.xml:6
 msgid "Allied Cavalry"
-msgstr "동맹 기마병"
+msgstr "동맹 기병"
 
 #: simulation/templates/units/rome/cavalry_javelineer_b.xml:7
 msgid "Eques Socius"
@@ -2939,7 +2939,7 @@ msgstr "에쿠에스 소시우스"
 
 #: simulation/templates/units/rome/cavalry_spearman_b.xml:7
 msgid "Roman Cavalry"
-msgstr "로마 기마병"
+msgstr "로마 기병"
 
 #: simulation/templates/units/rome/cavalry_spearman_b.xml:8
 msgid "Eques Rōmānus"
@@ -3164,7 +3164,7 @@ msgstr "히포톡소테스 다하에"
 
 #: simulation/templates/units/sele/cavalry_javelineer_b.xml:7
 msgid "Militia Cavalry"
-msgstr "시민 기마병"
+msgstr "의용 기병"
 
 #: simulation/templates/units/sele/cavalry_javelineer_b.xml:8
 msgid "Hippakontistès Politès"
@@ -3264,7 +3264,7 @@ msgstr "팔란기테스"
 
 #: simulation/templates/units/sele/infantry_spearman_b.xml:7
 msgid "Militia Thureos Spearman"
-msgstr "투레오스 창 민병대"
+msgstr "투레오스 창 의용병"
 
 #: simulation/templates/units/sele/infantry_spearman_b.xml:8
 msgid "Thureophóros Politès"
@@ -3308,7 +3308,7 @@ msgstr "리쿠르구스"
 
 #: simulation/templates/units/spart/cavalry_javelineer_b.xml:7
 msgid "Perioikoi Cavalryman"
-msgstr "페리오이코이 기마병"
+msgstr "페리오이코이 기병"
 
 #: simulation/templates/units/spart/cavalry_javelineer_b.xml:8
 msgid "Pródromos Perioïkós"
@@ -3316,7 +3316,7 @@ msgstr "프로드로모스 페리오이코스"
 
 #: simulation/templates/units/spart/cavalry_spearman_b.xml:7
 msgid "Greek Allied Cavalry"
-msgstr "그리스 동맹 기마병"
+msgstr "그리스 동맹 기병"
 
 #: simulation/templates/units/spart/cavalry_spearman_b.xml:8
 msgid "Hippeús Symmakhikós"
