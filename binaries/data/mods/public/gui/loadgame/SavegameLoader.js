@@ -27,7 +27,7 @@ class SavegameLoader
 
 		if (sameEngineVersion && sameMods)
 		{
-			this.reallyLoadGame(gameId);
+			Engine.PopGuiPage(gameId);
 			return;
 		}
 
@@ -59,29 +59,6 @@ class SavegameLoader
 			message,
 			translate("Warning"),
 			[translate("No"), translate("Yes")],
-			[undefined, () => { this.reallyLoadGame(gameId); }]);
-	}
-
-	reallyLoadGame(gameId)
-	{
-		let metadata = Engine.StartSavedGame(gameId);
-		if (!metadata)
-		{
-			error("Could not load saved game: " + gameId);
-			return;
-		}
-
-		let pData = metadata.initAttributes.settings.PlayerData[metadata.playerID];
-
-		Engine.SwitchGuiPage("page_loading.xml", {
-			"attribs": metadata.initAttributes,
-			"playerAssignments": {
-				"local": {
-					"name": pData ? pData.Name : singleplayerName(),
-					"player": metadata.playerID
-				}
-			},
-			"savedGUIData": metadata.gui
-		});
+			[undefined, Engine.PopGuiPage.bind(Engine, gameId)]);
 	}
 }
