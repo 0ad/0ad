@@ -102,9 +102,31 @@ var g_MainMenuItems = [
 			{
 				"caption": translate("Load Game"),
 				"tooltip": translate("Load a saved game."),
-				"onPress": () => {
-					Engine.PushGuiPage("page_loadgame.xml");
-				}
+				"onPress": Engine.PushGuiPage.bind(Engine, "page_loadgame.xml", {}, (gameId) =>
+					{
+						if (!gameId)
+							return;
+
+						const metadata = Engine.StartSavedGame(gameId);
+						if (!metadata)
+						{
+							error("Could not load saved game: " + gameId);
+							return;
+						}
+
+						Engine.SwitchGuiPage("page_loading.xml", {
+							"attribs": metadata.initAttributes,
+							"playerAssignments": {
+								"local": {
+									"name": metadata.initAttributes.settings.
+										PlayerData[metadata.playerID]?.Name ??
+										singleplayerName(),
+									"player": metadata.playerID
+								}
+							},
+							"savedGUIData": metadata.gui
+						});
+					})
 			},
 			{
 				"caption": translate("Continue Campaign"),
