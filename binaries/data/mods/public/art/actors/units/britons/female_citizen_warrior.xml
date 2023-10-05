@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>skeletal/new/f_armor_dress.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_female_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celt-Shield-01">
+      <props>
+        <prop actor="props/units/shields/brit_shield_spear_oval_e_01.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celt-Shield-02">
+      <props>
+        <prop actor="props/units/shields/brit_shield_spear_oval_f_01.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celt-Shield-03">
+      <props>
+        <prop actor="props/units/shields/brit_shield_spear_oval_g_01.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celt-Shield-04">
+      <props>
+        <prop actor="props/units/shields/brit_shield_spear_oval_h_01.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="celt-female-1a">
+      <textures>
+        <texture file="skeletal/celt/dress_female_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="celt-female-1b">
+      <textures>
+        <texture file="skeletal/celt/dress_female_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="celt-female-1c">
+      <textures>
+        <texture file="skeletal/celt/dress_female_01_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="celt-female-2a">
+      <textures>
+        <texture file="skeletal/celt/dress_female_02_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="celt-female-2b">
+      <textures>
+        <texture file="skeletal/celt/dress_female_02_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="celt-female-2c">
+      <textures>
+        <texture file="skeletal/celt/dress_female_02_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/base_swordsman_shield_relax_celt.xml" name="Swordsman-Shield-Relax"/>
+    <variant file="biped/carry_food.xml"/>
+    <variant file="biped/carry_meat.xml"/>
+    <variant file="biped/carry_wood.xml"/>
+    <variant file="biped/carry_stone.xml"/>
+    <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/approach_tree.xml"/>
+    <variant file="biped/approach_grain.xml"/>
+    <variant file="biped/approach_fruit.xml"/>
+    <variant file="biped/approach_meat.xml"/>
+    <variant file="biped/approach_rock.xml"/>
+    <variant file="biped/approach_ore.xml"/>
+    <variant file="biped/approach_ruins.xml"/>
+    <variant file="biped/approach_praise.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_melee_female.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/female_death.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/build_farm.xml"/>
+  </group>
+  <group>
+    <variant>
+      <textures>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_norm_spec.xml</material>
+</actor>
