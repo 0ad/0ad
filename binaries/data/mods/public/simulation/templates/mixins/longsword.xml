@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Entity>
+  <Attack>
+    <Melee>
+      <Damage>
+        <Hack op="add">-4.0</Hack>
+      </Damage>
+      <Splash>
+        <Damage>
+          <Hack>4.0</Hack>
+        </Damage>
+        <Shape>Circular</Shape>
+        <Range>2</Range>
+        <FriendlyFire>false</FriendlyFire>
+      </Splash>
+      <MaxRange op="add">2.0</MaxRange>
+      <PrepareTime>500</PrepareTime>
+      <RepeatTime>1000</RepeatTime>
+    </Melee>
+  </Attack>
+  <Identity>
+    <VisibleClasses datatype="tokens">Longsword</VisibleClasses>
+  </Identity>
+</Entity>
