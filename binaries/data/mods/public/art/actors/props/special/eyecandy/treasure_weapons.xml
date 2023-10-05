@@ -5,9 +5,9 @@
     <variant frequency="1" name="sword rack">
       <mesh>props/sword_rack.dae</mesh>
       <textures>
-	    <texture file="structural/rome_struct_2.png" name="baseTex"/>
-	    <texture file="structural/rome_struct_2_norm.png" name="normTex"/>
-	    <texture file="structural/rome_struct_2_spec.png" name="specTex"/>
+        <texture file="structural/rome_struct_2.png" name="baseTex"/>
+        <texture file="structural/rome_struct_2_norm.png" name="normTex"/>
+        <texture file="structural/rome_struct_2_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="barrel of swords">
@@ -24,26 +24,26 @@
     <variant frequency="1" name="spears">
       <mesh>props/hele_blacksmith_spears_propsa.dae</mesh>
       <textures>
-		<texture file="props/hele_props_a.dds" name="baseTex"/>
-          <texture file="props/hele_props_a_norm.png" name="normTex"/>
-          <texture file="props/hele_props_a_spec.png" name="specTex"/>
-	  </textures>
+        <texture file="props/hele_props_a.dds" name="baseTex"/>
+        <texture file="props/hele_props_a_norm.png" name="normTex"/>
+        <texture file="props/hele_props_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="swords">
       <mesh>props/hele_blacksmith_swords_propsa.dae</mesh>
       <textures>
-		<texture file="props/hele_props_a.dds" name="baseTex"/>
-          <texture file="props/hele_props_a_norm.png" name="normTex"/>
-          <texture file="props/hele_props_a_spec.png" name="specTex"/>
-	  </textures>
+        <texture file="props/hele_props_a.dds" name="baseTex"/>
+        <texture file="props/hele_props_a_norm.png" name="normTex"/>
+        <texture file="props/hele_props_a_spec.png" name="specTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="bucket">
       <mesh>props/hele_blacksmith_bucket_propsa.dae</mesh>
       <textures>
-		<texture file="props/hele_props_a.dds" name="baseTex"/>
+        <texture file="props/hele_props_a.dds" name="baseTex"/>
         <texture file="props/hele_props_a_norm.png" name="normTex"/>
         <texture file="props/hele_props_a_spec.png" name="specTex"/>
-	  </textures>
+      </textures>
     </variant>
   </group>
   <material>player_trans_parallax_spec.xml</material>
