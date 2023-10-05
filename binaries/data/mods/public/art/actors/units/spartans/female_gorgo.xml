@@ -8,10 +8,10 @@
         <prop actor="props/units/heads/new/head_female_dudette_b.xml" attachpoint="head"/>
       </props>
       <textures>
-	    <texture file="skeletal/spart/female_gorgo_01.png" name="baseTex"/>
-	    <texture file="default_norm.png" name="normTex"/>
-	    <texture file="skeletal/spart/female_gorgo_01_spec.png" name="specTex"/>
-	  </textures>
+        <texture file="skeletal/spart/female_gorgo_01.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="skeletal/spart/female_gorgo_01_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -28,6 +28,7 @@
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_melee_female.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/attack_capture.xml"/>
     <variant file="biped/female_death.xml"/>
     <variant file="biped/female_gather_tree.xml"/>
     <variant file="biped/female_gather_grain.xml"/>
