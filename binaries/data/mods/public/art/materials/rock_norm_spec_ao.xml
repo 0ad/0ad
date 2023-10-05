@@ -7,5 +7,5 @@
 	<required_texture name="normTex" define="USE_NORMAL_MAP"/>
 	<required_texture name="aoTex" define="USE_AO"/>
 	<shader effect="model"/>
-	<uniform name="effectSettings" value="1.5 15.0 0.0075"/>
+	<uniform name="effectSettings" value="1.25 15.0 0.0075"/>
 </material>
