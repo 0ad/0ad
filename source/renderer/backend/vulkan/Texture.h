@@ -20,6 +20,7 @@
 
 #include "renderer/backend/ITexture.h"
 #include "renderer/backend/Sampler.h"
+#include "renderer/backend/vulkan/DeviceObjectUID.h"
 #include "renderer/backend/vulkan/VMA.h"
 
 #include <glad/vulkan.h>
@@ -73,20 +74,13 @@ public:
 	bool IsInitialized() const { return m_Initialized; }
 	void SetInitialized() { m_Initialized = true; }
 
-	/**
-	 * @return UID of the texture. It's unique along all textures during a whole
-	 * application run. We assume that 32bits should be enough, else we'd have
-	 * a too big texture flow.
-	 */
-	using UID = uint32_t;
-	static constexpr UID INVALID_UID = 0;
-	UID GetUID() const { return m_UID; }
+	DeviceObjectUID GetUID() const { return m_UID; }
 
 private:
 	friend class CDevice;
 	friend class CSwapChain;
 
-	CTexture();
+	CTexture(CDevice* device);
 
 	static std::unique_ptr<CTexture> Create(
 		CDevice* device, const char* name, const Type type, const uint32_t usage,
@@ -122,7 +116,7 @@ private:
 	VmaAllocation m_Allocation{};
 	VmaAllocationInfo m_AllocationInfo{};
 
-	UID m_UID = 0;
+	DeviceObjectUID m_UID{INVALID_DEVICE_OBJECT_UID};
 
 	// Sampler image aspect mask is submask of the attachment one. As we can't
 	// have both VK_IMAGE_ASPECT_DEPTH_BIT and VK_IMAGE_ASPECT_STENCIL_BIT for

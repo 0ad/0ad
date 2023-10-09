@@ -40,8 +40,7 @@ std::unique_ptr<CTexture> CTexture::Create(
 	const Sampler::Desc& defaultSamplerDesc,
 	const uint32_t MIPLevelCount, const uint32_t sampleCount)
 {
-	std::unique_ptr<CTexture> texture(new CTexture());
-	texture->m_Device = device;
+	std::unique_ptr<CTexture> texture(new CTexture(device));
 
 	texture->m_Format = format;
 	texture->m_Type = type;
@@ -225,8 +224,7 @@ std::unique_ptr<CTexture> CTexture::WrapBackbufferImage(
 	CDevice* device, const char* name, const VkImage image, const VkFormat format,
 	const VkImageUsageFlags usage, const uint32_t width, const uint32_t height)
 {
-	std::unique_ptr<CTexture> texture(new CTexture());
-	texture->m_Device = device;
+	std::unique_ptr<CTexture> texture(new CTexture(device));
 
 	if (format == VK_FORMAT_R8G8B8A8_UNORM)
 		texture->m_Format = Format::R8G8B8A8_UNORM;
@@ -279,8 +277,7 @@ std::unique_ptr<CTexture> CTexture::CreateReadback(
 	CDevice* device, const char* name, const Format format,
 	const uint32_t width, const uint32_t height)
 {
-	std::unique_ptr<CTexture> texture(new CTexture());
-	texture->m_Device = device;
+	std::unique_ptr<CTexture> texture(new CTexture(device));
 
 	texture->m_Format = format;
 	texture->m_Type = Type::TEXTURE_2D;
@@ -338,10 +335,9 @@ std::unique_ptr<CTexture> CTexture::CreateReadback(
 	return texture;
 }
 
-CTexture::CTexture()
+CTexture::CTexture(CDevice* device)
+	: m_Device(device), m_UID(device->GenerateNextDeviceObjectUID())
 {
-	static uint32_t m_LastAvailableUID = 1;
-	m_UID = m_LastAvailableUID++;
 }
 
 CTexture::~CTexture()

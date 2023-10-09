@@ -911,7 +911,7 @@ void CDevice::ScheduleObjectToDestroy(
 	m_ObjectToDestroyQueue.push({m_FrameID, type, handle, allocation});
 }
 
-void CDevice::ScheduleTextureToDestroy(const CTexture::UID uid)
+void CDevice::ScheduleTextureToDestroy(const DeviceObjectUID uid)
 {
 	m_TextureToDestroyQueue.push({m_FrameID, uid});
 }
@@ -1027,6 +1027,12 @@ CTexture* CDevice::GetOrCreateBackbufferReadbackTexture()
 			currentBackbufferTexture->GetHeight());
 	}
 	return m_BackbufferReadbackTexture.get();
+}
+
+DeviceObjectUID CDevice::GenerateNextDeviceObjectUID()
+{
+	ENSURE(m_LastAvailableUID < std::numeric_limits<DeviceObjectUID>::max());
+	return m_LastAvailableUID++;
 }
 
 std::unique_ptr<IDevice> CreateDevice(SDL_Window* window)

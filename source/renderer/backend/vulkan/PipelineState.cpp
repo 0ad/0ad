@@ -76,6 +76,7 @@ std::unique_ptr<CGraphicsPipelineState> CGraphicsPipelineState::Create(
 	ENSURE(desc.shaderProgram);
 	std::unique_ptr<CGraphicsPipelineState> pipelineState{new CGraphicsPipelineState()};
 	pipelineState->m_Device = device;
+	pipelineState->m_UID = device->GenerateNextDeviceObjectUID();
 	pipelineState->m_Desc = desc;
 	return pipelineState;
 }

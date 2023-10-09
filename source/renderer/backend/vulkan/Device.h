@@ -140,7 +140,7 @@ public:
 	void ScheduleObjectToDestroy(
 		VkObjectType type, const uint64_t handle, const VmaAllocation allocation);
 
-	void ScheduleTextureToDestroy(const CTexture::UID uid);
+	void ScheduleTextureToDestroy(const DeviceObjectUID uid);
 
 	void SetObjectName(VkObjectType type, const void* handle, const char* name)
 	{
@@ -162,6 +162,8 @@ public:
 	CTexture* GetCurrentBackbufferTexture();
 
 	CTexture* GetOrCreateBackbufferReadbackTexture();
+
+	DeviceObjectUID GenerateNextDeviceObjectUID();
 
 private:
 	CDevice();
@@ -210,12 +212,14 @@ private:
 		VmaAllocation allocation;
 	};
 	std::queue<ObjectToDestroy> m_ObjectToDestroyQueue;
-	std::queue<std::pair<uint32_t, CTexture::UID>> m_TextureToDestroyQueue;
+	std::queue<std::pair<uint32_t, DeviceObjectUID>> m_TextureToDestroyQueue;
 
 	std::unique_ptr<CRenderPassManager> m_RenderPassManager;
 	std::unique_ptr<CSamplerManager> m_SamplerManager;
 	std::unique_ptr<CDescriptorManager> m_DescriptorManager;
 	std::unique_ptr<CSubmitScheduler> m_SubmitScheduler;
+
+	DeviceObjectUID m_LastAvailableUID{1};
 };
 
 } // namespace Vulkan
