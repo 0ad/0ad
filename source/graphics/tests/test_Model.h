@@ -55,7 +55,7 @@ public:
 		SPropPoint propPoint{};
 		model->AddProp(&propPoint, std::make_unique<CModel>(simulation, material, modeldef), nullptr);
 
-		model->AddFlagsRec(MODELFLAG_IGNORE_LOS);
+		model->AddFlagsRec(ModelFlag::IGNORE_LOS);
 		model->RemoveShadowsRec();
 
 		TS_ASSERT(HasMaterialDefine(model.get(), str_DISABLE_RECEIVE_SHADOWS));

@@ -30,6 +30,16 @@ class CModel;
 class CModelDecal;
 class CModelParticleEmitter;
 
+namespace ModelFlag
+{
+static constexpr uint32_t CAST_SHADOWS{1 << 0};
+static constexpr uint32_t NO_LOOP_ANIMATION{1 << 1};
+static constexpr uint32_t SILHOUETTE_DISPLAY{1 << 2};
+static constexpr uint32_t SILHOUETTE_OCCLUDER{1 << 3};
+static constexpr uint32_t IGNORE_LOS{1 << 4};
+static constexpr uint32_t FLOAT_ON_WATER{1 << 5};
+} // namespace ModelFlag
+
 /**
  * Abstract base class for graphical objects that are used by units,
  * or as props attached to other CModelAbstract objects.
