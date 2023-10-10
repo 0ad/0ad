@@ -601,14 +601,14 @@ void CCmpVisualActor::InitModel()
 		u32 modelFlags = 0;
 
 		if (m_SilhouetteDisplay)
-			modelFlags |= MODELFLAG_SILHOUETTE_DISPLAY;
+			modelFlags |= ModelFlag::SILHOUETTE_DISPLAY;
 
 		if (m_SilhouetteOccluder)
-			modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
+			modelFlags |= ModelFlag::SILHOUETTE_OCCLUDER;
 
 		CmpPtr<ICmpVisibility> cmpVisibility(GetEntityHandle());
 		if (cmpVisibility && cmpVisibility->GetAlwaysVisible())
-			modelFlags |= MODELFLAG_IGNORE_LOS;
+			modelFlags |= ModelFlag::IGNORE_LOS;
 
 		model.ToCModel()->AddFlagsRec(modelFlags);
 	}

@@ -56,13 +56,14 @@ public:
 
 	VkDescriptorSet GetSingleTypeDescritorSet(
 		VkDescriptorType type, VkDescriptorSetLayout layout,
-		const std::vector<CTexture::UID>& texturesUID,
+		const std::vector<DeviceObjectUID>& texturesUID,
 		const std::vector<CTexture*>& textures);
 
 	uint32_t GetUniformSet() const;
 
 	uint32_t GetTextureDescriptor(CTexture* texture);
-	void OnTextureDestroy(const CTexture::UID uid);
+
+	void OnTextureDestroy(const DeviceObjectUID uid);
 
 	const VkDescriptorSetLayout& GetDescriptorIndexingSetLayout() const { return m_DescriptorIndexingSetLayout; }
 	const VkDescriptorSetLayout& GetUniformDescriptorSetLayout() const { return m_UniformDescriptorSetLayout; }
@@ -87,6 +88,10 @@ private:
 	};
 	SingleTypePool& GetSingleTypePool(const VkDescriptorType type, const uint32_t size);
 
+	VkDescriptorSet GetSingleTypeDescritorSetImpl(
+		VkDescriptorType type, VkDescriptorSetLayout layout,
+		const std::vector<DeviceObjectUID>& uids);
+
 	CDevice* m_Device = nullptr;
 
 	bool m_UseDescriptorIndexing = false;
@@ -105,11 +110,11 @@ private:
 		static_assert(std::numeric_limits<int16_t>::max() >= DESCRIPTOR_INDEXING_BINDING_SIZE);
 		int16_t firstFreeIndex = 0;
 		std::vector<int16_t> elements;
-		std::unordered_map<CTexture::UID, int16_t> map;
+		std::unordered_map<DeviceObjectUID, int16_t> map;
 	};
 	std::array<DescriptorIndexingBindingMap, NUMBER_OF_BINDINGS_PER_DESCRIPTOR_INDEXING_SET>
 		m_DescriptorIndexingBindings;
-	std::unordered_map<CTexture::UID, uint32_t> m_TextureToBindingMap;
+	std::unordered_map<DeviceObjectUID, uint32_t> m_TextureToBindingMap;
 
 	std::unordered_map<VkDescriptorType, std::vector<SingleTypePool>> m_SingleTypePools;
 	struct SingleTypePoolReference
@@ -119,9 +124,9 @@ private:
 		int16_t elementIndex = SingleTypePool::INVALID_INDEX;
 		uint8_t size = 0;
 	};
-	std::unordered_map<CTexture::UID, std::vector<SingleTypePoolReference>> m_TextureSingleTypePoolMap;
+	std::unordered_map<DeviceObjectUID, std::vector<SingleTypePoolReference>> m_UIDToSingleTypePoolMap;
 
-	using SingleTypeCacheKey = std::pair<VkDescriptorSetLayout, std::vector<CTexture::UID>>;
+	using SingleTypeCacheKey = std::pair<VkDescriptorSetLayout, std::vector<DeviceObjectUID>>;
 	struct SingleTypeCacheKeyHash
 	{
 		size_t operator()(const SingleTypeCacheKey& key) const;

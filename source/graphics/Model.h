@@ -34,13 +34,6 @@ class CSkeletonAnim;
 class CSkeletonAnimDef;
 class CSimulation2;
 
-#define MODELFLAG_CASTSHADOWS		(1<<0)
-#define MODELFLAG_NOLOOPANIMATION	(1<<1)
-#define MODELFLAG_SILHOUETTE_DISPLAY	(1<<2)
-#define MODELFLAG_SILHOUETTE_OCCLUDER	(1<<3)
-#define MODELFLAG_IGNORE_LOS		(1<<4)
-#define MODELFLAG_FLOATONWATER		(1<<5)
-
 // Holds world information for a particular instance of a model in the game.
 class CModel : public CModelAbstract
 {

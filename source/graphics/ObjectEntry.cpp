@@ -260,12 +260,12 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 	// Setup flags.
 	if (m_Base->m_Properties.m_CastShadows)
 	{
-		model->SetFlags(model->GetFlags() | MODELFLAG_CASTSHADOWS);
+		model->SetFlags(model->GetFlags() | ModelFlag::CAST_SHADOWS);
 	}
 
 	if (m_Base->m_Properties.m_FloatOnWater)
 	{
-		model->SetFlags(model->GetFlags() | MODELFLAG_FLOATONWATER);
+		model->SetFlags(model->GetFlags() | ModelFlag::FLOAT_ON_WATER);
 	}
 
 	return true;

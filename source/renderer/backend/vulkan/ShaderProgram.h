@@ -171,7 +171,7 @@ private:
 
 	VkDescriptorSetLayout m_TexturesDescriptorSetLayout = VK_NULL_HANDLE;
 	std::vector<CTexture*> m_BoundTextures;
-	std::vector<CTexture::UID> m_BoundTexturesUID;
+	std::vector<DeviceObjectUID> m_BoundTexturesUID;
 	VkDescriptorSet m_ActiveTexturesDescriptorSet = VK_NULL_HANDLE;
 	std::unordered_map<CStrIntern, uint32_t> m_TextureMapping;
 

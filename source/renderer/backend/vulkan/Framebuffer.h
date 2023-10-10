@@ -20,6 +20,7 @@
 
 #include "ps/containers/StaticVector.h"
 #include "renderer/backend/IFramebuffer.h"
+#include "renderer/backend/vulkan/DeviceObjectUID.h"
 
 #include <glad/vulkan.h>
 #include <memory>
@@ -61,8 +62,7 @@ public:
 	AttachmentLoadOp GetDepthStencilAttachmentLoadOp() const { return m_DepthStencilAttachmentLoadOp; }
 	AttachmentStoreOp GetDepthStencilAttachmentStoreOp() const { return m_DepthStencilAttachmentStoreOp; }
 
-	using UID = uint32_t;
-	UID GetUID() const { return m_UID; }
+	DeviceObjectUID GetUID() const { return m_UID; }
 
 private:
 	friend class CDevice;
@@ -72,15 +72,11 @@ private:
 		CDevice* device, const char* name,
 		SColorAttachment* colorAttachment, SDepthStencilAttachment* depthStencilAttachment);
 
-	CFramebuffer()
-	{
-		static uint32_t m_LastAvailableUID = 1;
-		m_UID = m_LastAvailableUID++;
-	}
+	CFramebuffer() = default;
 	
 	CDevice* m_Device = nullptr;
 
-	UID m_UID = 0;
+	DeviceObjectUID m_UID{INVALID_DEVICE_OBJECT_UID};
 
 	CColor m_ClearColor{};
 

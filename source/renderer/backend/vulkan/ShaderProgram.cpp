@@ -552,7 +552,7 @@ void CShaderProgram::Unbind()
 	{
 		for (CTexture*& texture : m_BoundTextures)
 			texture = nullptr;
-		for (CTexture::UID& uid : m_BoundTexturesUID)
+		for (DeviceObjectUID& uid : m_BoundTexturesUID)
 			uid = 0;
 		m_BoundTexturesOutdated = true;
 	}

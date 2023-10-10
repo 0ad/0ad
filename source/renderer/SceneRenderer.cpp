@@ -325,12 +325,12 @@ void CSceneRenderer::RenderShadowMap(
 
 		{
 			PROFILE("render models");
-			m->CallModelRenderers(deviceCommandContext, contextCast, cullGroup, MODELFLAG_CASTSHADOWS);
+			m->CallModelRenderers(deviceCommandContext, contextCast, cullGroup, ModelFlag::CAST_SHADOWS);
 		}
 
 		{
 			PROFILE("render transparent models");
-			m->CallTranspModelRenderers(deviceCommandContext, contextCast, cullGroup, MODELFLAG_CASTSHADOWS);
+			m->CallTranspModelRenderers(deviceCommandContext, contextCast, cullGroup, ModelFlag::CAST_SHADOWS);
 		}
 	}
 
@@ -1028,15 +1028,15 @@ void CSceneRenderer::SubmitNonRecursive(CModel* model)
 	{
 		m->shadow.AddShadowReceiverBound(model->GetWorldBounds());
 
-		if (model->GetFlags() & MODELFLAG_SILHOUETTE_OCCLUDER)
+		if (model->GetFlags() & ModelFlag::SILHOUETTE_OCCLUDER)
 			m->silhouetteRenderer.AddOccluder(model);
-		if (model->GetFlags() & MODELFLAG_SILHOUETTE_DISPLAY)
+		if (model->GetFlags() & ModelFlag::SILHOUETTE_DISPLAY)
 			m->silhouetteRenderer.AddCaster(model);
 	}
 
 	if (CULL_SHADOWS_CASCADE_0 <= m_CurrentCullGroup && m_CurrentCullGroup <= CULL_SHADOWS_CASCADE_3)
 	{
-		if (!(model->GetFlags() & MODELFLAG_CASTSHADOWS))
+		if (!(model->GetFlags() & ModelFlag::CAST_SHADOWS))
 			return;
 
 		const int cascade = m_CurrentCullGroup - CULL_SHADOWS_CASCADE_0;

@@ -92,7 +92,7 @@ void CModel::CalcBounds()
 void CModel::CalcStaticObjectBounds()
 {
 	PROFILE2("CalcStaticObjectBounds");
-	m_pModelDef->GetMaxBounds(nullptr, !(m_Flags & MODELFLAG_NOLOOPANIMATION), m_ObjectBounds);
+	m_pModelDef->GetMaxBounds(nullptr, !(m_Flags & ModelFlag::NO_LOOP_ANIMATION), m_ObjectBounds);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -100,7 +100,7 @@ void CModel::CalcStaticObjectBounds()
 void CModel::CalcAnimatedObjectBounds(CSkeletonAnimDef* anim, CBoundingBoxAligned& result)
 {
 	PROFILE2("CalcAnimatedObjectBounds");
-	m_pModelDef->GetMaxBounds(anim, !(m_Flags & MODELFLAG_NOLOOPANIMATION), result);
+	m_pModelDef->GetMaxBounds(anim, !(m_Flags & ModelFlag::NO_LOOP_ANIMATION), result);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -218,7 +218,7 @@ void CModel::ValidatePosition()
 
 		ENSURE(m_pModelDef->GetNumBones() == m_Anim->m_AnimDef->GetNumKeys());
 
-		m_Anim->m_AnimDef->BuildBoneMatrices(m_AnimTime, m_BoneMatrices, !(m_Flags & MODELFLAG_NOLOOPANIMATION));
+		m_Anim->m_AnimDef->BuildBoneMatrices(m_AnimTime, m_BoneMatrices, !(m_Flags & ModelFlag::NO_LOOP_ANIMATION));
 	}
 	else if (m_BoneMatrices)
 	{
@@ -265,7 +265,7 @@ void CModel::ValidatePosition()
 		objectHeight = cmpTerrain->GetExactGroundLevel(objTranslation.X, objTranslation.Z);
 
 	// Object height is incorrect for floating objects. We use water height instead.
-	if (m_Flags & MODELFLAG_FLOATONWATER)
+	if (m_Flags & ModelFlag::FLOAT_ON_WATER)
 	{
 		CmpPtr<ICmpWaterManager> cmpWaterManager(m_Simulation, SYSTEM_ENTITY);
 		if (cmpWaterManager)
@@ -337,10 +337,10 @@ bool CModel::SetAnimation(CSkeletonAnim* anim, bool once)
 
 	if (anim)
 	{
-		m_Flags &= ~MODELFLAG_NOLOOPANIMATION;
+		m_Flags &= ~ModelFlag::NO_LOOP_ANIMATION;
 
 		if (once)
-			m_Flags |= MODELFLAG_NOLOOPANIMATION;
+			m_Flags |= ModelFlag::NO_LOOP_ANIMATION;
 
 		// Not rigged or animation is not valid.
 		if (!m_BoneMatrices || !anim->m_AnimDef)
@@ -498,7 +498,7 @@ void CModel::AddFlagsRec(int flags)
 {
 	m_Flags |= flags;
 
-	if (flags & MODELFLAG_IGNORE_LOS)
+	if (flags & ModelFlag::IGNORE_LOS)
 		m_Material.AddShaderDefine(str_IGNORE_LOS, str_1);
 
 	for (size_t i = 0; i < m_Props.size(); ++i)
@@ -508,7 +508,7 @@ void CModel::AddFlagsRec(int flags)
 
 void CModel::RemoveShadowsRec()
 {
-	m_Flags &= ~MODELFLAG_CASTSHADOWS;
+	m_Flags &= ~ModelFlag::CAST_SHADOWS;
 
 	m_Material.AddShaderDefine(str_DISABLE_RECEIVE_SHADOWS, str_1);
 

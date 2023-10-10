@@ -21,6 +21,7 @@
 #include "renderer/backend/PipelineState.h"
 #include "renderer/backend/vulkan/Framebuffer.h"
 #include "renderer/backend/vulkan/ShaderProgram.h"
+#include "renderer/backend/vulkan/DeviceObjectUID.h"
 
 #include <cstdint>
 #include <glad/vulkan.h>
@@ -53,8 +54,7 @@ public:
 	VkPipeline GetOrCreatePipeline(
 		const CVertexInputLayout* vertexInputLayout, CFramebuffer* framebuffer);
 
-	using UID = uint32_t;
-	UID GetUID() const { return m_UID; }
+	DeviceObjectUID GetUID() const { return m_UID; }
 
 private:
 	friend class CDevice;
@@ -62,23 +62,19 @@ private:
 	static std::unique_ptr<CGraphicsPipelineState> Create(
 		CDevice* device, const SGraphicsPipelineStateDesc& desc);
 
-	CGraphicsPipelineState()
-	{
-		static uint32_t m_LastAvailableUID = 1;
-		m_UID = m_LastAvailableUID++;
-	}
+	CGraphicsPipelineState() = default;
 
 	CDevice* m_Device = nullptr;
 
-	UID m_UID = 0;
+	DeviceObjectUID m_UID{INVALID_DEVICE_OBJECT_UID};
 
 	SGraphicsPipelineStateDesc m_Desc{};
 
 	struct CacheKey
 	{
-		CVertexInputLayout::UID vertexInputLayoutUID;
+		DeviceObjectUID vertexInputLayoutUID;
 		// TODO: try to replace the UID by the only required parameters.
-		CFramebuffer::UID framebufferUID;
+		DeviceObjectUID framebufferUID;
 	};
 	struct CacheKeyHash
 	{
