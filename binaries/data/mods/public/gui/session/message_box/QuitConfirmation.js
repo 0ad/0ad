@@ -12,7 +12,8 @@ QuitConfirmation.prototype.Buttons =
 [
 	{
 		// Translation: Shown in the Dialog that shows up when the game finishes
-		"caption": translate("Stay")
+		"caption": translate("Stay"),
+		"onPress": resumeGame
 	},
 	{
 		// Translation: Shown in the Dialog that shows up when the game finishes
@@ -28,3 +29,5 @@ QuitConfirmation.prototype.Buttons =
 
 QuitConfirmation.prototype.Width = 600;
 QuitConfirmation.prototype.Height = 200;
+
+QuitConfirmation.prototype.ResumeOnClose = false;

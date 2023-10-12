@@ -36,11 +36,6 @@
 
 namespace JSI_Game
 {
-bool IsGameStarted()
-{
-	return g_Game;
-}
-
 void StartGame(const ScriptInterface& guiInterface, JS::HandleValue attribs, int playerID, bool storeReplay)
 {
 	ENSURE(!g_NetServer);
@@ -179,7 +174,6 @@ void DumpTerrainMipmap()
 
 void RegisterScriptFunctions(const ScriptRequest& rq)
 {
-	ScriptFunction::Register<&IsGameStarted>(rq, "IsGameStarted");
 	ScriptFunction::Register<&StartGame>(rq, "StartGame");
 	ScriptFunction::Register<&Script_EndGame>(rq, "EndGame");
 	ScriptFunction::Register<&GetPlayerID>(rq, "GetPlayerID");

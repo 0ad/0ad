@@ -31,10 +31,12 @@ class SessionMessageBox
 		if (this.Buttons && this.Buttons[buttonId].onPress)
 			this.Buttons[buttonId].onPress.call(this);
 
-		if (Engine.IsGameStarted())
+		if (this.ResumeOnClose)
 			resumeGame();
 	}
 }
 
 SessionMessageBox.prototype.Width = 400;
 SessionMessageBox.prototype.Height = 200;
+
+SessionMessageBox.prototype.ResumeOnClose = true;
