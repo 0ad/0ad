@@ -27,7 +27,6 @@ class SavegameWriter
 
 	onSelectionChange(gameID, metadata, label)
 	{
-		this.confirmButton.enabled = !!metadata || Engine.IsGameStarted();
 		if (!this.descriptionChanged && metadata && typeof metadata.description === "string")
 			this.saveGameDesc.caption = metadata.description;
 		this.confirmButton.onPress = () => {
