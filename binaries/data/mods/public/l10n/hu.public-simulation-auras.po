@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-09-25 07:08+0000\n"
+"POT-Creation-Date: 2023-10-09 07:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Örs V, 2023\n"
+"Last-Translator: Szabó Lambert, 2021-2023\n"
 "Language-Team: Hungarian (http://app.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -573,7 +573,7 @@ msgstr "Vas pelanorok"
 
 #: simulation/data/auras/units/celtic_healer.jsonauraDescription
 msgid "Soldiers +5% attack damage."
-msgstr ""
+msgstr "+5% sebzés minden katonának"
 
 #: simulation/data/auras/units/celtic_healer.jsonauraName
 msgid "Deas Celtica"
@@ -631,7 +631,7 @@ msgstr "Az emberek +0,5 életerő regenerációs rátában részesülnek."
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraName
 msgid "Father of Medicine"
-msgstr ""
+msgstr "Az orvostudomány atyja"
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraDescription
 msgid "Own and Allied Healers +1 healing effect."
@@ -840,6 +840,7 @@ msgid "Valiant Defender"
 msgstr "Bátor védelmező"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_2.jsonauraDescription
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
 msgid "Soldiers +1 crush, hack, pierce resistance."
 msgstr "+1 zúzással, vágással és szúrással szembeni ellenállás a katonáknak"
 
@@ -992,15 +993,9 @@ msgstr "Tanár"
 msgid "Regeneration"
 msgstr "Regeneráció"
 
-#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
-msgid ""
-"Soldiers +10% melee and ranged attack damage, +1 crush, hack, pierce "
-"resistance."
-msgstr "+10% közelharci és távolsági sebzés, illetve +1 zúzással, vágással és szúrással szembeni ellenállás a katonáknak"
-
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraName
 msgid "Empire Maker"
-msgstr "Birodalom alkotó"
+msgstr "Birodalomépítő"
 
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraDescription
 msgid "Elephants +15% attack rate, +10% movement speed."
@@ -1138,7 +1133,7 @@ msgstr "Zooiarchos (elefánt parancsnok)"
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_1.jsonauraDescription
 msgid "Soldiers −25% metal cost, and training time."
-msgstr ""
+msgstr "−25% fémigény és kiképzési idő minden katonának"
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_1.jsonauraName
 msgid "Great Revolt"
@@ -1146,7 +1141,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_2.jsonauraDescription
 msgid "Agis +50% health."
-msgstr ""
+msgstr "+50% életerő Agisznak"
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_2.jsonauraName
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName

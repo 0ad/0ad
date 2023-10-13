@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Szabó Lambert, 2021-2022\n"
+"Last-Translator: Szabó Lambert, 2021-2023\n"
 "Language-Team: Hungarian (http://app.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +43,7 @@ msgstr "Felállítottam egy nagy sereget, hogy eltapossam: %(_player_)s. Csatlak
 msgid ""
 "I am launching an unprecedented attack against %(_player_)s. Bring your "
 "armies and we may soon win this war."
-msgstr ""
+msgstr "Példa nélküli a tamadás, melyet épp indítani készülök %(_player_)s ellen. Hozd seregeidet, s talán e háborút is megnyerjük hamarosan."
 
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
@@ -163,12 +163,12 @@ msgstr "%(_player_)s, nem fogadhatom el az ajánlatod, hogy szövetségesekké v
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I must decline your offer of alliance, %(_player_)s."
-msgstr ""
+msgstr "Vissza kell utasítsam szövetségi ajánlatodat, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:62
 #, javascript-format
 msgid "An alliance with you is not in my best interest, %(_player_)s."
-msgstr ""
+msgstr "Nem szolgálna javamra szövetségesednek lenni, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
@@ -397,13 +397,13 @@ msgstr ""
 
 #: simulation/ai/petra/chatHelper.js:143
 msgid "I need your help. Please do not let my armies fall!"
-msgstr ""
+msgstr "Szükségem van a segítségedre. Ne hagyd, kérlek, seregeim odaveszni!"
 
 #: simulation/ai/petra/chatHelper.js:146
 msgid ""
 "My empire regained its old strength, now it is time to seek revenge "
 "together!"
-msgstr ""
+msgstr "Birodalmam visszanyerte régi erejét, itt az idő hát, hogy közösen bosszút álljunk!"
 
 #: simulation/ai/petra/chatHelper.js:147
 msgid ""
@@ -416,7 +416,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra a 0 A.D. alapértelmezett MI-botja. Amennyiben valamilyen hibát észlelsz, azt kérjük jelezd a Wildfire Games-nek (lásd a főmenüben található linket).\n\nAz, hogy az MI milyen hatékonysággal gyűjti be a nyersanyagokat, illetve hogy mekkora haszonra tesz szert kereskedelem útján a nehézségi szinttől függ (az értékek következőképp változnak: Homokozón −58%, Nagyon könnyűn −44%, Könnyűn −25%, Közepesen ±0%, Nehézen +25%, Nagyon nehézen +56%). A könnyebb szinteken ezen felül lassabban zajlanak a kutatások, a kiképzések és az építkezések is, Homokozón pedig mellőzi mind a támadást, mind a terjeszkedést."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"

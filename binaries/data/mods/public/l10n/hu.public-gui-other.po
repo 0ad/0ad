@@ -2224,22 +2224,22 @@ msgstr "Törlés a kurzor után"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the left of cursor."
-msgstr ""
+msgstr "Az attól balra lévő szó elejéhez viszi a kurzort."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to left word"
-msgstr ""
+msgstr "Kurzort a bal oldali szóhoz"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the right of cursor."
-msgstr ""
+msgstr "Az attól jobbra lévő szó elejéhez viszi a kurzort."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to right word"
-msgstr ""
+msgstr "Kurzort a jobb oldali szóhoz"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
@@ -3563,7 +3563,7 @@ msgstr "Betöltés"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Ezen mentés betöltéséhez a 0 A.D.-nek egy másik verziójára van szükség (%(requiredVersion)s) – te a következő verziót használod: %(currentVersion)s."
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
@@ -4262,7 +4262,7 @@ msgstr "MSAA (2×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr "Lassú, de magas minőségű élsimítás, két mintát használ képpontokként. GL3.3+ esetén támogatott."
+msgstr "Lassú, de jó minőségű élsimítás – itt két mintát használ képpontokként. 3.3-as vagy annál későbbi OpenGL szükséges ehhez."
 
 #: gui/options/options.json[2].options[3].list[3].label
 msgid "MSAA (4×)"
@@ -4272,7 +4272,7 @@ msgstr "MSAA (4×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr "Lassú, de magas minőségű élsimítás, négy mintát használ képpontokként. GL3.3+ esetén támogatott."
+msgstr "Lassú, de jó minőségű élsimítás – itt négy mintát használ képpontokként. 3.3-as vagy annál későbbi OpenGL szükséges ehhez."
 
 #: gui/options/options.json[2].options[3].list[4].label
 msgid "MSAA (8×)"
@@ -4282,7 +4282,7 @@ msgstr "MSAA (8×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr "Lassú, de magas minőségű élsimítás, nyolc mintát használ képpontokként. GL3.3+ esetén támogatott."
+msgstr "Lassú, de jó minőségű élsimítás – itt nyolc mintát használ képpontokként. 3.3-as vagy annál későbbi OpenGL szükséges ehhez."
 
 #: gui/options/options.json[2].options[3].list[5].label
 msgid "MSAA (16×)"
@@ -4292,7 +4292,7 @@ msgstr "MSAA (16×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr "Lassú, de magas minőségű élsimítás, tizenhat mintát használ képpontokként. GL3.3+ esetén támogatott."
+msgstr "Lassú, de jó minőségű élsimítás – itt tizenhat mintát használ képpontokként. 3.3-as vagy annál későbbi OpenGL szükséges ehhez."
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -4402,13 +4402,13 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].label
 msgid "Cover whole map"
-msgstr ""
+msgstr "Az egész térképen"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].tooltip
 msgid ""
 "When ON shadows cover the whole map and shadows cutoff distance is ignored. "
 "Useful for making screenshots of a whole map."
-msgstr ""
+msgstr "Amikor ez be van kapcsolva, az árnyékoló mechanizmus a térkép teljes területén aktív, a hatótávolságra vonatkozó beállítást figyelmen kívül hagyja. Ez akkor hasznos, ha az ember az egész térképről szeretne képernyőfotót készíteni."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].label
 msgid "Water effects"
