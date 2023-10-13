@@ -17,10 +17,15 @@ AlertRaiser.prototype.Init = function()
 	this.lastTime = 0;
 };
 
+AlertRaiser.prototype.GetTargetClasses = function()
+{
+	return this.template.List._string;
+};
+
 AlertRaiser.prototype.UnitFilter = function(unit)
 {
 	let cmpIdentity = Engine.QueryInterface(unit, IID_Identity);
-	return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), this.template.List._string);
+	return cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), this.GetTargetClasses());
 };
 
 AlertRaiser.prototype.RaiseAlert = function()
