@@ -217,13 +217,14 @@ size_t CDescriptorManager::SingleTypeCacheKeyHash::operator()(const SingleTypeCa
 	return seed;
 }
 
-VkDescriptorSet CDescriptorManager::GetSingleTypeDescritorSetImpl(
+std::pair<VkDescriptorSet, bool> CDescriptorManager::GetSingleTypeDescritorSetImpl(
 	VkDescriptorType type, VkDescriptorSetLayout layout,
 	const std::vector<DeviceObjectUID>& uids)
 {
 	ENSURE(!uids.empty());
 	const SingleTypeCacheKey key{layout, uids};
 	auto it = m_SingleTypeSets.find(key);
+	bool created = false;
 	if (it == m_SingleTypeSets.end())
 	{
 		SingleTypePool& pool = GetSingleTypePool(type, uids.size());
@@ -249,12 +250,13 @@ VkDescriptorSet CDescriptorManager::GetSingleTypeDescritorSetImpl(
 		}
 
 		it = m_SingleTypeSets.emplace(key, element.set).first;
+		created = true;
 
 		for (const DeviceObjectUID uid : uids)
 			if (uid != INVALID_DEVICE_OBJECT_UID)
 				m_UIDToSingleTypePoolMap[uid].push_back({type, element.version, elementIndex, static_cast<uint8_t>(uids.size())});
 	}
-	return it->second;
+	return {it->second, created};
 }
 
 VkDescriptorSet CDescriptorManager::GetSingleTypeDescritorSet(
@@ -264,7 +266,9 @@ VkDescriptorSet CDescriptorManager::GetSingleTypeDescritorSet(
 {
 	ENSURE(texturesUID.size() == textures.size());
 	ENSURE(!texturesUID.empty());
-	VkDescriptorSet set = GetSingleTypeDescritorSetImpl(type, layout, texturesUID);
+	const auto [set, justCreated] = GetSingleTypeDescritorSetImpl(type, layout, texturesUID);
+	if (!justCreated)
+		return set;
 
 	const VkImageLayout imageLayout = type == VK_DESCRIPTOR_TYPE_STORAGE_IMAGE
 		? VK_IMAGE_LAYOUT_GENERAL
