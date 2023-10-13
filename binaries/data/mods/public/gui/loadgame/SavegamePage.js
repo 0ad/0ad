@@ -15,10 +15,10 @@ class SavegamePage
 		this.savegameDeleter.registerSavegameListChangeHandler(this.savegameList);
 		this.savegameList.registerSelectionChangeHandler(this.savegameDeleter);
 
-		let savePage = Engine.IsGameStarted();
+		const savePage = !!data?.savedGameData;
 		if (savePage)
 		{
-			this.savegameWriter = new SavegameWriter(data && data.savedGameData || {});
+			this.savegameWriter = new SavegameWriter(data.savedGameData);
 			this.savegameList.registerSelectionChangeHandler(this.savegameWriter);
 			let size = this.savegameList.gameSelection.size;
 			size.bottom -= 24;
