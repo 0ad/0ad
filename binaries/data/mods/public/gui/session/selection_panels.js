@@ -63,10 +63,22 @@ g_SelectionPanels.Alert = {
 		case "raise":
 			data.icon.sprite = "stretched:session/icons/bell_level1.png";
 			data.button.tooltip = translate("Raise an alert!");
+			if (data.unitEntStates.every(state => MatchesClassList(["FemaleCitizen"], state.alertRaiser?.classes)))
+				data.button.tooltip += "\n" + bodyFont(translate("Alert nearby Female Citizens to seek refuge."));
+			else if (data.unitEntStates.every(state => MatchesClassList(["Trader"], state.alertRaiser?.classes)))
+				data.button.tooltip += "\n" + bodyFont(translate("Alert nearby Traders to seek refuge."));
+			else
+				data.button.tooltip += "\n" + bodyFont(translate("Alert nearby vulnerable units to seek refuge."));
 			break;
 		case "end":
-			data.button.tooltip = translate("End of alert.");
 			data.icon.sprite = "stretched:session/icons/bell_level0.png";
+			data.button.tooltip = translate("End the alert.");
+			if (data.unitEntStates.every(state => MatchesClassList(["FemaleCitizen"], state.alertRaiser?.classes)))
+				data.button.tooltip += "\n" + bodyFont(translate("Unload nearby Female Citizens."));
+			else if (data.unitEntStates.every(state => MatchesClassList(["Trader"], state.alertRaiser?.classes)))
+				data.button.tooltip += "\n" + bodyFont(translate("Unload nearby Traders."));
+			else
+				data.button.tooltip += "\n" + bodyFont(translate("Unload nearby vulnerable units."));
 			break;
 		}
 		data.button.enabled = controlsPlayer(data.player);
@@ -961,8 +973,7 @@ g_SelectionPanels.Stance = {
 		let unitIds = data.unitEntStates.map(state => state.id);
 		data.button.onPress = function() { performStance(unitIds, data.item); };
 
-		data.button.tooltip = getStanceDisplayName(data.item) + "\n" +
-			"[font=\"sans-13\"]" + getStanceTooltip(data.item) + "[/font]";
+		data.button.tooltip = getStanceDisplayName(data.item) + "\n" + bodyFont(getStanceTooltip(data.item));
 
 		data.guiSelection.hidden = !Engine.GuiInterfaceCall("IsStanceSelected", {
 			"ents": unitIds,

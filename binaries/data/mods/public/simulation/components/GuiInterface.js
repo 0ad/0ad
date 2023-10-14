@@ -464,7 +464,9 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 	let cmpAlertRaiser = Engine.QueryInterface(ent, IID_AlertRaiser);
 	if (cmpAlertRaiser)
-		ret.alertRaiser = true;
+		ret.alertRaiser = {
+			"classes": cmpAlertRaiser.GetTargetClasses()
+		};
 
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	ret.visibility = cmpRangeManager.GetLosVisibility(ent, player);

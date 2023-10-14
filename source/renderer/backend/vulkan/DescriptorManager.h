@@ -88,7 +88,7 @@ private:
 	};
 	SingleTypePool& GetSingleTypePool(const VkDescriptorType type, const uint32_t size);
 
-	VkDescriptorSet GetSingleTypeDescritorSetImpl(
+	std::pair<VkDescriptorSet, bool> GetSingleTypeDescritorSetImpl(
 		VkDescriptorType type, VkDescriptorSetLayout layout,
 		const std::vector<DeviceObjectUID>& uids);
 
