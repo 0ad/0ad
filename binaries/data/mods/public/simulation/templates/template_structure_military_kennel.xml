@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military">
+  <BuildRestrictions>
+    <Category>Kennel</Category>
+  </BuildRestrictions>
+  <Cost>
+    <BuildTime>50</BuildTime>
+    <Resources>
+      <wood>100</wood>
+      <stone>0</stone>
+      <food>0</food>
+      <metal>0</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square width="8.0" depth="7.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>10</Max>
+    <List datatype="tokens">Dog</List>
+  </GarrisonHolder>
+  <Health>
+    <Max>500</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_2x2</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <GenericName>Kennel</GenericName>
+    <SpecificName>Kennel</SpecificName>
+    <VisibleClasses datatype="tokens">
+      Village
+      Kennel
+    </VisibleClasses>
+    <Classes datatype="tokens">
+      ConquestCritical
+      CivSpecific
+    </Classes>
+    <Tooltip>Train War Dogs.</Tooltip>
+    <Icon>structures/kennel.png</Icon>
+    <Requirements>
+      <Techs datatype="tokens">
+        phase_village
+      </Techs>
+    </Requirements>
+  </Identity>
+  <Loot>
+    <wood>20</wood>
+  </Loot>
+  <Obstruction>
+    <Static width="7.5" depth="6.75"/>
+  </Obstruction>
+  <ProductionQueue/>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_kennel.xml</select>
+      <constructed>interface/complete/building/complete_kennel.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <StatusBars>
+    <HeightOffset>8.0</HeightOffset>
+  </StatusBars>
+  <TerritoryInfluence>
+    <Root>false</Root>
+    <Radius>20</Radius>
+    <Weight>30000</Weight>
+  </TerritoryInfluence>
+  <Trainer>
+    <BatchTimeModifier>0.7</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/war_dog
+    </Entities>
+  </Trainer>
+  <VisualActor>
+    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
+  </VisualActor>
+</Entity>
