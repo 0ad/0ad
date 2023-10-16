@@ -24,6 +24,7 @@
       <Gladiator>0</Gladiator>
       <Hero>1</Hero>
       <Juggernaut>1</Juggernaut>
+      <Kennel>2</Kennel>
       <Library>1</Library>
       <Lighthouse>1</Lighthouse>
       <Monument>5</Monument>
@@ -34,7 +35,7 @@
       <TempleOfVesta>1</TempleOfVesta>
       <Theater>1</Theater>
       <Yakhchal>5</Yakhchal>
-      <WarDog>20</WarDog>
+      <WarDog>0</WarDog>
       <Centurion>8</Centurion>
       <Wonder>1</Wonder>
     </Limits>
@@ -48,6 +49,9 @@
       <Pillar>
         <Ashoka>5</Ashoka>
       </Pillar>
+      <WarDog>
+        <Kennel>10</Kennel>
+      </WarDog>
     </LimitChangers>
     <LimitRemovers>
       <CivilCentre>
