@@ -5,7 +5,7 @@
 # Translators:
 # 76407af6b051a571d67c2577de2183db_7380deb
 # Aksidion Kreimben (programmer)
-# JungHee Lee
+# Junghee Lee
 # dalrae jin
 # EK lee
 # 미워하지 않아
@@ -24,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-09-25 07:08+0000\n"
+"POT-Creation-Date: 2023-10-16 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2021-2023\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2021-2023\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -337,12 +337,16 @@ msgstr "두논"
 #: simulation/templates/structures/ptol/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
 msgid "Train Heroes. Garrison Soldiers for additional arrows."
-msgstr "영웅들을 양성합니다. 화살공격이 추가된 병사들을 주둔시킵니다."
+msgstr "영웅들을 훈련합니다. 화살공격이 추가된 병사들을 주둔시킵니다."
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
 msgid "Tegia"
 msgstr "테키아"
+
+#: simulation/templates/structures/brit/kennel.xml:5
+msgid "Cunattegia"
+msgstr "쿠낫테기아"
 
 #: simulation/templates/structures/brit/market.xml:12
 #: simulation/templates/structures/gaul/market.xml:12
@@ -1956,6 +1960,7 @@ msgstr "집"
 #: simulation/templates/template_structure_economic_storehouse.xml:28
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_dock.xml:27
+#: simulation/templates/template_structure_military_kennel.xml:30
 #: simulation/templates/template_structure_military_range.xml:25
 #: simulation/templates/template_structure_military_stable.xml:29
 #: simulation/templates/template_structure_resource_corral.xml:29
@@ -2252,6 +2257,16 @@ msgstr "요새"
 #: simulation/templates/template_structure_military_fortress.xml:67
 msgid "Garrison Soldiers for additional arrows."
 msgstr "화살공격이 추가된 병사들을 주둔시킵니다."
+
+#: simulation/templates/template_structure_military_kennel.xml:28
+#: simulation/templates/template_structure_military_kennel.xml:29
+#: simulation/templates/template_structure_military_kennel.xml:30
+msgid "Kennel"
+msgstr "군견 훈련소"
+
+#: simulation/templates/template_structure_military_kennel.xml:38
+msgid "Train War Dogs."
+msgstr "전투견을 훈련합니다."
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
