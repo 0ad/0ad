@@ -556,9 +556,6 @@ public:
 			if (cmpPosition)
 				y -= cmpPosition->GetRotation().Y;
 		}
-		// Don't send messages if we don't actually rotate.
-		if ((y - m_RotY).Absolute() <= fixed::Epsilon())
-			return;
 
 		m_RotY = y;
 
