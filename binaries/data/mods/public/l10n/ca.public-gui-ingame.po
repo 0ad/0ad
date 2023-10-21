@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-10-16 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
 "Last-Translator: Albert F. <alb.fontquerni@gmail.com>, 2017,2019,2021\n"
 "Language-Team: Catalan (http://app.transifex.com/wildfire-games/0ad/language/ca/)\n"
@@ -161,7 +161,7 @@ msgid "Click to Resume Game"
 msgstr "Feu clic per continuar jugant"
 
 #: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:273
-#: gui/session/selection_details.js:291 gui/session/selection_panels.js:590
+#: gui/session/selection_details.js:291 gui/session/selection_panels.js:602
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -169,7 +169,7 @@ msgstr "m:ss"
 #. Translation: String displayed when the research is paused. E.g. by being
 #. garrisoned or
 #. when not the first item in the queue.
-#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:604
+#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:616
 msgid "This item is paused."
 msgstr ""
 
@@ -827,7 +827,7 @@ msgid "Stay"
 msgstr ""
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
-#: gui/session/message_box/QuitConfirmation.js:19
+#: gui/session/message_box/QuitConfirmation.js:20
 #: gui/session/message_box/QuitConfirmationReplay.js:27
 msgid "Quit and View Summary"
 msgstr ""
@@ -891,7 +891,7 @@ msgstr "Heu estat vençut!"
 msgid "Click to quit this tutorial."
 msgstr "Feu clic per sortir del tutorial."
 
-#: gui/session/message_box/QuitConfirmation.js:24
+#: gui/session/message_box/QuitConfirmation.js:25
 #: gui/session/message_box/QuitConfirmationReplay.js:32
 #: gui/session/messages.js:411
 msgid "Quit"
@@ -1061,127 +1061,151 @@ msgstr ", "
 msgid "Raise an alert!"
 msgstr "Toc d'alerta!"
 
-#: gui/session/selection_panels.js:68
-msgid "End of alert."
-msgstr "Fi de l'alerta."
+#: gui/session/selection_panels.js:67
+msgid "Alert nearby Female Citizens to seek refuge."
+msgstr ""
 
-#: gui/session/selection_panels.js:279
+#: gui/session/selection_panels.js:69
+msgid "Alert nearby Traders to seek refuge."
+msgstr ""
+
+#: gui/session/selection_panels.js:71
+msgid "Alert nearby vulnerable units to seek refuge."
+msgstr ""
+
+#: gui/session/selection_panels.js:75
+msgid "End the alert."
+msgstr ""
+
+#: gui/session/selection_panels.js:77
+msgid "Unload nearby Female Citizens."
+msgstr ""
+
+#: gui/session/selection_panels.js:79
+msgid "Unload nearby Traders."
+msgstr ""
+
+#: gui/session/selection_panels.js:81
+msgid "Unload nearby vulnerable units."
+msgstr ""
+
+#: gui/session/selection_panels.js:291
 msgid "Default formation is disabled."
 msgstr "La formació per defecte està desactivada."
 
-#: gui/session/selection_panels.js:280
+#: gui/session/selection_panels.js:292
 msgid "Right-click to disable the default formation feature."
 msgstr "Feu clic dret per desactivar la formació per defecte."
 
-#: gui/session/selection_panels.js:283
+#: gui/session/selection_panels.js:295
 msgid "This is the default formation, used for movement orders."
 msgstr "Aquesta és la formació per defecte, que s'utilitza per donar ordres de moviment."
 
-#: gui/session/selection_panels.js:284
+#: gui/session/selection_panels.js:296
 msgid "Right-click to set this as the default formation."
 msgstr "Feu clic per assignar aquesta formació per defecte."
 
-#: gui/session/selection_panels.js:340
+#: gui/session/selection_panels.js:352
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Expulsa %(name)s"
 
-#: gui/session/selection_panels.js:341
+#: gui/session/selection_panels.js:353
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Feu clic per expulsar-ne 1. Maj + clic per expulsar tots els d'aquest tipus."
 
-#: gui/session/selection_panels.js:343 gui/session/selection_panels.js:921
+#: gui/session/selection_panels.js:355 gui/session/selection_panels.js:933
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Jugador: %(playername)s"
 
-#: gui/session/selection_panels.js:379
+#: gui/session/selection_panels.js:391
 msgid "Lock Gate"
 msgstr "Tanca la porta"
 
-#: gui/session/selection_panels.js:385
+#: gui/session/selection_panels.js:397
 msgid "Unlock Gate"
 msgstr "Obre la porta"
 
-#: gui/session/selection_panels.js:436
+#: gui/session/selection_panels.js:448
 msgid "Pack"
 msgstr "Desmunta"
 
-#: gui/session/selection_panels.js:444
+#: gui/session/selection_panels.js:456
 msgid "Unpack"
 msgstr "Munta"
 
-#: gui/session/selection_panels.js:452
+#: gui/session/selection_panels.js:464
 msgid "Cancel Packing"
 msgstr "Cancel·la el desmuntatge"
 
-#: gui/session/selection_panels.js:460
+#: gui/session/selection_panels.js:472
 msgid "Cancel Unpacking"
 msgstr "Cancel·la el muntatge"
 
-#: gui/session/selection_panels.js:560
+#: gui/session/selection_panels.js:572
 msgid "The auto-queue will try to train this item later."
 msgstr "L'encuament automàtic intentarà reclutar aquest ítem més tard."
 
-#: gui/session/selection_panels.js:563
+#: gui/session/selection_panels.js:575
 msgid "Insufficient population capacity:"
 msgstr "La capacitat de població és insuficient:"
 
-#: gui/session/selection_panels.js:564
+#: gui/session/selection_panels.js:576
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:786
+#: gui/session/selection_panels.js:798
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s entitat de classe %(class)s"
 msgstr[1] "%(number)s estructures de classe %(class)s"
 
-#: gui/session/selection_panels.js:792
+#: gui/session/selection_panels.js:804
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Restant: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:793
+#: gui/session/selection_panels.js:805
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:845
+#: gui/session/selection_panels.js:857
 msgid "Cannot research while upgrading."
 msgstr "No es pot investigar mentre s'està aplicant una millora."
 
-#: gui/session/selection_panels.js:1075
+#: gui/session/selection_panels.js:1086
 msgid "Cannot train while upgrading."
 msgstr "No es pot reclutar mentre s'està aplicant una millora."
 
-#: gui/session/selection_panels.js:1142
+#: gui/session/selection_panels.js:1153
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "Millorar a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
-#: gui/session/selection_panels.js:1148
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "Millorar a %(primaryName)s (%(secondaryName)s)"
 
-#: gui/session/selection_panels.js:1156
+#: gui/session/selection_panels.js:1167
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "Millorar a %(primaryName)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1161
+#: gui/session/selection_panels.js:1172
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "Millorar a %(primaryName)s."
 
-#: gui/session/selection_panels.js:1198
+#: gui/session/selection_panels.js:1209
 msgid "Cancel Upgrading"
 msgstr "Cancel·la la millora"
 
-#: gui/session/selection_panels.js:1213
+#: gui/session/selection_panels.js:1224
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."

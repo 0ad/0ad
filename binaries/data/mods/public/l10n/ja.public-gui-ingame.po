@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-10-16 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
 "Last-Translator: 宮良一生, 2022\n"
 "Language-Team: Japanese (http://app.transifex.com/wildfire-games/0ad/language/ja/)\n"
@@ -158,7 +158,7 @@ msgid "Click to Resume Game"
 msgstr "クリックしてゲームを再開"
 
 #: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:273
-#: gui/session/selection_details.js:291 gui/session/selection_panels.js:590
+#: gui/session/selection_details.js:291 gui/session/selection_panels.js:602
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -166,7 +166,7 @@ msgstr "m:ss"
 #. Translation: String displayed when the research is paused. E.g. by being
 #. garrisoned or
 #. when not the first item in the queue.
-#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:604
+#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:616
 msgid "This item is paused."
 msgstr ""
 
@@ -822,7 +822,7 @@ msgid "Stay"
 msgstr "留まる"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
-#: gui/session/message_box/QuitConfirmation.js:19
+#: gui/session/message_box/QuitConfirmation.js:20
 #: gui/session/message_box/QuitConfirmationReplay.js:27
 msgid "Quit and View Summary"
 msgstr "終了して概要を見る"
@@ -886,7 +886,7 @@ msgstr "敗北しました！"
 msgid "Click to quit this tutorial."
 msgstr "クリックしてチュートリアルを終了する。"
 
-#: gui/session/message_box/QuitConfirmation.js:24
+#: gui/session/message_box/QuitConfirmation.js:25
 #: gui/session/message_box/QuitConfirmationReplay.js:32
 #: gui/session/messages.js:411
 msgid "Quit"
@@ -1056,126 +1056,150 @@ msgstr "、"
 msgid "Raise an alert!"
 msgstr "警報発報！"
 
-#: gui/session/selection_panels.js:68
-msgid "End of alert."
-msgstr "警報解除。"
+#: gui/session/selection_panels.js:67
+msgid "Alert nearby Female Citizens to seek refuge."
+msgstr ""
 
-#: gui/session/selection_panels.js:279
+#: gui/session/selection_panels.js:69
+msgid "Alert nearby Traders to seek refuge."
+msgstr ""
+
+#: gui/session/selection_panels.js:71
+msgid "Alert nearby vulnerable units to seek refuge."
+msgstr ""
+
+#: gui/session/selection_panels.js:75
+msgid "End the alert."
+msgstr ""
+
+#: gui/session/selection_panels.js:77
+msgid "Unload nearby Female Citizens."
+msgstr ""
+
+#: gui/session/selection_panels.js:79
+msgid "Unload nearby Traders."
+msgstr ""
+
+#: gui/session/selection_panels.js:81
+msgid "Unload nearby vulnerable units."
+msgstr ""
+
+#: gui/session/selection_panels.js:291
 msgid "Default formation is disabled."
 msgstr "基本陣形は無効になっています"
 
-#: gui/session/selection_panels.js:280
+#: gui/session/selection_panels.js:292
 msgid "Right-click to disable the default formation feature."
 msgstr "右クリックで基本の陣形機能を無効化します。"
 
-#: gui/session/selection_panels.js:283
+#: gui/session/selection_panels.js:295
 msgid "This is the default formation, used for movement orders."
 msgstr "移動命令で使用される基本陣形です"
 
-#: gui/session/selection_panels.js:284
+#: gui/session/selection_panels.js:296
 msgid "Right-click to set this as the default formation."
 msgstr "右クリックで基本陣形として設定します。"
 
-#: gui/session/selection_panels.js:340
+#: gui/session/selection_panels.js:352
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "%(name)sを外に出す"
 
-#: gui/session/selection_panels.js:341
+#: gui/session/selection_panels.js:353
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "シングルクリックで1体を外に出します。Shift+クリックで同種のユニットをすべて外に出します。"
 
-#: gui/session/selection_panels.js:343 gui/session/selection_panels.js:921
+#: gui/session/selection_panels.js:355 gui/session/selection_panels.js:933
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "プレイヤー：%(playername)s"
 
-#: gui/session/selection_panels.js:379
+#: gui/session/selection_panels.js:391
 msgid "Lock Gate"
 msgstr "門を閉ざす"
 
-#: gui/session/selection_panels.js:385
+#: gui/session/selection_panels.js:397
 msgid "Unlock Gate"
 msgstr "門を開く"
 
-#: gui/session/selection_panels.js:436
+#: gui/session/selection_panels.js:448
 msgid "Pack"
 msgstr "梱包"
 
-#: gui/session/selection_panels.js:444
+#: gui/session/selection_panels.js:456
 msgid "Unpack"
 msgstr "展開"
 
-#: gui/session/selection_panels.js:452
+#: gui/session/selection_panels.js:464
 msgid "Cancel Packing"
 msgstr "梱包をキャンセル"
 
-#: gui/session/selection_panels.js:460
+#: gui/session/selection_panels.js:472
 msgid "Cancel Unpacking"
 msgstr "展開をキャンセル"
 
-#: gui/session/selection_panels.js:560
+#: gui/session/selection_panels.js:572
 msgid "The auto-queue will try to train this item later."
 msgstr "オートキューは、この項目の後で養成しようとします。"
 
-#: gui/session/selection_panels.js:563
+#: gui/session/selection_panels.js:575
 msgid "Insufficient population capacity:"
 msgstr "人口上限の不足:"
 
-#: gui/session/selection_panels.js:564
+#: gui/session/selection_panels.js:576
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:786
+#: gui/session/selection_panels.js:798
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] ""
 
-#: gui/session/selection_panels.js:792
+#: gui/session/selection_panels.js:804
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "不足：%(entityCounts)s"
 
-#: gui/session/selection_panels.js:793
+#: gui/session/selection_panels.js:805
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:845
+#: gui/session/selection_panels.js:857
 msgid "Cannot research while upgrading."
 msgstr "アップグレード中は研究できません。"
 
-#: gui/session/selection_panels.js:1075
+#: gui/session/selection_panels.js:1086
 msgid "Cannot train while upgrading."
 msgstr "アップグレード中は養成できません。"
 
-#: gui/session/selection_panels.js:1142
+#: gui/session/selection_panels.js:1153
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "%(primaryName)s (%(secondaryName)s)にアップグレード。 %(tooltip)s"
 
-#: gui/session/selection_panels.js:1148
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "%(primaryName)s (%(secondaryName)s)にアップグレード。"
 
-#: gui/session/selection_panels.js:1156
+#: gui/session/selection_panels.js:1167
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "%(primaryName)sにアップグレード。 %(tooltip)s"
 
-#: gui/session/selection_panels.js:1161
+#: gui/session/selection_panels.js:1172
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "%(primaryName)sにアップグレード。"
 
-#: gui/session/selection_panels.js:1198
+#: gui/session/selection_panels.js:1209
 msgid "Cancel Upgrading"
 msgstr "アップグレードをキャンセル"
 
-#: gui/session/selection_panels.js:1213
+#: gui/session/selection_panels.js:1224
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."

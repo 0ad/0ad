@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-09-25 07:08+0000\n"
+"POT-Creation-Date: 2023-10-16 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Szabó Lambert, 2021-2023\n"
 "Language-Team: Hungarian (http://app.transifex.com/wildfire-games/0ad/language/hu/)\n"
@@ -342,6 +342,10 @@ msgstr "Hősök kiképzése. Katonák beszállásolása további nyilakért."
 #: simulation/templates/structures/gaul/house.xml:5
 msgid "Tegia"
 msgstr "Tegia"
+
+#: simulation/templates/structures/brit/kennel.xml:5
+msgid "Cunattegia"
+msgstr "Cunattegia"
 
 #: simulation/templates/structures/brit/market.xml:12
 #: simulation/templates/structures/gaul/market.xml:12
@@ -1955,6 +1959,7 @@ msgstr "Ház"
 #: simulation/templates/template_structure_economic_storehouse.xml:28
 #: simulation/templates/template_structure_military_barracks.xml:29
 #: simulation/templates/template_structure_military_dock.xml:27
+#: simulation/templates/template_structure_military_kennel.xml:30
 #: simulation/templates/template_structure_military_range.xml:25
 #: simulation/templates/template_structure_military_stable.xml:29
 #: simulation/templates/template_structure_resource_corral.xml:29
@@ -2251,6 +2256,16 @@ msgstr "Erőd"
 #: simulation/templates/template_structure_military_fortress.xml:67
 msgid "Garrison Soldiers for additional arrows."
 msgstr "Katonák beszállásolása további nyilakért."
+
+#: simulation/templates/template_structure_military_kennel.xml:28
+#: simulation/templates/template_structure_military_kennel.xml:29
+#: simulation/templates/template_structure_military_kennel.xml:30
+msgid "Kennel"
+msgstr "Kutyaól"
+
+#: simulation/templates/template_structure_military_kennel.xml:38
+msgid "Train War Dogs."
+msgstr ""
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
