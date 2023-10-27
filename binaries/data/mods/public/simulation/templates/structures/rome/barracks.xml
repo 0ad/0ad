@@ -11,6 +11,12 @@
     <Civ>rome</Civ>
     <SpecificName>Castrum</SpecificName>
   </Identity>
+  <Trainer>
+    <Entities datatype="tokens">
+      units/{civ}/infantry_legionary
+      units/{civ}/infantry_lanciarius
+    </Entities>
+  </Trainer>
   <Obstruction>
     <Static width="22.0" depth="22.0"/>
   </Obstruction>

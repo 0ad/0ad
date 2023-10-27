@@ -1,0 +1,17 @@
+{
+	"type": "range",
+	"radius": 30,
+	"affects": ["Soldier"],
+	"modifications": [
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.1 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.1 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.1 },
+                { "value": "Attack/Ranged/Damage/Hack", "multiply": 1.1 },
+                { "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.1 },
+                { "value": "Attack/Ranged/Damage/Crush", "multiply": 1.1 },
+		{ "value": "Promotion/RequiredXp", "multiply": 0.75 }
+	],
+	"auraName": "Combat Leadership",
+	"auraDescription": "Soldiers +10% attack damage and −25% experience points for promotion.",
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
+}
