@@ -1,18 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_temple">
+  <BuildRestrictions>
+    <Category>TempleOfIsis</Category>
+  </BuildRestrictions>
+  <Cost>
+    <BuildTime op="mul">1.5</BuildTime>
+    <Resources>
+      <stone op="mul">1.5</stone>
+    </Resources>
+  </Cost>
   <Footprint>
     <Square width="30.0" depth="33.0"/>
   </Footprint>
+  <GarrisonHolder>
+    <Max op="mul">1.5</Max>
+  </GarrisonHolder>
   <Health>
+    <Max op="mul">1.5</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>ptol</Civ>
+   <GenericName>Temple of Isis</GenericName>
     <SpecificName>Naos</SpecificName>
+   <Tooltip>Train Heroes and Healers. Research special technologies.</Tooltip>
+   <Classes datatype="tokens">CivSpecific</Classes>
+   <VisibleClasses datatype="tokens">-Town City TempleOfIsis</VisibleClasses>
+   <Icon>structures/temple_epic.png</Icon>
+   <Requirements>
+      <Techs datatype="tokens">-phase_town phase_city</Techs>
+    </Requirements>
   </Identity>
+  <Loot>
+    <stone op="mul">1.5</stone>
+  </Loot>
   <Obstruction>
     <Static width="27.0" depth="30.0"/>
   </Obstruction>
+  <Researcher>
+    <Technologies datatype="tokens">
+      pair_unlock_cult_ptol
+    </Technologies>
+  </Researcher>
+  <Trainer>
+    <Entities datatype="tokens">
+      units/{civ}/hero_ptolemy_i
+      units/{civ}/hero_ptolemy_iv
+      units/{civ}/hero_cleopatra_vii
+    </Entities>
+  </Trainer>
   <VisualActor>
     <Actor>structures/ptolemies/temple_2.xml</Actor>
     <FoundationActor>structures/fndn_7x8.xml</FoundationActor>
