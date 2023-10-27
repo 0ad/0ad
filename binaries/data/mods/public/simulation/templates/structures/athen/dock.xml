@@ -22,7 +22,8 @@
   <Trainer>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/{civ}/champion_marine
+      units/{civ}/champion_marine_dock
+      units/{civ}/infantry_archer_b_dock
     </Entities>
   </Trainer>
   <VisualActor>

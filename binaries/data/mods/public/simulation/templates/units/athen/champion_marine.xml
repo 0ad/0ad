@@ -1,14 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="civ/athen|template_unit_champion_infantry_swordsman">
+  <Cost>
+    <Resources>
+      <food op="add">-20</food>
+      <wood op="add">-20</wood>
+      <metal op="add">-20</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <GenericName>Athenian Marine</GenericName>
     <SpecificName>Epibátēs Athēnaîos</SpecificName>
     <Icon>units/athen/champion_marine.png</Icon>
     <Requirements>
-      <Techs datatype="tokens">-phase_city iphicratean_reforms</Techs>
+      <Techs datatype="tokens">-phase_city phase_town</Techs>
     </Requirements>
   </Identity>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack op="add">-3</Hack>
+        <Pierce op="add">-1</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
+  <Loot>
+    <food op="add">-2</food>
+    <wood op="add">-2</wood>
+    <metal op="add">-2</metal>
+  </Loot>
   <VisualActor>
     <Actor>units/athenians/infantry_swordsman_c.xml</Actor>
   </VisualActor>
+  <UnitMotion>
+    <WalkSpeed op="mul">1.2</WalkSpeed>
+    <Acceleration op="mul">1.2</Acceleration>
+  </UnitMotion>
 </Entity>

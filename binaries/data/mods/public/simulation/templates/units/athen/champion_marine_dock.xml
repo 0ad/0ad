@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/athen/champion_marine">
+  <Identity>
+    <Requirements>
+      <Techs datatype="tokens">-phase_town iphicratean_reforms</Techs>
+    </Requirements>
+  </Identity>
+</Entity>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/athen/infantry_archer_b">
+  <Identity>
+    <Requirements>
+      <Techs datatype="tokens">-phase_town iphicratean_reforms</Techs>
+    </Requirements>
+  </Identity>
+  <Promotion>
+    <Entity>units/athen/infantry_archer_a_dock</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/athenians/infantry_archer_b.xml</Actor>
+  </VisualActor>
+</Entity>
