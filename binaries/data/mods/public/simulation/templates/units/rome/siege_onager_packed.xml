@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_siege_stonethrower_onager">
+  <Footprint replace="">
+    <Square width="6.0" depth="14.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Attack>
+    <Ranged>
+      <AttackName>Stone</AttackName>
+      <MaxRange>70</MaxRange>
+      <MinRange>20</MinRange>
+    </Ranged>
+  </Attack>
+  <Identity>
+    <Civ>rome</Civ>
+    <SpecificName>Onager</SpecificName>
+    <Icon>units/rome/siege_onager.png</Icon>
+    <Tooltip>An area of effect siege unit unlocked by Marian Reforms.</Tooltip>
+    <Requirements>
+      <Techs datatype="tokens">roman_reforms -phase_city</Techs>
+    </Requirements>
+  </Identity>
+  <Pack>
+    <Entity>units/rome/siege_onager</Entity>
+    <State>packed</State>
+  </Pack>
+  <VisualActor>
+    <Actor>units/romans/siege_onager_packed.xml</Actor>
+  </VisualActor>
+</Entity>

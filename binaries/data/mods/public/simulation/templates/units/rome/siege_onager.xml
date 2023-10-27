@@ -1,39 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_siege_stonethrower">
-  <Attack>
-    <Ranged>
-      <Damage>
-        <Crush>150</Crush>
-      </Damage>
-      <MaxRange>75</MaxRange>
-      <MinRange>25</MinRange>
-      <PrepareTime>3700</PrepareTime>
-      <RepeatTime>5000</RepeatTime>
-    </Ranged>
-  </Attack>
-  <Cost>
-    <Resources>
-      <wood>300</wood>
-      <stone>100</stone>
-    </Resources>
-  </Cost>
-  <Footprint replace="">
-    <Square width="9.0" depth="15.0"/>
-    <Height>5.0</Height>
-  </Footprint>
+<Entity parent="template_unit_siege_stonethrower_onager">
+  <BuildRestrictions>
+    <PlacementType>land</PlacementType>
+    <Territory>own neutral enemy ally</Territory>
+    <Category>Catapult</Category>
+  </BuildRestrictions>
+  <Obstruction>
+    <Unit disable=""/>
+    <Active>true</Active>
+    <BlockMovement>true</BlockMovement>
+    <BlockPathfinding>true</BlockPathfinding>
+    <BlockFoundation>true</BlockFoundation>
+    <BlockConstruction>true</BlockConstruction>
+    <DisableBlockMovement>false</DisableBlockMovement>
+    <DisableBlockPathfinding>false</DisableBlockPathfinding>
+    <Static width="6.0" depth="8.0"/>
+  </Obstruction>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Onager</SpecificName>
     <Icon>units/rome/siege_onager.png</Icon>
+    <Tooltip>Onagers may be built by Legionaries.</Tooltip>
   </Identity>
-  <Pack disable=""/>
+  <Pack>
+    <Entity>units/rome/siege_onager_packed</Entity>
+    <State>unpacked</State>
+  </Pack>
   <UnitMotion>
     <WalkSpeed>0.001</WalkSpeed>
   </UnitMotion>
-  <Vision>
-    <Range>88</Range>
-  </Vision>
   <VisualActor>
     <Actor>units/romans/siege_onager_pivot.xml</Actor>
+    <ConstructionPreview/>
+    <FoundationActor>structures/fndn_2x2.xml</FoundationActor>
   </VisualActor>
 </Entity>
