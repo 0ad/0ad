@@ -199,13 +199,13 @@ CStr CRendererStatsTable::GetCellText(size_t row, size_t col)
 	case Row_VBReserved:
 		if (col == 0)
 			return "VB reserved";
-		sprintf_s(buf, sizeof(buf), "%lu kB", (unsigned long)g_VBMan.GetBytesReserved() / 1024);
+		sprintf_s(buf, sizeof(buf), "%lu kB", static_cast<unsigned long>(g_Renderer.GetVertexBufferManager().GetBytesReserved() / 1024));
 		return buf;
 
 	case Row_VBAllocated:
 		if (col == 0)
 			return "VB allocated";
-		sprintf_s(buf, sizeof(buf), "%lu kB", (unsigned long)g_VBMan.GetBytesAllocated() / 1024);
+		sprintf_s(buf, sizeof(buf), "%lu kB", static_cast<unsigned long>(g_Renderer.GetVertexBufferManager().GetBytesAllocated() / 1024));
 		return buf;
 
 	case Row_TextureMemory:
@@ -262,6 +262,8 @@ public:
 	/// Texture manager
 	CTextureManager textureManager;
 
+	CVertexBufferManager vertexBufferManager;
+
 	/// Time manager
 	CTimeManager timeManager;
 
@@ -287,7 +289,7 @@ public:
 		device(device),
 		deviceCommandContext(device->CreateCommandContext()),
 		IsOpen(false), ShadersDirty(true), profileTable(g_Renderer.m_Stats),
-		shaderManager(device), textureManager(g_VFS, false, device),
+		shaderManager(device), textureManager(g_VFS, false, device), vertexBufferManager(device),
 		postprocManager(device), sceneRenderer(device)
 	{
 	}
@@ -847,6 +849,11 @@ void CRenderer::MakeShadersDirty()
 CTextureManager& CRenderer::GetTextureManager()
 {
 	return m->textureManager;
+}
+
+CVertexBufferManager& CRenderer::GetVertexBufferManager()
+{
+	return m->vertexBufferManager;
 }
 
 CShaderManager& CRenderer::GetShaderManager()

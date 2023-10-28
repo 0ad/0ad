@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 #include "VertexBufferManager.h"
 
 #include "ps/CLogger.h"
+#include "renderer/Renderer.h"
 
 #define DUMP_VB_STATS 0 // for debugging
 
@@ -69,8 +70,6 @@ const char* GetGroupName(
 
 } // anonymous namespace
 
-CVertexBufferManager g_VBMan;
-
 CVertexBufferManager::Handle::Handle(Handle&& other)
 	: m_Chunk(other.m_Chunk)
 {
@@ -101,17 +100,8 @@ void CVertexBufferManager::Handle::Reset()
 	if (!IsValid())
 		return;
 
-	g_VBMan.Release(m_Chunk);
+	g_Renderer.GetVertexBufferManager().Release(m_Chunk);
 	m_Chunk = nullptr;
-}
-
-// Explicit shutdown of the vertex buffer subsystem.
-// This avoids the ordering issues that arise when using destructors of
-// global instances.
-void CVertexBufferManager::Shutdown()
-{
-	for (int group = static_cast<int>(Group::DEFAULT); group < static_cast<int>(Group::COUNT); ++group)
-		m_Buffers[group].clear();
 }
 
 /**
@@ -165,9 +155,9 @@ CVertexBufferManager::Handle CVertexBufferManager::AllocateChunk(
 	// got this far; need to allocate a new buffer
 	buffers.emplace_back(
 		group == Group::DEFAULT
-			? std::make_unique<CVertexBuffer>(bufferName, vertexSize, type, dynamic)
+			? std::make_unique<CVertexBuffer>(m_Device, bufferName, vertexSize, type, dynamic)
 			// Reduces the buffer size for not so frequent buffers.
-			: std::make_unique<CVertexBuffer>(bufferName, vertexSize, type, dynamic, 1024 * 1024));
+			: std::make_unique<CVertexBuffer>(m_Device, bufferName, vertexSize, type, dynamic, 1024 * 1024));
 	result = buffers.back()->Allocate(vertexSize, numberOfVertices, type, dynamic, backingStore);
 
 	if (!result)

@@ -420,7 +420,7 @@ void CPatchRData::BuildBlends()
 	{
 		// Construct vertex buffer
 
-		m_VBBlends = g_VBMan.AllocateChunk(
+		m_VBBlends = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(SBlendVertex), blendVertices.size(),
 			Renderer::Backend::IBuffer::Type::VERTEX, false,
 			nullptr, CVertexBufferManager::Group::TERRAIN);
@@ -430,7 +430,7 @@ void CPatchRData::BuildBlends()
 		for (size_t k = 0; k < blendIndices.size(); ++k)
 			blendIndices[k] += static_cast<u16>(m_VBBlends->m_Index);
 
-		m_VBBlendIndices = g_VBMan.AllocateChunk(
+		m_VBBlendIndices = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(u16), blendIndices.size(),
 			Renderer::Backend::IBuffer::Type::INDEX, false,
 			nullptr, CVertexBufferManager::Group::TERRAIN);
@@ -634,7 +634,7 @@ void CPatchRData::BuildIndices()
 	ENSURE(indices.size());
 
 	// Construct vertex buffer
-	m_VBBaseIndices = g_VBMan.AllocateChunk(
+	m_VBBaseIndices = g_Renderer.GetVertexBufferManager().AllocateChunk(
 		sizeof(u16), indices.size(),
 		Renderer::Backend::IBuffer::Type::INDEX, false, nullptr, CVertexBufferManager::Group::TERRAIN);
 	m_VBBaseIndices->m_Owner->UpdateChunkVertices(m_VBBaseIndices.Get(), &indices[0]);
@@ -680,7 +680,7 @@ void CPatchRData::BuildVertices()
 	// upload to vertex buffer
 	if (!m_VBBase)
 	{
-		m_VBBase = g_VBMan.AllocateChunk(
+		m_VBBase = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(SBaseVertex), vsize * vsize,
 			Renderer::Backend::IBuffer::Type::VERTEX, false,
 			nullptr, CVertexBufferManager::Group::TERRAIN);
@@ -774,7 +774,7 @@ void CPatchRData::BuildSides()
 
 	if (!m_VBSides)
 	{
-		m_VBSides = g_VBMan.AllocateChunk(
+		m_VBSides = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(SSideVertex), sideVertices.size(),
 			Renderer::Backend::IBuffer::Type::VERTEX, false,
 			nullptr, CVertexBufferManager::Group::DEFAULT);
@@ -1536,13 +1536,13 @@ void CPatchRData::BuildWater()
 	// No vertex buffers if no data generated
 	if (!water_indices.empty())
 	{
-		m_VBWater = g_VBMan.AllocateChunk(
+		m_VBWater = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(SWaterVertex), water_vertex_data.size(),
 			Renderer::Backend::IBuffer::Type::VERTEX, false,
 			nullptr, CVertexBufferManager::Group::WATER);
 		m_VBWater->m_Owner->UpdateChunkVertices(m_VBWater.Get(), &water_vertex_data[0]);
 
-		m_VBWaterIndices = g_VBMan.AllocateChunk(
+		m_VBWaterIndices = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(u16), water_indices.size(),
 			Renderer::Backend::IBuffer::Type::INDEX, false,
 			nullptr, CVertexBufferManager::Group::WATER);
@@ -1551,14 +1551,14 @@ void CPatchRData::BuildWater()
 
 	if (!water_indices_shore.empty())
 	{
-		m_VBWaterShore = g_VBMan.AllocateChunk(
+		m_VBWaterShore = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(SWaterVertex), water_vertex_data_shore.size(),
 			Renderer::Backend::IBuffer::Type::VERTEX, false,
 			nullptr, CVertexBufferManager::Group::WATER);
 		m_VBWaterShore->m_Owner->UpdateChunkVertices(m_VBWaterShore.Get(), &water_vertex_data_shore[0]);
 
 		// Construct indices buffer
-		m_VBWaterIndicesShore = g_VBMan.AllocateChunk(
+		m_VBWaterIndicesShore = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(u16), water_indices_shore.size(),
 			Renderer::Backend::IBuffer::Type::INDEX, false,
 			nullptr, CVertexBufferManager::Group::WATER);

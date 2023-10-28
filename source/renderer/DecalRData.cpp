@@ -323,7 +323,7 @@ void CDecalRData::BuildVertexData()
 
 	if (!m_VBDecals || m_VBDecals->m_Count != vertices.size())
 	{
-		m_VBDecals = g_VBMan.AllocateChunk(
+		m_VBDecals = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(SDecalVertex), vertices.size(),
 			Renderer::Backend::IBuffer::Type::VERTEX, false);
 	}
@@ -365,7 +365,7 @@ void CDecalRData::BuildVertexData()
 	// Construct vertex buffer.
 	if (!m_VBDecalsIndices || m_VBDecalsIndices->m_Count != indices.size())
 	{
-		m_VBDecalsIndices = g_VBMan.AllocateChunk(
+		m_VBDecalsIndices = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(u16), indices.size(),
 			Renderer::Backend::IBuffer::Type::INDEX, false);
 	}

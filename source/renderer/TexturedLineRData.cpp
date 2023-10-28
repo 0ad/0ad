@@ -31,7 +31,7 @@
 #include "simulation2/system/SimContext.h"
 #include "simulation2/components/ICmpWaterManager.h"
 
-/* Note: this implementation uses g_VBMan directly rather than access it through the nicer VertexArray interface,
+/* Note: this implementation uses CVertexBufferManager directly rather than access it through the nicer VertexArray interface,
  * because it allows you to work with variable amounts of vertices and indices more easily. New code should prefer
  * to use VertexArray where possible, though. */
 
@@ -330,7 +330,7 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 	for (const SVertex& vertex : vertices)
 		m_BoundingBox += vertex.m_Position;
 
-	m_VB = g_VBMan.AllocateChunk(
+	m_VB = g_Renderer.GetVertexBufferManager().AllocateChunk(
 		sizeof(SVertex), vertices.size(), Renderer::Backend::IBuffer::Type::VERTEX, false);
 	// Allocation might fail (e.g. due to too many vertices).
 	if (m_VB)
@@ -341,7 +341,7 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 		for (size_t k = 0; k < indices.size(); ++k)
 			indices[k] += static_cast<u16>(m_VB->m_Index);
 
-		m_VBIndices = g_VBMan.AllocateChunk(
+		m_VBIndices = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(u16), indices.size(), Renderer::Backend::IBuffer::Type::INDEX, false);
 		if (m_VBIndices)
 			m_VBIndices->m_Owner->UpdateChunkVertices(m_VBIndices.Get(), &indices[0]);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,8 +21,6 @@
 
 #include "lib/sysdep/cpu.h"
 #include "ps/CLogger.h"
-#include "ps/Errors.h"
-#include "ps/VideoMode.h"
 #include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 
@@ -37,14 +35,14 @@
 constexpr std::size_t MAX_VB_SIZE_BYTES = 4 * 1024 * 1024;
 
 CVertexBuffer::CVertexBuffer(
-	const char* name, const size_t vertexSize,
+	Renderer::Backend::IDevice* device, const char* name, const size_t vertexSize,
 	const Renderer::Backend::IBuffer::Type type, const bool dynamic)
-	: CVertexBuffer(name, vertexSize, type, dynamic, MAX_VB_SIZE_BYTES)
+	: CVertexBuffer(device, name, vertexSize, type, dynamic, MAX_VB_SIZE_BYTES)
 {
 }
 
 CVertexBuffer::CVertexBuffer(
-	const char* name, const size_t vertexSize,
+	Renderer::Backend::IDevice* device, const char* name, const size_t vertexSize,
 	const Renderer::Backend::IBuffer::Type type, const bool dynamic,
 	const size_t maximumBufferSize)
 	: m_VertexSize(vertexSize), m_HasNeededChunks(false)
@@ -66,7 +64,7 @@ CVertexBuffer::CVertexBuffer(
 	// store max/free vertex counts
 	m_MaxVertices = m_FreeVertices = size / vertexSize;
 
-	m_Buffer = g_VideoMode.GetBackendDevice()->CreateBuffer(
+	m_Buffer = device->CreateBuffer(
 		name, type, m_MaxVertices * m_VertexSize, dynamic);
 
 	// create sole free chunk
