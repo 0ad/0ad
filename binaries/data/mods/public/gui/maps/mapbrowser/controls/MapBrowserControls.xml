@@ -47,9 +47,7 @@
 	<object name="mapBrowserPagePickRandom" type="button" style="ModernButtonRed" size="0 100%-60 100% 100%-30">
 		<translatableAttribute id="caption">Pick Random Map</translatableAttribute>
 	</object>
-	<object name="mapBrowserPageClose" type="button" style="ModernButtonRed" hotkey="cancel" size="0 100%-30 50% 100%">
-		<translatableAttribute id="caption">Cancel</translatableAttribute>
-	</object>
+	<object name="mapBrowserPageClose" type="button" style="ModernButtonRed" hotkey="cancel" size="0 100%-30 50% 100%"/>
 	<object name="mapBrowserPageSelect" type="button" style="ModernButtonRed" size="50% 100%-30 100% 100%">
 		<translatableAttribute id="caption" context="map selection dialog">Select</translatableAttribute>
 	</object>

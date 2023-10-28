@@ -12,8 +12,7 @@ class MapGridBrowserItem extends GridBrowserItem
 		mapGridBrowser.registerSelectionChangeHandler(this.onSelectionChange.bind(this));
 		mapGridBrowser.registerPageChangeHandler(this.onGridResize.bind(this));
 
-		if (g_IsController)
-			this.imageObject.onMouseLeftDoubleClick = this.onMouseLeftDoubleClick.bind(this);
+		this.imageObject.onMouseLeftDoubleClick = this.onMouseLeftDoubleClick.bind(this);
 	}
 
 	onSelectionChange()
