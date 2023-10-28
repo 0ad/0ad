@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_siege_stonethrower">
-  <Attack>
-    <Ranged>
-      <Damage>
-        <Crush op="mul">1.1</Crush>
-      </Damage>
-    </Ranged>
-  </Attack>
   <Footprint replace="">
     <Square width="6.0" depth="14.0"/>
     <Height>5.0</Height>

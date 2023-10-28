@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="rome rock onager packed">
+      <mesh>props/special/rome_rock_onager_packed.dae</mesh>
+      <textures>
+        <texture file="structural/rome_siege_onager.png" name="baseTex"/>
+        <texture file="structural/rome_siege_onager_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_norm_spec.xml</material>
+</actor>

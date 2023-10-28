@@ -70,7 +70,7 @@
     <Civ>rome</Civ>
     <GenericName>Army Camp</GenericName>
     <SpecificName>Castra</SpecificName>
-    <Tooltip>Build in neutral or enemy territory. Train Advanced Melee Infantry. Construct Rams. Garrison Soldiers for additional arrows.</Tooltip>
+    <Tooltip>Build in neutral or enemy territory. Train Advanced Melee Infantry and Marian Legionaries. Construct Rams. Garrison Soldiers for additional arrows.</Tooltip>
     <Classes datatype="tokens">ConquestCritical CivSpecific</Classes>
     <VisibleClasses datatype="tokens">Town ArmyCamp</VisibleClasses>
     <Icon>structures/roman_camp.png</Icon>
@@ -113,6 +113,8 @@
       units/{civ}/infantry_swordsman_a
       units/{civ}/infantry_spearman_a
       units/{civ}/infantry_pikeman_a
+      units/{civ}/infantry_legionary
+      units/{civ}/infantry_lanciarius
       units/{civ}/siege_ram
     </Entities>
   </Trainer>

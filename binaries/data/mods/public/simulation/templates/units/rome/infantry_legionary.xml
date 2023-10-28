@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_melee_swordsman">
+  <Builder>
+    <Entities datatype="tokens">
+      structures/rome/army_camp
+      structures/rome/temple_vesta
+      units/rome/siege_onager
+    </Entities>
+  </Builder>
+  <Cost>
+    <Resources>
+      <metal op="add">5</metal>
+      <wood op="add">10</wood>
+    </Resources>
+  </Cost>
+  <Loot>
+    <wood>5</wood>
+    <metal>2</metal>
+  </Loot>
+  <Identity>
+    <GenericName>Marian Legionary</GenericName>
+    <Lang>latin</Lang>
+    <SpecificName>Legiōnārius</SpecificName>
+    <Rank>Elite</Rank>
+    <Icon>units/rome/champion_legion_marian.png</Icon>
+    <VisibleClasses datatype="tokens">Legionary</VisibleClasses>
+    <Requirements>
+      <Techs datatype="tokens">roman_reforms</Techs>
+    </Requirements>
+  </Identity>
+  <Promotion disable=""/>
+  <VisualActor>
+    <Actor>units/romans/infantry_swordsman_c2.xml</Actor>
+  </VisualActor>
+</Entity>

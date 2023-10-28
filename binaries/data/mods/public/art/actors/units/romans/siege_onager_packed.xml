@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="mechanical/wagon_four_wheel_empty_idle.dae" name="Idle" speed="80"/>
+        <animation file="mechanical/wagon_four_wheel_empty_move.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/wagon_four_wheel_empty_move.dae" name="Run" speed="10"/>
+      </animations>
+      <mesh>props/special/wagon_four_wheel_empty.dae</mesh>
+      <props>
+        <prop actor="props/units/rome_rock_onager_packed.xml" attachpoint="cargo"/>
+        <prop actor="units/hellenes/trader_h.xml" attachpoint="horse_l"/>
+        <prop actor="units/hellenes/trader_h.xml" attachpoint="horse_r"/>
+        <prop actor="units/romans/ballista_operator_a.xml" attachpoint="engineer_a" maxheight="20" minheight="-20"/>
+        <prop actor="units/romans/ballista_operator_a.xml" attachpoint="engineer_b" maxheight="20" minheight="-20"/>
+        <prop actor="units/romans/ballista_operator_a.xml" attachpoint="engineer_c" maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="props/wooden_wagon.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_norm_spec.xml</material>
+</actor>
