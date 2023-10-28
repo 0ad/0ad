@@ -525,7 +525,7 @@ static void RunGameOrAtlas(const PS::span<const char* const> argv)
 
 	const bool isVisualReplay = args.Has("replay-visual");
 	const bool isNonVisualReplay = args.Has("replay");
-	const bool isNonVisual = args.Has("autostart-nonvisual");
+	const bool isVisual = !args.Has("autostart-nonvisual");
 	const bool isUsingRLInterface = args.Has("rl-interface");
 
 	const OsPath replayFile(
@@ -668,30 +668,24 @@ static void RunGameOrAtlas(const PS::span<const char* const> argv)
 			g_Mods.UpdateAvailableMods(modInterface);
 		}
 
-		if (isNonVisual)
-		{
-			if (!InitNonVisual(args))
-				g_Shutdown = ShutdownType::Quit;
-			else if (isUsingRLInterface)
-				StartRLInterface(args);
-
-			while (g_Shutdown == ShutdownType::None)
-			{
-				if (isUsingRLInterface)
-					g_RLInterface->TryApplyMessage();
-				else
-					NonVisualFrame();
-			}
-		}
-		else
+		if (isVisual)
 		{
 			InitGraphics(args, 0, installedMods);
 			MainControllerInit();
-			if (isUsingRLInterface)
-				StartRLInterface(args);
-			while (g_Shutdown == ShutdownType::None)
-				Frame();
 		}
+		else if (!InitNonVisual(args))
+			g_Shutdown = ShutdownType::Quit;
+
+		if (isUsingRLInterface && g_Shutdown == ShutdownType::None)
+			StartRLInterface(args);
+
+		while (g_Shutdown == ShutdownType::None)
+			if (isVisual)
+				Frame();
+			else if(isUsingRLInterface)
+				g_RLInterface->TryApplyMessage();
+			else
+				NonVisualFrame();
 
 		// Do not install mods again in case of restart (typically from the mod selector)
 		modsToInstall.clear();
