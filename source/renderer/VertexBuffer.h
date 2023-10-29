@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #define INCLUDED_VERTEXBUFFER
 
 #include "renderer/backend/IBuffer.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/backend/IDeviceCommandContext.h"
 
 #include <memory>
@@ -82,18 +83,19 @@ public:
 
 	private:
 		// Only CVertexBuffer can construct/delete these
-		// (Other people should use g_VBMan.AllocateChunk)
+		// (Other people should use g_Renderer.GetVertexBufferManager().AllocateChunk)
 		friend class CVertexBuffer;
 		VBChunk() {}
 		~VBChunk() {}
 	};
 
 public:
-	// constructor, destructor
 	CVertexBuffer(
+		Renderer::Backend::IDevice* device,
 		const char* name, const size_t vertexSize,
 		const Renderer::Backend::IBuffer::Type type, const bool dynamic);
 	CVertexBuffer(
+		Renderer::Backend::IDevice* device,
 		const char* name, const size_t vertexSize,
 		const Renderer::Backend::IBuffer::Type type, const bool dynamic,
 		const size_t maximumBufferSize);

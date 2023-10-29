@@ -647,7 +647,7 @@ void WaterManager::CreateWaveMeshes()
 		}
 	}
 	// Generic indexes, max-length
-	m_ShoreWavesVBIndices = g_VBMan.AllocateChunk(
+	m_ShoreWavesVBIndices = g_Renderer.GetVertexBufferManager().AllocateChunk(
 		sizeof(u16), water_indices.size(),
 		Renderer::Backend::IBuffer::Type::INDEX, false,
 		nullptr, CVertexBufferManager::Group::WATER);
@@ -876,7 +876,7 @@ void WaterManager::CreateWaveMeshes()
 			}
 			j += width/2-1;
 
-			shoreWave->m_VBVertices = g_VBMan.AllocateChunk(
+			shoreWave->m_VBVertices = g_Renderer.GetVertexBufferManager().AllocateChunk(
 				sizeof(SWavesVertex), vertices.size(),
 				Renderer::Backend::IBuffer::Type::VERTEX, false,
 				nullptr, CVertexBufferManager::Group::WATER);

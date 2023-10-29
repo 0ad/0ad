@@ -36,66 +36,48 @@ CUnitManager::CUnitManager() :
 
 ///////////////////////////////////////////////////////////////////////////////
 // CUnitManager destructor
-CUnitManager::~CUnitManager()
-{
-	DeleteAll();
-}
+CUnitManager::~CUnitManager() = default;
 
 
 ///////////////////////////////////////////////////////////////////////////////
 // AddUnit: add given unit to world
-void CUnitManager::AddUnit(CUnit* unit)
+CUnit* CUnitManager::AddUnit(std::unique_ptr<CUnit> unit)
 {
-	m_Units.push_back(unit);
+	return m_Units.emplace_back(std::move(unit)).get();
 }
 
-///////////////////////////////////////////////////////////////////////////////
-// RemoveUnit: remove given unit from world, but don't delete it
-void CUnitManager::RemoveUnit(CUnit* unit)
-{
-	// find entry in list
-	typedef std::vector<CUnit*>::iterator Iter;
-	Iter i=std::find(m_Units.begin(),m_Units.end(),unit);
-	if (i!=m_Units.end()) {
-		m_Units.erase(i);
-	}
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 // DeleteUnit: remove given unit from world and delete it
 void CUnitManager::DeleteUnit(CUnit* unit)
 {
-	RemoveUnit(unit);
-	delete unit;
-}
+	const auto it = std::find_if(m_Units.begin(), m_Units.end(), [&](const std::unique_ptr<CUnit>& elem)
+		{
+			return elem.get() == unit;
+		});
 
-///////////////////////////////////////////////////////////////////////////////
-// DeleteAll: remove and delete all units
-void CUnitManager::DeleteAll()
-{
-	for (size_t i=0;i<m_Units.size();i++) {
-		delete m_Units[i];
-	}
-	m_Units.clear();
+	if (it != m_Units.end())
+		m_Units.erase(it);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // CreateUnit: create a new unit and add it to the world
 CUnit* CUnitManager::CreateUnit(const CStrW& actorName, const entity_id_t id, const uint32_t seed)
 {
-	if (! m_ObjectManager)
-		return NULL;
+	if (!m_ObjectManager)
+		return nullptr;
 
-	CUnit* unit = CUnit::Create(actorName, id, seed, *m_ObjectManager);
-	if (unit)
-		AddUnit(unit);
-	return unit;
+	std::unique_ptr<CUnit> unit{CUnit::Create(actorName, id, seed, *m_ObjectManager)};
+	if (!unit)
+		return nullptr;
+
+	return AddUnit(std::move(unit));
 }
 
 void CUnitManager::MakeTerrainDirty(ssize_t i0, ssize_t j0, ssize_t i1, ssize_t j1, int dirtyFlags)
 {
 	if (!(dirtyFlags & RENDERDATA_UPDATE_VERTICES))
 		return;
-	for (CUnit* unit : m_Units)
+	for (const std::unique_ptr<CUnit>& unit : m_Units)
 		unit->GetModel().SetTerrainDirty(i0, j0, i1, j1);
 }

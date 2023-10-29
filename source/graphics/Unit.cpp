@@ -47,18 +47,16 @@ CUnit::~CUnit()
 	delete m_Animation;
 }
 
-CUnit* CUnit::Create(const CStrW& actorName, const entity_id_t id, const uint32_t seed, CObjectManager& objectManager)
+std::unique_ptr<CUnit> CUnit::Create(const CStrW& actorName, const entity_id_t id, const uint32_t seed, CObjectManager& objectManager)
 {
 	auto [success, actor] = objectManager.FindActorDef(actorName);
-	
+
 	UNUSED2(success);
 
-	CUnit* unit = new CUnit(objectManager, actor, id, seed);
+	std::unique_ptr<CUnit> unit{new CUnit(objectManager, actor, id, seed)};
 	if (!unit->m_Model)
-	{
-		delete unit;
 		return nullptr;
-	}
+
 	return unit;
 }
 

@@ -27,7 +27,7 @@ SetupWindowPages.MapBrowserPage = class extends MapBrowser
 
 	openPage()
 	{
-		super.openPage();
+		super.openPage(g_IsController);
 
 		this.controls.MapFiltering.select(
 			this.gameSettingsController.guiData.mapFilter.filter,

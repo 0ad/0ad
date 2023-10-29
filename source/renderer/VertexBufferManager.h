@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,8 @@
 class CVertexBufferManager
 {
 public:
+	CVertexBufferManager(Renderer::Backend::IDevice* device) : m_Device(device) {}
+
 	enum class Group : u32
 	{
 		DEFAULT,
@@ -99,15 +101,11 @@ public:
 	size_t GetBytesReserved() const;
 	size_t GetBytesAllocated() const;
 
-	/// Explicit shutdown of the vertex buffer subsystem; releases all currently-allocated buffers.
-	void Shutdown();
-
 private:
+	Renderer::Backend::IDevice* m_Device{nullptr};
 
 	/// List of all known vertex buffers
 	std::vector<std::unique_ptr<CVertexBuffer>> m_Buffers[static_cast<std::size_t>(Group::COUNT)];
 };
 
-extern CVertexBufferManager g_VBMan;
-
-#endif
+#endif // INCLUDED_VERTEXBUFFERMANAGER

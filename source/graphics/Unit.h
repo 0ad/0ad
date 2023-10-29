@@ -44,8 +44,9 @@ private:
 public:
 	// Attempt to create a unit with the given actor.
 	// If specific selections are wanted, call SetEntitySelection or SetActorSelections after creation.
-	// Returns NULL on failure.
-	static CUnit* Create(const CStrW& actorName, const entity_id_t id, const uint32_t seed, CObjectManager& objectManager);
+	// Returns an empty `std::unique_ptr` on failure.
+	static std::unique_ptr<CUnit> Create(const CStrW& actorName, const entity_id_t id,
+		const uint32_t seed, CObjectManager& objectManager);
 
 	~CUnit();
 

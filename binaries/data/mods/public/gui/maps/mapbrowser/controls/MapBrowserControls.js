@@ -14,8 +14,6 @@ class MapBrowserPageControls
 	setupButtons()
 	{
 		this.pickRandom = Engine.GetGUIObjectByName("mapBrowserPagePickRandom");
-		if (!g_IsController)
-			this.pickRandom.hidden = true;
 		this.pickRandom.onPress = () => {
 			let index = randIntInclusive(0, this.gridBrowser.itemCount - 1);
 			this.gridBrowser.setSelectedIndex(index);
@@ -26,23 +24,22 @@ class MapBrowserPageControls
 		this.select.onPress = () => this.onSelect();
 
 		this.close = Engine.GetGUIObjectByName("mapBrowserPageClose");
-		if (g_SetupWindow)
-			this.close.tooltip = colorizeHotkey(
-				translate("%(hotkey)s: Close map browser and discard the selection."), "cancel");
-		else
-		{
-			this.close.caption = translate("Close");
-			this.close.tooltip = colorizeHotkey(
-				translate("%(hotkey)s: Close map browser."), "cancel");
-		}
-
 		this.close.onPress = () => this.mapBrowserPage.closePage();
 
-		this.select.hidden = !g_IsController;
-		if (!g_IsController)
-			this.close.size = this.select.size;
-
+		this.mapBrowserPage.registerOpenPageHandler(this.onOpenPage.bind(this));
 		this.gridBrowser.registerSelectionChangeHandler(() => this.onSelectionChange());
+	}
+
+	onOpenPage(allowSelection)
+	{
+		this.pickRandom.hidden = !allowSelection;
+		this.select.hidden = !allowSelection;
+
+		const usedCaptions = allowSelection ? MapBrowserPageControls.Captions.cancel :
+			MapBrowserPageControls.Captions.close;
+
+		this.close.caption = usedCaptions.caption;
+		this.close.tooltip = colorizeHotkey(usedCaptions.tooltip, "cancel");
 	}
 
 	onSelectionChange()
@@ -54,4 +51,18 @@ class MapBrowserPageControls
 	{
 		this.mapBrowserPage.submitMapSelection();
 	}
+
+	static Captions =
+	{
+		"close":
+		{
+			"caption": translate("Close"),
+			"tooltip": translate("%(hotkey)s: Close map browser.")
+		},
+		"cancel":
+		{
+			"caption": translate("Cancel"),
+			"tooltip": translate("%(hotkey)s: Close map browser and discard the selection.")
+		}
+	};
 }

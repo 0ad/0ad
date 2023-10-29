@@ -24,6 +24,7 @@
 #include "ps/CLogger.h"
 #include "graphics/Color.h"
 #include "graphics/SColor.h"
+#include "renderer/Renderer.h"
 #include "renderer/VertexArray.h"
 #include "renderer/VertexBuffer.h"
 #include "renderer/VertexBufferManager.h"
@@ -269,7 +270,7 @@ void VertexArray::Upload()
 
 	if (!m_VB)
 	{
-		m_VB = g_VBMan.AllocateChunk(
+		m_VB = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			m_Stride, m_NumberOfVertices, m_Type, m_Dynamic, m_BackingStore);
 	}
 

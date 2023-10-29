@@ -355,7 +355,6 @@ void Shutdown(int flags)
 	{
 		TIMER_BEGIN(L"shutdown Renderer");
 		g_Renderer.~CRenderer();
-		g_VBMan.Shutdown();
 		TIMER_END(L"shutdown Renderer");
 	}
 

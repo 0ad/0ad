@@ -19,6 +19,9 @@ class MapBrowser
 
 	submitMapSelection()
 	{
+		if (!this.allowSelection)
+			return;
+
 		let file = this.gridBrowser.getSelected();
 		let type = this.controls.MapFiltering.getSelectedMapType();
 		let filter = this.controls.MapFiltering.getSelectedMapFilter();
@@ -47,12 +50,14 @@ class MapBrowser
 		this.closePageHandlers.add(handler);
 	}
 
-	openPage()
+	openPage(allowSelection)
 	{
 		if (this.open)
 			return;
 		for (let handler of this.openPageHandlers)
-			handler();
+			handler(allowSelection);
+
+		this.allowSelection = allowSelection;
 		this.open = true;
 	}
 

@@ -360,7 +360,7 @@ static void RendererIncrementalLoad()
 	while (more && timer_Time() - startTime < maxTime);
 }
 
-static void Frame()
+static void Frame(RL::Interface* rlInterface)
 {
 	g_Profiler2.RecordFrameStart();
 	PROFILE2("frame");
@@ -425,12 +425,12 @@ static void Frame()
 
 	g_GUI->TickObjects();
 
-	if (g_RLInterface)
-		g_RLInterface->TryApplyMessage();
+	if (rlInterface)
+		rlInterface->TryApplyMessage();
 
 	if (g_Game && g_Game->IsGameStarted() && needUpdate)
 	{
-		if (!g_RLInterface)
+		if (!rlInterface)
 			g_Game->Update(realTimeSinceLastFrame);
 
 		g_Game->GetView()->Update(float(realTimeSinceLastFrame));
@@ -488,16 +488,19 @@ static void MainControllerShutdown()
 	in_reset_handlers();
 }
 
-static void StartRLInterface(CmdLineArgs args)
+static std::optional<RL::Interface> CreateRLInterface(const CmdLineArgs& args)
 {
+	if (!args.Has("rl-interface"))
+		return std::nullopt;
+
 	std::string server_address;
 	CFG_GET_VAL("rlinterface.address", server_address);
 
 	if (!args.Get("rl-interface").empty())
 		server_address = args.Get("rl-interface");
 
-	g_RLInterface = std::make_unique<RL::Interface>(server_address.c_str());
 	debug_printf("RL interface listening on %s\n", server_address.c_str());
+	return std::make_optional<RL::Interface>(server_address.c_str());
 }
 
 // moved into a helper function to ensure args is destroyed before
@@ -525,8 +528,7 @@ static void RunGameOrAtlas(const PS::span<const char* const> argv)
 
 	const bool isVisualReplay = args.Has("replay-visual");
 	const bool isNonVisualReplay = args.Has("replay");
-	const bool isNonVisual = args.Has("autostart-nonvisual");
-	const bool isUsingRLInterface = args.Has("rl-interface");
+	const bool isVisual = !args.Has("autostart-nonvisual");
 
 	const OsPath replayFile(
 		isVisualReplay ? args.Get("replay-visual") :
@@ -668,30 +670,24 @@ static void RunGameOrAtlas(const PS::span<const char* const> argv)
 			g_Mods.UpdateAvailableMods(modInterface);
 		}
 
-		if (isNonVisual)
-		{
-			if (!InitNonVisual(args))
-				g_Shutdown = ShutdownType::Quit;
-			else if (isUsingRLInterface)
-				StartRLInterface(args);
-
-			while (g_Shutdown == ShutdownType::None)
-			{
-				if (isUsingRLInterface)
-					g_RLInterface->TryApplyMessage();
-				else
-					NonVisualFrame();
-			}
-		}
-		else
+		if (isVisual)
 		{
 			InitGraphics(args, 0, installedMods);
 			MainControllerInit();
-			if (isUsingRLInterface)
-				StartRLInterface(args);
-			while (g_Shutdown == ShutdownType::None)
-				Frame();
 		}
+		else if (!InitNonVisual(args))
+			g_Shutdown = ShutdownType::Quit;
+
+		std::optional<RL::Interface> rlInterface{g_Shutdown == ShutdownType::None ?
+			CreateRLInterface(args) : std::nullopt};
+
+		while (g_Shutdown == ShutdownType::None)
+			if (isVisual)
+				Frame(rlInterface ? &*rlInterface : nullptr);
+			else if(rlInterface)
+				rlInterface->TryApplyMessage();
+			else
+				NonVisualFrame();
 
 		// Do not install mods again in case of restart (typically from the mod selector)
 		modsToInstall.clear();
