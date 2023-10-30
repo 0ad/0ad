@@ -131,12 +131,10 @@ const pForest2Island = [
 	tForestFloorIsland
 ];
 
-const heightScale = num => num * g_MapSettings.Size / 320;
-
-const heightSeaGround = heightScale(-15);
-const heightWaterLevel = heightScale(0);
-const heightShore = heightScale(1);
-const heightOffsetPath = heightScale(-4);
+const heightSeaGround = -6;
+const heightWaterLevel = 0;
+const heightShore = 0.5;
+const heightOffsetPath = -g_MapSettings.Size / 80;
 const minHeight = -1;
 const maxHeight = 2;
 
