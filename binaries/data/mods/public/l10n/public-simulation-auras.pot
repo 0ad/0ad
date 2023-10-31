@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2023-10-09 07:08+0000\n"
-"PO-Revision-Date: 2023-10-09 07:08+0000\n"
+"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"PO-Revision-Date: 2023-10-30 08:08+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -160,7 +160,7 @@ msgid "Rigorous Training"
 msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.json:auraDescription
-msgid "Civic center technologies −50% research time and −30% cost."
+msgid "Civic Center technologies −50% research time and −30% cost."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.json:auraName
@@ -586,7 +586,20 @@ msgid "Melee Soldiers +10% attack damage and all Soldiers −25% experience poin
 msgstr ""
 
 #: simulation/data/auras/units/centurion.json:auraName
+#: simulation/data/auras/units/centurion_1.json:auraName
 msgid "Combat Leadership"
+msgstr ""
+
+#: simulation/data/auras/units/centurion_1.json:auraDescription
+msgid "Soldiers +10% attack damage and −25% experience points for promotion."
+msgstr ""
+
+#: simulation/data/auras/units/centurion_2.json:auraDescription
+msgid "Marian Legionaries and Centurions +10% movement speed."
+msgstr ""
+
+#: simulation/data/auras/units/centurion_2.json:auraName
+msgid "Century Maneuvers"
 msgstr ""
 
 #: simulation/data/auras/units/han_minister_building.json:auraDescription
