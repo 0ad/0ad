@@ -49,7 +49,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-10-30 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: BL4NKY, 2023\n"
 "Language-Team: German (http://app.transifex.com/wildfire-games/0ad/language/de/)\n"
@@ -949,19 +949,19 @@ msgstr "Beschuss durch eigene Truppen: %(enabled)s"
 
 #: gui/common/tooltips.js:409 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:188
+#: gui/loadgame/SavegameWriter.js:53 gui/options/options.js:188
 #: gui/options/options.js:362 gui/options/options.js:427
-#: gui/options/options.js:452 gui/pregame/MainMenuItems.js:260
-#: gui/pregame/MainMenuItems.js:284 gui/replaymenu/replay_actions.js:178
+#: gui/options/options.js:452 gui/pregame/MainMenuItems.js:282
+#: gui/pregame/MainMenuItems.js:306 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "Ja"
 
 #: gui/common/tooltips.js:409 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:188
+#: gui/loadgame/SavegameWriter.js:53 gui/options/options.js:188
 #: gui/options/options.js:362 gui/options/options.js:427
-#: gui/options/options.js:452 gui/pregame/MainMenuItems.js:260
-#: gui/pregame/MainMenuItems.js:284 gui/replaymenu/replay_actions.js:178
+#: gui/options/options.js:452 gui/pregame/MainMenuItems.js:282
+#: gui/pregame/MainMenuItems.js:306 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "Nein"
 
@@ -1635,8 +1635,8 @@ msgid ""
 "WARNING: this cannot be reversed."
 msgstr "Setze alle Hotkeys auf die Standardwerte zurück?\nWARNUNG: Dies kann nicht rückgängig gemacht werden."
 
-#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:259
-#: gui/pregame/MainMenuItems.js:283
+#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:281
+#: gui/pregame/MainMenuItems.js:305
 msgid "Confirmation"
 msgstr "Bestätigung"
 
@@ -1675,13 +1675,6 @@ msgstr "Klicke auf eine Zuordnung, um sie zu ändern.\\n Du kannst bis zu 4 vers
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
 msgid "Accept"
 msgstr "Annehmen"
-
-#: gui/hotkeys/hotkeys.xml:(caption):111 gui/loadgame/load.xml:(caption):50
-#: gui/locale/locale.xml:(caption):36
-#: gui/locale_advanced/locale_advanced.xml:(caption):65
-#: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):51
-msgid "Cancel"
-msgstr "Abbrechen"
 
 #: gui/hotkeys/hotkeys.xml:(heading):39
 msgctxt "hotkey list"
@@ -3548,7 +3541,7 @@ msgstr "Lösche den gewählten Speicherstand mit %(hotkey)s."
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr "Halte %(hotkey)s um den Bestätigungsdialog beim Löschen zu überspringen."
 
-#: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:51
+#: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:50
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "„%(label)s“"
@@ -3622,11 +3615,11 @@ msgstr "Spiel laden"
 msgid "Save"
 msgstr "Speichern"
 
-#: gui/loadgame/SavegameWriter.js:52
+#: gui/loadgame/SavegameWriter.js:51
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "Bist du sicher, dass das gespeicherte Spiel dauerhaft überschrieben werden soll?"
 
-#: gui/loadgame/SavegameWriter.js:53
+#: gui/loadgame/SavegameWriter.js:52
 msgid "OVERWRITE SAVE"
 msgstr "SPIELSTAND ÜBERSCHREIBEN"
 
@@ -3825,22 +3818,29 @@ msgstr "Alle Karten des gewählten Kartentyps."
 msgid "Map Browser"
 msgstr "Kartenbrowser"
 
-#: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
-#, javascript-format
-msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr "%(hotkey)s: Schließe den Kartenbrowser und verwerfe die Auswahl."
-
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
-#: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
+#: gui/maps/mapbrowser/controls/MapBrowserControls.js:59
 #: gui/options/options.xml:(caption):62
 #: gui/reference/common/Buttons/CloseButton.js:13
 msgid "Close"
 msgstr "Schließen"
 
-#: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
+#: gui/maps/mapbrowser/controls/MapBrowserControls.js:60
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
 msgstr "%(hotkey)s: Schließe den Kartenbrowser."
+
+#: gui/hotkeys/hotkeys.xml:(caption):111 gui/loadgame/load.xml:(caption):50
+#: gui/locale/locale.xml:(caption):36
+#: gui/locale_advanced/locale_advanced.xml:(caption):65
+#: gui/maps/mapbrowser/controls/MapBrowserControls.js:64
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: gui/maps/mapbrowser/controls/MapBrowserControls.js:65
+#, javascript-format
+msgid "%(hotkey)s: Close map browser and discard the selection."
+msgstr "%(hotkey)s: Schließe den Kartenbrowser und verwerfe die Auswahl."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -3864,7 +3864,7 @@ msgstr "Kartenfilter:"
 msgid "Pick Random Map"
 msgstr "Wähle Zufallskarte"
 
-#: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
+#: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):52
 msgctxt "map selection dialog"
 msgid "Select"
 msgstr "Wähle"
@@ -5249,16 +5249,16 @@ msgstr "Karten-Übersicht"
 msgid "View the different maps featured in 0 A.D."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
+#: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:132
 msgid "Continue Campaign"
 msgstr "Setze Kampagne fort"
 
-#: gui/pregame/MainMenuItems.js:77 gui/pregame/MainMenuItems.js:111
-#: gui/pregame/MainMenuItems.js:127 gui/pregame/MainMenuItems.js:134
+#: gui/pregame/MainMenuItems.js:77 gui/pregame/MainMenuItems.js:133
+#: gui/pregame/MainMenuItems.js:149 gui/pregame/MainMenuItems.js:156
 msgid "Relive history through historical military campaigns."
 msgstr "Erlebe die Geschichte durch historische Militärkampagnen."
 
-#: gui/pregame/MainMenuItems.js:85 gui/pregame/MainMenuItems.js:119
+#: gui/pregame/MainMenuItems.js:85 gui/pregame/MainMenuItems.js:141
 msgid "Error opening campaign run:"
 msgstr "Fehler beim Öffnen des Durchlaufs der Kampagne:"
 
@@ -5282,153 +5282,153 @@ msgstr "Ein neues Einzelspielerspiel starten."
 msgid "Load a saved game."
 msgstr "Gespeichertes Spiel laden."
 
-#: gui/pregame/MainMenuItems.js:126
+#: gui/pregame/MainMenuItems.js:148
 msgid "New Campaign"
 msgstr "Neue Kampagne"
 
-#: gui/pregame/MainMenuItems.js:133
+#: gui/pregame/MainMenuItems.js:155
 msgid "Load Campaign"
 msgstr "Kampagne laden"
 
-#: gui/pregame/MainMenuItems.js:143 gui/pregame/MainMenuItems.js:193
+#: gui/pregame/MainMenuItems.js:165 gui/pregame/MainMenuItems.js:215
 msgid "Replays"
 msgstr "Wiederholung"
 
-#: gui/pregame/MainMenuItems.js:144 gui/pregame/MainMenuItems.js:194
+#: gui/pregame/MainMenuItems.js:166 gui/pregame/MainMenuItems.js:216
 msgid "Playback previous games."
 msgstr "Wiedergabe vorheriger Spiele."
 
-#: gui/pregame/MainMenuItems.js:158
+#: gui/pregame/MainMenuItems.js:180
 msgid "Multiplayer"
 msgstr "Mehrspieler"
 
-#: gui/pregame/MainMenuItems.js:159
+#: gui/pregame/MainMenuItems.js:181
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Gegen einen oder mehrere menschliche Spieler in einem Mehrspielerspiel kämpfen."
 
 #. Translation: Join a game by specifying the host's IP address.
-#: gui/pregame/MainMenuItems.js:163
+#: gui/pregame/MainMenuItems.js:185
 msgid "Join Game"
 msgstr "Spiel beitreten"
 
-#: gui/pregame/MainMenuItems.js:164
+#: gui/pregame/MainMenuItems.js:186
 msgid "Joining an existing multiplayer game."
 msgstr "Einem bestehenden Mehrspielerspiel beitreten."
 
-#: gui/pregame/MainMenuItems.js:172
+#: gui/pregame/MainMenuItems.js:194
 msgid "Host Game"
 msgstr "Spiel hosten"
 
-#: gui/pregame/MainMenuItems.js:173
+#: gui/pregame/MainMenuItems.js:195
 msgid "Host a multiplayer game."
 msgstr "Hoste ein Mehrspielerspiel."
 
-#: gui/pregame/MainMenuItems.js:181
+#: gui/pregame/MainMenuItems.js:203
 msgid "Game Lobby"
 msgstr "Mehrspielerlobby"
 
-#: gui/pregame/MainMenuItems.js:183
+#: gui/pregame/MainMenuItems.js:205
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
 msgstr "%(hotkey)s: Die Mehrspieler-Lobby starten, um öffentlich sichtbare Spiele zu erstellen oder ihnen beizutreten und mit anderen Spielern zu chatten."
 
-#: gui/pregame/MainMenuItems.js:184
+#: gui/pregame/MainMenuItems.js:206
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Mehrspielerlobby starten. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/MainMenuItems.js:208
+#: gui/pregame/MainMenuItems.js:230
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: gui/pregame/MainMenuItems.js:209
+#: gui/pregame/MainMenuItems.js:231
 msgid "Change game options."
 msgstr "Spieloptionen ändern."
 
-#: gui/pregame/MainMenuItems.js:212
+#: gui/pregame/MainMenuItems.js:234
 msgid "Options"
 msgstr "Optionen"
 
-#: gui/pregame/MainMenuItems.js:213
+#: gui/pregame/MainMenuItems.js:235
 msgid "Adjust game settings."
 msgstr "Spieleinstellungen anpassen."
 
-#: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:222
+#: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:244
 msgid "Hotkeys"
 msgstr "Tastaturkürzel"
 
-#: gui/pregame/MainMenuItems.js:223
+#: gui/pregame/MainMenuItems.js:245
 msgid "Adjust hotkeys."
 msgstr "Tastaturkürzel anpassen."
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale_advanced/locale_advanced.xml:(caption):14
-#: gui/pregame/MainMenuItems.js:229
+#: gui/pregame/MainMenuItems.js:251
 msgid "Language"
 msgstr "Sprache"
 
-#: gui/pregame/MainMenuItems.js:230
+#: gui/pregame/MainMenuItems.js:252
 msgid "Choose the language of the game."
 msgstr "Spielsprache wählen."
 
-#: gui/pregame/MainMenuItems.js:236
+#: gui/pregame/MainMenuItems.js:258
 msgid "Mod Selection"
 msgstr "Mod-Auswahl"
 
-#: gui/pregame/MainMenuItems.js:237
+#: gui/pregame/MainMenuItems.js:259
 msgid "Select and download mods for the game."
 msgstr "Mods für das Spiel auswählen und herunterladen."
 
-#: gui/pregame/MainMenuItems.js:243
+#: gui/pregame/MainMenuItems.js:265
 msgid "Welcome Screen"
 msgstr "Begrüßungsfenster"
 
-#: gui/pregame/MainMenuItems.js:244
+#: gui/pregame/MainMenuItems.js:266
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
 msgstr "Das Begrüßungsfenster wieder anzeigen. Praktisch, falls es unabsichtlich versteckt wurde."
 
-#: gui/pregame/MainMenuItems.js:252
+#: gui/pregame/MainMenuItems.js:274
 msgid "Scenario Editor"
 msgstr "Karteneditor"
 
-#: gui/pregame/MainMenuItems.js:253
+#: gui/pregame/MainMenuItems.js:275
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Karteneditor „Atlas“ in einem neuen Fenster öffnen. Praktischer ist es, den Editor beim Starten des Spiels mit dem Kommandozeilenargument „-editor“ aufzurufen."
 
-#: gui/pregame/MainMenuItems.js:258
+#: gui/pregame/MainMenuItems.js:280
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:265
+#: gui/pregame/MainMenuItems.js:287
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Der Szenario-Editor ist nicht verfügbar oder kann nicht geladen werden. Siehe Spiel-Log für zusätzliche Informationen."
 
-#: gui/pregame/MainMenuItems.js:266 gui/replaymenu/replay_actions.js:126
+#: gui/pregame/MainMenuItems.js:288 gui/replaymenu/replay_actions.js:126
 msgid "Error"
 msgstr "Fehler"
 
-#: gui/pregame/MainMenuItems.js:270
+#: gui/pregame/MainMenuItems.js:292
 msgid "Credits"
 msgstr "Credits"
 
-#: gui/pregame/MainMenuItems.js:271
+#: gui/pregame/MainMenuItems.js:293
 msgid "Show the 0 A.D. credits."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:277
+#: gui/pregame/MainMenuItems.js:299
 msgid "Exit"
 msgstr "Verlassen"
 
-#: gui/pregame/MainMenuItems.js:278
+#: gui/pregame/MainMenuItems.js:300
 msgid "Exit the game."
 msgstr "Spiel beenden."
 
-#: gui/pregame/MainMenuItems.js:282
+#: gui/pregame/MainMenuItems.js:304
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr ""
 

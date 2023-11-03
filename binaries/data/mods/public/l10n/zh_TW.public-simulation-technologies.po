@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-23 07:08+0000\n"
+"POT-Creation-Date: 2023-10-30 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2023\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -60,10 +60,12 @@ msgstr "斯巴達教育"
 #: simulation/data/technologies/nisean_horses.jsonrequirementsTooltip
 #: simulation/data/technologies/ostracism.jsonrequirementsTooltip
 #: simulation/data/technologies/parade_of_daphne.jsonrequirementsTooltip
+#: simulation/data/technologies/pharaonic_cult.jsonrequirementsTooltip
 #: simulation/data/technologies/poison_arrows.jsonrequirementsTooltip
 #: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
+#: simulation/data/technologies/roman_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
@@ -128,6 +130,7 @@ msgstr "箭術訓練"
 #: simulation/data/technologies/krypteia.jsonrequirementsTooltip
 #: simulation/data/technologies/pheidian_workshop.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
+#: simulation/data/technologies/serapis_cult.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
@@ -484,6 +487,19 @@ msgid ""
 "Houses and Economic Structures −40% wood cost, health, and capture points as"
 " well as +50% build time."
 msgstr "房舍與經濟建築物 -40% 木頭成本、生命值和占領值，並 +50% 建造時間。"
+
+#: simulation/data/technologies/civbonuses/rome_siege.jsondescription
+msgid "Soldiers were well Trained to Operate Siege Engines."
+msgstr "士兵會受到良好的攻城器械訓練。"
+
+#: simulation/data/technologies/civbonuses/rome_siege.jsongenericName
+msgid "Legionary Engineers"
+msgstr "軍團工程師"
+
+#: simulation/data/technologies/civbonuses/rome_siege.jsontooltip
+msgid ""
+"Siege Catapults and Onagers 10% faster fire rate and +20% movement speed."
+msgstr "攻城投石機和野驢砲射速快 10%，移動速度 +20%。"
 
 #: simulation/data/technologies/civbonuses/sele_farms.jsondescription
 msgid ""
@@ -1036,8 +1052,9 @@ msgid "Iphicratean Reforms"
 msgstr "伊菲克拉特斯的軍事改革"
 
 #: simulation/data/technologies/iphicratean_reforms.jsontooltip
-msgid "Athenian Gymnasia, Docks and Triremes can train Marines."
-msgstr "雅典的體育場、碼頭和三列槳戰船可以訓練陸戰隊。"
+msgid ""
+"Athenian Docks and Triremes can train Marines and Cretan Mercenary Archers."
+msgstr "雅典碼頭和三列槳戰船可以訓練陸戰隊和克里特傭弓兵。"
 
 #: simulation/data/technologies/krypteia.jsondescription
 msgid ""
@@ -1131,6 +1148,10 @@ msgstr "土木工程"
 msgid "Civil Service"
 msgstr "公務員"
 
+#: simulation/data/technologies/pair_unlock_cult_ptol.jsongenericName
+msgid "Cult"
+msgstr "崇拜"
+
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""
 "The festival at Daphne was a major event of the Seleucid Empire: tens of "
@@ -1144,6 +1165,22 @@ msgstr "達芙妮的樂園"
 #: simulation/data/technologies/parade_of_daphne.jsontooltip
 msgid "Champions −20% training time."
 msgstr "鬥士 -20% 訓練時間。"
+
+#: simulation/data/technologies/pharaonic_cult.jsondescription
+msgid ""
+"The Pharaohs were worshipped as living gods. Their word was sacrosanct and "
+"beyond reproach, at least among the common people. The Ptolemaic dynasts "
+"certainly took advantage of this ancient custom to the fullest, to varying "
+"degrees of success."
+msgstr "法老王被當作活神來崇拜。他們的話語是神聖不可侵犯的，無可非議，至少在一般民眾中是如此。托勒密王朝無疑充分利用了這一古老習俗，並取得了不同程度的成功。"
+
+#: simulation/data/technologies/pharaonic_cult.jsongenericName
+msgid "Pharaonic Cult"
+msgstr "法老崇拜"
+
+#: simulation/data/technologies/pharaonic_cult.jsontooltip
+msgid "Heroes +2 health/second self-regen rate."
+msgstr "英雄 +2 每秒生命值自回率。"
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -1383,6 +1420,44 @@ msgstr "軍隊改革"
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr "解鎖鬥士劍兵。"
+
+#: simulation/data/technologies/roman_reforms.jsondescription
+msgid ""
+"Regularize the army into a professional, organized force. The Marian reforms"
+" were a series of military reforms in the last century BC attributed to "
+"Gaius Marius involving the abolition of citzen cavalry, equipment changes, "
+"and standardization of the heavy infantry unit: the Legionary."
+msgstr "將軍隊正規化為一支專業化、有組織的軍隊。馬略改革是公元前上世紀由蓋烏斯‧馬略發起的一系列軍事改革，涉及廢除公民騎兵、裝備變革以及重型步兵單位——軍團的標準化。"
+
+#: simulation/data/technologies/roman_reforms.jsongenericName
+msgid "Marian Reforms"
+msgstr "馬略改革"
+
+#: simulation/data/technologies/roman_reforms.jsontooltip
+msgid ""
+"Train Marian Legionaries, Centurions, and Onagers, but lose access to basic "
+"Citizen Infantry, Spear Cavalry, and Italic Heavy Infantry."
+msgstr "訓練馬略軍團、百夫長和野驢砲，但無法使用基本的公民步兵、矛騎兵和義大利重裝步兵。"
+
+#: simulation/data/technologies/serapis_cult.jsondescription
+msgid ""
+"The cult of Serapis was introduced during the 3rd century BC on the orders "
+"of Ptolemy I of Egypt as a means to unify the Greeks and Egyptians in his "
+"realm. The god was depicted as Greek in appearance, but with Egyptian "
+"trappings, and combined iconography from a great many cults, signifying both"
+" abundance and resurrection. A serapeion was any temple or religious "
+"precinct devoted to serapeion. The cult of Serapis was spread as a matter of"
+" deliberate policy by the Ptolemaic kings, who also built an immense "
+"serapeum in Alexandria."
+msgstr "塞拉皮斯崇拜是在公元前 3 世紀根據埃及托勒密一世的命令引入的，目的是為了統一其領土內的希臘人和埃及人。該神被描繪成希臘人的外表，但帶有埃及的服飾，並結合了許多邪教的圖像，​​象徵著豐富和復活。塞拉皮翁是專門供奉塞拉皮翁的任何寺廟或宗教區。托勒密國王有意傳播對塞拉皮斯的崇拜，他們也在亞歷山大建造了一座巨大的塞拉皮斯神廟。"
+
+#: simulation/data/technologies/serapis_cult.jsongenericName
+msgid "Serapis Cult"
+msgstr "塞拉皮斯崇拜"
+
+#: simulation/data/technologies/serapis_cult.jsontooltip
+msgid "+2.0 metal trickle per second."
+msgstr "+2.0 每秒金屬細流。"
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""

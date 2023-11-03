@@ -81,7 +81,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-09 07:08+0000\n"
+"POT-Creation-Date: 2023-10-30 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022-2023\n"
 "Language-Team: Chinese (http://app.transifex.com/wildfire-games/0ad/language/zh/)\n"
@@ -244,8 +244,8 @@ msgid "Rigorous Training"
 msgstr "严格训练"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
-msgid "Civic center technologies −50% research time and −30% cost."
-msgstr "市政中心科研耗时 -50% ，花费 -30% 。"
+msgid "Civic Center technologies −50% research time and −30% cost."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
@@ -647,8 +647,21 @@ msgid ""
 msgstr "近战士兵 +10% 攻击伤害，所有士兵 -25% 升级所需经验值。"
 
 #: simulation/data/auras/units/centurion.jsonauraName
+#: simulation/data/auras/units/centurion_1.jsonauraName
 msgid "Combat Leadership"
 msgstr "指挥若定"
+
+#: simulation/data/auras/units/centurion_1.jsonauraDescription
+msgid "Soldiers +10% attack damage and −25% experience points for promotion."
+msgstr ""
+
+#: simulation/data/auras/units/centurion_2.jsonauraDescription
+msgid "Marian Legionaries and Centurions +10% movement speed."
+msgstr ""
+
+#: simulation/data/auras/units/centurion_2.jsonauraName
+msgid "Century Maneuvers"
+msgstr ""
 
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."

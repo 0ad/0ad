@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-09-22 07:08+0000\n"
+"POT-Creation-Date: 2023-10-30 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Language-Team: Silesian (http://app.transifex.com/wildfire-games/0ad/language/szl/)\n"
 "MIME-Version: 1.0\n"
@@ -375,6 +375,7 @@ msgstr ""
 #: simulation/templates/template_unit_ship_warship_heavy.xml:27
 #: simulation/templates/template_unit_siege_flamethrower.xml:35
 #: simulation/templates/template_unit_siege_stonethrower.xml:29
+#: simulation/templates/template_unit_siege_stonethrower_onager.xml:14
 msgid "Circular"
 msgstr ""
 
@@ -705,6 +706,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_ship_warship_heavy.xml:5
 #: simulation/templates/template_unit_siege_stonethrower.xml:5
+#: simulation/templates/units/rome/siege_onager_packed.xml:9
 msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr ""
@@ -839,6 +841,7 @@ msgstr ""
 #: simulation/templates/units/athen/cavalry_javelineer_a.xml:4
 #: simulation/templates/units/athen/cavalry_swordsman_a.xml:4
 #: simulation/templates/units/athen/infantry_archer_a.xml:4
+#: simulation/templates/units/athen/infantry_archer_a_dock.xml:4
 #: simulation/templates/units/athen/infantry_javelineer_a.xml:4
 #: simulation/templates/units/athen/infantry_marine_archer_a.xml:4
 #: simulation/templates/units/athen/infantry_slinger_a.xml:4
@@ -926,6 +929,7 @@ msgstr ""
 #: simulation/templates/units/ptol/infantry_spearman_merc_a.xml:4
 #: simulation/templates/units/ptol/infantry_swordsman_merc_a.xml:4
 #: simulation/templates/units/ptol/support_healer_a.xml:4
+#: simulation/templates/units/rome/cavalry_javelineer_02_a.xml:4
 #: simulation/templates/units/rome/cavalry_javelineer_a.xml:4
 #: simulation/templates/units/rome/cavalry_spearman_a.xml:4
 #: simulation/templates/units/rome/infantry_javelineer_a.xml:4
@@ -1044,11 +1048,14 @@ msgstr ""
 #: simulation/templates/units/ptol/infantry_spearman_merc_e.xml:4
 #: simulation/templates/units/ptol/infantry_swordsman_merc_e.xml:4
 #: simulation/templates/units/ptol/support_healer_e.xml:4
+#: simulation/templates/units/rome/cavalry_javelineer_02_e.xml:4
 #: simulation/templates/units/rome/cavalry_javelineer_e.xml:4
 #: simulation/templates/units/rome/cavalry_spearman_e.xml:4
 #: simulation/templates/units/rome/champion_infantry_spear_gladiator.xml:22
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:22
 #: simulation/templates/units/rome/infantry_javelineer_e.xml:4
+#: simulation/templates/units/rome/infantry_lanciarius.xml:25
+#: simulation/templates/units/rome/infantry_legionary.xml:24
 #: simulation/templates/units/rome/infantry_spearman_e.xml:4
 #: simulation/templates/units/rome/infantry_swordsman_e.xml:4
 #: simulation/templates/units/rome/support_healer_e.xml:4
@@ -1101,11 +1108,11 @@ msgstr ""
 msgid "Epílektos"
 msgstr ""
 
-#: simulation/templates/units/athen/champion_marine.xml:4
+#: simulation/templates/units/athen/champion_marine.xml:11
 msgid "Athenian Marine"
 msgstr ""
 
-#: simulation/templates/units/athen/champion_marine.xml:5
+#: simulation/templates/units/athen/champion_marine.xml:12
 msgid "Epibátēs Athēnaîos"
 msgstr ""
 
@@ -1157,14 +1164,14 @@ msgstr ""
 #: simulation/templates/units/athen/infantry_archer_b.xml:5
 #: simulation/templates/units/athen/infantry_marine_archer_b.xml:5
 #: simulation/templates/units/mace/infantry_archer_b.xml:7
-#: simulation/templates/units/ptol/infantry_archer_b.xml:12
+#: simulation/templates/units/ptol/infantry_archer_b.xml:13
 msgid "Cretan Mercenary Archer"
 msgstr ""
 
 #: simulation/templates/units/athen/infantry_archer_b.xml:6
 #: simulation/templates/units/athen/infantry_marine_archer_b.xml:6
 #: simulation/templates/units/mace/infantry_archer_b.xml:8
-#: simulation/templates/units/ptol/infantry_archer_b.xml:13
+#: simulation/templates/units/ptol/infantry_archer_b.xml:14
 msgid "Toxótēs Krētikós"
 msgstr ""
 
@@ -1549,7 +1556,7 @@ msgid "Sǝḫīr Ḥanīt"
 msgstr ""
 
 #: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:13
-#: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:11
+#: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:12
 msgid "Gallic Mercenary Swordsman"
 msgstr ""
 
@@ -1604,7 +1611,7 @@ msgid "Tlat-Mašōt"
 msgstr ""
 
 #: simulation/templates/units/cart/siege_ballista_packed.xml:5
-#: simulation/templates/units/rome/siege_ballista_packed.xml:16
+#: simulation/templates/units/rome/siege_ballista_packed.xml:9
 msgid "Ballista"
 msgstr ""
 
@@ -2846,39 +2853,39 @@ msgstr ""
 msgid "Ptolemaios D' Philopatōr"
 msgstr ""
 
-#: simulation/templates/units/ptol/infantry_javelineer_b.xml:12
+#: simulation/templates/units/ptol/infantry_javelineer_b.xml:13
 msgid "Mercenary Thureos Skirmisher"
 msgstr ""
 
-#: simulation/templates/units/ptol/infantry_javelineer_b.xml:13
+#: simulation/templates/units/ptol/infantry_javelineer_b.xml:14
 msgid "Thureophóros Akrobolistḗs"
 msgstr ""
 
-#: simulation/templates/units/ptol/infantry_pikeman_b.xml:12
+#: simulation/templates/units/ptol/infantry_pikeman_b.xml:13
 msgid "Egyptian Pikeman"
 msgstr ""
 
-#: simulation/templates/units/ptol/infantry_pikeman_b.xml:13
+#: simulation/templates/units/ptol/infantry_pikeman_b.xml:14
 msgid "Phalaggomákhimos"
 msgstr ""
 
-#: simulation/templates/units/ptol/infantry_slinger_b.xml:12
+#: simulation/templates/units/ptol/infantry_slinger_b.xml:13
 msgid "Judean Slinger"
 msgstr ""
 
-#: simulation/templates/units/ptol/infantry_slinger_b.xml:13
+#: simulation/templates/units/ptol/infantry_slinger_b.xml:14
 msgid "Hebraikós Sphendonḗtēs"
 msgstr ""
 
-#: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:12
+#: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:13
 msgid "Mercenary Thureos Spearman"
 msgstr ""
 
-#: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:13
+#: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:14
 msgid "Thureophóros Misthophóros"
 msgstr ""
 
-#: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:12
+#: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:13
 msgid "Gallikós Mistophorós"
 msgstr ""
 
@@ -2899,11 +2906,11 @@ msgstr ""
 msgid "Polybolos"
 msgstr ""
 
-#: simulation/templates/units/ptol/support_female_citizen.xml:11
+#: simulation/templates/units/ptol/support_female_citizen.xml:12
 msgid "Gýnē Aigýptia"
 msgstr ""
 
-#: simulation/templates/units/ptol/support_female_citizen.xml:12
+#: simulation/templates/units/ptol/support_female_citizen.xml:13
 msgid "Egyptian Woman"
 msgstr ""
 
@@ -2913,6 +2920,14 @@ msgstr ""
 
 #: simulation/templates/units/rome/catafalque.xml:10
 msgid "Lūcius Iūnius Brūtus"
+msgstr ""
+
+#: simulation/templates/units/rome/cavalry_javelineer_02_b.xml:6
+msgid "Auxiliary Cavalry"
+msgstr ""
+
+#: simulation/templates/units/rome/cavalry_javelineer_02_b.xml:7
+msgid "Eques Alaris"
 msgstr ""
 
 #: simulation/templates/units/rome/cavalry_javelineer_b.xml:6
@@ -2970,21 +2985,23 @@ msgstr ""
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_02.xml:4
 #: simulation/templates/units/rome/champion_infantry_swordsman_03.xml:11
+#: simulation/templates/units/rome/infantry_legionary.xml:21
 msgid "Marian Legionary"
 msgstr ""
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_02.xml:5
 #: simulation/templates/units/rome/champion_infantry_swordsman_03.xml:12
+#: simulation/templates/units/rome/infantry_legionary.xml:23
 msgid "Legiōnārius"
 msgstr ""
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:14
-#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:12
+#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:24
 msgid "Roman Centurion"
 msgstr ""
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:15
-#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:13
+#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:25
 msgid "Centuriō"
 msgstr ""
 
@@ -3019,6 +3036,19 @@ msgstr ""
 msgid "Vēles"
 msgstr ""
 
+#: simulation/templates/units/rome/infantry_lanciarius.xml:22
+msgid "Legionary Skirmisher"
+msgstr ""
+
+#: simulation/templates/units/rome/infantry_lanciarius.xml:23
+msgid "lanciārius"
+msgstr ""
+
+#: simulation/templates/units/rome/infantry_lanciarius.xml:24
+#: simulation/templates/units/rome/infantry_legionary.xml:26
+msgid "Legionary"
+msgstr ""
+
 #: simulation/templates/units/rome/infantry_spearman_b.xml:19
 msgid "Veteran Spearman"
 msgstr ""
@@ -3046,6 +3076,16 @@ msgstr ""
 
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:22
 msgid "Elite rank Swordsmen can be promoted to champion Centurions."
+msgstr ""
+
+#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:27
+msgid ""
+"Centurions may be promoted from elite melee citizen infantry, and train from"
+" the Fortress after Marian Reforms."
+msgstr ""
+
+#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:28
+msgid "Centurion"
 msgstr ""
 
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:20
@@ -3080,11 +3120,20 @@ msgstr ""
 msgid "Roman Trireme"
 msgstr ""
 
-#: simulation/templates/units/rome/siege_onager.xml:26
+#: simulation/templates/units/rome/siege_onager.xml:21
+#: simulation/templates/units/rome/siege_onager_packed.xml:16
 msgid "Onager"
 msgstr ""
 
-#: simulation/templates/units/rome/siege_ram.xml:15
+#: simulation/templates/units/rome/siege_onager.xml:23
+msgid "Onagers may be built by Legionaries."
+msgstr ""
+
+#: simulation/templates/units/rome/siege_onager_packed.xml:18
+msgid "An area of effect siege unit unlocked by Marian Reforms."
+msgstr ""
+
+#: simulation/templates/units/rome/siege_ram.xml:8
 msgid "Ariēs"
 msgstr ""
 
