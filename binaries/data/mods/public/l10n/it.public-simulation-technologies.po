@@ -34,7 +34,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-23 07:08+0000\n"
+"POT-Creation-Date: 2023-10-30 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Matteo Nigro, 2023\n"
 "Language-Team: Italian (http://app.transifex.com/wildfire-games/0ad/language/it/)\n"
@@ -77,10 +77,12 @@ msgstr "L'Agoghé"
 #: simulation/data/technologies/nisean_horses.jsonrequirementsTooltip
 #: simulation/data/technologies/ostracism.jsonrequirementsTooltip
 #: simulation/data/technologies/parade_of_daphne.jsonrequirementsTooltip
+#: simulation/data/technologies/pharaonic_cult.jsonrequirementsTooltip
 #: simulation/data/technologies/poison_arrows.jsonrequirementsTooltip
 #: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
+#: simulation/data/technologies/roman_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
@@ -145,6 +147,7 @@ msgstr "Addestramento Arceri"
 #: simulation/data/technologies/krypteia.jsonrequirementsTooltip
 #: simulation/data/technologies/pheidian_workshop.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
+#: simulation/data/technologies/serapis_cult.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
@@ -501,6 +504,19 @@ msgid ""
 "Houses and Economic Structures −40% wood cost, health, and capture points as"
 " well as +50% build time."
 msgstr "Case e strutture economiche -40% di costo del legname, salute e punti di cattura e +50% di tempo di costruzione."
+
+#: simulation/data/technologies/civbonuses/rome_siege.jsondescription
+msgid "Soldiers were well Trained to Operate Siege Engines."
+msgstr "I soldati erano ben addestrati a manovrare macchine d'assedio."
+
+#: simulation/data/technologies/civbonuses/rome_siege.jsongenericName
+msgid "Legionary Engineers"
+msgstr "Ingegneri Legionari"
+
+#: simulation/data/technologies/civbonuses/rome_siege.jsontooltip
+msgid ""
+"Siege Catapults and Onagers 10% faster fire rate and +20% movement speed."
+msgstr "Le catapulte d'assedio e gli Onagri hanno una cadenza di fuoco più veloce del 10% e una velocità di movimento del +20%."
 
 #: simulation/data/technologies/civbonuses/sele_farms.jsondescription
 msgid ""
@@ -1053,8 +1069,9 @@ msgid "Iphicratean Reforms"
 msgstr "Riforma di Ificrate"
 
 #: simulation/data/technologies/iphicratean_reforms.jsontooltip
-msgid "Athenian Gymnasia, Docks and Triremes can train Marines."
-msgstr "I ginnasi ateniesi, i bacini e le Triremi possono addestrare Marines."
+msgid ""
+"Athenian Docks and Triremes can train Marines and Cretan Mercenary Archers."
+msgstr "Le banchine e le trireme ateniesi possono addestrare i Marinai e gli Arcieri Mercenari cretesi."
 
 #: simulation/data/technologies/krypteia.jsondescription
 msgid ""
@@ -1148,6 +1165,10 @@ msgstr "Ingegneria Civile"
 msgid "Civil Service"
 msgstr "Servizio Civile"
 
+#: simulation/data/technologies/pair_unlock_cult_ptol.jsongenericName
+msgid "Cult"
+msgstr "Culto"
+
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""
 "The festival at Daphne was a major event of the Seleucid Empire: tens of "
@@ -1161,6 +1182,22 @@ msgstr "Sfilata di Daphne"
 #: simulation/data/technologies/parade_of_daphne.jsontooltip
 msgid "Champions −20% training time."
 msgstr "Campioni −20% tempo di addestramento."
+
+#: simulation/data/technologies/pharaonic_cult.jsondescription
+msgid ""
+"The Pharaohs were worshipped as living gods. Their word was sacrosanct and "
+"beyond reproach, at least among the common people. The Ptolemaic dynasts "
+"certainly took advantage of this ancient custom to the fullest, to varying "
+"degrees of success."
+msgstr "I faraoni erano venerati come divinità viventi. La loro parola era sacrosanta e irreprensibile, almeno tra la gente comune. I dinasti tolemaici sfruttarono certamente al massimo questa antica usanza, con diversi gradi di successo."
+
+#: simulation/data/technologies/pharaonic_cult.jsongenericName
+msgid "Pharaonic Cult"
+msgstr "Culto faraonico"
+
+#: simulation/data/technologies/pharaonic_cult.jsontooltip
+msgid "Heroes +2 health/second self-regen rate."
+msgstr "Eroi +2 salute/secondo tasso di auto-rigenerazione."
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -1400,6 +1437,44 @@ msgstr "Riforma dell'Esercito"
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr "Sblocca il Campione Fanteria Spadaccino."
+
+#: simulation/data/technologies/roman_reforms.jsondescription
+msgid ""
+"Regularize the army into a professional, organized force. The Marian reforms"
+" were a series of military reforms in the last century BC attributed to "
+"Gaius Marius involving the abolition of citzen cavalry, equipment changes, "
+"and standardization of the heavy infantry unit: the Legionary."
+msgstr "Regolarizzare l'esercito in una forza professionale e organizzata. Le riforme mariane furono una serie di riforme militari dell'ultimo secolo a.C. attribuite a Gaio Mario che prevedevano l'abolizione della cavalleria cittadina, la modifica dell'equipaggiamento e la standardizzazione dell'unità di fanteria pesante: il legionario."
+
+#: simulation/data/technologies/roman_reforms.jsongenericName
+msgid "Marian Reforms"
+msgstr "Riforme Mariane"
+
+#: simulation/data/technologies/roman_reforms.jsontooltip
+msgid ""
+"Train Marian Legionaries, Centurions, and Onagers, but lose access to basic "
+"Citizen Infantry, Spear Cavalry, and Italic Heavy Infantry."
+msgstr "Addestrare Legionari Mariani, Centurioni e Onagri, ma perdere l'accesso alla Fanteria Cittadina di base, alla Cavalleria di Lancia e alla Fanteria Pesante italica."
+
+#: simulation/data/technologies/serapis_cult.jsondescription
+msgid ""
+"The cult of Serapis was introduced during the 3rd century BC on the orders "
+"of Ptolemy I of Egypt as a means to unify the Greeks and Egyptians in his "
+"realm. The god was depicted as Greek in appearance, but with Egyptian "
+"trappings, and combined iconography from a great many cults, signifying both"
+" abundance and resurrection. A serapeion was any temple or religious "
+"precinct devoted to serapeion. The cult of Serapis was spread as a matter of"
+" deliberate policy by the Ptolemaic kings, who also built an immense "
+"serapeum in Alexandria."
+msgstr "Il culto di Serapide fu introdotto nel III secolo a.C. per ordine di Tolomeo I d'Egitto come mezzo per unificare i greci e gli egiziani nel suo regno. La divinità era raffigurata con un aspetto greco, ma con vestigia egiziane, e combinava l'iconografia di molti culti, significando sia l'abbondanza che la resurrezione. Un serapeion era un tempio o un recinto religioso dedicato al serapeion. Il culto di Serapide fu diffuso come politica deliberata dai re tolemaici, che costruirono anche un immenso serapeo ad Alessandria."
+
+#: simulation/data/technologies/serapis_cult.jsongenericName
+msgid "Serapis Cult"
+msgstr "Culto di Serapide"
+
+#: simulation/data/technologies/serapis_cult.jsontooltip
+msgid "+2.0 metal trickle per second."
+msgstr "+2,0 unità di metallo al secondo."
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
