@@ -678,16 +678,24 @@ static void RunGameOrAtlas(const PS::span<const char* const> argv)
 		else if (!InitNonVisual(args))
 			g_Shutdown = ShutdownType::Quit;
 
-		std::optional<RL::Interface> rlInterface{g_Shutdown == ShutdownType::None ?
-			CreateRLInterface(args) : std::nullopt};
+		// MSVC doesn't support copy elision in ternary expressions. So we use a lambda instead.
+		std::optional<RL::Interface> rlInterface{[&]() -> std::optional<RL::Interface>
+			{
+				if (g_Shutdown == ShutdownType::None)
+					return CreateRLInterface(args);
+				else
+					return std::nullopt;
+			}()};
 
 		while (g_Shutdown == ShutdownType::None)
+		{
 			if (isVisual)
 				Frame(rlInterface ? &*rlInterface : nullptr);
 			else if(rlInterface)
 				rlInterface->TryApplyMessage();
 			else
 				NonVisualFrame();
+		}
 
 		// Do not install mods again in case of restart (typically from the mod selector)
 		modsToInstall.clear();
