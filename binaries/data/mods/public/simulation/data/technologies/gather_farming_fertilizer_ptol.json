@@ -1,0 +1,24 @@
+{
+	"genericName": "Fertilizer",
+	"description": "Extra nutrients for farms.",
+	"cost": {
+		"wood": 400,
+		"metal": 300
+	},
+	"supersedes": "gather_farming_training_ptol",
+	"requirements": {
+		"all": [
+			{ "tech": "phase_village" },
+			{ "civ": "ptol" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in Village Phase.",
+	"icon": "olives.png",
+	"researchTime": 60,
+	"tooltip": "Workers +20% grain gather rate.",
+	"modifications": [
+		{ "value": "ResourceGatherer/Rates/food.grain", "multiply": 1.2 }
+	],
+	"affects": ["Worker"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}
