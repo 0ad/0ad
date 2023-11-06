@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # asd asd
+# JereM
 # Jiri Grönroos
 # Juir Lae
 # Matti Tuhola
@@ -17,7 +18,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-10-30 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Matti Tuhola, 2021-2022\n"
+"Last-Translator: JereM, 2023\n"
 "Language-Team: Finnish (http://app.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,11 +36,11 @@ msgstr "Asevaraston korjauksia"
 
 #: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraDescription
 msgid "Garrisoned Heroes +6 health regeneration rate."
-msgstr ""
+msgstr "Sijoitetuilla sankareilla on +6 % terveyden palautumisnopeus."
 
 #: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraName
 msgid "Officer Accommodation"
-msgstr ""
+msgstr "Upseerimajoitus"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
@@ -73,11 +74,11 @@ msgstr ""
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
-msgstr ""
+msgstr "Viljelysmaa"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "Sotilaille +20 % lähi- ja kantamataisteluvahinkoa."
+msgstr "Sotilaille +20% lähi- ja kantamataisteluvahinkoa."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -179,11 +180,11 @@ msgstr "Perusteellinen koulutus"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Civic Center technologies −50% research time and −30% cost."
-msgstr ""
+msgstr "Kaupungintalon teknologioiden tutkimisaika on 50% lyhyempi ja kustannukset ovat 30% alhaisemmat."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
-msgstr ""
+msgstr "demokratia"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
@@ -195,11 +196,11 @@ msgstr "Druidit"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Mercenaries −50% train time."
-msgstr ""
+msgstr "Palkkasotilaiden koulutusaika on -50 % lyhyempi."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Mercenary Transports"
-msgstr ""
+msgstr "Palkkasotilaiden kuljetukset"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
@@ -253,11 +254,11 @@ msgstr "Ashokan uskonnollinen tuki"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Barracks and Stables −20% wood and stone cost and build time."
-msgstr ""
+msgstr "Parakkien ja tallien puu- ja kivikustannukset sekä rakennusaika ovat -20 % alhaisemmat."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "Training Regimes"
-msgstr ""
+msgstr "Koulutusohjelmat"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "+1.0 food trickle rate."
@@ -278,7 +279,7 @@ msgstr "Asevelvollisuus"
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""
 "Civil Centers and Colonies −20% resource cost and −30% construction time."
-msgstr ""
+msgstr "Kaupungintalojen ja siirtokuntien resurssikustannukset ovat 20% alhaisemmat ja rakentamisaika on 30% lyhyempi.\""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -286,7 +287,7 @@ msgstr "Syyrian tetrapolis"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Heroes are trained for free."
-msgstr ""
+msgstr "Sankarit koulutetaan ilmaiseksi."
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -568,7 +569,7 @@ msgstr "Rautapelanorit"
 
 #: simulation/data/auras/units/celtic_healer.jsonauraDescription
 msgid "Soldiers +5% attack damage."
-msgstr ""
+msgstr "Sotilaille +5 % hyökkäysvahinkoa."
 
 #: simulation/data/auras/units/celtic_healer.jsonauraName
 msgid "Deas Celtica"
@@ -578,24 +579,24 @@ msgstr "Deas Celtica"
 msgid ""
 "Melee Soldiers +10% attack damage and all Soldiers −25% experience points "
 "for promotion."
-msgstr ""
+msgstr "Lähitaistelusotilailla on +10 % hyökkäysvahinkoa ja kaikilla sotilailla on -25 % kokemuspisteitä ylennykseen."
 
 #: simulation/data/auras/units/centurion.jsonauraName
 #: simulation/data/auras/units/centurion_1.jsonauraName
 msgid "Combat Leadership"
-msgstr ""
+msgstr "Taistelujohtaminen"
 
 #: simulation/data/auras/units/centurion_1.jsonauraDescription
 msgid "Soldiers +10% attack damage and −25% experience points for promotion."
-msgstr ""
+msgstr "Sotilaille +10 % hyökkäysvahinkoa ja -25 % kokemuspisteitä ylennystä varten."
 
 #: simulation/data/auras/units/centurion_2.jsonauraDescription
 msgid "Marian Legionaries and Centurions +10% movement speed."
-msgstr ""
+msgstr "Marian legioonalaiset ja centurionit saavat +10 % liikkumisnopeutta."
 
 #: simulation/data/auras/units/centurion_2.jsonauraName
 msgid "Century Maneuvers"
-msgstr ""
+msgstr "Vuosikymmenen Manööverit"
 
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
@@ -635,15 +636,15 @@ msgstr "Massojen virkamies"
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraDescription
 msgid "Humans +0.5 health regeneration rate."
-msgstr ""
+msgstr "Ihmisten terveyden palautumisnopeus +0,5."
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraName
 msgid "Father of Medicine"
-msgstr ""
+msgstr "Lääketieteen Isä"
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraDescription
 msgid "Own and Allied Healers +1 healing effect."
-msgstr ""
+msgstr "Omat ja liittolaisten parantajat saavat +1 parantamistehoa."
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraName
 msgid "Hippocratic Oath"
@@ -669,35 +670,35 @@ msgstr "Kevyen jalkaväenuudistukset"
 msgid ""
 "Soldiers, Ships, Siege Engines and Structures do not give loot, +50% "
 "Structure capture points."
-msgstr ""
+msgstr "Sotilaat, laivat, piirityskoneet ja rakenteet eivät anna saalista, ja rakennusten valtauspisteet ovat +50 % korkeammat."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Defensive Strategy"
-msgstr ""
+msgstr "Perikleen puolustusstrategia"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Technologies −10% resource costs, −50% research time."
-msgstr ""
+msgstr "Teknologioiden resurssikustannukset ovat -10 % alhaisemmat ja tutkimisaika on -50 % lyhyempi."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Scholarship and the Arts"
-msgstr ""
+msgstr "Stipendit ja taide"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid "Ships −50% metal cost, construction time, and +15% movement speed."
-msgstr ""
+msgstr "Laivojen metallikustannukset ja rakentamisaika ovat -50 % alhaisemmat ja liikkumisnopeus on +15 % korkeampi."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Preparation"
-msgstr ""
+msgstr "Laivaston valmistelu"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Walls and Palisades −50% resource costs and −20% construction time."
-msgstr ""
+msgstr "Muurien ja palisadien resurssikustannukset ovat -50 % alhaisemmat ja rakentamisaika on -20 % lyhyempi."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Themistoclean Walls"
-msgstr ""
+msgstr "Themistokleen muurit"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid ""
@@ -926,19 +927,19 @@ msgstr "Sotalaivojen lahja"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraDescription
 msgid "Soldiers +10% attack damage, +15% movement speed."
-msgstr ""
+msgstr "Sotilailla on +10 % hyökkäysvahinkoa ja +15 % liikkumisnopeutta."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraName
 msgid "Rapid Conquest"
-msgstr ""
+msgstr "Nopea valloitus"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Soldiers, Structures −10% attack damage."
-msgstr ""
+msgstr "Vihollisen sotilailla ja rakenteilla on -10 % vähemmän hyökkäysvahinkoa."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Undefeated"
-msgstr ""
+msgstr "Voittamaton"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_3.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
@@ -991,7 +992,7 @@ msgstr "Buddhalaisuus"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid "All technologies have −20% resource cost and −30% research time."
-msgstr ""
+msgstr "Kaikki teknologiat ovat 20 % halvempia resurssien suhteen ja tutkimisaika on 30 % lyhyempi."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
@@ -1003,15 +1004,15 @@ msgstr "Elpyminen"
 
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraName
 msgid "Empire Maker"
-msgstr ""
+msgstr "Valtakunnan rakentaja"
 
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraDescription
 msgid "Elephants +15% attack rate, +10% movement speed."
-msgstr ""
+msgstr "Norsut +15 % hyökkäysnopeutta ja +10 % liikkumisnopeutta."
 
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraName
 msgid "Elephant Corps"
-msgstr ""
+msgstr "Norsujoukot"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""
@@ -1141,15 +1142,15 @@ msgstr "Zooiarchos"
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_1.jsonauraDescription
 msgid "Soldiers −25% metal cost, and training time."
-msgstr ""
+msgstr "Sotilaiden metallikustannukset ja koulutusaika ovat -25 % alhaisemmat."
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_1.jsonauraName
 msgid "Great Revolt"
-msgstr ""
+msgstr "Suurkapina"
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_2.jsonauraDescription
 msgid "Agis +50% health."
-msgstr ""
+msgstr "Agis +50 % enemmän terveyttä."
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_2.jsonauraName
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
