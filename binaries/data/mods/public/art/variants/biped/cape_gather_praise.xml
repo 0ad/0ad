@@ -6,11 +6,11 @@
     <animation file="biped/citizen/pray.dae" name="gather_praise" id="praise3" speed="50"/>
   </animations>
   <props>
-    <prop attachpoint="shield"/>
     <prop attachpoint="weapon_R"/>
     <prop attachpoint="weapon_L"/>
-    <prop attachpoint="ammo"/>
-    <prop attachpoint="shield_arm"/>
     <prop attachpoint="weapon_bow"/>
+    <prop attachpoint="shield"/>
+    <prop attachpoint="shield_arm"/>
+    <prop attachpoint="ammo"/>
   </props>
 </variant>

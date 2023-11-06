@@ -6,12 +6,12 @@
     <animation file="biped/gatherer/walk_hoe.dae" name="Run" speed="20"/>
   </animations>
   <props>
-    <prop actor="props/units/tools/hoe.xml" attachpoint="weapon_R"/>
     <prop attachpoint="back"/>
+    <prop actor="props/units/tools/hoe.xml" attachpoint="weapon_R"/>
     <prop attachpoint="weapon_L"/>
+    <prop attachpoint="weapon_bow"/>
     <prop attachpoint="shield"/>
     <prop attachpoint="shield_arm"/>
     <prop attachpoint="ammo"/>
-    <prop attachpoint="weapon_bow"/>
   </props>
 </variant>
