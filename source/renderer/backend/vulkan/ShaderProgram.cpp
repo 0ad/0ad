@@ -21,6 +21,7 @@
 
 #include "graphics/ShaderDefines.h"
 #include "ps/CLogger.h"
+#include "ps/containers/StaticVector.h"
 #include "ps/CStr.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
@@ -28,6 +29,7 @@
 #include "ps/XML/Xeromyces.h"
 #include "renderer/backend/vulkan/DescriptorManager.h"
 #include "renderer/backend/vulkan/Device.h"
+#include "renderer/backend/vulkan/RingCommandContext.h"
 #include "renderer/backend/vulkan/Texture.h"
 #include "renderer/backend/vulkan/Utilities.h"
 
@@ -226,6 +228,9 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(
 		return true;
 	};
 
+	uint32_t texturesDescriptorSetSize = 0;
+	std::unordered_map<CStrIntern, uint32_t> textureMapping;
+
 	auto addDescriptorSets = [&](const XMBElement& element) -> bool
 	{
 		const bool useDescriptorIndexing =
@@ -300,9 +305,9 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(
 								return false;
 							}
 							const CStrIntern name{attributes.GetNamedItem(at_name)};
-							shaderProgram->m_TextureMapping[name] = binding;
-							shaderProgram->m_TexturesDescriptorSetSize =
-								std::max(shaderProgram->m_TexturesDescriptorSetSize, binding + 1);
+							textureMapping[name] = binding;
+							texturesDescriptorSetSize =
+								std::max(texturesDescriptorSetSize, binding + 1);
 						}
 						else
 						{
@@ -470,16 +475,12 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(
 
 	std::vector<VkDescriptorSetLayout> layouts =
 		device->GetDescriptorManager().GetDescriptorSetLayouts();
-	if (shaderProgram->m_TexturesDescriptorSetSize > 0)
+	if (texturesDescriptorSetSize > 0)
 	{
 		ENSURE(!device->GetDescriptorManager().UseDescriptorIndexing());
-		shaderProgram->m_BoundTextures.resize(shaderProgram->m_TexturesDescriptorSetSize);
-		shaderProgram->m_BoundTexturesUID.resize(shaderProgram->m_TexturesDescriptorSetSize);
-		shaderProgram->m_BoundTexturesOutdated = true;
-		shaderProgram->m_TexturesDescriptorSetLayout =
-			device->GetDescriptorManager().GetSingleTypeDescritorSetLayout(
-				VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, shaderProgram->m_TexturesDescriptorSetSize);
-		layouts.emplace_back(shaderProgram->m_TexturesDescriptorSetLayout);
+		shaderProgram->m_TextureBinding.emplace(
+			device, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, texturesDescriptorSetSize, std::move(textureMapping));
+		layouts.emplace_back(shaderProgram->m_TextureBinding->GetDescriptorSetLayout());
 	}
 
 	VkPipelineLayoutCreateInfo pipelineLayoutCreateInfo{};
@@ -524,8 +525,8 @@ int32_t CShaderProgram::GetBindingSlot(const CStrIntern name) const
 		return it->second;
 	if (auto it = m_UniformMapping.find(name); it != m_UniformMapping.end())
 		return it->second + m_PushConstants.size();
-	if (auto it = m_TextureMapping.find(name); it != m_TextureMapping.end())
-		return it->second + m_PushConstants.size() + m_UniformMapping.size();
+	if (const int32_t bindingSlot = m_TextureBinding.has_value() ? m_TextureBinding->GetBindingSlot(name) : -1; bindingSlot != -1)
+		return bindingSlot + m_PushConstants.size() + m_UniformMapping.size();
 	return -1;
 }
 
@@ -548,19 +549,13 @@ void CShaderProgram::Bind()
 
 void CShaderProgram::Unbind()
 {
-	if (m_TexturesDescriptorSetSize > 0)
-	{
-		for (CTexture*& texture : m_BoundTextures)
-			texture = nullptr;
-		for (DeviceObjectUID& uid : m_BoundTexturesUID)
-			uid = 0;
-		m_BoundTexturesOutdated = true;
-	}
+	if (m_TextureBinding.has_value())
+		m_TextureBinding->Unbind();
 }
 
-void CShaderProgram::PreDraw(VkCommandBuffer commandBuffer)
+void CShaderProgram::PreDraw(CRingCommandContext& commandContext)
 {
-	UpdateActiveDescriptorSet(commandBuffer);
+	BindOutdatedDescriptorSets(commandContext);
 	if (m_PushConstantDataMask)
 	{
 		for (uint32_t index = 0; index < 32;)
@@ -574,7 +569,7 @@ void CShaderProgram::PreDraw(VkCommandBuffer commandBuffer)
 			while (indexEnd < 32 && (m_PushConstantDataMask & (1 << indexEnd)) && m_PushConstantDataFlags[index] == m_PushConstantDataFlags[indexEnd])
 				++indexEnd;
 			vkCmdPushConstants(
-				commandBuffer, GetPipelineLayout(),
+				commandContext.GetCommandBuffer(), GetPipelineLayout(),
 				m_PushConstantDataFlags[index],
 				index * 4, (indexEnd - index) * 4, m_PushConstantData.data() + index * 4);
 			index = indexEnd;
@@ -583,22 +578,22 @@ void CShaderProgram::PreDraw(VkCommandBuffer commandBuffer)
 	}
 }
 
-void CShaderProgram::UpdateActiveDescriptorSet(
-	VkCommandBuffer commandBuffer)
+void CShaderProgram::BindOutdatedDescriptorSets(
+	CRingCommandContext& commandContext)
 {
-	if (m_BoundTexturesOutdated)
+	// TODO: combine calls after more sets to bind.
+	PS::StaticVector<std::tuple<uint32_t, VkDescriptorSet>, 1> descriptortSets;
+	if (m_TextureBinding.has_value() && m_TextureBinding->IsOutdated())
 	{
-		m_BoundTexturesOutdated = false;
+		constexpr uint32_t TEXTURE_BINDING_SET = 1u;
+		descriptortSets.emplace_back(TEXTURE_BINDING_SET, m_TextureBinding->UpdateAndReturnDescriptorSet());
+	}
 
-		m_ActiveTexturesDescriptorSet =
-			m_Device->GetDescriptorManager().GetSingleTypeDescritorSet(
-				VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, m_TexturesDescriptorSetLayout,
-				m_BoundTexturesUID, m_BoundTextures);
-		ENSURE(m_ActiveTexturesDescriptorSet != VK_NULL_HANDLE);
-
+	for (const auto [firstSet, descriptorSet] : descriptortSets)
+	{
 		vkCmdBindDescriptorSets(
-			commandBuffer, GetPipelineBindPoint(), GetPipelineLayout(),
-			1, 1, &m_ActiveTexturesDescriptorSet, 0, nullptr);
+			commandContext.GetCommandBuffer(), GetPipelineBindPoint(), GetPipelineLayout(),
+			firstSet, 1, &descriptorSet, 0, nullptr);
 	}
 }
 
@@ -686,13 +681,9 @@ void CShaderProgram::SetTexture(const int32_t bindingSlot, CTexture* texture)
 	else
 	{
 		ENSURE(bindingSlot >= static_cast<int32_t>(m_PushConstants.size() + m_UniformMapping.size()));
+		ENSURE(m_TextureBinding.has_value());
 		const uint32_t index = bindingSlot - (m_PushConstants.size() + m_UniformMapping.size());
-		if (m_BoundTexturesUID[index] != texture->GetUID())
-		{
-			m_BoundTextures[index] = texture;
-			m_BoundTexturesUID[index] = texture->GetUID();
-			m_BoundTexturesOutdated = true;
-		}
+		m_TextureBinding->SetObject(index, texture);
 	}
 }
 

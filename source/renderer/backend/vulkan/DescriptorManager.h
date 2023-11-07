@@ -18,7 +18,9 @@
 #ifndef INCLUDED_RENDERER_BACKEND_VULKAN_DESCRIPTORMANAGER
 #define INCLUDED_RENDERER_BACKEND_VULKAN_DESCRIPTORMANAGER
 
+#include "ps/CStrIntern.h"
 #include "renderer/backend/Sampler.h"
+#include "renderer/backend/vulkan/Device.h"
 #include "renderer/backend/vulkan/Texture.h"
 
 #include <glad/vulkan.h>
@@ -134,6 +136,73 @@ private:
 	std::unordered_map<SingleTypeCacheKey, VkDescriptorSet, SingleTypeCacheKeyHash> m_SingleTypeSets;
 
 	std::unique_ptr<ITexture> m_ErrorTexture;
+};
+
+// TODO: ideally we might want to separate a set and its mapping.
+template<typename DeviceObject>
+class CSingleTypeDescriptorSetBinding
+{
+public:
+	CSingleTypeDescriptorSetBinding(CDevice* device, const VkDescriptorType type,
+		const uint32_t size, std::unordered_map<CStrIntern, uint32_t> mapping)
+		: m_Device{device}, m_Type{type}, m_Mapping{std::move(mapping)}
+	{
+		m_BoundDeviceObjects.resize(size);
+		m_BoundUIDs.resize(size);
+		m_DescriptorSetLayout =
+			m_Device->GetDescriptorManager().GetSingleTypeDescritorSetLayout(m_Type, size);
+	}
+
+	int32_t GetBindingSlot(const CStrIntern name) const
+	{
+		const auto it = m_Mapping.find(name);
+		return it != m_Mapping.end() ? it->second : -1;
+	}
+
+	void SetObject(const int32_t bindingSlot, DeviceObject* object)
+	{
+		if (m_BoundUIDs[bindingSlot] == object->GetUID())
+			return;
+		m_BoundUIDs[bindingSlot] = object->GetUID();
+		m_BoundDeviceObjects[bindingSlot] = object;
+		m_Outdated = true;
+	}
+
+	bool IsOutdated() const { return m_Outdated; }
+
+	VkDescriptorSet UpdateAndReturnDescriptorSet()
+	{
+		ENSURE(m_Outdated);
+		m_Outdated = false;
+
+		VkDescriptorSet descriptorSet =
+			m_Device->GetDescriptorManager().GetSingleTypeDescritorSet(
+				m_Type, m_DescriptorSetLayout, m_BoundUIDs, m_BoundDeviceObjects);
+		ENSURE(descriptorSet != VK_NULL_HANDLE);
+
+		return descriptorSet;
+	}
+
+	void Unbind()
+	{
+		std::fill(m_BoundDeviceObjects.begin(), m_BoundDeviceObjects.end(), nullptr);
+		std::fill(m_BoundUIDs.begin(), m_BoundUIDs.end(), INVALID_DEVICE_OBJECT_UID);
+		m_Outdated = true;
+	}
+
+	VkDescriptorSetLayout GetDescriptorSetLayout() { return m_DescriptorSetLayout; }
+
+private:
+	CDevice* const m_Device;
+	const VkDescriptorType m_Type;
+	const std::unordered_map<CStrIntern, uint32_t> m_Mapping;
+
+	bool m_Outdated{true};
+
+	VkDescriptorSetLayout m_DescriptorSetLayout{VK_NULL_HANDLE};
+
+	std::vector<DeviceObject*> m_BoundDeviceObjects;
+	std::vector<DeviceObjectUID> m_BoundUIDs;
 };
 
 } // namespace Vulkan

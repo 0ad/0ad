@@ -19,12 +19,14 @@
 #define INCLUDED_RENDERER_BACKEND_VULKAN_SHADERPROGRAM
 
 #include "renderer/backend/IShaderProgram.h"
+#include "renderer/backend/vulkan/DescriptorManager.h"
 #include "renderer/backend/vulkan/Texture.h"
 
 #include <array>
 #include <cstddef>
 #include <glad/vulkan.h>
 #include <memory>
+#include <optional>
 #include <unordered_map>
 #include <vector>
 
@@ -41,6 +43,7 @@ namespace Vulkan
 {
 
 class CDevice;
+class CRingCommandContext;
 
 class CVertexInputLayout : public IVertexInputLayout
 {
@@ -91,7 +94,7 @@ public:
 
 	void Bind();
 	void Unbind();
-	void PreDraw(VkCommandBuffer commandBuffer);
+	void PreDraw(CRingCommandContext& commandContext);
 
 	VkPipelineLayout GetPipelineLayout() const { return m_PipelineLayout; }
 	VkPipelineBindPoint GetPipelineBindPoint() const { return VK_PIPELINE_BIND_POINT_GRAPHICS; }
@@ -131,8 +134,8 @@ private:
 	static std::unique_ptr<CShaderProgram> Create(
 		CDevice* device, const CStr& name, const CShaderDefines& defines);
 
-	void UpdateActiveDescriptorSet(
-		VkCommandBuffer commandBuffer);
+	void BindOutdatedDescriptorSets(
+		CRingCommandContext& commandContext);
 
 	CDevice* m_Device = nullptr;
 
@@ -166,14 +169,7 @@ private:
 	std::unordered_map<CStrIntern, uint32_t> m_UniformMapping;
 	std::unordered_map<CStrIntern, uint32_t> m_PushConstantMapping;
 
-	uint32_t m_TexturesDescriptorSetSize = 0;
-	bool m_BoundTexturesOutdated = false;
-
-	VkDescriptorSetLayout m_TexturesDescriptorSetLayout = VK_NULL_HANDLE;
-	std::vector<CTexture*> m_BoundTextures;
-	std::vector<DeviceObjectUID> m_BoundTexturesUID;
-	VkDescriptorSet m_ActiveTexturesDescriptorSet = VK_NULL_HANDLE;
-	std::unordered_map<CStrIntern, uint32_t> m_TextureMapping;
+	std::optional<CSingleTypeDescriptorSetBinding<CTexture>> m_TextureBinding;
 
 	std::unordered_map<VertexAttributeStream, uint32_t> m_StreamLocations;
 };
