@@ -6,11 +6,11 @@
     <animation file="biped/citizen/walk_relax_m.dae" name="Run" speed="20"/>
   </animations>
   <props>
-    <prop actor="" attachpoint="shield"/>
     <prop actor="" attachpoint="weapon_R"/>
     <prop actor="" attachpoint="weapon_L"/>
-    <prop actor="" attachpoint="ammo"/>
-    <prop actor="" attachpoint="shield_arm"/>
     <prop actor="" attachpoint="weapon_bow"/>
+    <prop actor="" attachpoint="shield_arm"/>
+    <prop actor="" attachpoint="shield"/>
+    <prop actor="" attachpoint="ammo"/>
   </props>
 </variant>
