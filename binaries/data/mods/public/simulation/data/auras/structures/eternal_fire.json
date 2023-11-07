@@ -1,0 +1,11 @@
+{
+	"auraName": "Eternal Fire",
+	"type": "range",
+	"radius": 75,
+	"auraDescription": "Structures +50% capture points.",
+	"modifications": [
+		{ "value": "Capturable/CapturePoints", "multiply": 1.50 }
+	],
+	"affects": ["Structure"],
+	"overlayIcon": "art/textures/ui/session/auras/laurel.png"
+}
