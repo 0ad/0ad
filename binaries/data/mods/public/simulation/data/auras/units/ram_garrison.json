@@ -1,0 +1,13 @@
+{
+	"type": "garrison",
+	"stackable": true,
+	"affects": ["Ram"],
+	"affectedPlayers": ["Player", "MutualAlly"],
+	"modifications": [
+		{ "value": "UnitMotion/WalkSpeed", "add": 0.15 },
+		{ "value": "UnitMotion/Acceleration", "add": 1 },
+		{ "value": "Position/TurnRate", "add": 0.5 }
+	],
+	"auraName": "Battering Team",
+	"auraDescription": "Battering Rams +0.15 speed, +1 acceleration, and +0.5 turn rate for each garrisoned soldier."
+}
