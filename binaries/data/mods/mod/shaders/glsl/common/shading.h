@@ -15,6 +15,11 @@ vec3 calculateNormal(vec3 surfaceNormal, vec3 packedTextureNormal, mat3 tangentB
 	return normal;
 }
 
+vec3 calculateSpecular(vec3 normal, vec3 vhalf, vec3 sunColor, vec3 color, float power)
+{
+	return sunColor * color * pow(max(0.001, dot(normal, vhalf)), power);
+}
+
 vec3 calculateShading(vec3 albedo, vec3 sunDiffuse, vec3 specular, vec3 ambient, float shadow, float ao)
 {
 	return (albedo * sunDiffuse + specular.rgb) * shadow + albedo * ambient * ao;
