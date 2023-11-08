@@ -830,7 +830,7 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 
 		const char* glxexts = glXQueryExtensionsString(dpy, scrnum);
 
-		Script::SetProperty(rq, settings, "glx_extensions", glxexts);
+		Script::SetProperty(rq, settings, "GLX_EXTENSIONS", glxexts);
 
 		if (strstr(glxexts, "GLX_MESA_query_renderer") && glXQueryCurrentRendererIntegerMESA && glXQueryCurrentRendererStringMESA)
 		{

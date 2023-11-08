@@ -1073,7 +1073,7 @@ void CDeviceCommandContext::PreDraw()
 {
 	ENSURE(m_InsidePass);
 	ApplyPipelineStateIfDirty();
-	m_ShaderProgram->PreDraw(m_CommandContext->GetCommandBuffer());
+	m_ShaderProgram->PreDraw(*m_CommandContext);
 	if (m_ShaderProgram->IsMaterialConstantsDataOutdated())
 	{
 		const VkDeviceSize alignment =
