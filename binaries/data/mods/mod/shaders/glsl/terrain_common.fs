@@ -102,25 +102,24 @@ void main()
     vec3 sundiffuse = v_lighting;
   #endif
 
-  vec4 specular = vec4(0.0);
+  vec3 specular = vec3(0.0);
+  float emissionWeight = 0.0;
   #if USE_SPECULAR_MAP
-    vec3 specCol;
-    float specPow;
     #if USE_TRIPLANAR
       vec4 s = triplanar(GET_DRAW_TEXTURE_2D(specTex), v_tex);
     #else
       vec4 s = SAMPLE_2D(GET_DRAW_TEXTURE_2D(specTex), v_tex);
     #endif
-    specCol = s.rgb;
-    specular.a = s.a;
-    specPow = effectSettings.y;
-    specular.rgb = sunColor * specCol * pow(max(0.001, dot(normalize(normal), v_half)), specPow);
+    vec3 specCol = s.rgb;
+    float specPow = effectSettings.y;
+    specular = calculateSpecular(normal, normalize(v_half), sunColor, specCol, specPow);
+    emissionWeight = s.a;
   #endif
 
-  vec3 color = calculateShading(texdiffuse, sundiffuse, specular.rgb, ambient, getShadowOnLandscape(), 1.0);
+  vec3 color = calculateShading(texdiffuse, sundiffuse, specular, ambient, getShadowOnLandscape(), 1.0);
 
   #if USE_SPECULAR_MAP && USE_SELF_LIGHT
-    color = mix(texdiffuse, color, specular.a);
+    color = mix(texdiffuse, color, emissionWeight);
   #endif
 
   color = applyFog(color, fogColor, fogParams);

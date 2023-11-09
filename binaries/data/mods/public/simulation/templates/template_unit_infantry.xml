@@ -19,6 +19,9 @@
       <RestrictedClasses datatype="tokens">!Domestic</RestrictedClasses>
     </Slaughter>
   </Attack>
+  <Auras datatype="tokens">
+    units/ram_garrison
+  </Auras>
   <Cost>
     <BuildTime>10</BuildTime>
     <Resources>

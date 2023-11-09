@@ -89,13 +89,14 @@ void main()
     vec3 sundiffuse = v_lighting.rgb;
   #endif
 
-  vec4 specular = vec4(0.0);
+  vec3 specular = vec3(0.0);
+  float emissionWeight = 0.0;
   #if USE_SPECULAR_MAP
     vec4 s = SAMPLE_2D(GET_DRAW_TEXTURE_2D(specTex), coord);
     vec3 specCol = s.rgb;
-    specular.a = s.a;
     float specPow = effectSettings.y;
-    specular.rgb = sunColor * specCol * pow(max(0.001, dot(normalize(normal), v_half)), specPow);
+    specular = calculateSpecular(normal, normalize(v_half), sunColor, specCol, specPow);
+    emissionWeight = s.a;
   #endif
 
   #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
@@ -104,10 +105,10 @@ void main()
     float ao = 1.0;
   #endif
 
-  vec3 color = calculateShading(texdiffuse, sundiffuse, specular.rgb, ambient, getShadow(), ao);
+  vec3 color = calculateShading(texdiffuse, sundiffuse, specular, ambient, getShadow(), ao);
 
   #if USE_SPECULAR_MAP && USE_SELF_LIGHT
-    color = mix(texdiffuse, color, specular.a);
+    color = mix(texdiffuse, color, emissionWeight);
   #endif
 
   color = applyFog(color, fogColor, fogParams);
