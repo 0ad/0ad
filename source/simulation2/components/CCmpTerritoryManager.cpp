@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -548,6 +548,9 @@ void CCmpTerritoryManager::CalculateTerritories()
 
 		m_Territories->set(i, j, owner | TERRITORY_CONNECTED_MASK);
 
+		if (m_CostGrid->get(i, j) < m_ImpassableCost)
+			++m_TerritoryCellCounts[owner];
+
 		FLOODFILL(i, j,
 			// Don't expand non-owner tiles, or tiles that already have a connected mask
 			if (m_Territories->get(nx, nz) != owner)
@@ -580,7 +583,7 @@ std::vector<STerritoryBoundary> CCmpTerritoryManager::ComputeBoundaries()
 
 u8 CCmpTerritoryManager::GetTerritoryPercentage(player_id_t player)
 {
-	if (player <= 0 || static_cast<size_t>(player) >= m_TerritoryCellCounts.size())
+	if (player <= 0 || (m_Territories && static_cast<size_t>(player) >= m_TerritoryCellCounts.size()))
 		return 0;
 
 	CalculateTerritories();
@@ -791,11 +794,18 @@ void CCmpTerritoryManager::SetTerritoryBlinking(entity_pos_t x, entity_pos_t z, 
 
 	player_id_t thisOwner = m_Territories->get(i, j) & TERRITORY_PLAYER_MASK;
 
+	u8 bitmask = m_Territories->get(i, j);
+	u8 blinking = bitmask & TERRITORY_BLINKING_MASK;
+	if (enable && !blinking)
+		m_Territories->set(i, j, bitmask | TERRITORY_BLINKING_MASK);
+	else if (!enable && blinking)
+		m_Territories->set(i, j, bitmask & ~TERRITORY_BLINKING_MASK);
+
 	FLOODFILL(i, j,
-		u8 bitmask = m_Territories->get(nx, nz);
+		bitmask = m_Territories->get(nx, nz);
 		if ((bitmask & TERRITORY_PLAYER_MASK) != thisOwner)
 			continue;
-		u8 blinking = bitmask & TERRITORY_BLINKING_MASK;
+		blinking = bitmask & TERRITORY_BLINKING_MASK;
 		if (enable && !blinking)
 			m_Territories->set(nx, nz, bitmask | TERRITORY_BLINKING_MASK);
 		else if (!enable && blinking)
