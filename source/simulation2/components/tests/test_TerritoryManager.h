@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,11 +17,126 @@
 
 #include "simulation2/system/ComponentTest.h"
 
+#include "maths/Matrix3D.h"
 #include "ps/CStr.h"
 #include "graphics/Terrain.h"
 #include "graphics/TerritoryBoundary.h"
 #include "simulation2/helpers/Grid.h"
 #include "simulation2/components/ICmpTerritoryManager.h"
+#include "simulation2/components/ICmpPlayerManager.h"
+#include "simulation2/components/ICmpTerritoryInfluence.h"
+#include "simulation2/components/ICmpOwnership.h"
+
+class MockPathfinderTerrMan : public ICmpPathfinder
+{
+public:
+	DEFAULT_MOCK_COMPONENT()
+
+	// Test data
+	Grid<NavcellData> m_PassabilityGrid;
+
+	virtual pass_class_t GetPassabilityClass(const std::string&) const override { return 0; }
+	virtual const Grid<NavcellData>& GetPassabilityGrid() override { return m_PassabilityGrid; }
+
+	// Irrelevant part of the mock.
+	virtual void GetPassabilityClasses(std::map<std::string, pass_class_t>&) const override {}
+	virtual void GetPassabilityClasses(std::map<std::string, pass_class_t>&, std::map<std::string, pass_class_t>&) const override {}
+	virtual entity_pos_t GetClearance(pass_class_t) const override { return entity_pos_t::FromInt(1); }
+	virtual entity_pos_t GetMaximumClearance() const override { return entity_pos_t::FromInt(1); }
+	virtual const GridUpdateInformation& GetAIPathfinderDirtinessInformation() const override { static GridUpdateInformation gridInfo; return gridInfo; }
+	virtual void FlushAIPathfinderDirtinessInformation() override {}
+	virtual Grid<u16> ComputeShoreGrid(bool = false) override { return Grid<u16> {}; }
+	virtual u32 ComputePathAsync(entity_pos_t, entity_pos_t, const PathGoal&, pass_class_t, entity_id_t) override { return 1; }
+	virtual void ComputePathImmediate(entity_pos_t, entity_pos_t, const PathGoal&, pass_class_t, WaypointPath&) const override {}
+	virtual u32 ComputeShortPathAsync(entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, const PathGoal&, pass_class_t, bool, entity_id_t, entity_id_t) override { return 1; }
+	virtual WaypointPath ComputeShortPathImmediate(const ShortPathRequest&) const override { return WaypointPath(); }
+	virtual void SetDebugPath(entity_pos_t, entity_pos_t, const PathGoal&, pass_class_t) override {}
+	virtual bool IsGoalReachable(entity_pos_t, entity_pos_t, const PathGoal&, pass_class_t) override { return false; }
+	virtual bool CheckMovement(const IObstructionTestFilter&, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, pass_class_t) const override { return false; }
+	virtual ICmpObstruction::EFoundationCheck CheckUnitPlacement(const IObstructionTestFilter&, entity_pos_t, entity_pos_t, entity_pos_t, pass_class_t, bool = false) const override { return ICmpObstruction::FOUNDATION_CHECK_SUCCESS; }
+	virtual ICmpObstruction::EFoundationCheck CheckBuildingPlacement(const IObstructionTestFilter&, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, entity_id_t, pass_class_t) const override { return ICmpObstruction::FOUNDATION_CHECK_SUCCESS; }
+	virtual ICmpObstruction::EFoundationCheck CheckBuildingPlacement(const IObstructionTestFilter&, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, entity_pos_t, entity_id_t, pass_class_t, bool) const override { return ICmpObstruction::FOUNDATION_CHECK_SUCCESS; }
+	virtual void SetDebugOverlay(bool) override {}
+	virtual void SetHierDebugOverlay(bool) override {}
+	virtual void SendRequestedPaths() override {}
+	virtual void StartProcessingMoves(bool) override {}
+	virtual void UpdateGrid() override {}
+	virtual void GetDebugData(u32&, double&, Grid<u8>&) const override {}
+	virtual void SetAtlasOverlay(bool, pass_class_t = 0) override {}
+};
+
+class MockPlayerMgrTerrMan : public ICmpPlayerManager
+{
+public:
+	DEFAULT_MOCK_COMPONENT()
+
+	int32_t GetNumPlayers() override { return 2; }
+	entity_id_t GetPlayerByID(int32_t id) override { return id + 1; }
+};
+
+class MockTerrInfTerrMan : public ICmpTerritoryInfluence
+{
+public:
+	DEFAULT_MOCK_COMPONENT()
+
+	bool IsRoot() const override { return true; };
+	u16 GetWeight() const override { return 10; };
+	u32 GetRadius() const override { return m_Radius; };
+
+	u32 m_Radius = 0;
+};
+
+class MockOwnershipTerrMan : public ICmpOwnership
+{
+public:
+	DEFAULT_MOCK_COMPONENT()
+
+	player_id_t GetOwner() const override { return 1; };
+	void SetOwner(player_id_t) override {};
+	void SetOwnerQuiet(player_id_t) override {};
+};
+
+class MockPositionTerrMan : public ICmpPosition
+{
+public:
+	DEFAULT_MOCK_COMPONENT()
+
+	void SetTurretParent(entity_id_t, const CFixedVector3D&) override {}
+	entity_id_t GetTurretParent() const override { return INVALID_ENTITY; }
+	void UpdateTurretPosition() override {}
+	std::set<entity_id_t>* GetTurrets() override { return nullptr; }
+	bool IsInWorld() const override { return true; }
+	void MoveOutOfWorld() override {}
+	void MoveTo(entity_pos_t, entity_pos_t) override {}
+	void MoveAndTurnTo(entity_pos_t, entity_pos_t, entity_angle_t) override {}
+	void JumpTo(entity_pos_t, entity_pos_t) override {}
+	void SetHeightOffset(entity_pos_t) override {}
+	entity_pos_t GetHeightOffset() const override { return entity_pos_t::Zero(); }
+	void SetHeightFixed(entity_pos_t) override {}
+	entity_pos_t GetHeightFixed() const override { return entity_pos_t::Zero(); }
+	entity_pos_t GetHeightAtFixed(entity_pos_t, entity_pos_t) const override { return entity_pos_t::Zero(); }
+	bool IsHeightRelative() const override { return true; }
+	void SetHeightRelative(bool) override {}
+	bool CanFloat() const override { return false; }
+	void SetFloating(bool) override {}
+	void SetActorFloating(bool) override {}
+	void SetConstructionProgress(fixed) override {}
+	CFixedVector3D GetPosition() const override { return m_Pos; }
+	CFixedVector2D GetPosition2D() const override { return CFixedVector2D(m_Pos.X, m_Pos.Z); }
+	CFixedVector3D GetPreviousPosition() const override { return CFixedVector3D(); }
+	CFixedVector2D GetPreviousPosition2D() const override { return CFixedVector2D(); }
+	fixed GetTurnRate() const override { return fixed::Zero(); }
+	void TurnTo(entity_angle_t) override {}
+	void SetYRotation(entity_angle_t) override {}
+	void SetXZRotation(entity_angle_t, entity_angle_t) override {}
+	CFixedVector3D GetRotation() const override { return CFixedVector3D(); }
+	fixed GetDistanceTravelled() const override { return fixed::Zero(); }
+	void GetInterpolatedPosition2D(float, float&, float&, float&) const override {}
+	CMatrix3D GetInterpolatedTransform(float) const override { return CMatrix3D(); }
+
+	CFixedVector3D m_Pos;
+};
+
 
 class TestCmpTerritoryManager : public CxxTest::TestSuite
 {
@@ -29,11 +144,58 @@ public:
 	void setUp()
 	{
 		CxxTest::setAbortTestOnFail(true);
+		g_VFS = CreateVfs();
+		TS_ASSERT_OK(g_VFS->Mount(L"", DataDir() / "mods" / "_test.sim" / "", VFS_MOUNT_MUST_EXIST));
+		TS_ASSERT_OK(g_VFS->Mount(L"cache", DataDir() / "_testcache" / "", 0, VFS_MAX_PRIORITY));
+		CXeromyces::Startup();
 	}
 
 	void tearDown()
 	{
+		CXeromyces::Terminate();
+		g_VFS.reset();
+		DeleteDirectory(DataDir()/"_testcache");
+	}
 
+	// Regression test for D5181 / fix for rP27673 issue
+	void test_calculate_territories_uninitialised()
+	{
+		ComponentTestHelper test(g_ScriptContext);
+		ICmpTerritoryManager* cmp = test.Add<ICmpTerritoryManager>(CID_TerritoryManager, "", SYSTEM_ENTITY);
+
+		MockPathfinderTerrMan pathfinder;
+		test.AddMock(SYSTEM_ENTITY, IID_Pathfinder, pathfinder);
+
+		MockPlayerMgrTerrMan playerMan;
+		test.AddMock(SYSTEM_ENTITY, IID_PlayerManager, playerMan);
+
+		pathfinder.m_PassabilityGrid.resize(ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE * 5, ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE * 5);
+
+		MockTerrInfTerrMan terrInf;
+		test.AddMock(5, IID_TerritoryInfluence, terrInf);
+		MockOwnershipTerrMan ownership;
+		test.AddMock(5, IID_Ownership, ownership);
+		MockPositionTerrMan position;
+		test.AddMock(5, IID_Position, position);
+
+		position.m_Pos = CFixedVector3D(
+			entity_pos_t::FromInt(ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE * 5 + ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE / 2),
+			entity_pos_t::FromInt(1),
+			entity_pos_t::FromInt(ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE * 5 + ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE / 2)
+		);
+		terrInf.m_Radius = 1;
+
+		TS_ASSERT_EQUALS(cmp->GetTerritoryPercentage(0), 0);
+		TS_ASSERT_EQUALS(cmp->GetTerritoryPercentage(1), 4); // 5*5 = 25 -> 1 tile out of 25 is 4%
+		TS_ASSERT_EQUALS(cmp->GetTerritoryPercentage(2), 0);
+
+		terrInf.m_Radius = ICmpTerritoryManager::NAVCELLS_PER_TERRITORY_TILE * 10;
+
+		test.HandleMessage(cmp, CMessageTerrainChanged(0, 0, 0, 0), true);
+
+		TS_ASSERT_EQUALS(cmp->GetTerritoryPercentage(0), 0);
+		TS_ASSERT_EQUALS(cmp->GetTerritoryPercentage(1), 100);
+		TS_ASSERT_EQUALS(cmp->GetTerritoryPercentage(2), 0);
 	}
 
 	void test_boundaries()
