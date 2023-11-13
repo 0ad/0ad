@@ -1,0 +1,25 @@
+{
+	"genericName": "Roman Roads",
+	"specificName": {
+		"rome": "Viae Romanum"
+	},
+	"description": "All roads lead to Rome.",
+	"cost": {
+		"stone": 500
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_town" },
+			{ "civ": "rome" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "wheel.png",
+	"researchTime": 60,
+	"tooltip": "All Land Units +5% movement speed.",
+	"modifications": [
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.05 }
+	],
+	"affects": ["Unit !Ship"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}
