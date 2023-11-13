@@ -10,12 +10,13 @@
 # tcbr ssa
 # Yam Huss
 # דב בארי וכטפוגל
+# מוטי וורנר
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2013-06-22 12:54+0000\n"
-"Last-Translator: דב בארי וכטפוגל <dovbeeriv@gmail.com>, 2021\n"
+"Last-Translator: מוטי וורנר, 2023\n"
 "Language-Team: Hebrew (http://app.transifex.com/wildfire-games/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -174,7 +175,7 @@ msgstr "השרת לא מציע את הצפנת ה TLS הנדרשת"
 
 #: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "אימות נכשל. בסיסמהלא נכונה  או חשבון אינו קיים"
+msgstr "אימות נכשל. הסיסמה לא נכונה  או חשבון אינו קיים"
 
 #: lobby/XmppClient.cpp:1447
 msgid "The user or system requested a disconnect"
@@ -258,7 +259,7 @@ msgstr "כישלון באימות חתימה."
 #: ps/SavedGame.cpp:142
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "שמורי משחק ל '%s'"
+msgstr "שמור משחק ל '%s'"
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"

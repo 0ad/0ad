@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2023-11-10 08:09+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Zuzana Miadoková, 2019,2021-2023\n"
 "Language-Team: Slovak (http://app.transifex.com/wildfire-games/0ad/language/sk/)\n"
@@ -72,6 +72,14 @@ msgstr "Umiestni v Ohrade pre pomalý prírastok +2 jedla."
 msgid "Garrison within the Corral to gain a slow trickle of +1 food."
 msgstr "Umiestni v Ohrade pre pomalý prírastok +1 jedla."
 
+#: simulation/data/auras/structures/eternal_fire.jsonauraDescription
+msgid "Structures +50% capture points."
+msgstr ""
+
+#: simulation/data/auras/structures/eternal_fire.jsonauraName
+msgid "Eternal Fire"
+msgstr ""
+
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Workers +75% grain gather rate around a captured Rotary Mill."
 msgstr ""
@@ -122,14 +130,6 @@ msgstr "Budovy -15% ceny technológii a času potrebného pre výskum."
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
 msgstr "Stredisko štúdia"
-
-#: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
-msgid "Structures +50% capture points garrison regeneration rate."
-msgstr "Budovy +50% rýchlosť regenerácie posádky."
-
-#: simulation/data/auras/structures/loyalty_regen.jsonauraName
-msgid "Loyalty"
-msgstr "Lojalita"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
@@ -1174,3 +1174,13 @@ msgstr "Vylepšenia Heliótov"
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
 msgstr "Kopijníci +1 sila obsadzovania, +25% poškodenie pri boji zblízka."
+
+#: simulation/data/auras/units/ram_garrison.jsonauraDescription
+msgid ""
+"Battering Rams +0.15 speed, +1 acceleration, and +0.5 turn rate for each "
+"garrisoned soldier."
+msgstr ""
+
+#: simulation/data/auras/units/ram_garrison.jsonauraName
+msgid "Battering Team"
+msgstr ""

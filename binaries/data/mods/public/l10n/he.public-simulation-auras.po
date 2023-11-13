@@ -9,12 +9,13 @@
 # popilood cute
 # Ruby Gross
 # Vladimir Amir
+# מוטי וורנר
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2023-11-10 08:09+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: popilood cute, 2023\n"
+"Last-Translator: מוטי וורנר, 2023\n"
 "Language-Team: Hebrew (http://app.transifex.com/wildfire-games/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "מנועי מצור שמוצבים 3+ לקצב ההתחדשות התַּקִּינוֹת"
+msgstr "מכונות מצור שנמצאות באיזור מוגן מתרפאות מהר יותר, בקצב של +3 לבריאות"
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
@@ -40,7 +41,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr "ספינות שמוצבות 10+ לקצב ההתחדשות התַּקִּינוֹת"
+msgstr "ספינות שנמצאות במקום מוגן מתרפאות מהר יותר, בקצב של +10 לבריאות"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -64,6 +65,14 @@ msgstr ""
 msgid "Garrison within the Corral to gain a slow trickle of +1 food."
 msgstr ""
 
+#: simulation/data/auras/structures/eternal_fire.jsonauraDescription
+msgid "Structures +50% capture points."
+msgstr ""
+
+#: simulation/data/auras/structures/eternal_fire.jsonauraName
+msgid "Eternal Fire"
+msgstr ""
+
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Workers +75% grain gather rate around a captured Rotary Mill."
 msgstr ""
@@ -74,7 +83,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "חיילים 20%+ לנזק תקיפת תִגרָה או מרוחקת"
+msgstr "חיילים גורמים ל+20% יותר נזק במאבק יד ביד ובירי מרחק"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -83,7 +92,7 @@ msgstr "הלהט הדתי"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "פועלים 15%+ מהירות איסוף"
+msgstr "עובדים אוספים משאבים במהירות גבוהה יותר ב 15%"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -93,7 +102,7 @@ msgstr "אַהֲבַת הַמוֹלֶדֶת"
 msgid ""
 "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
 "damage."
-msgstr "חיילים 1+ לעמידות מפני ריסוק, גדיעה, דקירה ו- 10%+ לנזק תקיפת תִגרָה או מרוחקת"
+msgstr "חיילים קשים יותר לפגיעה, עם +1 התנגדות לריסוק, חיתוך ודקירה, ומגבירים את נזק ההתקפה שלהם בקרב קרוב ובהתקפות מרחוק ב-10%."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -114,14 +123,6 @@ msgstr "מבנים מפחיתים ב 5% עלות משאבים טכנולוגים
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
 msgstr "מרכז הלַמדָנוּת"
-
-#: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
-msgid "Structures +50% capture points garrison regeneration rate."
-msgstr "מבנים מעלים ב 50% את קצב ההתחדשות של נקודות לְכִידָה לחֵיל מַצָּב"
-
-#: simulation/data/auras/structures/loyalty_regen.jsonauraName
-msgid "Loyalty"
-msgstr "נאמנות"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
@@ -1166,3 +1167,13 @@ msgstr "הרפורמות"
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
 msgstr "+1 נוסף כוח התקפה, ו +25% כוח להזיק."
+
+#: simulation/data/auras/units/ram_garrison.jsonauraDescription
+msgid ""
+"Battering Rams +0.15 speed, +1 acceleration, and +0.5 turn rate for each "
+"garrisoned soldier."
+msgstr ""
+
+#: simulation/data/auras/units/ram_garrison.jsonauraName
+msgid "Battering Team"
+msgstr ""
