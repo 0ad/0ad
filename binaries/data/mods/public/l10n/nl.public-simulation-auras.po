@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2023-11-10 08:09+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: rollieoo, 2022-2023\n"
 "Language-Team: Dutch (http://app.transifex.com/wildfire-games/0ad/language/nl/)\n"
@@ -77,6 +77,14 @@ msgstr "Zet het vee op stal om continu +2 voedsel te verkrijgen.."
 msgid "Garrison within the Corral to gain a slow trickle of +1 food."
 msgstr "Zet het vee op stal om continu +1 voedsel te verkrijgen.."
 
+#: simulation/data/auras/structures/eternal_fire.jsonauraDescription
+msgid "Structures +50% capture points."
+msgstr "Gebouwen +50% veroverpunten."
+
+#: simulation/data/auras/structures/eternal_fire.jsonauraName
+msgid "Eternal Fire"
+msgstr "Eeuwige vlam"
+
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Workers +75% grain gather rate around a captured Rotary Mill."
 msgstr "Verzamelaars +75% verzamelsnelheid in de buurt van een rosmolen."
@@ -127,14 +135,6 @@ msgstr "Gebouwen −15% grondstoffenkosten en onderzoekstijd voor technologieën
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
 msgstr "Centrum van geleerdheid"
-
-#: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
-msgid "Structures +50% capture points garrison regeneration rate."
-msgstr "Gebouwen +50% herstelsnelheid van veroverpunten bij bemanning."
-
-#: simulation/data/auras/structures/loyalty_regen.jsonauraName
-msgid "Loyalty"
-msgstr "Loyaliteit"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
@@ -1179,3 +1179,13 @@ msgstr "Helotenhervormingen"
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
 msgstr "Speervechters +1 veroveren, +25% mêlee aanval."
+
+#: simulation/data/auras/units/ram_garrison.jsonauraDescription
+msgid ""
+"Battering Rams +0.15 speed, +1 acceleration, and +0.5 turn rate for each "
+"garrisoned soldier."
+msgstr "Stormrammen +0.15 snelheid, +1 versnelling en +0.5 draaisnelheid voor iedere bemande soldaat."
+
+#: simulation/data/auras/units/ram_garrison.jsonauraName
+msgid "Battering Team"
+msgstr "Belegeringsteams"

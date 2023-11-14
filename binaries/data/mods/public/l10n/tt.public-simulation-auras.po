@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2023-11-10 08:09+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Timur Seber <seber.tatsoft@gmail.com>, 2023\n"
 "Language-Team: Tatar (http://app.transifex.com/wildfire-games/0ad/language/tt/)\n"
@@ -58,6 +58,14 @@ msgstr ""
 
 #: simulation/data/auras/structures/corral_garrison_small.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +1 food."
+msgstr ""
+
+#: simulation/data/auras/structures/eternal_fire.jsonauraDescription
+msgid "Structures +50% capture points."
+msgstr ""
+
+#: simulation/data/auras/structures/eternal_fire.jsonauraName
+msgid "Eternal Fire"
 msgstr ""
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
@@ -110,14 +118,6 @@ msgstr "Биналарда технологияларның фәнни хезм�
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
 msgstr "Белемлек үзәге"
-
-#: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
-msgid "Structures +50% capture points garrison regeneration rate."
-msgstr "Биналарны басып алу очколарның кире кайтуы тизлеге 50%-ка күтәрелә."
-
-#: simulation/data/auras/structures/loyalty_regen.jsonauraName
-msgid "Loyalty"
-msgstr "Бирелгәнлек"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
@@ -1162,3 +1162,13 @@ msgstr "Илотларны реформалау"
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
 msgstr "Сөңгечеләрнең басып алу тизлеге 1-гә күтәрелә һәм алар якын сугышта 25%-ка күбрәк зарар китерәләр."
+
+#: simulation/data/auras/units/ram_garrison.jsonauraDescription
+msgid ""
+"Battering Rams +0.15 speed, +1 acceleration, and +0.5 turn rate for each "
+"garrisoned soldier."
+msgstr ""
+
+#: simulation/data/auras/units/ram_garrison.jsonauraName
+msgid "Battering Team"
+msgstr ""

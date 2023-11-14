@@ -32,7 +32,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2023-11-10 08:09+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: ahmed t, 2023\n"
 "Language-Team: Arabic (http://app.transifex.com/wildfire-games/0ad/language/ar/)\n"
@@ -84,6 +84,14 @@ msgstr "الحصن داخل الحظيرة لكسب تدفق بطيء من +2 و
 msgid "Garrison within the Corral to gain a slow trickle of +1 food."
 msgstr "الحصن داخل الحظيرة لكسب تدفق بطيء من +1 طعام."
 
+#: simulation/data/auras/structures/eternal_fire.jsonauraDescription
+msgid "Structures +50% capture points."
+msgstr ""
+
+#: simulation/data/auras/structures/eternal_fire.jsonauraName
+msgid "Eternal Fire"
+msgstr ""
+
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Workers +75% grain gather rate around a captured Rotary Mill."
 msgstr ""
@@ -134,14 +142,6 @@ msgstr "الهياكل - تخفيض 15% في تكاليف الموارد الت�
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
 msgstr "مركز المعرفة"
-
-#: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
-msgid "Structures +50% capture points garrison regeneration rate."
-msgstr "الهياكل +50% نقاط الاحتلال ومعدل تجديد القوات المتواجدة."
-
-#: simulation/data/auras/structures/loyalty_regen.jsonauraName
-msgid "Loyalty"
-msgstr "الولاء"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
@@ -1185,4 +1185,14 @@ msgstr "إصلاحات الهيلوت"
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
+msgstr ""
+
+#: simulation/data/auras/units/ram_garrison.jsonauraDescription
+msgid ""
+"Battering Rams +0.15 speed, +1 acceleration, and +0.5 turn rate for each "
+"garrisoned soldier."
+msgstr ""
+
+#: simulation/data/auras/units/ram_garrison.jsonauraName
+msgid "Battering Team"
 msgstr ""

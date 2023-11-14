@@ -37,7 +37,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2023-11-10 08:09+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Quim Reb, 2023\n"
 "Language-Team: Catalan (http://app.transifex.com/wildfire-games/0ad/language/ca/)\n"
@@ -89,6 +89,14 @@ msgstr "Refugia unitats al corral per tenir un fluxe de +2 de menjar."
 msgid "Garrison within the Corral to gain a slow trickle of +1 food."
 msgstr "Refugia unitats al corral per tenir un fluxe de +1 de menjar."
 
+#: simulation/data/auras/structures/eternal_fire.jsonauraDescription
+msgid "Structures +50% capture points."
+msgstr ""
+
+#: simulation/data/auras/structures/eternal_fire.jsonauraName
+msgid "Eternal Fire"
+msgstr ""
+
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Workers +75% grain gather rate around a captured Rotary Mill."
 msgstr ""
@@ -139,14 +147,6 @@ msgstr "-15% de cost en recursos de tecnologia i temps de recerca en estructures
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
 msgstr "Centre del coneixement"
-
-#: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
-msgid "Structures +50% capture points garrison regeneration rate."
-msgstr "Les estructures regeneren els punts de captura un 50% més ràpid quan hi ha unitats refugiades."
-
-#: simulation/data/auras/structures/loyalty_regen.jsonauraName
-msgid "Loyalty"
-msgstr "Lleialtat"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
@@ -1191,3 +1191,13 @@ msgstr "Reformes dels ilotes"
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
 msgstr "+1 d'atac de captura i +25% d'atac cos a cos per als soldats amb llança."
+
+#: simulation/data/auras/units/ram_garrison.jsonauraDescription
+msgid ""
+"Battering Rams +0.15 speed, +1 acceleration, and +0.5 turn rate for each "
+"garrisoned soldier."
+msgstr ""
+
+#: simulation/data/auras/units/ram_garrison.jsonauraName
+msgid "Battering Team"
+msgstr ""
