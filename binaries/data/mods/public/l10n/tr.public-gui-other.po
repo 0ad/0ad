@@ -30,13 +30,13 @@
 # Tamer Kesenkaş
 # Tayfun Toprakcıoğlu
 # Volkan Gezer
-# yakup
+# 9d4282795e87ad099e39d98812f1a822_ade2f01
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-10-30 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>, 2014-2018,2021-2023\n"
+"Last-Translator: 9d4282795e87ad099e39d98812f1a822_ade2f01 <c3fa67bcf1b8b90bf10d2d5dae1637ab_127851>, 2014-2018,2021-2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1345,7 +1345,7 @@ msgstr "%(nick)s — %(name)s "
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "0 A.D. Hazırlayanlar"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
@@ -1541,7 +1541,7 @@ msgstr "Anısına"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "0 A.D. Kurucu"
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
@@ -1557,7 +1557,7 @@ msgstr "Özel teşekkürler:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr " 0 A.D. 'yi mümkün kıldıkları için tüm topluluğa teşekkür ederiz."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -3567,11 +3567,11 @@ msgstr "Yükle"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Bu oyun kaydı 0 A.D. 'nin %(requiredVersion)s sürümüne ihtiyaç duyuyorken,  %(currentVersion)s sürümünü kullanıyorsunuz."
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Bu oyun kaydı 0 A.D. 'nin daha düşük sürümüne ihtiyaç duyuyor."
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
@@ -4061,7 +4061,7 @@ msgstr "Pencere modu"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "0 A.D. 'yi bir pencere içinde başlat."
 
 #: gui/options/options.json[1].options[10].label
 msgid "Mouse drag"
@@ -5205,7 +5205,7 @@ msgstr "Yapı Ağacı"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: 0 A.D. de yer alan medeniyetlerin yapı ağacını görüntüleyin."
 
 #: gui/pregame/MainMenuItems.js:48
 #: gui/reference/civinfo/civinfo.xml:(caption):21
@@ -5216,7 +5216,7 @@ msgstr "Medeniyete Genel Bakış"
 #: gui/pregame/MainMenuItems.js:49
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: 0 A.D. da öne çıkan medeniyetler hakkında bilgi edinin."
 
 #: gui/pregame/MainMenuItems.js:60
 msgid "Catafalque Overview"
@@ -5224,7 +5224,7 @@ msgstr "Katafalka Genel Bakış"
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "0 A.D. de yer alan katafalkların bonuslarını karşılaştırın."
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Map Overview"
@@ -5232,7 +5232,7 @@ msgstr "Haritaya Genel Bakış"
 
 #: gui/pregame/MainMenuItems.js:68
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "0 A.D. de yer alan farklı haritaları görüntüleyin."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:132
 msgid "Continue Campaign"
@@ -5385,7 +5385,7 @@ msgstr "Atlas Senaryo Düzenleyicisi'ni yeni bir pencerede açın.  Oyunu komut-
 
 #: gui/pregame/MainMenuItems.js:280
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "0 A.D. 'yi kapatıp Senaryo Editörünü açmak istediğinizden emin misiniz?"
 
 #: gui/pregame/MainMenuItems.js:287
 msgid ""
@@ -5403,7 +5403,7 @@ msgstr "Katkıda Bulunanlar"
 
 #: gui/pregame/MainMenuItems.js:293
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "0 A.D. yapımcılarını görüntüle."
 
 #: gui/pregame/MainMenuItems.js:299
 msgid "Exit"
@@ -5449,7 +5449,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr ""
+msgstr "Tarayıcınızda 0 A.D. IRC sohbetini açmak için tıklayın (webchat.quakenet.org'da #0ad). Her türlü görevi yerine getiren gönüllüler tarafından yürütülmektedir; sorunuzun yanıtlanması biraz zaman alabilir. Alternatif olarak forumu kullanabilirsiniz (bkz. Web sitesi)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5457,7 +5457,7 @@ msgstr "Hatayı Bildirin"
 
 #: gui/pregame/ProjectInformation.js:42
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Tıklayarak 0 A.D. Sorun raporu, çökme veya hata takibini ziyaret edin."
 
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
@@ -5474,7 +5474,7 @@ msgstr "Oyunu Çevirin"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Tıklayarak 0 A.D. çeviri sayfasını tarayıcınızda açın."
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
@@ -5532,7 +5532,7 @@ msgstr "Geribildirimi aç"
 
 #: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr ""
+msgstr "0 A.D. 'yi iyileştirmeye yardımcı olduğunuz için teşekkür ederiz!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
@@ -5549,7 +5549,7 @@ msgstr "bilinmiyor"
 
 #: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
-msgstr ""
+msgstr "0 A.D. 'yi iyileştirmeye yardımcı olun!"
 
 #: gui/pregame/userreport/userreport.js:87
 msgid ""
@@ -5951,7 +5951,7 @@ msgstr "[imgleft=\"iconLag\"]Bu oyun özellikle büyük haritalarla ve fazla say
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]0 A.D. Özgür Yazılımdır: geliştirilmesine katılabilirsiniz."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
