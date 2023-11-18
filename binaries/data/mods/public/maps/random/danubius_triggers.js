@@ -19,6 +19,7 @@ const danubiusAttackerTemplates = deepfreeze({
 	"healers": TriggerHelper.GetTemplateNamesByClasses("Healer", "gaul", undefined, undefined, true),
 	"champions": TriggerHelper.GetTemplateNamesByClasses("Champion", "gaul", undefined, undefined, true),
 	"champion_infantry": TriggerHelper.GetTemplateNamesByClasses("Champion+Infantry", "gaul", undefined, undefined, true),
+	"infantry_ranged": TriggerHelper.GetTemplateNamesByClasses("Infantry+Ranged", "gaul", undefined, undefined, true),
 	"citizen_soldiers": TriggerHelper.GetTemplateNamesByClasses("CitizenSoldier", "gaul", undefined, "Basic", true),
 	"heroes": [
 		// Excludes the Vercingetorix variant
@@ -46,8 +47,15 @@ var gallicBuildingGarrison = [
 		"unitTemplates": danubiusAttackerTemplates.champions,
 	},
 	{
-		"buildingClasses": ["Tower", "Outpost"],
+		"buildingClasses": ["Tower"],
 		"unitTemplates": danubiusAttackerTemplates.champion_infantry
+	}
+];
+
+var gallicBuildingTurret = [
+	{
+		"buildingClasses": ["Outpost"],
+		"unitTemplates": danubiusAttackerTemplates.infantry_ranged
 	}
 ];
 
@@ -197,6 +205,18 @@ Trigger.prototype.GarrisonAllGallicBuildings = function()
 		{
 			let unitCounts = TriggerHelper.SpawnAndGarrisonAtClasses(gaulPlayer, buildingClass, buildingGarrison.unitTemplates, 1);
 			this.debugLog("Garrisoning at " + buildingClass + ": " + uneval(unitCounts));
+		}
+};
+
+Trigger.prototype.TurretAllGallicBuildings = function()
+{
+	this.debugLog("Turreting all gallic buildings");
+
+	for (let buildingTurret of gallicBuildingTurret)
+		for (let buildingClass of buildingTurret.buildingClasses)
+		{
+			let unitCounts = TriggerHelper.SpawnAndTurretAtClasses(gaulPlayer, buildingClass, buildingTurret.unitTemplates, 1);
+			this.debugLog("Turreting at " + buildingClass + ": " + uneval(unitCounts));
 		}
 };
 
@@ -627,6 +647,7 @@ Trigger.prototype.InitDanubius = function()
 
 	this.StartCelticRitual();
 	this.GarrisonAllGallicBuildings();
+	this.TurretAllGallicBuildings();
 	this.SpawnInitialCCDefenders();
 	this.SpawnCCAttackers();
 

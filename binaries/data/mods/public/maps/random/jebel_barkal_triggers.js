@@ -68,8 +68,8 @@ var jebelBarkal_formations = [
 var scaleByTime = (minCurrent, min0, min60) => min0 + (min60 - min0) * Math.min(1, minCurrent / 60);
 
 /**
- *  @returns min0 value at the beginning of the game, min60 after an hour of gametime or longer and
- *  a proportionate number between these two values before the first hour is reached.
+ *  @returns min value at map size 128 (very small), max at map size 512 and
+ *  a proportionate number between these two values.
  */
 var scaleByMapSize = (min, max) => min + (max - min) * (TriggerHelper.GetMapSizeTiles() - 128) / (512 - 128);
 
@@ -191,12 +191,18 @@ var jebelBarkal_buildingGarrison = difficulty => [
 
 	},
 	{
-		"buildingClasses": ["StoneWall+Tower"],
+		"buildingClasses": ["WallTower"],
 		"unitTemplates": jebelBarkal_templates.champion_infantry_ranged,
 		"capacityRatio": difficulty > 3 ? 1 : 0
-	},
+	}
+];
+
+/**
+ * This defines which units are spawned and turretted at the gamestart per building.
+ */
+var jebelBarkal_buildingTurret = difficulty => [
 	{
-		"buildingClasses": ["StoneWall+!Tower"],
+		"buildingClasses": ["WallLong", "WallMedium", "WallShort"],
 		"unitTemplates": difficulty > 3 ? jebelBarkal_templates.champion_infantry_ranged : jebelBarkal_templates.citizenSoldier_infantry_ranged,
 		"capacityRatio": (difficulty - 2) / 3
 	}
@@ -369,6 +375,7 @@ Trigger.prototype.JebelBarkal_Init = function()
 	this.JebelBarkal_SetDefenderStance();
 	this.JebelBarkal_StartRitualAnimations();
 	this.JebelBarkal_GarrisonBuildings();
+	this.JebelBarkal_TurretBuildings();
 	this.DoAfterDelay(jebelBarkal_firstCityPatrolTime(this.GetDifficulty(), isNomad) * 60 * 1000, "JebelBarkal_SpawnCityPatrolGroups", {});
 	this.JebelBarkal_StartAttackTimer(jebelBarkal_firstAttackTime(this.GetDifficulty(), isNomad));
 };
@@ -431,6 +438,12 @@ Trigger.prototype.JebelBarkal_GarrisonBuildings = function()
 {
 	for (let buildingGarrison of jebelBarkal_buildingGarrison(this.GetDifficulty()))
 		TriggerHelper.SpawnAndGarrisonAtClasses(jebelBarkal_playerID, buildingGarrison.buildingClasses, buildingGarrison.unitTemplates, buildingGarrison.capacityRatio);
+};
+
+Trigger.prototype.JebelBarkal_TurretBuildings = function()
+{
+	for (let buildingTurret of jebelBarkal_buildingTurret(this.GetDifficulty()))
+		TriggerHelper.SpawnAndTurretAtClasses(jebelBarkal_playerID, buildingTurret.buildingClasses, buildingTurret.unitTemplates, buildingTurret.capacityRatio);
 };
 
 /**
