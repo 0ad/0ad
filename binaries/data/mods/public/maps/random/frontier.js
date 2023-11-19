@@ -21,12 +21,15 @@ Engine.SetProgress(20);
 
 if (!isNomad())
 {
-	let pattern = g_MapSettings.TeamPlacement || pickRandom(Object.keys(g_PlayerbaseTypes));
-	createBasesByPattern(
-		pattern,
-		g_PlayerbaseTypes[pattern].distance,
-		g_PlayerbaseTypes[pattern].groupedDistance,
-		randomAngle());
+	let pattern = g_MapSettings.TeamPlacement;
+	createBases(
+		...playerPlacementByPattern(
+			pattern,
+			fractionToTiles(randFloat(0.2, 0.35)),
+			fractionToTiles(randFloat(0.08, 0.1)),
+			randomAngle(),
+			undefined),
+		undefined);
 }
 Engine.SetProgress(40);
 

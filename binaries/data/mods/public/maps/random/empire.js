@@ -17,7 +17,14 @@ Engine.SetProgress(10);
 
 const teamsArray = getTeamsArray();
 const startAngle = randomAngle();
-createBasesByPattern("stronghold", fractionToTiles(0.37), fractionToTiles(0.04), startAngle);
+createBases(
+	...playerPlacementByPattern(
+		"stronghold",
+		fractionToTiles(0.37),
+		fractionToTiles(0.04),
+		startAngle,
+		undefined),
+	undefined);
 Engine.SetProgress(20);
 
 // Change the starting angle and add the players again
@@ -29,7 +36,14 @@ if (teamsArray.length == 2)
 if (teamsArray.length == 4)
 	rotation = 5/4 * Math.PI;
 
-createBasesByPattern("stronghold", fractionToTiles(0.15), fractionToTiles(0.04), startAngle + rotation);
+createBases(
+	...playerPlacementByPattern(
+		"stronghold",
+		fractionToTiles(0.15),
+		fractionToTiles(0.04),
+		startAngle + rotation,
+		undefined),
+	undefined);
 Engine.SetProgress(40);
 
 addElements(shuffleArray([

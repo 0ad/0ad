@@ -148,7 +148,15 @@ function pickSize(sizes)
  */
 function createBasesByPattern(type, distance, groupedDistance, startAngle)
 {
-	return createBases(...g_PlayerbaseTypes[type].getPosition(distance, groupedDistance, startAngle), g_PlayerbaseTypes[type].walls);
+	error("createBasesByPattern() has been deprecated. Use playerPlacementByPattern() instead.");
+	return createBases(
+		...playerPlacementByPattern(
+			type,			// patternName
+			distance,		// distance
+			groupedDistance,
+			startAngle,		// angle
+			undefined), 	// center
+		undefined);			// walls
 }
 
 function createBases(playerIDs, playerPosition, walls)

@@ -605,6 +605,31 @@ function getTeamsArray()
 }
 
 /**
+ * Determine player starting positions based on the specified pattern.
+ */
+function playerPlacementByPattern(patternName, distance = undefined, groupedDistance = undefined, angle = undefined, center = undefined)
+{
+	if (patternName === undefined)
+		patternName = g_MapSettings.TeamPlacement;
+
+	switch (patternName)
+	{
+		case "radial":
+			return playerPlacementCircle(distance, angle, center);
+		case "river":
+			return playerPlacementRiver(angle, distance, center);
+		case "line":
+			return placeLine(getTeamsArray(), distance, groupedDistance, angle);
+		case "stronghold":
+			return placeStronghold(getTeamsArray(), distance, groupedDistance, angle);
+		case "randomGroup":
+			return playerPlacementRandom(sortAllPlayers(), undefined);
+		default:
+			throw new Error("Unknown placement pattern: " + patternName);
+	}
+}
+
+/**
  * Determine player starting positions on a circular pattern.
  */
 function playerPlacementCircle(radius, startingAngle = undefined, center = undefined)

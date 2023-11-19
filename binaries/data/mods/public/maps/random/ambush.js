@@ -18,18 +18,17 @@ createArea(
 
 Engine.SetProgress(10);
 
-var playerIDs;
-var playerPosition;
 if (!isNomad())
 {
-	let pattern = g_MapSettings.TeamPlacement || pickRandom(Object.keys(g_PlayerbaseTypes));
-
-	[playerIDs, playerPosition] =
-		createBasesByPattern(
-			pattern,
-			g_PlayerbaseTypes[pattern].distance,
-			g_PlayerbaseTypes[pattern].groupedDistance,
-			randomAngle());
+	var [playerIDs, playerPosition] =
+		createBases(
+			...playerPlacementByPattern(
+				g_MapSettings.TeamPlacement,
+				fractionToTiles(randFloat(0.2, 0.35)),
+				fractionToTiles(randFloat(0.08, 0.1)),
+				randomAngle(),
+				undefined),
+			undefined);
 
 	markPlayerAvoidanceArea(playerPosition, defaultPlayerBaseRadius());
 }

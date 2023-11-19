@@ -25,7 +25,15 @@ const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
 const startAngle = randomAngle();
-const [playerIDs, playerPosition] = createBasesByPattern("radial", fractionToTiles(0.38), fractionToTiles(0.05), startAngle);
+const [playerIDs, playerPosition] =
+	createBases(
+		...playerPlacementByPattern(
+			"radial",
+			fractionToTiles(0.38),
+			fractionToTiles(0.05),
+			startAngle,
+			undefined),
+		undefined);
 Engine.SetProgress(20);
 
 addCenterLake();

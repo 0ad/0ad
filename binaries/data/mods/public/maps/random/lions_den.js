@@ -25,7 +25,14 @@ createArea(
 
 Engine.SetProgress(10);
 
-createBasesByPattern("radial", fractionToTiles(0.4), fractionToTiles(randFloat(0.05, 0.1)), startAngle);
+createBases(
+	...playerPlacementByPattern(
+		"radial",
+		fractionToTiles(0.4),
+		fractionToTiles(randFloat(0.05, 0.1)),
+		startAngle,
+		undefined),
+	undefined);
 Engine.SetProgress(20);
 
 createSunkenTerrain();

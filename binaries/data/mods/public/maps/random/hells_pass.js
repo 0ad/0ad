@@ -22,7 +22,14 @@ Engine.SetProgress(10);
 
 const teamsArray = getTeamsArray();
 const startAngle = randomAngle();
-createBasesByPattern("line", fractionToTiles(0.2), fractionToTiles(0.08), startAngle);
+createBases(
+	...playerPlacementByPattern(
+		"line",
+		fractionToTiles(0.2),
+		fractionToTiles(0.08),
+		startAngle,
+		undefined),
+	undefined);
 Engine.SetProgress(20);
 
 placeBarriers();

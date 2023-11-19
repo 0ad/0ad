@@ -17,7 +17,15 @@ createArea(
 
 Engine.SetProgress(20);
 
-const [playerIDs, playerPosition] = createBasesByPattern("stronghold", fractionToTiles(randFloat(0.2, 0.35)), fractionToTiles(randFloat(0.05, 0.1)), randomAngle());
+const [playerIDs, playerPosition] =
+	createBases(
+		...playerPlacementByPattern(
+			"stronghold",
+			fractionToTiles(randFloat(0.2, 0.35)),
+			fractionToTiles(randFloat(0.05, 0.1)),
+			randomAngle(),
+			undefined),
+		undefined);
 markPlayerAvoidanceArea(playerPosition, defaultPlayerBaseRadius());
 
 Engine.SetProgress(30);
