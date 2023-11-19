@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -145,7 +145,7 @@ public:
 
 		LDR_BeginRegistering();
 		mapReader->LoadMap(L"maps/skirmishes/Median Oasis (2).pmp",
-			*sim2.GetScriptInterface().GetContext(), JS::UndefinedHandleValue,
+			sim2.GetScriptInterface().GetContext(), JS::UndefinedHandleValue,
 			&terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 			&sim2, &sim2.GetSimContext(), -1, false);
 		LDR_EndRegistering();
@@ -259,7 +259,7 @@ public:
 
 		LDR_BeginRegistering();
 		mapReader->LoadMap(L"maps/scenarios/Peloponnese.pmp",
-			*sim2.GetScriptInterface().GetContext(), JS::UndefinedHandleValue,
+			sim2.GetScriptInterface().GetContext(), JS::UndefinedHandleValue,
 			&terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 			&sim2, &sim2.GetSimContext(), -1, false);
 		LDR_EndRegistering();
@@ -316,7 +316,7 @@ public:
 
 		LDR_BeginRegistering();
 		mapReader->LoadMap(L"maps/scenarios/Peloponnese.pmp",
-			*sim2.GetScriptInterface().GetContext(), JS::UndefinedHandleValue,
+			sim2.GetScriptInterface().GetContext(), JS::UndefinedHandleValue,
 			&terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 			&sim2, &sim2.GetSimContext(), -1, false);
 		LDR_EndRegistering();

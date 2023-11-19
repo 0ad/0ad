@@ -254,7 +254,7 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 		Script::GetProperty(rq, attribs, "script", scriptFile);
 		Script::GetProperty(rq, attribs, "settings", &settings);
 
-		m_World->RegisterInitRMS(scriptFile, *scriptInterface.GetContext(), settings, m_PlayerID);
+		m_World->RegisterInitRMS(scriptFile, scriptInterface.GetContext(), settings, m_PlayerID);
 	}
 	else
 	{
@@ -263,7 +263,7 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 		Script::GetProperty(rq, attribs, "map", mapFile);
 		Script::GetProperty(rq, attribs, "settings", &settings);
 
-		m_World->RegisterInit(mapFile, *scriptInterface.GetContext(), settings, m_PlayerID);
+		m_World->RegisterInit(mapFile, scriptInterface.GetContext(), settings, m_PlayerID);
 	}
 	if (m_GameView)
 		LDR_Register([&waterManager = g_Renderer.GetSceneRenderer().GetWaterManager()](const double)

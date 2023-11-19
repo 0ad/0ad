@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -90,7 +90,7 @@ public:
 		for (const VfsPath& path : paths)
 		{
 			CSimContext context;
-			CComponentManager componentManager(context, g_ScriptContext, true);
+			CComponentManager componentManager(context, *g_ScriptContext, true);
 			ScriptTestSetup(componentManager.GetScriptInterface());
 
 			ScriptRequest rq(componentManager.GetScriptInterface());
@@ -117,7 +117,7 @@ public:
 			// Clean up previous scripts.
 			g_ScriptContext->ShrinkingGC();
 			CSimContext context;
-			CComponentManager componentManager(context, g_ScriptContext, true);
+			CComponentManager componentManager(context, *g_ScriptContext, true);
 
 			ScriptTestSetup(componentManager.GetScriptInterface());
 

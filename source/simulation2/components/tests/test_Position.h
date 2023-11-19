@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -65,7 +65,7 @@ public:
 
 	void test_basic()
 	{
-		ComponentTestHelper test(g_ScriptContext);
+		ComponentTestHelper test(*g_ScriptContext);
 
 		MockTerrain terrain;
 		test.AddMock(SYSTEM_ENTITY, IID_Terrain, terrain);
@@ -137,7 +137,7 @@ public:
 
 	void test_water()
 	{
-		ComponentTestHelper test(g_ScriptContext);
+		ComponentTestHelper test(*g_ScriptContext);
 
 		MockTerrain terrain;
 		test.AddMock(SYSTEM_ENTITY, IID_Terrain, terrain);
@@ -210,7 +210,7 @@ public:
 
 	void test_serialize()
 	{
-		ComponentTestHelper test(g_ScriptContext);
+		ComponentTestHelper test(*g_ScriptContext);
 
 		MockTerrain terrain;
 		test.AddMock(SYSTEM_ENTITY, IID_Terrain, terrain);

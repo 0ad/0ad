@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -54,7 +54,7 @@ public:
 	void test_LoadTemplate()
 	{
 		CSimContext context;
-		CComponentManager man(context, g_ScriptContext);
+		CComponentManager man(context, *g_ScriptContext);
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;
@@ -88,7 +88,7 @@ public:
 	void test_LoadTemplate_scriptcache()
 	{
 		CSimContext context;
-		CComponentManager man(context, g_ScriptContext);
+		CComponentManager man(context, *g_ScriptContext);
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;
@@ -148,7 +148,7 @@ public:
 	void test_LoadTemplate_errors()
 	{
 		CSimContext context;
-		CComponentManager man(context, g_ScriptContext);
+		CComponentManager man(context, *g_ScriptContext);
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;
@@ -180,7 +180,7 @@ public:
 	void test_LoadTemplate_multiple()
 	{
 		CSimContext context;
-		CComponentManager man(context, g_ScriptContext);
+		CComponentManager man(context, *g_ScriptContext);
 		man.LoadComponentTypes();
 
 		entity_id_t ent1 = 1, ent2 = 2;

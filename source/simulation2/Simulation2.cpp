@@ -54,7 +54,7 @@ class CSimulation2Impl
 {
 public:
 	CSimulation2Impl(CUnitManager* unitManager, std::shared_ptr<ScriptContext> cx, CTerrain* terrain) :
-		m_SimContext(), m_ComponentManager(m_SimContext, cx),
+		m_SimContext(), m_ComponentManager(m_SimContext, *cx),
 		m_EnableOOSLog(false), m_EnableSerializationTest(false), m_RejoinTestTurn(-1), m_TestingRejoin(false),
 		m_MapSettings(cx->GetGeneralJSContext()), m_InitAttributes(cx->GetGeneralJSContext())
 	{
@@ -443,7 +443,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 			Script::GetProperty(rq, m_InitAttributes, "map", mapFile);
 
 			VfsPath mapfilename = VfsPath(mapFile).ChangeExtension(L".pmp");
-			mapReader->LoadMap(mapfilename, *scriptInterface.GetContext(), JS::UndefinedHandleValue,
+			mapReader->LoadMap(mapfilename, scriptInterface.GetContext(), JS::UndefinedHandleValue,
 				m_SecondaryTerrain.get(), NULL, NULL, NULL, NULL, NULL, NULL,
 				NULL, NULL, m_SecondaryContext.get(), INVALID_PLAYER, true); // throws exception on failure
 		}
@@ -502,9 +502,9 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 	// (TODO: we ought to schedule this for a frame where we're not
 	// running the sim update, to spread the load)
 	if (m_TurnNumber % 500 == 0)
-		scriptInterface.GetContext()->ShrinkingGC();
+		scriptInterface.GetContext().ShrinkingGC();
 	else
-		scriptInterface.GetContext()->MaybeIncrementalGC(0.0f);
+		scriptInterface.GetContext().MaybeIncrementalGC(0.0f);
 
 	if (m_EnableOOSLog)
 		DumpState();

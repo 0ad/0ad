@@ -160,7 +160,7 @@ public:
 	// Regression test for D5181 / fix for rP27673 issue
 	void test_calculate_territories_uninitialised()
 	{
-		ComponentTestHelper test(g_ScriptContext);
+		ComponentTestHelper test(*g_ScriptContext);
 		ICmpTerritoryManager* cmp = test.Add<ICmpTerritoryManager>(CID_TerritoryManager, "", SYSTEM_ENTITY);
 
 		MockPathfinderTerrMan pathfinder;
