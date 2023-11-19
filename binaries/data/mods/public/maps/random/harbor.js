@@ -33,7 +33,7 @@ const [playerIDs, playerPosition] =
 			fractionToTiles(0.05),
 			startAngle,
 			undefined),
-		undefined);
+		true);
 Engine.SetProgress(20);
 
 addCenterLake();

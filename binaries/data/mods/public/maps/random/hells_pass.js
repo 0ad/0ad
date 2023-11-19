@@ -29,7 +29,7 @@ createBases(
 		fractionToTiles(0.08),
 		startAngle,
 		undefined),
-	undefined);
+	false);
 Engine.SetProgress(20);
 
 placeBarriers();

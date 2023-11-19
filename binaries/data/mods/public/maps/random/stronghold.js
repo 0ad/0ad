@@ -25,7 +25,7 @@ const [playerIDs, playerPosition] =
 			fractionToTiles(randFloat(0.05, 0.1)),
 			randomAngle(),
 			undefined),
-		undefined);
+		false);
 markPlayerAvoidanceArea(playerPosition, defaultPlayerBaseRadius());
 
 Engine.SetProgress(30);

@@ -615,7 +615,7 @@ function playerPlacementByPattern(patternName, distance = undefined, groupedDist
 	switch (patternName)
 	{
 		case "radial":
-			return playerPlacementCircle(distance, angle, center);
+			return playerPlacementCircle(distance, angle, center).slice(0, 2);
 		case "river":
 			return playerPlacementRiver(angle, distance, center);
 		case "line":

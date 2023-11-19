@@ -24,7 +24,7 @@ createBases(
 		fractionToTiles(0.04),
 		startAngle,
 		undefined),
-	undefined);
+	false);
 Engine.SetProgress(20);
 
 // Change the starting angle and add the players again
@@ -43,7 +43,7 @@ createBases(
 		fractionToTiles(0.04),
 		startAngle + rotation,
 		undefined),
-	undefined);
+	false);
 Engine.SetProgress(40);
 
 addElements(shuffleArray([

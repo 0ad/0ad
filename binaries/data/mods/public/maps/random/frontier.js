@@ -29,7 +29,7 @@ if (!isNomad())
 			fractionToTiles(randFloat(0.08, 0.1)),
 			randomAngle(),
 			undefined),
-		undefined);
+		g_PlayerbaseTypes[pattern].walls);
 }
 Engine.SetProgress(40);
 

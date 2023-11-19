@@ -32,7 +32,7 @@ createBases(
 		fractionToTiles(randFloat(0.05, 0.1)),
 		startAngle,
 		undefined),
-	undefined);
+	true);
 Engine.SetProgress(20);
 
 createSunkenTerrain();
