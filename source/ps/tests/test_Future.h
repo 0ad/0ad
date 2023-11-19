@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -54,14 +54,6 @@ public:
 			TS_ASSERT_EQUALS(future.Get(), 1);
 		}
 
-		// Convertible type.
-		{
-			Future<int> future;
-			std::function<void()> task = future.Wrap([]() -> u8 { return 1; });
-			task();
-			TS_ASSERT_EQUALS(future.Get(), 1);
-		}
-
 		static int destroyed = 0;
 		// No trivial constructor or destructor. Also not copiable.
 		struct NonDef
@@ -80,21 +72,21 @@ public:
 		TS_ASSERT_EQUALS(destroyed, 0);
 		{
 			Future<NonDef> future;
-			std::function<void()> task = future.Wrap([]() { return 1; });
+			std::function<void()> task = future.Wrap([]() { return NonDef{1}; });
 			task();
 			TS_ASSERT_EQUALS(future.Get().value, 1);
 		}
 		TS_ASSERT_EQUALS(destroyed, 1);
 		{
 			Future<NonDef> future;
-			std::function<void()> task = future.Wrap([]() { return 1; });
+			std::function<void()> task = future.Wrap([]() { return NonDef{1}; });
 		}
 		TS_ASSERT_EQUALS(destroyed, 1);
 		/**
 		 * TODO: find a way to test this
 		{
 			Future<NonDef> future;
-			std::function<void()> task = future.Wrap([]() { return 1; });
+			std::function<void()> task = future.Wrap([]() { return NonDef{1}; });
 			future.CancelOrWait();
 			TS_ASSERT_THROWS(future.Get(), const Future<NonDef>::BadFutureAccess&);
 		}

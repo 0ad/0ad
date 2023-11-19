@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -280,7 +280,8 @@ template<typename ResultType>
 template<typename T>
 PackagedTask<ResultType> Future<ResultType>::Wrap(T&& func)
 {
-	static_assert(std::is_convertible_v<std::invoke_result_t<T>, ResultType>, "The return type of the wrapped function cannot be converted to the type of the Future.");
+	static_assert(std::is_same_v<std::invoke_result_t<T>, ResultType>,
+		"The return type of the wrapped function is not the same as the type the Future expects.");
 	m_SharedState = std::make_shared<SharedState>(std::move(func));
 	return PackagedTask<ResultType>(m_SharedState);
 }
