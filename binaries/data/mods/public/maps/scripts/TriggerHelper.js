@@ -556,12 +556,12 @@ TriggerHelper.SpawnAndGarrisonAtClasses = function(playerID, classes, templates,
 
 	for (let entGarrisonHolder of Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(playerID))
 	{
-		let cmpIdentity = Engine.QueryInterface(entGarrisonHolder, IID_Identity);
-		if (!cmpIdentity || !MatchesClassList(cmpIdentity.GetClassesList(), classes))
-			continue;
-
 		let cmpGarrisonHolder = Engine.QueryInterface(entGarrisonHolder, IID_GarrisonHolder);
 		if (!cmpGarrisonHolder)
+			continue;
+
+		let cmpIdentity = Engine.QueryInterface(entGarrisonHolder, IID_Identity);
+		if (!cmpIdentity || !MatchesClassList(cmpIdentity.GetClassesList(), classes))
 			continue;
 
 		// TODO: account for already garrisoned entities and garrison size.

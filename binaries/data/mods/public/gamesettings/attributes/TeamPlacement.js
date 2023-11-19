@@ -43,7 +43,7 @@ GameSettings.prototype.Attributes.TeamPlacement = class TeamPlacement extends Ga
 		if (this.settings.map.map === "random" || this.value !== "random")
 			return false;
 
-		this.value = pickRandom(this.available).Id;
+		this.value = pickRandom(this.available);
 		return true;
 	}
 };
