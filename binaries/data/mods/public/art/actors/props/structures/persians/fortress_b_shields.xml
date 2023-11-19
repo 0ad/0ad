@@ -13,16 +13,16 @@
     <variant frequency="1" name="shield-pers-aspis-1">
       <textures>
         <texture file="props/shield/pers_aspis_1.png" name="baseTex"/>
-        <texture name="specTex" file="null_white.dds"/>
-        <texture file="default_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="shield-pers-aspis-2">
       <textures>
-        <texture file="props/shield/pers_aspis_2.png" name="baseTex"/>
-        <texture name="specTex" file="null_white.dds"/>
-        <texture file="default_norm.png" name="normTex"/>
-      </textures>
+	    <texture file="props/shield/pers_aspis_2.png" name="baseTex"/>
+        <texture file="props/shield/aspis_smooth_a_norm.png" name="normTex"/>
+        <texture file="props/shield/aspis_smooth_a_spec.png" name="specTex"/>
+	  </textures>
     </variant>
   </group>
   <material>player_trans_norm_spec.xml</material>
