@@ -349,8 +349,9 @@ public:
 	/**
 	 * Return a function spec from a C++ function.
 	 */
-	template <auto callable, GetterFor<decltype(callable)> thisGetter = nullptr, u16 flags = JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT>
-	static JSFunctionSpec Wrap(const char* name)
+	template <auto callable, GetterFor<decltype(callable)> thisGetter = nullptr>
+	static JSFunctionSpec Wrap(const char* name,
+		const u16 flags = JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT)
 	{
 		return JS_FN(name, (&ToJSNative<callable, thisGetter>), args_info<decltype(callable)>::nb_args, flags);
 	}
@@ -358,8 +359,9 @@ public:
 	/**
 	 * Return a JSFunction from a C++ function.
 	 */
-	template <auto callable, GetterFor<decltype(callable)> thisGetter = nullptr, u16 flags = JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT>
-	static JSFunction* Create(const ScriptRequest& rq, const char* name)
+	template <auto callable, GetterFor<decltype(callable)> thisGetter = nullptr>
+	static JSFunction* Create(const ScriptRequest& rq, const char* name,
+		const u16 flags = JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT)
 	{
 		return JS_NewFunction(rq.cx, &ToJSNative<callable, thisGetter>, args_info<decltype(callable)>::nb_args, flags, name);
 	}
@@ -367,8 +369,9 @@ public:
 	/**
 	 * Register a function on the native scope (usually 'Engine').
 	 */
-	template <auto callable, GetterFor<decltype(callable)> thisGetter = nullptr, u16 flags = JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT>
-	static void Register(const ScriptRequest& rq, const char* name)
+	template <auto callable, GetterFor<decltype(callable)> thisGetter = nullptr>
+	static void Register(const ScriptRequest& rq, const char* name,
+		const u16 flags = JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT)
 	{
 		JS_DefineFunction(rq.cx, rq.nativeScope, name, &ToJSNative<callable, thisGetter>, args_info<decltype(callable)>::nb_args, flags);
 	}
@@ -378,8 +381,9 @@ public:
 	 * Prefer the version taking ScriptRequest unless you have a good reason not to.
 	 * @see Register
 	 */
-	template <auto callable, GetterFor<decltype(callable)> thisGetter = nullptr, u16 flags = JSPROP_ENUMERATE|JSPROP_READONLY|JSPROP_PERMANENT>
-	static void Register(JSContext* cx, JS::HandleObject scope, const char* name)
+	template <auto callable, GetterFor<decltype(callable)> thisGetter = nullptr>
+	static void Register(JSContext* cx, JS::HandleObject scope, const char* name,
+		const u16 flags = JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT)
 	{
 		JS_DefineFunction(cx, scope, name, &ToJSNative<callable, thisGetter>, args_info<decltype(callable)>::nb_args, flags);
 	}

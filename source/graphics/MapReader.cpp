@@ -32,6 +32,7 @@
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Loader.h"
+#include "ps/TaskManager.h"
 #include "ps/World.h"
 #include "ps/XML/Xeromyces.h"
 #include "renderer/PostprocManager.h"
@@ -39,6 +40,7 @@
 #include "renderer/WaterManager.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptContext.h"
+#include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptRequest.h"
 #include "scriptinterface/JSON.h"
 #include "simulation2/Simulation2.h"
@@ -61,11 +63,10 @@
 #pragma warning(disable: 4458) // Declaration hides class member.
 #endif
 
-CMapReader::CMapReader()
-	: xml_reader(0), m_PatchesPerSide(0), m_MapGen(0)
-{
-	cur_terrain_tex = 0;	// important - resets generator state
-}
+// TODO: Maybe this should be optimized depending on the map size.
+constexpr int MAP_GENERATION_CONTEXT_SIZE{96 * MiB};
+
+CMapReader::CMapReader() = default;
 
 // LoadMap: try to load the map from given file; reinitialise the scene to new data if successful
 void CMapReader::LoadMap(const VfsPath& pathname, const ScriptContext& cx,  JS::HandleValue settings, CTerrain *pTerrain_,
@@ -218,8 +219,13 @@ void CMapReader::LoadRandomMap(const CStrW& scriptFile, const ScriptContext& cx,
 	// load map generator with random map script
 	LDR_Register([this, scriptFile](const double)
 	{
-		return GenerateMap(scriptFile);
-	}, L"CMapReader::GenerateMap", 20000);
+		return StartMapGeneration(scriptFile);
+	}, L"CMapReader::StartMapGeneration", 1);
+
+	LDR_Register([this](const double)
+	{
+		return PollMapGeneration();
+	}, L"CMapReader::PollMapGeneration", 19999);
 
 	// parse RMS results into terrain structure
 	LDR_Register([this](const double)
@@ -1320,56 +1326,70 @@ int CMapReader::LoadRMSettings()
 	return 0;
 }
 
-int CMapReader::GenerateMap(const CStrW& scriptFile)
+struct CMapReader::GeneratorState
+{
+	std::atomic<int> progress{1};
+	Future<Script::StructuredClone> task;
+
+	~GeneratorState()
+	{
+		task.CancelOrWait();
+	}
+};
+
+int CMapReader::StartMapGeneration(const CStrW& scriptFile)
 {
 	ScriptRequest rq(pSimulation2->GetScriptInterface());
 
-	if (!m_MapGen)
-	{
-		// Initialize map generator
-		m_MapGen = new CMapGenerator();
+	m_GeneratorState = std::make_unique<GeneratorState>();
 
-		VfsPath scriptPath;
-
-		if (scriptFile.length())
-			scriptPath = L"maps/random/" + scriptFile;
-
-		// Stringify settings to pass across threads
-		std::string scriptSettings = Script::StringifyJSON(rq, &m_ScriptSettings);
-
-		// Try to generate map
-		m_MapGen->GenerateMap(scriptPath, scriptSettings);
-	}
-
-	// Check status
-	int progress = m_MapGen->GetProgress();
-	if (progress < 0)
-	{
-		// RMS failed - return to main menu
-		throw PSERROR_Game_World_MapLoadFailed("Error generating random map.\nCheck application log for details.");
-	}
-	else if (progress == 0)
-	{
-		// Finished, get results as StructuredClone object, which must be read to obtain the JS::Value
-		Script::StructuredClone results = m_MapGen->GetResults();
-
-		// Parse data into simulation context
-		JS::RootedValue data(rq.cx);
-		Script::ReadStructuredClone(rq, results, &data);
-
-		if (data.isUndefined())
+	// The settings are stringified to pass them to the task.
+	m_GeneratorState->task = Threading::TaskManager::Instance().PushTask(
+		[&progress = m_GeneratorState->progress, scriptFile,
+			settings = Script::StringifyJSON(rq, &m_ScriptSettings)]
 		{
-			// RMS failed - return to main menu
-			throw PSERROR_Game_World_MapLoadFailed("Error generating random map.\nCheck application log for details.");
-		}
-		else
-		{
-			m_MapData.init(rq.cx, data);
-		}
-	}
+			PROFILE2("Map Generation");
 
-	// return progress
-	return progress;
+			const CStrW scriptPath{scriptFile.empty() ? L"" : L"maps/random/" + scriptFile};
+
+			const std::shared_ptr<ScriptContext> mapgenContext{ScriptContext::CreateContext(
+				MAP_GENERATION_CONTEXT_SIZE)};
+			ScriptInterface mapgenInterface{"Engine", "MapGenerator", mapgenContext};
+
+			return RunMapGenerationScript(progress, mapgenInterface, scriptPath, settings);
+		});
+
+	return 0;
+}
+
+[[noreturn]] void ThrowMapGenerationError()
+{
+	throw PSERROR_Game_World_MapLoadFailed{
+		"Error generating random map.\nCheck application log for details."};
+};
+
+int CMapReader::PollMapGeneration()
+{
+	ENSURE(m_GeneratorState);
+
+	if (!m_GeneratorState->task.IsReady())
+		return m_GeneratorState->progress.load();
+
+	const Script::StructuredClone results{m_GeneratorState->task.Get()};
+	if (!results)
+		ThrowMapGenerationError();
+
+	// Parse data into simulation context
+	ScriptRequest rq(pSimulation2->GetScriptInterface());
+	JS::RootedValue data{rq.cx};
+	Script::ReadStructuredClone(rq, results, &data);
+
+	if (data.isUndefined())
+		ThrowMapGenerationError();
+
+	m_MapData.init(rq.cx, data);
+
+	return 0;
 };
 
 
@@ -1652,5 +1672,4 @@ CMapReader::~CMapReader()
 {
 	// Cleaup objects
 	delete xml_reader;
-	delete m_MapGen;
 }

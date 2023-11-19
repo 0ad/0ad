@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,6 +18,8 @@
 #include "graphics/MapGenerator.h"
 #include "ps/Filesystem.h"
 #include "simulation2/system/ComponentTest.h"
+
+#include <atomic>
 
 class TestMapGenerator : public CxxTest::TestSuite
 {
@@ -52,9 +54,16 @@ public:
 			ScriptInterface scriptInterface("Engine", "MapGenerator", g_ScriptContext);
 			ScriptTestSetup(scriptInterface);
 
-			CMapGeneratorWorker worker(&scriptInterface);
-			worker.InitScriptInterface(0);
-			scriptInterface.LoadGlobalScriptFile(path);
+			// It's never read in the test so it doesn't matter to what value it's initialized. For
+			// good practice it's initialized to 1.
+			std::atomic<int> progress{1};
+
+			const Script::StructuredClone result{RunMapGenerationScript(progress, scriptInterface,
+				path, "{\"Seed\": 0}", JSPROP_ENUMERATE | JSPROP_PERMANENT)};
+
+			// The test scripts don't call `ExportMap` so `RunMapGenerationScript` allways returns
+			// `nullptr`.
+			TS_ASSERT_EQUALS(result, nullptr);
 		}
 	}
 };
