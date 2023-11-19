@@ -156,7 +156,12 @@ function placePlayerBase(playerBaseArgs)
 	if (isNomad())
 		return;
 
-	placeCivDefaultStartingEntities(playerBaseArgs.playerPosition, playerBaseArgs.playerID, playerBaseArgs.Walls !== undefined ? playerBaseArgs.Walls : true);
+	placeCivDefaultStartingEntities(
+		playerBaseArgs.playerPosition,
+		playerBaseArgs.playerID,
+		playerBaseArgs.Walls !== undefined ? playerBaseArgs.Walls : true,
+		6,
+		BUILDING_ORIENTATION);
 
 	if (playerBaseArgs.PlayerTileClass)
 		addCivicCenterAreaToClass(playerBaseArgs.playerPosition, playerBaseArgs.PlayerTileClass);
