@@ -83,7 +83,15 @@ public:
 	 * @param debugName Name of this interface for CScriptStats purposes.
 	 * @param context ScriptContext to use when initializing this interface.
 	 */
-	ScriptInterface(const char* nativeScopeName, const char* debugName, const std::shared_ptr<ScriptContext>& context);
+	ScriptInterface(const char* nativeScopeName, const char* debugName, ScriptContext& context);
+
+	template<typename Context>
+	ScriptInterface(const char* nativeScopeName, const char* debugName, Context&& context) :
+		ScriptInterface(nativeScopeName, debugName, *context)
+	{
+		static_assert(std::is_lvalue_reference_v<Context>, "`ScriptInterface` doesn't take ownership "
+			"of the context.");
+	}
 
 	/**
 	 * Alternate constructor. This creates the new Realm in the same Compartment as the neighbor scriptInterface.
@@ -137,7 +145,7 @@ public:
 	 * ScriptInterface::Request and use the context from that.
 	 */
 	JSContext* GetGeneralJSContext() const;
-	std::shared_ptr<ScriptContext> GetContext() const;
+	ScriptContext& GetContext() const;
 
 	/**
 	 * Load global scripts that most script interfaces need,

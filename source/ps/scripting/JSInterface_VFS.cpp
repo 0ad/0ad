@@ -286,30 +286,33 @@ VFS_ScriptFunctions(Simulation);
 VFS_ScriptFunctions(Maps);
 #undef VFS_ScriptFunctions
 
-void RegisterScriptFunctions_ReadWriteAnywhere(const ScriptRequest& rq)
+void RegisterScriptFunctions_ReadWriteAnywhere(const ScriptRequest& rq,
+	const u16 flags /*= JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT */)
 {
-	ScriptFunction::Register<&Script_ListDirectoryFiles_GUI>(rq, "ListDirectoryFiles");
-	ScriptFunction::Register<&Script_FileExists_GUI>(rq, "FileExists");
-	ScriptFunction::Register<&GetFileMTime>(rq, "GetFileMTime");
-	ScriptFunction::Register<&GetFileSize>(rq, "GetFileSize");
-	ScriptFunction::Register<&Script_ReadFile_GUI>(rq, "ReadFile");
-	ScriptFunction::Register<&Script_ReadFileLines_GUI>(rq, "ReadFileLines");
-	ScriptFunction::Register<&Script_ReadJSONFile_GUI>(rq, "ReadJSONFile");
-	ScriptFunction::Register<&Script_WriteJSONFile_GUI>(rq, "WriteJSONFile");
-	ScriptFunction::Register<&DeleteCampaignSave>(rq, "DeleteCampaignSave");
+	ScriptFunction::Register<&Script_ListDirectoryFiles_GUI>(rq, "ListDirectoryFiles", flags);
+	ScriptFunction::Register<&Script_FileExists_GUI>(rq, "FileExists", flags);
+	ScriptFunction::Register<&GetFileMTime>(rq, "GetFileMTime", flags);
+	ScriptFunction::Register<&GetFileSize>(rq, "GetFileSize", flags);
+	ScriptFunction::Register<&Script_ReadFile_GUI>(rq, "ReadFile", flags);
+	ScriptFunction::Register<&Script_ReadFileLines_GUI>(rq, "ReadFileLines", flags);
+	ScriptFunction::Register<&Script_ReadJSONFile_GUI>(rq, "ReadJSONFile", flags);
+	ScriptFunction::Register<&Script_WriteJSONFile_GUI>(rq, "WriteJSONFile", flags);
+	ScriptFunction::Register<&DeleteCampaignSave>(rq, "DeleteCampaignSave", flags);
 }
 
-void RegisterScriptFunctions_ReadOnlySimulation(const ScriptRequest& rq)
+void RegisterScriptFunctions_ReadOnlySimulation(const ScriptRequest& rq,
+	const u16 flags /*= JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT */)
 {
-	ScriptFunction::Register<&Script_ListDirectoryFiles_Simulation>(rq, "ListDirectoryFiles");
-	ScriptFunction::Register<&Script_FileExists_Simulation>(rq, "FileExists");
-	ScriptFunction::Register<&Script_ReadJSONFile_Simulation>(rq, "ReadJSONFile");
+	ScriptFunction::Register<&Script_ListDirectoryFiles_Simulation>(rq, "ListDirectoryFiles", flags);
+	ScriptFunction::Register<&Script_FileExists_Simulation>(rq, "FileExists", flags);
+	ScriptFunction::Register<&Script_ReadJSONFile_Simulation>(rq, "ReadJSONFile", flags);
 }
 
-void RegisterScriptFunctions_ReadOnlySimulationMaps(const ScriptRequest& rq)
+void RegisterScriptFunctions_ReadOnlySimulationMaps(const ScriptRequest& rq,
+	const u16 flags /*= JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT */)
 {
-	ScriptFunction::Register<&Script_ListDirectoryFiles_Maps>(rq, "ListDirectoryFiles");
-	ScriptFunction::Register<&Script_FileExists_Maps>(rq, "FileExists");
-	ScriptFunction::Register<&Script_ReadJSONFile_Maps>(rq, "ReadJSONFile");
+	ScriptFunction::Register<&Script_ListDirectoryFiles_Maps>(rq, "ListDirectoryFiles", flags);
+	ScriptFunction::Register<&Script_FileExists_Maps>(rq, "FileExists", flags);
+	ScriptFunction::Register<&Script_ReadJSONFile_Maps>(rq, "ReadJSONFile", flags);
 }
 }

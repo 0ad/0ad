@@ -26,6 +26,8 @@
 #include "scriptinterface/ScriptTypes.h"
 #include "simulation2/system/Entity.h"
 
+#include <memory>
+
 class CTerrain;
 class WaterManager;
 class SkyManager;
@@ -38,7 +40,6 @@ class CSimContext;
 class CTerrainTextureEntry;
 class CGameView;
 class CXMLReader;
-class CMapGenerator;
 class ScriptContext;
 class ScriptInterface;
 
@@ -87,7 +88,8 @@ private:
 	int LoadRMSettings();
 
 	// Generate random map
-	int GenerateMap(const CStrW& scriptFile);
+	int StartMapGeneration(const CStrW& scriptFile);
+	int PollMapGeneration();
 
 	// Parse script data into terrain
 	int ParseTerrain();
@@ -103,7 +105,7 @@ private:
 
 
 	// size of map
-	ssize_t m_PatchesPerSide;
+	ssize_t m_PatchesPerSide{0};
 	// heightmap for map
 	std::vector<u16> m_Heightmap;
 	// list of terrain textures used by map
@@ -119,7 +121,8 @@ private:
 	JS::PersistentRootedValue m_ScriptSettings;
 	JS::PersistentRootedValue m_MapData;
 
-	CMapGenerator* m_MapGen;
+	struct GeneratorState;
+	std::unique_ptr<GeneratorState> m_GeneratorState;
 
 	CFileUnpacker unpacker;
 	CTerrain* pTerrain;
@@ -141,10 +144,11 @@ private:
 	CVector3D m_StartingCamera;
 
 	// UnpackTerrain generator state
-	size_t cur_terrain_tex;
+	// It's important to initialize it to 0 - resets generator state
+	size_t cur_terrain_tex{0};
 	size_t num_terrain_tex;
 
-	CXMLReader* xml_reader;
+	CXMLReader* xml_reader{nullptr};
 };
 
 /**

@@ -52,12 +52,12 @@
 
 struct ScriptInterface_impl
 {
-	ScriptInterface_impl(const char* nativeScopeName, const std::shared_ptr<ScriptContext>& context, JS::Compartment* compartment);
+	ScriptInterface_impl(const char* nativeScopeName, ScriptContext& context, JS::Compartment* compartment);
 	~ScriptInterface_impl();
 
 	// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
 	// members have to be called before the context destructor.
-	std::shared_ptr<ScriptContext> m_context;
+	ScriptContext& m_context;
 
 	friend ScriptRequest;
 	private:
@@ -300,8 +300,10 @@ bool ScriptInterface::Math_random(JSContext* cx, uint argc, JS::Value* vp)
 	return true;
 }
 
-ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const std::shared_ptr<ScriptContext>& context, JS::Compartment* compartment) :
-	m_context(context), m_cx(context->GetGeneralJSContext()), m_glob(context->GetGeneralJSContext()), m_nativeScope(context->GetGeneralJSContext())
+ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, ScriptContext& context,
+	JS::Compartment* compartment) :
+	m_context(context), m_cx(context.GetGeneralJSContext()), m_glob(context.GetGeneralJSContext()),
+	m_nativeScope(context.GetGeneralJSContext())
 {
 	JS::RealmCreationOptions creationOpt;
 	// Keep JIT code during non-shrinking GCs. This brings a quite big performance improvement.
@@ -339,15 +341,15 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const st
 	ScriptFunction::Register<&ProfileStop>(m_cx, m_nativeScope, "ProfileStop");
 	ScriptFunction::Register<&ProfileAttribute>(m_cx, m_nativeScope, "ProfileAttribute");
 
-	m_context->RegisterRealm(JS::GetObjectRealmOrNull(m_glob));
+	m_context.RegisterRealm(JS::GetObjectRealmOrNull(m_glob));
 }
 
 ScriptInterface_impl::~ScriptInterface_impl()
 {
-	m_context->UnRegisterRealm(JS::GetObjectRealmOrNull(m_glob));
+	m_context.UnRegisterRealm(JS::GetObjectRealmOrNull(m_glob));
 }
 
-ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName, const std::shared_ptr<ScriptContext>& context) :
+ScriptInterface::ScriptInterface(const char* nativeScopeName, const char* debugName, ScriptContext& context) :
 	m(std::make_unique<ScriptInterface_impl>(nativeScopeName, context, nullptr))
 {
 	// Profiler stats table isn't thread-safe, so only enable this on the main thread
@@ -456,10 +458,10 @@ bool ScriptInterface::ReplaceNondeterministicRNG(boost::rand48& rng)
 
 JSContext* ScriptInterface::GetGeneralJSContext() const
 {
-	return m->m_context->GetGeneralJSContext();
+	return m->m_context.GetGeneralJSContext();
 }
 
-std::shared_ptr<ScriptContext> ScriptInterface::GetContext() const
+ScriptContext& ScriptInterface::GetContext() const
 {
 	return m->m_context;
 }

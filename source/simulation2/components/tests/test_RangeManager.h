@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -130,7 +130,7 @@ public:
 
 	void test_basic()
 	{
-		ComponentTestHelper test(g_ScriptContext);
+		ComponentTestHelper test(*g_ScriptContext);
 
 		ICmpRangeManager* cmp = test.Add<ICmpRangeManager>(CID_RangeManager, "", SYSTEM_ENTITY);
 
@@ -199,7 +199,7 @@ public:
 
 	void test_queries()
 	{
-		ComponentTestHelper test(g_ScriptContext);
+		ComponentTestHelper test(*g_ScriptContext);
 
 		ICmpRangeManager* cmp = test.Add<ICmpRangeManager>(CID_RangeManager, "", SYSTEM_ENTITY);
 
@@ -271,7 +271,7 @@ public:
 
 	void test_IsInTargetParabolicRange()
 	{
-		ComponentTestHelper test(g_ScriptContext);
+		ComponentTestHelper test(*g_ScriptContext);
 		ICmpRangeManager* cmp = test.Add<ICmpRangeManager>(CID_RangeManager, "", SYSTEM_ENTITY);
 		const entity_id_t source = 200;
 		const entity_id_t target = 201;
