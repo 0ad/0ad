@@ -39,7 +39,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2023-11-17 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2020-2023\n"
 "Language-Team: Spanish (http://app.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -152,6 +152,7 @@ msgstr "Entrenamiento con arco"
 #: simulation/data/technologies/krypteia.jsonrequirementsTooltip
 #: simulation/data/technologies/pheidian_workshop.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
+#: simulation/data/technologies/roman_roads.jsonrequirementsTooltip
 #: simulation/data/technologies/serapis_cult.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
@@ -188,8 +189,10 @@ msgstr "Tradición arquera"
 #: simulation/data/technologies/cavalry_movement_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_training_ptol.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
@@ -237,7 +240,7 @@ msgstr "Arsenal de Filón"
 
 #: simulation/data/technologies/arsenal_philon.jsontooltip
 msgid "Warships +1 health/second self-repair rate."
-msgstr ""
+msgstr "Buques de guerra (Tasa de regeneración: +1 resistencia/segundo)."
 
 #: simulation/data/technologies/art_of_war.jsondescription
 msgid ""
@@ -717,18 +720,22 @@ msgstr "Bomba de cadena"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsontooltip
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
+#: simulation/data/technologies/gather_farming_training_ptol.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
 msgid "Workers +20% grain gather rate."
 msgstr "Trabajadores (Velocidad de recolección de grano: +20%)."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsondescription
 msgid "Extra nutrients for farms."
 msgstr "Nutrientes adicionales para tus cultivos."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsongenericName
 msgid "Fertilizer"
 msgstr "Fertilizante"
 
@@ -765,10 +772,12 @@ msgid "Seed Drill"
 msgstr "Sembradora"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
+#: simulation/data/technologies/gather_farming_training_ptol.jsondescription
 msgid "Training for workers to increase farm gathering speed."
 msgstr "Adiestramiento para mejorar la velocidad de cultivo de tus trabajadores."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
+#: simulation/data/technologies/gather_farming_training_ptol.jsongenericName
 msgid "Gather Training"
 msgstr "Técnicas de recolección"
 
@@ -1034,7 +1043,7 @@ msgstr "Economía ilota"
 msgid ""
 "Infantry Javelineers +100% grain gather rate, but −10% ranged attack pierce "
 "damage."
-msgstr ""
+msgstr "Infantería con jabalina (Tasa de recolección de grano: +100%; Daño de perforación a distancia: −10%)."
 
 #: simulation/data/technologies/hoplite_tradition.jsondescription
 msgid "Hoplite soldiers constituted most of the armies of Greece."
@@ -1076,7 +1085,7 @@ msgstr "Reformas ificrátidas"
 #: simulation/data/technologies/iphicratean_reforms.jsontooltip
 msgid ""
 "Athenian Docks and Triremes can train Marines and Cretan Mercenary Archers."
-msgstr ""
+msgstr "Los muelles atenienses y los trirremes pueden reclutar infantería de marina y arqueros mercenarios cretenses."
 
 #: simulation/data/technologies/krypteia.jsondescription
 msgid ""
@@ -1172,7 +1181,7 @@ msgstr "Servicio civil"
 
 #: simulation/data/technologies/pair_unlock_cult_ptol.jsongenericName
 msgid "Cult"
-msgstr ""
+msgstr "Culto"
 
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""
@@ -1198,7 +1207,7 @@ msgstr ""
 
 #: simulation/data/technologies/pharaonic_cult.jsongenericName
 msgid "Pharaonic Cult"
-msgstr ""
+msgstr "Culto faraónico"
 
 #: simulation/data/technologies/pharaonic_cult.jsontooltip
 msgid "Heroes +2 health/second self-regen rate."
@@ -1453,13 +1462,29 @@ msgstr ""
 
 #: simulation/data/technologies/roman_reforms.jsongenericName
 msgid "Marian Reforms"
-msgstr ""
+msgstr "Reformas de Mario"
 
 #: simulation/data/technologies/roman_reforms.jsontooltip
 msgid ""
 "Train Marian Legionaries, Centurions, and Onagers, but lose access to basic "
 "Citizen Infantry, Spear Cavalry, and Italic Heavy Infantry."
-msgstr ""
+msgstr "Permite reclutar legionarios de Mario, centuriones y onagros, pero se pierde acceso a la infantería ciudadana básica, la caballería con lanza y la infantería pesada itálica."
+
+#: simulation/data/technologies/roman_roads.jsondescription
+msgid "All roads lead to Rome."
+msgstr "Todos los caminos llevan a Roma."
+
+#: simulation/data/technologies/roman_roads.jsongenericName
+msgid "Roman Roads"
+msgstr "Calzadas romanas"
+
+#: simulation/data/technologies/roman_roads.jsonspecificName.rome
+msgid "Viae Romanum"
+msgstr "Viae Romanum"
+
+#: simulation/data/technologies/roman_roads.jsontooltip
+msgid "All Land Units +5% movement speed."
+msgstr "Todas las unidades terrestres (Velocidad: +5%)."
 
 #: simulation/data/technologies/serapis_cult.jsondescription
 msgid ""
@@ -1479,7 +1504,7 @@ msgstr ""
 
 #: simulation/data/technologies/serapis_cult.jsontooltip
 msgid "+2.0 metal trickle per second."
-msgstr ""
+msgstr "Tasa de producción de metal: +2,0."
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
