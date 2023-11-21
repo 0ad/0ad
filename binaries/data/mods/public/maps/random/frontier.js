@@ -21,7 +21,8 @@ Engine.SetProgress(20);
 
 if (!isNomad())
 {
-	let pattern = g_MapSettings.TeamPlacement;
+	// Note: `|| pickRandom(...)` is needed for atlas.
+	let pattern = g_MapSettings.TeamPlacement || pickRandom(["line", "radial", "randomGroup", "stronghold"]);
 	createBases(
 		...playerPlacementByPattern(
 			pattern,
