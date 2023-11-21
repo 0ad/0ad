@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2023-11-17 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2023\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -130,6 +130,7 @@ msgstr "箭術訓練"
 #: simulation/data/technologies/krypteia.jsonrequirementsTooltip
 #: simulation/data/technologies/pheidian_workshop.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
+#: simulation/data/technologies/roman_roads.jsonrequirementsTooltip
 #: simulation/data/technologies/serapis_cult.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
@@ -166,8 +167,10 @@ msgstr "箭術傳統"
 #: simulation/data/technologies/cavalry_movement_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_training_ptol.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
@@ -695,18 +698,22 @@ msgstr "鏈泵"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsontooltip
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
+#: simulation/data/technologies/gather_farming_training_ptol.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
 msgid "Workers +20% grain gather rate."
 msgstr "工人 +20% 作物採集速率。"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsondescription
 msgid "Extra nutrients for farms."
 msgstr "對農舍施加額外的營養物質。"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsongenericName
 msgid "Fertilizer"
 msgstr "肥料"
 
@@ -743,10 +750,12 @@ msgid "Seed Drill"
 msgstr "播種機"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
+#: simulation/data/technologies/gather_farming_training_ptol.jsondescription
 msgid "Training for workers to increase farm gathering speed."
 msgstr "訓練工人以增加耕種的採集速率。"
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
+#: simulation/data/technologies/gather_farming_training_ptol.jsongenericName
 msgid "Gather Training"
 msgstr "採集訓練"
 
@@ -1438,6 +1447,22 @@ msgid ""
 "Train Marian Legionaries, Centurions, and Onagers, but lose access to basic "
 "Citizen Infantry, Spear Cavalry, and Italic Heavy Infantry."
 msgstr "訓練馬略軍團、百夫長和野驢砲，但無法使用基本的公民步兵、矛騎兵和義大利重裝步兵。"
+
+#: simulation/data/technologies/roman_roads.jsondescription
+msgid "All roads lead to Rome."
+msgstr "條條大路通羅馬。"
+
+#: simulation/data/technologies/roman_roads.jsongenericName
+msgid "Roman Roads"
+msgstr "羅馬道路"
+
+#: simulation/data/technologies/roman_roads.jsonspecificName.rome
+msgid "Viae Romanum"
+msgstr "羅馬大道"
+
+#: simulation/data/technologies/roman_roads.jsontooltip
+msgid "All Land Units +5% movement speed."
+msgstr "所有陸地單位 +5% 移動速度。"
 
 #: simulation/data/technologies/serapis_cult.jsondescription
 msgid ""

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2023-11-17 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Language-Team: Kannada (http://app.transifex.com/wildfire-games/0ad/language/kn/)\n"
 "MIME-Version: 1.0\n"
@@ -118,6 +118,7 @@ msgstr ""
 #: simulation/data/technologies/krypteia.jsonrequirementsTooltip
 #: simulation/data/technologies/pheidian_workshop.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
+#: simulation/data/technologies/roman_roads.jsonrequirementsTooltip
 #: simulation/data/technologies/serapis_cult.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
@@ -154,8 +155,10 @@ msgstr ""
 #: simulation/data/technologies/cavalry_movement_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_training_ptol.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
@@ -683,18 +686,22 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsontooltip
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
+#: simulation/data/technologies/gather_farming_training_ptol.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
 msgid "Workers +20% grain gather rate."
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsondescription
 msgid "Extra nutrients for farms."
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsongenericName
 msgid "Fertilizer"
 msgstr ""
 
@@ -731,10 +738,12 @@ msgid "Seed Drill"
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
+#: simulation/data/technologies/gather_farming_training_ptol.jsondescription
 msgid "Training for workers to increase farm gathering speed."
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
+#: simulation/data/technologies/gather_farming_training_ptol.jsongenericName
 msgid "Gather Training"
 msgstr ""
 
@@ -1425,6 +1434,22 @@ msgstr ""
 msgid ""
 "Train Marian Legionaries, Centurions, and Onagers, but lose access to basic "
 "Citizen Infantry, Spear Cavalry, and Italic Heavy Infantry."
+msgstr ""
+
+#: simulation/data/technologies/roman_roads.jsondescription
+msgid "All roads lead to Rome."
+msgstr ""
+
+#: simulation/data/technologies/roman_roads.jsongenericName
+msgid "Roman Roads"
+msgstr ""
+
+#: simulation/data/technologies/roman_roads.jsonspecificName.rome
+msgid "Viae Romanum"
+msgstr ""
+
+#: simulation/data/technologies/roman_roads.jsontooltip
+msgid "All Land Units +5% movement speed."
 msgstr ""
 
 #: simulation/data/technologies/serapis_cult.jsondescription
