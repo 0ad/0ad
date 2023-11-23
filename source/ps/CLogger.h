@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,6 +47,8 @@ class CLogger
 {
 	NONCOPYABLE(CLogger);
 public:
+	class ScopedReplacement;
+
 	enum ELogMethod
 	{
 		Normal,
@@ -109,19 +111,48 @@ private:
 };
 
 /**
- * Helper class for unit tests - captures all log output while it is in scope,
- * and returns it as a single string.
+ * Replaces `g_Logger` for as long as it's in scope.
+ */
+class CLogger::ScopedReplacement
+{
+public:
+	ScopedReplacement();
+	ScopedReplacement(std::ostream* mainLog, std::ostream* interestingLog, const bool takeOwnership,
+		const bool useDebugPrintf);
+
+	ScopedReplacement(const ScopedReplacement&) = delete;
+	ScopedReplacement& operator=(const ScopedReplacement&) = delete;
+	ScopedReplacement(ScopedReplacement&&) = delete;
+	ScopedReplacement& operator=(ScopedReplacement&&) = delete;
+	~ScopedReplacement();
+
+private:
+	CLogger m_ThisLogger;
+	CLogger* m_OldLogger;
+};
+
+/**
+ * This is used in the engine to log the messages to the logfiles.
+ */
+class FileLogger
+{
+private:
+	CLogger::ScopedReplacement m_ScopedReplacement;
+};
+
+/**
+ * Helper class for unit tests - captures all log output, and returns it as a
+ * single string.
  */
 class TestLogger
 {
-	NONCOPYABLE(TestLogger);
 public:
 	TestLogger();
-	~TestLogger();
+
 	std::string GetOutput();
 private:
-	CLogger* m_OldLogger;
 	std::stringstream m_Stream;
+	CLogger::ScopedReplacement m_ScopedReplacement;
 };
 
 /**
@@ -129,12 +160,10 @@ private:
  */
 class TestStdoutLogger
 {
-	NONCOPYABLE(TestStdoutLogger);
 public:
 	TestStdoutLogger();
-	~TestStdoutLogger();
 private:
-	CLogger* m_OldLogger;
+	CLogger::ScopedReplacement m_ScopedReplacement;
 };
 
 #endif

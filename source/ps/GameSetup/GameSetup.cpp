@@ -155,11 +155,9 @@ void MountMods(const Paths& paths, const std::vector<CStr>& mods)
 	g_VFS->Mount(L"", modUserPath / "user" / "", userFlags, InDevelopmentCopy() ? 0 : priority + 1);
 }
 
-static void InitVfs(const CmdLineArgs& args, int flags)
+void InitVfs(const CmdLineArgs& args)
 {
 	TIMER(L"InitVfs");
-
-	const bool setup_error = (flags & INIT_HAVE_DISPLAY_ERROR) == 0;
 
 	const Paths paths(args);
 
@@ -172,8 +170,7 @@ static void InitVfs(const CmdLineArgs& args, int flags)
 	AppHooks hooks = {0};
 	hooks.bundle_logs = psBundleLogs;
 	hooks.get_log_dir = psLogDir;
-	if (setup_error)
-		hooks.display_error = psDisplayError;
+	hooks.display_error = psDisplayError;
 	app_hooks_update(&hooks);
 
 	g_VFS = CreateVfs();
@@ -407,7 +404,6 @@ from_config:
 		CNetHost::Deinitialize();
 
 		// should be last, since the above use them
-		SAFE_DELETE(g_Logger);
 		delete &g_Profiler;
 		delete &g_ProfileViewer;
 
@@ -523,15 +519,6 @@ bool AutostartVisualReplay(const std::string& replayFile);
 
 bool Init(const CmdLineArgs& args, int flags)
 {
-	// Do this as soon as possible, because it chdirs
-	// and will mess up the error reporting if anything
-	// crashes before the working directory is set.
-	InitVfs(args, flags);
-
-	// This must come after VFS init, which sets the current directory
-	// (required for finding our output log files).
-	g_Logger = new CLogger;
-
 	new CProfileViewer;
 	new CProfileManager;	// before any script code
 

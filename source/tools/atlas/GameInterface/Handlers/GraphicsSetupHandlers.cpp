@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -43,6 +43,8 @@
 #include "renderer/Renderer.h"
 #include "renderer/SceneRenderer.h"
 
+#include <optional>
+
 #if OS_WIN
 // We don't include wutil header directly to prevent including Windows headers.
 extern void wutil_SetAppWindow(void* hwnd);
@@ -50,7 +52,8 @@ extern void wutil_SetAppWindow(void* hwnd);
 
 namespace AtlasMessage
 {
-
+namespace
+{
 InputProcessor g_Input;
 
 // This keeps track of the last in-game user input.
@@ -60,11 +63,18 @@ double last_user_activity;
 // see comment in GameLoop.cpp about ah_display_error before using INIT_HAVE_DISPLAY_ERROR
 const int g_InitFlags = INIT_HAVE_VMODE | INIT_NO_GUI;
 
+// This isn't used directly. When it's emplaced and when it's reset it does mutate `g_Logger`.
+std::optional<FileLogger> g_FileLogger;
+}
+
 MESSAGEHANDLER(Init)
 {
 	UNUSED2(msg);
 
 	g_Quickstart = true;
+
+	InitVfs(g_AtlasGameLoop->args);
+	g_FileLogger.emplace();
 
 	// Mount mods if there are any specified as command line parameters
 	if (!Init(g_AtlasGameLoop->args, g_InitFlags | INIT_MODS| INIT_MODS_PUBLIC))
@@ -138,6 +148,7 @@ MESSAGEHANDLER(Shutdown)
 
 	int flags = 0;
 	Shutdown(flags);
+	g_FileLogger.reset();
 }
 
 

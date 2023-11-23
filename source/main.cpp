@@ -643,6 +643,14 @@ static void RunGameOrAtlas(const PS::span<const char* const> argv)
 	{
 		g_Shutdown = ShutdownType::None;
 
+		// Do this as soon as possible, because it chdirs and will mess up the error reporting if
+		// anything crashes before the working directory is set.
+		InitVfs(args);
+
+		// This must come after VFS init, which sets the current directory (required for finding our
+		// output log files).
+		FileLogger logger;
+
 		if (!Init(args, flags))
 		{
 			flags &= ~INIT_MODS;
