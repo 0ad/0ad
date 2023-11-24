@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <Auras datatype="tokens">
+    structures/satrapy_tribute
+  </Auras>
   <BuildRestrictions>
     <Category>Palace</Category>
   </BuildRestrictions>
@@ -45,15 +48,18 @@
   </Researcher>
   <ResourceTrickle>
     <Rates>
-      <food>1.0</food>
-      <wood>1.0</wood>
+      <food>0</food>
+      <wood>0</wood>
+      <stone>0</stone>
+      <metal>0</metal>
     </Rates>
-    <Interval>1000</Interval>
+    <Interval>2000</Interval>
   </ResourceTrickle>
   <Sound>
     <SoundGroups>
-      <select>interface/select/building/sel_broch.xml</select>
-      <constructed>interface/complete/building/complete_broch.xml</constructed>
+      <select>interface/select/building/sel_greek_theater.xml</select>
+      <constructed>interface/complete/building/complete_greek_theater.xml</constructed>
+      <upgraded>interface/complete/building/complete_greek_theater.xml</upgraded>
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>
@@ -70,6 +76,28 @@
       units/{civ}/hero_xerxes_i
     </Entities>
   </Trainer>
+  <Upgrade>
+    <TributeFood>
+      <Entity>structures/pers/apadana_food</Entity>
+      <Tooltip>Receive free Food tribute to your treasury from your subject peoples.</Tooltip>
+      <Time>10</Time>
+    </TributeFood>
+    <TributeWood>
+      <Entity>structures/pers/apadana_wood</Entity>
+      <Tooltip>Receive free Wood tribute to your treasury from your subject peoples.</Tooltip>
+      <Time>10</Time>
+    </TributeWood>
+    <TributeStone>
+      <Entity>structures/pers/apadana_stone</Entity>
+      <Tooltip>Receive free Stone tribute to your treasury from your subject peoples.</Tooltip>
+      <Time>10</Time>
+    </TributeStone>
+    <TributeMetal>
+      <Entity>structures/pers/apadana_metal</Entity>
+      <Tooltip>Receive free Metal tribute to your treasury from your subject peoples.</Tooltip>
+      <Time>10</Time>
+    </TributeMetal>
+  </Upgrade>
   <Vision>
     <Range>40</Range>
   </Vision>

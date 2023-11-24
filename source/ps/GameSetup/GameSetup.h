@@ -44,10 +44,6 @@ enum InitFlags
 	// needed by map editor because it uses its own GUI.
 	INIT_NO_GUI = 2,
 
-	// avoid setting display_error app hook
-	// needed by map editor because it has its own wx error display
-	INIT_HAVE_DISPLAY_ERROR = 4,
-
 	// initialize the mod folders from command line parameters
 	INIT_MODS = 8,
 
@@ -71,6 +67,8 @@ extern const std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags);
  * Make sure to call CacheEnabledModVersions after every call to this.
  */
 extern void MountMods(const Paths& paths, const std::vector<CStr>& mods);
+
+void InitVfs(const CmdLineArgs& args);
 
 /**
  * Returns true if successful, false if Init is aborted early (for instance if

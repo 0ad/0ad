@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
 #include <ctime>
 #include <fstream>
 #include <iostream>
+#include <utility>
 
 #include <boost/algorithm/string/replace.hpp>
 
@@ -310,31 +311,30 @@ void CLogger::CleanupRenderQueue()
 		m_RenderMessages.erase(m_RenderMessages.begin(), m_RenderMessages.end() - RENDER_LIMIT);
 }
 
-TestLogger::TestLogger()
-{
-	m_OldLogger = g_Logger;
-	g_Logger = new CLogger(&m_Stream, &blackHoleStream, false, false);
-}
+CLogger::ScopedReplacement::ScopedReplacement() :
+	m_OldLogger{std::exchange(g_Logger, &m_ThisLogger)}
+{}
 
-TestLogger::~TestLogger()
+CLogger::ScopedReplacement::ScopedReplacement(std::ostream* mainLog, std::ostream* interestingLog,
+	const bool takeOwnership, const bool useDebugPrintf) :
+	m_ThisLogger{mainLog, interestingLog, takeOwnership, useDebugPrintf},
+	m_OldLogger{std::exchange(g_Logger, &m_ThisLogger)}
+{}
+
+CLogger::ScopedReplacement::~ScopedReplacement()
 {
-	delete g_Logger;
 	g_Logger = m_OldLogger;
 }
+
+TestLogger::TestLogger() :
+	m_ScopedReplacement{&m_Stream, &blackHoleStream, false, false}
+{}
 
 std::string TestLogger::GetOutput()
 {
 	return m_Stream.str();
 }
 
-TestStdoutLogger::TestStdoutLogger()
-{
-	m_OldLogger = g_Logger;
-	g_Logger = new CLogger(&std::cout, &blackHoleStream, false, false);
-}
-
-TestStdoutLogger::~TestStdoutLogger()
-{
-	delete g_Logger;
-	g_Logger = m_OldLogger;
-}
+TestStdoutLogger::TestStdoutLogger() :
+	m_ScopedReplacement{&std::cout, &blackHoleStream, false, false}
+{}
