@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2023-11-06 08:12+0000\n"
-"PO-Revision-Date: 2023-11-06 08:12+0000\n"
+"POT-Creation-Date: 2023-11-24 08:08+0000\n"
+"PO-Revision-Date: 2023-11-24 08:08+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -560,11 +560,25 @@ msgid "Stable −10% batch training time per phase advance."
 msgstr ""
 
 #: simulation/data/civs/pers.json:CivBonuses[2].History
-msgid "The Persians were known for their large cavalry contingent"
+msgid "The Persians were known for their large cavalry contingent."
 msgstr ""
 
 #: simulation/data/civs/pers.json:CivBonuses[2].Name
 msgid "Time of War"
+msgstr ""
+
+#: simulation/data/civs/pers.json:CivBonuses[3].Description
+msgid "Upgrade the Throne Hall to receive a free trickle of a desired resource."
+msgstr ""
+
+#: simulation/data/civs/pers.json:CivBonuses[3].History
+msgid ""
+"The empire was divided into provinces, called “Satrapies,” that sent yearly tribute to "
+"the ruling Persian dynasty in Persepolis as a form of tax."
+msgstr ""
+
+#: simulation/data/civs/pers.json:CivBonuses[3].Name
+msgid "Satrapy Tribute"
 msgstr ""
 
 #: simulation/data/civs/ptol.json:AINames[0]
