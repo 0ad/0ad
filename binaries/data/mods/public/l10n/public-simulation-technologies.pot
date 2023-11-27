@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2023-11-17 08:09+0000\n"
-"PO-Revision-Date: 2023-11-17 08:09+0000\n"
+"POT-Creation-Date: 2023-11-27 08:08+0000\n"
+"PO-Revision-Date: 2023-11-27 08:08+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -281,6 +281,20 @@ msgstr ""
 msgid "Cavalry +10% walk speed."
 msgstr ""
 
+#: simulation/data/technologies/civbonuses/brit_woad_warriors.json:description
+msgid ""
+"Britons paint their bodies with Woad, which produces a blue color and gives them a "
+"fiercesome appearance in battle."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/brit_woad_warriors.json:genericName
+msgid "Woad Warriors"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/brit_woad_warriors.json:tooltip
+msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
+msgstr ""
+
 #: simulation/data/technologies/civbonuses/cart_walls.json:description
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These walls were "
@@ -321,7 +335,7 @@ msgid "Delian League"
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/delian_league.json:tooltip
-msgid "Ships construct 25% faster."
+msgid "Ships −25% construction time."
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.json:description
@@ -616,6 +630,21 @@ msgstr ""
 msgid "Structures +1 garrison heal rate."
 msgstr ""
 
+#: simulation/data/technologies/gather_ahimsa.json:description
+msgid ""
+"Ahimsa is the ancient Indian principle of nonviolence which applies to actions towards "
+"all living beings. It is a key virtue in Indian religions like Jainism, Buddhism, "
+"Hinduism, and Sikhism."
+msgstr ""
+
+#: simulation/data/technologies/gather_ahimsa.json:genericName
+msgid "Ahimsa"
+msgstr ""
+
+#: simulation/data/technologies/gather_ahimsa.json:tooltip
+msgid "Units +100% fruit gather rate, but -80% meat and fish gather."
+msgstr ""
+
 #: simulation/data/technologies/gather_animals_stockbreeding.json:description
 msgid "Breed livestock to slaughter for meat."
 msgstr ""
@@ -850,14 +879,17 @@ msgid "Wedge and Mallet"
 msgstr ""
 
 #: simulation/data/technologies/gather_wicker_baskets.json:description
+#: simulation/data/technologies/gather_wicker_baskets_maur.json:description
 msgid "Equip your foragers with wicker baskets for foraging."
 msgstr ""
 
 #: simulation/data/technologies/gather_wicker_baskets.json:genericName
+#: simulation/data/technologies/gather_wicker_baskets_maur.json:genericName
 msgid "Wicker Baskets"
 msgstr ""
 
 #: simulation/data/technologies/gather_wicker_baskets.json:tooltip
+#: simulation/data/technologies/gather_wicker_baskets_maur.json:tooltip
 msgid "Workers +50% fruit gather rate."
 msgstr ""
 
@@ -1097,6 +1129,10 @@ msgstr ""
 
 #: simulation/data/technologies/outpost_vision.json:tooltip
 msgid "Outposts +33% vision range."
+msgstr ""
+
+#: simulation/data/technologies/pair_gather_food_maur.json:genericName
+msgid "Wicker Basket vs Ahimsa"
 msgstr ""
 
 #: simulation/data/technologies/pair_unlock_champions_sele.json:genericName
@@ -1420,8 +1456,8 @@ msgid ""
 " of Egypt as a means to unify the Greeks and Egyptians in his realm. The god was "
 "depicted as Greek in appearance, but with Egyptian trappings, and combined iconography "
 "from a great many cults, signifying both abundance and resurrection. A serapeion was "
-"any temple or religious precinct devoted to serapeion. The cult of Serapis was spread "
-"as a matter of deliberate policy by the Ptolemaic kings, who also built an immense "
+"any temple or religious precinct devoted to Serapis. The cult of Serapis was spread as "
+"a matter of deliberate policy by the Ptolemaic kings, who also built an immense "
 "serapeum in Alexandria."
 msgstr ""
 

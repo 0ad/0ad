@@ -33,6 +33,7 @@
 # Rafael Andrade
 # Rafael Monteiro
 # Renato Cirino
+# Rocha Enzo
 # Rodrigo Zimmermann
 # Rui
 # Thiago Fontanari
@@ -46,7 +47,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-11-10 08:09+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Maydson Alves, 2023\n"
+"Last-Translator: Rocha Enzo, 2023\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,7 +65,7 @@ msgstr "Reparos de Arsenal"
 
 #: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraDescription
 msgid "Garrisoned Heroes +6 health regeneration rate."
-msgstr "Heróis Guarnecidos +6 de taxa de regeneração de saúde."
+msgstr "Heróis guarnecido (a) +6 de taxa de regeneração de saúde."
 
 #: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraName
 msgid "Officer Accommodation"
@@ -98,15 +99,15 @@ msgstr "Guarnição dentro do Curral para obter um fluxo lento de +1 de comida."
 
 #: simulation/data/auras/structures/eternal_fire.jsonauraDescription
 msgid "Structures +50% capture points."
-msgstr ""
+msgstr "Estruturas tem +50% de pontos de captura."
 
 #: simulation/data/auras/structures/eternal_fire.jsonauraName
 msgid "Eternal Fire"
-msgstr ""
+msgstr "Fogo Eterno"
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Workers +75% grain gather rate around a captured Rotary Mill."
-msgstr ""
+msgstr "Aumento de +75% na taxa das trabalhadores ao coletar os grão ao redor de um Moinho Rotativo capturado."
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
@@ -208,7 +209,7 @@ msgstr "Treinamento Rigoroso"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Civic Center technologies −50% research time and −30% cost."
-msgstr ""
+msgstr "Tecnologias do Centro Cívico -50% no tempo de pesquisa e -30% de custo."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
@@ -597,7 +598,7 @@ msgstr "Pelanors de Ferro"
 
 #: simulation/data/auras/units/celtic_healer.jsonauraDescription
 msgid "Soldiers +5% attack damage."
-msgstr ""
+msgstr "Soldados +5% dano de ataque."
 
 #: simulation/data/auras/units/celtic_healer.jsonauraName
 msgid "Deas Celtica"
@@ -616,15 +617,15 @@ msgstr "Liderança de Combate"
 
 #: simulation/data/auras/units/centurion_1.jsonauraDescription
 msgid "Soldiers +10% attack damage and −25% experience points for promotion."
-msgstr ""
+msgstr "Soldados tem +10% no dano de ataque e -25% em pontos de experiência para promoção."
 
 #: simulation/data/auras/units/centurion_2.jsonauraDescription
 msgid "Marian Legionaries and Centurions +10% movement speed."
-msgstr ""
+msgstr "Legionários Marianos e Centuriões tem +10% de velocidade de movimento."
 
 #: simulation/data/auras/units/centurion_2.jsonauraName
 msgid "Century Maneuvers"
-msgstr ""
+msgstr "Manobras do Século"
 
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
@@ -668,11 +669,11 @@ msgstr "Humanos +0.5 de taxa de regeneração de saúde."
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraName
 msgid "Father of Medicine"
-msgstr ""
+msgstr "Pai da Medicina"
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraDescription
 msgid "Own and Allied Healers +1 healing effect."
-msgstr ""
+msgstr "Curandeiros seus e de seus aliados tem +1 de efeito de cura."
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraName
 msgid "Hippocratic Oath"
@@ -1099,7 +1100,7 @@ msgstr "Patrono da Construção"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraDescription
 msgid "Mercenaries −35% resource costs."
-msgstr "Mercenários têm −35% de custo de recursos."
+msgstr "Mercenários têm −35% nos custos de recurso."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraName
 msgid "Mercenary Patron"
@@ -1170,15 +1171,15 @@ msgstr "Zooiarchos"
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_1.jsonauraDescription
 msgid "Soldiers −25% metal cost, and training time."
-msgstr ""
+msgstr "Soldados tem -25% custo de metal e redução de -25% tempo de treinamento."
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_1.jsonauraName
 msgid "Great Revolt"
-msgstr ""
+msgstr "Grande Revolta"
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_2.jsonauraDescription
 msgid "Agis +50% health."
-msgstr ""
+msgstr "Agis +50% saúde."
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_2.jsonauraName
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
@@ -1203,8 +1204,8 @@ msgstr "Lanceiros têm +1 de poder de captura e +25% de dano de ataque corpo-a-c
 msgid ""
 "Battering Rams +0.15 speed, +1 acceleration, and +0.5 turn rate for each "
 "garrisoned soldier."
-msgstr ""
+msgstr "Aríete tem +0,15 de velocidade, +1 de aceleração e +0,5 taxa de giro para cada soldado guarnecido."
 
 #: simulation/data/auras/units/ram_garrison.jsonauraName
 msgid "Battering Team"
-msgstr ""
+msgstr "Time de Espancamento"
