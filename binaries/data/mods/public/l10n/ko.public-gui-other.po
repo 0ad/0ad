@@ -2602,7 +2602,7 @@ msgstr "대기열 8번째 유닛"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.desc
 msgctxt "hotkey metadata"
 msgid "Turn off Auto-Queue for selected structures."
-msgstr "선택한 건축물에 대해 자동 대기열을 끕니다."
+msgstr "선택한 건축물들에 대해 자동 대기열을 끕니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.name
 msgctxt "hotkey metadata"
@@ -2612,7 +2612,7 @@ msgstr "자동 대기열 비활성화"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.desc
 msgctxt "hotkey metadata"
 msgid "Turn on Auto-Queue for selected structures."
-msgstr "선택한 건축물에 대해 자동 대기열을 켭니다."
+msgstr "선택한 건축물들에 대해 자동 대기열을 켭니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.name
 msgctxt "hotkey metadata"
@@ -2652,7 +2652,7 @@ msgstr "건물을 시계 방향으로 회전"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to align new structures with nearby existing structure."
-msgstr "새 건축물을 주변의 기존 건축물과 정렬하기 위해 변경합니다."
+msgstr "새 건축물들을 주변의 기존 건축물들과 정렬하기 위해 변경합니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.name
 msgctxt "hotkey metadata"
@@ -2969,7 +2969,7 @@ msgstr "되감기 (타임워프)"
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of attack range overlays of selected defensive structures."
-msgstr "선택한 방어 건축물의 공격 범위 오버레이 표시를 전환합니다."
+msgstr "선택한 방어 건축물들의 공격 범위 오버레이 표시를 전환합니다."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.name
 msgctxt "hotkey metadata"
@@ -2980,7 +2980,7 @@ msgstr "공격 범위 전환"
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of aura range overlays of selected units and structures."
-msgstr "선택한 유닛 및 건축물의 아우라 범위 오버레이 표시를 전환합니다."
+msgstr "선택한 유닛 및 건축물들의 아우라 범위 오버레이 표시를 전환합니다."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.name
 msgctxt "hotkey metadata"
@@ -4097,7 +4097,7 @@ msgstr "유닛 윤곽"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Show outlines of units behind structures."
-msgstr "건축물 뒤에 유닛 윤곽을 표시합니다."
+msgstr "건축물들 뒤에 유닛 윤곽을 표시합니다."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Particles"
@@ -4787,7 +4787,7 @@ msgstr "아우라 범위 시각화"
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr "선택한 유닛와 건축물의 아우라 범위를 표시합니다. (게임 중에 단축키를 사용하여 전환할 수도 있습니다.)"
+msgstr "선택한 유닛와 건축물들의 아우라 범위를 표시합니다. (게임 중에 단축키를 사용하여 전환할 수도 있습니다.)"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].label
 msgid "Heal range visualization"
@@ -4822,7 +4822,7 @@ msgstr "자세한 툴팁"
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr "유닛 생산 건축물에서 훈련이 가능한 유닛의 자세한 툴팁을 표시합니다."
+msgstr "유닛 생산 건축물들에서 훈련이 가능한 유닛의 자세한 툴팁을 표시합니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].label
 msgid "Sort resources and population tooltip"
@@ -4896,7 +4896,7 @@ msgstr "스냅을 활성화하는 단축키"
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr "새로운 건축물은 단축키를 누르는 동안 주변의 건축물과 정렬됩니다."
+msgstr "새로운 건축물들은 단축키를 누르는 동안 주변의 건축물들과 정렬됩니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
 msgid "Hotkey to disable snapping"
@@ -4906,11 +4906,11 @@ msgstr "스냅을 비활성화 하는 단축키"
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr "단축키를 누르지 않으면 새 건축물이 주변 건축물과 정렬됩니다."
+msgstr "단축키를 누르지 않으면 새 건축물들이 주변 건축물들과 정렬됩니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr "이 옵션을 사용하면 새로운 건축물을 주변 건축물과 정렬할 수 있습니다."
+msgstr "이 옵션을 사용하면 새로운 건축물들을 주변 건축물들과 정렬할 수 있습니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].label
 msgid "Control group membership"
@@ -4936,7 +4936,7 @@ msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr "유닛과 건축물은 여러 제어 그룹에 속할 수 있습니다. 이것은 다른 군대의 통제 그룹과 전체 군대의 통제 그룹을 동시에 유지하는 데 유용합니다."
+msgstr "유닛과 건축물들은 여러 제어 그룹에 속할 수 있습니다. 이것은 다른 군대의 통제 그룹과 전체 군대의 통제 그룹을 동시에 유지하는 데 유용합니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].tooltip
 msgid "Decide whether units can be part of multiple control groups."
@@ -5058,7 +5058,7 @@ msgstr "공격 범위 시각화"
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
-msgstr "선택한 방어 건축물의 공격 범위를 표시합니다. (게임 중에 단축키를 사용하여 전환할 수도 있습니다.)"
+msgstr "선택한 방어 건축물들의 공격 범위를 표시합니다. (게임 중에 단축키를 사용하여 전환할 수도 있습니다.)"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5590,7 +5590,7 @@ msgstr[0] "영웅"
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
 msgid_plural "Specific Structures"
-msgstr[0] "특정 건축물"
+msgstr[0] "특정 건축물들"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
@@ -5967,7 +5967,7 @@ msgstr "탐험 점수"
 
 #: gui/summary/layout.js:31
 msgid "Structures"
-msgstr "건축물"
+msgstr "건축물들"
 
 #: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:111
 msgid "Total"
@@ -6458,7 +6458,7 @@ msgstr "발석차"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against structures."
-msgstr "건축물을 상대로 좋은 원거리 공성 무기입니다."
+msgstr "건축물들을 상대로 좋은 원거리 공성 무기입니다."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -6597,7 +6597,7 @@ msgstr "대사관 및 용병 막사"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special structures allowing you to hire mercenaries for your army."
-msgstr "부대를 위해 용병을 고용할 수 있는 특별한 건축물."
+msgstr "부대를 위해 용병을 고용할 수 있는 특별한 건축물들."
 
 #: gui/text/tips/embassies.txt:3
 msgid ""
@@ -6729,7 +6729,7 @@ msgstr "많은 내구력과 매우 강력한 공격."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
-msgstr "다른 유닛 또는 건축물의 능력치를 변경하는 아우라를 가지고 있습니다."
+msgstr "다른 유닛 또는 건축물들의 능력치를 변경하는 아우라를 가지고 있습니다."
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
@@ -6753,7 +6753,7 @@ msgstr "등대"
 msgid ""
 "Special Ptolemaic structures to increase your vision range when built on the"
 " shore."
-msgstr "해안가에 건설될 때 시야 범위를 넓히는 특별한 프톨레마이오스 건축물."
+msgstr "해안가에 건설될 때 시야 범위를 넓히는 특별한 프톨레마이오스 건축물들."
 
 #: gui/text/tips/map_flare.txt:1
 msgid "MAP FLARE"
@@ -6775,7 +6775,7 @@ msgstr "메로에의 피라미드"
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
-msgstr "쿠시인이 사용할 수 있는 특별한 건축물입니다."
+msgstr "쿠시인이 사용할 수 있는 특별한 건축물들입니다."
 
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
@@ -6828,7 +6828,7 @@ msgstr "페르시아인을 위한 특별한 기술입니다."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr "건축물의 내구력이 +25% 중가합니다."
+msgstr "건축물들의 내구력이 +25% 중가합니다."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
@@ -6919,17 +6919,17 @@ msgstr "스냅하기"
 msgid ""
 "Structures can be aligned by keeping the snap hotkey pressed during "
 "placement."
-msgstr "배치하는 동안 스냅 단축키를 눌러 건축물을 정렬할 수 있습니다."
+msgstr "배치하는 동안 스냅 단축키를 눌러 건축물들을 정렬할 수 있습니다."
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
-msgstr "건축물을 정렬하면 향후 건설을 위한 공간을 절약할 수 있습니다."
+msgstr "건축물들을 정렬하면 향후 건설을 위한 공간을 절약할 수 있습니다."
 
 #: gui/text/tips/snapping.txt:4
 msgid ""
 "Tightly packed groups of structures can also be used for obstructing raiding"
 " enemies."
-msgstr "빽빽하게 가득채워진 건축물 그룹을 사용하여 적 침입을 차단할 수도 있습니다."
+msgstr "빽빽하게 가득채워진 건축물들 그룹을 사용하여 적 침입을 차단할 수도 있습니다."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -7016,7 +7016,7 @@ msgstr "영토 붕괴"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr "건축물이 동맹 시민 회관에 연결되어 있지 않을 때 붕괴가 일어납니다."
+msgstr "건축물들이 동맹 시민 회관에 연결되어 있지 않을 때 붕괴가 일어납니다."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
@@ -7038,7 +7038,7 @@ msgstr "극장"
 msgid ""
 "Special structures of the Hellenic civilizations to increase the size of "
 "your territory while you control it."
-msgstr "헬레니즘 문명의 특별한 건축물을 통해 영토의 크기를 늘리고 통제합니다."
+msgstr "헬레니즘 문명의 특별한 건축물들을 통해 영토의 크기를 늘리고 통제합니다."
 
 #: gui/text/tips/treasure.txt:1
 msgid "TREASURES"

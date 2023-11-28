@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-10-30 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2021-2023\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2386,7 +2386,7 @@ msgstr[0] "%(players)s님과 %(lastPlayer)s님이 패배했습니다 (유물 탈
 #: maps/scripts/Conquest.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all critical units and structures)."
-msgstr "%(player)s님이 패배했습니다 (모든 중요 유닛과 건축물 잃음)."
+msgstr "%(player)s님이 패배했습니다 (모든 중요 유닛과 건축물들 잃음)."
 
 #: maps/scripts/ConquestCivicCentres.js:5
 #, javascript-format
@@ -2398,17 +2398,17 @@ msgstr "%(player)s님이 패배했습니다 (모든 시민회관 잃음)."
 msgid ""
 "%(player)s has been defeated (lost all civic centres and critical units and "
 "structures)."
-msgstr "%(player)s님이 패배했습니다 (모든 시민 회관, 중요 유닛 및 건축물 잃음)."
+msgstr "%(player)s님이 패배했습니다 (모든 시민 회관, 중요 유닛 및 건축물들 잃음)."
 
 #: maps/scripts/ConquestStructures.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures)."
-msgstr "%(player)s님이 패배했습니다 (모든 건축물 잃음)."
+msgstr "%(player)s님이 패배했습니다 (모든 건축물들 잃음)."
 
 #: maps/scripts/ConquestStructures.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures and critical units)."
-msgstr "%(player)s님이 패배했습니다 (모든 건축물과 중요 유닛 잃음)."
+msgstr "%(player)s님이 패배했습니다 (모든 건축물들과 중요 유닛 잃음)."
 
 #: maps/scripts/ConquestUnits.js:5
 #, javascript-format
@@ -2418,7 +2418,7 @@ msgstr "%(player)s님이 패배했습니다 (모든 유닛 잃음)."
 #: maps/scripts/ConquestUnits.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units and critical structures)."
-msgstr "%(player)s님이 패배했습니다 (모든 유닛과 중요 건축물 잃음)."
+msgstr "%(player)s님이 패배했습니다 (모든 유닛과 중요 건축물들 잃음)."
 
 #: maps/scripts/Regicide.js:130
 #, javascript-format
@@ -2852,11 +2852,11 @@ msgid ""
 "This is the Ithmus at Corinth in Greece. The land is rich in raw resources and treasure, and the seas on either side of the isthmus are stocked with fish. Mercenary Camps can be found as well as large Metal Mine deposits.\n"
 "\n"
 "Watch out for pirate ships and brigands, though, as war-torn Greece is not without its share of dangers. And the enemy, marshalling their forces across the isthmus on the opposing landmass, will be looking for opportunities to invade your lands and take the strategic Corinthian Isthmus for themselves!"
-msgstr ""
+msgstr "isth·mus\n/ˈis(TH)məs/\nnoun\n양쪽에 바다가 있는 좁은 띠 모양의 땅으로, 두 개의 더 큰 육지 지역을 연결합니다.\n\n그리스의 코린트에 있는 지협입니다. 이 땅은 천연자원과 보물이 풍부하고, 지협의 양쪽 바다에는 물고기가 풍부합니다. 용병 캠프와 대규모 금속 광산 매장지를 발견할 수 있습니다.\n\n하지만 전쟁으로 폐허가 된 그리스에는 위험 요소가 많으므로 해적선과 도적단을 조심하세요. 그리고 적들은 지협을 가로질러 반대편 육지에 병력을 집결시켜 여러분의 영토를 침략하고 전략적인 코린트 지협을 차지할 기회를 노리고 있을 것입니다!"
 
 #: maps/skirmishes/isthmus_of_corinth_2p.xml:Name:39
 msgid "Isthmus of Corinth (2)"
-msgstr ""
+msgstr "코린트 지협 (2)"
 
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
@@ -3238,11 +3238,11 @@ msgid ""
 "As with all Savanna maps, huntable animals foragable plants are abundant, but there are no farmlands on the entire map, so farming is difficult.\n"
 "\n"
 "Wood is scattered, but comes in high-yield Baobab trees. The watering holes give life to clusters of trees and life to dangerous fauna, such as crocodiles and elephants."
-msgstr ""
+msgstr "4개의 물웅덩이가 있는 작은 사바나 지도입니다.\n\n모든 사바나 맵과 마찬가지로 사냥 가능한 동물과 채집 가능한 식물은 풍부하지만, 맵 전체에 농경지가 없어 농사를 짓기 어렵습니다.\n\n목재는 흩어져 있지만, 수확량이 많은 바오밥 나무에서 나옵니다. 물웅덩이는 나무 군락에 생명을 불어넣고 악어나 코끼리와 같은 위험한 동물군에 생존을 제공해 줍니다."
 
 #: maps/skirmishes/watering_holes_4p.xml:Name:39
 msgid "Watering Holes (4 players)"
-msgstr ""
+msgstr "물이 있는 웅덩이 (4인용)"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:Description:39
 msgid ""

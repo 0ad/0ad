@@ -48,7 +48,7 @@ msgstr "我已组织大军，准备打垮 %(_player_)s ，和我一起分享战�
 msgid ""
 "I am launching an unprecedented attack against %(_player_)s. Bring your "
 "armies and we may soon win this war."
-msgstr ""
+msgstr "我已对%(_player_)s发起大规模的攻击，带上你的精兵，我们共享未来的胜利。"
 
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
@@ -63,7 +63,7 @@ msgstr "我已经命令军队对抗  %(_player_)s。"
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I am sending an army against %(_player_)s."
-msgstr ""
+msgstr "我将起兵攻伐%(_player_)s。"
 
 #: simulation/ai/petra/chatHelper.js:16
 #, javascript-format
@@ -168,12 +168,12 @@ msgstr "对不起，%(_player_)s ，我们不接受你的结盟提议。"
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I must decline your offer of alliance, %(_player_)s."
-msgstr ""
+msgstr "%(_player_)s，我们必须拒绝贵方提议。"
 
 #: simulation/ai/petra/chatHelper.js:62
 #, javascript-format
 msgid "An alliance with you is not in my best interest, %(_player_)s."
-msgstr ""
+msgstr "%(_player_)s，与你同盟并非上上之选。"
 
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
@@ -398,11 +398,11 @@ msgstr "我方帝国的军队已被打散，请忠于我们的盟约，提供帮
 msgid ""
 "My humble armies feel weak and tired. My civilization depends on our "
 "alliance, please send help!"
-msgstr ""
+msgstr "我马虺隤，中心忧忧。嗟彼同袍，同修戈矛。"
 
 #: simulation/ai/petra/chatHelper.js:143
 msgid "I need your help. Please do not let my armies fall!"
-msgstr ""
+msgstr "我们需要贵国的帮助，以避免我国军队崩溃。"
 
 #: simulation/ai/petra/chatHelper.js:146
 msgid ""
@@ -414,14 +414,14 @@ msgstr "我方帝国已重整旗鼓，让我们一起去复仇吧！"
 msgid ""
 "My civilization raised from the ashes. Now my armies feel stronger and eager"
 " to fight for our alliance."
-msgstr ""
+msgstr "本国已浴火重生，兵强马壮，期望与盟友并肩战斗。"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra 是公元元年默认的 AI . 可向 Wildfire Games 提交问题（请参阅主菜单中的链接）.\nAI 的资源收集效率和交易收益依游戏难度而定：沙盒 -58％，最易 -44％，简单 -25％，中级 ±0％，困难 +25％，极难 +56％ . 最易的 AI 科研、训练和建筑较慢. 沙盒级别的 AI 既不会扩张，也不会主动攻击。"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -813,7 +813,7 @@ msgstr "极易"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
+msgstr "建议新手玩家选择本难度。"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -831,7 +831,7 @@ msgstr "中等"
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
+msgstr "中级玩家难度"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"

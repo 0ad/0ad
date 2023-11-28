@@ -1384,7 +1384,7 @@ msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "0 A.D. 职员"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
@@ -1580,7 +1580,7 @@ msgstr "纪念"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "0 A.D. 创始人"
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
@@ -1596,7 +1596,7 @@ msgstr "特别鸣谢:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "以及感谢帮助 0 A.D. 诞生的整个社区。"
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -3606,11 +3606,11 @@ msgstr "加载"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "游戏存档需要版本为%(requiredVersion)s，当前运行版本为%(currentVersion)s。"
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "游戏存档需要旧版游戏。"
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
@@ -4100,7 +4100,7 @@ msgstr "窗口模式"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "以窗口模式启动 0 A.D. 。"
 
 #: gui/options/options.json[1].options[10].label
 msgid "Mouse drag"
@@ -5224,7 +5224,7 @@ msgstr "说明手册"
 
 #: gui/pregame/MainMenuItems.js:8
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "打开 0 A.D. 游戏手册。"
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
@@ -5244,7 +5244,7 @@ msgstr "建筑谱系图"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s：视察游戏建筑谱系图。"
 
 #: gui/pregame/MainMenuItems.js:48
 #: gui/reference/civinfo/civinfo.xml:(caption):21
@@ -5255,7 +5255,7 @@ msgstr "文明概述"
 #: gui/pregame/MainMenuItems.js:49
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s：了解游戏内各文明特性。"
 
 #: gui/pregame/MainMenuItems.js:60
 msgid "Catafalque Overview"
@@ -5263,7 +5263,7 @@ msgstr "英灵概述"
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "比较 0 A.D. 内各位英灵的灵车所带来的收益。"
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Map Overview"
@@ -5271,7 +5271,7 @@ msgstr "地图概述"
 
 #: gui/pregame/MainMenuItems.js:68
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "查看 0 A.D. 种各款地图之特性。"
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:132
 msgid "Continue Campaign"
@@ -5424,7 +5424,7 @@ msgstr "在新窗口打开场景编辑器。您可以在命令行以参数\"-edi
 
 #: gui/pregame/MainMenuItems.js:280
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "确定要退出 0 A.D. ，并打开剧情编辑器吗？"
 
 #: gui/pregame/MainMenuItems.js:287
 msgid ""
@@ -5442,7 +5442,7 @@ msgstr "职员名单"
 
 #: gui/pregame/MainMenuItems.js:293
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "显示 0 A.D. 职员名单。"
 
 #: gui/pregame/MainMenuItems.js:299
 msgid "Exit"
@@ -5454,7 +5454,7 @@ msgstr "退出游戏。"
 
 #: gui/pregame/MainMenuItems.js:304
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr ""
+msgstr "确定要退出 0 A.D. 吗?"
 
 #: gui/pregame/ProjectInformation.js:6
 msgid "WILDFIRE GAMES"
@@ -5462,7 +5462,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXVII: Agni"
-msgstr ""
+msgstr "内测版27：阿耆尼"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5488,7 +5488,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr ""
+msgstr "在浏览器中打开游戏 IRC 聊天室（webchat.quakenet.org 上的 #0ad）。 聊天室完全由志愿者负责，可能恢复较慢。 或者可以使用游戏论坛（请参阅游戏网站）。"
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5496,7 +5496,7 @@ msgstr "提交游戏错误"
 
 #: gui/pregame/ProjectInformation.js:42
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "单击访问 0 A.D. Trac ，提交bug、崩溃或错误。"
 
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
@@ -5513,7 +5513,7 @@ msgstr "翻译游戏"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "浏览器里打开0 A.D. 翻译页面。"
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
@@ -5571,7 +5571,7 @@ msgstr "激活反馈"
 
 #: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr ""
+msgstr "感谢你帮助改善 0 A.D.！"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
@@ -5588,7 +5588,7 @@ msgstr "未知"
 
 #: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
-msgstr ""
+msgstr "帮助改进 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:87
 msgid ""
@@ -5961,7 +5961,7 @@ msgstr "重建回放缓存，需较长时间，请耐心等待。"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]  感谢你安装 0 A.D. Empires Ascendant!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -5983,7 +5983,7 @@ msgstr "[imgleft=\"iconLag\"]游戏可能有性能问题，尤其是地图尺寸
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]0 A.D. 为一款免费游戏：你可以参与开发。"
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""

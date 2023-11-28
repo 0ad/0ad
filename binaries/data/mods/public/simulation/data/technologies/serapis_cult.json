@@ -1,13 +1,13 @@
 {
 	"genericName": "Serapis Cult",
-	"description": "The cult of Serapis was introduced during the 3rd century BC on the orders of Ptolemy I of Egypt as a means to unify the Greeks and Egyptians in his realm. The god was depicted as Greek in appearance, but with Egyptian trappings, and combined iconography from a great many cults, signifying both abundance and resurrection. A serapeion was any temple or religious precinct devoted to serapeion. The cult of Serapis was spread as a matter of deliberate policy by the Ptolemaic kings, who also built an immense serapeum in Alexandria.",
+	"description": "The cult of Serapis was introduced during the 3rd century BC on the orders of Ptolemy I of Egypt as a means to unify the Greeks and Egyptians in his realm. The god was depicted as Greek in appearance, but with Egyptian trappings, and combined iconography from a great many cults, signifying both abundance and resurrection. A serapeion was any temple or religious precinct devoted to Serapis. The cult of Serapis was spread as a matter of deliberate policy by the Ptolemaic kings, who also built an immense serapeum in Alexandria.",
 	"cost": {
 		"food": 300,
 		"metal": 300
 	},
 	"requirements": {
 		"all": [
-			{"tech": "phase_city"}, 
+			{"tech": "phase_city"},
 			{"civ": "ptol"}
 		]
 	},
