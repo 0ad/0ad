@@ -27,7 +27,7 @@
 #include <optional>
 #include <type_traits>
 
-template<typename ResultType>
+template<typename Callback>
 class PackagedTask;
 
 namespace FutureSharedStateDetail
@@ -48,15 +48,14 @@ using ResultHolder = std::conditional_t<std::is_void_v<T>, std::nullopt_t, std::
  * Holds all relevant data.
  */
 template<typename ResultType>
-class SharedState : public ResultHolder<ResultType>
+class Receiver : public ResultHolder<ResultType>
 {
 	static constexpr bool VoidResult = std::is_same_v<ResultType, void>;
 public:
-	SharedState(std::function<ResultType()>&& func) :
-		ResultHolder<ResultType>{std::nullopt},
-		m_Func(std::move(func))
+	Receiver() :
+		ResultHolder<ResultType>{std::nullopt}
 	{}
-	~SharedState()
+	~Receiver()
 	{
 		// For safety, wait on started task completion, but not on pending ones (auto-cancelled).
 		if (!Cancel())
@@ -66,8 +65,8 @@ public:
 		}
 	}
 
-	SharedState(const SharedState&) = delete;
-	SharedState(SharedState&&) = delete;
+	Receiver(const Receiver&) = delete;
+	Receiver(Receiver&&) = delete;
 
 	bool IsDoneOrCanceled() const
 	{
@@ -122,8 +121,17 @@ public:
 	std::atomic<Status> m_Status = Status::PENDING;
 	std::mutex m_Mutex;
 	std::condition_variable m_ConditionVariable;
+};
 
-	std::function<ResultType()> m_Func;
+template<typename Callback>
+struct SharedState
+{
+	SharedState(Callback&& callbackFunc) :
+		callback{std::forward<Callback>(callbackFunc)}
+	{}
+
+	Callback callback;
+	Receiver<std::invoke_result_t<Callback>> receiver;
 };
 
 } // namespace FutureSharedStateDetail
@@ -150,7 +158,6 @@ class Future
 	static constexpr bool VoidResult = std::is_same_v<ResultType, void>;
 
 	using Status = FutureSharedStateDetail::Status;
-	using SharedState = FutureSharedStateDetail::SharedState<ResultType>;
 public:
 	Future() = default;
 	Future(const Future& o) = delete;
@@ -161,8 +168,8 @@ public:
 	/**
 	 * Make the future wait for the result of @a func.
 	 */
-	template<typename T>
-	PackagedTask<ResultType> Wrap(T&& func);
+	template<typename Callback>
+	PackagedTask<Callback> Wrap(Callback&& callback);
 
 	/**
 	 * Move the result out of the future, and invalidate the future.
@@ -172,17 +179,17 @@ public:
 	template<typename SfinaeType = ResultType>
 	std::enable_if_t<!std::is_same_v<SfinaeType, void>, ResultType> Get()
 	{
-		ENSURE(!!m_SharedState);
+		ENSURE(!!m_Receiver);
 
 		Wait();
 		if constexpr (VoidResult)
 			return;
 		else
 		{
-			ENSURE(m_SharedState->m_Status != Status::CANCELED);
+			ENSURE(m_Receiver->m_Status != Status::CANCELED);
 
 			// This mark the state invalid - can't call Get again.
-			return m_SharedState->GetResult();
+			return m_Receiver->GetResult();
 		}
 	}
 
@@ -191,7 +198,7 @@ public:
 	 */
 	bool IsReady() const
 	{
-		return !!m_SharedState && m_SharedState->m_Status == Status::DONE;
+		return !!m_Receiver && m_Receiver->m_Status == Status::DONE;
 	}
 
 	/**
@@ -199,13 +206,13 @@ public:
 	 */
 	bool Valid() const
 	{
-		return !!m_SharedState && m_SharedState->m_Status != Status::CANCELED;
+		return !!m_Receiver && m_Receiver->m_Status != Status::CANCELED;
 	}
 
 	void Wait()
 	{
 		if (Valid())
-			m_SharedState->Wait();
+			m_Receiver->Wait();
 	}
 
 	/**
@@ -217,13 +224,13 @@ public:
 	{
 		if (!Valid())
 			return;
-		if (!m_SharedState->Cancel())
-			m_SharedState->Wait();
-		m_SharedState.reset();
+		if (!m_Receiver->Cancel())
+			m_Receiver->Wait();
+		m_Receiver.reset();
 	}
 
 protected:
-	std::shared_ptr<SharedState> m_SharedState;
+	std::shared_ptr<FutureSharedStateDetail::Receiver<ResultType>> m_Receiver;
 };
 
 /**
@@ -232,35 +239,39 @@ protected:
  * This type is mostly just the shared state and the call operator,
  * handling the promise & continuation logic.
  */
-template<typename ResultType>
+template<typename Callback>
 class PackagedTask
 {
-	static constexpr bool VoidResult = std::is_same_v<ResultType, void>;
 public:
 	PackagedTask() = delete;
-	PackagedTask(std::shared_ptr<typename Future<ResultType>::SharedState> ss) : m_SharedState(std::move(ss)) {}
+	PackagedTask(std::shared_ptr<FutureSharedStateDetail::SharedState<Callback>> ss) :
+		m_SharedState(std::move(ss))
+	{}
 
 	void operator()()
 	{
-		typename Future<ResultType>::Status expected = Future<ResultType>::Status::PENDING;
-		if (!m_SharedState->m_Status.compare_exchange_strong(expected, Future<ResultType>::Status::STARTED))
+		FutureSharedStateDetail::Status expected = FutureSharedStateDetail::Status::PENDING;
+		if (!m_SharedState->receiver.m_Status.compare_exchange_strong(expected,
+			FutureSharedStateDetail::Status::STARTED))
+		{
 			return;
+		}
 
-		if constexpr (VoidResult)
-			m_SharedState->m_Func();
+		if constexpr (std::is_void_v<std::invoke_result_t<Callback>>)
+			m_SharedState->callback();
 		else
-			m_SharedState->emplace(m_SharedState->m_Func());
+			m_SharedState->receiver.emplace(m_SharedState->callback());
 
 		// Because we might have threads waiting on us, we need to make sure that they either:
 		// - don't wait on our condition variable
 		// - receive the notification when we're done.
 		// This requires locking the mutex (@see Wait).
 		{
-			std::lock_guard<std::mutex> lock(m_SharedState->m_Mutex);
-			m_SharedState->m_Status = Future<ResultType>::Status::DONE;
+			std::lock_guard<std::mutex> lock(m_SharedState->receiver.m_Mutex);
+			m_SharedState->receiver.m_Status = FutureSharedStateDetail::Status::DONE;
 		}
 
-		m_SharedState->m_ConditionVariable.notify_all();
+		m_SharedState->receiver.m_ConditionVariable.notify_all();
 
 		// We no longer need the shared state, drop it immediately.
 		m_SharedState.reset();
@@ -272,18 +283,19 @@ public:
 		m_SharedState.reset();
 	}
 
-protected:
-	std::shared_ptr<typename Future<ResultType>::SharedState> m_SharedState;
+private:
+	std::shared_ptr<FutureSharedStateDetail::SharedState<Callback>> m_SharedState;
 };
 
 template<typename ResultType>
-template<typename T>
-PackagedTask<ResultType> Future<ResultType>::Wrap(T&& func)
+template<typename Callback>
+PackagedTask<Callback> Future<ResultType>::Wrap(Callback&& callback)
 {
-	static_assert(std::is_same_v<std::invoke_result_t<T>, ResultType>,
+	static_assert(std::is_same_v<std::invoke_result_t<Callback>, ResultType>,
 		"The return type of the wrapped function is not the same as the type the Future expects.");
-	m_SharedState = std::make_shared<SharedState>(std::move(func));
-	return PackagedTask<ResultType>(m_SharedState);
+	auto temp = std::make_shared<FutureSharedStateDetail::SharedState<Callback>>(std::move(callback));
+	m_Receiver = {temp, &temp->receiver};
+	return PackagedTask<Callback>(std::move(temp));
 }
 
 #endif // INCLUDED_FUTURE

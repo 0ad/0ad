@@ -124,4 +124,21 @@ public:
 		task2();
 		TS_ASSERT_EQUALS(future.Get(), 7);
 	}
+
+	void test_move_only_function()
+	{
+		Future<void> future;
+
+		class MoveOnlyType
+		{
+		public:
+			MoveOnlyType() = default;
+			MoveOnlyType(MoveOnlyType&) = delete;
+			MoveOnlyType& operator=(MoveOnlyType&) = delete;
+			MoveOnlyType(MoveOnlyType&&) = default;
+			MoveOnlyType& operator=(MoveOnlyType&&) = default;
+		};
+
+		future.Wrap([t = MoveOnlyType{}]{});
+	}
 };
