@@ -1,0 +1,11 @@
+{
+	"type": "range",
+	"radius": 75,
+	"affects": ["Structure"],
+	"modifications": [
+		{ "value": "Capturable/GarrisonRegenRate", "multiply": 1.5 }
+	],
+	"auraName": "Loyalty",
+	"auraDescription": "Structures +50% capture points garrison regeneration rate.",
+	"overlayIcon": "art/textures/ui/session/auras/build_bonus.png"
+}
