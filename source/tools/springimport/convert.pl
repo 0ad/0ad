@@ -20,7 +20,7 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # This is a fairly hacky converter from the .3do format used by Spring
-# to the Collada + actor XML format used by 0 A.D.
+# to the Collada + actor XML format used by 0 A.D.
 
 use strict;
 use warnings;

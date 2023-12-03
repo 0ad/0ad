@@ -16,7 +16,7 @@
  */
 
 /**
- * Linter for the project name 0 A.D..
+ * Linter for the project name 0 A.D..
  */
 final class ProjectNameLinter extends ArcanistLinter {
 
@@ -42,11 +42,15 @@ final class ProjectNameLinter extends ArcanistLinter {
 
   public function getLintNameMap() {
     return array(
-      self::BAD_NAME => pht('Incorrect project name. Notice the non-breaking space in 0 A.D.'),
+      self::BAD_NAME => pht('Incorrect project name. Notice the non-breaking space in 0 A.D.'),
     );
   }
 
   public function lintPath($path) {
+    $binaries_prefix = "binaries";
+    if (substr($path, 0, strlen($binaries_prefix)) != $binaries_prefix) {
+        return;
+    }
     $txt = $this->getData($path);
 
     $matches = null;
@@ -65,7 +69,7 @@ final class ProjectNameLinter extends ArcanistLinter {
       $this->raiseLintAtOffset(
         $offset,
         self::BAD_NAME,
-        pht('Incorrect project name. Notice the non-breaking space in 0 A.D.'),
+        pht('Incorrect project name. Notice the non-breaking space in 0 A.D.'),
         $string);
     }
   }

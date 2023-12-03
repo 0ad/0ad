@@ -27,7 +27,7 @@
 #include <type_traits>
 
 /**
- * Adapt a 0 A.D.-style allocator for usage in STL containers.
+ * Adapt a 0 A.D.-style allocator for usage in STL containers.
  * Use 'Backend' as an underlying allocator.
  */
 template<typename T, class Backend>

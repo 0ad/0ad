@@ -48,7 +48,7 @@ where $\mathbf{o}$ denotes the origin of the ray, $\mathbf{d}$ is a unit vector 
 An OBB, or Oriented Bounding Box, is an arbitarily-rotated three-dimensional rectangular cuboid defined by a center point $\mathbf{a}_c$, a set of mutually orthonormal basis vectors $(\mathbf{a}_u, \mathbf{a}_v, \mathbf{a}_w)$, and the half-distances $(h_u, h_v, h_w)$ of each face from the origin along their respective axes.
 
 \section{Method}
-In 0 A.D., rays are tested for intersection with OBBs using the slab method as outlined in \cite{real_time_rendering_3}. In brief, the goal of the algorithm is to compute the distances from the ray's origin to its intersection points with each of three slabs (one for each dimension). By then performing a clever comparison of these intersection point distances, it is able to determine whether the ray hits or misses the shape.
+In 0 A.D., rays are tested for intersection with OBBs using the slab method as outlined in \cite{real_time_rendering_3}. In brief, the goal of the algorithm is to compute the distances from the ray's origin to its intersection points with each of three slabs (one for each dimension). By then performing a clever comparison of these intersection point distances, it is able to determine whether the ray hits or misses the shape.
 
 This document is concerned with providing some details of how these distances are computed, in order to allow the reader to more thoroughly comprehend the algorithm. Before continuing, the reader should have the algorithm as it appears in \cite{real_time_rendering_3} at hand. For the most part, the same variable names will be used here.
 

@@ -1,4 +1,4 @@
-// Slightly modified version of Mongoose, by Wildfire Games, for 0 A.D.
+// Slightly modified version of Mongoose, by Wildfire Games, for 0 A.D.
 // Diff against mongoose_original.c (from Hg rev 77615121d235) to see the changes.
 // 
 // Motivation for changes:

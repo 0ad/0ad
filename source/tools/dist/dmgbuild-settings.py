@@ -2,7 +2,7 @@
 import os.path
 
 #
-# 0 A.D. settings file for dmgbuild
+# 0 A.D. settings file for dmgbuild
 #
 
 # Use like this:

@@ -1,13 +1,13 @@
 # Linting
 
-This folder contains tools for linting 0 A.D. code
+This folder contains tools for linting 0 A.D. code
 Linting is done via Arcanist: https://secure.phabricator.com/book/phabricator/article/arcanist_lint/
 
 ## Linters
 
 - `text` is configured to detect whitespace issues.
 - `json` detects JSON syntax errors.
-- `project-name` detects misspellings of the project name "0 A.D.". In particular the non-breaking space.
+- `project-name` detects misspellings of the project name "0 A.D.". In particular the non-breaking space.
 - `licence-year` detects Copyright header years and compares against modification time.
 - `eslint`, if installed, will run on javascript files.
 - `cppcheck`, if installed, will run on C++ files.

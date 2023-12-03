@@ -1,0 +1,20 @@
+{
+	"genericName": "Sacrificial Ritual",
+	"description": "Sacrificial rituals were quite common in ancient times, whether to satisfy the gods, calm natural disasters, or even improve harvests.",
+	"cost": {
+		"food": 250,
+		"stone": 100
+	},
+	"requirements": { "tech": "phase_town" },
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "skull_swords.png",
+	"researchTime": 40,
+	"tooltip": "Healers –40% training time, and the metal cost is removed.",
+	"modifications": [
+		{ "value": "Cost/BuildTime", "multiply": 0.6 },
+		{ "value": "Cost/Resources/metal", "replace": 0 },
+		{ "value": "Loot/metal", "replace": 0 }
+	],
+	"affects": ["Healer"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}
