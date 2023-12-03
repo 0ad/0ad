@@ -1,18 +1,18 @@
 /* Copyright (C) 2020 Wildfire Games.
- * This file is part of 0 A.D.
+ * This file is part of 0 A.D.
  *
- * 0 A.D. is free software: you can redistribute it and/or modify
+ * 0 A.D. is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
  * (at your option) any later version.
  *
- * 0 A.D. is distributed in the hope that it will be useful,
+ * 0 A.D. is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
+ * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 // This pipeline is used to build the documentation.
@@ -60,7 +60,7 @@ pipeline {
 					// libraries or system ones.
 					sh "lcov --remove ${INFO_FILE} \"*/*/*/tests/*\" \"*/*/*/libraries/*\" \"/usr/*\"  --output-file ${INFO_FILE}"
 					sh "mkdir -p ${REPORT_PATH}"
-					sh "genhtml --o ${REPORT_PATH} -t \"0 A.D. test coverage report\" --num-spaces 4 --demangle-cpp ${INFO_FILE}"
+					sh "genhtml --o ${REPORT_PATH} -t \"0 A.D. test coverage report\" --num-spaces 4 --demangle-cpp ${INFO_FILE}"
 				  }
 				}
 			}

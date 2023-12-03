@@ -16,13 +16,13 @@
   <html>
     <head>
       <meta charset="utf-8"/>
-      <title>0 A.D. entity XML documentation</title>
+      <title>0 A.D. entity XML documentation</title>
       <link rel="stylesheet" href="entity-docs.css"/>
     </head>
     <body>
       <h1>Entity component documentation</h1>
       <p>
-      In <a href="http://play0ad.com/">0 A.D.</a>,
+      In <a href="http://play0ad.com/">0 A.D.</a>,
       entities (units and buildings and other world objects)
       consist of a collection of components, each of which determines
       part of the entity's behaviour.

@@ -1,4 +1,4 @@
-// Slightly modified version of weldmesh, by Wildfire Games, for 0 A.D.
+// Slightly modified version of weldmesh, by Wildfire Games, for 0 A.D.
 // 
 // Motivation for changes:
 //  * Fix build on *BSD (including malloc.h produces an error)

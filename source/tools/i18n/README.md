@@ -1,6 +1,6 @@
 # i18n helper
 
-This is a collection of scripts to automate 0 A.D.'s i18n process.
+This is a collection of scripts to automate 0 A.D.'s i18n process.
 
 See `maintenanceTasks.sh` for the full process.
 
