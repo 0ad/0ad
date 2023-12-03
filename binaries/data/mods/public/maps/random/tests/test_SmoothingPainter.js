@@ -23,7 +23,7 @@ var g_Map;
 
 	// Test SmoothingPainter
 	{
-		g_Map = new RandomMap(0, 0, "blackness");
+		g_Map = new RandomMap(0, "blackness");
 
 		let centerHeight = g_Map.getHeight(center);
 

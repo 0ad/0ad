@@ -11,7 +11,7 @@ Engine.GetTemplate = (path) => {
 Engine.LoadLibrary("rmgen");
 
 var g_MapSettings = { "Size": 512 };
-var g_Map = new RandomMap(0, 0, "blackness");
+var g_Map = new RandomMap(0, "blackness");
 
 {
 	let min = new Vector2D(4, 4);
