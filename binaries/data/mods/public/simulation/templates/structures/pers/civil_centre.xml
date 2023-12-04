@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_civic_civil_centre">
+  <Footprint>
+    <Square width="40.0" depth="24.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Health>
-    <SpawnEntityOnDeath>decay|rubble/rubble_pers_cc</SpawnEntityOnDeath>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
     <Civ>pers</Civ>
     <GenericName>Provincial Governor</GenericName>
     <SpecificName>Xšaçapāvan</SpecificName>
   </Identity>
+  <Obstruction>
+    <Static width="38.5" depth="22.5"/>
+  </Obstruction>
   <Researcher>
     <Technologies datatype="tokens">
       architecture_pers
