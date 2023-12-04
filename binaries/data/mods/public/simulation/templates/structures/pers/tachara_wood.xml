@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="structures/pers/apadana">
+<Entity parent="structures/pers/tachara">
   <Identity>
-    <Icon>structures/palace_stone.png</Icon>
+    <Icon>structures/palace_wood.png</Icon>
   </Identity>
   <ResourceTrickle>
     <Rates>
       <food>0</food>
-      <wood>0</wood>
-      <stone>10</stone>
+      <wood>10</wood>
+      <stone>0</stone>
       <metal>0</metal>
     </Rates>
   </ResourceTrickle>
   <Upgrade>
-    <TributeStone disable=""/>
+    <TributeWood disable=""/>
   </Upgrade>
 </Entity>

@@ -98,7 +98,7 @@ PETRA.Config = function(difficulty = PETRA.DIFFICULTY_MEDIUM, behavior)
 			"structures/{civ}/pillar_ashoka"
 		],
 		"pers": [
-			"structures/{civ}/apadana"
+			"structures/{civ}/tachara"
 		],
 		"ptol": [
 			"structures/{civ}/library",
