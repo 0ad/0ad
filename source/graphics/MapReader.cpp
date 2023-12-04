@@ -32,6 +32,7 @@
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Loader.h"
+#include "ps/Profiler2.h"
 #include "ps/TaskManager.h"
 #include "ps/World.h"
 #include "ps/XML/Xeromyces.h"

@@ -18,6 +18,8 @@
 #ifndef INCLUDED_JSI_VFS
 #define INCLUDED_JSI_VFS
 
+#include "scriptinterface/ScriptTypes.h"
+
 class ScriptRequest;
 
 namespace JSI_VFS
