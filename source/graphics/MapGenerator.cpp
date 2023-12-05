@@ -28,7 +28,6 @@
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/FileIo.h"
-#include "ps/Profile.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "ps/TemplateLoader.h"
 #include "scriptinterface/FunctionWrapper.h"

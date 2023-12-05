@@ -25,6 +25,8 @@
 #include "ps/Filesystem.h"
 #include "ps/Pyrogenesis.h"
 
+#include <iomanip>
+
 // not thread-safe!
 static const wchar_t* HardcodedErrorString(int err)
 {

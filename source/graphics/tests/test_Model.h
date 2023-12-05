@@ -32,6 +32,7 @@
 #include "lib/file/io/io.h"
 #include "ps/ConfigDB.h"
 #include "ps/CStrInternStatic.h"
+#include "ps/Filesystem.h"
 #include "ps/ProfileViewer.h"
 #include "ps/VideoMode.h"
 #include "ps/XML/Xeromyces.h"

@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2023-11-27 08:08+0000\n"
-"PO-Revision-Date: 2023-11-27 08:08+0000\n"
+"POT-Creation-Date: 2023-12-04 08:08+0000\n"
+"PO-Revision-Date: 2023-12-04 08:08+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -98,6 +98,7 @@ msgstr ""
 #: simulation/data/technologies/cavalry_health.json:requirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.json:requirementsTooltip
 #: simulation/data/technologies/civil_service_01.json:requirementsTooltip
+#: simulation/data/technologies/cost_healer.json:requirementsTooltip
 #: simulation/data/technologies/crossbow_training.json:requirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.json:requirementsTooltip
 #: simulation/data/technologies/garrison_heal.json:requirementsTooltip
@@ -182,7 +183,7 @@ msgid ""
 msgstr ""
 
 #: simulation/data/technologies/architecture_pers.json:genericName
-msgid "Persian Architecture"
+msgid "Achaemenid Architecture"
 msgstr ""
 
 #: simulation/data/technologies/architecture_pers.json:tooltip
@@ -562,6 +563,20 @@ msgstr ""
 
 #: simulation/data/technologies/colonization.json:tooltip
 msgid "Civic Structures (Civic Center, Temples, and Houses) −25% build time and resource costs."
+msgstr ""
+
+#: simulation/data/technologies/cost_healer.json:description
+msgid ""
+"Sacrificial rituals were quite common in ancient times, whether to satisfy the gods, "
+"calm natural disasters, or even improve harvests."
+msgstr ""
+
+#: simulation/data/technologies/cost_healer.json:genericName
+msgid "Sacrificial Ritual"
+msgstr ""
+
+#: simulation/data/technologies/cost_healer.json:tooltip
+msgid "Healers –40% training time, and the metal cost is removed."
 msgstr ""
 
 #: simulation/data/technologies/crossbow_training.json:description
