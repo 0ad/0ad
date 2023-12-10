@@ -103,9 +103,7 @@
       <attack_impact_ranged>attack/impact/arrow_impact.xml</attack_impact_ranged>
     </SoundGroups>
   </Sound>
-  <TerritoryDecay>
-    <DecayRate op="mul">2</DecayRate>
-  </TerritoryDecay>
+  <TerritoryDecay disable=""/>
   <Trainer>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
