@@ -2,7 +2,7 @@
 	Copyright (C) 2005-2007 Feeling Software Inc.
 	Portions of the code are:
 	Copyright (C) 2005-2007 Sony Computer Entertainment America
-	
+
 	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
@@ -77,6 +77,7 @@
 #include "FCDocument/FCDVersion.h"
 #include "FUtils/FUXmlDocument.h"
 
+#include <libxml/xmlIO.h>
 
 //
 // Constants
@@ -442,7 +443,7 @@ bool FArchiveXML::ImportFileFromMemory(const fchar* filePath, FCDocument* fcdocu
 	}
 
 	if (status) FUError::Error(FUError::DEBUG_LEVEL, FUError::DEBUG_LOAD_SUCCESSFUL);
-	return status;	
+	return status;
 }
 
 bool FArchiveXML::ExportFile(FCDocument* fcdocument, const fchar* filePath)
@@ -591,7 +592,7 @@ bool FArchiveXML::Import(FCDocument* theDocument, xmlNode* colladaNode)
 		else if (IsEquivalent(child->name, DAE_LIBRARY_PMATERIAL_ELEMENT)) n.order = PHYSICS_MATERIAL;
 		else if (IsEquivalent(child->name, DAE_LIBRARY_PMODEL_ELEMENT)) n.order = PHYSICS_MODEL;
 		else if (IsEquivalent(child->name, DAE_LIBRARY_PSCENE_ELEMENT)) n.order = PHYSICS_SCENE;
-		else if (IsEquivalent(child->name, DAE_ASSET_ELEMENT)) 
+		else if (IsEquivalent(child->name, DAE_ASSET_ELEMENT))
 		{
 			// Read in the asset information
 			status &= (FArchiveXML::LoadAsset(theDocument->GetAsset(), child));
@@ -679,9 +680,9 @@ bool FArchiveXML::Import(FCDocument* theDocument, xmlNode* colladaNode)
 		case IMAGE: status &= (FArchiveXML::LoadImageLibrary(theDocument->GetImageLibrary(), n.node)); break;
 		case LIGHT: status &= (FArchiveXML::LoadLightLibrary(theDocument->GetLightLibrary(), n.node)); break;
 		case MATERIAL: status &= (FArchiveXML::LoadMaterialLibrary(theDocument->GetMaterialLibrary(), n.node)); break;
-		case PHYSICS_MODEL: 
+		case PHYSICS_MODEL:
 			{
-				status &= (FArchiveXML::LoadPhysicsModelLibrary(theDocument->GetPhysicsModelLibrary(), n.node)); 
+				status &= (FArchiveXML::LoadPhysicsModelLibrary(theDocument->GetPhysicsModelLibrary(), n.node));
 				size_t physicsModelCount = theDocument->GetPhysicsModelLibrary()->GetEntityCount();
 				for (size_t physicsModelCounter = 0; physicsModelCounter < physicsModelCount; physicsModelCounter++)
 				{
@@ -790,7 +791,7 @@ bool FArchiveXML::Import(FCDocument* theDocument, xmlNode* colladaNode)
 	{
 		// [staylor] Why is this done here?  Shouldn't it be in FCDExternalReferenceManager?
 		// If it is, change it, either way delete the FUAssert (thanks)
-		//FUAssert(false == true, ;);  
+		// FUAssert(false == true, ;);
 		FArchiveXML::RegisterLoadedDocument(theDocument);
 		//FCDExternalReferenceManager::RegisterLoadedDocument(theDocument);
 	}
@@ -891,14 +892,14 @@ bool FArchiveXML::ExportDocument(FCDocument* theDocument, xmlNode* colladaNode)
 			// Export the emitter library
 			xmlNode* libraryNode = AddChild(typedTechniqueNode, DAE_LIBRARY_EMITTER_ELEMENT);
 
-			if (!theDocument->GetEmitterLibrary()->GetTransientFlag()) 
+			if (!theDocument->GetEmitterLibrary()->GetTransientFlag())
 				FArchiveXML::WriteLibrary(theDocument->GetEmitterLibrary(), libraryNode);
 		}
 
 		// Write out the animations
 		if (animationLibraryNode != NULL)
 		{
-			if (!theDocument->GetAnimationLibrary()->GetTransientFlag()) 
+			if (!theDocument->GetAnimationLibrary()->GetTransientFlag())
 				FArchiveXML::WriteLibrary(theDocument->GetAnimationLibrary(), animationLibraryNode);
 		}
 
@@ -978,7 +979,7 @@ xmlNode* FArchiveXML::WriteParentSwitch(FCDObject* object, const FUObjectType* o
 	{
 		return FArchiveXML::WriteSwitch(object, &objectType->GetParent(), node);
 	}
-	else 
+	else
 	{
 		FUBreak;
 		return NULL;
@@ -986,7 +987,7 @@ xmlNode* FArchiveXML::WriteParentSwitch(FCDObject* object, const FUObjectType* o
 }
 
 bool FArchiveXML::LoadAnimationLibrary(FCDObject* object, xmlNode* node)
-{ 
+{
 	return FArchiveXML::LoadLibrary<FCDAnimation>(object, node);
 }
 
@@ -996,17 +997,17 @@ bool FArchiveXML::LoadAnimationClipLibrary(FCDObject* object, xmlNode* node)
 }
 
 bool FArchiveXML::LoadCameraLibrary(FCDObject* object, xmlNode* node)
-{ 
+{
 	return FArchiveXML::LoadLibrary<FCDCamera>(object, node);
 }
 
 bool FArchiveXML::LoadControllerLibrary(FCDObject* object, xmlNode* node)
-{ 
+{
 	return FArchiveXML::LoadLibrary<FCDController>(object, node);
 }
 
 bool FArchiveXML::LoadEffectLibrary(FCDObject* object, xmlNode* node)
-{ 
+{
 	return FArchiveXML::LoadLibrary<FCDEffect>(object, node);
 }
 
@@ -1016,7 +1017,7 @@ bool FArchiveXML::LoadEmitterLibrary(FCDObject* object, xmlNode* node)
 }
 
 bool FArchiveXML::LoadForceFieldLibrary(FCDObject* object, xmlNode* node)
-{ 
+{
 	return FArchiveXML::LoadLibrary<FCDForceField>(object, node);
 }
 

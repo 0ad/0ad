@@ -2,7 +2,7 @@
 	Copyright (C) 2005-2007 Feeling Software Inc.
 	Portions of the code are:
 	Copyright (C) 2005-2007 Sony Computer Entertainment America
-	
+
 	MIT License: http://www.opensource.org/licenses/mit-license.php
 */
 
@@ -13,10 +13,12 @@
 #include "FUFile.h"
 #include "FCDocument/FCDocument.h"
 
+#include <libxml/parser.h>
+
 #define MAX_FILE_SIZE 10240000
 //
 // FUXmlDocument
-// 
+//
 
 FUXmlDocument::FUXmlDocument(FUFileManager* manager, const fchar* _filename, bool _isParsing)
 :	isParsing(_isParsing), filename(_filename)
