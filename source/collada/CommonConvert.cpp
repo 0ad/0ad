@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,8 +28,9 @@
 #include "FUtils/FUDaeSyntax.h"
 #include "FUtils/FUFileManager.h"
 
-#include <cassert>
 #include <algorithm>
+#include <cassert>
+#include <libxml/xmlerror.h>
 
 void require_(int line, bool value, const char* type, const char* message)
 {

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,12 +33,14 @@
 #include "Xeromyces.h"
 
 #include <libxml/parser.h>
+#include <type_traits>
 
 static std::mutex g_ValidatorCacheLock;
 static std::map<const std::string, RelaxNGValidator> g_ValidatorCache;
 static bool g_XeromycesStarted = false;
 
-static void errorHandler(void* UNUSED(userData), xmlErrorPtr error)
+static void errorHandler(void* UNUSED(userData),
+	std::conditional_t<LIBXML_VERSION >= 21200, const xmlError, xmlError>* error)
 {
 	// Strip a trailing newline
 	std::string message = error->message;

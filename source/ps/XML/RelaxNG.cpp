@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,9 +25,11 @@
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
 
+#include <libxml/parser.h>
 #include <libxml/relaxng.h>
 #include <map>
 #include <mutex>
+#include <type_traits>
 
 TIMER_ADD_CLIENT(xml_validation);
 
@@ -46,7 +48,8 @@ void ClearSchemaCache()
 	g_SchemaCache.clear();
 }
 
-static void relaxNGErrorHandler(void* UNUSED(userData), xmlErrorPtr error)
+static void relaxNGErrorHandler(void* UNUSED(userData),
+	std::conditional_t<LIBXML_VERSION >= 21200, const xmlError, xmlError>* error)
 {
 	// Strip a trailing newline
 	std::string message = error->message;
