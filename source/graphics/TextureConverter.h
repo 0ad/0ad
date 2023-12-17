@@ -23,10 +23,12 @@
 
 #include "TextureManager.h"
 
-#include <condition_variable>
-#include <deque>
-#include <mutex>
-#include <thread>
+#if CONFIG2_NVTT
+#include "ps/Future.h"
+
+#include <memory>
+#include <queue>
+#endif
 
 class MD5;
 
@@ -34,8 +36,8 @@ class MD5;
  * Texture conversion helper class.
  * Provides an asynchronous API to convert input image files into compressed DDS,
  * given various conversion settings.
- * (The (potentially very slow) compression is a performed in a background thread,
- * so the game can remain responsive).
+ * (The (potentially very slow) compression is a performed asynchronously, so
+ * the game can remain responsive).
  * Also provides an API to load conversion settings from XML files.
  *
  * XML files are of the form:
@@ -157,9 +159,8 @@ public:
 	CTextureConverter(PIVFS vfs, bool highQuality);
 
 	/**
-	 * Destroy texture converter and wait to shut down worker thread.
-	 * This might take a long time (maybe seconds) if the worker is busy
-	 * processing a texture.
+	 * The destructor does wait for already started tasks. This might take a
+	 * long time (maybe seconds).
 	 */
 	~CTextureConverter();
 
@@ -197,29 +198,20 @@ public:
 	bool Poll(CTexturePtr& texture, VfsPath& dest, bool& ok);
 
 	/**
-	 * Returns whether there is currently a queued request from ConvertTexture().
-	 * (Note this may return false while the worker thread is still converting the last texture.)
+	 * The TextureConverter shouldn't utilize the CPU/Memory fully, so no
+	 * conversion should be started when a call to @p IsBusy returns true.
 	 */
-	bool IsBusy();
+	bool IsBusy() const;
 
 private:
-	static void RunThread(CTextureConverter* data);
-
 	PIVFS m_VFS;
 	bool m_HighQuality;
 
 #if CONFIG2_NVTT
-	std::thread m_WorkerThread;
-	std::mutex m_WorkerMutex;
-	std::condition_variable m_WorkerCV;
-#endif // CONFIG2_NVTT
-
-	struct ConversionRequest;
 	struct ConversionResult;
 
-	std::deque<std::shared_ptr<ConversionRequest>> m_RequestQueue; // protected by m_WorkerMutex
-	std::deque<std::shared_ptr<ConversionResult>> m_ResultQueue; // protected by m_WorkerMutex
-	bool m_Shutdown; // protected by m_WorkerMutex
+	std::queue<Future<std::unique_ptr<ConversionResult>>> m_ResultQueue;
+#endif
 };
 
 #endif // INCLUDED_TEXTURECONVERTER
