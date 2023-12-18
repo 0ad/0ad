@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Profiler2.h"
-#include "ps/Threading.h"
+#include "ps/TaskManager.h"
 #include "ps/Util.h"
 #include "ps/XML/Xeromyces.h"
 
@@ -48,9 +48,16 @@
 If your system does not provide it, you should use the bundled version by NOT passing --with-system-nvtt to premake.
 #endif
 
+namespace
+{
+
+// Completely arbitrary constant - there is some main-thread cost to loading textures and the textures
+// use a lot of memory, so probably should not be too high.
+// Note that some results in the result queue may already be ready.
+constexpr size_t MAX_QUEUE_SIZE_FOR_OPTIMAL_UTILIZATION{12};
+
 /**
  * Output handler to collect NVTT's output into a simplistic buffer.
- * WARNING: Used in the worker thread - must be thread-safe.
  */
 struct BufferOutputHandler : public nvtt::OutputHandler
 {
@@ -74,9 +81,9 @@ struct BufferOutputHandler : public nvtt::OutputHandler
 };
 
 /**
- * Request for worker thread to process.
+ * Arguments to the asynchronous task.
  */
-struct CTextureConverter::ConversionRequest
+struct ConversionRequest
 {
 	VfsPath dest;
 	CTexturePtr texture;
@@ -85,8 +92,10 @@ struct CTextureConverter::ConversionRequest
 	nvtt::OutputOptions outputOptions;
 };
 
+} // anonymous namespace
+
 /**
- * Result from worker thread.
+ * Response from the asynchronous task.
  */
 struct CTextureConverter::ConversionResult
 {
@@ -293,42 +302,23 @@ CTextureConverter::Settings CTextureConverter::ComputeSettings(const std::wstrin
 }
 
 CTextureConverter::CTextureConverter(PIVFS vfs, bool highQuality) :
-	m_VFS(vfs), m_HighQuality(highQuality), m_Shutdown(false)
+	m_VFS(vfs), m_HighQuality(highQuality)
 {
 #if CONFIG2_NVTT
 	// Verify that we are running with at least the version we were compiled with,
 	// to avoid bugs caused by ABI changes
 	ENSURE(nvtt::version() >= NVTT_VERSION);
-
-	m_WorkerThread = std::thread(Threading::HandleExceptions<RunThread>::Wrapper, this);
-
-	// Maybe we should share some centralised pool of worker threads?
-	// For now we'll just stick with a single thread for this specific use.
 #endif // CONFIG2_NVTT
 }
 
 CTextureConverter::~CTextureConverter()
 {
 #if CONFIG2_NVTT
-	// Tell the thread to shut down
+	while (!m_ResultQueue.empty())
 	{
-		std::lock_guard<std::mutex> lock(m_WorkerMutex);
-		m_Shutdown = true;
+		m_ResultQueue.front().CancelOrWait();
+		m_ResultQueue.pop();
 	}
-
-	while (true)
-	{
-		// Wake the thread up so that it shutdowns.
-		// If we send the message once, there is a chance it will be missed,
-		// so keep sending until shtudown becomes false again, indicating that the thread has shut down.
-		std::lock_guard<std::mutex> lock(m_WorkerMutex);
-		m_WorkerCV.notify_all();
-		if (!m_Shutdown)
-			break;
-	}
-
-	// Wait for it to shut down cleanly
-	m_WorkerThread.join();
 #endif // CONFIG2_NVTT
 }
 
@@ -397,7 +387,7 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 
 #if CONFIG2_NVTT
 
-	std::shared_ptr<ConversionRequest> request = std::make_shared<ConversionRequest>();
+	std::unique_ptr<ConversionRequest> request = std::make_unique<ConversionRequest>();
 	request->dest = dest;
 	request->texture = texture;
 
@@ -478,13 +468,23 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 		delete[] rgba;
 	}
 
-	{
-		std::lock_guard<std::mutex> lock(m_WorkerMutex);
-		m_RequestQueue.push_back(request);
-	}
+	m_ResultQueue.push(Threading::TaskManager::Instance().PushTask([request = std::move(request)]
+		{
+			PROFILE2("compress");
+			// Set up the result object
+			std::unique_ptr<ConversionResult> result = std::make_unique<ConversionResult>();
+			result->dest = request->dest;
+			result->texture = request->texture;
 
-	// Wake up the worker thread
-	m_WorkerCV.notify_all();
+			request->outputOptions.setOutputHandler(&result->output);
+
+			// Perform the compression
+			nvtt::Compressor compressor;
+			result->ret = compressor.process(request->inputOptions, request->compressionOptions,
+				request->outputOptions);
+
+			return result;
+		}, Threading::TaskPriority::LOW));
 
 	return true;
 
@@ -497,23 +497,14 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 bool CTextureConverter::Poll(CTexturePtr& texture, VfsPath& dest, bool& ok)
 {
 #if CONFIG2_NVTT
-	std::shared_ptr<ConversionResult> result;
-
-	// Grab the first result (if any)
-	{
-		std::lock_guard<std::mutex> lock(m_WorkerMutex);
-		if (!m_ResultQueue.empty())
-		{
-			result = m_ResultQueue.front();
-			m_ResultQueue.pop_front();
-		}
-	}
-
-	if (!result)
+	if (m_ResultQueue.empty() || !m_ResultQueue.front().IsReady())
 	{
 		// no work to do
 		return false;
 	}
+
+	std::unique_ptr<ConversionResult> result = m_ResultQueue.front().Get();
+	m_ResultQueue.pop();
 
 	if (!result->ret)
 	{
@@ -545,69 +536,11 @@ bool CTextureConverter::Poll(CTexturePtr& texture, VfsPath& dest, bool& ok)
 #endif // !CONFIG2_NVTT
 }
 
-bool CTextureConverter::IsBusy()
+bool CTextureConverter::IsBusy() const
 {
 #if CONFIG2_NVTT
-	std::lock_guard<std::mutex> lock(m_WorkerMutex);
-	return !m_RequestQueue.empty();
+	return m_ResultQueue.size() >= MAX_QUEUE_SIZE_FOR_OPTIMAL_UTILIZATION;
 #else // CONFIG2_NVTT
 	return false;
 #endif // !CONFIG2_NVTT
-}
-
-void CTextureConverter::RunThread(CTextureConverter* textureConverter)
-{
-#if CONFIG2_NVTT
-	debug_SetThreadName("TextureConverter");
-	g_Profiler2.RegisterCurrentThread("texconv");
-	// Wait until the main thread wakes us up
-	while (true)
-	{
-		// We may have several textures in the incoming queue, process them all before going back to sleep.
-		if (!textureConverter->IsBusy()) {
-			std::unique_lock<std::mutex> wait_lock(textureConverter->m_WorkerMutex);
-			// Use the no-condition variant because spurious wake-ups don't matter that much here.
-			textureConverter->m_WorkerCV.wait(wait_lock);
-		}
-
-		g_Profiler2.RecordSyncMarker();
-		PROFILE2_EVENT("wakeup");
-
-		std::shared_ptr<ConversionRequest> request;
-
-		{
-			std::lock_guard<std::mutex> wait_lock(textureConverter->m_WorkerMutex);
-			if (textureConverter->m_Shutdown)
-				break;
-			// If we weren't woken up for shutdown, we must have been woken up for
-			// a new request, so grab it from the queue
-			request = textureConverter->m_RequestQueue.front();
-			textureConverter->m_RequestQueue.pop_front();
-		}
-
-		// Set up the result object
-		std::shared_ptr<ConversionResult> result = std::make_shared<ConversionResult>();
-		result->dest = request->dest;
-		result->texture = request->texture;
-
-		request->outputOptions.setOutputHandler(&result->output);
-
-//		TIMER(L"TextureConverter compress");
-
-		{
-			PROFILE2("compress");
-
-			// Perform the compression
-			nvtt::Compressor compressor;
-			result->ret = compressor.process(request->inputOptions, request->compressionOptions, request->outputOptions);
-		}
-
-		// Push the result onto the queue
-		std::lock_guard<std::mutex> wait_lock(textureConverter->m_WorkerMutex);
-		textureConverter->m_ResultQueue.push_back(result);
-	}
-
-	std::lock_guard<std::mutex> wait_lock(textureConverter->m_WorkerMutex);
-	textureConverter->m_Shutdown = false;
-#endif // CONFIG2_NVTT
 }
