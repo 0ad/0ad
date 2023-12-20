@@ -19,7 +19,6 @@
 #define FSM_H
 
 #include <limits>
-#include <map>
 #include <set>
 #include <vector>
 
@@ -39,7 +38,6 @@ struct CallbackFunction
 };
 
 using StateSet = std::set<unsigned int>;
-using EventMap = std::map<unsigned int, CFsmEvent*>;
 using TransitionList = std::vector<CFsmTransition*>;
 
 /**
@@ -52,7 +50,7 @@ class CFsmEvent
 	NONCOPYABLE(CFsmEvent);
 public:
 
-	CFsmEvent(unsigned int type);
+	CFsmEvent(unsigned int type, void* pParam);
 	~CFsmEvent();
 
 	unsigned int GetType() const
@@ -64,8 +62,6 @@ public:
 	{
 		return m_Param;
 	}
-
-	void SetParamRef(void* pParam);
 
 private:
 	unsigned int m_Type; // Event type
@@ -88,10 +84,10 @@ public:
 	/**
 	 * Set event for which transition will occur.
 	 */
-	void SetEvent(CFsmEvent* pEvent);
-	CFsmEvent* GetEvent() const
+	void SetEventType(const unsigned int eventType);
+	unsigned int GetEventType() const
 	{
-		return m_Event;
+		return m_EventType;
 	}
 
 	/**
@@ -118,12 +114,12 @@ public:
 	 * @note If there are no action, assume true.
 	 * @return whether the action returned true.
 	 */
-	bool RunAction() const;
+	bool RunAction(CFsmEvent& event) const;
 
 private:
 	unsigned int m_CurrState;
 	unsigned int m_NextState;
-	CFsmEvent* m_Event;
+	unsigned int m_EventType;
 	CallbackFunction m_Action;
 };
 
@@ -162,13 +158,6 @@ public:
 	 * @note If a state with the specified ID exists, the state is not added.
 	 */
 	void AddState(unsigned int state);
-
-	/**
-	 * Adds the specified event to the internal list of events.
-	 * @note If an eveny with the specified ID exists, the event is not added.
-	 * @return a pointer to the new event.
-	 */
-	CFsmEvent* AddEvent(unsigned int eventType);
 
 	/**
 	 * Adds a new transistion to the state machine.
@@ -212,11 +201,6 @@ public:
 		return m_States;
 	}
 
-	const EventMap& GetEvents() const
-	{
-		return m_Events;
-	}
-
 	const TransitionList& GetTransitions() const
 	{
 		return m_Transitions;
@@ -232,11 +216,6 @@ public:
 	 * Verifies whether the specified state is managed by the FSM.
 	 */
 	bool IsValidState(unsigned int state) const;
-
-	/**
-	 * Verifies whether the specified event is managed by the FSM.
-	 */
-	bool IsValidEvent(unsigned int eventType) const;
 
 	/**
 	 * Tests whether the state machine has finished its work.
@@ -255,7 +234,6 @@ private:
 	unsigned int m_CurrState;
 	unsigned int m_NextState;
 	StateSet m_States;
-	EventMap m_Events;
 	TransitionList m_Transitions;
 };
 
