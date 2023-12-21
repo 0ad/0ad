@@ -19,10 +19,10 @@
 #include "FSM.h"
 
 
-CFsmEvent::CFsmEvent(unsigned int type)
+CFsmEvent::CFsmEvent(unsigned int type, void* pParam)
 {
 	m_Type = type;
-	m_Param = nullptr;
+	m_Param = pParam;
 }
 
 CFsmEvent::~CFsmEvent()
@@ -30,19 +30,14 @@ CFsmEvent::~CFsmEvent()
 	m_Param = nullptr;
 }
 
-void CFsmEvent::SetParamRef(void* pParam)
-{
-	m_Param = pParam;
-}
-
 CFsmTransition::CFsmTransition(const unsigned int state, const CallbackFunction action)
 	: m_CurrState{state},
 	m_Action{action}
 {}
 
-void CFsmTransition::SetEvent(CFsmEvent* pEvent)
+void CFsmTransition::SetEventType(const unsigned int eventType)
 {
-	m_Event = pEvent;
+	m_EventType = eventType;
 }
 
 void CFsmTransition::SetNextState(unsigned int nextState)
@@ -50,9 +45,9 @@ void CFsmTransition::SetNextState(unsigned int nextState)
 	m_NextState = nextState;
 }
 
-bool CFsmTransition::RunAction() const
+bool CFsmTransition::RunAction(CFsmEvent& event) const
 {
-	return !m_Action.pFunction || m_Action.pFunction(m_Action.pContext, m_Event);
+	return !m_Action.pFunction || m_Action.pFunction(m_Action.pContext, &event);
 }
 
 CFsm::CFsm()
@@ -80,13 +75,7 @@ void CFsm::Shutdown()
 	for (; itTransition < m_Transitions.end(); ++itTransition)
 		delete *itTransition;
 
-	// Release events
-	EventMap::iterator itEvent = m_Events.begin();
-	for (; itEvent != m_Events.end(); ++itEvent)
-		delete itEvent->second;
-
 	m_States.clear();
-	m_Events.clear();
 	m_Transitions.clear();
 
 	m_Done = false;
@@ -100,27 +89,6 @@ void CFsm::AddState(unsigned int state)
 	m_States.insert(state);
 }
 
-CFsmEvent* CFsm::AddEvent(unsigned int eventType)
-{
-	CFsmEvent* pEvent = nullptr;
-
-	// Lookup event by type
-	EventMap::iterator it = m_Events.find(eventType);
-	if (it != m_Events.end())
-	{
-		pEvent = it->second;
-	}
-	else
-	{
-		pEvent = new CFsmEvent(eventType);
-
-		// Store new event into internal map
-		m_Events[eventType] = pEvent;
-	}
-
-	return pEvent;
-}
-
 CFsmTransition* CFsm::AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
 	Action* pAction /* = nullptr */, void* pContext /* = nullptr*/)
 {
@@ -130,16 +98,11 @@ CFsmTransition* CFsm::AddTransition(unsigned int state, unsigned int eventType, 
 	// Make sure we store the next state
 	AddState(nextState);
 
-	// Make sure we store the event
-	CFsmEvent* pEvent = AddEvent(eventType);
-	if (!pEvent)
-		return nullptr;
-
 	// Create new transition
 	CFsmTransition* pNewTransition = new CFsmTransition(state, {pAction, pContext});
 
 	// Setup new transition
-	pNewTransition->SetEvent(pEvent);
+	pNewTransition->SetEventType(eventType);
 	pNewTransition->SetNextState(nextState);
 
 	// Store new transition
@@ -153,9 +116,6 @@ CFsmTransition* CFsm::GetTransition(unsigned int state, unsigned int eventType) 
 	if (!IsValidState(state))
 		return nullptr;
 
-	if (!IsValidEvent(eventType))
-		return nullptr;
-
 	TransitionList::const_iterator it = m_Transitions.begin();
 	for (; it != m_Transitions.end(); ++it)
 	{
@@ -163,12 +123,8 @@ CFsmTransition* CFsm::GetTransition(unsigned int state, unsigned int eventType) 
 		if (!pCurrTransition)
 			continue;
 
-		CFsmEvent* pCurrEvent = pCurrTransition->GetEvent();
-		if (!pCurrEvent)
-			continue;
-
 		// Is it our transition?
-		if (pCurrTransition->GetCurrState() == state &&  pCurrEvent->GetType() == eventType)
+		if (pCurrTransition->GetCurrState() == state && pCurrTransition->GetEventType() == eventType)
 			return pCurrTransition;
 	}
 
@@ -193,9 +149,6 @@ bool CFsm::IsFirstTime() const
 
 bool CFsm::Update(unsigned int eventType, void* pEventParam)
 {
-	if (!IsValidEvent(eventType))
-		return false;
-
 	if (IsFirstTime())
 		m_CurrState = m_FirstState;
 
@@ -204,20 +157,13 @@ bool CFsm::Update(unsigned int eventType, void* pEventParam)
 	if (!pTransition)
 		return false;
 
-	// Setup event parameter
-	EventMap::iterator it = m_Events.find(eventType);
-	if (it != m_Events.end())
-	{
-		CFsmEvent* pEvent = it->second;
-		if (pEvent)
-			pEvent->SetParamRef(pEventParam);
-	}
+	CFsmEvent event{eventType, pEventParam};
 
 	// Save the default state transition (actions might call SetNextState
 	// to override this)
 	SetNextState(pTransition->GetNextState());
 
-	if (!pTransition->RunAction())
+	if (!pTransition->RunAction(event))
 		return false;
 
 	SetCurrState(GetNextState());
@@ -238,15 +184,6 @@ bool CFsm::IsValidState(unsigned int state) const
 {
 	StateSet::const_iterator it = m_States.find(state);
 	if (it == m_States.end())
-		return false;
-
-	return true;
-}
-
-bool CFsm::IsValidEvent(unsigned int eventType) const
-{
-	EventMap::const_iterator it = m_Events.find(eventType);
-	if (it == m_Events.end())
 		return false;
 
 	return true;
