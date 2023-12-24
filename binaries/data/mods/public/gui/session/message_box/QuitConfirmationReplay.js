@@ -1,7 +1,7 @@
 /**
  * This class is concerned with opening a message box if the game is in replaymode and that replay ended.
  */
-class QuitConfirmationReplay extends SessionMessageBox
+class QuitConfirmationReplay extends QuitConfirmation
 {
 	constructor()
 	{
@@ -20,7 +20,8 @@ QuitConfirmationReplay.prototype.Buttons =
 [
 	{
 		// Translation: Shown in the Dialog that shows up when a replay finishes
-		"caption": translate("Stay")
+		"caption": translate("Stay"),
+		"onPress": resumeGame
 	},
 	{
 		// Translation: Shown in the Dialog that shows up when a replay finishes
@@ -33,6 +34,3 @@ QuitConfirmationReplay.prototype.Buttons =
 		"onPress": () => { endGame(false); }
 	}
 ];
-
-QuitConfirmationReplay.prototype.Width = 600;
-QuitConfirmationReplay.prototype.Height = 200;
