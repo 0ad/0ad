@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_archer">
+  <Attack>
+    <Ranged>
+      <Damage>
+        <Pierce op="mul">0.85</Pierce>
+      </Damage>
+    </Ranged>
+  </Attack>
   <Health>
-    <Max>140</Max>
+    <Max>120</Max>
   </Health>
   <Identity>
     <Civ>pers</Civ>
@@ -11,16 +18,28 @@
     <VisibleClasses datatype="tokens">Immortal</VisibleClasses>
     <Icon>units/pers/champion_infantry_archer.png</Icon>
   </Identity>
+  <Loot>
+    <food>5</food>
+    <wood>3</wood>
+    <metal>5</metal>
+  </Loot>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack op="add">-1</Hack>
+      </Damage>
+    </Entity>
+  </Resistance>
   <Upgrade>
     <Immortal_spearman>
       <Entity>units/pers/champion_infantry</Entity>
       <Tooltip>Switch to using a spear and shield.</Tooltip>
       <Variant>upgrading</Variant>
-      <Time>8</Time>
+      <Time>6</Time>
     </Immortal_spearman>
   </Upgrade>
   <UnitMotion>
-    <WalkSpeed op="mul">0.79</WalkSpeed>
+    <WalkSpeed op="mul">0.88</WalkSpeed>
   </UnitMotion>
   <VisualActor>
     <Actor>units/persians/infantry_archer_c.xml</Actor>
