@@ -2,7 +2,7 @@
 	"settings" : {
 		"Name" : "Flood",
 		"Script" : "flood.js",
-		"Description" : "A great flood has moved across the valley enabling ships and troops to battle in chest deep waters.",
+		"Description" : "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n\nA great flood moves across the valley. At some point you have to evacuate your units and use ships to reach the mainland and the other players.",
 		"SupportedBiomes": [
 			"generic/temperate",
 			"generic/arctic",
@@ -12,8 +12,26 @@
 			"generic/india",
 			"generic/autumn"
 		],
-		"Keywords": [],
+		"TriggerScripts": [
+			"random/flood_triggers.js"
+		],
+		"Keywords": ["trigger"],
 		"Preview" : "flood.png",
-		"CircularMap" : true
+		"CircularMap" : true,
+		"WaterLevels":[
+			{
+				"Name": "Rising",
+				"Description": "The water rises. The homeislands will become uninhabitable.",
+				"Default": true
+			},
+			{
+				"Name": "Shallow",
+				"Description": "The water doesn't rise. Ships and troops can battle in chest deep waters."
+			},
+			{
+				"Name": "Deep",
+				"Description": "The water doesn't rise. You have to use ships to travel to the mainland."
+			}
+		]
 	}
 }

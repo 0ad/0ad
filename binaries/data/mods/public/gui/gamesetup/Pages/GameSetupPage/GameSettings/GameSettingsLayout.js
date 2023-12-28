@@ -14,6 +14,7 @@ var g_GameSettingsLayout = [
 			"TeamPlacement",
 			"Landscape",
 			"Biome",
+			"WaterLevel",
 			"SeaLevelRiseTime",
 			"Daytime",
 			"TriggerDifficulty",
