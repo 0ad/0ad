@@ -48,7 +48,8 @@ const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TE
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
 const heightSeaGround = -2;
-const heightLand = 2;
+const heightLand = 6;
+const heightStartingIslands = 2;
 const shoreRadius = 6;
 
 var g_Map = new RandomMap(heightSeaGround, tWater);
@@ -75,7 +76,7 @@ for (let i = 0; i < numPlayers; ++i)
 		new ClumpPlacer(diskArea(1.4 * defaultPlayerBaseRadius()), 0.8, 0.1, Infinity, playerPosition[i]),
 		[
 			new LayeredPainter([tShore, tMainTerrain], [shoreRadius]),
-			new SmoothElevationPainter(ELEVATION_SET, heightLand, shoreRadius),
+			new SmoothElevationPainter(ELEVATION_SET, heightStartingIslands, shoreRadius),
 			new TileClassPainter(clHill)
 		]);
 
@@ -223,7 +224,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		numb * scaleByMapSize(15, 45));
 
 g_Map.log("Painting shorelines");
-paintTerrainBasedOnHeight(1, heightLand, 0, tMainTerrain);
+paintTerrainBasedOnHeight(1, heightStartingIslands, 0, tMainTerrain);
 paintTerrainBasedOnHeight(heightSeaGround, 1, 3, tTier1Terrain);
 
 g_Map.log("Creating grass patches");
