@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
-"PO-Revision-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2023-12-29 08:08+0000\n"
+"PO-Revision-Date: 2023-12-29 08:08+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -361,12 +361,38 @@ msgstr ""
 
 #: maps/random/flood.json:settings.Description
 msgid ""
-"A great flood has moved across the valley enabling ships and troops to battle in chest "
-"deep waters."
+"[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n"
+"\n"
+"A great flood moves across the valley. At some point you have to evacuate your units "
+"and use ships to reach the mainland and the other players."
 msgstr ""
 
 #: maps/random/flood.json:settings.Name
 msgid "Flood"
+msgstr ""
+
+#: maps/random/flood.json:settings.WaterLevels[0].Description
+msgid "The water rises. The homeislands will become uninhabitable."
+msgstr ""
+
+#: maps/random/flood.json:settings.WaterLevels[0].Name
+msgid "Rising"
+msgstr ""
+
+#: maps/random/flood.json:settings.WaterLevels[1].Description
+msgid "The water doesn't rise. Ships and troops can battle in chest deep waters."
+msgstr ""
+
+#: maps/random/flood.json:settings.WaterLevels[1].Name
+msgid "Shallow"
+msgstr ""
+
+#: maps/random/flood.json:settings.WaterLevels[2].Description
+msgid "The water doesn't rise. You have to use ships to travel to the mainland."
+msgstr ""
+
+#: maps/random/flood.json:settings.WaterLevels[2].Name
+msgid "Deep"
 msgstr ""
 
 #: maps/random/fortress.json:settings.Description
@@ -511,11 +537,11 @@ msgstr ""
 msgid "Jebel Barkal"
 msgstr ""
 
-#: maps/random/jebel_barkal_triggers.js:592
+#: maps/random/jebel_barkal_triggers.js:605
 msgid "Napata is attacking!"
 msgstr ""
 
-#: maps/random/jebel_barkal_triggers.js:602
+#: maps/random/jebel_barkal_triggers.js:615
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
 msgstr ""
@@ -2822,7 +2848,7 @@ msgstr ""
 msgid "Greek Acropolis (2)"
 msgstr ""
 
-#: maps/skirmishes/greek_acropolis_4p.xml:Description:38
+#: maps/skirmishes/greek_acropolis_4p.xml:Description:39
 msgid ""
 "Three factions find themselves perched safely atop large rocky plateaus, whereas the "
 "fourth one is separated from their foes by a river branch.\n"
@@ -2830,7 +2856,7 @@ msgid ""
 "Scout the lands to find free treasures and to secure new resources.."
 msgstr ""
 
-#: maps/skirmishes/greek_acropolis_4p.xml:Name:38
+#: maps/skirmishes/greek_acropolis_4p.xml:Name:39
 msgid "Greek Acropolis (4)"
 msgstr ""
 
