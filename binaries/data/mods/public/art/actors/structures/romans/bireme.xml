@@ -8,7 +8,7 @@
       <props>
         <prop actor="props/structures/romans/bireme_main_sail.xml" attachpoint="main_sail"/>
         <prop actor="props/structures/romans/rome_bridge_base.xml" attachpoint="bridge"/>
-        <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/bolt_tower.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/rome_bireme.png" name="baseTex"/>

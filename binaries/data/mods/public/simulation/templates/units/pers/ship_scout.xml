@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship_warship_scout">
+  <Footprint>
+    <Square width="7.0" depth="37.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>pers</Civ>
+    <Lang>persian</Lang>
+    <SpecificName>Hamaraniyanava</SpecificName>
+    <Icon>units/pers/ship_scout.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/persians/bireme_scout.xml</Actor>
+  </VisualActor>
+</Entity>

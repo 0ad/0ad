@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Scenario version="7">
+	<Environment>
+		<SkySet>cirrus</SkySet>
+		<SunColor r="0.894118" g="0.894118" b="0.894118"/>
+		<SunElevation angle="0.690056"/>
+		<SunRotation angle="-1.00407"/>
+		<AmbientColor r="0.501961" g="0.501961" b="0.501961"/>
+		<Fog>
+			<FogFactor>0.000742187</FogFactor>
+			<FogThickness>0</FogThickness>
+			<FogColor r="1" g="1" b="1"/>
+		</Fog>
+		<Water>
+			<WaterBody>
+				<Type>ocean</Type>
+				<Color r="0.109804" g="0.47451" b="0.537255"/>
+				<Tint r="0" g="0.501961" b="1"/>
+				<Height>60.1044</Height>
+				<Waviness>4</Waviness>
+				<Murkiness>1</Murkiness>
+				<WindAngle>1.24559</WindAngle>
+			</WaterBody>
+		</Water>
+		<Postproc>
+			<Brightness>0</Brightness>
+			<Contrast>1</Contrast>
+			<Saturation>0.99</Saturation>
+			<Bloom>0.1999</Bloom>
+			<PostEffect>hdr</PostEffect>
+		</Postproc>
+	</Environment>
+	<Camera>
+		<Position x="855.97" y="202.645" z="851.017"/>
+		<Rotation angle="0"/>
+		<Declination angle="0.610865"/>
+	</Camera>
+	<ScriptSettings><![CDATA[
+{
+  "AISeed": 0,
+  "AllyView": false,
+  "CircularMap": true,
+  "Description": "Ship Combat Demo.",
+  "Keywords": [],
+  "LockTeams": false,
+  "Name": "Ship Combat Demo",
+  "PlayerData": [
+    null,
+    {
+      "Civ": "brit",
+      "Color": {
+        "b": 255,
+        "g": 128,
+        "r": 0
+      },
+      "PopulationLimit": 500
+    },
+    {
+      "Civ": "pers",
+      "Color": {
+        "b": 0,
+        "g": 0,
+        "r": 206
+      },
+      "PopulationLimit": 500
+    }
+  ],
+  "Preview": "",
+  "RevealMap": false,
+  "VictoryConditions": [
+    "conquest_units"
+  ]
+}
+]]></ScriptSettings>
+	<Entities>
+		<Entity uid="23">
+			<Template>units/athen/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="232.43696" z="316.9206"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="7944"/>
+		</Entity>
+		<Entity uid="24">
+			<Template>units/athen/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="250.83088" z="333.07874"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27492"/>
+		</Entity>
+		<Entity uid="25">
+			<Template>units/athen/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="263.72407" z="350.74842"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2534"/>
+		</Entity>
+		<Entity uid="26">
+			<Template>units/athen/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="277.51948" z="368.19495"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2534"/>
+		</Entity>
+		<Entity uid="27">
+			<Template>units/athen/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="293.48957" z="384.4581"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40249"/>
+		</Entity>
+		<Entity uid="28">
+			<Template>units/athen/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="314.1496" z="406.77112"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40249"/>
+		</Entity>
+		<Entity uid="30">
+			<Template>units/pers/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="340.26764" z="230.24787"/>
+			<Orientation y="-0.76932"/>
+			<Actor seed="17214"/>
+		</Entity>
+		<Entity uid="31">
+			<Template>units/pers/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="397.6215" z="276.76282"/>
+			<Orientation y="-0.81254"/>
+			<Actor seed="17214"/>
+		</Entity>
+		<Entity uid="32">
+			<Template>units/pers/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="365.02887" z="249.67411"/>
+			<Orientation y="-0.86615"/>
+			<Actor seed="28008"/>
+		</Entity>
+		<Entity uid="33">
+			<Template>units/pers/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="320.37757" z="217.74009"/>
+			<Orientation y="-0.62998"/>
+			<Actor seed="38527"/>
+		</Entity>
+		<Entity uid="35">
+			<Template>units/spart/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="529.72162" z="541.05646"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="8112"/>
+		</Entity>
+		<Entity uid="36">
+			<Template>units/spart/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="549.13465" z="559.01868"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="62196"/>
+		</Entity>
+		<Entity uid="37">
+			<Template>units/spart/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="567.17634" z="584.24183"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="62196"/>
+		</Entity>
+		<Entity uid="38">
+			<Template>units/spart/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="586.8606" z="606.27228"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="31573"/>
+		</Entity>
+		<Entity uid="39">
+			<Template>units/spart/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="615.39661" z="630.64124"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="31573"/>
+		</Entity>
+		<Entity uid="40">
+			<Template>units/spart/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="644.93921" z="652.69587"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="54158"/>
+		</Entity>
+		<Entity uid="41">
+			<Template>units/sele/ship_siege</Template>
+			<Player>2</Player>
+			<Position x="714.0196" z="433.6868"/>
+			<Orientation y="-0.60502"/>
+			<Actor seed="17578"/>
+		</Entity>
+		<Entity uid="42">
+			<Template>units/sele/ship_siege</Template>
+			<Player>2</Player>
+			<Position x="738.9626" z="454.58552"/>
+			<Orientation y="-0.63018"/>
+			<Actor seed="58283"/>
+		</Entity>
+		<Entity uid="43">
+			<Template>units/sele/ship_siege</Template>
+			<Player>2</Player>
+			<Position x="668.68537" z="417.01624"/>
+			<Orientation y="-0.60274"/>
+			<Actor seed="58283"/>
+		</Entity>
+		<Entity uid="44">
+			<Template>units/sele/ship_siege</Template>
+			<Player>2</Player>
+			<Position x="693.4748" z="429.40021"/>
+			<Orientation y="-0.67508"/>
+			<Actor seed="45658"/>
+		</Entity>
+		<Entity uid="45">
+			<Template>units/iber/ship_fire</Template>
+			<Player>1</Player>
+			<Position x="1143.56092" z="1160.21998"/>
+			<Orientation y="2.30997"/>
+			<Actor seed="49484"/>
+		</Entity>
+		<Entity uid="46">
+			<Template>units/iber/ship_fire</Template>
+			<Player>1</Player>
+			<Position x="1151.91431" z="1167.6244"/>
+			<Orientation y="2.2732"/>
+			<Actor seed="14679"/>
+		</Entity>
+		<Entity uid="47">
+			<Template>units/iber/ship_fire</Template>
+			<Player>1</Player>
+			<Position x="1163.76294" z="1173.26038"/>
+			<Orientation y="2.02744"/>
+			<Actor seed="33656"/>
+		</Entity>
+		<Entity uid="48">
+			<Template>units/iber/ship_fire</Template>
+			<Player>1</Player>
+			<Position x="1177.23963" z="1179.69837"/>
+			<Orientation y="2.20127"/>
+			<Actor seed="36487"/>
+		</Entity>
+		<Entity uid="49">
+			<Template>units/iber/ship_fire</Template>
+			<Player>1</Player>
+			<Position x="1197.73865" z="1188.20386"/>
+			<Orientation y="2.1113"/>
+			<Actor seed="36487"/>
+		</Entity>
+		<Entity uid="50">
+			<Template>units/ptol/ship_siege</Template>
+			<Player>2</Player>
+			<Position x="980.2494" z="663.30304"/>
+			<Orientation y="-0.69945"/>
+			<Actor seed="18728"/>
+		</Entity>
+		<Entity uid="51">
+			<Template>units/ptol/ship_siege</Template>
+			<Player>2</Player>
+			<Position x="1008.4629" z="681.4474"/>
+			<Orientation y="-0.71236"/>
+			<Actor seed="8021"/>
+		</Entity>
+		<Entity uid="52">
+			<Template>units/ptol/ship_siege</Template>
+			<Player>2</Player>
+			<Position x="1038.21558" z="700.58552"/>
+			<Orientation y="-0.69425"/>
+			<Actor seed="14249"/>
+		</Entity>
+		<Entity uid="53">
+			<Template>units/ptol/ship_siege</Template>
+			<Player>2</Player>
+			<Position x="1065.44141" z="728.26496"/>
+			<Orientation y="-0.62018"/>
+			<Actor seed="14249"/>
+		</Entity>
+		<Entity uid="54">
+			<Template>units/iber/ship_fire</Template>
+			<Player>1</Player>
+			<Position x="1083.02308" z="1069.64332"/>
+			<Orientation y="1.62708"/>
+			<Actor seed="49484"/>
+		</Entity>
+		<Entity uid="55">
+			<Template>units/iber/ship_fire</Template>
+			<Player>1</Player>
+			<Position x="1084.8307" z="1080.65845"/>
+			<Orientation y="1.59032"/>
+			<Actor seed="14679"/>
+		</Entity>
+		<Entity uid="56">
+			<Template>units/iber/ship_fire</Template>
+			<Player>1</Player>
+			<Position x="1090.46583" z="1092.50757"/>
+			<Orientation y="1.34455"/>
+			<Actor seed="33656"/>
+		</Entity>
+		<Entity uid="57">
+			<Template>units/iber/ship_fire</Template>
+			<Player>1</Player>
+			<Position x="1096.8578" z="1106.00599"/>
+			<Orientation y="1.5184"/>
+			<Actor seed="36487"/>
+		</Entity>
+		<Entity uid="58">
+			<Template>units/iber/ship_fire</Template>
+			<Player>1</Player>
+			<Position x="1107.39283" z="1125.5398"/>
+			<Orientation y="1.42841"/>
+			<Actor seed="36487"/>
+		</Entity>
+		<Entity uid="59">
+			<Template>units/maur/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="1268.03516" z="945.53309"/>
+			<Orientation y="-0.76937"/>
+			<Actor seed="49435"/>
+		</Entity>
+		<Entity uid="60">
+			<Template>units/maur/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="1295.95972" z="961.96991"/>
+			<Orientation y="-0.8532"/>
+			<Actor seed="37205"/>
+		</Entity>
+		<Entity uid="61">
+			<Template>units/maur/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="1305.0459" z="988.70771"/>
+			<Orientation y="-0.7306"/>
+			<Actor seed="57337"/>
+		</Entity>
+		<Entity uid="62">
+			<Template>units/maur/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="1321.24659" z="1009.27381"/>
+			<Orientation y="-0.86902"/>
+			<Actor seed="57337"/>
+		</Entity>
+		<Entity uid="63">
+			<Template>units/maur/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="1342.4336" z="1033.266"/>
+			<Orientation y="-0.69033"/>
+			<Actor seed="30718"/>
+		</Entity>
+		<Entity uid="64">
+			<Template>units/sele/ship_siege</Template>
+			<Player>1</Player>
+			<Position x="1087.12024" z="175.40992"/>
+			<Orientation y="-5.62151"/>
+			<Actor seed="17578"/>
+		</Entity>
+		<Entity uid="65">
+			<Template>units/sele/ship_siege</Template>
+			<Player>1</Player>
+			<Position x="1123.83582" z="145.30024"/>
+			<Orientation y="-5.64666"/>
+			<Actor seed="58283"/>
+		</Entity>
+		<Entity uid="66">
+			<Template>units/sele/ship_siege</Template>
+			<Player>1</Player>
+			<Position x="1008.37281" z="239.43808"/>
+			<Orientation y="-5.61922"/>
+			<Actor seed="58283"/>
+		</Entity>
+		<Entity uid="67">
+			<Template>units/sele/ship_siege</Template>
+			<Player>1</Player>
+			<Position x="1043.44971" z="206.8162"/>
+			<Orientation y="-5.69156"/>
+			<Actor seed="45658"/>
+		</Entity>
+		<Entity uid="68">
+			<Template>units/pirates/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="1218.64271" z="294.97214"/>
+			<Orientation y="-2.76717"/>
+			<Actor seed="51410"/>
+		</Entity>
+		<Entity uid="69">
+			<Template>units/pirates/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="1128.70179" z="350.1467"/>
+			<Orientation y="-2.70095"/>
+			<Actor seed="14965"/>
+		</Entity>
+		<Entity uid="70">
+			<Template>units/pirates/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="1184.79432" z="320.857"/>
+			<Orientation y="-2.47838"/>
+			<Actor seed="14965"/>
+		</Entity>
+		<Entity uid="71">
+			<Template>units/pirates/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="1152.92798" z="335.77878"/>
+			<Orientation y="-2.3253"/>
+			<Actor seed="62443"/>
+		</Entity>
+		<Entity uid="72">
+			<Template>units/pirates/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="1254.18458" z="273.26594"/>
+			<Orientation y="-2.48613"/>
+			<Actor seed="37384"/>
+		</Entity>
+		<Entity uid="73">
+			<Template>units/pirates/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="1103.10169" z="371.19153"/>
+			<Orientation y="-2.35178"/>
+			<Actor seed="37384"/>
+		</Entity>
+		<Entity uid="74">
+			<Template>units/mace/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="524.10224" z="1178.51807"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59739"/>
+		</Entity>
+		<Entity uid="75">
+			<Template>units/mace/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="536.87818" z="1185.83716"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="23171"/>
+		</Entity>
+		<Entity uid="76">
+			<Template>units/mace/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="545.70374" z="1195.24292"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2364"/>
+		</Entity>
+		<Entity uid="77">
+			<Template>units/mace/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="559.35596" z="1211.72852"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2364"/>
+		</Entity>
+		<Entity uid="78">
+			<Template>units/mace/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="573.98243" z="1227.6316"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2364"/>
+		</Entity>
+		<Entity uid="79">
+			<Template>units/mace/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="591.44275" z="1248.54981"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48938"/>
+		</Entity>
+		<Entity uid="80">
+			<Template>units/mace/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="613.41047" z="1268.00928"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48938"/>
+		</Entity>
+		<Entity uid="81">
+			<Template>units/mace/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="633.07428" z="1280.58301"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48938"/>
+		</Entity>
+		<Entity uid="82">
+			<Template>units/mace/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="564.88349" z="1142.25892"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="62166"/>
+		</Entity>
+		<Entity uid="83">
+			<Template>units/mace/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="576.79712" z="1152.25782"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41596"/>
+		</Entity>
+		<Entity uid="84">
+			<Template>units/mace/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="592.56653" z="1164.1637"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41596"/>
+		</Entity>
+		<Entity uid="85">
+			<Template>units/mace/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="607.63904" z="1182.42432"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34717"/>
+		</Entity>
+		<Entity uid="86">
+			<Template>units/mace/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="621.62275" z="1200.46045"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34717"/>
+		</Entity>
+		<Entity uid="87">
+			<Template>units/mace/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="633.61481" z="1214.28956"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="34717"/>
+		</Entity>
+		<Entity uid="88">
+			<Template>units/mace/ship_arrow</Template>
+			<Player>1</Player>
+			<Position x="652.97419" z="1235.9563"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3588"/>
+		</Entity>
+		<Entity uid="89">
+			<Template>units/athen/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="477.22596" z="498.64396"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39545"/>
+		</Entity>
+		<Entity uid="90">
+			<Template>units/athen/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="487.27744" z="508.0489"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49490"/>
+		</Entity>
+		<Entity uid="91">
+			<Template>units/athen/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="497.03583" z="520.85053"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="4087"/>
+		</Entity>
+		<Entity uid="92">
+			<Template>structures/athen/dock</Template>
+			<Player>1</Player>
+			<Position x="97.13825" z="1009.43464"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="33076"/>
+		</Entity>
+		<Entity uid="93">
+			<Template>structures/brit/dock</Template>
+			<Player>1</Player>
+			<Position x="122.93577" z="1031.77063"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="51610"/>
+		</Entity>
+		<Entity uid="94">
+			<Template>structures/cart/dock</Template>
+			<Player>1</Player>
+			<Position x="149.66593" z="1051.29664"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="50947"/>
+		</Entity>
+		<Entity uid="95">
+			<Template>structures/cart/super_dock</Template>
+			<Player>1</Player>
+			<Position x="182.64258" z="1091.25062"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="4693"/>
+		</Entity>
+		<Entity uid="96">
+			<Template>structures/gaul/dock</Template>
+			<Player>1</Player>
+			<Position x="219.42484" z="1127.54468"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="51849"/>
+		</Entity>
+		<Entity uid="97">
+			<Template>structures/han/dock</Template>
+			<Player>1</Player>
+			<Position x="242.49531" z="1146.75831"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48944"/>
+		</Entity>
+		<Entity uid="98">
+			<Template>structures/iber/dock</Template>
+			<Player>1</Player>
+			<Position x="265.66892" z="1176.04957"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45108"/>
+		</Entity>
+		<Entity uid="99">
+			<Template>structures/kush/dock</Template>
+			<Player>1</Player>
+			<Position x="282.92106" z="1207.06348"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="36228"/>
+		</Entity>
+		<Entity uid="100">
+			<Template>structures/mace/dock</Template>
+			<Player>1</Player>
+			<Position x="304.83048" z="1232.10914"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="20636"/>
+		</Entity>
+		<Entity uid="101">
+			<Template>structures/maur/dock</Template>
+			<Player>1</Player>
+			<Position x="324.35373" z="1257.68213"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61785"/>
+		</Entity>
+		<Entity uid="102">
+			<Template>structures/pers/dock</Template>
+			<Player>1</Player>
+			<Position x="347.8896" z="1281.41553"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="30912"/>
+		</Entity>
+		<Entity uid="103">
+			<Template>structures/ptol/dock</Template>
+			<Player>1</Player>
+			<Position x="379.66575" z="1310.78174"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="64036"/>
+		</Entity>
+		<Entity uid="104">
+			<Template>structures/rome/dock</Template>
+			<Player>1</Player>
+			<Position x="412.32645" z="1336.66114"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48007"/>
+		</Entity>
+		<Entity uid="105">
+			<Template>structures/sele/dock</Template>
+			<Player>1</Player>
+			<Position x="434.35282" z="1368.27564"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61568"/>
+		</Entity>
+		<Entity uid="106">
+			<Template>structures/spart/dock</Template>
+			<Player>1</Player>
+			<Position x="461.55597" z="1400.14625"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40495"/>
+		</Entity>
+		<Entity uid="107">
+			<Template>units/athen/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="132.35169" z="703.7591"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="13433"/>
+		</Entity>
+		<Entity uid="108">
+			<Template>units/brit/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="149.7392" z="711.17334"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="25710"/>
+		</Entity>
+		<Entity uid="109">
+			<Template>units/cart/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="164.81922" z="725.29206"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="11553"/>
+		</Entity>
+		<Entity uid="110">
+			<Template>units/gaul/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="184.28782" z="741.56153"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45742"/>
+		</Entity>
+		<Entity uid="111">
+			<Template>units/han/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="202.16718" z="753.49756"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56258"/>
+		</Entity>
+		<Entity uid="112">
+			<Template>units/iber/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="214.21183" z="767.88117"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14859"/>
+		</Entity>
+		<Entity uid="113">
+			<Template>units/kush/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="233.67365" z="794.45008"/>
+			<Orientation y="2.27372"/>
+			<Actor seed="31864"/>
+		</Entity>
+		<Entity uid="114">
+			<Template>units/mace/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="260.05204" z="826.9787"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="54470"/>
+		</Entity>
+		<Entity uid="117">
+			<Template>units/maur/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="286.23115" z="837.6349"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="54530"/>
+		</Entity>
+		<Entity uid="118">
+			<Template>units/pers/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="304.8335" z="857.66761"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44339"/>
+		</Entity>
+		<Entity uid="119">
+			<Template>units/ptol/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="334.02549" z="872.9336"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49973"/>
+		</Entity>
+		<Entity uid="120">
+			<Template>units/rome/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="351.94391" z="891.1374"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="639"/>
+		</Entity>
+		<Entity uid="121">
+			<Template>units/sele/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="376.07886" z="909.65125"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="37325"/>
+		</Entity>
+		<Entity uid="122">
+			<Template>units/spart/ship_scout</Template>
+			<Player>1</Player>
+			<Position x="399.10358" z="925.51764"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="51290"/>
+		</Entity>
+		<Entity uid="123">
+			<Template>units/cart/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="676.61805" z="675.08307"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="25047"/>
+		</Entity>
+		<Entity uid="124">
+			<Template>units/cart/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="690.44764" z="691.13422"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14104"/>
+		</Entity>
+		<Entity uid="126">
+			<Template>units/cart/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="711.46082" z="708.8476"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61491"/>
+		</Entity>
+		<Entity uid="127">
+			<Template>units/rome/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="853.12928" z="799.45655"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="10715"/>
+		</Entity>
+		<Entity uid="128">
+			<Template>units/rome/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="870.8813" z="821.8119"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57324"/>
+		</Entity>
+		<Entity uid="129">
+			<Template>units/rome/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="891.58295" z="839.9347"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61308"/>
+		</Entity>
+		<Entity uid="130">
+			<Template>units/rome/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="909.42432" z="856.35279"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61308"/>
+		</Entity>
+		<Entity uid="131">
+			<Template>units/rome/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="932.17768" z="885.34791"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="54072"/>
+		</Entity>
+		<Entity uid="132">
+			<Template>units/athen/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="895.10492" z="1371.08167"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44668"/>
+		</Entity>
+		<Entity uid="133">
+			<Template>units/athen/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="883.13471" z="1356.56324"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27227"/>
+		</Entity>
+		<Entity uid="134">
+			<Template>units/athen/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="906.73578" z="1394.72889"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55456"/>
+		</Entity>
+		<Entity uid="135">
+			<Template>units/athen/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="923.64856" z="1419.37916"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55456"/>
+		</Entity>
+		<Entity uid="136">
+			<Template>units/athen/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="936.17402" z="1445.27417"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42757"/>
+		</Entity>
+		<Entity uid="137">
+			<Template>units/athen/ship_ram</Template>
+			<Player>1</Player>
+			<Position x="871.01789" z="1334.15625"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42757"/>
+		</Entity>
+		<Entity uid="138">
+			<Template>units/spart/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="964.53217" z="1260.25416"/>
+			<Orientation y="-0.61043"/>
+			<Actor seed="42862"/>
+		</Entity>
+		<Entity uid="139">
+			<Template>units/spart/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="983.85486" z="1276.20911"/>
+			<Orientation y="-0.6593"/>
+			<Actor seed="38946"/>
+		</Entity>
+		<Entity uid="140">
+			<Template>units/spart/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="993.56928" z="1298.72144"/>
+			<Orientation y="-0.45241"/>
+			<Actor seed="38946"/>
+		</Entity>
+		<Entity uid="141">
+			<Template>units/spart/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="1016.39802" z="1312.72669"/>
+			<Orientation y="-0.42396"/>
+			<Actor seed="18856"/>
+		</Entity>
+		<Entity uid="142">
+			<Template>units/spart/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="1035.89271" z="1335.97388"/>
+			<Orientation y="-0.38086"/>
+			<Actor seed="18856"/>
+		</Entity>
+		<Entity uid="143">
+			<Template>units/spart/ship_arrow</Template>
+			<Player>2</Player>
+			<Position x="1057.09827" z="1372.04444"/>
+			<Orientation y="-0.46407"/>
+			<Actor seed="51668"/>
+		</Entity>
+	</Entities>
+	<Paths/>
+</Scenario>

@@ -5,9 +5,13 @@
   <group>
     <variant frequency="1" file="others/ships/kush_bireme_oars.xml" name="Kushite Trireme">
       <mesh>structural/kush_bireme.dae</mesh>
+      <animations>
+        <!-- Note: Ship attacks don't have dae animations, but animations are required to trigger sound effects. Perhaps in the future it should use the C++ code instead. -->
+        <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
+      </animations>
       <props>
         <prop actor="props/structures/kushites/bireme_main_sail.xml" attachpoint="sail"/>
-        <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/bolt_tower.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/kush_bireme.png" name="baseTex"/>

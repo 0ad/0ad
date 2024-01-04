@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" file="others/ships/kart_trireme_oars.xml" name="Carthaginian Ramming Trireme">
+      <mesh>structural/kart_ship_trireme.dae</mesh>
+      <props>
+        <prop actor="props/structures/carthaginians/ship_standard.xml" attachpoint="standard"/>
+      </props>
+      <textures>
+        <texture file="structural/kart_trireme.png" name="baseTex"/>
+        <texture file="structural/kart_trireme_spec.png" name="specTex"/>
+        <texture file="structural/kart_trireme_norm.png" name="normTex"/>
+        <texture file="structural/ao/kart_trireme.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" file="others/ships/kart_trireme_shields_01.xml" name="Carthaginian trireme Shields-01"/>
+    <variant frequency="100" file="others/ships/kart_trireme_shields_02.xml" name="Carthaginian trireme Shields-02"/>
+    <variant frequency="100" file="others/ships/kart_trireme_shields_03.xml" name="Carthaginian trireme Shields-03"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

@@ -1,65 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_ship">
-  <Attack>
-    <Melee>
-      <AttackName>Fire</AttackName>
-      <Damage>
-        <Fire>20</Fire>
-      </Damage>
-      <MaxRange>12</MaxRange>
-      <PrepareTime>50</PrepareTime>
-      <RepeatTime>100</RepeatTime>
-      <RestrictedClasses datatype="tokens">!Ship</RestrictedClasses>
-    </Melee>
-  </Attack>
   <Cost>
     <BuildTime>30</BuildTime>
     <Resources>
-      <wood>300</wood>
+      <wood>200</wood>
     </Resources>
   </Cost>
-  <DeathDamage>
-    <Shape>Circular</Shape>
-    <Range>30</Range>
-    <FriendlyFire>true</FriendlyFire>
-    <Damage>
-      <Fire>600</Fire>
-    </Damage>
-  </DeathDamage>
+  <Footprint>
+    <Square width="10.0" depth="22.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <GarrisonHolder disable=""/>
   <Health>
     <Max>500</Max>
-    <RegenRate>-6</RegenRate>
-    <DamageVariants>
-      <lightdamage>0.85</lightdamage>
-      <mediumdamage>0.65</mediumdamage>
-      <heavydamage>0.35</heavydamage>
-    </DamageVariants>
   </Health>
   <Identity>
     <GenericName>Fire Ship</GenericName>
-    <Tooltip>Unrepairable. Gradually loses health. Can only attack Ships.</Tooltip>
-    <VisibleClasses datatype="tokens">Melee Warship Fireship</VisibleClasses>
+    <Tooltip>Unrepairable. Gradually loses health after ignition. Can only attack Ships.</Tooltip>
+    <VisibleClasses datatype="tokens">Warship Fireship Melee Fire</VisibleClasses>
     <Requirements>
-      <Techs datatype="tokens">phase_town</Techs>
+      <Techs datatype="tokens">
+        phase_town
+      </Techs>
     </Requirements>
   </Identity>
+  <StatusBars>
+    <BarWidth>6.0</BarWidth>
+    <BarHeight>0.5</BarHeight>
+    <HeightOffset>6.0</HeightOffset>
+  </StatusBars>
   <Loot disable=""/>
   <Repairable disable=""/>
-  <Selectable>
-    <Overlay>
-      <Texture>
-        <MainTexture>128x256/cartouche.png</MainTexture>
-        <MainTextureMask>128x256/cartouche_mask.png</MainTextureMask>
-      </Texture>
-    </Overlay>
-  </Selectable>
+  <TreasureCollector disable=""/>
   <UnitMotion>
     <PassabilityClass>ship-small</PassabilityClass>
-    <WalkSpeed op="mul">1.6</WalkSpeed>
-    <Acceleration op="mul">1.6</Acceleration>
+    <WalkSpeed>10</WalkSpeed>
   </UnitMotion>
+  <Upgrade>
+    <Ignition>
+      <Entity>units/{civ}/ship_fire_fire</Entity>
+      <Tooltip>Ignite the Fire Ship to damage nearby enemy Ships.</Tooltip>
+      <Time>10</Time>
+    </Ignition>
+  </Upgrade>
   <Vision>
-    <Range>60</Range>
+    <Range>50</Range>
   </Vision>
 </Entity>

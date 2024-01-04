@@ -1,0 +1,43 @@
+{
+	"genericName": "Flanking Maneuvers",
+	"specificName": {
+		"athen": "Periplous",
+		"cart": "Periplous",
+		"mace": "Periplous",
+		"pers": "Periplous",
+		"ptol": "Periplous",
+		"sele": "Periplous",
+		"spart": "Periplous"
+	},
+	"description": "The flanking maneuver was attempted in order to position the ship for a successful ram. To pull this off in the chaos of a sea battle, a ship's crew needed to be highly trained and well-motivated.",
+	"cost": {
+		"food": 300,
+		"metal": 200
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_town" },
+			{
+				"any": [
+					{ "civ": "athen" },
+					{ "civ": "cart" },
+					{ "civ": "mace" },
+					{ "civ": "pers" },
+					{ "civ": "ptol" },
+					{ "civ": "rome" },
+					{ "civ": "sele" },
+					{ "civ": "spart" }
+				]
+			}
+		]
+	},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "trihemiolia.png",
+	"researchTime": 40,
+	"tooltip": "Ramming Ships +25% speed and acceleration. Unlocks “Bronze Rams.”",
+	"modifications": [
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.25 }
+	],
+	"affects": ["NavalRam"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

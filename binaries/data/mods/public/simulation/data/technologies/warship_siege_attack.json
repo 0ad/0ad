@@ -1,0 +1,33 @@
+{
+	"genericName": "Naval Ballistae",
+	"description": "Mounting stronger catapults onto ships helped give added firepower.",
+	"cost": {
+		"wood": 400,
+		"metal": 400
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{
+				"any": [
+					{ "civ": "cart" },
+					{ "civ": "han" },
+					{ "civ": "mace" },
+					{ "civ": "ptol" },
+					{ "civ": "rome" },
+					{ "civ": "sele" }
+				]
+			}
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "heavy_shot.png",
+	"researchTime": 40,
+	"tooltip": "Siege Ships +20% attack range and vision range.",
+	"modifications": [
+		{ "value": "Vision/Range", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/MaxRange", "multiply": 1.2 }
+	],
+	"affects": ["NavalSiege"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

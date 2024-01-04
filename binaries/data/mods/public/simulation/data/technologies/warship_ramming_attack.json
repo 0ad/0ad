@@ -1,0 +1,44 @@
+{
+	"supersedes": "warship_ramming_speed",
+	"genericName": "Bronze Ram",
+	"specificName": {
+		"athen": "Embolon",
+		"cart": "Embolon",
+		"mace": "Embolon",
+		"pers": "Embolon",
+		"ptol": "Embolon",
+		"sele": "Embolon",
+		"spart": "Embolon"
+	},
+	"description": "A bronze beak at the prow of the ship, used for ramming enemy ships.",
+	"cost": {
+		"wood": 400,
+		"metal": 400
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{
+				"any": [
+					{ "civ": "athen" },
+					{ "civ": "cart" },
+					{ "civ": "mace" },
+					{ "civ": "pers" },
+					{ "civ": "ptol" },
+					{ "civ": "rome" },
+					{ "civ": "sele" },
+					{ "civ": "spart" }
+				]
+			}
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase. Requires “Flanking Maneuvers.”",
+	"icon": "ship_ram.png",
+	"researchTime": 40,
+	"tooltip": "Ramming Ships +30% attack damage.",
+	"modifications": [
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.3 }
+	],
+	"affects": ["NavalRam"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

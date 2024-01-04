@@ -1,0 +1,30 @@
+{
+	"supersedes": "ship_vision",
+	"genericName": "Exploration",
+	"description": "Nobody knew better than the Carthaginians where in the ancient world they were going and going to go; their merchant traders had missions to everywhere. The Chinese were noted explorers, once sending a fleet of ships into the Indian Ocean to expand their knowledge and open up new trade routes.",
+	"cost": {
+		"food": 100,
+		"metal": 100
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_village" },
+			{ "any": [
+				{ "civ": "cart" },
+				{ "civ": "han" }]
+			}
+		]
+	},
+	"requirementsTooltip": "Unlocked in Village Phase. Requires “Lookouts.”",
+	"icon": "cartography.png",
+	"researchTime": 40,
+	"tooltip": "Traders and Ships +20% vision range.",
+	"modifications": [
+		{ "value": "Vision/Range", "multiply": 1.20 }
+	],
+	"affects": [
+		"Trader",
+		"Ship"
+	],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

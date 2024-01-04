@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship_warship_siege">
+  <Identity>
+    <Civ>sele</Civ>
+    <Lang>greek</Lang>
+    <SpecificName>Pentères</SpecificName>
+    <Icon>units/sele/ship_siege.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/seleucids/quinquereme.xml</Actor>
+  </VisualActor>
+</Entity>

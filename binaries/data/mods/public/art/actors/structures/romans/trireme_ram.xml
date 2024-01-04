@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" file="others/ships/rome_trireme_oars.xml" name="Rome Trireme">
+      <mesh>structural/rome_ship_trireme.dae</mesh>
+      <textures>
+        <texture file="structural/rome_trireme.png" name="baseTex"/>
+        <texture file="structural/rome_trireme_spec.png" name="specTex"/>
+        <texture file="structural/rome_trireme_norm.png" name="normTex"/>
+        <texture file="structural/ao/rome_trireme.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" file="others/ships/rome_trireme_shields_01.xml" name="Roman Trireme Shields-01"/>
+    <variant frequency="1" file="others/ships/rome_trireme_shields_02.xml" name="Roman Trireme Shields-02"/>
+    <variant frequency="1" file="others/ships/rome_trireme_shields_03.xml" name="Roman Trireme Shields-02"/>
+  </group>
+  <material>player_trans_ao_norm_spec.xml</material>
+</actor>

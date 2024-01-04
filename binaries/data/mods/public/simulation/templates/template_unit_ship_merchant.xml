@@ -8,7 +8,7 @@
   </Cost>
   <GarrisonHolder>
     <Max>15</Max>
-    <List datatype="tokens">Support Cavalry</List>
+    <List datatype="tokens">Support Cavalry Relic</List>
   </GarrisonHolder>
   <Health>
     <Max>240</Max>
@@ -16,7 +16,7 @@
   <Identity>
     <GenericName>Merchantman</GenericName>
     <SelectionGroupName>template_unit_ship_merchant</SelectionGroupName>
-    <Tooltip>Trade between docks. Garrison a Trader aboard for additional profit (+20% for each garrisoned). Gather profitable aquatic treasures.</Tooltip>
+    <Tooltip>Trade between docks. Garrison a Trader aboard for additional profit (+20% for each garrisoned). Gather profitable aquatic treasures. Improve sea trading at the Market.</Tooltip>
     <Classes datatype="tokens">-ConquestCritical</Classes>
     <VisibleClasses datatype="tokens">Trader Bribable</VisibleClasses>
     <Requirements>

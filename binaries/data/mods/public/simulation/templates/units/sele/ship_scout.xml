@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship_warship_scout">
+  <Footprint>
+    <Square width="8.0" depth="33.0"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>sele</Civ>
+    <Lang>greek</Lang>
+    <SpecificName>Dierēs</SpecificName>
+    <Icon>units/mace/ship_scout.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/macedonians/pentekonter_scout.xml</Actor>
+  </VisualActor>
+</Entity>

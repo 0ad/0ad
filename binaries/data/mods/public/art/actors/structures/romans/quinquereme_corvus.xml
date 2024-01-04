@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" file="others/ships/rome_quinquereme_oars.xml" name="Roman Quinquereme">
+      <mesh>structural/rome_ship_quinquereme.dae</mesh>
+      <props>
+        <prop actor="props/structures/romans/quinquereme_main_sail.xml" attachpoint="main_sail"/>
+        <prop actor="props/structures/romans/rome_bridge_base.xml" attachpoint="bridge"/>
+        <prop actor="props/units/weapons/rock.xml" attachpoint="projectile"/>
+      </props>
+      <textures>
+        <texture file="structural/rome_quinquereme.png" name="baseTex"/>
+        <texture file="structural/rome_quinquereme_spec.png" name="specTex"/>
+        <texture file="structural/rome_quinquereme_norm.png" name="normTex"/>
+        <texture file="structural/ao/rome_quinquereme.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="others/ships/rome_quinquereme_shields.xml" name="Roman Quinquereme Shields"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

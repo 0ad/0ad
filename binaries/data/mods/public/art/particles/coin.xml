@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<particles>
+
+    <texture>art/textures/particles/coin.png</texture>
+    <blend mode="over"/>
+
+    <constant name="emissionrate" value="0.2"/>
+    <uniform name="lifetime" min="6.0" max="6.1"/>
+
+	<uniform name="position.x" min="-0.1" max="0.1"/>
+	<uniform name="position.y" min="7.0" max="7.1"/>
+    <uniform name="position.z" min="-0.1" max="0.1"/>
+
+
+    <uniform name="velocity.y" min="1.1" max="1.2"/>
+
+    <constant name="size" value="3"/>
+
+</particles>
