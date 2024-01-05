@@ -3,11 +3,11 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="1" file="others/ships/hele_bireme_oars.xml" name="Hellenic bireme">
+    <variant frequency="1" file="others/ships/hele_bireme_oars.xml" name="Athenian Pentekonter">
       <mesh>structural/hele_ship_bireme.dae</mesh>
       <props>
         <prop actor="props/structures/athenians/bireme_main_sail.xml" attachpoint="sail"/>
-        <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/bolt_tower.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/hele_bireme.png" name="baseTex"/>

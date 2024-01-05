@@ -2,12 +2,10 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Mauryan Trireme">
-      <animations>
-      </animations>
+    <variant frequency="1" name="Mauryan Arrow Ship">
       <mesh>structural/maur_trireme.dae</mesh>
       <props>
-        <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/bolt_tower.xml" attachpoint="projectile"/>
         <prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="wrld_basket_a1"/>
 		<prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="wrld_basket_a2"/>
         <prop actor="props/special/eyecandy/sack_1.xml" attachpoint="wrld_sack1"/>
@@ -27,7 +25,7 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Blue Eye">
+    <variant frequency="1" name="Textures">
       <textures>
 	  <texture file="structural/maur_trireme.png" name="baseTex"/>
 	  <texture file="structural/maur_trireme_spec.png" name="specTex"/>

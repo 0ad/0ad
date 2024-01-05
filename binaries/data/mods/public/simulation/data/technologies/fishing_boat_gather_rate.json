@@ -1,14 +1,14 @@
 {
-	"genericName": "Fishing Net",
+	"genericName": "Fishing Nets",
 	"description": "Use nets to improve the productivity of fishing boats.",
 	"cost": {
 		"wood": 200
 	},
 	"requirements": { "tech": "phase_village" },
 	"requirementsTooltip": "Unlocked in Village Phase.",
-	"icon": "fishing_net.png",
+	"icon": "silk.png",
 	"researchTime": 40,
-	"tooltip": "Fishing Boats +30% fish gather rate.",
+	"tooltip": "Fishing Boats +30% fish gather rate. Unlocks “Salt Curing.”",
 	"modifications": [
 		{ "value": "ResourceGatherer/Rates/food.fish", "multiply": 1.3 }
 	],

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" name="Spartan Scout Ship">
+      <mesh>structural/hele_ship_bireme.dae</mesh>
+      <props>
+        <prop actor="props/structures/spartans/bireme_main_sail.xml" attachpoint="sail"/>
+        <prop actor="props/units/weapons/bolt_tower.xml" attachpoint="projectile"/>
+      </props>
+      <textures>
+        <texture file="structural/hele_bireme.png" name="baseTex"/>
+        <texture file="structural/hele_bireme_spec.png" name="specTex"/>
+        <texture file="structural/hele_bireme_norm.png" name="normTex"/>
+        <texture file="structural/ao/hele_bireme.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

@@ -49,9 +49,20 @@
     <Technologies datatype="tokens">
       fishing_boat_gather_rate
       fishing_boat_gather_capacity
-      ship_cost_time
+      dock_efficiency
+      arsenal_philon
+      juggernauts
+      ship_vision
+      exploration
       ship_health
-      ship_movement_speed
+      warship_arrow_attack
+      warship_ramming_speed
+      warship_ramming_attack
+      warship_resistance
+      warship_health
+      warship_fireship_attack
+      warship_siege_attack
+      warship_ranged_attack
       equine_transports
       iphicratean_reforms
     </Technologies>
@@ -73,10 +84,11 @@
     <Entities datatype="tokens">
       units/{civ}/ship_fishing
       units/{civ}/ship_merchant
-      units/{civ}/ship_bireme
-      units/{civ}/ship_trireme
-      units/{civ}/ship_quinquereme
+      units/{civ}/ship_scout
+      units/{civ}/ship_arrow
+      units/{civ}/ship_ram
       units/{civ}/ship_fire
+      units/{civ}/ship_siege
     </Entities>
   </Trainer>
   <Vision>

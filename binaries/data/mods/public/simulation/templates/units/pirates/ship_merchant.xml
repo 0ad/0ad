@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship_merchant">
+  <Footprint>
+    <Square width="10.0" depth="30.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <SpecificName>Blockade Runner</SpecificName>
+    <Tooltip>Destroy this ship to loot its large amount of contraband.</Tooltip>
+    <Icon>units/pirates/ship_merchant.png</Icon>
+  </Identity>
+  <Loot>
+    <xp>200</xp>
+    <wood>400</wood>
+    <metal>400</metal>
+  </Loot>
+  <UnitAI>
+    <DefaultStance>skittish</DefaultStance>
+  </UnitAI>
+  <VisualActor>
+    <Actor>structures/pirates/merchant.xml</Actor>
+  </VisualActor>
+</Entity>

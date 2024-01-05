@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_formation">
+  <Formation>
+    <RequiredMemberCount>4</RequiredMemberCount>
+    <DisabledTooltip>Requires at least 4 Ships.</DisabledTooltip>
+    <SortingClasses>Medium Light Heavy</SortingClasses>
+    <SortingOrder>fillFromTheSides</SortingOrder>
+    <UnitSeparationWidthMultiplier>3.5</UnitSeparationWidthMultiplier>
+    <ShiftRows>true</ShiftRows>
+    <MinColumns>5</MinColumns>
+    <MaxColumns>8</MaxColumns>
+    <MaxRows>3</MaxRows>
+    <WidthDepthRatio>4</WidthDepthRatio>
+    <Sloppiness>2.0</Sloppiness>
+  </Formation>
+  <Identity>
+    <GenericName>Fleet Battle Line</GenericName>
+    <Icon>formations/battle_line.png</Icon>
+    <Tooltip>Common fleet formation for frontal attacks.</Tooltip>
+  </Identity>
+</Entity>

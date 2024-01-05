@@ -4,12 +4,12 @@
   <float/>
   <group>
     <variant frequency="1" name="Seleucid Quinquereme">
+      <mesh>structural/ptol_ship_quinquereme.dae</mesh>
       <animations>
         <animation file="mechanical/kart_ship_quinquereme_idle.dae" name="Idle" speed="30"/>
         <animation file="mechanical/kart_ship_quinquereme_move.dae" name="Walk" speed="6"/>
         <animation file="mechanical/kart_ship_quinquereme_move.dae" name="Run" speed="8"/>
       </animations>
-      <mesh>structural/ptol_ship_quinquereme.dae</mesh>
       <props>
         <prop actor="props/units/weapons/rock.xml" attachpoint="projectile"/>
         <prop actor="props/structures/seleucids/quinq_sail.xml" attachpoint="root"/>

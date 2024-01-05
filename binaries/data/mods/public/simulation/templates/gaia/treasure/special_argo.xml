@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_treasure">
+  <Footprint>
+    <Square width="21.0" depth="11.0"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Identity>
+    <SpecificName>The Argo</SpecificName>
+    <GenericName>Mythological Treasure</GenericName>
+    <Tooltip>The mythological ship of the hero Theseus and his Argonauts.</Tooltip>
+    <Icon>technologies/juggernaut.png</Icon>
+  </Identity>
+  <Minimap disable=""/>
+  <Obstruction>
+    <Static width="21.0" depth="11.0"/>
+  </Obstruction>
+  <Position>
+    <Altitude>-1.0</Altitude>
+    <Floating>false</Floating>
+    <FloatDepth>0.0</FloatDepth>
+    <Anchor>pitch-roll</Anchor>
+  </Position>
+  <Treasure>
+    <Resources>
+      <food>600</food>
+      <wood>600</wood>
+      <metal>600</metal>
+    </Resources>
+  </Treasure>
+  <Visibility>
+    <RetainInFog>false</RetainInFog>
+  </Visibility>
+  <VisualActor>
+    <Actor>props/special/eyecandy/shipwreck_argo.xml</Actor>
+  </VisualActor>
+</Entity>

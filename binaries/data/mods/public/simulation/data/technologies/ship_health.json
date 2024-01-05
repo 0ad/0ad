@@ -1,17 +1,30 @@
 {
+	"supersedes": "dock_efficiency",
 	"genericName": "Reinforced Hull",
 	"description": "Wooden reinforcement beams for ship hulls.",
 	"cost": {
-		"wood": 600,
+		"wood": 300,
 		"metal": 200
 	},
-	"requirements": { "tech": "phase_city" },
-	"requirementsTooltip": "Unlocked in City Phase.",
+	"requirements": {
+		"all": [
+			{ "tech": "phase_town" },
+			{
+				"any": [
+					{ "civ": "brit" },
+					{ "civ": "gaul" },
+					{ "civ": "iber" }
+				]
+			}
+		]
+	},
+	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "armor_ship_bronze.png",
-	"researchTime": 60,
-	"tooltip": "Ships +25% health.",
+	"researchTime": 50,
+	"tooltip": "Ships +25% health, but −10% speed.",
 	"modifications": [
-		{ "value": "Health/Max", "multiply": 1.25 }
+		{ "value": "Health/Max", "multiply": 1.25 },
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 0.9 }
 	],
 	"affects": ["Ship"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

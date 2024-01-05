@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship_warship_arrow">
+  <Identity>
+    <Civ>gaia</Civ>
+    <SpecificName>Rhodian Marauder</SpecificName>
+    <Icon>units/pirates/ship_arrow.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/pirates/trireme.xml</Actor>
+  </VisualActor>
+</Entity>

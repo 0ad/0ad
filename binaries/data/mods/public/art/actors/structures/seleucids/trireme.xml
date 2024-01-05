@@ -3,13 +3,13 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="1" file="others/ships/mace_trireme_oars.xml" name="Macedonian Trireme">
+    <variant frequency="1" file="others/ships/mace_trireme_oars.xml" name="Seleucid Trireme">
       <mesh>structural/mace_ship_trireme.dae</mesh>
       <props>
         <prop actor="props/structures/seleucids/trireme_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/seleucids/trireme_main_sail.xml" attachpoint="sail"/>
         <prop actor="props/structures/hellenes/trireme_fore_sail.xml" attachpoint="fore_sail"/>
-        <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/bolt_tower.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/mace_trireme.png" name="baseTex"/>

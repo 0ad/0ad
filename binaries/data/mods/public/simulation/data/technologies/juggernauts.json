@@ -1,0 +1,28 @@
+{
+	"supersedes": "dock_efficiency",
+	"genericName": "Juggernauts",
+	"specificName": {
+		"ptol": "Tessarakonterēs"
+	},
+	"cost": {
+		"wood": 600,
+		"metal": 400
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "ptol" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase. Requires “Shipwrights.”",
+	"icon": "juggernaut.png",
+	"researchTime": 40,
+	"tooltip": "Siege Ships +50% health, +25% more projectiles, but −25% speed.",
+	"modifications": [
+		{ "value": "Health/Max", "multiply": 1.5 },
+		{ "value": "Attack/Ranged/RepeatTime", "multiply": 0.75 },
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 0.75 }
+	],
+	"affects": ["NavalSiege"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

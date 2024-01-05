@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_formation">
+  <Formation>
+    <RequiredMemberCount>8</RequiredMemberCount>
+    <DisabledTooltip>Requires at least 8 Ships.</DisabledTooltip>
+    <UnitSeparationWidthMultiplier>3.0</UnitSeparationWidthMultiplier>
+    <UnitSeparationDepthMultiplier>0.75</UnitSeparationDepthMultiplier>
+    <Sloppiness>2.0</Sloppiness>
+    <FormationShape>square</FormationShape>
+    <ShiftRows>true</ShiftRows>
+    <CenterGap>60</CenterGap>
+  </Formation>
+  <Identity>
+    <GenericName>Flanking Formation</GenericName>
+    <Icon>formations/flank.png</Icon>
+    <Tooltip>Formation to protect the sides or surprise attack the enemy flanks.</Tooltip>
+  </Identity>
+</Entity>

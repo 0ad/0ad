@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship_warship">
+  <Attack>
+    <Ranged>
+      <Damage>
+        <Hack>0</Hack>
+        <Pierce>15</Pierce>
+        <Crush>0</Crush>
+      </Damage>
+      <PrepareTime op="mul">0.5</PrepareTime>
+      <RepeatTime op="mul">0.5</RepeatTime>
+      <MaxRange op="mul">1.25</MaxRange>
+    </Ranged>
+  </Attack>
+  <Cost>
+    <Population>3</Population>
+    <BuildTime>24</BuildTime>
+    <Resources>
+      <wood>120</wood>
+      <metal>80</metal>
+    </Resources>
+  </Cost>
+  <GarrisonHolder>
+    <Max>30</Max>
+    <EjectClassesOnDestroy datatype="tokens">FemaleCitizen Infantry Dog</EjectClassesOnDestroy>
+    <List datatype="tokens">Siege</List>
+  </GarrisonHolder>
+  <Health>
+    <Max>500</Max>
+  </Health>
+  <Identity>
+    <GenericName>Arrow Ship</GenericName>
+    <VisibleClasses datatype="tokens">ArrowShip Ranged</VisibleClasses>
+    <Classes datatype="tokens">Trireme</Classes>
+    <Tooltip>Garrison units for transport across water. Countered by Siege Ships.</Tooltip>
+    <Requirements>
+      <Techs datatype="tokens">
+        phase_town
+      </Techs>
+    </Requirements>
+  </Identity>
+  <Loot>
+    <xp>50</xp>
+    <wood>12</wood>
+    <metal>8</metal>
+  </Loot>
+  <Position>
+    <TurnRate>1.0</TurnRate>
+  </Position>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>5</Hack>
+        <Pierce>6</Pierce>
+        <Crush>3</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
+  <UnitMotion>
+    <WalkSpeed op="mul">1.4</WalkSpeed>
+    <Acceleration op="mul">1.8</Acceleration>
+  </UnitMotion>
+</Entity>

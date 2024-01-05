@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship_warship_ram">
+  <Footprint>
+    <Square width="10.0" depth="43.0"/>
+  </Footprint>
+  <Identity>
+    <Civ>rome</Civ>
+    <Lang>latin</Lang>
+    <SpecificName>Quadrirēmis Rōmāna</SpecificName>
+    <Icon>units/rome/ship_ram.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/romans/trireme_ram.xml</Actor>
+  </VisualActor>
+</Entity>

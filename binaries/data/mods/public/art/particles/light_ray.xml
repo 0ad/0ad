@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<particles>
+    <texture>art/textures/particles/light_ray.png</texture>
+    <blend mode="add"/>
+    <constant name="emissionrate" value="20.0"/>
+    <uniform name="lifetime" min="1" max="10"/>
+	<uniform name="position.x" min="-1.5" max="1.5"/>
+	<uniform name="position.y" min="-1" max="15"/>
+    <uniform name="position.z" min="-1.5" max="1.5"/>
+    <uniform name="velocity.y" value="1.0"/>
+    <uniform name="size" min="1.3" max="5.4"/>
+    <uniform name="color.b" min="9.8" max="10.0"/>
+    <copy name="color.g" from="color.b"/>
+    <copy name="color.r" from="color.b"/>
+</particles>

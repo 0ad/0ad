@@ -1,0 +1,33 @@
+{
+	"genericName": "Naval Oxybeles",
+	"description": "Mounting bolt shooters onto ships helped give added firepower.",
+	"cost": {
+		"wood": 200,
+		"metal": 200
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{
+				"any": [
+					{ "notciv": "cart" },
+					{ "notciv": "han" },
+					{ "notciv": "mace" },
+					{ "notciv": "ptol" },
+					{ "notciv": "rome" },
+					{ "notciv": "sele" }
+				]
+			}
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "accuracy_bolt.png",
+	"researchTime": 40,
+	"tooltip": "Arrow Ships +10 crush attack damage and +10% attack range.",
+	"modifications": [
+		{ "value": "Attack/Ranged/Damage/Crush", "add": 10 },
+		{ "value": "Attack/Ranged/MaxRange", "multiply": 1.1 }
+	],
+	"affects": ["ArrowShip"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

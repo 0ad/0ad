@@ -58,6 +58,20 @@
   <RallyPointRenderer>
     <LinePassabilityClass>ship</LinePassabilityClass>
   </RallyPointRenderer>
+  <Researcher>
+    <Technologies datatype="tokens">
+      ship_vision
+      exploration
+      warship_arrow_attack
+      warship_siege_attack
+      warship_ramming_speed
+      warship_ramming_attack
+      warship_resistance
+      warship_health
+      warship_fireship_attack
+      warship_ranged_attack
+    </Technologies>
+  </Researcher>
   <Resistance>
     <Entity>
       <Damage>
@@ -80,9 +94,10 @@
   <Trainer>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/{civ}/ship_bireme
-      units/{civ}/ship_trireme
-      units/{civ}/ship_quinquereme
+      units/{civ}/ship_scout
+      units/{civ}/ship_arrow
+      units/{civ}/ship_ram
+      units/{civ}/ship_siege
     </Entities>
   </Trainer>
   <Vision>

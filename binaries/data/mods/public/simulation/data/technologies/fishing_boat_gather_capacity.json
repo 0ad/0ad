@@ -1,10 +1,13 @@
 {
-	"genericName": "Salting Fish",
-	"description": "Salting allows to preserve fish longer.",
-	"cost": { "food": 200, "wood": 100, "stone": 0, "metal": 0 },
-	"requirements": { "tech": "phase_town" },
-	"requirementsTooltip": "Unlocked in Town Phase.",
 	"supersedes": "fishing_boat_gather_rate",
+	"genericName": "Salt Curing",
+	"description": "Salting allows to preserve fish longer.",
+	"cost": {
+		"food": 200,
+		"wood": 100
+	},
+	"requirements": { "tech": "phase_village" },
+	"requirementsTooltip": "Unlocked in Village Phase. Requires “Fishing Nets.”",
 	"icon": "fish.png",
 	"researchTime": 50,
 	"tooltip": "Fishing Boats +20 food capacity.",

@@ -1,0 +1,21 @@
+{
+	"genericName": "Ship Cladding",
+	"description": "Armor for the flanks of a warship.",
+	"cost": {
+		"wood": 300,
+		"metal": 300
+	},
+	"requirements": {
+		"tech": "phase_town"
+	},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "ship_cladding.png",
+	"researchTime": 40,
+	"tooltip": "Warships +1 pierce and crush armor. Unlocks “Undergirding Cables” for some civilizations.",
+	"modifications": [
+		{ "value": "Resistance/Entity/Damage/Pierce", "add": 1.0 },
+		{ "value": "Resistance/Entity/Damage/Crush", "add": 1.0 }
+	],
+	"affects": ["Warship"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>structural/hele_kyrenia.dae</mesh>
+      <props>
+        <prop actor="props/structures/hellenes/merchantship_cargo.xml" attachpoint="root"/>
+        <prop actor="props/structures/hellenes/merchantship_shield.xml" attachpoint="root"/>
+        <prop actor="props/structures/pirates/merchantship_sail_black.xml" attachpoint="root"/>
+        <prop actor="particle/coin_high.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/kyrenia.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="0" name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="ungarrisoned"/>
+  </group>
+  <material>no_trans_norm_spec.xml</material>
+</actor>

@@ -1,0 +1,36 @@
+{
+	"genericName": "Marines",
+	"specificName": {
+		"athen": "Epibatai",
+		"cart": "Epibatai",
+		"mace": "Epibatai",
+		"pers": "Epibatai",
+		"ptol": "Epibatai",
+		"sele": "Epibatai",
+		"spart": "Epibatai"
+	},
+	"description": "Marines were a vital part of ship defense and offense.",
+	"cost": {
+		"food": 400,
+		"metal": 200
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{
+				"any": [
+					{ "notciv": "rome" }
+				]
+			}
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "armor_corinthian.png",
+	"researchTime": 60,
+	"tooltip": "All Warships +40% capture resistance.",
+	"modifications": [
+		{ "value": "Capturable/CapturePoints", "multiply": 1.4 }
+	],
+	"affects": ["Warship"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}
