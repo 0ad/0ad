@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-11-06 08:12+0000\n"
+"POT-Creation-Date: 2023-11-27 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: 80ff3f6c158be5d15b8f5a2de9eeb874_b065276 <94c1654d814b574acd26b68ba9729cbf_397246>, 2016-2023\n"
 "Language-Team: Asturian (http://app.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -140,6 +140,20 @@ msgstr ""
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Name
 msgid "Deas Celtica"
 msgstr "Deas celtica"
+
+#: simulation/data/civs/brit.jsonCivBonuses[1].Description
+msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
+msgstr ""
+
+#: simulation/data/civs/brit.jsonCivBonuses[1].History
+msgid ""
+"Britons paint their bodies with Woad, which produces a blue color and gives "
+"them a fiercesome appearance in battle."
+msgstr ""
+
+#: simulation/data/civs/brit.jsonCivBonuses[1].Name
+msgid "Woad Warriors"
+msgstr ""
 
 #: simulation/data/civs/cart.jsonAINames[0]
 msgid "Hasdrubal Barca"
@@ -571,12 +585,27 @@ msgid "Stable −10% batch training time per phase advance."
 msgstr "Corte: tiempu de concreacion per phase −10%."
 
 #: simulation/data/civs/pers.jsonCivBonuses[2].History
-msgid "The Persians were known for their large cavalry contingent"
-msgstr "Los persas distinguíɐn-se pol sou numerosu contingente de caballería"
+msgid "The Persians were known for their large cavalry contingent."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonCivBonuses[2].Name
 msgid "Time of War"
 msgstr "Tiempos de guerra"
+
+#: simulation/data/civs/pers.jsonCivBonuses[3].Description
+msgid ""
+"Upgrade the Throne Hall to receive a free trickle of a desired resource."
+msgstr ""
+
+#: simulation/data/civs/pers.jsonCivBonuses[3].History
+msgid ""
+"The empire was divided into provinces, called “Satrapies,” that sent yearly "
+"tribute to the ruling Persian dynasty in Persepolis as a form of tax."
+msgstr ""
+
+#: simulation/data/civs/pers.jsonCivBonuses[3].Name
+msgid "Satrapy Tribute"
+msgstr ""
 
 #: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Philadelphus"

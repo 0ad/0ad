@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-11-17 08:09+0000\n"
+"POT-Creation-Date: 2023-12-04 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Szabó Lambert, 2021-2023\n"
 "Language-Team: Hungarian (http://app.transifex.com/wildfire-games/0ad/language/hu/)\n"
@@ -117,6 +117,7 @@ msgstr "Íjászgyakorat"
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
+#: simulation/data/technologies/cost_healer.jsonrequirementsTooltip
 #: simulation/data/technologies/crossbow_training.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
@@ -203,8 +204,8 @@ msgid ""
 msgstr "A perzsák építették a csodálatos, 1677 mérföld hosszú Királyi utat Szardeisztől Szúzáig; Nagy Dárajavaus és Khsajársá emellett megépíttette a káprázatos Perszepoliszt; Nagy Kurus nagymértékben fejlesztette Ekbatana városát és lényegében „újjáépítette” a régi elámi fővárost, Szúzát."
 
 #: simulation/data/technologies/architecture_pers.jsongenericName
-msgid "Persian Architecture"
-msgstr "Perzsa építészet"
+msgid "Achaemenid Architecture"
+msgstr ""
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
@@ -304,6 +305,20 @@ msgstr "Lóverseny"
 msgid "Cavalry +10% walk speed."
 msgstr "+10% mozgási sebesség a lovasoknak"
 
+#: simulation/data/technologies/civbonuses/brit_woad_warriors.jsondescription
+msgid ""
+"Britons paint their bodies with Woad, which produces a blue color and gives "
+"them a fiercesome appearance in battle."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/brit_woad_warriors.jsongenericName
+msgid "Woad Warriors"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/brit_woad_warriors.jsontooltip
+msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
+msgstr ""
+
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
@@ -344,8 +359,8 @@ msgid "Delian League"
 msgstr "Déloszi szövetség"
 
 #: simulation/data/technologies/civbonuses/delian_league.jsontooltip
-msgid "Ships construct 25% faster."
-msgstr "A hajók 25%-kal gyorsabban elkészülnek."
+msgid "Ships −25% construction time."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -580,6 +595,20 @@ msgid ""
 "resource costs."
 msgstr "−25% építési idő és nyersanyagigény a polgári építményeknek (vagyis a városházáknak, a templomoknak és a házaknak)"
 
+#: simulation/data/technologies/cost_healer.jsondescription
+msgid ""
+"Sacrificial rituals were quite common in ancient times, whether to satisfy "
+"the gods, calm natural disasters, or even improve harvests."
+msgstr ""
+
+#: simulation/data/technologies/cost_healer.jsongenericName
+msgid "Sacrificial Ritual"
+msgstr ""
+
+#: simulation/data/technologies/cost_healer.jsontooltip
+msgid "Healers –40% training time, and the metal cost is removed."
+msgstr ""
+
 #: simulation/data/technologies/crossbow_training.jsondescription
 msgid "The Han had a penchant for using massed crossbowmen in battle."
 msgstr ""
@@ -646,6 +675,21 @@ msgstr "Életkörülmények"
 #: simulation/data/technologies/garrison_heal.jsontooltip
 msgid "Structures +1 garrison heal rate."
 msgstr "+1 beszállásolt gyógyulási sebesség az épületeknél."
+
+#: simulation/data/technologies/gather_ahimsa.jsondescription
+msgid ""
+"Ahimsa is the ancient Indian principle of nonviolence which applies to "
+"actions towards all living beings. It is a key virtue in Indian religions "
+"like Jainism, Buddhism, Hinduism, and Sikhism."
+msgstr ""
+
+#: simulation/data/technologies/gather_ahimsa.jsongenericName
+msgid "Ahimsa"
+msgstr ""
+
+#: simulation/data/technologies/gather_ahimsa.jsontooltip
+msgid "Units +100% fruit gather rate, but -80% meat and fish gather."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock to slaughter for meat."
@@ -893,14 +937,17 @@ msgid "Wedge and Mallet"
 msgstr "Ék és fakalapács"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
+#: simulation/data/technologies/gather_wicker_baskets_maur.jsondescription
 msgid "Equip your foragers with wicker baskets for foraging."
 msgstr "A gyűjtögetők felszerelése vesszőkosarakkal."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
+#: simulation/data/technologies/gather_wicker_baskets_maur.jsongenericName
 msgid "Wicker Baskets"
 msgstr "Vesszőkosarak"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
+#: simulation/data/technologies/gather_wicker_baskets_maur.jsontooltip
 msgid "Workers +50% fruit gather rate."
 msgstr "+50% gyümölcsbegyűjtési sebesség a munkásoknak"
 
@@ -1148,6 +1195,10 @@ msgstr "Postagalambok"
 #: simulation/data/technologies/outpost_vision.jsontooltip
 msgid "Outposts +33% vision range."
 msgstr "+33% látótávolság az előőrsöknek"
+
+#: simulation/data/technologies/pair_gather_food_maur.jsongenericName
+msgid "Wicker Basket vs Ahimsa"
+msgstr ""
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1475,9 +1526,9 @@ msgid ""
 "realm. The god was depicted as Greek in appearance, but with Egyptian "
 "trappings, and combined iconography from a great many cults, signifying both"
 " abundance and resurrection. A serapeion was any temple or religious "
-"precinct devoted to serapeion. The cult of Serapis was spread as a matter of"
-" deliberate policy by the Ptolemaic kings, who also built an immense "
-"serapeum in Alexandria."
+"precinct devoted to Serapis. The cult of Serapis was spread as a matter of "
+"deliberate policy by the Ptolemaic kings, who also built an immense serapeum"
+" in Alexandria."
 msgstr ""
 
 #: simulation/data/technologies/serapis_cult.jsongenericName

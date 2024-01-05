@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2023-12-04 08:19+0000\n"
-"PO-Revision-Date: 2023-12-04 08:19+0000\n"
+"POT-Creation-Date: 2024-01-05 08:18+0000\n"
+"PO-Revision-Date: 2024-01-05 08:18+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -333,23 +333,23 @@ msgstr "Aruncator cu praștia"
 msgid "Ship"
 msgstr "Embarcação"
 
-msgctxt "Name of an attack, usually the weapon."
-msgid "Fire"
-msgstr "Khai hoả"
-
 msgid "Fire Ship"
 msgstr "Vaixell incendiari"
 
-msgid "Unrepairable. Gradually loses health. Can only attack Ships."
-msgstr ""
-"Cha ghabh a chàradh. Caillidh e a shlàinte beag air bheag. Chan urrainn dha ionnsaigh a"
-" thoirt ach air longan."
+msgid "Unrepairable. Gradually loses health after ignition. Can only attack Ships."
+msgstr "Unrepairable. Gradually loses health after ignition. Can only attack Ships."
 
 msgid "Fireship"
 msgstr "Vaixell incendiari"
 
+msgid "Fire"
+msgstr "Fire"
+
 msgid "Warship"
 msgstr "Військовий корабель"
+
+msgid "Ignite the Fire Ship to damage nearby enemy Ships."
+msgstr "Ignite the Fire Ship to damage nearby enemy Ships."
 
 msgctxt "Name of an attack, usually the weapon."
 msgid "Harpoon"
@@ -370,10 +370,10 @@ msgstr "Prekybinis laivas"
 #, python-format
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% for each "
-"garrisoned). Gather profitable aquatic treasures."
+"garrisoned). Gather profitable aquatic treasures. Improve sea trading at the Market."
 msgstr ""
-"Prowadź wymianę handlową pomiędzy dokami. Umieść kupca na pokładzie, aby osiągnąć "
-"dodatkowy zysk (+20% od każdej umieszczonej jednostki). Zbieraj dochodowe skarby wodne."
+"Trade between docks. Garrison a Trader aboard for additional profit (+20% for each "
+"garrisoned). Gather profitable aquatic treasures. Improve sea trading at the Market."
 
 msgid "Bribable"
 msgstr "Може да бъде подкупен"
@@ -381,39 +381,60 @@ msgstr "Може да бъде подкупен"
 msgid "Trader"
 msgstr "കച്ചവടക്കാരന്‍"
 
-msgid "Light Warship"
-msgstr "Легкий військовий корабель"
+msgctxt "Name of an attack, usually the weapon."
+msgid "Arrow"
+msgstr "Arrow"
+
+msgid "Arrow Ship"
+msgstr "Arrow Ship"
+
+msgid "ArrowShip"
+msgstr "ArrowShip"
+
+msgid "Garrison units for transport across water. Countered by Siege Ships."
+msgstr "Garrison units for transport across water. Countered by Siege Ships."
+
+msgctxt "Name of an attack, usually the weapon."
+msgid "Naval Ram"
+msgstr "Naval Ram"
+
+msgid "Ramming Ship"
+msgstr "Ramming Ship"
 
 msgid ""
-"Garrison units for transport and to increase firepower. Deals triple damage against "
-"Ships."
+"Garrison units for transport across water. Deals double damage against Siege Ships. "
+"Countered by Arrow Ships."
 msgstr ""
-"Mettre des unités en garnison pour le transport et augmenter la puissance de feu. "
-"Triple les dégâts infligés aux navires."
+"Garrison units for transport across water. Deals double damage against Siege Ships. "
+"Countered by Arrow Ships."
+
+msgid "NavalRam"
+msgstr "NavalRam"
+
+msgid "Scout Ship"
+msgstr "Scout Ship"
+
+msgid "ScoutShip"
+msgstr "ScoutShip"
+
+msgid "Scout for coastlines. Garrison units for transport across water."
+msgstr "Scout for coastlines. Garrison units for transport across water."
 
 msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Камень"
 
-msgid "Heavy Warship"
-msgstr "Важкий військовий корабель"
+msgid "Siege Ship"
+msgstr "Siege Ship"
 
-msgid "Garrison units for transport. Garrison Stone Throwers to increase firepower."
-msgstr ""
-"Former une garnison pour le transport. Former une garnison de lanceurs de pierre pour "
-"augmenter la puissance de tir."
+msgid "Garrison units for transport across water. Good against Arrow Ships and Structures."
+msgstr "Garrison units for transport across water. Good against Arrow Ships and Structures."
+
+msgid "NavalSiege"
+msgstr "NavalSiege"
 
 msgid "Heavy"
 msgstr "Těžká válečná loď"
-
-msgid "Light"
-msgstr "Lehká válečná loď"
-
-msgid "Medium Warship"
-msgstr "Vidutinio dydžio karo laivas"
-
-msgid "Medium"
-msgstr "Keskinkertainen"
 
 msgid "Siege"
 msgstr "Vũ khí công thành"
@@ -430,6 +451,10 @@ msgstr "Lanzador de proxectís"
 
 msgid "Bolt Shooter"
 msgstr "Lanzador de proxectís"
+
+msgctxt "Name of an attack, usually the weapon."
+msgid "Fire"
+msgstr "Khai hoả"
 
 msgid "Flamethrower"
 msgstr "Alevli Kuşatma Makinası"
@@ -582,11 +607,8 @@ msgstr "Atinalı Ağır Mızraklı Piyade"
 msgid "Hoplítēs Athēnaîos"
 msgstr "Hoplítēs Athēnaîos"
 
-msgid "Penteconter"
-msgstr "Galeră cu 50 de văsle."
-
-msgid "Pentēkóntoros"
-msgstr "पेन्तेकोन्तोरोस"
+msgid "Triḗrēs Athēnaía"
+msgstr "Triḗrēs Athēnaía"
 
 msgid "Ploîon Halieutikón"
 msgstr "प्लोइओन हालिएउतिकोन"
@@ -594,11 +616,8 @@ msgstr "प्लोइओन हालिएउतिकोन"
 msgid "Ploîon Phortēgikón"
 msgstr "Ploîon Phortēgikón"
 
-msgid "Triḗrēs Athēnaía"
-msgstr "Triḗrēs Athēnaía"
-
-msgid "Athenian Trireme"
-msgstr "سفينة ثلاثيّة المجاديف أثينيّة"
+msgid "Pentēkóntoros"
+msgstr "पेन्तेकोन्तोरोस"
 
 msgid "Lithobólos"
 msgstr "Lithobólos"
@@ -690,14 +709,20 @@ msgstr "സെല്‍റ്റിക്ക് കുന്തക്കാര�
 msgid "Catucos"
 msgstr "Catucos"
 
+msgid "Pontos"
+msgstr "पोन्तोस"
+
+msgid "Briton Fire Ship"
+msgstr "Briton Fire Ship"
+
 msgid "Longos"
 msgstr "Longos"
 
 msgid "Nauson"
 msgstr "Nauson"
 
-msgid "Pontos"
-msgstr "पोन्तोस"
+msgid "Skiff"
+msgstr "Skiff"
 
 msgid "Molton"
 msgstr "Batterie Molton"
@@ -819,11 +844,8 @@ msgstr "Seḫīr Ḥerev"
 msgid "Seḫīr Romaḥ"
 msgstr "Seḫīr Romaḥ"
 
-msgid "Bireme"
-msgstr "Dvojveslice (dvouřadá galéra)"
-
-msgid "Du-Mašōt"
-msgstr "Ντουμακότ"
+msgid "Tlat-Mašōt"
+msgstr "Tlat-Mašōt"
 
 msgid "Noon-Mašōt"
 msgstr "Noon-Mašōt"
@@ -841,17 +863,11 @@ msgstr ""
 " obter lucros adicionais (+20% lucro por cada comerciante a bordo). Recolhe tesouros "
 "aquáticos rentáveis. Os cartagineses têm um bónus de +25% no comércio marítimo."
 
-msgid "Quinquereme"
-msgstr "کشتی جنگی سنگین"
+msgid "Du-Mašōt"
+msgstr "Ντουμακότ"
 
 msgid "Ḥameš-Mašōt"
 msgstr "Ḥameš-Mašōt"
-
-msgid "Trireme"
-msgstr "Trirema (troveslača)"
-
-msgid "Tlat-Mašōt"
-msgstr "Tlat-Mašōt"
 
 msgid "Ballista"
 msgstr "Caiteoir Boltaí"
@@ -909,6 +925,9 @@ msgstr "Viridomarus"
 
 msgid "Britomaros"
 msgstr "Grand Chef Britomaros"
+
+msgid "Gallic Fire Ship"
+msgstr "Gallic Fire Ship"
 
 msgid "Han Catafalque"
 msgstr "Chanský katafalk"
@@ -983,8 +1002,8 @@ msgstr "Mızraklı Piyade"
 msgid "Dāo Bīng"
 msgstr "Kılıçlı Piyade"
 
-msgid "Zhàn Chuán"
-msgstr "Çift sıra kürekli Kadırga"
+msgid "Lóu Chuán"
+msgstr "Üç sıra kürekli Kadırga"
 
 msgid "Yú Chuán"
 msgstr "Balıkçı Gemisi"
@@ -992,11 +1011,11 @@ msgstr "Balıkçı Gemisi"
 msgid "Shāng Chuán"
 msgstr "Tüccar Gemisi"
 
+msgid "Zhàn Chuán"
+msgstr "Çift sıra kürekli Kadırga"
+
 msgid "Dà Lóu Chuán"
 msgstr "Beş sıra kürekli Kadırga"
-
-msgid "Lóu Chuán"
-msgstr "Üç sıra kürekli Kadırga"
 
 msgid "Mangonel"
 msgstr "Manganiella"
@@ -1079,6 +1098,9 @@ msgstr "Eztenhagadun"
 msgid "Ezpatari"
 msgstr "Haneztodun"
 
+msgid "Ponti"
+msgstr "Plachetnice"
+
 msgid "Iberian Fire Ship"
 msgstr "Iberiar Brulote Leherkaria"
 
@@ -1087,9 +1109,6 @@ msgstr "Arrantza Ontzi"
 
 msgid "Merkataritza Itsasontzi"
 msgstr "Μαρκαταρίντσα Ιτσαντσοτσί"
-
-msgid "Ponti"
-msgstr "Plachetnice"
 
 msgid "Ahariburu"
 msgstr "Hesi-hausteko"
@@ -1223,6 +1242,9 @@ msgstr "Guerreiro com espada meróitico"
 msgid "knw hps"
 msgstr "Кэну хэпэс"
 
+msgid "shry ʿȝ"
+msgstr "Сэхэри аа"
+
 msgid "Whʿ-rmw"
 msgstr "Уеха-рему"
 
@@ -1231,12 +1253,6 @@ msgstr "Нільський торгівельний баркас"
 
 msgid "Dȝy sbt"
 msgstr "Даи сэбэт"
-
-msgid "Ptolemaic Mercenary Trireme"
-msgstr "Trì-ràmhach shaighdearan-duaise Ptolemaidheach"
-
-msgid "shry ʿȝ"
-msgstr "Сэхэри аа"
 
 msgid "Kushite Siege Tower"
 msgstr "Κουσίτικος Πολιορκητικός Πύργος"
@@ -1352,14 +1368,14 @@ msgstr "Ροδίτης Εκσφενδονιστής"
 msgid "Sphendonḗtēs Rhódios"
 msgstr "Εκσφενδονιστής Ρόδιος"
 
-msgid "Hemiolos"
-msgstr "Hēmíolos"
+msgid "Tetrērēs"
+msgstr "Tetrērēs"
 
 msgid "Triḗrēs Makedonikḗ"
 msgstr "Üç sıra kürekli Kadırga"
 
-msgid "Macedonian Trireme"
-msgstr "Lestr-Teirroeñvek Makedonian"
+msgid "Hemiolos"
+msgstr "Hēmíolos"
 
 msgid "Helépolis"
 msgstr "Helépolis"
@@ -1638,11 +1654,8 @@ msgstr "Infanteria lleugera Cardaces"
 msgid "Peltastes Kardakes"
 msgstr "Kardaski lahki pehotnik"
 
-msgid "Cypriot Galley"
-msgstr "Long-fhada Chìoprasach"
-
-msgid "Hamaraniyanava"
-msgstr "Hamaraniyanava"
+msgid "Hamaraniyanava Vazarka"
+msgstr "Hamaraniyanava Vazarka"
 
 msgid "Masiyakara"
 msgstr "Masiyakara"
@@ -1653,11 +1666,8 @@ msgstr "Іонійський торгівельний корабель"
 msgid "Nauš Yauna"
 msgstr "ناعوش یاعونا"
 
-msgid "Phoenician Trireme"
-msgstr "Lestr-Teirroeñvek Fenikianeg"
-
-msgid "Hamaraniyanava Vazarka"
-msgstr "Hamaraniyanava Vazarka"
+msgid "Hamaraniyanava"
+msgstr "Hamaraniyanava"
 
 msgid "Assyrian Siege Ram"
 msgstr "Assyrischer Belagerungsrammbock"
@@ -1690,11 +1700,17 @@ msgstr ""
 "Handle mit Ressourcen zwischen deinen eigenen Märkten und denen deiner Verbündeten. "
 "Perser haben einen Bonus in Höhe von +25 % für den Handel auf dem Landweg."
 
+msgid "Rhodian Marauder"
+msgstr "Rhodian Marauder"
+
+msgid "Blockade Runner"
+msgstr "Blockade Runner"
+
+msgid "Destroy this ship to loot its large amount of contraband."
+msgstr "Destroy this ship to loot its large amount of contraband."
+
 msgid "Cilician Pirate Ship"
 msgstr "Киликийский пиратский корабль"
-
-msgid "Rhodian Pirate Ship"
-msgstr "Rhodian Pirate Ship"
 
 msgctxt "Name of an attack of a World War II fighter plane."
 msgid "Machine Guns"
@@ -1799,14 +1815,14 @@ msgstr "Thureophóros Misthophóros"
 msgid "Gallikós Mistophorós"
 msgstr "गाल्लिकोस मिस्तोफोरोस"
 
+msgid "Pentērēs"
+msgstr "Pentērēs"
+
 msgid "Dierēs"
 msgstr "希腊双列桨战船"
 
-msgid "Octḗrēs"
-msgstr "ओक्तेरेस"
-
-msgid "Pentḗrēs"
-msgstr "Пентѝрис"
+msgid "Octērēs"
+msgstr "Octērēs"
 
 msgid "Polybolos"
 msgstr "Catapultă Antică Grecească"
@@ -1944,8 +1960,8 @@ msgstr "Centurione"
 msgid "Servus"
 msgstr "Esclave"
 
-msgid "Liburna"
-msgstr "Libúrnica"
+msgid "Trirēmis Rōmāna"
+msgstr "त्रिरेमीस रोमाना"
 
 msgid "Nāvicula Piscātōria"
 msgstr "नाविकुला पिस्कातोरिआ"
@@ -1953,17 +1969,14 @@ msgstr "नाविकुला पिस्कातोरिआ"
 msgid "Corbīta"
 msgstr "Navio de mercadorias à vela"
 
+msgid "Quadrirēmis Rōmāna"
+msgstr "Quadrirēmis Rōmāna"
+
+msgid "Liburna"
+msgstr "Libúrnica"
+
 msgid "Quīnquerēmis Rōmāna"
 msgstr "क्विनक्वेरेमिस रोमाना"
-
-msgid "Roman Quinquereme"
-msgstr "Romiešu četru klāju galēra"
-
-msgid "Trirēmis Rōmāna"
-msgstr "त्रिरेमीस रोमाना"
-
-msgid "Roman Trireme"
-msgstr "Lestr-Teirroeñvek Roman"
 
 msgid "Onager"
 msgstr "گوره خر کوجک"
@@ -2106,14 +2119,14 @@ msgstr "Thrácký žoldnéřský bojovník s mečem"
 msgid "Rhomphaiaphoros Thrakikós"
 msgstr "Rhomphaiaphoros Thrakikós"
 
-msgid "Pentères"
-msgstr "Pentérész"
-
 msgid "Seleukidó̱n Triērēs"
 msgstr "Seleukidó̱n Triērēs"
 
-msgid "Seleucid Trireme"
-msgstr "Lestr-Teirroeñvek Seleukid"
+msgid "Seleukidó̱n Tetrērēs"
+msgstr "Seleukidó̱n Tetrērēs"
+
+msgid "Pentères"
+msgstr "Pentérész"
 
 msgid "Syrías Gýnē"
 msgstr "Сирѝас гѝни"

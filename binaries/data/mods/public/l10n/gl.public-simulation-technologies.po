@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-11-17 08:09+0000\n"
+"POT-Creation-Date: 2023-12-04 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Ismael Lires, 2023\n"
 "Language-Team: Galician (http://app.transifex.com/wildfire-games/0ad/language/gl/)\n"
@@ -107,6 +107,7 @@ msgstr "Adestramento de tiro"
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
+#: simulation/data/technologies/cost_healer.jsonrequirementsTooltip
 #: simulation/data/technologies/crossbow_training.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
@@ -193,8 +194,8 @@ msgid ""
 msgstr "Os persas construíron o camiño real, unha marabillosa vía de máis de dous quilómetros e medio que unía Sardes con Susa. Darío o Grande e Xerxes construíron tamén a magnífica Persépole. Ciro o Grande mellorou de forma considerábel Ecbatana e practicamente reconstruíu a vella capital elamita de Susa."
 
 #: simulation/data/technologies/architecture_pers.jsongenericName
-msgid "Persian Architecture"
-msgstr "Arquitectura persa"
+msgid "Achaemenid Architecture"
+msgstr ""
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
@@ -294,6 +295,20 @@ msgstr "Carreiras de cabalos"
 msgid "Cavalry +10% walk speed."
 msgstr "Aumenta un +10% a velocidade de andado."
 
+#: simulation/data/technologies/civbonuses/brit_woad_warriors.jsondescription
+msgid ""
+"Britons paint their bodies with Woad, which produces a blue color and gives "
+"them a fiercesome appearance in battle."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/brit_woad_warriors.jsongenericName
+msgid "Woad Warriors"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/brit_woad_warriors.jsontooltip
+msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
+msgstr ""
+
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
@@ -334,8 +349,8 @@ msgid "Delian League"
 msgstr "Liga de Delos"
 
 #: simulation/data/technologies/civbonuses/delian_league.jsontooltip
-msgid "Ships construct 25% faster."
-msgstr "Construcción de barcos un +25% máis rápido."
+msgid "Ships −25% construction time."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -570,6 +585,20 @@ msgid ""
 "resource costs."
 msgstr ""
 
+#: simulation/data/technologies/cost_healer.jsondescription
+msgid ""
+"Sacrificial rituals were quite common in ancient times, whether to satisfy "
+"the gods, calm natural disasters, or even improve harvests."
+msgstr ""
+
+#: simulation/data/technologies/cost_healer.jsongenericName
+msgid "Sacrificial Ritual"
+msgstr ""
+
+#: simulation/data/technologies/cost_healer.jsontooltip
+msgid "Healers –40% training time, and the metal cost is removed."
+msgstr ""
+
 #: simulation/data/technologies/crossbow_training.jsondescription
 msgid "The Han had a penchant for using massed crossbowmen in battle."
 msgstr ""
@@ -636,6 +665,21 @@ msgstr "Condicións de vida"
 #: simulation/data/technologies/garrison_heal.jsontooltip
 msgid "Structures +1 garrison heal rate."
 msgstr "+1 na tasa de reparación de estructuras."
+
+#: simulation/data/technologies/gather_ahimsa.jsondescription
+msgid ""
+"Ahimsa is the ancient Indian principle of nonviolence which applies to "
+"actions towards all living beings. It is a key virtue in Indian religions "
+"like Jainism, Buddhism, Hinduism, and Sikhism."
+msgstr ""
+
+#: simulation/data/technologies/gather_ahimsa.jsongenericName
+msgid "Ahimsa"
+msgstr ""
+
+#: simulation/data/technologies/gather_ahimsa.jsontooltip
+msgid "Units +100% fruit gather rate, but -80% meat and fish gather."
+msgstr ""
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock to slaughter for meat."
@@ -883,14 +927,17 @@ msgid "Wedge and Mallet"
 msgstr "Cuñas e mazas"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
+#: simulation/data/technologies/gather_wicker_baskets_maur.jsondescription
 msgid "Equip your foragers with wicker baskets for foraging."
 msgstr "Equipe aos recolectores con cestas de mimbre para buscar comida.\n\n"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
+#: simulation/data/technologies/gather_wicker_baskets_maur.jsongenericName
 msgid "Wicker Baskets"
 msgstr "Canastros"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
+#: simulation/data/technologies/gather_wicker_baskets_maur.jsontooltip
 msgid "Workers +50% fruit gather rate."
 msgstr "+25% taxa de recolecta de fruta por traballadores."
 
@@ -1137,6 +1184,10 @@ msgstr "Pombas mensaxeiras"
 
 #: simulation/data/technologies/outpost_vision.jsontooltip
 msgid "Outposts +33% vision range."
+msgstr ""
+
+#: simulation/data/technologies/pair_gather_food_maur.jsongenericName
+msgid "Wicker Basket vs Ahimsa"
 msgstr ""
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
@@ -1465,9 +1516,9 @@ msgid ""
 "realm. The god was depicted as Greek in appearance, but with Egyptian "
 "trappings, and combined iconography from a great many cults, signifying both"
 " abundance and resurrection. A serapeion was any temple or religious "
-"precinct devoted to serapeion. The cult of Serapis was spread as a matter of"
-" deliberate policy by the Ptolemaic kings, who also built an immense "
-"serapeum in Alexandria."
+"precinct devoted to Serapis. The cult of Serapis was spread as a matter of "
+"deliberate policy by the Ptolemaic kings, who also built an immense serapeum"
+" in Alexandria."
 msgstr ""
 
 #: simulation/data/technologies/serapis_cult.jsongenericName

@@ -51,7 +51,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-11-06 08:12+0000\n"
+"POT-Creation-Date: 2023-11-27 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: 9d4282795e87ad099e39d98812f1a822_ade2f01 <c3fa67bcf1b8b90bf10d2d5dae1637ab_127851>, 2014-2017,2022-2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
@@ -183,6 +183,20 @@ msgstr "Kelt dini ve büyücülük onların savaşçı zihniyetine ilham kaynağ
 #: simulation/data/civs/gaul.jsonCivBonuses[0].Name
 msgid "Deas Celtica"
 msgstr "Deas Seltika"
+
+#: simulation/data/civs/brit.jsonCivBonuses[1].Description
+msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
+msgstr ""
+
+#: simulation/data/civs/brit.jsonCivBonuses[1].History
+msgid ""
+"Britons paint their bodies with Woad, which produces a blue color and gives "
+"them a fiercesome appearance in battle."
+msgstr ""
+
+#: simulation/data/civs/brit.jsonCivBonuses[1].Name
+msgid "Woad Warriors"
+msgstr ""
 
 #: simulation/data/civs/cart.jsonAINames[0]
 msgid "Hasdrubal Barca"
@@ -614,12 +628,27 @@ msgid "Stable −10% batch training time per phase advance."
 msgstr "Aşama ilerlemesi başına istikrarlı -%10 toplu eğitim süresi."
 
 #: simulation/data/civs/pers.jsonCivBonuses[2].History
-msgid "The Persians were known for their large cavalry contingent"
-msgstr "Persler, geniş süvari birlikleriyle tanınırlardı."
+msgid "The Persians were known for their large cavalry contingent."
+msgstr ""
 
 #: simulation/data/civs/pers.jsonCivBonuses[2].Name
 msgid "Time of War"
 msgstr "Savaş Zamanı"
+
+#: simulation/data/civs/pers.jsonCivBonuses[3].Description
+msgid ""
+"Upgrade the Throne Hall to receive a free trickle of a desired resource."
+msgstr ""
+
+#: simulation/data/civs/pers.jsonCivBonuses[3].History
+msgid ""
+"The empire was divided into provinces, called “Satrapies,” that sent yearly "
+"tribute to the ruling Persian dynasty in Persepolis as a form of tax."
+msgstr ""
+
+#: simulation/data/civs/pers.jsonCivBonuses[3].Name
+msgid "Satrapy Tribute"
+msgstr ""
 
 #: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Philadelphus"

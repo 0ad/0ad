@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2023-12-04 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2023\n"
+"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2024\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1195,9 +1195,7 @@ msgstr "Uparaksana"
 
 #: simulation/templates/structures/maur/palace.xml:20
 #: simulation/templates/structures/maur/palace.xml:26
-#: simulation/templates/structures/pers/apadana.xml:30
-#: simulation/templates/structures/pers/tacara.xml:23
-#: simulation/templates/structures/pers/tacara.xml:26
+#: simulation/templates/structures/pers/tachara.xml:33
 msgid "Palace"
 msgstr "宮殿"
 
@@ -1362,19 +1360,6 @@ msgstr "高尖刺"
 msgid "Watchtower"
 msgstr "瞭望塔"
 
-#: simulation/templates/structures/pers/apadana.xml:26
-msgid "Throne Hall"
-msgstr "皇室會館"
-
-#: simulation/templates/structures/pers/apadana.xml:27
-msgid "Apadāna"
-msgstr "Apadāna"
-
-#: simulation/templates/structures/pers/apadana.xml:28
-#: simulation/templates/structures/spart/syssiton.xml:25
-msgid "Train Champions and Heroes."
-msgstr "訓練鬥士與英雄。"
-
 #: simulation/templates/structures/pers/apartment_block.xml:12
 msgid "Apartment Block"
 msgstr "樓房"
@@ -1383,11 +1368,11 @@ msgstr "樓房"
 msgid "Padgan"
 msgstr "Padgan"
 
-#: simulation/templates/structures/pers/civil_centre.xml:8
+#: simulation/templates/structures/pers/civil_centre.xml:12
 msgid "Provincial Governor"
 msgstr "省長"
 
-#: simulation/templates/structures/pers/civil_centre.xml:9
+#: simulation/templates/structures/pers/civil_centre.xml:13
 msgid "Xšaçapāvan"
 msgstr "Xšaçapāvan"
 
@@ -1466,9 +1451,33 @@ msgstr "Paraspa"
 msgid "Asiyah"
 msgstr "Asiyah"
 
-#: simulation/templates/structures/pers/tacara.xml:24
+#: simulation/templates/structures/pers/tachara.xml:29
+msgid "Winter Palace"
+msgstr "冬宮"
+
+#: simulation/templates/structures/pers/tachara.xml:30
 msgid "Taçara"
 msgstr "Taçara"
+
+#: simulation/templates/structures/pers/tachara.xml:31
+msgid "Train Heroes and make use of the “Satrapy Tribute” feature."
+msgstr "訓練英雄並能使用「總督朝貢」功能。"
+
+#: simulation/templates/structures/pers/tachara.xml:76
+msgid "Receive free Food tribute to your treasury from your subject peoples."
+msgstr "從您的臣民那裡收到免費的食物貢品到您的收藏中。"
+
+#: simulation/templates/structures/pers/tachara.xml:81
+msgid "Receive free Wood tribute to your treasury from your subject peoples."
+msgstr "從您的臣民那裡收到免費的木材貢品到您的收藏中。"
+
+#: simulation/templates/structures/pers/tachara.xml:86
+msgid "Receive free Stone tribute to your treasury from your subject peoples."
+msgstr "從您的臣民那裡收到免費的石頭貢品到您的收藏中。"
+
+#: simulation/templates/structures/pers/tachara.xml:91
+msgid "Receive free Metal tribute to your treasury from your subject peoples."
+msgstr "從您的臣民那裡收到免費的金屬貢品到您的收藏中。"
 
 #: simulation/templates/structures/pers/temple.xml:12
 msgid "Āyadanam"
@@ -1814,6 +1823,10 @@ msgstr "軍事交誼廳"
 #: simulation/templates/structures/spart/syssiton.xml:24
 msgid "Syssition"
 msgstr "Syssition"
+
+#: simulation/templates/structures/spart/syssiton.xml:25
+msgid "Train Champions and Heroes."
+msgstr "訓練鬥士與英雄。"
 
 #: simulation/templates/structures/spart/syssiton.xml:27
 msgid "Syssiton"

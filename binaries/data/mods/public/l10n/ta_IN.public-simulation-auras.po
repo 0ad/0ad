@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-11-10 08:09+0000\n"
+"POT-Creation-Date: 2023-12-04 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Deepak Karunakaran <cosmos.deepak@gmail.com>, 2021\n"
 "Language-Team: Tamil (India) (http://app.transifex.com/wildfire-games/0ad/language/ta_IN/)\n"
@@ -121,6 +121,14 @@ msgstr "அமைப்பு -15% தொழில்நுட்ப வள ச�
 msgid "Centre of Scholarship"
 msgstr "உதவித்தொகை மையம்\n "
 
+#: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
+msgid "Structures +50% capture points garrison regeneration rate."
+msgstr "கட்டமைப்புகள் +50% பிடிப்பு புள்ளிகள் கேரிசன் மீளுருவாக்கம் வீதம்."
+
+#: simulation/data/auras/structures/loyalty_regen.jsonauraName
+msgid "Loyalty"
+msgstr "விசுவாசம்"
+
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
 msgstr "வர்த்தகர்கள் +20% இயக்க வேகம்."
@@ -128,6 +136,15 @@ msgstr "வர்த்தகர்கள் +20% இயக்க வேகம�
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
 msgstr "அசோகரின் அரசாணை"
+
+#: simulation/data/auras/structures/satrapy_tribute.jsonauraDescription
+msgid ""
+"Upgrade the Throne Hall to receive a free trickle of a desired resource."
+msgstr ""
+
+#: simulation/data/auras/structures/satrapy_tribute.jsonauraName
+msgid "Satrapy Tribute"
+msgstr ""
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."

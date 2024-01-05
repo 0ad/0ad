@@ -34,9 +34,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-11-17 08:09+0000\n"
+"POT-Creation-Date: 2023-12-04 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Matteo Nigro, 2023\n"
+"Last-Translator: Matteo Nigro, 2023-2024\n"
 "Language-Team: Italian (http://app.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -130,6 +130,7 @@ msgstr "Addestramento Arceri"
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
+#: simulation/data/technologies/cost_healer.jsonrequirementsTooltip
 #: simulation/data/technologies/crossbow_training.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
@@ -216,8 +217,8 @@ msgid ""
 msgstr "I Persiani costruirono la splendida Strada Reale di 1677 miglia da Sardi a Susa; Dario il Grande e Serse costruirono la magnifica Persepoli, Ciro il Grande migliorò notevolmente Ecbatana e praticamente 'ricostruì' la vecchia capitale Elamita di Susa."
 
 #: simulation/data/technologies/architecture_pers.jsongenericName
-msgid "Persian Architecture"
-msgstr "Architettura Persiana"
+msgid "Achaemenid Architecture"
+msgstr "Architettura Achemenide"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
@@ -317,6 +318,20 @@ msgstr "Corse di Cavalli"
 msgid "Cavalry +10% walk speed."
 msgstr "Cavalleria +10% velocità di manovra della cavalleria."
 
+#: simulation/data/technologies/civbonuses/brit_woad_warriors.jsondescription
+msgid ""
+"Britons paint their bodies with Woad, which produces a blue color and gives "
+"them a fiercesome appearance in battle."
+msgstr "I Britanni si dipingono il corpo con il Woad, che produce un colore blu e conferisce loro un aspetto feroce in battaglia."
+
+#: simulation/data/technologies/civbonuses/brit_woad_warriors.jsongenericName
+msgid "Woad Warriors"
+msgstr "Guerrieri Woad"
+
+#: simulation/data/technologies/civbonuses/brit_woad_warriors.jsontooltip
+msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
+msgstr "Tutte le unità di fanteria aumentano la velocità di movimento del 5% e guadagnano un bottino di +1."
+
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
@@ -357,8 +372,8 @@ msgid "Delian League"
 msgstr "Lega di Delo"
 
 #: simulation/data/technologies/civbonuses/delian_league.jsontooltip
-msgid "Ships construct 25% faster."
-msgstr "Le navi vengono costruite il 25% più velocemente."
+msgid "Ships −25% construction time."
+msgstr "Navi -25% di tempo di costruzione."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -593,6 +608,20 @@ msgid ""
 "resource costs."
 msgstr "Strutture Civiche (Centro Civico, Templi e Case) -25% di tempo di costruzione e costi delle risorse."
 
+#: simulation/data/technologies/cost_healer.jsondescription
+msgid ""
+"Sacrificial rituals were quite common in ancient times, whether to satisfy "
+"the gods, calm natural disasters, or even improve harvests."
+msgstr "I rituali sacrificali erano molto comuni nell'antichità, sia per soddisfare gli dei, calmare le calamità naturali o per migliorare i raccolti."
+
+#: simulation/data/technologies/cost_healer.jsongenericName
+msgid "Sacrificial Ritual"
+msgstr "Rituale sacrificale"
+
+#: simulation/data/technologies/cost_healer.jsontooltip
+msgid "Healers –40% training time, and the metal cost is removed."
+msgstr "Guaritori -40% di tempo di allenamento e il costo del metallo è rimosso."
+
 #: simulation/data/technologies/crossbow_training.jsondescription
 msgid "The Han had a penchant for using massed crossbowmen in battle."
 msgstr "Gli Han hanno una propensione ad usare una moltitudine di balestrieri in battaglia."
@@ -659,6 +688,21 @@ msgstr "Stato di Salute"
 #: simulation/data/technologies/garrison_heal.jsontooltip
 msgid "Structures +1 garrison heal rate."
 msgstr "Strutture +1 di tasso di guarigione per gli acquartierati."
+
+#: simulation/data/technologies/gather_ahimsa.jsondescription
+msgid ""
+"Ahimsa is the ancient Indian principle of nonviolence which applies to "
+"actions towards all living beings. It is a key virtue in Indian religions "
+"like Jainism, Buddhism, Hinduism, and Sikhism."
+msgstr "Ahimsa è l'antico principio indiano della non violenza che si applica alle azioni verso tutti gli esseri viventi. È una virtù fondamentale nelle religioni indiane come il Giainismo, il Buddismo, l'Induismo e il Sikhismo."
+
+#: simulation/data/technologies/gather_ahimsa.jsongenericName
+msgid "Ahimsa"
+msgstr "Ahimsa"
+
+#: simulation/data/technologies/gather_ahimsa.jsontooltip
+msgid "Units +100% fruit gather rate, but -80% meat and fish gather."
+msgstr "Unità +100% di raccolta della frutta, ma -80% di raccolta della carne e del pesce."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock to slaughter for meat."
@@ -906,14 +950,17 @@ msgid "Wedge and Mallet"
 msgstr "Cunei e Magli"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
+#: simulation/data/technologies/gather_wicker_baskets_maur.jsondescription
 msgid "Equip your foragers with wicker baskets for foraging."
 msgstr "Equipaggia i tuoi foraggiatori con cestini di vimini per il foraggiamento."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
+#: simulation/data/technologies/gather_wicker_baskets_maur.jsongenericName
 msgid "Wicker Baskets"
 msgstr "Cesti di Vimini"
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
+#: simulation/data/technologies/gather_wicker_baskets_maur.jsontooltip
 msgid "Workers +50% fruit gather rate."
 msgstr "+50% raccolta di frutta dagli operai."
 
@@ -1161,6 +1208,10 @@ msgstr "Piccioni Viaggiatori"
 #: simulation/data/technologies/outpost_vision.jsontooltip
 msgid "Outposts +33% vision range."
 msgstr "Avamposti +33% campo visivo."
+
+#: simulation/data/technologies/pair_gather_food_maur.jsongenericName
+msgid "Wicker Basket vs Ahimsa"
+msgstr "Cesto di vimini vs Ahimsa"
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1488,10 +1539,10 @@ msgid ""
 "realm. The god was depicted as Greek in appearance, but with Egyptian "
 "trappings, and combined iconography from a great many cults, signifying both"
 " abundance and resurrection. A serapeion was any temple or religious "
-"precinct devoted to serapeion. The cult of Serapis was spread as a matter of"
-" deliberate policy by the Ptolemaic kings, who also built an immense "
-"serapeum in Alexandria."
-msgstr "Il culto di Serapide fu introdotto nel III secolo a.C. per ordine di Tolomeo I d'Egitto come mezzo per unificare i greci e gli egiziani nel suo regno. La divinità era raffigurata con un aspetto greco, ma con vestigia egiziane, e combinava l'iconografia di molti culti, significando sia l'abbondanza che la resurrezione. Un serapeion era un tempio o un recinto religioso dedicato al serapeion. Il culto di Serapide fu diffuso come politica deliberata dai re tolemaici, che costruirono anche un immenso serapeo ad Alessandria."
+"precinct devoted to Serapis. The cult of Serapis was spread as a matter of "
+"deliberate policy by the Ptolemaic kings, who also built an immense serapeum"
+" in Alexandria."
+msgstr "Il culto di Serapide fu introdotto nel III secolo a.C. per ordine di Tolomeo I d'Egitto come mezzo per unificare i Greci e gli Egiziani nel suo regno. La divinità era raffigurata con un aspetto greco, ma con vestigia egiziane, e combinava l'iconografia di molti culti, rappresentando sia l'abbondanza che la resurrezione. Il serapeion era un tempio o un recinto religioso dedicato a Serapide. Il culto di Serapide fu diffuso come politica deliberata dai re Tolemaici, che costruirono anche un immenso serapeo ad Alessandria."
 
 #: simulation/data/technologies/serapis_cult.jsongenericName
 msgid "Serapis Cult"
