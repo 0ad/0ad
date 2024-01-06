@@ -49,7 +49,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2023-12-04 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Charlie Drögehorn, 2023\n"
 "Language-Team: French (http://app.transifex.com/wildfire-games/0ad/language/fr/)\n"
@@ -96,7 +96,7 @@ msgstr "Cavalier"
 
 #: simulation/templates/template_unit_cavalry.xml:34
 #: simulation/templates/template_unit_elephant.xml:9
-#: simulation/templates/template_unit_infantry.xml:38
+#: simulation/templates/template_unit_infantry.xml:41
 #: simulation/templates/template_unit_support_healer.xml:30
 msgctxt "Rank"
 msgid "Basic"
@@ -106,13 +106,13 @@ msgstr "Basique"
 #: simulation/templates/template_unit_champion.xml:14
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_hero.xml:25
-#: simulation/templates/template_unit_infantry.xml:37
+#: simulation/templates/template_unit_infantry.xml:40
 msgid "Soldier"
 msgstr "Soldat"
 
 #: simulation/templates/template_unit_cavalry.xml:36
 #: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_infantry.xml:37
+#: simulation/templates/template_unit_infantry.xml:40
 #: simulation/templates/template_unit_support_female_citizen.xml:38
 msgid "Citizen"
 msgstr "Citoyen"
@@ -423,14 +423,14 @@ msgstr "Trompe"
 msgid "Circular"
 msgstr "Circulaire"
 
-#: simulation/templates/template_unit_champion_infantry.xml:15
-#: simulation/templates/template_unit_hero_infantry.xml:14
-#: simulation/templates/template_unit_infantry.xml:35
-#: simulation/templates/template_unit_infantry.xml:37
+#: simulation/templates/template_unit_champion_infantry.xml:18
+#: simulation/templates/template_unit_hero_infantry.xml:17
+#: simulation/templates/template_unit_infantry.xml:38
+#: simulation/templates/template_unit_infantry.xml:40
 msgid "Infantry"
 msgstr "Infanterie"
 
-#: simulation/templates/template_unit_champion_infantry.xml:16
+#: simulation/templates/template_unit_champion_infantry.xml:19
 msgid "Champion Infantry"
 msgstr "Infanterie championne"
 
@@ -534,7 +534,7 @@ msgstr "Tuer pour dépecer pour la nourriture."
 
 #: simulation/templates/template_unit_hero.xml:25
 #: simulation/templates/template_unit_hero.xml:26
-#: simulation/templates/template_unit_hero_infantry.xml:15
+#: simulation/templates/template_unit_hero_infantry.xml:18
 msgid "Hero"
 msgstr "Héros"
 
@@ -545,7 +545,7 @@ msgstr "Cavalier héroïque"
 #: simulation/templates/template_unit_hero_cavalry.xml:36
 #: simulation/templates/template_unit_hero_elephant_melee.xml:60
 #: simulation/templates/template_unit_hero_healer.xml:43
-#: simulation/templates/template_unit_hero_infantry.xml:31
+#: simulation/templates/template_unit_hero_infantry.xml:34
 #: simulation/templates/units/brit/hero_boudicca.xml:19
 #: simulation/templates/units/han/support_minister.xml:74
 #: simulation/templates/units/kush/hero_amanirenas.xml:20
@@ -637,7 +637,7 @@ msgstr "Lancier héroïque"
 msgid "Hero Swordsman"
 msgstr "Épéiste héroïque"
 
-#: simulation/templates/template_unit_infantry.xml:37
+#: simulation/templates/template_unit_infantry.xml:40
 #: simulation/templates/template_unit_support_female_citizen.xml:38
 #: simulation/templates/template_unit_support_slave.xml:21
 msgid "Worker"
@@ -2795,6 +2795,10 @@ msgstr "Échanger des ressources entre vos marchés et ceux de vos alliés. Les 
 #: simulation/templates/units/pirates/ship_bireme.xml:9
 msgid "Cilician Pirate Ship"
 msgstr "Bateaux Pirates Ciliciens"
+
+#: simulation/templates/units/pirates/ship_trireme.xml:5
+msgid "Rhodian Pirate Ship"
+msgstr ""
 
 #: simulation/templates/units/plane.xml:5
 msgctxt "Name of an attack of a World War II fighter plane."

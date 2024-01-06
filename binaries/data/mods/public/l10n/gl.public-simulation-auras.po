@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-11-10 08:09+0000\n"
+"POT-Creation-Date: 2023-12-04 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Ismael Lires, 2023\n"
 "Language-Team: Galician (http://app.transifex.com/wildfire-games/0ad/language/gl/)\n"
@@ -126,6 +126,14 @@ msgstr "Estruturas −15% nos custos de recursos tecnolóxicos e no tempo de inv
 msgid "Centre of Scholarship"
 msgstr "Centro de Estudos"
 
+#: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
+msgid "Structures +50% capture points garrison regeneration rate."
+msgstr "Estruturas +50% taxa de rexeneración dos puntos de captura das guarnicións."
+
+#: simulation/data/auras/structures/loyalty_regen.jsonauraName
+msgid "Loyalty"
+msgstr "Lealdade"
+
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
 msgstr "Comerciantes +20% velocidade de movemento."
@@ -133,6 +141,15 @@ msgstr "Comerciantes +20% velocidade de movemento."
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
 msgstr "Edicto de Aśoka"
+
+#: simulation/data/auras/structures/satrapy_tribute.jsonauraDescription
+msgid ""
+"Upgrade the Throne Hall to receive a free trickle of a desired resource."
+msgstr ""
+
+#: simulation/data/auras/structures/satrapy_tribute.jsonauraName
+msgid "Satrapy Tribute"
+msgstr ""
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."

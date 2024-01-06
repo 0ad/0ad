@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2024-01-01 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Lars Henrik Ørn, 2022\n"
 "Language-Team: Danish (http://app.transifex.com/wildfire-games/0ad/language/da/)\n"
@@ -359,13 +359,46 @@ msgstr "Meroës marker"
 
 #: maps/random/flood.jsonsettings.Description
 msgid ""
-"A great flood has moved across the valley enabling ships and troops to "
-"battle in chest deep waters."
-msgstr "En stor oversvømmelse har bevæget sig hen over dalen, hvilket gør det muligt for skibe og tropper at kæmpe i brystdybt vand."
+"[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n"
+"\n"
+"A great flood moves across the valley. At some point you have to evacuate your units and use ships to reach the mainland and the other players."
+msgstr ""
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
 msgstr "Oversvømmelse"
+
+#: maps/random/flood.jsonsettings.WaterLevels[0].Description
+msgid "The water rises. The homeislands will become uninhabitable."
+msgstr ""
+
+#: maps/random/flood.jsonsettings.WaterLevels[0].Name
+msgid "Rising"
+msgstr ""
+
+#: maps/random/flood.jsonsettings.WaterLevels[1].Description
+msgid ""
+"The water doesn't rise. Ships and troops can battle in chest deep waters."
+msgstr ""
+
+#: maps/random/flood.jsonsettings.WaterLevels[1].Name
+msgid "Shallow"
+msgstr ""
+
+#: maps/random/flood.jsonsettings.WaterLevels[2].Description
+msgid ""
+"The water doesn't rise. You have to use ships to travel to the mainland."
+msgstr ""
+
+#: maps/random/flood.jsonsettings.WaterLevels[2].Name
+msgid "Deep"
+msgstr ""
+
+#: maps/random/flood_triggers.js:11
+msgid ""
+"The flood continues. Soon the waters will swallow the land. You should "
+"evacuate the units."
+msgstr ""
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -506,11 +539,11 @@ msgstr "Med start i nærheden af ​​Nilens frugtbare bredder belejrer spiller
 msgid "Jebel Barkal"
 msgstr "Jebel Barkal"
 
-#: maps/random/jebel_barkal_triggers.js:592
+#: maps/random/jebel_barkal_triggers.js:605
 msgid "Napata is attacking!"
 msgstr "Napata angriber!"
 
-#: maps/random/jebel_barkal_triggers.js:602
+#: maps/random/jebel_barkal_triggers.js:615
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
 msgstr "Napata vil angribe om %(time)s!"
@@ -2811,14 +2844,14 @@ msgstr "To stammer befinder sig trygt på toppen af ​​store klippeplateauer.
 msgid "Greek Acropolis (2)"
 msgstr "Græsk Akropolis (2)"
 
-#: maps/skirmishes/greek_acropolis_4p.xml:Description:38
+#: maps/skirmishes/greek_acropolis_4p.xml:Description:39
 msgid ""
 "Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
 msgstr "Tre stammer befinder sig trygt på toppen af ​​store klippeplateauer, hvorimod den fjerde er adskilt fra deres fjender af en flodgren.\n\nSpejder landene for at finde gratis skatte og sikre nye ressourcer."
 
-#: maps/skirmishes/greek_acropolis_4p.xml:Name:38
+#: maps/skirmishes/greek_acropolis_4p.xml:Name:39
 msgid "Greek Acropolis (4)"
 msgstr "Græsk Akropolis (4)"
 

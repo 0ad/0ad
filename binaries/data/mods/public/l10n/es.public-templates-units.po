@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2023-12-04 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2023\n"
 "Language-Team: Spanish (http://app.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -78,7 +78,7 @@ msgstr "Caballería"
 
 #: simulation/templates/template_unit_cavalry.xml:34
 #: simulation/templates/template_unit_elephant.xml:9
-#: simulation/templates/template_unit_infantry.xml:38
+#: simulation/templates/template_unit_infantry.xml:41
 #: simulation/templates/template_unit_support_healer.xml:30
 msgctxt "Rank"
 msgid "Basic"
@@ -88,13 +88,13 @@ msgstr "Básico"
 #: simulation/templates/template_unit_champion.xml:14
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_hero.xml:25
-#: simulation/templates/template_unit_infantry.xml:37
+#: simulation/templates/template_unit_infantry.xml:40
 msgid "Soldier"
 msgstr "Soldado"
 
 #: simulation/templates/template_unit_cavalry.xml:36
 #: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_infantry.xml:37
+#: simulation/templates/template_unit_infantry.xml:40
 #: simulation/templates/template_unit_support_female_citizen.xml:38
 msgid "Citizen"
 msgstr "Ciudadano"
@@ -405,14 +405,14 @@ msgstr "Trompa"
 msgid "Circular"
 msgstr "Circular"
 
-#: simulation/templates/template_unit_champion_infantry.xml:15
-#: simulation/templates/template_unit_hero_infantry.xml:14
-#: simulation/templates/template_unit_infantry.xml:35
-#: simulation/templates/template_unit_infantry.xml:37
+#: simulation/templates/template_unit_champion_infantry.xml:18
+#: simulation/templates/template_unit_hero_infantry.xml:17
+#: simulation/templates/template_unit_infantry.xml:38
+#: simulation/templates/template_unit_infantry.xml:40
 msgid "Infantry"
 msgstr "Infantería"
 
-#: simulation/templates/template_unit_champion_infantry.xml:16
+#: simulation/templates/template_unit_champion_infantry.xml:19
 msgid "Champion Infantry"
 msgstr "Infantería de élite"
 
@@ -516,7 +516,7 @@ msgstr "Sacrificar para obtener alimento."
 
 #: simulation/templates/template_unit_hero.xml:25
 #: simulation/templates/template_unit_hero.xml:26
-#: simulation/templates/template_unit_hero_infantry.xml:15
+#: simulation/templates/template_unit_hero_infantry.xml:18
 msgid "Hero"
 msgstr "Héroe"
 
@@ -527,7 +527,7 @@ msgstr "Héroe a caballo"
 #: simulation/templates/template_unit_hero_cavalry.xml:36
 #: simulation/templates/template_unit_hero_elephant_melee.xml:60
 #: simulation/templates/template_unit_hero_healer.xml:43
-#: simulation/templates/template_unit_hero_infantry.xml:31
+#: simulation/templates/template_unit_hero_infantry.xml:34
 #: simulation/templates/units/brit/hero_boudicca.xml:19
 #: simulation/templates/units/han/support_minister.xml:74
 #: simulation/templates/units/kush/hero_amanirenas.xml:20
@@ -619,7 +619,7 @@ msgstr "Héroe con lanza"
 msgid "Hero Swordsman"
 msgstr "Héroe con espada"
 
-#: simulation/templates/template_unit_infantry.xml:37
+#: simulation/templates/template_unit_infantry.xml:40
 #: simulation/templates/template_unit_support_female_citizen.xml:38
 #: simulation/templates/template_unit_support_slave.xml:21
 msgid "Worker"
@@ -2777,6 +2777,10 @@ msgstr "Intercambia recursos entre tus propios mercados y los de tus aliados. Lo
 #: simulation/templates/units/pirates/ship_bireme.xml:9
 msgid "Cilician Pirate Ship"
 msgstr "Barco pirata cilicio"
+
+#: simulation/templates/units/pirates/ship_trireme.xml:5
+msgid "Rhodian Pirate Ship"
+msgstr ""
 
 #: simulation/templates/units/plane.xml:5
 msgctxt "Name of an attack of a World War II fighter plane."

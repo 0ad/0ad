@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2024-01-01 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -359,13 +359,46 @@ msgstr "메로에의 들판"
 
 #: maps/random/flood.jsonsettings.Description
 msgid ""
-"A great flood has moved across the valley enabling ships and troops to "
-"battle in chest deep waters."
-msgstr "거대한 홍수가 골짜기를 가로질러 이동하여 선박과 군대가 가슴깊은 바다에서 전투를 벌일 수 있게 되었습니다."
+"[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n"
+"\n"
+"A great flood moves across the valley. At some point you have to evacuate your units and use ships to reach the mainland and the other players."
+msgstr ""
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
 msgstr "홍수"
+
+#: maps/random/flood.jsonsettings.WaterLevels[0].Description
+msgid "The water rises. The homeislands will become uninhabitable."
+msgstr ""
+
+#: maps/random/flood.jsonsettings.WaterLevels[0].Name
+msgid "Rising"
+msgstr ""
+
+#: maps/random/flood.jsonsettings.WaterLevels[1].Description
+msgid ""
+"The water doesn't rise. Ships and troops can battle in chest deep waters."
+msgstr ""
+
+#: maps/random/flood.jsonsettings.WaterLevels[1].Name
+msgid "Shallow"
+msgstr ""
+
+#: maps/random/flood.jsonsettings.WaterLevels[2].Description
+msgid ""
+"The water doesn't rise. You have to use ships to travel to the mainland."
+msgstr ""
+
+#: maps/random/flood.jsonsettings.WaterLevels[2].Name
+msgid "Deep"
+msgstr ""
+
+#: maps/random/flood_triggers.js:11
+msgid ""
+"The flood continues. Soon the waters will swallow the land. You should "
+"evacuate the units."
+msgstr ""
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -506,11 +539,11 @@ msgstr "나일강의 비옥한 둑 주변에서 출발한 플레이어들은 “
 msgid "Jebel Barkal"
 msgstr "게벨 바르칼"
 
-#: maps/random/jebel_barkal_triggers.js:592
+#: maps/random/jebel_barkal_triggers.js:605
 msgid "Napata is attacking!"
 msgstr "나파타가 공격해옵니다!"
 
-#: maps/random/jebel_barkal_triggers.js:602
+#: maps/random/jebel_barkal_triggers.js:615
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
 msgstr "나파타는 %(time)s 초 후에 공격합니다!"
@@ -2805,14 +2838,14 @@ msgstr "두 번째 파벌이 큰 바위 고원 위에 안전하게 자리 잡고
 msgid "Greek Acropolis (2)"
 msgstr "그리스 아크로폴리스 (2)"
 
-#: maps/skirmishes/greek_acropolis_4p.xml:Description:38
+#: maps/skirmishes/greek_acropolis_4p.xml:Description:39
 msgid ""
 "Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
 msgstr "세 번째 파벌은 큰 바위 평원 위에 안전하게 자리잡고 있는 반면, 네 번째 파벌은 강 가지에 의해 적과 분리되어 있습니다.\n\n땅을 정찰하여 무료 보물을 찾고 새로운 자원을 확보합니다."
 
-#: maps/skirmishes/greek_acropolis_4p.xml:Name:38
+#: maps/skirmishes/greek_acropolis_4p.xml:Name:39
 msgid "Greek Acropolis (4)"
 msgstr "그리스 아크로폴리스 (2)"
 

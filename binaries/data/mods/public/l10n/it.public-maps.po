@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -33,9 +33,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2024-01-01 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: Matteo Nigro, 2023\n"
+"Last-Translator: Matteo Nigro, 2023-2024\n"
 "Language-Team: Italian (http://app.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -378,13 +378,46 @@ msgstr "Campi di Meroë"
 
 #: maps/random/flood.jsonsettings.Description
 msgid ""
-"A great flood has moved across the valley enabling ships and troops to "
-"battle in chest deep waters."
-msgstr "Un'importante inondazione ha raggiunto la valle, consentendo a navi e truppe di combattere in un ampio bacino acquatico."
+"[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n"
+"\n"
+"A great flood moves across the valley. At some point you have to evacuate your units and use ships to reach the mainland and the other players."
+msgstr "[color=\"red\"]NOTA IMPORTANTE: I GIOCATORI AI NON FUNZIONANO CON L'ACQUA IN SALITA[/color]\n\nUna grande alluvione attraversa la valle. A un certo punto è necessario evacuare le proprie unità e utilizzare le navi per raggiungere la terraferma e gli altri giocatori."
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
 msgstr "Alluvione"
+
+#: maps/random/flood.jsonsettings.WaterLevels[0].Description
+msgid "The water rises. The homeislands will become uninhabitable."
+msgstr "L'acqua sale. Le terre emerse diventeranno inabitabili."
+
+#: maps/random/flood.jsonsettings.WaterLevels[0].Name
+msgid "Rising"
+msgstr "In aumento"
+
+#: maps/random/flood.jsonsettings.WaterLevels[1].Description
+msgid ""
+"The water doesn't rise. Ships and troops can battle in chest deep waters."
+msgstr "L'acqua non sale. Navi e truppe possono combattere in acque profonde fino al torace."
+
+#: maps/random/flood.jsonsettings.WaterLevels[1].Name
+msgid "Shallow"
+msgstr "Poco profondi"
+
+#: maps/random/flood.jsonsettings.WaterLevels[2].Description
+msgid ""
+"The water doesn't rise. You have to use ships to travel to the mainland."
+msgstr "L'acqua non sale. Per raggiungere la terraferma è necessario usare le navi."
+
+#: maps/random/flood.jsonsettings.WaterLevels[2].Name
+msgid "Deep"
+msgstr "Profondo"
+
+#: maps/random/flood_triggers.js:11
+msgid ""
+"The flood continues. Soon the waters will swallow the land. You should "
+"evacuate the units."
+msgstr "Il diluvio continua. Presto le acque inghiottiranno la terra. È necessario evacuare le unità."
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -525,11 +558,11 @@ msgstr "Cominciando vicino alle fertili rive del Nilo, i giocatori assediano la 
 msgid "Jebel Barkal"
 msgstr "Jebel Barkal"
 
-#: maps/random/jebel_barkal_triggers.js:592
+#: maps/random/jebel_barkal_triggers.js:605
 msgid "Napata is attacking!"
 msgstr "Napata sta attaccando!"
 
-#: maps/random/jebel_barkal_triggers.js:602
+#: maps/random/jebel_barkal_triggers.js:615
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
 msgstr "Napata attaccherà tra %(time)s!"
@@ -2836,14 +2869,14 @@ msgstr "Due fazioni si trovano al sicuro in cima di grandi altipiani rocciosi. E
 msgid "Greek Acropolis (2)"
 msgstr "Acropoli Greca (2)"
 
-#: maps/skirmishes/greek_acropolis_4p.xml:Description:38
+#: maps/skirmishes/greek_acropolis_4p.xml:Description:39
 msgid ""
 "Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
 msgstr "Tre fazioni si trovano al sicuro in cima di grandi altipiani rocciosi, e una quarta è separata dalle altre da un ramo fluviale. Esplora le terre per trovare tesori e prendere il controllo di nuove risorse."
 
-#: maps/skirmishes/greek_acropolis_4p.xml:Name:38
+#: maps/skirmishes/greek_acropolis_4p.xml:Name:39
 msgid "Greek Acropolis (4)"
 msgstr "Acropoli Greca (4)"
 

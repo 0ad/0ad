@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2024-01-01 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2023\n"
+"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2024\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -224,7 +224,7 @@ msgstr "玩家在兩塊相對的島嶼開始遊戲，兩塊皆為有著茂密的
 
 #: maps/random/corsica.jsonsettings.Name
 msgid "Corsica vs Sardinia"
-msgstr "科西嘉島與薩丁尼亞"
+msgstr "科西嘉島 vs 薩丁尼亞"
 
 #: maps/random/cycladic_archipelago.jsonsettings.Description
 msgid ""
@@ -364,13 +364,46 @@ msgstr "美羅埃平原"
 
 #: maps/random/flood.jsonsettings.Description
 msgid ""
-"A great flood has moved across the valley enabling ships and troops to "
-"battle in chest deep waters."
-msgstr "大洪水淹到了山谷，讓船隻與部隊在及胸的深水中戰鬥。"
+"[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n"
+"\n"
+"A great flood moves across the valley. At some point you have to evacuate your units and use ships to reach the mainland and the other players."
+msgstr "[color=\"red\"]重要提示：AI玩家無法在水位上升時運作[/color]\n\n一場大洪水席捲整個山谷。在某個時刻，您必須撤離您的單位並使用船隻到達大陸和其他玩家。"
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
 msgstr "洪水"
+
+#: maps/random/flood.jsonsettings.WaterLevels[0].Description
+msgid "The water rises. The homeislands will become uninhabitable."
+msgstr "水位上升。家園島嶼將變得無法居住。"
+
+#: maps/random/flood.jsonsettings.WaterLevels[0].Name
+msgid "Rising"
+msgstr "上升"
+
+#: maps/random/flood.jsonsettings.WaterLevels[1].Description
+msgid ""
+"The water doesn't rise. Ships and troops can battle in chest deep waters."
+msgstr "水不會上升。船和軍隊可以在及胸的水深中戰鬥。"
+
+#: maps/random/flood.jsonsettings.WaterLevels[1].Name
+msgid "Shallow"
+msgstr "淺"
+
+#: maps/random/flood.jsonsettings.WaterLevels[2].Description
+msgid ""
+"The water doesn't rise. You have to use ships to travel to the mainland."
+msgstr "水不會上升。你必須使用船隻前往大陸。"
+
+#: maps/random/flood.jsonsettings.WaterLevels[2].Name
+msgid "Deep"
+msgstr "深"
+
+#: maps/random/flood_triggers.js:11
+msgid ""
+"The flood continues. Soon the waters will swallow the land. You should "
+"evacuate the units."
+msgstr "洪水持續蔓延。不久後水將吞噬土地。您應該撤離單位。"
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -511,11 +544,11 @@ msgstr "從尼羅河肥沃的河岸開始，玩家圍攻防禦嚴密的城市那
 msgid "Jebel Barkal"
 msgstr "努比亞博爾戈爾山"
 
-#: maps/random/jebel_barkal_triggers.js:592
+#: maps/random/jebel_barkal_triggers.js:605
 msgid "Napata is attacking!"
 msgstr "那帕塔正發起攻擊！"
 
-#: maps/random/jebel_barkal_triggers.js:602
+#: maps/random/jebel_barkal_triggers.js:615
 #, javascript-format
 msgid "Napata will attack in %(time)s!"
 msgstr "那帕塔將於 %(time)s 後發起攻擊！"
@@ -2810,14 +2843,14 @@ msgstr "兩個陣營發現自己安全地棲息在大岩石高原上。\n\n偵�
 msgid "Greek Acropolis (2)"
 msgstr "雅典衛城 (2)"
 
-#: maps/skirmishes/greek_acropolis_4p.xml:Description:38
+#: maps/skirmishes/greek_acropolis_4p.xml:Description:39
 msgid ""
 "Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
 msgstr "三個陣營發現自己安全地棲息在大岩石高原上，而第四個陣營則由支流與敵人隔開。\n\n偵查土地以尋找免費的寶藏並獲取新的資源。"
 
-#: maps/skirmishes/greek_acropolis_4p.xml:Name:38
+#: maps/skirmishes/greek_acropolis_4p.xml:Name:39
 msgid "Greek Acropolis (4)"
 msgstr "雅典衛城 (4)"
 

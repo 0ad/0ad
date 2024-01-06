@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2023-12-11 08:18+0000\n"
-"PO-Revision-Date: 2023-12-11 08:18+0000\n"
+"POT-Creation-Date: 2024-01-05 08:18+0000\n"
+"PO-Revision-Date: 2024-01-05 08:18+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -96,6 +96,9 @@ msgstr ""
 msgid "Arsenal of Philon"
 msgstr "Arsenaal van Philon"
 
+msgid "Unlocked in City Phase. Requires “Shipwrights.”"
+msgstr "Unlocked in City Phase. Requires “Shipwrights.”"
+
 msgid "Warships +1 health/second self-repair rate."
 msgstr "Buques de guerra (Tasa de regeneración: +1 resistencia/segundo)."
 
@@ -168,14 +171,16 @@ msgid ""
 "Britons paint their bodies with Woad, which produces a blue color and gives them a "
 "fiercesome appearance in battle."
 msgstr ""
-"Britons paint their bodies with Woad, which produces a blue color and gives them a "
-"fiercesome appearance in battle."
+"I Britanni si dipingono il corpo con il Woad, che produce un colore blu e conferisce "
+"loro un aspetto feroce in battaglia."
 
 msgid "Woad Warriors"
-msgstr "Woad Warriors"
+msgstr "Guerrieri Woad"
 
 msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
-msgstr "All Infantry Units +5% movement speed, and gain +1 loot taking."
+msgstr ""
+"Tutte le unità di fanteria aumentano la velocità di movimento del 5% e guadagnano un "
+"bottino di +1."
 
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These walls were "
@@ -228,7 +233,7 @@ msgstr "Délský spolek (Athénský námořní spolek)"
 
 #, python-format
 msgid "Ships −25% construction time."
-msgstr "Ships −25% construction time."
+msgstr "Navi -25% di tempo di costruzione."
 
 msgid ""
 "The Gauls were well-known for their effective cavalry. Celtic mercenaries were in "
@@ -463,14 +468,14 @@ msgid ""
 "Sacrificial rituals were quite common in ancient times, whether to satisfy the gods, "
 "calm natural disasters, or even improve harvests."
 msgstr ""
-"Sacrificial rituals were quite common in ancient times, whether to satisfy the gods, "
-"calm natural disasters, or even improve harvests."
+"I rituali sacrificali erano molto comuni nell'antichità, sia per soddisfare gli dei, "
+"calmare le calamità naturali o per migliorare i raccolti."
 
 msgid "Sacrificial Ritual"
-msgstr "Sacrificial Ritual"
+msgstr "Rituale sacrificale"
 
 msgid "Healers –40% training time, and the metal cost is removed."
-msgstr "Healers –40% training time, and the metal cost is removed."
+msgstr "Guaritori -40% di tempo di allenamento e il costo del metallo è rimosso."
 
 msgid "The Han had a penchant for using massed crossbowmen in battle."
 msgstr ""
@@ -482,6 +487,28 @@ msgstr "Addestramento con la Balestra"
 
 msgid "Crossbow Infantry −20% train time."
 msgstr "-20% di tempo d'addestramento per la fanteria balestrieri."
+
+msgid "Employ skilled shipwrights with specialized tools to speed up ship construction."
+msgstr ""
+"Emplear carpinteros de barcos cualificados con herramientas especializadas para "
+"acelerar la construcción de barcos."
+
+msgid "Shipwrights"
+msgstr "Shipwrights"
+
+msgid "Naupēgoi"
+msgstr "Naupēgoi"
+
+msgid "Faber Navalis"
+msgstr "Faber Navalis"
+
+#, python-format
+msgid ""
+"Docks work 20% faster (Ships −20% build time; Technologies −20% research time) and are "
+"built 20% faster."
+msgstr ""
+"Docks work 20% faster (Ships −20% build time; Technologies −20% research time) and are "
+"built 20% faster."
 
 msgid ""
 "Early Achaemenid rulers acted towards making Persia the first great Asian empire to "
@@ -506,11 +533,34 @@ msgstr "Транспортировка лошадей"
 msgid "Phoenician Triremes gain the ability to train Cavalry."
 msgstr "Phönizische Trieren erhalten die einzigartige Fähigkeit Kavallerieeinheiten auszubilden."
 
+msgid ""
+"Nobody knew better than the Carthaginians where in the ancient world they were going "
+"and going to go; their merchant traders had missions to everywhere. The Chinese were "
+"noted explorers, once sending a fleet of ships into the Indian Ocean to expand their "
+"knowledge and open up new trade routes."
+msgstr ""
+"Nobody knew better than the Carthaginians where in the ancient world they were going "
+"and going to go; their merchant traders had missions to everywhere. The Chinese were "
+"noted explorers, once sending a fleet of ships into the Indian Ocean to expand their "
+"knowledge and open up new trade routes."
+
+msgid "Exploration"
+msgstr "Exploration"
+
+msgid "Unlocked in Village Phase. Requires “Lookouts.”"
+msgstr "Unlocked in Village Phase. Requires “Lookouts.”"
+
+msgid "Traders and Ships +20% vision range."
+msgstr "Traders and Ships +20% vision range."
+
 msgid "Salting allows to preserve fish longer."
 msgstr "A salgadeira permite preservar os peixes durante mais tempo."
 
-msgid "Salting Fish"
-msgstr "Осоляване на рибата"
+msgid "Salt Curing"
+msgstr "Salt Curing"
+
+msgid "Unlocked in Village Phase. Requires “Fishing Nets.”"
+msgstr "Unlocked in Village Phase. Requires “Fishing Nets.”"
 
 msgid "Fishing Boats +20 food capacity."
 msgstr "Aumenta a capacidade de almacenamendo de comida dos pesqueiros en +20."
@@ -518,12 +568,12 @@ msgstr "Aumenta a capacidade de almacenamendo de comida dos pesqueiros en +20."
 msgid "Use nets to improve the productivity of fishing boats."
 msgstr "Χρησιμοποίησε δίκτυα για να βελτιώσεις την παραγωγικότητα των αλιευτικών σκαφών."
 
-msgid "Fishing Net"
-msgstr "Мрежа за хватање риба"
+msgid "Fishing Nets"
+msgstr "Fishing Nets"
 
 #, python-format
-msgid "Fishing Boats +30% fish gather rate."
-msgstr "Cruinnichidh na bàtaichean-iasgaich iasg +30% nas luaithe."
+msgid "Fishing Boats +30% fish gather rate. Unlocks “Salt Curing.”"
+msgstr "Fishing Boats +30% fish gather rate. Unlocks “Salt Curing.”"
 
 msgid "Units regain health over time while garrisoned."
 msgstr "Οι μονάδες αναπληρώνουν υγεία με το πέρασμα του χρόνου όσο βρίσκονται επανδρωμένες."
@@ -539,16 +589,16 @@ msgid ""
 "all living beings. It is a key virtue in Indian religions like Jainism, Buddhism, "
 "Hinduism, and Sikhism."
 msgstr ""
-"Ahimsa is the ancient Indian principle of nonviolence which applies to actions towards "
-"all living beings. It is a key virtue in Indian religions like Jainism, Buddhism, "
-"Hinduism, and Sikhism."
+"Ahimsa è l'antico principio indiano della non violenza che si applica alle azioni verso"
+" tutti gli esseri viventi. È una virtù fondamentale nelle religioni indiane come il "
+"Giainismo, il Buddismo, l'Induismo e il Sikhismo."
 
 msgid "Ahimsa"
 msgstr "Ahimsa"
 
 #, python-format
 msgid "Units +100% fruit gather rate, but -80% meat and fish gather."
-msgstr "Units +100% fruit gather rate, but -80% meat and fish gather."
+msgstr "Unità +100% di raccolta della frutta, ma -80% di raccolta della carne e del pesce."
 
 msgid "Breed livestock to slaughter for meat."
 msgstr "Állatok tenyésztése, hogy le lehessen őket vágni élelemért."
@@ -878,6 +928,16 @@ msgstr ""
 "Los muelles atenienses y los trirremes pueden reclutar infantería de marina y arqueros "
 "mercenarios cretenses."
 
+msgid "Juggernauts"
+msgstr "Juggernauts"
+
+msgid "Tessarakonterēs"
+msgstr "Tessarakonterēs"
+
+#, python-format
+msgid "Siege Ships +50% health, +25% more projectiles, but −25% speed."
+msgstr "Siege Ships +50% health, +25% more projectiles, but −25% speed."
+
 msgid ""
 "Krypteia was an Agoge rite of passage, during which soldiers learned how to camouflage "
 "themselves and gained combat experience. The Spartans declared war on the Helots "
@@ -964,7 +1024,7 @@ msgid "Outposts +33% vision range."
 msgstr "Les avant-postes ont un champs de vision étendu de +33%."
 
 msgid "Wicker Basket vs Ahimsa"
-msgstr "Wicker Basket vs Ahimsa"
+msgstr "Cesto di vimini vs Ahimsa"
 
 msgid "Traditional Army vs Reform Army"
 msgstr "Παραδοσιακός Στρατός εναντίον Μεταρρυθμισμένου Στρατού"
@@ -1290,10 +1350,18 @@ msgstr "Cultus van Serapis"
 msgid "+2.0 metal trickle per second."
 msgstr "Tasa de producción de metal: +2,0."
 
-msgid "Employ skilled shipwrights with specialized tools to speed up ship construction."
-msgstr ""
-"Emplear carpinteros de barcos cualificados con herramientas especializadas para "
-"acelerar la construcción de barcos."
+msgid "Marines were a vital part of ship defense and offense."
+msgstr "Marines were a vital part of ship defense and offense."
+
+msgid "Marines"
+msgstr "Marines"
+
+msgid "Epibatai"
+msgstr "Epibatai"
+
+#, python-format
+msgid "All Warships +40% capture resistance."
+msgstr "All Warships +40% capture resistance."
 
 msgid "Naval Architects"
 msgstr "Военноморски архитекти"
@@ -1309,8 +1377,8 @@ msgid "Reinforced Hull"
 msgstr "Verstärkter Schiffsrumpf"
 
 #, python-format
-msgid "Ships +25% health."
-msgstr "Els vaixells són un 25% més resistents."
+msgid "Ships +25% health, but −10% speed."
+msgstr "Ships +25% health, but −10% speed."
 
 msgid "Train your oarsmen and sailors to move more efficiently and speed up your ships."
 msgstr ""
@@ -1322,6 +1390,26 @@ msgstr "Eskarmentu handiko tripulazioak"
 
 msgid "Ships +10% movement speed."
 msgstr "+10% de vitesse de déplacement pour les navires."
+
+msgid ""
+"Lookouts aboard ship were important for sighting land, spotting navigational hazards, "
+"and directing fire in battle."
+msgstr ""
+"Lookouts aboard ship were important for sighting land, spotting navigational hazards, "
+"and directing fire in battle."
+
+msgid "Lookouts"
+msgstr "Lookouts"
+
+msgid "Prōratēs"
+msgstr "Prōratēs"
+
+msgid ""
+"Ships and Boats +10% vision range; Scout Ships an additional +25% vision range. Unlocks"
+" “Exploration” for the Carthaginians and Han Chinese."
+msgstr ""
+"Ships and Boats +10% vision range; Scout Ships an additional +25% vision range. Unlocks"
+" “Exploration” for the Carthaginians and Han Chinese."
 
 msgid "Advanced technologies improve siege efficiency."
 msgstr "Fortschrittliche Technologien zur Verbesserung der Belagerungseffizienz."
@@ -1849,6 +1937,116 @@ msgstr "Спеціальні знання на війні"
 
 msgid "Mercenaries start at Advanced rank."
 msgstr "Tòisichidh na saighdearan-duaise air rang adhartach."
+
+msgid "Mounting bolt shooters onto ships helped give added firepower."
+msgstr "Mounting bolt shooters onto ships helped give added firepower."
+
+msgid "Naval Oxybeles"
+msgstr "Naval Oxybeles"
+
+msgid "Arrow Ships +10 crush attack damage and +10% attack range."
+msgstr "Arrow Ships +10 crush attack damage and +10% attack range."
+
+msgid ""
+"Pitch can be made from petroleum, coal tar, or pine tar. It can be used to help seal "
+"the hulls of boats as well as assist in igniting enemy ships."
+msgstr ""
+"Pitch can be made from petroleum, coal tar, or pine tar. It can be used to help seal "
+"the hulls of boats as well as assist in igniting enemy ships."
+
+msgid "Burning Pitch"
+msgstr "Burning Pitch"
+
+msgid "Unlocked in City Phase. Requires “Naval Construction.”"
+msgstr "Unlocked in City Phase. Requires “Naval Construction.”"
+
+#, python-format
+msgid "Fire Ships +25% health and +25% attack damage."
+msgstr "Fire Ships +25% health and +25% attack damage."
+
+msgid "The hypozomata brace the structure of a ship."
+msgstr "The hypozomata brace the structure of a ship."
+
+msgid "Undergirding Cables"
+msgstr "Undergirding Cables"
+
+msgid "Unlocked in City Phase. Requires “Ship Cladding.”"
+msgstr "Unlocked in City Phase. Requires “Ship Cladding.”"
+
+msgid "Hypozomata"
+msgstr "Hypozomata"
+
+#, python-format
+msgid "Arrow Ships and Ramming Ships +25% health."
+msgstr "Arrow Ships and Ramming Ships +25% health."
+
+msgid "A bronze beak at the prow of the ship, used for ramming enemy ships."
+msgstr "A bronze beak at the prow of the ship, used for ramming enemy ships."
+
+msgid "Bronze Ram"
+msgstr "Bronze Ram"
+
+msgid "Unlocked in City Phase. Requires “Flanking Maneuvers.”"
+msgstr "Unlocked in City Phase. Requires “Flanking Maneuvers.”"
+
+msgid "Embolon"
+msgstr "Embolon"
+
+msgid "Ramming Ships +30% attack damage."
+msgstr "Ramming Ships +30% attack damage."
+
+msgid ""
+"The flanking maneuver was attempted in order to position the ship for a successful ram."
+" To pull this off in the chaos of a sea battle, a ship's crew needed to be highly "
+"trained and well-motivated."
+msgstr ""
+"The flanking maneuver was attempted in order to position the ship for a successful ram."
+" To pull this off in the chaos of a sea battle, a ship's crew needed to be highly "
+"trained and well-motivated."
+
+msgid "Flanking Maneuvers"
+msgstr "Flanking Maneuvers"
+
+msgid "Periplous"
+msgstr "Periplous"
+
+#, python-format
+msgid "Ramming Ships +25% speed and acceleration. Unlocks “Bronze Rams.”"
+msgstr "Ramming Ships +25% speed and acceleration. Unlocks “Bronze Rams.”"
+
+msgid "Flaming munitions were very useful against wooden targets such as ships."
+msgstr "Flaming munitions were very useful against wooden targets such as ships."
+
+msgid "Flaming Projectiles"
+msgstr "Flaming Projectiles"
+
+msgid "Unlocked in City Phase. Requires “Naval Ballistae.”"
+msgstr "Unlocked in City Phase. Requires “Naval Ballistae.”"
+
+msgid "Ranged Warships +10% attack damage."
+msgstr "Ranged Warships +10% attack damage."
+
+msgid "Armor for the flanks of a warship."
+msgstr "Armor for the flanks of a warship."
+
+msgid "Ship Cladding"
+msgstr "Ship Cladding"
+
+msgid ""
+"Warships +1 pierce and crush armor. Unlocks “Undergirding Cables” for some "
+"civilizations."
+msgstr ""
+"Warships +1 pierce and crush armor. Unlocks “Undergirding Cables” for some "
+"civilizations."
+
+msgid "Mounting stronger catapults onto ships helped give added firepower."
+msgstr "Mounting stronger catapults onto ships helped give added firepower."
+
+msgid "Naval Ballistae"
+msgstr "Naval Ballistae"
+
+msgid "Siege Ships +20% attack range and vision range."
+msgstr "Siege Ships +20% attack range and vision range."
 
 msgid "The wonder attracts many more people to your civilization."
 msgstr "Το θαύμα προσελκύει πολλούς περισσότερους ανθρώπους στον πολιτισμό σας."

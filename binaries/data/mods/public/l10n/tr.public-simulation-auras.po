@@ -42,7 +42,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-11-10 08:09+0000\n"
+"POT-Creation-Date: 2023-12-04 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: 9d4282795e87ad099e39d98812f1a822_ade2f01 <c3fa67bcf1b8b90bf10d2d5dae1637ab_127851>, 2016-2017,2022-2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
@@ -153,6 +153,14 @@ msgstr "Yapılar -%15 teknoloji kaynak maliyeti ve araştırma süresi."
 msgid "Centre of Scholarship"
 msgstr "Bilim Merkezi"
 
+#: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
+msgid "Structures +50% capture points garrison regeneration rate."
+msgstr "Yapılar +%50 ele geçirme puanı garnizon yenileme oranı."
+
+#: simulation/data/auras/structures/loyalty_regen.jsonauraName
+msgid "Loyalty"
+msgstr "Sadakat"
+
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
 msgstr "Tüccarlar +%20 hareket hızı."
@@ -160,6 +168,15 @@ msgstr "Tüccarlar +%20 hareket hızı."
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
 msgstr "Ashoka'nın Fermanı"
+
+#: simulation/data/auras/structures/satrapy_tribute.jsonauraDescription
+msgid ""
+"Upgrade the Throne Hall to receive a free trickle of a desired resource."
+msgstr ""
+
+#: simulation/data/auras/structures/satrapy_tribute.jsonauraName
+msgid "Satrapy Tribute"
+msgstr ""
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."

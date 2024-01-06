@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2023-11-20 08:18+0000\n"
-"PO-Revision-Date: 2023-11-20 08:18+0000\n"
+"POT-Creation-Date: 2024-01-05 08:18+0000\n"
+"PO-Revision-Date: 2024-01-05 08:18+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -5205,20 +5205,17 @@ msgstr ""
 "Les unités acquièrent de l'expérience lorsqu'elles sont en garnison à l'intérieur de "
 "l’édifice."
 
-msgid "CELTIC WAR BARGE"
-msgstr "ΚΕΛΤΙΚΟ ΠΟΛΕΜΙΚΟ ΠΟΤΑΜΟΠΛΟΙΟ"
+msgid "CELTIC HEAVY ARROW SHIP"
+msgstr "CELTIC HEAVY ARROW SHIP"
 
-msgid "A medium trireme-class warship."
-msgstr "Un buque de guerra intermedio de clase trirreme."
-
-msgid "Available to Britons, Gauls, and Iberians."
-msgstr "Ri fhaighinn do Bhreatannaich, Muinntir na Gaille ’s Ibèirich."
+msgid "The main warship for the Britons, Gauls, and Iberians."
+msgstr "The main warship for the Britons, Gauls, and Iberians."
 
 msgid "Can transport up to 40 units."
 msgstr "’S urrainn dha gu ruige 40 aonad a ghiùlan."
 
-msgid "Increases firepower with garrisoned infantry."
-msgstr "Cuiridh seo ri buannachd an losgaidh nuair a bhios coisridh ’na ghearastan ann."
+msgid "Can be improved with greater health and garrison capacity."
+msgstr "Can be improved with greater health and garrison capacity."
 
 msgid "CITY WALLS"
 msgstr "MURALLES DE LA CIUTAT"
@@ -5434,15 +5431,20 @@ msgstr ""
 msgid "Caution: Each hero can be recruited only once per match!"
 msgstr "Thoir an aire: Chan urrainn dhut gach curaidh a thrusadh ach aon turas ann am maidse!"
 
-msgid "IBERIAN FIRESHIP"
-msgstr "IBERYJSKI STATEK OGNIOWY"
+msgid "FIRESHIPS"
+msgstr "FIRESHIPS"
 
-msgid ""
-"The special Iberian fireship is very effective against other ships and buildings, but "
-"steadily loses health."
-msgstr ""
-"Het vuurschip, specifiek voor Iberië, is bijzonder effectief tegen andere schepen en "
-"gebouwen, maar verliest geleidelijk aan kracht."
+msgid "Available to the Britons, Gauls, and Iberians."
+msgstr "Available to the Britons, Gauls, and Iberians."
+
+msgid "Construct them, move them near enemy ships, then ignite them to set them ablaze."
+msgstr "Construct them, move them near enemy ships, then ignite them to set them ablaze."
+
+msgid "They cause Fire damage to nearby enemy ships and themselves start to lose health."
+msgstr "They cause Fire damage to nearby enemy ships and themselves start to lose health."
+
+msgid "Very good against Siege Ships."
+msgstr "Very good against Siege Ships."
 
 msgid "LIGHTHOUSE"
 msgstr "VILÁGÍTÓTORONY"
@@ -5536,21 +5538,40 @@ msgstr ""
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
 msgstr "Disponible pour : les Koushites, les Macédoniens, les Ptolémées et les Séleucides."
 
-msgid "QUINQUEREME"
-msgstr "QUINQUERREME"
+msgid "SIEGE WARSHIP"
+msgstr "SIEGE WARSHIP"
 
 msgid ""
-"The heaviest standard warship. Available to: Carthaginians, Ptolemies, Romans, and "
-"Seleucids."
+"The heaviest standard warship. Available to: Carthaginians, Ptolemies, Romans, "
+"Seleucids, and Han Chinese."
 msgstr ""
-"Le plus lourd des navires de guerre standards. Disponible pour : les Carthaginois, les "
-"Ptolémées, les Romains et les Séleucides."
+"The heaviest standard warship. Available to: Carthaginians, Ptolemies, Romans, "
+"Seleucids, and Han Chinese."
 
-msgid "Transports up to 50 units."
-msgstr "’S urrainn dhi gu ruige 50 aonad a ghiùlan."
+msgid ""
+"Strong crush damage and long range make them good against Arrow Ships and Buildings "
+"near the shore."
+msgstr ""
+"Strong crush damage and long range make them good against Arrow Ships and Buildings "
+"near the shore."
 
-msgid "Increases firepower with garrisoned catapults."
-msgstr "Gheibh i buannachd losgaidh nuair a bhios crainn-thabhaill ’nan gearastan ann."
+msgid "Countered by melee ships, such as Ramming Ships and Fire Ships, and other Siege Ships."
+msgstr "Countered by melee ships, such as Ramming Ships and Fire Ships, and other Siege Ships."
+
+msgid "RAMMING SHIPS"
+msgstr "RAMMING SHIPS"
+
+msgid "A strong and fast melee ship available to Mediterranean civilizations."
+msgstr "A strong and fast melee ship available to Mediterranean civilizations."
+
+msgid "Transport up to 30 troops swiftly across the water."
+msgstr "Transport up to 30 troops swiftly across the water."
+
+msgid "Good against Siege Ships due to speed and strong ramming attack. "
+msgstr "Good against Siege Ships due to speed and strong ramming attack. "
+
+msgid "Countered by Arrow Ships and Defense Towers. "
+msgstr "Countered by Arrow Ships and Defense Towers. "
 
 msgid "RESOURCE COUNTER"
 msgstr "COMPTEUR DE RESSOURCES"
@@ -5713,17 +5734,20 @@ msgstr ""
 "Verschaft u direct een flinke hoeveelheid grondstoffen, dus kijk er naar uit terwijl u "
 "het terrein verkent."
 
-msgid "TRIREME"
-msgstr "LESTR-TEIRROEÑVEK"
+msgid "ARROW SHIPS"
+msgstr "ARROW SHIPS"
 
-msgid "The Medium Warship."
-msgstr "Ein mittelschweres Kriegsschiff."
+msgid "The basic Warship for most factions."
+msgstr "The basic Warship for most factions."
 
-msgid "Good for transporting or fighting."
-msgstr "Indicada tanto para transporte como para batalhas."
+msgid "Transport up to 30 troops across the water."
+msgstr "Transport up to 30 troops across the water."
 
-msgid "Garrison troops aboard to increase fire power."
-msgstr "Разместите воинов на борту для транспортировки и увеличения  огневой мощи."
+msgid "Good against melee Warships, such as Ramming Ships and Fire Ships."
+msgstr "Good against melee Warships, such as Ramming Ships and Fire Ships."
+
+msgid "Countered by Siege Ships and other Arrow Ships. "
+msgstr "Countered by Siege Ships and other Arrow Ships. "
 
 msgid "WAR ELEPHANTS"
 msgstr "ELEPHANTES DE GUERRA"
