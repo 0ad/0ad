@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_ship_warship_arrow">
+<Entity parent="pirate|template_unit_ship_warship_arrow">
+  <Footprint>
+    <Square width="12.0" depth="48.0"/>
+    <Height>8.0</Height>
+  </Footprint>
   <Identity>
-    <Civ>gaia</Civ>
     <SpecificName>Rhodian Marauder</SpecificName>
     <Icon>units/pirates/ship_arrow.png</Icon>
   </Identity>
