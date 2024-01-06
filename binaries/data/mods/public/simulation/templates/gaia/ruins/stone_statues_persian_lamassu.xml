@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_ruins">
+  <Footprint replace="">
+    <Square width="4.0" depth="10.0"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Identity>
+    <SpecificName>Lamassu Statue</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="3.5" depth="3.5"/>
+  </Obstruction>
+  <ResourceSupply>
+    <Max>500</Max>
+  </ResourceSupply>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_universal.xml</select>
+    </SoundGroups>
+  </Sound>
+  <VisualActor>
+    <Actor>structures/persians/lamassu_ruin.xml</Actor>
+  </VisualActor>
+</Entity>
