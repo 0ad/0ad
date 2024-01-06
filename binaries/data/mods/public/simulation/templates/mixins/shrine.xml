@@ -13,7 +13,9 @@
     <SpecificName>Shrine</SpecificName>
     <VisibleClasses datatype="tokens">
       Shrine
+      -town
     </VisibleClasses>
+    <Tooltip>Train Elite Healers and heal garrisoned units.</Tooltip>
     <Undeletable>true</Undeletable>
   </Identity>
   <Minimap>
@@ -23,16 +25,7 @@
   <Obstruction>
     <Static width="20" depth="21"/>
   </Obstruction>
-  <Researcher>
-    <Technologies datatype="tokens">
-      -heal_range
-      -heal_range_2
-      -heal_rate
-      -heal_rate_2
-      -garrison_heal
-      -health_regen_units
-    </Technologies>
-  </Researcher>
+  <Researcher disable=""/>
   <Resistance replace=""/>
   <Selectable>
     <Overlay>
