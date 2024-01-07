@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Entity>
+  <Attack>
+    <Ranged>
+      <Bonuses>
+        <Brigandry>
+          <Classes>Trader</Classes>
+          <Multiplier>2.0</Multiplier>
+        </Brigandry>
+      </Bonuses>
+      <PreferredClasses datatype="tokens">Trader</PreferredClasses>
+    </Ranged>
+  </Attack>
+  <Cost>
+    <Population>0</Population>
+    <BuildTime>10</BuildTime>
+    <Resources>
+      <food>0</food>
+      <wood>0</wood>
+      <stone>0</stone>
+      <metal op="mul">2</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max op="mul">1.2</Max>
+  </Health>
+  <Identity>
+    <Civ>gaia</Civ>
+    <VisibleClasses datatype="tokens">Pirate</VisibleClasses>
+  </Identity>
+  <TrainingRestrictions>
+    <Category>Mercenary</Category>
+  </TrainingRestrictions>
+</Entity>

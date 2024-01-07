@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.91.2 commit date:2021-01-19, commit time:16:15, hash:5be9ef417703</authoring_tool>
+    </contributor>
+    <created>2022-11-10T19:47:10</created>
+    <modified>2022-11-10T19:47:10</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects/>
+  <library_images/>
+  <library_geometries>
+    <geometry id="Cube_002-mesh" name="Cube.002">
+      <mesh>
+        <source id="Cube_002-mesh-positions">
+          <float_array id="Cube_002-mesh-positions-array" count="66">-1 -1 -1 -1 -1 1 -1 1 -1 -1 1 1 1 -1 -1 1 -1 1 1 1 -1 1 1 1 -1 -1 0 -1 1 0 1 1 0 1 -1 0 1 0 1 1 1 0.5 1 -1 0.5 1 0 0 1 0 0.5 -1 -1 0.5 -1 0 1 -1 1 0.5 -1 0 0 -1 0 0.5</float_array>
+          <technique_common>
+            <accessor source="#Cube_002-mesh-positions-array" count="22" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_002-mesh-normals">
+          <float_array id="Cube_002-mesh-normals-array" count="15">-1 0 0 0 1 0 1 0 0 0 -1 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Cube_002-mesh-normals-array" count="5" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_002-mesh-map-0">
+          <float_array id="Cube_002-mesh-map-0-array" count="228">0.9985674 0.6670702 0.812292 0.5849902 0.9985674 0.5849902 1.000287 0.5844479 0.8128676 0.6671547 0.8128676 0.5844479 0.9976621 0.6663776 0.8119515 0.5843831 0.9976621 0.5843831 1.000306 0.5844479 0.8128864 0.6671547 0.8128864 0.5844479 0.888468 0.3754062 0.7549251 0.4996243 0.7549251 0.3754062 0.005721688 0.6130108 0.09755349 0.5390516 0.005721688 0.5390516 0.1733399 0.6129357 0.2493633 0.6129357 0.2493633 0.5394176 0.003704786 0.6129209 0.09824037 0.5395694 0.003704786 0.5395694 0.1736091 0.613368 0.09797251 0.613368 0.09797251 0.5392783 0.9976621 0.5843831 0.8119515 0.5023887 0.9976621 0.5023887 0.998099 0.5843831 0.8123884 0.5023887 0.998099 0.5023887 0.998099 0.6663776 0.8123884 0.5843831 0.998099 0.5843831 0.9985674 0.5849902 0.812292 0.5029101 0.9985674 0.5029101 0.9991976 0.5849902 0.8129222 0.5029101 0.9991976 0.5029101 0.9991976 0.6670702 0.8129222 0.5849902 0.9991976 0.5849902 0.9985674 0.6670702 0.812292 0.6670702 0.812292 0.5849902 0.8128676 0.5017411 1.000287 0.5017411 1.000287 0.5844479 1.000287 0.5844479 1.000287 0.6671547 0.8128676 0.6671547 0.8128676 0.5844479 0.8128676 0.5017411 1.000287 0.5844479 0.9976621 0.6663776 0.8119515 0.6663776 0.8119515 0.5843831 0.8128864 0.5017411 1.000306 0.5017411 1.000306 0.5844479 1.000306 0.5844479 1.000306 0.6671547 0.8128864 0.6671547 0.8128864 0.5844479 0.8128864 0.5017411 1.000306 0.5844479 0.7549251 0.3754062 0.7549251 0.251188 0.888468 0.251188 0.888468 0.3754062 0.888468 0.4996243 0.7549251 0.4996243 0.7549251 0.3754062 0.888468 0.251188 0.888468 0.3754062 0.005721688 0.6130108 0.09755349 0.6130108 0.09755349 0.5390516 0.2493633 0.5394176 0.09731644 0.5394176 0.1733399 0.6129357 0.09731644 0.5394176 0.09731644 0.6129357 0.1733399 0.6129357 0.003704786 0.6129209 0.09824037 0.6129209 0.09824037 0.5395694 0.09797251 0.5392783 0.2492458 0.5392783 0.1736091 0.613368 0.2492458 0.5392783 0.2492458 0.613368 0.1736091 0.613368 0.9976621 0.5843831 0.8119515 0.5843831 0.8119515 0.5023887 0.998099 0.5843831 0.8123884 0.5843831 0.8123884 0.5023887 0.998099 0.6663776 0.8123884 0.6663776 0.8123884 0.5843831 0.9985674 0.5849902 0.812292 0.5849902 0.812292 0.5029101 0.9991976 0.5849902 0.8129222 0.5849902 0.8129222 0.5029101 0.9991976 0.6670702 0.8129222 0.6670702 0.8129222 0.5849902</float_array>
+          <technique_common>
+            <accessor source="#Cube_002-mesh-map-0-array" count="114" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_002-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_002-mesh-positions"/>
+        </vertices>
+        <triangles count="38">
+          <input semantic="VERTEX" source="#Cube_002-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_002-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Cube_002-mesh-map-0" offset="2" set="0"/>
+          <p>18 0 0 19 0 1 21 0 2 19 1 3 7 1 4 13 1 5 12 2 6 14 2 7 16 2 8 14 3 9 1 3 10 17 3 11 18 4 12 5 4 13 12 4 14 11 3 15 0 3 16 4 3 17 15 2 18 11 2 19 4 2 20 9 1 21 6 1 22 2 1 23 20 0 24 9 0 25 2 0 26 16 2 27 11 2 28 15 2 29 13 2 30 15 2 31 10 2 32 7 2 33 16 2 34 13 2 35 21 0 36 9 0 37 20 0 38 17 0 39 20 0 40 8 0 41 1 0 42 21 0 43 17 0 44 18 0 45 3 0 46 19 0 47 10 1 48 9 1 49 19 1 50 19 1 51 3 1 52 7 1 53 13 1 54 10 1 55 19 1 56 12 2 57 5 2 58 14 2 59 8 3 60 11 3 61 14 3 62 14 3 63 5 3 64 1 3 65 17 3 66 8 3 67 14 3 68 12 4 69 7 4 70 3 4 71 18 4 72 1 4 73 5 4 74 12 4 75 3 4 76 18 4 77 11 3 78 8 3 79 0 3 80 4 2 81 6 2 82 15 2 83 6 2 84 10 2 85 15 2 86 9 1 87 10 1 88 6 1 89 2 0 90 0 0 91 20 0 92 0 0 93 8 0 94 20 0 95 16 2 96 14 2 97 11 2 98 13 2 99 16 2 100 15 2 101 7 2 102 12 2 103 16 2 104 21 0 105 19 0 106 9 0 107 17 0 108 21 0 109 20 0 110 1 0 111 18 0 112 21 0 113</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="lamassu_plinth" name="lamassu_plinth" type="NODE">
+        <matrix sid="transform">3.615891 0 0 0 0 6.088455 0 0 0 0 5.270089 -0.1088687 0 0 0 1</matrix>
+        <instance_geometry url="#Cube_002-mesh" name="lamassu_plinth"/>
+        <node id="prop_statue" name="prop_statue" type="NODE">
+          <matrix sid="transform">0.2331197 0 0 0.01918161 0 0.1384482 0 -0.1060367 0 0 0.1599471 0.9994972 0 0 0 1</matrix>
+        </node>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
