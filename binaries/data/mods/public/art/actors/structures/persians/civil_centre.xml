@@ -6,6 +6,8 @@
       <mesh>structural/pers_palace.dae</mesh>
       <props>
         <prop actor="props/structures/decals/paving_tile_sahara_9x9_round.xml" attachpoint="root"/>
+        <prop actor="structures/persians/lamassu_small.xml" attachpoint="lamassu_01"/>
+        <prop actor="structures/persians/lamassu_small.xml" attachpoint="lamassu_02"/>
       </props>
       <textures>
         <texture file="structural/pers_struct.png" name="baseTex"/>
