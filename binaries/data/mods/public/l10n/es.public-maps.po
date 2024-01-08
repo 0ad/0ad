@@ -31,9 +31,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-01 08:08+0000\n"
+"POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2023\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2024\n"
 "Language-Team: Spanish (http://app.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -294,7 +294,7 @@ msgid ""
 " subject to numerous yet short-lived invasions. Ultimately consolidating "
 "power with Rhodes at their lead, these islands developed into great "
 "maritime, commercial and cultural centers. Will you achieve the same?"
-msgstr "El dodecaneso ha sido objeto de numerosas aunque breves invasiones con el objeto de controlar el acceso al mar Egeo desde el Este. Estas islas, con Rodas como capital, acabaron consolidando cierto poder, llegandose a convertir en un gran centro marítimo, comercial y cultural. ¿Podrás conseguir lo mismo?"
+msgstr "El dodecaneso ha sido objeto de numerosas, aunque breves, invasiones con el objeto de controlar el acceso al mar Egeo desde el Este. Estas islas, con Rodas como capital, acabaron consolidando cierto poder, llegándose a convertir en un gran centro marítimo, comercial y cultural. ¿Podrás conseguir lo mismo?"
 
 #: maps/random/dodecanese.jsonsettings.Name
 msgid "Dodecanese"
@@ -379,7 +379,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n"
 "\n"
 "A great flood moves across the valley. At some point you have to evacuate your units and use ships to reach the mainland and the other players."
-msgstr ""
+msgstr "[color=\"red\"]NOTA IMPORTANTE: LOS JUGADORES MANEJADOS CON IA NO FUNCIONAN CON INUNDACIONES[/color]\n\nUna gran inundación sepulta el valle. Se acerca el momento de evacuar tus unidades y utilizar barcos para alcanzar tierra firme y el resto de jugadores."
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
@@ -387,35 +387,35 @@ msgstr "Inundación"
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Description
 msgid "The water rises. The homeislands will become uninhabitable."
-msgstr ""
+msgstr "La marea sube. Las islas de origen acabarán siendo inhabitables."
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Name
 msgid "Rising"
-msgstr ""
+msgstr "Subiendo"
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Description
 msgid ""
 "The water doesn't rise. Ships and troops can battle in chest deep waters."
-msgstr ""
+msgstr "La marea no sube. Barcos y tropas pueden luchar en aguas poco profundas."
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Name
 msgid "Shallow"
-msgstr ""
+msgstr "Poco profundo"
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Description
 msgid ""
 "The water doesn't rise. You have to use ships to travel to the mainland."
-msgstr ""
+msgstr "No sube la marea. Tienes que utilizar barcos para viajar a la tierra principal."
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Name
 msgid "Deep"
-msgstr ""
+msgstr "Profundo"
 
 #: maps/random/flood_triggers.js:11
 msgid ""
 "The flood continues. Soon the waters will swallow the land. You should "
 "evacuate the units."
-msgstr ""
+msgstr "La inundación continua. Pronto la marea cubrirá la tierra. Debes evacuar tus unidades."
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -1337,6 +1337,14 @@ msgstr "Un lago rodeado de colinas."
 msgid "Wild Lake"
 msgstr "Lago agreste"
 
+#: maps/scenarios/Ship Combat Demo.xml:Description:39
+msgid "Ship Combat Demo."
+msgstr "Demo de batalla naval."
+
+#: maps/scenarios/Ship Combat Demo.xml:Name:39
+msgid "Ship Combat Demo"
+msgstr "Demo de batalla naval"
+
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
 #: maps/scenarios/walltest.xml:Description:26
@@ -1381,6 +1389,8 @@ msgstr "Arcadia"
 #: maps/scenarios/walls.xml:PlayerData[0].Name:26
 #: maps/scenarios/walltest.xml:PlayerData[0].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[1].Name:39
 msgid "Player 1"
@@ -1407,6 +1417,8 @@ msgstr "Jugador 1"
 #: maps/scenarios/walls.xml:PlayerData[1].Name:26
 #: maps/scenarios/walltest.xml:PlayerData[1].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[2].Name:39
 msgid "Player 2"
@@ -1644,6 +1656,7 @@ msgstr "Fuerza invasora"
 #: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:39
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[3].Name:39
 #: maps/scenarios/siwa_oasis.xml:PlayerData[2].Name:26
+#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[3].Name:39
 msgid "Player 3"
 msgstr "Jugador 3"
 
@@ -1836,7 +1849,7 @@ msgstr "Selecciona un mapa de prueba"
 
 #: maps/scenarios/polynesia.xml:Description:39
 msgid "Demo map for new fancy water effects."
-msgstr "Mapa de demostración para los nuevos chachi efectos de agua."
+msgstr "Mapa de demostración para los nuevos super efectos de agua."
 
 #: maps/scenarios/polynesia.xml:Name:39
 msgid "Polynesia"
@@ -2568,7 +2581,7 @@ msgstr "Un clásico. Un exuberante oasis enclavado en medio de una planicie des�
 
 #: maps/skirmishes/arabian_oases_2p.xml:Name:39
 msgid "Arabian Oases (2 players)"
-msgstr "Oasis de Arabia (dos jugadores)"
+msgstr "Oasis de Arabia (2)"
 
 #: maps/skirmishes/arabian_oases_2p.xml:PlayerData[0].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[1].Name:39
@@ -2690,22 +2703,16 @@ msgid "Crocodilopolis (4)"
 msgstr "Cocodrilópolis (4)"
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Description:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:Description:39
 msgid "A \"small island\"-style map set in the Aegean Sea."
 msgstr "Un mapa de «islas pequeñas» ambientado en el mar Egeo."
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
-msgid "Cycladic Archipelago (2)"
+msgid "Cycladic Archipelago (2 players)"
 msgstr "Archipiélago cicládico (2)"
 
-#: maps/skirmishes/cycladic_archipelago_3p.xml:Description:38
-msgid ""
-"A \"small island\"-style map set in the Aegean Sea.\n"
-"\n"
-"Map size: Very Large"
-msgstr "Un mapa de «islas pequeñas» ambientado en el mar Egeo.\n\nTamaño de mapa: Muy grande"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:38
-msgid "Cycladic Archipelago (3)"
+#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
+msgid "Cycladic Archipelago (3 players)"
 msgstr "Archipiélago cicládico (3)"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
@@ -2940,7 +2947,7 @@ msgstr "Un clásico. Un exuberante oasis enclavado en medio de una planicie des�
 
 #: maps/skirmishes/libyan_oasis_2p.xml:Name:39
 msgid "Libyan Oasis (2 players)"
-msgstr "Oasis libio (dos jugadores)"
+msgstr "Oasis libio (2)"
 
 #: maps/skirmishes/lorraine_plain_2p.xml:Description:39
 msgid ""
@@ -3304,7 +3311,7 @@ msgstr "Un pequeño terreno de sabana con cuatro abrevaderos.\n\nComo en todos l
 
 #: maps/skirmishes/watering_holes_4p.xml:Name:39
 msgid "Watering Holes (4 players)"
-msgstr "Abrevaderos (cuatro jugadores)"
+msgstr "Abrevaderos (4)"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:Description:39
 msgid ""
@@ -3356,4 +3363,4 @@ msgstr "Las montañas que delimitan la patria persa, entre Persis, Susiana y Med
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Name:39
 msgid "Zagros Mountains (2 players)"
-msgstr "Montañas Zagros (dos jugadores)"
+msgstr "Montañas Zagros (2)"

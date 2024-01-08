@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-01 08:08+0000\n"
+"POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>, 2016-2018\n"
 "Language-Team: Norwegian Bokmål (http://app.transifex.com/wildfire-games/0ad/language/nb/)\n"
@@ -1317,6 +1317,14 @@ msgstr "En innsjø omkranset av åser"
 msgid "Wild Lake"
 msgstr "Vill innsjø"
 
+#: maps/scenarios/Ship Combat Demo.xml:Description:39
+msgid "Ship Combat Demo."
+msgstr ""
+
+#: maps/scenarios/Ship Combat Demo.xml:Name:39
+msgid "Ship Combat Demo"
+msgstr ""
+
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
 #: maps/scenarios/walltest.xml:Description:26
@@ -1361,6 +1369,8 @@ msgstr "Arkadia"
 #: maps/scenarios/walls.xml:PlayerData[0].Name:26
 #: maps/scenarios/walltest.xml:PlayerData[0].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[1].Name:39
 msgid "Player 1"
@@ -1387,6 +1397,8 @@ msgstr "Spiller 1"
 #: maps/scenarios/walls.xml:PlayerData[1].Name:26
 #: maps/scenarios/walltest.xml:PlayerData[1].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[2].Name:39
 msgid "Player 2"
@@ -1624,6 +1636,7 @@ msgstr "Invasjonsstyrke"
 #: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:39
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[3].Name:39
 #: maps/scenarios/siwa_oasis.xml:PlayerData[2].Name:26
+#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[3].Name:39
 msgid "Player 3"
 msgstr "Spiller 3"
 
@@ -2664,23 +2677,17 @@ msgid "Crocodilopolis (4)"
 msgstr ""
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Description:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:Description:39
 msgid "A \"small island\"-style map set in the Aegean Sea."
 msgstr "En \"liten øy\"-kart satt til Egeerhavet. "
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
-msgid "Cycladic Archipelago (2)"
-msgstr "Kykladisk skjærgård (2)"
+msgid "Cycladic Archipelago (2 players)"
+msgstr ""
 
-#: maps/skirmishes/cycladic_archipelago_3p.xml:Description:38
-msgid ""
-"A \"small island\"-style map set in the Aegean Sea.\n"
-"\n"
-"Map size: Very Large"
-msgstr "Et \"liten øy\"-type kart satt til Egeerhavet.\n\nKartstørrelse: Veldig stort"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:38
-msgid "Cycladic Archipelago (3)"
-msgstr "Kykladisk skjærgård (3)"
+#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
+msgid "Cycladic Archipelago (3 players)"
+msgstr ""
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""

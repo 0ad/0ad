@@ -1,12 +1,12 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Language-Team: Luxembourgish (http://app.transifex.com/wildfire-games/0ad/language/lb/)\n"
 "MIME-Version: 1.0\n"
@@ -6491,23 +6491,19 @@ msgid "Units gain experience while garrisoned inside the structure."
 msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:1
-msgid "CELTIC WAR BARGE"
+msgid "CELTIC HEAVY ARROW SHIP"
 msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:2
-msgid "A medium trireme-class warship."
+msgid "The main warship for the Britons, Gauls, and Iberians."
 msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:3
-msgid "Available to Britons, Gauls, and Iberians."
-msgstr ""
-
-#: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
 msgstr ""
 
-#: gui/text/tips/celtic_war_barge.txt:5
-msgid "Increases firepower with garrisoned infantry."
+#: gui/text/tips/celtic_war_barge.txt:4
+msgid "Can be improved with greater health and garrison capacity."
 msgstr ""
 
 #: gui/text/tips/city_walls.txt:1
@@ -6743,13 +6739,27 @@ msgid "Caution: Each hero can be recruited only once per match!"
 msgstr ""
 
 #: gui/text/tips/iber_fireship.txt:1
-msgid "IBERIAN FIRESHIP"
+msgid "FIRESHIPS"
 msgstr ""
 
 #: gui/text/tips/iber_fireship.txt:2
+msgid "Available to the Britons, Gauls, and Iberians."
+msgstr ""
+
+#: gui/text/tips/iber_fireship.txt:3
 msgid ""
-"The special Iberian fireship is very effective against other ships and "
-"buildings, but steadily loses health."
+"Construct them, move them near enemy ships, then ignite them to set them "
+"ablaze."
+msgstr ""
+
+#: gui/text/tips/iber_fireship.txt:4
+msgid ""
+"They cause Fire damage to nearby enemy ships and themselves start to lose "
+"health."
+msgstr ""
+
+#: gui/text/tips/iber_fireship.txt:5
+msgid "Very good against Siege Ships."
 msgstr ""
 
 #: gui/text/tips/lighthouse.txt:1
@@ -6865,21 +6875,45 @@ msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
 msgstr ""
 
 #: gui/text/tips/quinquereme.txt:1
-msgid "QUINQUEREME"
+msgid "SIEGE WARSHIP"
 msgstr ""
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
-"Romans, and Seleucids."
+"Romans, Seleucids, and Han Chinese."
 msgstr ""
 
 #: gui/text/tips/quinquereme.txt:3
-msgid "Transports up to 50 units."
+msgid ""
+"Strong crush damage and long range make them good against Arrow Ships and "
+"Buildings near the shore."
 msgstr ""
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "Increases firepower with garrisoned catapults."
+msgid ""
+"Countered by melee ships, such as Ramming Ships and Fire Ships, and other "
+"Siege Ships."
+msgstr ""
+
+#: gui/text/tips/ramming_ships.txt:1
+msgid "RAMMING SHIPS"
+msgstr ""
+
+#: gui/text/tips/ramming_ships.txt:2
+msgid "A strong and fast melee ship available to Mediterranean civilizations."
+msgstr ""
+
+#: gui/text/tips/ramming_ships.txt:3
+msgid "Transport up to 30 troops swiftly across the water."
+msgstr ""
+
+#: gui/text/tips/ramming_ships.txt:4
+msgid "Good against Siege Ships due to speed and strong ramming attack. "
+msgstr ""
+
+#: gui/text/tips/ramming_ships.txt:5
+msgid "Countered by Arrow Ships and Defense Towers. "
 msgstr ""
 
 #: gui/text/tips/resource_counter.txt:1
@@ -7063,19 +7097,23 @@ msgid ""
 msgstr ""
 
 #: gui/text/tips/triremes.txt:1
-msgid "TRIREME"
+msgid "ARROW SHIPS"
 msgstr ""
 
 #: gui/text/tips/triremes.txt:2
-msgid "The Medium Warship."
+msgid "The basic Warship for most factions."
 msgstr ""
 
 #: gui/text/tips/triremes.txt:3
-msgid "Good for transporting or fighting."
+msgid "Transport up to 30 troops across the water."
 msgstr ""
 
 #: gui/text/tips/triremes.txt:4
-msgid "Garrison troops aboard to increase fire power."
+msgid "Good against melee Warships, such as Ramming Ships and Fire Ships."
+msgstr ""
+
+#: gui/text/tips/triremes.txt:5
+msgid "Countered by Siege Ships and other Arrow Ships. "
 msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1

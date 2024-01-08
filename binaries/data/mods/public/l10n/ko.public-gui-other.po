@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -6484,24 +6484,20 @@ msgid "Units gain experience while garrisoned inside the structure."
 msgstr "유닛들은 건축물 내부에서 주둔하는 동안 경험치를 얻게 됩니다."
 
 #: gui/text/tips/celtic_war_barge.txt:1
-msgid "CELTIC WAR BARGE"
-msgstr "켈트족 전투 바지선"
+msgid "CELTIC HEAVY ARROW SHIP"
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:2
-msgid "A medium trireme-class warship."
-msgstr "3단노선급 중형 군선입니다."
+msgid "The main warship for the Britons, Gauls, and Iberians."
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:3
-msgid "Available to Britons, Gauls, and Iberians."
-msgstr "브리튼인, 갈리아인, 이베리아인이 사용할 수 있습니다."
-
-#: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
 msgstr "최대 40 유닛을 수송할 수 있습니다."
 
-#: gui/text/tips/celtic_war_barge.txt:5
-msgid "Increases firepower with garrisoned infantry."
-msgstr "주둔한 보병의 화력이 증가합니다."
+#: gui/text/tips/celtic_war_barge.txt:4
+msgid "Can be improved with greater health and garrison capacity."
+msgstr ""
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
@@ -6736,14 +6732,28 @@ msgid "Caution: Each hero can be recruited only once per match!"
 msgstr "주의: 각 영웅은 시합당 한 번만 모집할 수 있습니다!"
 
 #: gui/text/tips/iber_fireship.txt:1
-msgid "IBERIAN FIRESHIP"
-msgstr "이베리아의 화공선"
+msgid "FIRESHIPS"
+msgstr ""
 
 #: gui/text/tips/iber_fireship.txt:2
+msgid "Available to the Britons, Gauls, and Iberians."
+msgstr ""
+
+#: gui/text/tips/iber_fireship.txt:3
 msgid ""
-"The special Iberian fireship is very effective against other ships and "
-"buildings, but steadily loses health."
-msgstr "특별한 이베리아 화공선은 다른 선박과 건물을 상대로 매우 효과적이지만, 꾸준히 내구력을 잃습니다."
+"Construct them, move them near enemy ships, then ignite them to set them "
+"ablaze."
+msgstr ""
+
+#: gui/text/tips/iber_fireship.txt:4
+msgid ""
+"They cause Fire damage to nearby enemy ships and themselves start to lose "
+"health."
+msgstr ""
+
+#: gui/text/tips/iber_fireship.txt:5
+msgid "Very good against Siege Ships."
+msgstr ""
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
@@ -6858,22 +6868,46 @@ msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
 msgstr "사용 가능한 대상: 쿠시인, 마케도니아인, 프톨레마이오스인, 셀레우코스인."
 
 #: gui/text/tips/quinquereme.txt:1
-msgid "QUINQUEREME"
-msgstr "5단 노선"
+msgid "SIEGE WARSHIP"
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
-"Romans, and Seleucids."
-msgstr "가장 큰 대형 규격 군선입니다. 사용 가능한 대상: 카르타고인, 프톨레마이오스인, 로마인, 셀레우코스인."
+"Romans, Seleucids, and Han Chinese."
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:3
-msgid "Transports up to 50 units."
-msgstr "최대 50 유닛을 수송합니다."
+msgid ""
+"Strong crush damage and long range make them good against Arrow Ships and "
+"Buildings near the shore."
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "Increases firepower with garrisoned catapults."
-msgstr "주둔한 발석차의 화력이 증가합니다."
+msgid ""
+"Countered by melee ships, such as Ramming Ships and Fire Ships, and other "
+"Siege Ships."
+msgstr ""
+
+#: gui/text/tips/ramming_ships.txt:1
+msgid "RAMMING SHIPS"
+msgstr ""
+
+#: gui/text/tips/ramming_ships.txt:2
+msgid "A strong and fast melee ship available to Mediterranean civilizations."
+msgstr ""
+
+#: gui/text/tips/ramming_ships.txt:3
+msgid "Transport up to 30 troops swiftly across the water."
+msgstr ""
+
+#: gui/text/tips/ramming_ships.txt:4
+msgid "Good against Siege Ships due to speed and strong ramming attack. "
+msgstr ""
+
+#: gui/text/tips/ramming_ships.txt:5
+msgid "Countered by Arrow Ships and Defense Towers. "
+msgstr ""
 
 #: gui/text/tips/resource_counter.txt:1
 msgid "RESOURCE COUNTER"
@@ -7056,20 +7090,24 @@ msgid ""
 msgstr "자원 부양책을 제공하므로, 탐색할 때 눈을 떼지 마십시오."
 
 #: gui/text/tips/triremes.txt:1
-msgid "TRIREME"
-msgstr "3단노선"
+msgid "ARROW SHIPS"
+msgstr ""
 
 #: gui/text/tips/triremes.txt:2
-msgid "The Medium Warship."
-msgstr "중형 군선입니다."
+msgid "The basic Warship for most factions."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:3
-msgid "Good for transporting or fighting."
-msgstr "수송 중이나 전투 중에 좋습니다."
+msgid "Transport up to 30 troops across the water."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:4
-msgid "Garrison troops aboard to increase fire power."
-msgstr "화력을 증강하기 위해 배에 병력들을 주둔시킵니다."
+msgid "Good against melee Warships, such as Ramming Ships and Fire Ships."
+msgstr ""
+
+#: gui/text/tips/triremes.txt:5
+msgid "Countered by Siege Ships and other Arrow Ships. "
+msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"

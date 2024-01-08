@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -39,9 +39,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-12-04 08:08+0000\n"
+"POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2020-2023\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2020-2024\n"
 "Language-Team: Spanish (http://app.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,7 +60,6 @@ msgid "The Agoge"
 msgstr "Agogé"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
-#: simulation/data/technologies/arsenal_philon.jsonrequirementsTooltip
 #: simulation/data/technologies/art_of_war.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
 #: simulation/data/technologies/barracks_batch_training.jsonrequirementsTooltip
@@ -88,8 +87,8 @@ msgstr "Agogé"
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
 #: simulation/data/technologies/roman_reforms.jsonrequirementsTooltip
+#: simulation/data/technologies/ship_capture_resistance.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
-#: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
@@ -114,6 +113,8 @@ msgstr "Agogé"
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_neodamodes.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_spies.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_arrow_attack.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_siege_attack.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Se desbloquea en la fase urbana."
@@ -137,7 +138,7 @@ msgstr "Entrenamiento con arco"
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
 #: simulation/data/technologies/cost_healer.jsonrequirementsTooltip
 #: simulation/data/technologies/crossbow_training.jsonrequirementsTooltip
-#: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
+#: simulation/data/technologies/dock_efficiency.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
@@ -155,6 +156,7 @@ msgstr "Entrenamiento con arco"
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/roman_roads.jsonrequirementsTooltip
 #: simulation/data/technologies/serapis_cult.jsonrequirementsTooltip
+#: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
@@ -169,6 +171,8 @@ msgstr "Entrenamiento con arco"
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tyrtean_paeans.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_ramming_speed.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_resistance.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Se desbloquea en la fase intermedia."
 
@@ -196,6 +200,7 @@ msgstr "Tradición arquera"
 #: simulation/data/technologies/gather_farming_training_ptol.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/ship_vision.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
 msgstr "Se desbloquea en la fase inicial."
@@ -223,7 +228,7 @@ msgstr "Los persas construyeron el increíble Camino Real a lo largo de unos 270
 
 #: simulation/data/technologies/architecture_pers.jsongenericName
 msgid "Achaemenid Architecture"
-msgstr ""
+msgstr "Arquitectura aqueménida"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
@@ -238,6 +243,11 @@ msgstr "El arsenal se usaba principalmente como almacén de materiales e instrum
 #: simulation/data/technologies/arsenal_philon.jsongenericName
 msgid "Arsenal of Philon"
 msgstr "Arsenal de Filón"
+
+#: simulation/data/technologies/arsenal_philon.jsonrequirementsTooltip
+#: simulation/data/technologies/juggernauts.jsonrequirementsTooltip
+msgid "Unlocked in City Phase. Requires “Shipwrights.”"
+msgstr "Se desbloquea en la fase urbana. Requiere «carpinteros»."
 
 #: simulation/data/technologies/arsenal_philon.jsontooltip
 msgid "Warships +1 health/second self-repair rate."
@@ -327,11 +337,11 @@ msgstr "Caballería (Velocidad de movimiento: +10%)."
 msgid ""
 "Britons paint their bodies with Woad, which produces a blue color and gives "
 "them a fiercesome appearance in battle."
-msgstr ""
+msgstr "Los britanos pintaban sus cuerpos con glasto, que produce un color añil que les proporcionaba una apariencia amenazadora en las batallas. "
 
 #: simulation/data/technologies/civbonuses/brit_woad_warriors.jsongenericName
 msgid "Woad Warriors"
-msgstr ""
+msgstr "Guerreros pictos"
 
 #: simulation/data/technologies/civbonuses/brit_woad_warriors.jsontooltip
 msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
@@ -378,7 +388,7 @@ msgstr "Liga de Delos"
 
 #: simulation/data/technologies/civbonuses/delian_league.jsontooltip
 msgid "Ships −25% construction time."
-msgstr ""
+msgstr "Barcos (Tiempo de construcción: −25%)."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -617,15 +627,15 @@ msgstr "Centros cívicos, templos y casas (Tiempo de construcción y coste de re
 msgid ""
 "Sacrificial rituals were quite common in ancient times, whether to satisfy "
 "the gods, calm natural disasters, or even improve harvests."
-msgstr ""
+msgstr "Los rituales de sacrificio eran bastante comunes en la antigüedad, ya fuera para satisfacer a los dioses, evitar desastres naturales o incluso mejorar las cosechas."
 
 #: simulation/data/technologies/cost_healer.jsongenericName
 msgid "Sacrificial Ritual"
-msgstr ""
+msgstr "Sacrificio"
 
 #: simulation/data/technologies/cost_healer.jsontooltip
 msgid "Healers –40% training time, and the metal cost is removed."
-msgstr ""
+msgstr "Sanadores (Tiempo de adiestramiento: –40%; Coste de metal: eliminado)."
 
 #: simulation/data/technologies/crossbow_training.jsondescription
 msgid "The Han had a penchant for using massed crossbowmen in battle."
@@ -638,6 +648,35 @@ msgstr "Adiestramiento con ballesta"
 #: simulation/data/technologies/crossbow_training.jsontooltip
 msgid "Crossbow Infantry −20% train time."
 msgstr "Infantería con ballesta (Tiempo de adiestramiento: −20%)."
+
+#: simulation/data/technologies/dock_efficiency.jsondescription
+#: simulation/data/technologies/ship_cost_time.jsondescription
+msgid ""
+"Employ skilled shipwrights with specialized tools to speed up ship "
+"construction."
+msgstr "Emplear carpinteros de barcos cualificados con herramientas especializadas para acelerar la construcción de barcos."
+
+#: simulation/data/technologies/dock_efficiency.jsongenericName
+msgid "Shipwrights"
+msgstr "Carpinteros"
+
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.athen
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.mace
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.ptol
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.sele
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.spart
+msgid "Naupēgoi"
+msgstr "Naupēgoi"
+
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.rome
+msgid "Faber Navalis"
+msgstr "Faber Navalis"
+
+#: simulation/data/technologies/dock_efficiency.jsontooltip
+msgid ""
+"Docks work 20% faster (Ships −20% build time; Technologies −20% research "
+"time) and are built 20% faster."
+msgstr "Los muelles trabajan y construyen 20% más rápido: Barcos (Tiempo de construcción: −20%). Tecnologías (Tiempo de investigación: −20%)."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -658,29 +697,54 @@ msgstr "Transportes equinos"
 msgid "Phoenician Triremes gain the ability to train Cavalry."
 msgstr "Los trirremes fenicios pueden reclutar caballería."
 
+#: simulation/data/technologies/exploration.jsondescription
+msgid ""
+"Nobody knew better than the Carthaginians where in the ancient world they "
+"were going and going to go; their merchant traders had missions to "
+"everywhere. The Chinese were noted explorers, once sending a fleet of ships "
+"into the Indian Ocean to expand their knowledge and open up new trade "
+"routes."
+msgstr "Nadie mejor que los cartagineses conocía el mundo antiguo en el que se movían y al que se dirigían. Sus comerciantes de mercancías tenían misiones en todas partes. Por su parte, los chinos eran reconocidos exploradores que llegaron a enviar flotas de barcos al océano índico para expandir su conocimiento y abrir nuevas rutas comerciales."
+
+#: simulation/data/technologies/exploration.jsongenericName
+msgid "Exploration"
+msgstr "Exploración"
+
+#: simulation/data/technologies/exploration.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase. Requires “Lookouts.”"
+msgstr "Se desbloquea en la fase intermedia. Requiere «cofa»."
+
+#: simulation/data/technologies/exploration.jsontooltip
+msgid "Traders and Ships +20% vision range."
+msgstr "Comerciantes y barcos (Campo de visión: +20%)."
+
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
 msgid "Salting allows to preserve fish longer."
 msgstr "La salazón permite conservar el pescado más tiempo."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsongenericName
-msgid "Salting Fish"
-msgstr "Pescado en salazón"
+msgid "Salt Curing"
+msgstr "Salazón"
+
+#: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase. Requires “Fishing Nets.”"
+msgstr "Se desbloquea en la fase intermedia. Requiere «redes de pesca»."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsontooltip
 msgid "Fishing Boats +20 food capacity."
-msgstr "Los botes pesqueros aumentan en +20 su capacidad de comida."
+msgstr "Botes de pesca (Pescado: +20)."
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsondescription
 msgid "Use nets to improve the productivity of fishing boats."
 msgstr "Uso de redes para aumentar la productividad de los barcos pesqueros."
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsongenericName
-msgid "Fishing Net"
-msgstr "Red de pesca"
+msgid "Fishing Nets"
+msgstr "Redes de pesca"
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsontooltip
-msgid "Fishing Boats +30% fish gather rate."
-msgstr "Barcos pesqueros (Pesca: +30%)."
+msgid "Fishing Boats +30% fish gather rate. Unlocks “Salt Curing.”"
+msgstr "Botes de pesca (Pescado: +30%). Desbloquea «Salazón»."
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
@@ -699,15 +763,15 @@ msgid ""
 "Ahimsa is the ancient Indian principle of nonviolence which applies to "
 "actions towards all living beings. It is a key virtue in Indian religions "
 "like Jainism, Buddhism, Hinduism, and Sikhism."
-msgstr ""
+msgstr "Ahimsa es el antiguo principio índio de no violencia que se aplica a las acciones de todos los seres vivos. Es una importante doctrina dentro de las religiones índias como el jainismo, el budismo, el hinduismo y el sijismo."
 
 #: simulation/data/technologies/gather_ahimsa.jsongenericName
 msgid "Ahimsa"
-msgstr ""
+msgstr "Ahimsa"
 
 #: simulation/data/technologies/gather_ahimsa.jsontooltip
 msgid "Units +100% fruit gather rate, but -80% meat and fish gather."
-msgstr ""
+msgstr "Unidades (Tasa de recolección de fruta: +100%; Extracción de carne y pescado: −80%)."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock to slaughter for meat."
@@ -1134,6 +1198,18 @@ msgid ""
 "Athenian Docks and Triremes can train Marines and Cretan Mercenary Archers."
 msgstr "Los muelles atenienses y los trirremes pueden reclutar infantería de marina y arqueros mercenarios cretenses."
 
+#: simulation/data/technologies/juggernauts.jsongenericName
+msgid "Juggernauts"
+msgstr "Juggernauts"
+
+#: simulation/data/technologies/juggernauts.jsonspecificName.ptol
+msgid "Tessarakonterēs"
+msgstr "Tessarakonterēs"
+
+#: simulation/data/technologies/juggernauts.jsontooltip
+msgid "Siege Ships +50% health, +25% more projectiles, but −25% speed."
+msgstr "Buques de asedio (Resistencia: +50%; Proyectiles: +25%; Velocidad: −25%)."
+
 #: simulation/data/technologies/krypteia.jsondescription
 msgid ""
 "Krypteia was an Agoge rite of passage, during which soldiers learned how to "
@@ -1216,7 +1292,7 @@ msgstr "Puestos de avanzada (Campo de visión: +33%)."
 
 #: simulation/data/technologies/pair_gather_food_maur.jsongenericName
 msgid "Wicker Basket vs Ahimsa"
-msgstr ""
+msgstr "Cesta de mimbre vs Ahimsa"
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1547,7 +1623,7 @@ msgid ""
 "precinct devoted to Serapis. The cult of Serapis was spread as a matter of "
 "deliberate policy by the Ptolemaic kings, who also built an immense serapeum"
 " in Alexandria."
-msgstr ""
+msgstr "El culto a Serapis se introdujo en el siglo tercero a. C. por orden de Ptolomeo I de Egipto como medio de unificar a griegos y egipcios en su reino. El dios se representaba con apariencia griega, pero con adornos egipcios, y combinaba iconografía de numerosos cultos, significando tanto abundancia como resurrección. Un serapeión era cualquier templo o recinto religioso dedicado a Serapis. El culto a Serapis fue difundido como de forma deliberada por los reyes ptolemaicos, que también construyeron un inmenso serapeum en Alejandría."
 
 #: simulation/data/technologies/serapis_cult.jsongenericName
 msgid "Serapis Cult"
@@ -1557,11 +1633,27 @@ msgstr "Culto a Serapis"
 msgid "+2.0 metal trickle per second."
 msgstr "Tasa de producción de metal: +2,0."
 
-#: simulation/data/technologies/ship_cost_time.jsondescription
-msgid ""
-"Employ skilled shipwrights with specialized tools to speed up ship "
-"construction."
-msgstr "Emplear carpinteros de barcos cualificados con herramientas especializadas para acelerar la construcción de barcos."
+#: simulation/data/technologies/ship_capture_resistance.jsondescription
+msgid "Marines were a vital part of ship defense and offense."
+msgstr "La infantería de marina era un elemento fundamental de la defensa y ataque de un barco."
+
+#: simulation/data/technologies/ship_capture_resistance.jsongenericName
+msgid "Marines"
+msgstr "Infantería de marina"
+
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.athen
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.cart
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.mace
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.pers
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.ptol
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.sele
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.spart
+msgid "Epibatai"
+msgstr "Epibatai"
+
+#: simulation/data/technologies/ship_capture_resistance.jsontooltip
+msgid "All Warships +40% capture resistance."
+msgstr "Buques de guerra (Resistencia al abordaje: +40%)."
 
 #: simulation/data/technologies/ship_cost_time.jsongenericName
 msgid "Naval Architects"
@@ -1580,8 +1672,8 @@ msgid "Reinforced Hull"
 msgstr "Casco reforzado"
 
 #: simulation/data/technologies/ship_health.jsontooltip
-msgid "Ships +25% health."
-msgstr "Barcos (Resistencia: +25%)."
+msgid "Ships +25% health, but −10% speed."
+msgstr "Barcos (Resistencia: +25%; Velocidad: −10%)."
 
 #: simulation/data/technologies/ship_movement_speed.jsondescription
 msgid ""
@@ -1596,6 +1688,30 @@ msgstr "Tripulación experimentada"
 #: simulation/data/technologies/ship_movement_speed.jsontooltip
 msgid "Ships +10% movement speed."
 msgstr "Barcos (Velocidad de movimiento: +10%)."
+
+#: simulation/data/technologies/ship_vision.jsondescription
+msgid ""
+"Lookouts aboard ship were important for sighting land, spotting navigational"
+" hazards, and directing fire in battle."
+msgstr "La cofa de un barco es un importante lugar para divisar tierra, así como otros peligros propios de la navegación, o también para dirigir el fuego en la batalla. "
+
+#: simulation/data/technologies/ship_vision.jsongenericName
+msgid "Lookouts"
+msgstr "Cofa"
+
+#: simulation/data/technologies/ship_vision.jsonspecificName.athen
+#: simulation/data/technologies/ship_vision.jsonspecificName.mace
+#: simulation/data/technologies/ship_vision.jsonspecificName.ptol
+#: simulation/data/technologies/ship_vision.jsonspecificName.sele
+#: simulation/data/technologies/ship_vision.jsonspecificName.spart
+msgid "Prōratēs"
+msgstr "Prōratēs"
+
+#: simulation/data/technologies/ship_vision.jsontooltip
+msgid ""
+"Ships and Boats +10% vision range; Scout Ships an additional +25% vision "
+"range. Unlocks “Exploration” for the Carthaginians and Han Chinese."
+msgstr "Navíos y botes (Campo de visión +10%). Buques de exploración (Campo de visión extra: +25%). Desbloquea «exploración» para cartagineses y Han."
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
@@ -2222,6 +2338,156 @@ msgstr "Pericia guerrera"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
 msgstr "Los mercenarios comienzan con un rango superior."
+
+#: simulation/data/technologies/warship_arrow_attack.jsondescription
+msgid "Mounting bolt shooters onto ships helped give added firepower."
+msgstr "Monta lanzadores de virotes en los barcos para aumentar la fuerza de fuego."
+
+#: simulation/data/technologies/warship_arrow_attack.jsongenericName
+msgid "Naval Oxybeles"
+msgstr "Oxíbeles naval"
+
+#: simulation/data/technologies/warship_arrow_attack.jsontooltip
+msgid "Arrow Ships +10 crush attack damage and +10% attack range."
+msgstr "Buques con flechas (Daño por embestida: +10; Alcance: +10). "
+
+#: simulation/data/technologies/warship_fireship_attack.jsondescription
+msgid ""
+"Pitch can be made from petroleum, coal tar, or pine tar. It can be used to "
+"help seal the hulls of boats as well as assist in igniting enemy ships."
+msgstr "La brea podía obtenerse del petroleo, alquitrán de hulla, o resina de pino. Puede usarse tanto para sellar el casco de las embarcaciones como para incendiar las naves enemigas."
+
+#: simulation/data/technologies/warship_fireship_attack.jsongenericName
+msgid "Burning Pitch"
+msgstr "Brea inflamable"
+
+#: simulation/data/technologies/warship_fireship_attack.jsonrequirementsTooltip
+msgid "Unlocked in City Phase. Requires “Naval Construction.”"
+msgstr "Se desbloquea en la fase urbana. Requiere «construcción naval»."
+
+#: simulation/data/technologies/warship_fireship_attack.jsontooltip
+msgid "Fire Ships +25% health and +25% attack damage."
+msgstr "Brulotes (Resistencia: +25%; Daño: +25%)."
+
+#: simulation/data/technologies/warship_health.jsondescription
+msgid "The hypozomata brace the structure of a ship."
+msgstr "La hypozomata asegura la estructura del casco de la nave."
+
+#: simulation/data/technologies/warship_health.jsongenericName
+msgid "Undergirding Cables"
+msgstr "Cables de refuerzo"
+
+#: simulation/data/technologies/warship_health.jsonrequirementsTooltip
+msgid "Unlocked in City Phase. Requires “Ship Cladding.”"
+msgstr "Se desbloquea en la fase urbana. Requiere «revestimiento»."
+
+#: simulation/data/technologies/warship_health.jsonspecificName.athen
+#: simulation/data/technologies/warship_health.jsonspecificName.cart
+#: simulation/data/technologies/warship_health.jsonspecificName.mace
+#: simulation/data/technologies/warship_health.jsonspecificName.pers
+#: simulation/data/technologies/warship_health.jsonspecificName.ptol
+#: simulation/data/technologies/warship_health.jsonspecificName.sele
+#: simulation/data/technologies/warship_health.jsonspecificName.spart
+msgid "Hypozomata"
+msgstr "Hypozomata"
+
+#: simulation/data/technologies/warship_health.jsontooltip
+msgid "Arrow Ships and Ramming Ships +25% health."
+msgstr "Buques con flechas y naves de embestida (Resistencia: +25%)."
+
+#: simulation/data/technologies/warship_ramming_attack.jsondescription
+msgid "A bronze beak at the prow of the ship, used for ramming enemy ships."
+msgstr "Prolongación de la proa del buque, realizada en bronce, y que se usaba para abordar naves enemigas."
+
+#: simulation/data/technologies/warship_ramming_attack.jsongenericName
+msgid "Bronze Ram"
+msgstr "Espolón de bronce"
+
+#: simulation/data/technologies/warship_ramming_attack.jsonrequirementsTooltip
+msgid "Unlocked in City Phase. Requires “Flanking Maneuvers.”"
+msgstr "Se desbloquea en la fase urbana. Requiere «maniobras de flanco»."
+
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.athen
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.cart
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.mace
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.pers
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.ptol
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.sele
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.spart
+msgid "Embolon"
+msgstr "Embolon"
+
+#: simulation/data/technologies/warship_ramming_attack.jsontooltip
+msgid "Ramming Ships +30% attack damage."
+msgstr "Naves de embestida (Daño: +30%)."
+
+#: simulation/data/technologies/warship_ramming_speed.jsondescription
+msgid ""
+"The flanking maneuver was attempted in order to position the ship for a "
+"successful ram. To pull this off in the chaos of a sea battle, a ship's crew"
+" needed to be highly trained and well-motivated."
+msgstr "Una maniobra de flanco se realizaba para colocar la nave en condiciones de realizar una embestida. Para lograr esto en el caos de una batalla naval se necesitaba una tripulación muy entrenada y motivada."
+
+#: simulation/data/technologies/warship_ramming_speed.jsongenericName
+msgid "Flanking Maneuvers"
+msgstr "Maniobras de flanco"
+
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.athen
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.cart
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.mace
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.pers
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.ptol
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.sele
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.spart
+msgid "Periplous"
+msgstr "Periplous"
+
+#: simulation/data/technologies/warship_ramming_speed.jsontooltip
+msgid "Ramming Ships +25% speed and acceleration. Unlocks “Bronze Rams.”"
+msgstr "Naves de embestida (Velocidad y aceleración: +25%). Desbloquea «Espolón de bronce»"
+
+#: simulation/data/technologies/warship_ranged_attack.jsondescription
+msgid ""
+"Flaming munitions were very useful against wooden targets such as ships."
+msgstr "La munición inflamabe era muy util contra objetivos de madera como los barcos."
+
+#: simulation/data/technologies/warship_ranged_attack.jsongenericName
+msgid "Flaming Projectiles"
+msgstr "Proyectiles inflamables."
+
+#: simulation/data/technologies/warship_ranged_attack.jsonrequirementsTooltip
+msgid "Unlocked in City Phase. Requires “Naval Ballistae.”"
+msgstr "Se desbloquea en la fase urbana. Requiere «balista naval»."
+
+#: simulation/data/technologies/warship_ranged_attack.jsontooltip
+msgid "Ranged Warships +10% attack damage."
+msgstr "Buques de guerra (Daño a distancia: +10%)."
+
+#: simulation/data/technologies/warship_resistance.jsondescription
+msgid "Armor for the flanks of a warship."
+msgstr "Armazón para los flancos de los buques de guerra."
+
+#: simulation/data/technologies/warship_resistance.jsongenericName
+msgid "Ship Cladding"
+msgstr "Revestimiento"
+
+#: simulation/data/technologies/warship_resistance.jsontooltip
+msgid ""
+"Warships +1 pierce and crush armor. Unlocks “Undergirding Cables” for some "
+"civilizations."
+msgstr "Buques de guerra (Armadura: +1). Desbloquea «cables de refuerzo» en algunas civilizaciones."
+
+#: simulation/data/technologies/warship_siege_attack.jsondescription
+msgid "Mounting stronger catapults onto ships helped give added firepower."
+msgstr "Monta catapultas más fuertes en los barcos para aumentar la fuerza de fuego."
+
+#: simulation/data/technologies/warship_siege_attack.jsongenericName
+msgid "Naval Ballistae"
+msgstr "Balistas navales"
+
+#: simulation/data/technologies/warship_siege_attack.jsontooltip
+msgid "Siege Ships +20% attack range and vision range."
+msgstr "Buques de asedio (Alcance y campo de visión: +20%)."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."
