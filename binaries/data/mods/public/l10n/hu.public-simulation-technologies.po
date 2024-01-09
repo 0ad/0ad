@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-12-04 08:08+0000\n"
+"POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Szabó Lambert, 2021-2023\n"
 "Language-Team: Hungarian (http://app.transifex.com/wildfire-games/0ad/language/hu/)\n"
@@ -42,7 +42,6 @@ msgid "The Agoge"
 msgstr "Agogé"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
-#: simulation/data/technologies/arsenal_philon.jsonrequirementsTooltip
 #: simulation/data/technologies/art_of_war.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
 #: simulation/data/technologies/barracks_batch_training.jsonrequirementsTooltip
@@ -70,8 +69,8 @@ msgstr "Agogé"
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
 #: simulation/data/technologies/roman_reforms.jsonrequirementsTooltip
+#: simulation/data/technologies/ship_capture_resistance.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
-#: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
@@ -96,6 +95,8 @@ msgstr "Agogé"
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_neodamodes.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_spies.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_arrow_attack.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_siege_attack.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "A nagyvárosi szakaszban válik elérhetővé."
@@ -119,7 +120,7 @@ msgstr "Íjászgyakorat"
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
 #: simulation/data/technologies/cost_healer.jsonrequirementsTooltip
 #: simulation/data/technologies/crossbow_training.jsonrequirementsTooltip
-#: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
+#: simulation/data/technologies/dock_efficiency.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
@@ -137,6 +138,7 @@ msgstr "Íjászgyakorat"
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/roman_roads.jsonrequirementsTooltip
 #: simulation/data/technologies/serapis_cult.jsonrequirementsTooltip
+#: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
@@ -151,6 +153,8 @@ msgstr "Íjászgyakorat"
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tyrtean_paeans.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_ramming_speed.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_resistance.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "A városi szakaszban válik elérhetővé."
 
@@ -178,6 +182,7 @@ msgstr "Íjászhagyomány"
 #: simulation/data/technologies/gather_farming_training_ptol.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/ship_vision.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
 msgstr "A falusi szakaszban válik elérhetővé."
@@ -220,6 +225,11 @@ msgstr "E fegyvertárat a hadihajók felszereléséhez szükséges alapanyagok �
 #: simulation/data/technologies/arsenal_philon.jsongenericName
 msgid "Arsenal of Philon"
 msgstr "Philón fegyvertára"
+
+#: simulation/data/technologies/arsenal_philon.jsonrequirementsTooltip
+#: simulation/data/technologies/juggernauts.jsonrequirementsTooltip
+msgid "Unlocked in City Phase. Requires “Shipwrights.”"
+msgstr ""
 
 #: simulation/data/technologies/arsenal_philon.jsontooltip
 msgid "Warships +1 health/second self-repair rate."
@@ -621,6 +631,35 @@ msgstr ""
 msgid "Crossbow Infantry −20% train time."
 msgstr "−20% kiképzési idő a gyalogos számszeríjászoknak"
 
+#: simulation/data/technologies/dock_efficiency.jsondescription
+#: simulation/data/technologies/ship_cost_time.jsondescription
+msgid ""
+"Employ skilled shipwrights with specialized tools to speed up ship "
+"construction."
+msgstr "Különleges szerszámokkal ellátott, képzett hajóácsok alkalmazása a hajógyártás felgyorsítása érdekében. "
+
+#: simulation/data/technologies/dock_efficiency.jsongenericName
+msgid "Shipwrights"
+msgstr ""
+
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.athen
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.mace
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.ptol
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.sele
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.spart
+msgid "Naupēgoi"
+msgstr ""
+
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.rome
+msgid "Faber Navalis"
+msgstr ""
+
+#: simulation/data/technologies/dock_efficiency.jsontooltip
+msgid ""
+"Docks work 20% faster (Ships −20% build time; Technologies −20% research "
+"time) and are built 20% faster."
+msgstr ""
+
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
 "Early Achaemenid rulers acted towards making Persia the first great Asian "
@@ -640,13 +679,38 @@ msgstr "Lószállító hajók"
 msgid "Phoenician Triremes gain the ability to train Cavalry."
 msgstr "A föníciai triérészek megkapják a lovasság kiképzésének egyedi képességet."
 
+#: simulation/data/technologies/exploration.jsondescription
+msgid ""
+"Nobody knew better than the Carthaginians where in the ancient world they "
+"were going and going to go; their merchant traders had missions to "
+"everywhere. The Chinese were noted explorers, once sending a fleet of ships "
+"into the Indian Ocean to expand their knowledge and open up new trade "
+"routes."
+msgstr ""
+
+#: simulation/data/technologies/exploration.jsongenericName
+msgid "Exploration"
+msgstr "Felfedezés"
+
+#: simulation/data/technologies/exploration.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase. Requires “Lookouts.”"
+msgstr ""
+
+#: simulation/data/technologies/exploration.jsontooltip
+msgid "Traders and Ships +20% vision range."
+msgstr ""
+
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
 msgid "Salting allows to preserve fish longer."
 msgstr "A sózás lehetővé teszi a halak további eltartását."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsongenericName
-msgid "Salting Fish"
-msgstr "Sózott halak"
+msgid "Salt Curing"
+msgstr ""
+
+#: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase. Requires “Fishing Nets.”"
+msgstr ""
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -657,12 +721,12 @@ msgid "Use nets to improve the productivity of fishing boats."
 msgstr "Hálók használata a halászcsónakok termelékenységének fejlesztéséhez."
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsongenericName
-msgid "Fishing Net"
-msgstr "Halászháló"
+msgid "Fishing Nets"
+msgstr ""
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsontooltip
-msgid "Fishing Boats +30% fish gather rate."
-msgstr "+30% halgyűjtési sebesség a halászcsónakoknak"
+msgid "Fishing Boats +30% fish gather rate. Unlocks “Salt Curing.”"
+msgstr ""
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
@@ -1116,6 +1180,18 @@ msgid ""
 "Athenian Docks and Triremes can train Marines and Cretan Mercenary Archers."
 msgstr ""
 
+#: simulation/data/technologies/juggernauts.jsongenericName
+msgid "Juggernauts"
+msgstr ""
+
+#: simulation/data/technologies/juggernauts.jsonspecificName.ptol
+msgid "Tessarakonterēs"
+msgstr "Tessarakonterēs"
+
+#: simulation/data/technologies/juggernauts.jsontooltip
+msgid "Siege Ships +50% health, +25% more projectiles, but −25% speed."
+msgstr ""
+
 #: simulation/data/technologies/krypteia.jsondescription
 msgid ""
 "Krypteia was an Agoge rite of passage, during which soldiers learned how to "
@@ -1539,11 +1615,27 @@ msgstr ""
 msgid "+2.0 metal trickle per second."
 msgstr ""
 
-#: simulation/data/technologies/ship_cost_time.jsondescription
-msgid ""
-"Employ skilled shipwrights with specialized tools to speed up ship "
-"construction."
-msgstr "Különleges szerszámokkal ellátott, képzett hajóácsok alkalmazása a hajógyártás felgyorsítása érdekében. "
+#: simulation/data/technologies/ship_capture_resistance.jsondescription
+msgid "Marines were a vital part of ship defense and offense."
+msgstr ""
+
+#: simulation/data/technologies/ship_capture_resistance.jsongenericName
+msgid "Marines"
+msgstr ""
+
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.athen
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.cart
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.mace
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.pers
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.ptol
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.sele
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.spart
+msgid "Epibatai"
+msgstr ""
+
+#: simulation/data/technologies/ship_capture_resistance.jsontooltip
+msgid "All Warships +40% capture resistance."
+msgstr ""
 
 #: simulation/data/technologies/ship_cost_time.jsongenericName
 msgid "Naval Architects"
@@ -1562,8 +1654,8 @@ msgid "Reinforced Hull"
 msgstr ""
 
 #: simulation/data/technologies/ship_health.jsontooltip
-msgid "Ships +25% health."
-msgstr "+25% életerő a hajóknak"
+msgid "Ships +25% health, but −10% speed."
+msgstr ""
 
 #: simulation/data/technologies/ship_movement_speed.jsondescription
 msgid ""
@@ -1578,6 +1670,30 @@ msgstr "Tapasztalt legénység"
 #: simulation/data/technologies/ship_movement_speed.jsontooltip
 msgid "Ships +10% movement speed."
 msgstr "+10% mozgási sebesség a hajóknak"
+
+#: simulation/data/technologies/ship_vision.jsondescription
+msgid ""
+"Lookouts aboard ship were important for sighting land, spotting navigational"
+" hazards, and directing fire in battle."
+msgstr ""
+
+#: simulation/data/technologies/ship_vision.jsongenericName
+msgid "Lookouts"
+msgstr ""
+
+#: simulation/data/technologies/ship_vision.jsonspecificName.athen
+#: simulation/data/technologies/ship_vision.jsonspecificName.mace
+#: simulation/data/technologies/ship_vision.jsonspecificName.ptol
+#: simulation/data/technologies/ship_vision.jsonspecificName.sele
+#: simulation/data/technologies/ship_vision.jsonspecificName.spart
+msgid "Prōratēs"
+msgstr ""
+
+#: simulation/data/technologies/ship_vision.jsontooltip
+msgid ""
+"Ships and Boats +10% vision range; Scout Ships an additional +25% vision "
+"range. Unlocks “Exploration” for the Carthaginians and Han Chinese."
+msgstr ""
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
@@ -2204,6 +2320,156 @@ msgstr "Hadi tapasztalat"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
 msgstr "A zsoldosok fejlett rangról kezdenek."
+
+#: simulation/data/technologies/warship_arrow_attack.jsondescription
+msgid "Mounting bolt shooters onto ships helped give added firepower."
+msgstr ""
+
+#: simulation/data/technologies/warship_arrow_attack.jsongenericName
+msgid "Naval Oxybeles"
+msgstr ""
+
+#: simulation/data/technologies/warship_arrow_attack.jsontooltip
+msgid "Arrow Ships +10 crush attack damage and +10% attack range."
+msgstr ""
+
+#: simulation/data/technologies/warship_fireship_attack.jsondescription
+msgid ""
+"Pitch can be made from petroleum, coal tar, or pine tar. It can be used to "
+"help seal the hulls of boats as well as assist in igniting enemy ships."
+msgstr ""
+
+#: simulation/data/technologies/warship_fireship_attack.jsongenericName
+msgid "Burning Pitch"
+msgstr ""
+
+#: simulation/data/technologies/warship_fireship_attack.jsonrequirementsTooltip
+msgid "Unlocked in City Phase. Requires “Naval Construction.”"
+msgstr ""
+
+#: simulation/data/technologies/warship_fireship_attack.jsontooltip
+msgid "Fire Ships +25% health and +25% attack damage."
+msgstr ""
+
+#: simulation/data/technologies/warship_health.jsondescription
+msgid "The hypozomata brace the structure of a ship."
+msgstr ""
+
+#: simulation/data/technologies/warship_health.jsongenericName
+msgid "Undergirding Cables"
+msgstr ""
+
+#: simulation/data/technologies/warship_health.jsonrequirementsTooltip
+msgid "Unlocked in City Phase. Requires “Ship Cladding.”"
+msgstr ""
+
+#: simulation/data/technologies/warship_health.jsonspecificName.athen
+#: simulation/data/technologies/warship_health.jsonspecificName.cart
+#: simulation/data/technologies/warship_health.jsonspecificName.mace
+#: simulation/data/technologies/warship_health.jsonspecificName.pers
+#: simulation/data/technologies/warship_health.jsonspecificName.ptol
+#: simulation/data/technologies/warship_health.jsonspecificName.sele
+#: simulation/data/technologies/warship_health.jsonspecificName.spart
+msgid "Hypozomata"
+msgstr ""
+
+#: simulation/data/technologies/warship_health.jsontooltip
+msgid "Arrow Ships and Ramming Ships +25% health."
+msgstr ""
+
+#: simulation/data/technologies/warship_ramming_attack.jsondescription
+msgid "A bronze beak at the prow of the ship, used for ramming enemy ships."
+msgstr ""
+
+#: simulation/data/technologies/warship_ramming_attack.jsongenericName
+msgid "Bronze Ram"
+msgstr ""
+
+#: simulation/data/technologies/warship_ramming_attack.jsonrequirementsTooltip
+msgid "Unlocked in City Phase. Requires “Flanking Maneuvers.”"
+msgstr ""
+
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.athen
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.cart
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.mace
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.pers
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.ptol
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.sele
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.spart
+msgid "Embolon"
+msgstr ""
+
+#: simulation/data/technologies/warship_ramming_attack.jsontooltip
+msgid "Ramming Ships +30% attack damage."
+msgstr ""
+
+#: simulation/data/technologies/warship_ramming_speed.jsondescription
+msgid ""
+"The flanking maneuver was attempted in order to position the ship for a "
+"successful ram. To pull this off in the chaos of a sea battle, a ship's crew"
+" needed to be highly trained and well-motivated."
+msgstr ""
+
+#: simulation/data/technologies/warship_ramming_speed.jsongenericName
+msgid "Flanking Maneuvers"
+msgstr ""
+
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.athen
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.cart
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.mace
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.pers
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.ptol
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.sele
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.spart
+msgid "Periplous"
+msgstr ""
+
+#: simulation/data/technologies/warship_ramming_speed.jsontooltip
+msgid "Ramming Ships +25% speed and acceleration. Unlocks “Bronze Rams.”"
+msgstr ""
+
+#: simulation/data/technologies/warship_ranged_attack.jsondescription
+msgid ""
+"Flaming munitions were very useful against wooden targets such as ships."
+msgstr ""
+
+#: simulation/data/technologies/warship_ranged_attack.jsongenericName
+msgid "Flaming Projectiles"
+msgstr ""
+
+#: simulation/data/technologies/warship_ranged_attack.jsonrequirementsTooltip
+msgid "Unlocked in City Phase. Requires “Naval Ballistae.”"
+msgstr ""
+
+#: simulation/data/technologies/warship_ranged_attack.jsontooltip
+msgid "Ranged Warships +10% attack damage."
+msgstr ""
+
+#: simulation/data/technologies/warship_resistance.jsondescription
+msgid "Armor for the flanks of a warship."
+msgstr ""
+
+#: simulation/data/technologies/warship_resistance.jsongenericName
+msgid "Ship Cladding"
+msgstr ""
+
+#: simulation/data/technologies/warship_resistance.jsontooltip
+msgid ""
+"Warships +1 pierce and crush armor. Unlocks “Undergirding Cables” for some "
+"civilizations."
+msgstr ""
+
+#: simulation/data/technologies/warship_siege_attack.jsondescription
+msgid "Mounting stronger catapults onto ships helped give added firepower."
+msgstr ""
+
+#: simulation/data/technologies/warship_siege_attack.jsongenericName
+msgid "Naval Ballistae"
+msgstr ""
+
+#: simulation/data/technologies/warship_siege_attack.jsontooltip
+msgid "Siege Ships +20% attack range and vision range."
+msgstr ""
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

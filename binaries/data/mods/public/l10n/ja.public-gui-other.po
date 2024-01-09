@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Photon “PHN” man, 2021-2022\n"
 "Language-Team: Japanese (http://app.transifex.com/wildfire-games/0ad/language/ja/)\n"
@@ -6479,24 +6479,20 @@ msgid "Units gain experience while garrisoned inside the structure."
 msgstr "ユニットを建物の中に駐留させることで、経験値を得ることができます。"
 
 #: gui/text/tips/celtic_war_barge.txt:1
-msgid "CELTIC WAR BARGE"
-msgstr "ケルト軍用艀"
+msgid "CELTIC HEAVY ARROW SHIP"
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:2
-msgid "A medium trireme-class warship."
-msgstr "三段櫂船級の軍船"
+msgid "The main warship for the Britons, Gauls, and Iberians."
+msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:3
-msgid "Available to Britons, Gauls, and Iberians."
-msgstr "ブリテン、ガリア、イベリアにて利用可能"
-
-#: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
 msgstr "最大40台まで輸送可能"
 
-#: gui/text/tips/celtic_war_barge.txt:5
-msgid "Increases firepower with garrisoned infantry."
-msgstr "兵士を駐留させることで強力な矢を増やすことができます"
+#: gui/text/tips/celtic_war_barge.txt:4
+msgid "Can be improved with greater health and garrison capacity."
+msgstr ""
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
@@ -6731,14 +6727,28 @@ msgid "Caution: Each hero can be recruited only once per match!"
 msgstr "注意！：各英雄ユニットは1試合につき1回しか採用できません"
 
 #: gui/text/tips/iber_fireship.txt:1
-msgid "IBERIAN FIRESHIP"
-msgstr "イベリア炎上船"
+msgid "FIRESHIPS"
+msgstr ""
 
 #: gui/text/tips/iber_fireship.txt:2
+msgid "Available to the Britons, Gauls, and Iberians."
+msgstr ""
+
+#: gui/text/tips/iber_fireship.txt:3
 msgid ""
-"The special Iberian fireship is very effective against other ships and "
-"buildings, but steadily loses health."
-msgstr "特殊なイベリア炎上船は、他の船や建物に対して非常に効果的ですが、徐々にHPが減っていきます。"
+"Construct them, move them near enemy ships, then ignite them to set them "
+"ablaze."
+msgstr ""
+
+#: gui/text/tips/iber_fireship.txt:4
+msgid ""
+"They cause Fire damage to nearby enemy ships and themselves start to lose "
+"health."
+msgstr ""
+
+#: gui/text/tips/iber_fireship.txt:5
+msgid "Very good against Siege Ships."
+msgstr ""
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
@@ -6853,22 +6863,46 @@ msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
 msgstr "利用できる文明:クシュ、マケドニア、プトレマイオス朝、セレウコス朝"
 
 #: gui/text/tips/quinquereme.txt:1
-msgid "QUINQUEREME"
-msgstr "五段櫂船"
+msgid "SIEGE WARSHIP"
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
-"Romans, and Seleucids."
-msgstr "最も重い標準的な軍艦。カルタゴ、プトレマイオス朝、ローマ、セレウコス朝にて利用できます。"
+"Romans, Seleucids, and Han Chinese."
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:3
-msgid "Transports up to 50 units."
-msgstr "最大で50のユニットを輸送することができます。"
+msgid ""
+"Strong crush damage and long range make them good against Arrow Ships and "
+"Buildings near the shore."
+msgstr ""
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "Increases firepower with garrisoned catapults."
-msgstr "駐留している攻城投石器で火力を上げることができます。"
+msgid ""
+"Countered by melee ships, such as Ramming Ships and Fire Ships, and other "
+"Siege Ships."
+msgstr ""
+
+#: gui/text/tips/ramming_ships.txt:1
+msgid "RAMMING SHIPS"
+msgstr ""
+
+#: gui/text/tips/ramming_ships.txt:2
+msgid "A strong and fast melee ship available to Mediterranean civilizations."
+msgstr ""
+
+#: gui/text/tips/ramming_ships.txt:3
+msgid "Transport up to 30 troops swiftly across the water."
+msgstr ""
+
+#: gui/text/tips/ramming_ships.txt:4
+msgid "Good against Siege Ships due to speed and strong ramming attack. "
+msgstr ""
+
+#: gui/text/tips/ramming_ships.txt:5
+msgid "Countered by Arrow Ships and Defense Towers. "
+msgstr ""
 
 #: gui/text/tips/resource_counter.txt:1
 msgid "RESOURCE COUNTER"
@@ -7051,20 +7085,24 @@ msgid ""
 msgstr "手軽に資源を獲得できるので、探索の際には注視してみましょう。海上の財宝は交易船によって回収できます。"
 
 #: gui/text/tips/triremes.txt:1
-msgid "TRIREME"
-msgstr "三段櫂船"
+msgid "ARROW SHIPS"
+msgstr ""
 
 #: gui/text/tips/triremes.txt:2
-msgid "The Medium Warship."
-msgstr "普通サイズの軍船です。"
+msgid "The basic Warship for most factions."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:3
-msgid "Good for transporting or fighting."
-msgstr "輸送や戦闘に適しています。"
+msgid "Transport up to 30 troops across the water."
+msgstr ""
 
 #: gui/text/tips/triremes.txt:4
-msgid "Garrison troops aboard to increase fire power."
-msgstr "ユニットを駐留させることで攻撃力を強化できます。"
+msgid "Good against melee Warships, such as Ramming Ships and Fire Ships."
+msgstr ""
+
+#: gui/text/tips/triremes.txt:5
+msgid "Countered by Siege Ships and other Arrow Ships. "
+msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"

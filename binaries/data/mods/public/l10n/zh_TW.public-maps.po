@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-01 08:08+0000\n"
+"POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2024\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -1325,6 +1325,14 @@ msgstr "被山丘圍繞的湖。"
 msgid "Wild Lake"
 msgstr "荒野之湖"
 
+#: maps/scenarios/Ship Combat Demo.xml:Description:39
+msgid "Ship Combat Demo."
+msgstr "船艦戰鬥展示。"
+
+#: maps/scenarios/Ship Combat Demo.xml:Name:39
+msgid "Ship Combat Demo"
+msgstr "船艦戰鬥展示。"
+
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
 #: maps/scenarios/walltest.xml:Description:26
@@ -1369,6 +1377,8 @@ msgstr "阿卡迪亞"
 #: maps/scenarios/walls.xml:PlayerData[0].Name:26
 #: maps/scenarios/walltest.xml:PlayerData[0].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[1].Name:39
 msgid "Player 1"
@@ -1395,6 +1405,8 @@ msgstr "玩家 1"
 #: maps/scenarios/walls.xml:PlayerData[1].Name:26
 #: maps/scenarios/walltest.xml:PlayerData[1].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[2].Name:39
 msgid "Player 2"
@@ -1632,6 +1644,7 @@ msgstr "軍隊入侵"
 #: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:39
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[3].Name:39
 #: maps/scenarios/siwa_oasis.xml:PlayerData[2].Name:26
+#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[3].Name:39
 msgid "Player 3"
 msgstr "玩家 3"
 
@@ -2666,23 +2679,17 @@ msgid "Crocodilopolis (4)"
 msgstr "鱷魚城 (4)"
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Description:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:Description:39
 msgid "A \"small island\"-style map set in the Aegean Sea."
 msgstr "一個在愛琴海的「島嶼風格」地圖集。"
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
-msgid "Cycladic Archipelago (2)"
-msgstr "基克拉迪群島 (2)"
+msgid "Cycladic Archipelago (2 players)"
+msgstr "迦克拉底群島 (2)"
 
-#: maps/skirmishes/cycladic_archipelago_3p.xml:Description:38
-msgid ""
-"A \"small island\"-style map set in the Aegean Sea.\n"
-"\n"
-"Map size: Very Large"
-msgstr "一個在愛琴海的「島嶼風格」地圖集。\n\n地圖大小：極大。"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:38
-msgid "Cycladic Archipelago (3)"
-msgstr "基克拉迪群島 (3)"
+#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
+msgid "Cycladic Archipelago (3 players)"
+msgstr "迦克拉底群島 (3)"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""

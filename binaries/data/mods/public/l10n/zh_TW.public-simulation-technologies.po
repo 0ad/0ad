@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-12-04 08:08+0000\n"
+"POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2024\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -38,7 +38,6 @@ msgid "The Agoge"
 msgstr "斯巴達教育"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
-#: simulation/data/technologies/arsenal_philon.jsonrequirementsTooltip
 #: simulation/data/technologies/art_of_war.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
 #: simulation/data/technologies/barracks_batch_training.jsonrequirementsTooltip
@@ -66,8 +65,8 @@ msgstr "斯巴達教育"
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
 #: simulation/data/technologies/roman_reforms.jsonrequirementsTooltip
+#: simulation/data/technologies/ship_capture_resistance.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
-#: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
@@ -92,6 +91,8 @@ msgstr "斯巴達教育"
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_neodamodes.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_spies.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_arrow_attack.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_siege_attack.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "在城市階段解鎖。"
@@ -115,7 +116,7 @@ msgstr "箭術訓練"
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
 #: simulation/data/technologies/cost_healer.jsonrequirementsTooltip
 #: simulation/data/technologies/crossbow_training.jsonrequirementsTooltip
-#: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
+#: simulation/data/technologies/dock_efficiency.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
@@ -133,6 +134,7 @@ msgstr "箭術訓練"
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/roman_roads.jsonrequirementsTooltip
 #: simulation/data/technologies/serapis_cult.jsonrequirementsTooltip
+#: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
@@ -147,6 +149,8 @@ msgstr "箭術訓練"
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tyrtean_paeans.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_ramming_speed.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_resistance.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "在鄉鎮階段解鎖。"
 
@@ -174,6 +178,7 @@ msgstr "箭術傳統"
 #: simulation/data/technologies/gather_farming_training_ptol.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
+#: simulation/data/technologies/ship_vision.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
 msgstr "在村莊階段解鎖。"
@@ -216,6 +221,11 @@ msgstr "兵工廠主要用作軍艦裝備材料和儀器的倉庫。"
 #: simulation/data/technologies/arsenal_philon.jsongenericName
 msgid "Arsenal of Philon"
 msgstr "菲隆兵工廠"
+
+#: simulation/data/technologies/arsenal_philon.jsonrequirementsTooltip
+#: simulation/data/technologies/juggernauts.jsonrequirementsTooltip
+msgid "Unlocked in City Phase. Requires “Shipwrights.”"
+msgstr "在城市階段解鎖。需要「船匠」。"
 
 #: simulation/data/technologies/arsenal_philon.jsontooltip
 msgid "Warships +1 health/second self-repair rate."
@@ -617,6 +627,35 @@ msgstr "弩弓訓練"
 msgid "Crossbow Infantry −20% train time."
 msgstr "弩步兵 -20% 訓練時間。"
 
+#: simulation/data/technologies/dock_efficiency.jsondescription
+#: simulation/data/technologies/ship_cost_time.jsondescription
+msgid ""
+"Employ skilled shipwrights with specialized tools to speed up ship "
+"construction."
+msgstr "聘請運用特製工具的專業造船師來加快造船速度。"
+
+#: simulation/data/technologies/dock_efficiency.jsongenericName
+msgid "Shipwrights"
+msgstr "船匠"
+
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.athen
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.mace
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.ptol
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.sele
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.spart
+msgid "Naupēgoi"
+msgstr "Naupēgoi"
+
+#: simulation/data/technologies/dock_efficiency.jsonspecificName.rome
+msgid "Faber Navalis"
+msgstr "Faber Navalis"
+
+#: simulation/data/technologies/dock_efficiency.jsontooltip
+msgid ""
+"Docks work 20% faster (Ships −20% build time; Technologies −20% research "
+"time) and are built 20% faster."
+msgstr "碼頭工作速度提高 20%（船 -20% 建造時間；科技 -20% 研發時間），並且建造速度提高 20%。"
+
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
 "Early Achaemenid rulers acted towards making Persia the first great Asian "
@@ -636,13 +675,38 @@ msgstr "馬力運輸"
 msgid "Phoenician Triremes gain the ability to train Cavalry."
 msgstr "腓尼基三列槳戰船獲得了訓練騎兵的能力。"
 
+#: simulation/data/technologies/exploration.jsondescription
+msgid ""
+"Nobody knew better than the Carthaginians where in the ancient world they "
+"were going and going to go; their merchant traders had missions to "
+"everywhere. The Chinese were noted explorers, once sending a fleet of ships "
+"into the Indian Ocean to expand their knowledge and open up new trade "
+"routes."
+msgstr "沒有人比迦太基人更清楚他們在古代世界中要去哪裡和將要去哪裡；他們的商人傳教士到處都有任務。中國人是著名的探險家，曾經派遣一支船隊進入印度洋，擴展他們的知識並開辟新的貿易路線。"
+
+#: simulation/data/technologies/exploration.jsongenericName
+msgid "Exploration"
+msgstr "探索"
+
+#: simulation/data/technologies/exploration.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase. Requires “Lookouts.”"
+msgstr "村莊階段解鎖。需要「警戒」。"
+
+#: simulation/data/technologies/exploration.jsontooltip
+msgid "Traders and Ships +20% vision range."
+msgstr "商人和船艦 +20% 視野範圍。"
+
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
 msgid "Salting allows to preserve fish longer."
 msgstr "醃漬讓漁獲可以保存更久的時間。"
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsongenericName
-msgid "Salting Fish"
-msgstr "醃魚"
+msgid "Salt Curing"
+msgstr "鹽漬"
+
+#: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
+msgid "Unlocked in Village Phase. Requires “Fishing Nets.”"
+msgstr "村莊階段解鎖。需要「漁網」。"
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -653,12 +717,12 @@ msgid "Use nets to improve the productivity of fishing boats."
 msgstr "使用網子改善漁船的捕魚效率。"
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsongenericName
-msgid "Fishing Net"
+msgid "Fishing Nets"
 msgstr "漁網"
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsontooltip
-msgid "Fishing Boats +30% fish gather rate."
-msgstr "漁船 +30% 魚的採集效率。"
+msgid "Fishing Boats +30% fish gather rate. Unlocks “Salt Curing.”"
+msgstr "漁船 +30% 漁獲採集率。解鎖「鹽漬」。"
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
@@ -1101,7 +1165,7 @@ msgstr "長生軍 -50% 訓練時間。"
 msgid ""
 "Athenian gymnasium, docks and triremes can train Marines (Epibates "
 "Athenaikos)."
-msgstr "雅典的體育場、碼頭和三列槳戰船可以訓練陸戰隊（Epibates Athenaikos）。"
+msgstr "雅典的體育場、碼頭和三列槳戰船可以訓練海軍陸戰隊（Epibates Athenaikos）。"
 
 #: simulation/data/technologies/iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -1110,7 +1174,19 @@ msgstr "伊菲克拉特斯的軍事改革"
 #: simulation/data/technologies/iphicratean_reforms.jsontooltip
 msgid ""
 "Athenian Docks and Triremes can train Marines and Cretan Mercenary Archers."
-msgstr "雅典碼頭和三列槳戰船可以訓練陸戰隊和克里特傭弓兵。"
+msgstr "雅典碼頭和三列槳戰船可以訓練海軍陸戰隊和克里特傭弓兵。"
+
+#: simulation/data/technologies/juggernauts.jsongenericName
+msgid "Juggernauts"
+msgstr "巨型戰艦"
+
+#: simulation/data/technologies/juggernauts.jsonspecificName.ptol
+msgid "Tessarakonterēs"
+msgstr "Tessarakonterēs"
+
+#: simulation/data/technologies/juggernauts.jsontooltip
+msgid "Siege Ships +50% health, +25% more projectiles, but −25% speed."
+msgstr "攻城船生命值 +50%，彈藥 +25%，但速度 -25%。"
 
 #: simulation/data/technologies/krypteia.jsondescription
 msgid ""
@@ -1535,11 +1611,27 @@ msgstr "塞拉皮斯崇拜"
 msgid "+2.0 metal trickle per second."
 msgstr "+2.0 每秒金屬細流。"
 
-#: simulation/data/technologies/ship_cost_time.jsondescription
-msgid ""
-"Employ skilled shipwrights with specialized tools to speed up ship "
-"construction."
-msgstr "聘請運用特製工具的專業造船師來加快造船速度。"
+#: simulation/data/technologies/ship_capture_resistance.jsondescription
+msgid "Marines were a vital part of ship defense and offense."
+msgstr "海軍陸戰隊是船艦防禦和進攻的重要組成部分。"
+
+#: simulation/data/technologies/ship_capture_resistance.jsongenericName
+msgid "Marines"
+msgstr "海軍陸戰隊"
+
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.athen
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.cart
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.mace
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.pers
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.ptol
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.sele
+#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.spart
+msgid "Epibatai"
+msgstr "Epibatai"
+
+#: simulation/data/technologies/ship_capture_resistance.jsontooltip
+msgid "All Warships +40% capture resistance."
+msgstr "所有戰艦 +40% 占領抗性。"
 
 #: simulation/data/technologies/ship_cost_time.jsongenericName
 msgid "Naval Architects"
@@ -1558,8 +1650,8 @@ msgid "Reinforced Hull"
 msgstr "強化船體"
 
 #: simulation/data/technologies/ship_health.jsontooltip
-msgid "Ships +25% health."
-msgstr "船隻 +25% 生命值。"
+msgid "Ships +25% health, but −10% speed."
+msgstr "船艦 +25% 生命值，但 -10% 速度。"
 
 #: simulation/data/technologies/ship_movement_speed.jsondescription
 msgid ""
@@ -1574,6 +1666,30 @@ msgstr "資深船員"
 #: simulation/data/technologies/ship_movement_speed.jsontooltip
 msgid "Ships +10% movement speed."
 msgstr "船隻 +10% 移動速度。"
+
+#: simulation/data/technologies/ship_vision.jsondescription
+msgid ""
+"Lookouts aboard ship were important for sighting land, spotting navigational"
+" hazards, and directing fire in battle."
+msgstr "船艦上的瞭望員對於發現陸地、發現航行障礙物以及在戰鬥中指揮射擊非常重要。"
+
+#: simulation/data/technologies/ship_vision.jsongenericName
+msgid "Lookouts"
+msgstr "警戒"
+
+#: simulation/data/technologies/ship_vision.jsonspecificName.athen
+#: simulation/data/technologies/ship_vision.jsonspecificName.mace
+#: simulation/data/technologies/ship_vision.jsonspecificName.ptol
+#: simulation/data/technologies/ship_vision.jsonspecificName.sele
+#: simulation/data/technologies/ship_vision.jsonspecificName.spart
+msgid "Prōratēs"
+msgstr "Prōratēs"
+
+#: simulation/data/technologies/ship_vision.jsontooltip
+msgid ""
+"Ships and Boats +10% vision range; Scout Ships an additional +25% vision "
+"range. Unlocks “Exploration” for the Carthaginians and Han Chinese."
+msgstr "船艦和船隻的視野範圍 +10％；偵查船的視野範圍額外 +25％。為迦太基和漢朝解鎖「探索」。"
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
@@ -2200,6 +2316,156 @@ msgstr "戰爭專家"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
 msgstr "傭兵將從進階等級開始。"
+
+#: simulation/data/technologies/warship_arrow_attack.jsondescription
+msgid "Mounting bolt shooters onto ships helped give added firepower."
+msgstr "將弩炮安裝在船上有助於增加火力。"
+
+#: simulation/data/technologies/warship_arrow_attack.jsongenericName
+msgid "Naval Oxybeles"
+msgstr "海軍銳箭弩"
+
+#: simulation/data/technologies/warship_arrow_attack.jsontooltip
+msgid "Arrow Ships +10 crush attack damage and +10% attack range."
+msgstr "箭船 +10 粉碎攻擊傷害和 +10% 攻擊範圍。"
+
+#: simulation/data/technologies/warship_fireship_attack.jsondescription
+msgid ""
+"Pitch can be made from petroleum, coal tar, or pine tar. It can be used to "
+"help seal the hulls of boats as well as assist in igniting enemy ships."
+msgstr "瀝青可由石油、煤焦油或鬆焦油製成。它可用於幫助密封船體以及協助點燃敵方船隻。"
+
+#: simulation/data/technologies/warship_fireship_attack.jsongenericName
+msgid "Burning Pitch"
+msgstr "燃燒瀝青"
+
+#: simulation/data/technologies/warship_fireship_attack.jsonrequirementsTooltip
+msgid "Unlocked in City Phase. Requires “Naval Construction.”"
+msgstr "城市階段解鎖。需要「海軍建設」。"
+
+#: simulation/data/technologies/warship_fireship_attack.jsontooltip
+msgid "Fire Ships +25% health and +25% attack damage."
+msgstr "火戰船 +25% 生命值和 +25% 攻擊傷害。"
+
+#: simulation/data/technologies/warship_health.jsondescription
+msgid "The hypozomata brace the structure of a ship."
+msgstr "基架纜繩支撐了一艘船的結構。"
+
+#: simulation/data/technologies/warship_health.jsongenericName
+msgid "Undergirding Cables"
+msgstr "基架纜繩"
+
+#: simulation/data/technologies/warship_health.jsonrequirementsTooltip
+msgid "Unlocked in City Phase. Requires “Ship Cladding.”"
+msgstr "在城市階段解鎖。需要「船隻包層」。"
+
+#: simulation/data/technologies/warship_health.jsonspecificName.athen
+#: simulation/data/technologies/warship_health.jsonspecificName.cart
+#: simulation/data/technologies/warship_health.jsonspecificName.mace
+#: simulation/data/technologies/warship_health.jsonspecificName.pers
+#: simulation/data/technologies/warship_health.jsonspecificName.ptol
+#: simulation/data/technologies/warship_health.jsonspecificName.sele
+#: simulation/data/technologies/warship_health.jsonspecificName.spart
+msgid "Hypozomata"
+msgstr "Hypozomata"
+
+#: simulation/data/technologies/warship_health.jsontooltip
+msgid "Arrow Ships and Ramming Ships +25% health."
+msgstr "箭船和衝撞船生命值 +25%。"
+
+#: simulation/data/technologies/warship_ramming_attack.jsondescription
+msgid "A bronze beak at the prow of the ship, used for ramming enemy ships."
+msgstr "船隻的船首上有一個青銅的鳥嘴，用於衝撞敵艦。"
+
+#: simulation/data/technologies/warship_ramming_attack.jsongenericName
+msgid "Bronze Ram"
+msgstr "銅製撞角"
+
+#: simulation/data/technologies/warship_ramming_attack.jsonrequirementsTooltip
+msgid "Unlocked in City Phase. Requires “Flanking Maneuvers.”"
+msgstr "城市階段解鎖。需要「側翼機動」。"
+
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.athen
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.cart
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.mace
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.pers
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.ptol
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.sele
+#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.spart
+msgid "Embolon"
+msgstr "Embolon"
+
+#: simulation/data/technologies/warship_ramming_attack.jsontooltip
+msgid "Ramming Ships +30% attack damage."
+msgstr "衝撞船 +30% 攻擊傷害。"
+
+#: simulation/data/technologies/warship_ramming_speed.jsondescription
+msgid ""
+"The flanking maneuver was attempted in order to position the ship for a "
+"successful ram. To pull this off in the chaos of a sea battle, a ship's crew"
+" needed to be highly trained and well-motivated."
+msgstr "嘗試進行側翼機動是為了使船艦定位以便成功衝撞。為了在海戰的混亂中實現這一目標，船員需要接受高度訓練並具有良好的動力。"
+
+#: simulation/data/technologies/warship_ramming_speed.jsongenericName
+msgid "Flanking Maneuvers"
+msgstr "側翼機動"
+
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.athen
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.cart
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.mace
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.pers
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.ptol
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.sele
+#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.spart
+msgid "Periplous"
+msgstr "Periplous"
+
+#: simulation/data/technologies/warship_ramming_speed.jsontooltip
+msgid "Ramming Ships +25% speed and acceleration. Unlocks “Bronze Rams.”"
+msgstr "衝撞船 +25% 速度和加速度。解鎖「銅製撞角」。"
+
+#: simulation/data/technologies/warship_ranged_attack.jsondescription
+msgid ""
+"Flaming munitions were very useful against wooden targets such as ships."
+msgstr "火焰彈對於像船這樣的木製目標非常有用。"
+
+#: simulation/data/technologies/warship_ranged_attack.jsongenericName
+msgid "Flaming Projectiles"
+msgstr "火焰彈"
+
+#: simulation/data/technologies/warship_ranged_attack.jsonrequirementsTooltip
+msgid "Unlocked in City Phase. Requires “Naval Ballistae.”"
+msgstr "城市階段解鎖。需要「海軍弩砲」。"
+
+#: simulation/data/technologies/warship_ranged_attack.jsontooltip
+msgid "Ranged Warships +10% attack damage."
+msgstr "遠程戰艦攻擊傷害 +10%。"
+
+#: simulation/data/technologies/warship_resistance.jsondescription
+msgid "Armor for the flanks of a warship."
+msgstr "戰艦的側翼裝甲。"
+
+#: simulation/data/technologies/warship_resistance.jsongenericName
+msgid "Ship Cladding"
+msgstr "船隻包層"
+
+#: simulation/data/technologies/warship_resistance.jsontooltip
+msgid ""
+"Warships +1 pierce and crush armor. Unlocks “Undergirding Cables” for some "
+"civilizations."
+msgstr "戰艦 +1 穿刺和粉碎裝甲。為某些文明解鎖「基架纜繩」。"
+
+#: simulation/data/technologies/warship_siege_attack.jsondescription
+msgid "Mounting stronger catapults onto ships helped give added firepower."
+msgstr "將更強大的投石機安裝在船上有助於增加火力。"
+
+#: simulation/data/technologies/warship_siege_attack.jsongenericName
+msgid "Naval Ballistae"
+msgstr "海軍弩砲"
+
+#: simulation/data/technologies/warship_siege_attack.jsontooltip
+msgid "Siege Ships +20% attack range and vision range."
+msgstr "攻城船攻擊範圍和視野範圍 +20%。"
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

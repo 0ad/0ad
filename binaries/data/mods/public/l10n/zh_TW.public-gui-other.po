@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-10-30 08:08+0000\n"
+"POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2023\n"
+"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2024\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -6487,24 +6487,20 @@ msgid "Units gain experience while garrisoned inside the structure."
 msgstr "當單位進駐建築物時，經驗值會增加。"
 
 #: gui/text/tips/celtic_war_barge.txt:1
-msgid "CELTIC WAR BARGE"
-msgstr "凱爾特戰駁船"
+msgid "CELTIC HEAVY ARROW SHIP"
+msgstr "凱爾特重箭船"
 
 #: gui/text/tips/celtic_war_barge.txt:2
-msgid "A medium trireme-class warship."
-msgstr "一個中型的三列槳式戰船。"
+msgid "The main warship for the Britons, Gauls, and Iberians."
+msgstr "不列顛人、高盧人和伊比利人的主要戰艦。"
 
 #: gui/text/tips/celtic_war_barge.txt:3
-msgid "Available to Britons, Gauls, and Iberians."
-msgstr "不列顛人、高盧人與伊比利人可用。"
-
-#: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
 msgstr "運送最多 40 個單位。"
 
-#: gui/text/tips/celtic_war_barge.txt:5
-msgid "Increases firepower with garrisoned infantry."
-msgstr "增強駐守步兵火力。"
+#: gui/text/tips/celtic_war_barge.txt:4
+msgid "Can be improved with greater health and garrison capacity."
+msgstr "可以透過增加生命值和駐軍容量來改善。"
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
@@ -6739,14 +6735,28 @@ msgid "Caution: Each hero can be recruited only once per match!"
 msgstr "注意：每場對戰每位英雄只能招募一次！"
 
 #: gui/text/tips/iber_fireship.txt:1
-msgid "IBERIAN FIRESHIP"
-msgstr "伊比利火戰船"
+msgid "FIRESHIPS"
+msgstr "火戰船"
 
 #: gui/text/tips/iber_fireship.txt:2
+msgid "Available to the Britons, Gauls, and Iberians."
+msgstr "不列顛人、高盧人和伊比利人可以使用。"
+
+#: gui/text/tips/iber_fireship.txt:3
 msgid ""
-"The special Iberian fireship is very effective against other ships and "
-"buildings, but steadily loses health."
-msgstr "伊比利火戰船對付其他船隻與建築時非常有效，但是會持續自損生命值。"
+"Construct them, move them near enemy ships, then ignite them to set them "
+"ablaze."
+msgstr "建造它們，將它們移動到敵方船隻附近，然後點燃它們使其燃燒。"
+
+#: gui/text/tips/iber_fireship.txt:4
+msgid ""
+"They cause Fire damage to nearby enemy ships and themselves start to lose "
+"health."
+msgstr "附近的敵船受到火焰傷害，他們自己也開始失去生命值。"
+
+#: gui/text/tips/iber_fireship.txt:5
+msgid "Very good against Siege Ships."
+msgstr "對抗攻城船非常有效。"
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
@@ -6861,22 +6871,46 @@ msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
 msgstr "可用：庫施人、馬其頓人、托勒密人及塞琉古人。"
 
 #: gui/text/tips/quinquereme.txt:1
-msgid "QUINQUEREME"
-msgstr "五列槳戰船"
+msgid "SIEGE WARSHIP"
+msgstr "攻城戰艦"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
-"Romans, and Seleucids."
-msgstr "最重型的標準戰船。可用：迦太基人、托勒密人、羅馬人及塞琉古人。"
+"Romans, Seleucids, and Han Chinese."
+msgstr "最重的標準戰艦。可用於：迦太基、托勒密、羅馬、塞琉古和漢朝。"
 
 #: gui/text/tips/quinquereme.txt:3
-msgid "Transports up to 50 units."
-msgstr "運送最多 50 個單位。"
+msgid ""
+"Strong crush damage and long range make them good against Arrow Ships and "
+"Buildings near the shore."
+msgstr "強大的粉碎傷害和長射程使它們對箭船和靠近岸邊的建築物非常有效。"
 
 #: gui/text/tips/quinquereme.txt:4
-msgid "Increases firepower with garrisoned catapults."
-msgstr "駐守投石器來增強火力。"
+msgid ""
+"Countered by melee ships, such as Ramming Ships and Fire Ships, and other "
+"Siege Ships."
+msgstr "受制於近戰船，如衝撞船和火戰船，以及其他攻城船。"
+
+#: gui/text/tips/ramming_ships.txt:1
+msgid "RAMMING SHIPS"
+msgstr "衝撞船"
+
+#: gui/text/tips/ramming_ships.txt:2
+msgid "A strong and fast melee ship available to Mediterranean civilizations."
+msgstr "一艘強大而快速的近戰船隻，適用於地中海文明。"
+
+#: gui/text/tips/ramming_ships.txt:3
+msgid "Transport up to 30 troops swiftly across the water."
+msgstr "迅速地將 30 名士兵運送過水面。"
+
+#: gui/text/tips/ramming_ships.txt:4
+msgid "Good against Siege Ships due to speed and strong ramming attack. "
+msgstr "速度快且具有強大的衝撞攻擊，對抗攻城船非常有效。"
+
+#: gui/text/tips/ramming_ships.txt:5
+msgid "Countered by Arrow Ships and Defense Towers. "
+msgstr "受制於箭船和防禦塔。"
 
 #: gui/text/tips/resource_counter.txt:1
 msgid "RESOURCE COUNTER"
@@ -7059,20 +7093,24 @@ msgid ""
 msgstr "讓您大為提升資源，所以當您探索世界時要留意它們。"
 
 #: gui/text/tips/triremes.txt:1
-msgid "TRIREME"
-msgstr "三列槳戰船"
+msgid "ARROW SHIPS"
+msgstr "箭船"
 
 #: gui/text/tips/triremes.txt:2
-msgid "The Medium Warship."
-msgstr "中型軍艦。"
+msgid "The basic Warship for most factions."
+msgstr "大多數陣營的基本戰艦。"
 
 #: gui/text/tips/triremes.txt:3
-msgid "Good for transporting or fighting."
-msgstr "擅長運輸或戰鬥。"
+msgid "Transport up to 30 troops across the water."
+msgstr "運送最多 30 名士兵穿越水域。"
 
 #: gui/text/tips/triremes.txt:4
-msgid "Garrison troops aboard to increase fire power."
-msgstr "駐守部隊以增強火力。"
+msgid "Good against melee Warships, such as Ramming Ships and Fire Ships."
+msgstr "適用於近戰戰船，如衝撞船和火戰船。"
+
+#: gui/text/tips/triremes.txt:5
+msgid "Countered by Siege Ships and other Arrow Ships. "
+msgstr "受制於攻城船和其他箭船。"
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
