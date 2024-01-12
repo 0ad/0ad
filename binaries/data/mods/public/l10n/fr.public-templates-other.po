@@ -40,7 +40,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Etienne Malandain <malandain.etienne@gmail.com>, 2023\n"
 "Language-Team: French (http://app.transifex.com/wildfire-games/0ad/language/fr/)\n"
@@ -713,6 +713,10 @@ msgstr "Statue du Lion d'Apademak"
 msgid "Ammon-Ra Ram Statue"
 msgstr "Statue du bélier d'Ammon-Ra"
 
+#: simulation/templates/gaia/ruins/stone_statues_persian_lamassu.xml:8
+msgid "Lamassu Statue"
+msgstr ""
+
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statue"
 msgstr "Statue romaine"
@@ -1093,6 +1097,10 @@ msgstr ""
 msgid "Mercenary"
 msgstr "Mercenaire"
 
+#: simulation/templates/mixins/pirate.xml:29
+msgid "Pirate"
+msgstr ""
+
 #: simulation/templates/mixins/rotary_mill.xml:17
 #: simulation/templates/mixins/rotary_mill.xml:18
 msgid "Rotary Mill"
@@ -1113,6 +1121,10 @@ msgstr "Dépôt pour les récoltes. Capturer pour augmenter la production a prox
 #: simulation/templates/mixins/shrine.xml:14
 msgid "Shrine"
 msgstr "Autel"
+
+#: simulation/templates/mixins/shrine.xml:18
+msgid "Train Elite Healers and heal garrisoned units."
+msgstr ""
 
 #: simulation/templates/mixins/trading_post.xml:8
 msgid "Trading Post"

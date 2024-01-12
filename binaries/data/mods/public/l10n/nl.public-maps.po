@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: rollieoo, 2021-2023\n"
+"Last-Translator: rollieoo, 2021-2024\n"
 "Language-Team: Dutch (http://app.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -372,7 +372,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n"
 "\n"
 "A great flood moves across the valley. At some point you have to evacuate your units and use ships to reach the mainland and the other players."
-msgstr ""
+msgstr "[color=\"red\"]LET OP: AI SPELERS WERKEN NIET MET STIJGEND WATER[/color]\n\nEen overstroming raast door de vallei. Op een gegeven moment zult u uw troepen moeten evacueren en ze met schepen naar het vasteland en de andere spelers vervoeren."
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
@@ -380,35 +380,35 @@ msgstr "Overstroming"
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Description
 msgid "The water rises. The homeislands will become uninhabitable."
-msgstr ""
+msgstr "Het water stijgt. De thuiseilanden zullen onbewoonbaar worden."
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Name
 msgid "Rising"
-msgstr ""
+msgstr "Stijgend water"
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Description
 msgid ""
 "The water doesn't rise. Ships and troops can battle in chest deep waters."
-msgstr ""
+msgstr "Het water stijgt niet. Schepen en troepen kunnen strijd leveren in het borsthoge water."
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Name
 msgid "Shallow"
-msgstr ""
+msgstr "Omdiep"
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Description
 msgid ""
 "The water doesn't rise. You have to use ships to travel to the mainland."
-msgstr ""
+msgstr "Het water stijgt niet. U moet schepen gebruiken om het vasteland te bereiken."
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Name
 msgid "Deep"
-msgstr ""
+msgstr "Diep"
 
 #: maps/random/flood_triggers.js:11
 msgid ""
 "The flood continues. Soon the waters will swallow the land. You should "
 "evacuate the units."
-msgstr ""
+msgstr "De overstroming neemt toe. Spoedig zullen de golven het land verzwelgen. U moet de manschappen evacueren."
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -1332,11 +1332,11 @@ msgstr "Wild Meer"
 
 #: maps/scenarios/Ship Combat Demo.xml:Description:39
 msgid "Ship Combat Demo."
-msgstr ""
+msgstr "Schepen gevechtsdemo."
 
 #: maps/scenarios/Ship Combat Demo.xml:Name:39
 msgid "Ship Combat Demo"
-msgstr ""
+msgstr "Schepen gevechtsdemo"
 
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
@@ -2696,11 +2696,11 @@ msgstr "Een \"kleine eilanden\" stijl kaart in de Egeïsche zee."
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2 players)"
-msgstr ""
+msgstr "Cycladen Archipel (2 spelers)"
 
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
 msgid "Cycladic Archipelago (3 players)"
-msgstr ""
+msgstr "Cycladen Archipel (3 spelers)"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""

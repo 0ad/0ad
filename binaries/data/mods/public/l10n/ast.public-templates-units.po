@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: 80ff3f6c158be5d15b8f5a2de9eeb874_b065276 <94c1654d814b574acd26b68ba9729cbf_397246>, 2016-2023\n"
 "Language-Team: Asturian (http://app.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -728,8 +728,8 @@ msgstr ""
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:48
 msgid ""
-"Garrison units for transport across water. Deals double damage against Siege"
-" Ships. Countered by Arrow Ships."
+"Garrison units for transport across water. Strong against Siege Ships. "
+"Countered by Arrow Ships."
 msgstr ""
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:49
@@ -2773,19 +2773,23 @@ msgid ""
 "have a +25% land trading bonus."
 msgstr "Cambia recursos entre mercados proprios & mercados alliados. Los persas gociɐn d’una bonificacion de l +25% nel commercio terrestre."
 
-#: simulation/templates/units/pirates/ship_arrow.xml:5
+#: simulation/templates/units/pirates/ship_arrow.xml:8
 msgid "Rhodian Marauder"
 msgstr ""
 
-#: simulation/templates/units/pirates/ship_merchant.xml:8
+#: simulation/templates/units/pirates/ship_merchant.xml:9
 msgid "Blockade Runner"
 msgstr ""
 
-#: simulation/templates/units/pirates/ship_merchant.xml:9
-msgid "Destroy this ship to loot its large amount of contraband."
+#: simulation/templates/units/pirates/ship_merchant.xml:10
+msgid "Treasure Ship"
 msgstr ""
 
-#: simulation/templates/units/pirates/ship_scout.xml:9
+#: simulation/templates/units/pirates/ship_merchant.xml:11
+msgid "Destroy this ship to loot its large amount of treasure."
+msgstr ""
+
+#: simulation/templates/units/pirates/ship_scout.xml:8
 msgid "Cilician Pirate Ship"
 msgstr "Barcu pirata cílice"
 

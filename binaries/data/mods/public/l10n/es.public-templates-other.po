@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2020-2024\n"
 "Language-Team: Spanish (http://app.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -699,6 +699,10 @@ msgstr "Estatua de león de Apademak"
 msgid "Ammon-Ra Ram Statue"
 msgstr "Estatua de carnero Amón-Ra "
 
+#: simulation/templates/gaia/ruins/stone_statues_persian_lamassu.xml:8
+msgid "Lamassu Statue"
+msgstr "Estatua Lamassu"
+
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statue"
 msgstr "Estatua romana"
@@ -1079,6 +1083,10 @@ msgstr "Espada larga"
 msgid "Mercenary"
 msgstr "Mercenario"
 
+#: simulation/templates/mixins/pirate.xml:29
+msgid "Pirate"
+msgstr "Pirata"
+
 #: simulation/templates/mixins/rotary_mill.xml:17
 #: simulation/templates/mixins/rotary_mill.xml:18
 msgid "Rotary Mill"
@@ -1099,6 +1107,10 @@ msgstr "Almacén para la comida recolectada. Captura uno de ellos para increment
 #: simulation/templates/mixins/shrine.xml:14
 msgid "Shrine"
 msgstr "Santuario"
+
+#: simulation/templates/mixins/shrine.xml:18
+msgid "Train Elite Healers and heal garrisoned units."
+msgstr "Permite reclutar sanadores de élite y curar unidades guarnecidas. "
 
 #: simulation/templates/mixins/trading_post.xml:8
 msgid "Trading Post"
