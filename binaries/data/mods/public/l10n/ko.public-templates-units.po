@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2021-2023\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -739,8 +739,8 @@ msgstr ""
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:48
 msgid ""
-"Garrison units for transport across water. Deals double damage against Siege"
-" Ships. Countered by Arrow Ships."
+"Garrison units for transport across water. Strong against Siege Ships. "
+"Countered by Arrow Ships."
 msgstr ""
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:49
@@ -2784,19 +2784,23 @@ msgid ""
 "have a +25% land trading bonus."
 msgstr "자국과 동맹국의 시장간에 자원을 교역합니다. 페르시아인은 +25% 육로 교역 보너스가 있습니다."
 
-#: simulation/templates/units/pirates/ship_arrow.xml:5
+#: simulation/templates/units/pirates/ship_arrow.xml:8
 msgid "Rhodian Marauder"
 msgstr ""
 
-#: simulation/templates/units/pirates/ship_merchant.xml:8
+#: simulation/templates/units/pirates/ship_merchant.xml:9
 msgid "Blockade Runner"
 msgstr ""
 
-#: simulation/templates/units/pirates/ship_merchant.xml:9
-msgid "Destroy this ship to loot its large amount of contraband."
+#: simulation/templates/units/pirates/ship_merchant.xml:10
+msgid "Treasure Ship"
 msgstr ""
 
-#: simulation/templates/units/pirates/ship_scout.xml:9
+#: simulation/templates/units/pirates/ship_merchant.xml:11
+msgid "Destroy this ship to loot its large amount of treasure."
+msgstr ""
+
+#: simulation/templates/units/pirates/ship_scout.xml:8
 msgid "Cilician Pirate Ship"
 msgstr "킬리키아 해적선"
 

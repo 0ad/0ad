@@ -2,11 +2,13 @@
 # Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # Translators:
+# Andrej Nikolov
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2013-06-22 12:54+0000\n"
+"Last-Translator: Andrej Nikolov, 2024\n"
 "Language-Team: Macedonian (http://app.transifex.com/wildfire-games/0ad/language/mk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,75 +85,75 @@ msgstr ""
 #: lobby/XmppClient.cpp:1383 lobby/XmppClient.cpp:1427
 #: lobby/XmppClient.cpp:1466
 msgid "Error"
-msgstr ""
+msgstr "Грешка"
 
 #: lobby/XmppClient.cpp:1386 lobby/XmppClient.cpp:1430
 msgid "No error"
-msgstr ""
+msgstr "Нема грешки"
 
 #: lobby/XmppClient.cpp:1388
 msgid "Player already logged in"
-msgstr ""
+msgstr "Играчот веќе е најавен"
 
 #: lobby/XmppClient.cpp:1390
 msgid "Forbidden"
-msgstr ""
+msgstr "Забрането"
 
 #: lobby/XmppClient.cpp:1392
 msgid "Internal server error"
-msgstr ""
+msgstr "Внатрешна серверска грешка"
 
 #: lobby/XmppClient.cpp:1396
 msgid "Not allowed"
-msgstr ""
+msgstr "Не е дозволено"
 
 #: lobby/XmppClient.cpp:1397
 msgid "Not authorized"
-msgstr ""
+msgstr "Не е овластено"
 
 #: lobby/XmppClient.cpp:1400
 msgid "Recipient temporarily unavailable"
-msgstr ""
+msgstr "Примачот е привремено недостапен"
 
 #: lobby/XmppClient.cpp:1402
 msgid "Registration required"
-msgstr ""
+msgstr "Потребна е регистрација"
 
 #: lobby/XmppClient.cpp:1406
 msgid "Service unavailable"
-msgstr ""
+msgstr "Услугата не е достапна"
 
 #: lobby/XmppClient.cpp:1411 lobby/XmppClient.cpp:1450
 msgid "Unknown error"
-msgstr ""
+msgstr "Непозната грешка"
 
 #: lobby/XmppClient.cpp:1431
 msgid "Stream error"
-msgstr ""
+msgstr "Грешка во преносот"
 
 #: lobby/XmppClient.cpp:1432
 msgid "The incoming stream version is unsupported"
-msgstr ""
+msgstr "Верзијата за дојдовниот пренос не е поддржана"
 
 #: lobby/XmppClient.cpp:1433
 msgid "The stream has been closed by the server"
-msgstr ""
+msgstr "Преносот е затворен од серверот"
 
 #: lobby/XmppClient.cpp:1437
 msgid "An I/O error occurred"
-msgstr ""
+msgstr "Се појави грешка при влез/излез"
 
 #: lobby/XmppClient.cpp:1439
 msgid "The connection was refused by the server"
-msgstr ""
+msgstr "Врската беше откажана од серверот"
 
 #: lobby/XmppClient.cpp:1440
 msgid "Resolving the server's hostname failed"
-msgstr ""
+msgstr "Името на домаќинот на серверот не може да се реши."
 
 #: lobby/XmppClient.cpp:1441
 msgid "This system is out of memory"
-msgstr ""
+msgstr "Системот е без меморија"
 
 #: lobby/XmppClient.cpp:1443
 msgid ""
@@ -161,7 +163,7 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1444
 msgid "The server did not offer required TLS encryption"
-msgstr ""
+msgstr "Серверот не го предложи потребното TLS-шифрирање"
 
 #: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
@@ -169,23 +171,23 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1447
 msgid "The user or system requested a disconnect"
-msgstr ""
+msgstr "Корисникот или системот побараа прекин на мрежата"
 
 #: lobby/XmppClient.cpp:1448
 msgid "There is no active connection"
-msgstr ""
+msgstr "Нема активна врска"
 
 #: lobby/XmppClient.cpp:1469
 msgid "Your account has been successfully registered"
-msgstr ""
+msgstr "Вашата сметка е успешно регистрирана"
 
 #: lobby/XmppClient.cpp:1470
 msgid "Not all necessary information provided"
-msgstr ""
+msgstr "Не се дадени сите потребни информации"
 
 #: lobby/XmppClient.cpp:1471
 msgid "Username already exists"
-msgstr ""
+msgstr "Корисничкото име веќе постои"
 
 #: ps/Mod.cpp:93
 #, c-format

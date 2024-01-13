@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2024\n"
 "Language-Team: Spanish (http://app.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -751,9 +751,9 @@ msgstr "Nave de embestida"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:48
 msgid ""
-"Garrison units for transport across water. Deals double damage against Siege"
-" Ships. Countered by Arrow Ships."
-msgstr "Transporta unidades por mar. Inflige el doble de daño contra buques de asedio. Inferior contra buques con flechas."
+"Garrison units for transport across water. Strong against Siege Ships. "
+"Countered by Arrow Ships."
+msgstr "Transporta unidades por mar. Fuerte contra buques de asedio. Inferior contra buques con flechas."
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:49
 msgid "NavalRam"
@@ -2796,19 +2796,23 @@ msgid ""
 "have a +25% land trading bonus."
 msgstr "Intercambia recursos entre tus propios mercados y los de tus aliados. Los persas tienen una bonificación de +25% en comercio terrestre."
 
-#: simulation/templates/units/pirates/ship_arrow.xml:5
+#: simulation/templates/units/pirates/ship_arrow.xml:8
 msgid "Rhodian Marauder"
 msgstr "Merodeador rodio"
 
-#: simulation/templates/units/pirates/ship_merchant.xml:8
+#: simulation/templates/units/pirates/ship_merchant.xml:9
 msgid "Blockade Runner"
 msgstr "Nave furtiva"
 
-#: simulation/templates/units/pirates/ship_merchant.xml:9
-msgid "Destroy this ship to loot its large amount of contraband."
-msgstr "Destruye este navío para saquear su carga de contrabando."
+#: simulation/templates/units/pirates/ship_merchant.xml:10
+msgid "Treasure Ship"
+msgstr "Barco del tesoro"
 
-#: simulation/templates/units/pirates/ship_scout.xml:9
+#: simulation/templates/units/pirates/ship_merchant.xml:11
+msgid "Destroy this ship to loot its large amount of treasure."
+msgstr "Destruye este barco para apoderarte de su botín."
+
+#: simulation/templates/units/pirates/ship_scout.xml:8
 msgid "Cilician Pirate Ship"
 msgstr "Barco pirata cilicio"
 

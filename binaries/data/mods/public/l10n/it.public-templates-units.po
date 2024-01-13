@@ -32,7 +32,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Matteo Nigro, 2023-2024\n"
 "Language-Team: Italian (http://app.transifex.com/wildfire-games/0ad/language/it/)\n"
@@ -664,7 +664,7 @@ msgstr "Nave incendiaria"
 #: simulation/templates/template_unit_ship_fire.xml:19
 msgid ""
 "Unrepairable. Gradually loses health after ignition. Can only attack Ships."
-msgstr ""
+msgstr "Non riparabile. Perde gradualmente salute dopo l'accensione. Può attaccare solo le navi."
 
 #: simulation/templates/template_unit_ship_fire.xml:20
 msgid "Fireship"
@@ -682,7 +682,7 @@ msgstr "Nave da Guerra"
 
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Ignite the Fire Ship to damage nearby enemy Ships."
-msgstr ""
+msgstr "Accendete la Nave incendiaria per danneggiare le navi nemiche vicine."
 
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -711,7 +711,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Improve sea "
 "trading at the Market."
-msgstr ""
+msgstr "Commercio tra i moli. Imbarcate un commerciante a bordo per ottenere ulteriori profitti (+20% per ogni presidio). Raccoglie tesori acquatici redditizi. Migliora il commercio marittimo al mercato."
 
 #: simulation/templates/template_unit_ship_merchant.xml:21
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -727,50 +727,50 @@ msgstr "Commerciante"
 #: simulation/templates/template_unit_ship_warship.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Arrow"
-msgstr ""
+msgstr "Freccia"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:32
 msgid "Arrow Ship"
-msgstr ""
+msgstr "Nave Freccia"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:33
 msgid "ArrowShip"
-msgstr ""
+msgstr "Nave Freccia"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:35
 msgid "Garrison units for transport across water. Countered by Siege Ships."
-msgstr ""
+msgstr "Unità di guarnigione per il trasporto attraverso l'acqua. Contrastato dalle Navi d'assedio."
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:6
 msgctxt "Name of an attack, usually the weapon."
 msgid "Naval Ram"
-msgstr ""
+msgstr "Ariete navale"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:47
 msgid "Ramming Ship"
-msgstr ""
+msgstr "Nave da speronamento"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:48
 msgid ""
-"Garrison units for transport across water. Deals double damage against Siege"
-" Ships. Countered by Arrow Ships."
-msgstr ""
+"Garrison units for transport across water. Strong against Siege Ships. "
+"Countered by Arrow Ships."
+msgstr "Presidia con unità per il trasporto attraverso l'acqua. Forte contro le navi d'assedio. Contrastata dalle Navi Freccia."
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:49
 msgid "NavalRam"
-msgstr ""
+msgstr "Ariete Navale"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:23
 msgid "Scout Ship"
-msgstr ""
+msgstr "Nave da esplorazione"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:24
 msgid "ScoutShip"
-msgstr ""
+msgstr "Nave da esplorazione"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:26
 msgid "Scout for coastlines. Garrison units for transport across water."
-msgstr ""
+msgstr "Esplorazione delle coste. Unità di guarnigione per il trasporto attraverso l'acqua."
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:5
 #: simulation/templates/template_unit_siege_stonethrower.xml:5
@@ -781,13 +781,13 @@ msgstr "Pietra"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:59
 msgid "Siege Ship"
-msgstr ""
+msgstr "Nave d'assedio"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:60
 msgid ""
 "Garrison units for transport across water. Good against Arrow Ships and "
 "Structures."
-msgstr ""
+msgstr "Unità di guarnigione per il trasporto sull'acqua. Ottimi contro le navi freccia e le strutture."
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:61
 msgid "NavalSiege"
@@ -1450,7 +1450,7 @@ msgstr "Pontos"
 
 #: simulation/templates/units/brit/ship_fire.xml:5
 msgid "Briton Fire Ship"
-msgstr ""
+msgstr "Nave incendiaria Britannica"
 
 #: simulation/templates/units/brit/ship_fishing.xml:9
 #: simulation/templates/units/gaul/ship_fishing.xml:9
@@ -1466,7 +1466,7 @@ msgstr "Nauson"
 #: simulation/templates/units/gaul/ship_scout.xml:9
 #: simulation/templates/units/iber/ship_scout.xml:9
 msgid "Skiff"
-msgstr ""
+msgstr "Skiff"
 
 #: simulation/templates/units/brit/siege_ram.xml:5
 #: simulation/templates/units/gaul/siege_ram.xml:5
@@ -1746,7 +1746,7 @@ msgstr "Britomaros"
 
 #: simulation/templates/units/gaul/ship_fire.xml:5
 msgid "Gallic Fire Ship"
-msgstr ""
+msgstr "Nave incendiaria Gallica"
 
 #: simulation/templates/units/han/catafalque.xml:9
 msgid "Han Catafalque"
@@ -2342,7 +2342,7 @@ msgstr "Sphendonḗtēs Rhódios"
 #: simulation/templates/units/mace/ship_arrow.xml:10
 #: simulation/templates/units/ptol/ship_arrow.xml:9
 msgid "Tetrērēs"
-msgstr ""
+msgstr "Tetrērēs"
 
 #: simulation/templates/units/mace/ship_ram.xml:10
 msgid "Triḗrēs Makedonikḗ"
@@ -2797,19 +2797,23 @@ msgid ""
 "have a +25% land trading bonus."
 msgstr "Scambia risorse commerciali tra i tuoi mercati e quelli degli alleati. I Persiani hanno un bonus di negoziazione +25% sulle rotte di terra."
 
-#: simulation/templates/units/pirates/ship_arrow.xml:5
+#: simulation/templates/units/pirates/ship_arrow.xml:8
 msgid "Rhodian Marauder"
-msgstr ""
-
-#: simulation/templates/units/pirates/ship_merchant.xml:8
-msgid "Blockade Runner"
-msgstr ""
+msgstr "Predone Rodiano"
 
 #: simulation/templates/units/pirates/ship_merchant.xml:9
-msgid "Destroy this ship to loot its large amount of contraband."
-msgstr ""
+msgid "Blockade Runner"
+msgstr "Corridore di Blocchi"
 
-#: simulation/templates/units/pirates/ship_scout.xml:9
+#: simulation/templates/units/pirates/ship_merchant.xml:10
+msgid "Treasure Ship"
+msgstr "Nave del tesoro"
+
+#: simulation/templates/units/pirates/ship_merchant.xml:11
+msgid "Destroy this ship to loot its large amount of treasure."
+msgstr "Distruggete questa nave per saccheggiare la sua grande quantità di tesori."
+
+#: simulation/templates/units/pirates/ship_scout.xml:8
 msgid "Cilician Pirate Ship"
 msgstr "Nave pirata Cilicia"
 
@@ -2952,7 +2956,7 @@ msgstr "Gallikós Mistophorós"
 
 #: simulation/templates/units/ptol/ship_ram.xml:10
 msgid "Pentērēs"
-msgstr ""
+msgstr "Pentērēs"
 
 #: simulation/templates/units/ptol/ship_scout.xml:9
 #: simulation/templates/units/sele/ship_scout.xml:10
@@ -2962,7 +2966,7 @@ msgstr "Dierēs"
 
 #: simulation/templates/units/ptol/ship_siege.xml:5
 msgid "Octērēs"
-msgstr ""
+msgstr "Octērēs"
 
 #: simulation/templates/units/ptol/siege_polybolos_packed.xml:19
 msgid "Polybolos"
@@ -3168,7 +3172,7 @@ msgstr "Corbīta"
 
 #: simulation/templates/units/rome/ship_ram.xml:9
 msgid "Quadrirēmis Rōmāna"
-msgstr ""
+msgstr "Quadrirēmis Rōmāna"
 
 #: simulation/templates/units/rome/ship_scout.xml:9
 msgid "Liburna"
@@ -3377,7 +3381,7 @@ msgstr "Seleukidó̱n Triērēs"
 
 #: simulation/templates/units/sele/ship_ram.xml:10
 msgid "Seleukidó̱n Tetrērēs"
-msgstr ""
+msgstr "Seleukidó̱n Tetrērēs"
 
 #: simulation/templates/units/sele/ship_siege.xml:6
 msgid "Pentères"

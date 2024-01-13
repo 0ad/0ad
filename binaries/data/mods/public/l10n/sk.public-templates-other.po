@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: Zuzana Miadoková, 2019,2021-2023\n"
+"Last-Translator: Zuzana Miadoková, 2019,2021-2024\n"
 "Language-Team: Slovak (http://app.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -649,7 +649,7 @@ msgstr "Dórsky stĺp"
 
 #: simulation/templates/gaia/ruins/metal_statue_isis.xml:9
 msgid "Isis Cult Image"
-msgstr "Svätý obraz Isis"
+msgstr "Svätý obraz Eset"
 
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
@@ -693,6 +693,10 @@ msgstr "Levia socha Apedemak"
 #: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:10
 msgid "Ammon-Ra Ram Statue"
 msgstr "Barania socha Amon-Ré"
+
+#: simulation/templates/gaia/ruins/stone_statues_persian_lamassu.xml:8
+msgid "Lamassu Statue"
+msgstr "Socha Lamassu"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statue"
@@ -774,15 +778,15 @@ msgstr "Náklad z vraku"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:8
 msgid "The Argo"
-msgstr ""
+msgstr "Argo"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:9
 msgid "Mythological Treasure"
-msgstr ""
+msgstr "Mýtický poklad"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:10
 msgid "The mythological ship of the hero Theseus and his Argonauts."
-msgstr ""
+msgstr "Loď Thésea a Argonautov z mytológie."
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"
@@ -1060,7 +1064,7 @@ msgstr "Voz"
 #: simulation/templates/mixins/fireship.xml:15
 msgctxt "Name of an attack, usually the weapon."
 msgid "Flames"
-msgstr ""
+msgstr "Plamene"
 
 #: simulation/templates/mixins/fireship.xml:43
 msgid "Ignited"
@@ -1073,6 +1077,10 @@ msgstr "Dlhý meč"
 #: simulation/templates/mixins/mercenary.xml:13
 msgid "Mercenary"
 msgstr "Žoldnier"
+
+#: simulation/templates/mixins/pirate.xml:29
+msgid "Pirate"
+msgstr "Pirát"
 
 #: simulation/templates/mixins/rotary_mill.xml:17
 #: simulation/templates/mixins/rotary_mill.xml:18
@@ -1095,6 +1103,10 @@ msgstr "Skladisko nazbieraného jedla. Obsaď takúto budovu pre zvýšenie prod
 msgid "Shrine"
 msgstr "Svätyňa"
 
+#: simulation/templates/mixins/shrine.xml:18
+msgid "Train Elite Healers and heal garrisoned units."
+msgstr "Trénuj elitných liečiteľov a uzdrav jednotky v posádke."
+
 #: simulation/templates/mixins/trading_post.xml:8
 msgid "Trading Post"
 msgstr "Obchodné stredisko"
@@ -1103,30 +1115,30 @@ msgstr "Obchodné stredisko"
 #: simulation/templates/obstructors/movement_8x36.xml:9
 #: simulation/templates/obstructors/movement_8x8.xml:9
 msgid "Movement Obstructor"
-msgstr ""
+msgstr "Prekážka pohybu"
 
 #: simulation/templates/obstructors/movement_36x36.xml:11
 #: simulation/templates/obstructors/movement_8x36.xml:11
 #: simulation/templates/obstructors/movement_8x8.xml:11
 msgid "Placement obstructor to prevent movement and construction."
-msgstr ""
+msgstr "Prekážka umiestnenia na zabránenie pohybu a stavbe."
 
 #: simulation/templates/obstructors/placement.xml:10
 msgid "Obstructor"
-msgstr "Zábrana"
+msgstr "Prekážka"
 
 #: simulation/templates/obstructors/placement.xml:12
 #: simulation/templates/obstructors/placement_36x36.xml:11
 #: simulation/templates/obstructors/placement_8x36.xml:11
 #: simulation/templates/obstructors/placement_8x8.xml:11
 msgid "Placement obstructor to prevent construction but not movement"
-msgstr "Zábrana umiestnenia bráni stavbe budov, ale nie pohybu"
+msgstr "Prekážka umiestnenia na zabránenie stavby budov, ale nie pohybu"
 
 #: simulation/templates/obstructors/placement_36x36.xml:9
 #: simulation/templates/obstructors/placement_8x36.xml:9
 #: simulation/templates/obstructors/placement_8x8.xml:9
 msgid "Placement Obstructor"
-msgstr ""
+msgstr "Prekážka umiestnenia"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -1151,7 +1163,7 @@ msgstr "Proti jazde"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:26
 msgid "Square formation of Melee Infantry to fight Cavalry."
-msgstr ""
+msgstr "Štvorcová formácia pechoty na blízko na boj s kavalériou."
 
 #: simulation/templates/special/formations/battle_line.xml:13
 msgid "Battle Line"
@@ -1159,7 +1171,7 @@ msgstr "Bojová línia"
 
 #: simulation/templates/special/formations/battle_line.xml:15
 msgid "Common formation for frontal attacks."
-msgstr ""
+msgstr "Bežná formácia na frontálne útoky."
 
 #: simulation/templates/special/formations/box.xml:5
 msgid "Requires at least 4 Soldiers or Siege engines."
@@ -1171,7 +1183,7 @@ msgstr "Obdĺžnik"
 
 #: simulation/templates/special/formations/box.xml:14
 msgid "Square formation to protect all sides."
-msgstr ""
+msgstr "Štvorcová formácia na ochranu zo všetkých strán."
 
 #: simulation/templates/special/formations/column_closed.xml:10
 msgid "Forced March"
@@ -1179,7 +1191,7 @@ msgstr "Rýchly pochod"
 
 #: simulation/templates/special/formations/column_closed.xml:12
 msgid "Closed column formation for risky movements."
-msgstr ""
+msgstr "Uzavretá radová formácia na riskantné manévre."
 
 #: simulation/templates/special/formations/column_open.xml:10
 msgid "Column Open"
@@ -1187,7 +1199,7 @@ msgstr "Otvorený stĺpec"
 
 #: simulation/templates/special/formations/column_open.xml:12
 msgid "Dispersed formation for open field crossings."
-msgstr ""
+msgstr "Rozptýlená formácia na prechod otvorenými poliami."
 
 #: simulation/templates/special/formations/flank.xml:5
 msgid "Requires at least 8 Soldiers or Siege engines."
@@ -1199,7 +1211,7 @@ msgstr "Krídla"
 
 #: simulation/templates/special/formations/flank.xml:13
 msgid "Formation to protect the sides or surprise attack the enemy flank."
-msgstr ""
+msgstr "Formácia na ochranu bokov alebo útoky na nepriateľské krídla."
 
 #: simulation/templates/special/formations/line_closed.xml:9
 msgid "Close Order"
@@ -1207,7 +1219,7 @@ msgstr "Zavretý šík"
 
 #: simulation/templates/special/formations/line_closed.xml:11
 msgid "Flexible closed line formation."
-msgstr ""
+msgstr "Flexibilná uzavretá línia."
 
 #: simulation/templates/special/formations/line_open.xml:11
 msgid "Open Order"
@@ -1215,7 +1227,7 @@ msgstr "Otvorený šík"
 
 #: simulation/templates/special/formations/line_open.xml:13
 msgid "Dispersed formation for open field combat."
-msgstr ""
+msgstr "Rozptýlená formácia na boj na otvorených poliach."
 
 #: simulation/templates/special/formations/null.xml:7
 msgid "None"
@@ -1231,7 +1243,7 @@ msgstr "Falanga"
 
 #: simulation/templates/special/formations/phalanx.xml:25
 msgid "Compact formation of Infantry Hoplites creating a shield wall."
-msgstr ""
+msgstr "Kompaktná formácia pechotných hoplitov vytvárajúcich štítový val."
 
 #: simulation/templates/special/formations/scatter.xml:8
 msgid "Scatter"
@@ -1240,7 +1252,7 @@ msgstr "Rozptyl"
 #: simulation/templates/special/formations/ships/column.xml:5
 #: simulation/templates/special/formations/ships/line_staggered.xml:5
 msgid "Requires at least 4 Ships."
-msgstr ""
+msgstr "Vyžaduje aspoň 4 lode."
 
 #: simulation/templates/special/formations/ships/column.xml:14
 msgid "Maneuvering Column"
@@ -1252,7 +1264,7 @@ msgstr ""
 
 #: simulation/templates/special/formations/ships/flank.xml:5
 msgid "Requires at least 8 Ships."
-msgstr ""
+msgstr "Vyžaduje aspoň 8 lodí."
 
 #: simulation/templates/special/formations/ships/flank.xml:14
 msgid "Flanking Formation"

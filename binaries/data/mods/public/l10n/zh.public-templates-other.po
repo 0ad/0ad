@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022-2023\n"
 "Language-Team: Chinese (http://app.transifex.com/wildfire-games/0ad/language/zh/)\n"
@@ -689,6 +689,10 @@ msgstr "狮神像"
 msgid "Ammon-Ra Ram Statue"
 msgstr "阿蒙-拉雕像"
 
+#: simulation/templates/gaia/ruins/stone_statues_persian_lamassu.xml:8
+msgid "Lamassu Statue"
+msgstr ""
+
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statue"
 msgstr "罗马雕像"
@@ -1069,6 +1073,10 @@ msgstr ""
 msgid "Mercenary"
 msgstr "雇佣兵"
 
+#: simulation/templates/mixins/pirate.xml:29
+msgid "Pirate"
+msgstr ""
+
 #: simulation/templates/mixins/rotary_mill.xml:17
 #: simulation/templates/mixins/rotary_mill.xml:18
 msgid "Rotary Mill"
@@ -1089,6 +1097,10 @@ msgstr "存放食物的粮仓，占领该处可提升附近粮食产量。"
 #: simulation/templates/mixins/shrine.xml:14
 msgid "Shrine"
 msgstr "神庙"
+
+#: simulation/templates/mixins/shrine.xml:18
+msgid "Train Elite Healers and heal garrisoned units."
+msgstr ""
 
 #: simulation/templates/mixins/trading_post.xml:8
 msgid "Trading Post"

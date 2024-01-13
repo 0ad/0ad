@@ -3,11 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Andrej Nikolov
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"Last-Translator: Andrej Nikolov, 2024\n"
 "Language-Team: Macedonian (http://app.transifex.com/wildfire-games/0ad/language/mk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,7 +138,7 @@ msgstr ""
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "won"
-msgstr ""
+msgstr "победа"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
@@ -166,7 +168,7 @@ msgstr[1] ""
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr ""
+msgstr "Бесконечна игра"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
@@ -274,7 +276,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:294
 msgid "Map Name"
-msgstr ""
+msgstr "Име на картата"
 
 #: gui/common/gamedescription.js:300
 msgid "Map Description"
@@ -542,7 +544,7 @@ msgstr ""
 #: gui/loadgame/SavegameDetails.js:41 gui/reference/common/tooltips.js:13
 #: gui/replaymenu/replay_menu.js:284
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/common/settings.js:116
 msgctxt "aiDiff"
@@ -597,7 +599,7 @@ msgstr ""
 #: gui/common/settings.js:173
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Престрелка"
 
 #: gui/common/settings.js:174
 msgid ""
@@ -632,12 +634,12 @@ msgstr ""
 #: gui/common/settings.js:342
 msgctxt "AI name"
 msgid "Unknown"
-msgstr ""
+msgstr "Непознато"
 
 #: gui/common/settings.js:353
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr ""
+msgstr "Непознато"
 
 #: gui/common/settings.js:364
 msgctxt "AI behavior"
@@ -647,7 +649,7 @@ msgstr ""
 #: gui/common/settings.js:376
 msgctxt "map type"
 msgid "Unknown"
-msgstr ""
+msgstr "Непознато"
 
 #: gui/common/settings.js:388
 msgctxt "map size"
@@ -662,7 +664,7 @@ msgstr ""
 #: gui/common/settings.js:404 gui/common/settings.js:408
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr ""
+msgstr "Непознато"
 
 #: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
@@ -733,7 +735,7 @@ msgstr ""
 #: gui/common/tooltips.js:196
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr " %(percentage)s%%"
 
 #: gui/common/tooltips.js:216 gui/common/tooltips.js:482
 #, javascript-format
@@ -910,7 +912,7 @@ msgstr ""
 #: gui/options/options.js:452 gui/pregame/MainMenuItems.js:282
 #: gui/pregame/MainMenuItems.js:306 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: gui/common/tooltips.js:409 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
@@ -919,7 +921,7 @@ msgstr ""
 #: gui/options/options.js:452 gui/pregame/MainMenuItems.js:282
 #: gui/pregame/MainMenuItems.js:306 gui/replaymenu/replay_actions.js:178
 msgid "No"
-msgstr ""
+msgstr "Не"
 
 #: gui/common/tooltips.js:420
 #, javascript-format
@@ -1594,7 +1596,7 @@ msgstr ""
 #: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:281
 #: gui/pregame/MainMenuItems.js:305
 msgid "Confirmation"
-msgstr ""
+msgstr "Потврда"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
@@ -1635,7 +1637,7 @@ msgstr ""
 #: gui/hotkeys/hotkeys.xml:(heading):39
 msgctxt "hotkey list"
 msgid "Name"
-msgstr ""
+msgstr "Име"
 
 #: gui/hotkeys/hotkeys.xml:(heading):43
 msgctxt "hotkey list"
@@ -3569,7 +3571,7 @@ msgstr ""
 #: gui/hotkeys/hotkeys.xml:(caption):53 gui/loadgame/SavegameWriter.js:16
 #: gui/options/options.xml:(caption):56
 msgid "Save"
-msgstr ""
+msgstr "Зачувување"
 
 #: gui/loadgame/SavegameWriter.js:51
 msgid "Saved game will be permanently overwritten, are you sure?"
@@ -3586,7 +3588,7 @@ msgstr ""
 #: gui/loadgame/load.xml:(caption):54
 #: gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Delete"
-msgstr ""
+msgstr "Избриши"
 
 #: gui/loadgame/load.xml:(caption):64
 msgid "Filter compatible saved games"
@@ -3604,12 +3606,12 @@ msgstr ""
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):32
 #: gui/replaymenu/replay_menu.xml:(caption):153
 msgid "Map Type:"
-msgstr ""
+msgstr "Вид карта:"
 
 #: gui/loadgame/load.xml:(caption):86
 #: gui/replaymenu/replay_menu.xml:(caption):168
 msgid "Map Size:"
-msgstr ""
+msgstr "Размер на картата:"
 
 #: gui/loadgame/load.xml:(caption):90
 #: gui/replaymenu/replay_menu.xml:(caption):183
@@ -3631,7 +3633,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):79
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "Име на картата"
 
 #: gui/loadgame/load.xml:(heading):39
 msgctxt "replay"
@@ -3791,7 +3793,7 @@ msgstr ""
 #: gui/locale_advanced/locale_advanced.xml:(caption):65
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:64
 msgid "Cancel"
-msgstr ""
+msgstr "Откажи"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:65
 #, javascript-format
@@ -5038,7 +5040,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[1].label
 msgid "Completed"
-msgstr ""
+msgstr "Завршено"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[2].label
 msgid "All displayed"
@@ -5160,7 +5162,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
-msgstr ""
+msgstr "Обука"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the introductory tutorial."
@@ -5244,7 +5246,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:155
 msgid "Load Campaign"
-msgstr ""
+msgstr "Вчитај ја кампањата"
 
 #: gui/pregame/MainMenuItems.js:165 gui/pregame/MainMenuItems.js:215
 msgid "Replays"
@@ -5265,7 +5267,7 @@ msgstr ""
 #. Translation: Join a game by specifying the host's IP address.
 #: gui/pregame/MainMenuItems.js:185
 msgid "Join Game"
-msgstr ""
+msgstr "Приклучување"
 
 #: gui/pregame/MainMenuItems.js:186
 msgid "Joining an existing multiplayer game."
@@ -5273,7 +5275,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:194
 msgid "Host Game"
-msgstr ""
+msgstr "Создавање на игра"
 
 #: gui/pregame/MainMenuItems.js:195
 msgid "Host a multiplayer game."
@@ -5304,7 +5306,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:234
 msgid "Options"
-msgstr ""
+msgstr "Поставки"
 
 #: gui/pregame/MainMenuItems.js:235
 msgid "Adjust game settings."
@@ -5366,7 +5368,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:288 gui/replaymenu/replay_actions.js:126
 msgid "Error"
-msgstr ""
+msgstr "Грешка"
 
 #: gui/pregame/MainMenuItems.js:292
 msgid "Credits"
@@ -5378,7 +5380,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:299
 msgid "Exit"
-msgstr ""
+msgstr "Излез"
 
 #: gui/pregame/MainMenuItems.js:300
 msgid "Exit the game."
@@ -5730,27 +5732,27 @@ msgstr ""
 #: gui/replaymenu/replay_filters.js:52
 msgctxt "datetime"
 msgid "Any"
-msgstr ""
+msgstr "Без зн."
 
 #: gui/replaymenu/replay_filters.js:68
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Без зн."
 
 #: gui/replaymenu/replay_filters.js:84
 msgctxt "map name"
 msgid "Any"
-msgstr ""
+msgstr "Без зн."
 
 #: gui/replaymenu/replay_filters.js:100
 msgctxt "population capacity"
 msgid "Any"
-msgstr ""
+msgstr "Без зн."
 
 #: gui/replaymenu/replay_filters.js:119
 msgctxt "duration"
 msgid "Any"
-msgstr ""
+msgstr "Без зн."
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:123
@@ -5780,7 +5782,7 @@ msgstr ""
 #: gui/replaymenu/replay_filters.js:145
 msgctxt "replay filter"
 msgid "Any"
-msgstr ""
+msgstr "Без зн."
 
 #: gui/replaymenu/replay_filters.js:146
 msgctxt "replay filter"
@@ -5795,7 +5797,7 @@ msgstr ""
 #: gui/replaymenu/replay_filters.js:148
 msgctxt "replay filter"
 msgid "Campaigns"
-msgstr ""
+msgstr "Кампањи"
 
 #: gui/replaymenu/replay_filters.js:162
 msgid "Any victory condition"
@@ -5850,7 +5852,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):228
 msgid "Main Menu"
-msgstr ""
+msgstr "Главно мени"
 
 #: gui/replaymenu/replay_menu.xml:(caption):240
 msgid "Rebuild Cache"
@@ -5859,7 +5861,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(caption):247
 #: gui/summary/summary.xml:(caption):26
 msgid "Summary"
-msgstr ""
+msgstr "Краток преглед"
 
 #: gui/replaymenu/replay_menu.xml:(caption):253
 msgid "Start Replay"
@@ -5868,12 +5870,12 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "Играчи"
 
 #: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "Големина"
 
 #: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
@@ -5887,7 +5889,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Барање на играч"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):98
 msgid "File path for the currently selected replay."
@@ -6021,11 +6023,11 @@ msgstr ""
 
 #: gui/summary/layout.js:73
 msgid "Infantry"
-msgstr ""
+msgstr "Пешадија"
 
 #: gui/summary/layout.js:74
 msgid "Worker"
-msgstr ""
+msgstr "Работник"
 
 #: gui/summary/layout.js:75
 msgid "Cavalry"
@@ -6033,7 +6035,7 @@ msgstr ""
 
 #: gui/summary/layout.js:76
 msgid "Champion"
-msgstr ""
+msgstr "Шампион"
 
 #: gui/summary/layout.js:77
 msgid "Heroes"
@@ -6041,7 +6043,7 @@ msgstr ""
 
 #: gui/summary/layout.js:78
 msgid "Siege"
-msgstr ""
+msgstr "Опсада"
 
 #: gui/summary/layout.js:79
 msgid "Navy"
@@ -6090,7 +6092,7 @@ msgstr ""
 
 #: gui/summary/layout.js:159
 msgid "Market"
-msgstr ""
+msgstr "Дуќан"
 
 #: gui/summary/layout.js:162
 msgid "Trade income"
@@ -6239,7 +6241,7 @@ msgstr ""
 #: gui/summary/summary.js:234
 msgctxt "Player listing"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/summary/summary.js:340
 msgid "Time elapsed"
@@ -6333,7 +6335,7 @@ msgstr ""
 #: gui/summary/summary.xml:(tooltip):147
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
+msgstr "Вид"
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -6836,7 +6838,7 @@ msgid "Most factions have access to them in Village Phase."
 msgstr ""
 
 #: gui/text/tips/persian_architecture.txt:1
-msgid "PERSIAN ARCHITECTURE"
+msgid "ACHAEMENID ARCHITECTURE"
 msgstr ""
 
 #: gui/text/tips/persian_architecture.txt:2
@@ -6951,6 +6953,18 @@ msgstr ""
 #: gui/text/tips/savanna_biome.txt:5
 msgid "Wood tends to be sparse, but consists of high-yield Baobab trees."
 msgstr ""
+
+#: gui/text/tips/shrine.txt:1
+msgid "SHRINES"
+msgstr ""
+
+#: gui/text/tips/shrine.txt:2
+msgid "Capturable map objects. Cannot be built or destroyed."
+msgstr ""
+
+#: gui/text/tips/shrine.txt:3
+msgid "Train Elite Healers and heal garrisoned units."
+msgstr "Обучете елитни исцелители и лекувајте гарнизони единици."
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
@@ -7178,7 +7192,7 @@ msgstr ""
 #: simulation/data/resources/food.jsonsubtypes.fish
 msgctxt "firstWord"
 msgid "Fish"
-msgstr ""
+msgstr "Риба"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7186,14 +7200,14 @@ msgstr ""
 #: simulation/data/resources/food.jsonsubtypes.fish
 msgctxt "withinSentence"
 msgid "Fish"
-msgstr ""
+msgstr "Риба"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: simulation/data/resources/food.jsonsubtypes.fruit
 msgctxt "firstWord"
 msgid "Fruit"
-msgstr ""
+msgstr "Овошје"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7201,7 +7215,7 @@ msgstr ""
 #: simulation/data/resources/food.jsonsubtypes.fruit
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr ""
+msgstr "Овошје"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -7274,7 +7288,7 @@ msgstr ""
 #: simulation/data/resources/wood.jsonsubtypes.ruins
 msgctxt "firstWord"
 msgid "Ruins"
-msgstr ""
+msgstr "Урнатини"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7284,7 +7298,7 @@ msgstr ""
 #: simulation/data/resources/wood.jsonsubtypes.ruins
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr ""
+msgstr "Урнатини"
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
@@ -7295,7 +7309,7 @@ msgstr ""
 #: simulation/data/resources/stone.jsonname
 msgctxt "firstWord"
 msgid "Stone"
-msgstr ""
+msgstr "Камен"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7303,7 +7317,7 @@ msgstr ""
 #: simulation/data/resources/stone.jsonname
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "Камен"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -7344,7 +7358,7 @@ msgstr ""
 #: simulation/data/resources/wood.jsonsubtypes.tree
 msgctxt "firstWord"
 msgid "Tree"
-msgstr ""
+msgstr "Дрво"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7352,4 +7366,4 @@ msgstr ""
 #: simulation/data/resources/wood.jsonsubtypes.tree
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr ""
+msgstr "Дрво"

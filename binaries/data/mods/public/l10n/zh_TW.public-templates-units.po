@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2024\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -701,7 +701,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Improve sea "
 "trading at the Market."
-msgstr "碼頭之間的貿易。駐紮一位商人以獲得額外利潤（每位駐紮商人 +20%）。採集有利可圖的水上寶藏。在市集改善海上貿易。"
+msgstr "碼頭之間的貿易。駐紮一位商人以獲得額外利潤（每駐紮一位 +20%）。採集有利可圖的水上寶藏。在市集改善海上貿易。"
 
 #: simulation/templates/template_unit_ship_merchant.xml:21
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -742,9 +742,9 @@ msgstr "衝撞船"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:48
 msgid ""
-"Garrison units for transport across water. Deals double damage against Siege"
-" Ships. Countered by Arrow Ships."
-msgstr "駐單位以便在水上運輸。對攻城船造成雙倍傷害。受制於箭船。"
+"Garrison units for transport across water. Strong against Siege Ships. "
+"Countered by Arrow Ships."
+msgstr "進駐單位以在水上運輸。對攻城船有優勢。受制於箭船。"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:49
 msgid "NavalRam"
@@ -777,7 +777,7 @@ msgstr "攻城船"
 msgid ""
 "Garrison units for transport across water. Good against Arrow Ships and "
 "Structures."
-msgstr "駐單位以便在水上運輸。對箭船和建築物有優勢。"
+msgstr "進駐單位以在水上運輸。對箭船和建築物有優勢。"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:61
 msgid "NavalSiege"
@@ -2787,19 +2787,23 @@ msgid ""
 "have a +25% land trading bonus."
 msgstr "在您與盟友的市集間貿易資源。波斯人擁有 +25% 的陸地貿易加成。"
 
-#: simulation/templates/units/pirates/ship_arrow.xml:5
+#: simulation/templates/units/pirates/ship_arrow.xml:8
 msgid "Rhodian Marauder"
 msgstr "羅德島劫掠者"
 
-#: simulation/templates/units/pirates/ship_merchant.xml:8
+#: simulation/templates/units/pirates/ship_merchant.xml:9
 msgid "Blockade Runner"
 msgstr "偷渡船"
 
-#: simulation/templates/units/pirates/ship_merchant.xml:9
-msgid "Destroy this ship to loot its large amount of contraband."
-msgstr "摧毀這艦以搶奪其大量的走私品。"
+#: simulation/templates/units/pirates/ship_merchant.xml:10
+msgid "Treasure Ship"
+msgstr "寶藏船"
 
-#: simulation/templates/units/pirates/ship_scout.xml:9
+#: simulation/templates/units/pirates/ship_merchant.xml:11
+msgid "Destroy this ship to loot its large amount of treasure."
+msgstr "摧毀這艘船以搶奪其大量的寶藏。"
+
+#: simulation/templates/units/pirates/ship_scout.xml:8
 msgid "Cilician Pirate Ship"
 msgstr "奇里乞亞海盜船"
 
