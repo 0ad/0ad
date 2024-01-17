@@ -824,8 +824,11 @@ void CDeviceCommandContext::SetVertexInputLayout(
 	IVertexInputLayout* vertexInputLayout)
 {
 	ENSURE(vertexInputLayout);
-	m_IsPipelineStateDirty = true;
-	m_VertexInputLayout = vertexInputLayout->As<CVertexInputLayout>();
+	if (m_VertexInputLayout != vertexInputLayout->As<CVertexInputLayout>())
+	{
+		m_IsPipelineStateDirty = true;
+		m_VertexInputLayout = vertexInputLayout->As<CVertexInputLayout>();
+	}
 }
 
 void CDeviceCommandContext::SetVertexBuffer(
