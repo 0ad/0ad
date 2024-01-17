@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -196,6 +196,20 @@ void CRenderingOptions::ReadConfigAndSetupHooks()
 		if (CRenderer::IsInitialised())
 			g_Renderer.GetPostprocManager().UpdateSharpeningTechnique();
 	});
+
+	m_ConfigHooks->Setup("renderer.scale", []()
+		{
+			if (CRenderer::IsInitialised())
+				g_Renderer.GetPostprocManager().Resize();
+		});
+
+	m_ConfigHooks->Setup("renderer.upscale.technique", []()
+		{
+			CStr upscaleName;
+			CFG_GET_VAL("renderer.upscale.technique", upscaleName);
+			if (CRenderer::IsInitialised())
+				g_Renderer.GetPostprocManager().SetUpscaleTechnique(upscaleName);
+		});
 
 	m_ConfigHooks->Setup("smoothlos", m_SmoothLOS);
 

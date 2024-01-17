@@ -333,7 +333,11 @@ function enableButtons()
 			{
 				const availableOps = {
 					"==": (config, value) => config == value,
-					"!=": (config, value) => config != value
+					"!=": (config, value) => config != value,
+					"<": (config, value) => +config < +value,
+					"<=": (config, value) => +config <= +value,
+					">": (config, value) => +config > +value,
+					">=": (config, value) => +config >= +value
 				};
 				const op = availableOps[dependency.op] || availableOps["=="];
 				return op(Engine.ConfigDB_GetValue("user", dependency.config), dependency.value);

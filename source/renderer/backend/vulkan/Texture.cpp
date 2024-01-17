@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -73,6 +73,15 @@ std::unique_ptr<CTexture> CTexture::Create(
 	vkGetPhysicalDeviceFormatProperties(
 		physicalDevice, imageFormat, &formatProperties);
 
+	if (!(usage & Usage::SAMPLED))
+	{
+		// A texture can't be *_ATTACHMENT and STORAGE at the same time without
+		// to be SAMPLED.
+		const bool isAttachment = (usage & Usage::COLOR_ATTACHMENT) || (usage & Usage::DEPTH_STENCIL_ATTACHMENT);
+		const bool isStorage = usage & Usage::STORAGE;
+		ENSURE(!(isAttachment && isStorage));
+	}
+
 	VkImageUsageFlags usageFlags = 0;
 	// Vulkan 1.0 implies that TRANSFER_SRC and TRANSFER_DST are supported.
 	// TODO: account Vulkan 1.1.
@@ -89,6 +98,16 @@ std::unique_ptr<CTexture> CTexture::Create(
 			return nullptr;
 		}
 		usageFlags |= VK_IMAGE_USAGE_SAMPLED_BIT;
+	}
+	if (usage & Usage::STORAGE)
+	{
+		ENSURE(type != Type::TEXTURE_2D_MULTISAMPLE);
+		if (!(formatProperties.optimalTilingFeatures & VK_FORMAT_FEATURE_STORAGE_IMAGE_BIT))
+		{
+			LOGERROR("Format %d doesn't support storage for optimal tiling.", static_cast<int>(imageFormat));
+			return nullptr;
+		}
+		usageFlags |= VK_IMAGE_USAGE_STORAGE_BIT;
 	}
 	if (usage & Usage::COLOR_ATTACHMENT)
 	{

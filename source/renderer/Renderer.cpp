@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -493,6 +493,7 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 		g_Game->GetView()->Prepare(m->deviceCommandContext.get());
 
 		Renderer::Backend::IFramebuffer* framebuffer = nullptr;
+		Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
 
 		CPostprocManager& postprocManager = GetPostprocManager();
 		if (postprocManager.IsEnabled())
@@ -505,6 +506,8 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 			);
 			postprocManager.Initialize();
 			framebuffer = postprocManager.PrepareAndGetOutputFramebuffer();
+			viewportRect.width = framebuffer->GetWidth();
+			viewportRect.height = framebuffer->GetHeight();
 		}
 		else
 		{
@@ -516,13 +519,12 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 					Renderer::Backend::AttachmentStoreOp::STORE,
 					Renderer::Backend::AttachmentLoadOp::CLEAR,
 					Renderer::Backend::AttachmentStoreOp::DONT_CARE);
+
+			viewportRect.width = m_Width;
+			viewportRect.height = m_Height;
 		}
 
 		m->deviceCommandContext->BeginFramebufferPass(framebuffer);
-
-		Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
-		viewportRect.width = m_Width;
-		viewportRect.height = m_Height;
 		m->deviceCommandContext->SetViewports(1, &viewportRect);
 
 		g_Game->GetView()->Render(m->deviceCommandContext.get());

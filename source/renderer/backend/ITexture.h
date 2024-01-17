@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -49,6 +49,7 @@ public:
 		static constexpr uint32_t SAMPLED = 1u << 2u;
 		static constexpr uint32_t COLOR_ATTACHMENT = 1u << 3u;
 		static constexpr uint32_t DEPTH_STENCIL_ATTACHMENT = 1u << 4u;
+		static constexpr uint32_t STORAGE = 1u << 5u;
 	};
 
 	virtual Type GetType() const = 0;

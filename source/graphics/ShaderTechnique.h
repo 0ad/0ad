@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -65,6 +65,9 @@ public:
 	CShaderTechnique(const VfsPath& path, const CShaderDefines& defines, const PipelineStateDescCallback& callback);
 
 	void SetPasses(std::vector<CShaderPass>&& passes);
+	void SetComputePipelineState(
+		std::unique_ptr<Renderer::Backend::IComputePipelineState> pipelineState,
+		const CShaderProgramPtr& computeShader);
 
 	int GetNumPasses() const;
 
@@ -72,6 +75,9 @@ public:
 
 	Renderer::Backend::IGraphicsPipelineState*
 	GetGraphicsPipelineState(int pass = 0) const;
+
+	Renderer::Backend::IComputePipelineState*
+	GetComputePipelineState() const;
 
 	/**
 	 * Whether this technique uses alpha blending that requires objects to be
@@ -97,6 +103,9 @@ private:
 	CShaderDefines m_Defines;
 
 	PipelineStateDescCallback m_PipelineStateDescCallback;
+
+	std::unique_ptr<Renderer::Backend::IComputePipelineState> m_ComputePipelineState;
+	CShaderProgramPtr m_ComputeShader;
 };
 
 #endif // INCLUDED_SHADERTECHNIQUE

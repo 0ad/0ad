@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -647,7 +647,10 @@ public:
 		m_Program = 0;
 		m_FileDependencies = {programPath};
 		for (const auto& [path, type] : shaderStages)
+		{
+			UNUSED2(type);
 			m_FileDependencies.emplace_back(path);
+		}
 
 		// TODO: replace by scoped bind.
 		m_Device->GetActiveCommandContext()->SetGraphicsPipelineState(
@@ -671,6 +674,9 @@ public:
 				break;
 			case GL_FRAGMENT_SHADER:
 				stageDefine = "STAGE_FRAGMENT";
+				break;
+			case GL_COMPUTE_SHADER:
+				stageDefine = "STAGE_COMPUTE";
 				break;
 			default:
 				break;
@@ -845,18 +851,35 @@ public:
 #undef CASE
 
 			// Assign sampler uniforms to sequential texture units.
-			if (type == GL_SAMPLER_2D
-			 || type == GL_SAMPLER_CUBE
+			switch (type)
+			{
+			case GL_SAMPLER_2D:
+				bindingSlot.elementType = GL_TEXTURE_2D;
+				bindingSlot.isTexture = true;
+				break;
+			case GL_SAMPLER_CUBE:
+				bindingSlot.elementType = GL_TEXTURE_CUBE_MAP;
+				bindingSlot.isTexture = true;
+				break;
 #if !CONFIG2_GLES
-			 || type == GL_SAMPLER_2D_SHADOW
+			case GL_SAMPLER_2D_SHADOW:
+				bindingSlot.elementType = GL_TEXTURE_2D;
+				bindingSlot.isTexture = true;
+				break;
+			case GL_IMAGE_2D:
+				bindingSlot.elementType = GL_IMAGE_2D;
+				bindingSlot.isTexture = true;
+				break;
 #endif
-			)
+			default:
+				break;
+			}
+
+			if (bindingSlot.isTexture)
 			{
 				const auto it = requiredUnits.find(nameIntern);
 				const int unit = it == requiredUnits.end() ? -1 : it->second;
-				bindingSlot.elementType = (type == GL_SAMPLER_CUBE ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D);
 				bindingSlot.elementCount = unit;
-				bindingSlot.isTexture = true;
 				if (unit != -1)
 				{
 					if (unit >= static_cast<int>(occupiedUnits.size()))
@@ -1192,6 +1215,7 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 	// Define all the elements and attributes used in the XML file
 #define EL(x) int el_##x = XeroFile.GetElementID(#x)
 #define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
+	EL(compute);
 	EL(define);
 	EL(fragment);
 	EL(stream);
@@ -1221,6 +1245,8 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 	std::map<CStrIntern, std::pair<CStr, int>> fragmentUniforms;
 	std::map<CStrIntern, int> vertexAttribs;
 	int streamFlags = 0;
+
+	VfsPath computeFile;
 
 	XERO_ITER_EL(root, child)
 	{
@@ -1307,12 +1333,22 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 				}
 			}
 		}
+		else if (child.GetNodeName() == el_compute)
+		{
+			computeFile = L"shaders/" + child.GetAttributes().GetNamedItem(at_file).FromUTF8();
+		}
 	}
 
 	if (isGLSL)
 	{
-		const std::array<std::tuple<VfsPath, GLenum>, 2> shaderStages{{
-			{vertexFile, GL_VERTEX_SHADER}, {fragmentFile, GL_FRAGMENT_SHADER}}};
+		if (!computeFile.empty())
+		{
+			ENSURE(streamFlags == 0);
+			ENSURE(vertexAttribs.empty());
+		}
+		const PS::StaticVector<std::tuple<VfsPath, GLenum>, 2> shaderStages{computeFile.empty()
+			? PS::StaticVector<std::tuple<VfsPath, GLenum>, 2>{{vertexFile, GL_VERTEX_SHADER}, {fragmentFile, GL_FRAGMENT_SHADER}}
+			: PS::StaticVector<std::tuple<VfsPath, GLenum>, 2>{{computeFile, GL_COMPUTE_SHADER}}};
 		return std::make_unique<CShaderProgramGLSL>(
 			device, name, xmlFilename, shaderStages, defines,
 			vertexAttribs, streamFlags);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -68,7 +68,7 @@ SBaseImageState GetBaseImageState(CTexture* texture)
 		return {
 			VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
 			VK_ACCESS_SHADER_READ_BIT,
-			VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT};
+			VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT};
 	}
 	else if (texture->GetUsage() & ITexture::Usage::COLOR_ATTACHMENT)
 	{
@@ -279,7 +279,7 @@ void CDeviceCommandContext::CUploadRing::ExecuteUploads(
 
 	const VkPipelineStageFlags stageMask =
 		m_Type == IBuffer::Type::UNIFORM
-			? VK_PIPELINE_STAGE_VERTEX_SHADER_BIT | VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT
+			? VK_PIPELINE_STAGE_VERTEX_SHADER_BIT | VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT
 			: VK_PIPELINE_STAGE_VERTEX_INPUT_BIT;
 
 	Utilities::SubmitBufferMemoryBarrier(
@@ -405,6 +405,28 @@ void CDeviceCommandContext::SetGraphicsPipelineState(
 		m_ShaderProgram = shaderProgram;
 	}
 	m_IsPipelineStateDirty = true;
+}
+
+void CDeviceCommandContext::SetComputePipelineState(
+	IComputePipelineState* pipelineState)
+{
+	if (m_ShaderProgram)
+		m_ShaderProgram->Unbind();
+
+	ENSURE(pipelineState);
+	CComputePipelineState* computePipelineState = pipelineState->As<CComputePipelineState>();
+	m_ShaderProgram = computePipelineState->GetShaderProgram()->As<CShaderProgram>();
+	m_ShaderProgram->Bind();
+	vkCmdBindPipeline(
+		m_CommandContext->GetCommandBuffer(), m_ShaderProgram->GetPipelineBindPoint(), computePipelineState->GetPipeline());
+
+	if (m_Device->GetDescriptorManager().UseDescriptorIndexing())
+	{
+		vkCmdBindDescriptorSets(
+			m_CommandContext->GetCommandBuffer(), m_ShaderProgram->GetPipelineBindPoint(),
+			m_ShaderProgram->GetPipelineLayout(), 0,
+			1, &m_Device->GetDescriptorManager().GetDescriptorIndexingSet(), 0, nullptr);
+	}
 }
 
 void CDeviceCommandContext::BlitFramebuffer(
@@ -554,6 +576,8 @@ void CDeviceCommandContext::ClearFramebuffer(const bool color, const bool depth,
 
 void CDeviceCommandContext::BeginFramebufferPass(IFramebuffer* framebuffer)
 {
+	ENSURE(!m_InsideFramebufferPass);
+	ENSURE(!m_InsideComputePass);
 	ENSURE(framebuffer);
 	m_IsPipelineStateDirty = true;
 	m_Framebuffer = framebuffer->As<CFramebuffer>();
@@ -575,7 +599,7 @@ void CDeviceCommandContext::BeginFramebufferPass(IFramebuffer* framebuffer)
 			VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL,
 			VK_ACCESS_SHADER_READ_BIT,
 			VK_ACCESS_COLOR_ATTACHMENT_READ_BIT | VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT,
-			VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
+			VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT, VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT);
 	}
 
 	CTexture* depthStencilAttachment = m_Framebuffer->GetDepthStencilAttachment();
@@ -589,7 +613,7 @@ void CDeviceCommandContext::BeginFramebufferPass(IFramebuffer* framebuffer)
 			VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL,
 			VK_ACCESS_SHADER_READ_BIT,
 			VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT | VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT,
-			VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT,
+			VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT,
 			VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT | VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT);
 	}
 
@@ -653,7 +677,7 @@ void CDeviceCommandContext::EndFramebufferPass()
 			VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL,
 			VK_ACCESS_COLOR_ATTACHMENT_READ_BIT | VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT,
 			VK_ACCESS_SHADER_READ_BIT,
-			VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT);
+			VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT);
 	}
 
 	CTexture* depthStencilAttachment = m_Framebuffer->GetDepthStencilAttachment();
@@ -666,7 +690,7 @@ void CDeviceCommandContext::EndFramebufferPass()
 			VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT | VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT,
 			VK_ACCESS_SHADER_READ_BIT,
 			VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT | VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT,
-			VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT);
+			VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT);
 	}
 
 	m_LastBoundPipeline = VK_NULL_HANDLE;
@@ -891,17 +915,49 @@ void CDeviceCommandContext::DrawIndexedInRange(
 	DrawIndexed(firstIndex, indexCount, 0);
 }
 
+void CDeviceCommandContext::BeginComputePass()
+{
+	ENSURE(!m_InsideFramebufferPass);
+	ENSURE(!m_InsideComputePass);
+	m_InsideComputePass = true;
+}
+
+void CDeviceCommandContext::EndComputePass()
+{
+	if (m_ShaderProgram)
+	{
+		m_ShaderProgram->Unbind();
+		m_ShaderProgram = nullptr;
+	}
+
+	ENSURE(m_InsideComputePass);
+	m_InsideComputePass = false;
+}
+
+void CDeviceCommandContext::Dispatch(
+	const uint32_t groupCountX,
+	const uint32_t groupCountY,
+	const uint32_t groupCountZ)
+{
+	ENSURE(m_InsideComputePass);
+	m_ShaderProgram->PreDispatch(*m_CommandContext);
+	UpdateOutdatedConstants();
+	vkCmdDispatch(
+		m_CommandContext->GetCommandBuffer(), groupCountX, groupCountY, groupCountZ);
+	m_ShaderProgram->PostDispatch(*m_CommandContext);
+}
+
 void CDeviceCommandContext::SetTexture(const int32_t bindingSlot, ITexture* texture)
 {
 	if (bindingSlot < 0)
 		return;
 
-	ENSURE(m_InsidePass);
+	ENSURE(m_InsidePass || m_InsideComputePass);
 	ENSURE(texture);
 	CTexture* textureToBind = texture->As<CTexture>();
 	ENSURE(textureToBind->GetUsage() & ITexture::Usage::SAMPLED);
 
-	if (!m_Device->GetDescriptorManager().UseDescriptorIndexing())
+	if (!m_Device->GetDescriptorManager().UseDescriptorIndexing() && m_InsidePass)
 	{
 		// We can't bind textures which are used as attachments.
 		const auto& colorAttachments = m_Framebuffer->GetColorAttachments();
@@ -915,11 +971,20 @@ void CDeviceCommandContext::SetTexture(const int32_t bindingSlot, ITexture* text
 	m_ShaderProgram->SetTexture(bindingSlot, textureToBind);
 }
 
+void CDeviceCommandContext::SetStorageTexture(const int32_t bindingSlot, ITexture* texture)
+{
+	ENSURE(m_InsidePass || m_InsideComputePass);
+	ENSURE(texture);
+	CTexture* textureToBind = texture->As<CTexture>();
+	ENSURE(textureToBind->GetUsage() & ITexture::Usage::STORAGE);
+	m_ShaderProgram->SetStorageTexture(bindingSlot, textureToBind);
+}
+
 void CDeviceCommandContext::SetUniform(
 	const int32_t bindingSlot,
 	const float value)
 {
-	ENSURE(m_InsidePass);
+	ENSURE(m_InsidePass || m_InsideComputePass);
 	m_ShaderProgram->SetUniform(bindingSlot, value);
 }
 
@@ -927,7 +992,7 @@ void CDeviceCommandContext::SetUniform(
 	const int32_t bindingSlot,
 	const float valueX, const float valueY)
 {
-	ENSURE(m_InsidePass);
+	ENSURE(m_InsidePass || m_InsideComputePass);
 	m_ShaderProgram->SetUniform(bindingSlot, valueX, valueY);
 }
 
@@ -936,7 +1001,7 @@ void CDeviceCommandContext::SetUniform(
 	const float valueX, const float valueY,
 	const float valueZ)
 {
-	ENSURE(m_InsidePass);
+	ENSURE(m_InsidePass || m_InsideComputePass);
 	m_ShaderProgram->SetUniform(bindingSlot, valueX, valueY, valueZ);
 }
 
@@ -945,14 +1010,14 @@ void CDeviceCommandContext::SetUniform(
 	const float valueX, const float valueY,
 	const float valueZ, const float valueW)
 {
-	ENSURE(m_InsidePass);
+	ENSURE(m_InsidePass || m_InsideComputePass);
 	m_ShaderProgram->SetUniform(bindingSlot, valueX, valueY, valueZ, valueW);
 }
 
 void CDeviceCommandContext::SetUniform(
 	const int32_t bindingSlot, PS::span<const float> values)
 {
-	ENSURE(m_InsidePass);
+	ENSURE(m_InsidePass || m_InsideComputePass);
 	m_ShaderProgram->SetUniform(bindingSlot, values);
 }
 
@@ -1074,6 +1139,11 @@ void CDeviceCommandContext::PreDraw()
 	ENSURE(m_InsidePass);
 	ApplyPipelineStateIfDirty();
 	m_ShaderProgram->PreDraw(*m_CommandContext);
+	UpdateOutdatedConstants();
+}
+
+void CDeviceCommandContext::UpdateOutdatedConstants()
+{
 	if (m_ShaderProgram->IsMaterialConstantsDataOutdated())
 	{
 		const VkDeviceSize alignment =

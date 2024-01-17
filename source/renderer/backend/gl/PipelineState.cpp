@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,6 +41,21 @@ std::unique_ptr<CGraphicsPipelineState> CGraphicsPipelineState::Create(
 }
 
 IDevice* CGraphicsPipelineState::GetDevice()
+{
+	return m_Device;
+}
+
+// static
+std::unique_ptr<CComputePipelineState> CComputePipelineState::Create(
+	CDevice* device, const SComputePipelineStateDesc& desc)
+{
+	std::unique_ptr<CComputePipelineState> pipelineState{new CComputePipelineState()};
+	pipelineState->m_Device = device;
+	pipelineState->m_Desc = desc;
+	return pipelineState;
+}
+
+IDevice* CComputePipelineState::GetDevice()
 {
 	return m_Device;
 }

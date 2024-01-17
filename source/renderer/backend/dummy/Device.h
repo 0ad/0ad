@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,6 +57,9 @@ public:
 
 	std::unique_ptr<IGraphicsPipelineState> CreateGraphicsPipelineState(
 		const SGraphicsPipelineStateDesc& pipelineStateDesc) override;
+
+	std::unique_ptr<IComputePipelineState> CreateComputePipelineState(
+		const SComputePipelineStateDesc& pipelineStateDesc) override;
 
 	std::unique_ptr<IVertexInputLayout> CreateVertexInputLayout(
 		const PS::span<const SVertexAttributeFormat> attributes) override;

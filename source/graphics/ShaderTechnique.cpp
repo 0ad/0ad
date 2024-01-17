@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,8 @@
 #include "graphics/ShaderProgram.h"
 #include "renderer/backend/IDevice.h"
 
+#include <utility>
+
 CShaderPass::CShaderPass(
 	std::unique_ptr<Renderer::Backend::IGraphicsPipelineState> pipelineState,
 	const CShaderProgramPtr& shader)
@@ -39,7 +41,17 @@ CShaderTechnique::CShaderTechnique(
 
 void CShaderTechnique::SetPasses(std::vector<CShaderPass>&& passes)
 {
+	ENSURE(!m_ComputePipelineState);
 	m_Passes = std::move(passes);
+}
+
+void CShaderTechnique::SetComputePipelineState(
+	std::unique_ptr<Renderer::Backend::IComputePipelineState> pipelineState,
+	const CShaderProgramPtr& computeShader)
+{
+	ENSURE(m_Passes.empty());
+	m_ComputePipelineState = std::move(pipelineState);
+	m_ComputeShader = computeShader;
 }
 
 int CShaderTechnique::GetNumPasses() const
@@ -49,8 +61,16 @@ int CShaderTechnique::GetNumPasses() const
 
 Renderer::Backend::IShaderProgram* CShaderTechnique::GetShader(int pass) const
 {
-	ENSURE(0 <= pass && pass < (int)m_Passes.size());
-	return m_Passes[pass].GetPipelineState()->GetShaderProgram();
+	if (m_ComputeShader)
+	{
+		ENSURE(pass == 0);
+		return m_ComputeShader->GetBackendShaderProgram();
+	}
+	else
+	{
+		ENSURE(0 <= pass && pass < (int)m_Passes.size());
+		return m_Passes[pass].GetPipelineState()->GetShaderProgram();
+	}
 }
 
 Renderer::Backend::IGraphicsPipelineState*
@@ -58,6 +78,12 @@ CShaderTechnique::GetGraphicsPipelineState(int pass) const
 {
 	ENSURE(0 <= pass && pass < static_cast<int>(m_Passes.size()));
 	return m_Passes[pass].GetPipelineState();
+}
+
+Renderer::Backend::IComputePipelineState*
+CShaderTechnique::GetComputePipelineState() const
+{
+	return m_ComputePipelineState.get();
 }
 
 bool CShaderTechnique::GetSortByDistance() const

@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -51,6 +51,7 @@ public:
 	IDevice* GetDevice() override;
 
 	void SetGraphicsPipelineState(IGraphicsPipelineState* pipelineState) override;
+	void SetComputePipelineState(IComputePipelineState* pipelineState) override;
 
 	void BlitFramebuffer(
 		IFramebuffer* destinationFramebuffer, IFramebuffer* sourceFramebuffer,
@@ -114,7 +115,17 @@ public:
 		const uint32_t firstIndex, const uint32_t indexCount,
 		const uint32_t start, const uint32_t end) override;
 
+	void BeginComputePass() override;
+	void EndComputePass() override;
+
+	void Dispatch(
+		const uint32_t groupCountX,
+		const uint32_t groupCountY,
+		const uint32_t groupCountZ) override;
+
 	void SetTexture(const int32_t bindingSlot, ITexture* texture) override;
+
+	void SetStorageTexture(const int32_t bindingSlot, ITexture* texture) override;
 
 	void SetUniform(
 		const int32_t bindingSlot,
@@ -146,6 +157,7 @@ private:
 	CDeviceCommandContext();
 
 	void PreDraw();
+	void UpdateOutdatedConstants();
 	void ApplyPipelineStateIfDirty();
 	void BindVertexBuffer(const uint32_t bindingSlot, CBuffer* buffer, uint32_t offset);
 	void BindIndexBuffer(CBuffer* buffer, uint32_t offset);
@@ -166,6 +178,7 @@ private:
 
 	bool m_InsideFramebufferPass = false;
 	bool m_InsidePass = false;
+	bool m_InsideComputePass = false;
 
 	// Currently bound buffers to skip the same buffer bind.
 	CBuffer* m_BoundIndexBuffer = nullptr;

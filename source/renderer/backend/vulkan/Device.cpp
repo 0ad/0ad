@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -706,6 +706,12 @@ std::unique_ptr<IGraphicsPipelineState> CDevice::CreateGraphicsPipelineState(
 	const SGraphicsPipelineStateDesc& pipelineStateDesc)
 {
 	return CGraphicsPipelineState::Create(this, pipelineStateDesc);
+}
+
+std::unique_ptr<IComputePipelineState> CDevice::CreateComputePipelineState(
+	const SComputePipelineStateDesc& pipelineStateDesc)
+{
+	return CComputePipelineState::Create(this, pipelineStateDesc);
 }
 
 std::unique_ptr<IVertexInputLayout> CDevice::CreateVertexInputLayout(

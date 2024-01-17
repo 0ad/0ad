@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -145,9 +145,11 @@ std::unique_ptr<CSwapChain> CSwapChain::Create(
 	// VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT is guaranteed to present.
 	// VK_IMAGE_USAGE_TRANSFER_SRC_BIT allows a simpler backbuffer readback.
 	// VK_IMAGE_USAGE_TRANSFER_DST_BIT allows a blit to the backbuffer.
+	// VK_IMAGE_USAGE_STORAGE_BIT allows to write to the backbuffer directly
+	// from a compute shader.
 	swapChainCreateInfo.imageUsage =
-		(VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_TRANSFER_SRC_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT) &
-		surfaceCapabilities.supportedUsageFlags;
+		(VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_TRANSFER_SRC_BIT | VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_STORAGE_BIT) &
+			surfaceCapabilities.supportedUsageFlags;
 	swapChainCreateInfo.imageSharingMode = VK_SHARING_MODE_EXCLUSIVE;
 	// We need to set these only if imageSharingMode is VK_SHARING_MODE_CONCURRENT.
 	swapChainCreateInfo.queueFamilyIndexCount = 0;

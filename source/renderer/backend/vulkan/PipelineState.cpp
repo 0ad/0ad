@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -302,6 +302,45 @@ VkPipeline CGraphicsPipelineState::GetOrCreatePipeline(
 }
 
 IDevice* CGraphicsPipelineState::GetDevice()
+{
+	return m_Device;
+}
+
+// static
+std::unique_ptr<CComputePipelineState> CComputePipelineState::Create(
+	CDevice* device, const SComputePipelineStateDesc& desc)
+{
+	ENSURE(desc.shaderProgram);
+	CShaderProgram* shaderProgram = desc.shaderProgram->As<CShaderProgram>();
+	if (shaderProgram->GetStages().empty())
+		return nullptr;
+
+	std::unique_ptr<CComputePipelineState> pipelineState{new CComputePipelineState()};
+	pipelineState->m_Device = device;
+	pipelineState->m_UID = device->GenerateNextDeviceObjectUID();
+	pipelineState->m_Desc = desc;
+
+	VkComputePipelineCreateInfo pipelineCreateInfo{};
+	pipelineCreateInfo.sType = VK_STRUCTURE_TYPE_COMPUTE_PIPELINE_CREATE_INFO;
+
+	pipelineCreateInfo.layout = shaderProgram->GetPipelineLayout();
+	pipelineCreateInfo.basePipelineHandle = VK_NULL_HANDLE;
+	pipelineCreateInfo.basePipelineIndex = -1;
+	pipelineCreateInfo.stage = shaderProgram->GetStages()[0];
+
+	ENSURE_VK_SUCCESS(vkCreateComputePipelines(
+		device->GetVkDevice(), VK_NULL_HANDLE, 1, &pipelineCreateInfo, nullptr, &pipelineState->m_Pipeline));
+	return pipelineState;
+}
+
+CComputePipelineState::~CComputePipelineState()
+{
+	if (m_Pipeline != VK_NULL_HANDLE)
+		m_Device->ScheduleObjectToDestroy(
+			VK_OBJECT_TYPE_PIPELINE, m_Pipeline, VK_NULL_HANDLE);
+}
+
+IDevice* CComputePipelineState::GetDevice()
 {
 	return m_Device;
 }

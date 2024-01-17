@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<effect>
+	<technique>
+		<require shaders="glsl"/>
+		<pass shader="glsl/upscale_nearest">
+			<depth test="FALSE" mask="false"/>
+		</pass>
+	</technique>
+	<technique>
+		<require shaders="spirv"/>
+		<pass shader="spirv/upscale_nearest">
+			<depth test="FALSE" mask="false"/>
+		</pass>
+	</technique>
+</effect>

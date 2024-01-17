@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -185,7 +185,7 @@ void CRingCommandContext::ScheduleUpload(
 		commandBuffer, image, level, layer,
 		VK_ACCESS_SHADER_READ_BIT, VK_ACCESS_TRANSFER_WRITE_BIT,
 		VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
-		VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, VK_PIPELINE_STAGE_TRANSFER_BIT);
+		VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT, VK_PIPELINE_STAGE_TRANSFER_BIT);
 
 	VkBufferImageCopy region{};
 
@@ -206,7 +206,7 @@ void CRingCommandContext::ScheduleUpload(
 		VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
 
 	VkAccessFlags dstAccessFlags = VK_ACCESS_SHADER_READ_BIT;
-	VkPipelineStageFlags dstStageMask = VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
+	VkPipelineStageFlags dstStageMask = VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT;
 	Utilities::SubmitImageMemoryBarrier(
 		commandBuffer, image, level, layer,
 		VK_ACCESS_TRANSFER_WRITE_BIT, dstAccessFlags,
@@ -259,7 +259,7 @@ void CRingCommandContext::ScheduleUpload(
 	if (buffer->GetType() == IBuffer::Type::VERTEX || buffer->GetType() == IBuffer::Type::INDEX)
 		srcStageMask = VK_PIPELINE_STAGE_VERTEX_INPUT_BIT;
 	else if (buffer->GetType() == IBuffer::Type::UNIFORM)
-		srcStageMask = VK_PIPELINE_STAGE_VERTEX_SHADER_BIT | VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
+		srcStageMask = VK_PIPELINE_STAGE_VERTEX_SHADER_BIT | VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT;
 	Utilities::SubmitPipelineBarrier(
 		commandBuffer, srcStageMask, dstStageMask);
 
@@ -293,7 +293,7 @@ void CRingCommandContext::ScheduleUpload(
 	else if (buffer->GetType() == IBuffer::Type::UNIFORM)
 	{
 		dstAccessFlags = VK_ACCESS_UNIFORM_READ_BIT;
-		dstStageMask = VK_PIPELINE_STAGE_VERTEX_SHADER_BIT | VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
+		dstStageMask = VK_PIPELINE_STAGE_VERTEX_SHADER_BIT | VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT | VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT;
 	}
 	Utilities::SubmitBufferMemoryBarrier(
 		commandBuffer, buffer, dataOffset, dataSize,

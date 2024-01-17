@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -56,6 +56,7 @@ public:
 	void SetGraphicsPipelineState(const SGraphicsPipelineStateDesc& pipelineState);
 
 	void SetGraphicsPipelineState(IGraphicsPipelineState* pipelineState) override;
+	void SetComputePipelineState(IComputePipelineState* pipelineState) override;
 
 	void BlitFramebuffer(
 		IFramebuffer* sourceFramebuffer, IFramebuffer* destinationFramebuffer,
@@ -120,7 +121,17 @@ public:
 		const uint32_t firstIndex, const uint32_t indexCount,
 		const uint32_t start, const uint32_t end) override;
 
+	void BeginComputePass() override;
+	void EndComputePass() override;
+
+	void Dispatch(
+		const uint32_t groupCountX,
+		const uint32_t groupCountY,
+		const uint32_t groupCountZ) override;
+
 	void SetTexture(const int32_t bindingSlot, ITexture* texture) override;
+
+	void SetStorageTexture(const int32_t bindingSlot, ITexture* texture) override;
 
 	void SetUniform(
 		const int32_t bindingSlot,
@@ -172,6 +183,8 @@ private:
 	// GL2.1 doesn't support more than 1 scissor.
 	std::array<Rect, 1> m_Scissors;
 
+	SComputePipelineStateDesc m_ComputePipelineStateDesc{};
+
 	uint32_t m_ScopedLabelDepth = 0;
 
 	CBuffer* m_VertexBuffer = nullptr;
@@ -180,6 +193,7 @@ private:
 
 	bool m_InsideFramebufferPass = false;
 	bool m_InsidePass = false;
+	bool m_InsideComputePass = false;
 
 	uint32_t m_ActiveTextureUnit = 0;
 	struct BindUnit
