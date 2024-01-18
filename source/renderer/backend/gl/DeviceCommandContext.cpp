@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -257,15 +257,41 @@ IDevice* CDeviceCommandContext::GetDevice()
 void CDeviceCommandContext::SetGraphicsPipelineState(
 	const SGraphicsPipelineStateDesc& pipelineState)
 {
+	ENSURE(!pipelineState.shaderProgram || m_InsideFramebufferPass);
 	SetGraphicsPipelineStateImpl(pipelineState, false);
 }
 
 void CDeviceCommandContext::SetGraphicsPipelineState(
 	IGraphicsPipelineState* pipelineState)
 {
+	ENSURE(!pipelineState->GetShaderProgram() || m_InsideFramebufferPass);
 	ENSURE(pipelineState);
 	SetGraphicsPipelineStateImpl(
 		pipelineState->As<CGraphicsPipelineState>()->GetDesc(), false);
+}
+
+void CDeviceCommandContext::SetComputePipelineState(
+	IComputePipelineState* pipelineState)
+{
+	ENSURE(m_InsideComputePass);
+	ENSURE(pipelineState);
+	const SComputePipelineStateDesc& desc = pipelineState->As<CComputePipelineState>()->GetDesc();
+	if (m_ComputePipelineStateDesc.shaderProgram != desc.shaderProgram)
+	{
+		CShaderProgram* currentShaderProgram = nullptr;
+		if (m_ComputePipelineStateDesc.shaderProgram)
+			currentShaderProgram = m_ComputePipelineStateDesc.shaderProgram->As<CShaderProgram>();
+		CShaderProgram* nextShaderProgram = nullptr;
+		if (desc.shaderProgram)
+			nextShaderProgram = desc.shaderProgram->As<CShaderProgram>();
+
+		if (nextShaderProgram)
+			nextShaderProgram->Bind(currentShaderProgram);
+		else if (currentShaderProgram)
+			currentShaderProgram->Unbind();
+
+		m_ShaderProgram = nextShaderProgram;
+	}
 }
 
 void CDeviceCommandContext::UploadTexture(
@@ -529,6 +555,8 @@ void CDeviceCommandContext::OnTextureDestroy(CTexture* texture)
 void CDeviceCommandContext::Flush()
 {
 	ENSURE(m_ScopedLabelDepth == 0);
+	ENSURE(!m_InsideFramebufferPass);
+	ENSURE(!m_InsideComputePass);
 
 	GPU_SCOPED_LABEL(this, "CDeviceCommandContext::Flush");
 
@@ -952,6 +980,8 @@ void CDeviceCommandContext::EndFramebufferPass()
 		ogl_WarnIfError();
 	}
 	m_Framebuffer = framebuffer;
+
+	SetGraphicsPipelineStateImpl(MakeDefaultGraphicsPipelineStateDesc(), false);
 }
 
 void CDeviceCommandContext::ReadbackFramebufferSync(
@@ -1209,6 +1239,31 @@ void CDeviceCommandContext::DrawIndexedInRange(
 	ogl_WarnIfError();
 }
 
+void CDeviceCommandContext::BeginComputePass()
+{
+	ENSURE(!m_InsideFramebufferPass);
+	ENSURE(!m_InsideComputePass);
+	m_InsideComputePass = true;
+}
+
+void CDeviceCommandContext::EndComputePass()
+{
+	ENSURE(m_InsideComputePass);
+	m_InsideComputePass = false;
+}
+
+void CDeviceCommandContext::Dispatch(
+	const uint32_t groupCountX,
+	const uint32_t groupCountY,
+	const uint32_t groupCountZ)
+{
+	ENSURE(m_InsideComputePass);
+	glDispatchCompute(groupCountX, groupCountY, groupCountZ);
+	// TODO: we might want to do binding tracking to avoid redundant barriers.
+	glMemoryBarrier(
+		GL_SHADER_IMAGE_ACCESS_BARRIER_BIT | GL_TEXTURE_FETCH_BARRIER_BIT | GL_TEXTURE_UPDATE_BARRIER_BIT | GL_FRAMEBUFFER_BARRIER_BIT);
+}
+
 void CDeviceCommandContext::SetTexture(const int32_t bindingSlot, ITexture* texture)
 {
 	ENSURE(m_ShaderProgram);
@@ -1249,6 +1304,21 @@ void CDeviceCommandContext::SetTexture(const int32_t bindingSlot, ITexture* text
 		return;
 	}
 	BindTexture(unit, textureUnit.target, texture->As<CTexture>()->GetHandle());
+}
+
+void CDeviceCommandContext::SetStorageTexture(const int32_t bindingSlot, ITexture* texture)
+{
+	ENSURE(m_ShaderProgram);
+	ENSURE(texture);
+	ENSURE(texture->GetUsage() & Renderer::Backend::ITexture::Usage::STORAGE);
+
+	const CShaderProgram::TextureUnit textureUnit =
+		m_ShaderProgram->GetTextureUnit(bindingSlot);
+	if (!textureUnit.type)
+		return;
+	ENSURE(textureUnit.type == GL_IMAGE_2D);
+	ENSURE(texture->GetFormat() == Format::R8G8B8A8_UNORM);
+	glBindImageTexture(textureUnit.unit, texture->As<CTexture>()->GetHandle(), 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA8);
 }
 
 void CDeviceCommandContext::SetUniform(

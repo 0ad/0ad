@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -82,6 +82,13 @@ public:
 	 */
 	virtual std::unique_ptr<IGraphicsPipelineState> CreateGraphicsPipelineState(
 		const SGraphicsPipelineStateDesc& pipelineStateDesc) = 0;
+
+	/**
+	 * Creates a compute pipeline state. It's a caller responsibility to
+	 * guarantee a lifespan of IShaderProgram stored in the description.
+	 */
+	virtual std::unique_ptr<IComputePipelineState> CreateComputePipelineState(
+		const SComputePipelineStateDesc& pipelineStateDesc) = 0;
 
 	/**
 	 * Creates a vertex input layout. It's recommended to use as few different

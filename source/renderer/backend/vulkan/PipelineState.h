@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -85,6 +85,38 @@ private:
 		bool operator()(const CacheKey& lhs, const CacheKey& rhs) const;
 	};
 	std::unordered_map<CacheKey, VkPipeline, CacheKeyHash, CacheKeyEqual> m_PipelineMap;
+};
+
+class CComputePipelineState final : public IComputePipelineState
+{
+public:
+	~CComputePipelineState() override;
+
+	IDevice* GetDevice() override;
+
+	IShaderProgram* GetShaderProgram() const override { return m_Desc.shaderProgram; }
+
+	const SComputePipelineStateDesc& GetDesc() const { return m_Desc; }
+
+	VkPipeline GetPipeline() { return m_Pipeline; }
+
+	DeviceObjectUID GetUID() const { return m_UID; }
+
+private:
+	friend class CDevice;
+
+	static std::unique_ptr<CComputePipelineState> Create(
+		CDevice* device, const SComputePipelineStateDesc& desc);
+
+	CComputePipelineState() = default;
+
+	CDevice* m_Device{nullptr};
+
+	DeviceObjectUID m_UID{INVALID_DEVICE_OBJECT_UID};
+
+	SComputePipelineStateDesc m_Desc{};
+
+	VkPipeline m_Pipeline{VK_NULL_HANDLE};
 };
 
 } // namespace Vulkan

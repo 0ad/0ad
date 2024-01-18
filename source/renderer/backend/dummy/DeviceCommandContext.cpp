@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -53,6 +53,11 @@ IDevice* CDeviceCommandContext::GetDevice()
 
 void CDeviceCommandContext::SetGraphicsPipelineState(
 	IGraphicsPipelineState*)
+{
+}
+
+void CDeviceCommandContext::SetComputePipelineState(
+	IComputePipelineState*)
 {
 }
 
@@ -185,7 +190,23 @@ void CDeviceCommandContext::DrawIndexedInRange(
 {
 }
 
+void CDeviceCommandContext::BeginComputePass()
+{
+}
+
+void CDeviceCommandContext::EndComputePass()
+{
+}
+
+void CDeviceCommandContext::Dispatch(const uint32_t, const uint32_t, const uint32_t)
+{
+}
+
 void CDeviceCommandContext::SetTexture(const int32_t, ITexture*)
+{
+}
+
+void CDeviceCommandContext::SetStorageTexture(const int32_t, ITexture*)
 {
 }
 

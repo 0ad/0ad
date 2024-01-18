@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -56,6 +56,28 @@ private:
 	CDevice* m_Device = nullptr;
 
 	SGraphicsPipelineStateDesc m_Desc{};
+};
+
+class CComputePipelineState final : public IComputePipelineState
+{
+public:
+	~CComputePipelineState() override = default;
+
+	IDevice* GetDevice() override;
+
+	IShaderProgram* GetShaderProgram() const override { return m_Desc.shaderProgram; }
+
+private:
+	friend class CDevice;
+
+	static std::unique_ptr<CComputePipelineState> Create(
+		CDevice* device, const SComputePipelineStateDesc& desc);
+
+	CComputePipelineState() = default;
+
+	CDevice* m_Device = nullptr;
+
+	SComputePipelineStateDesc m_Desc{};
 };
 
 } // namespace Dummy

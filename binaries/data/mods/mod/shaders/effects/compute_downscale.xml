@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<effect>
+	<technique>
+		<require shaders="glsl"/>
+		<compute shader="glsl/compute_downscale"/>
+	</technique>
+	<technique>
+		<require shaders="spirv"/>
+		<compute shader="spirv/compute_downscale"/>
+	</technique>
+</effect>

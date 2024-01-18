@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -173,6 +173,7 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 #define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
 	EL(blend);
 	EL(color);
+	EL(compute);
 	EL(cull);
 	EL(define);
 	EL(depth);
@@ -268,6 +269,17 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 	}
 
 	tech->SetSortByDistance(false);
+
+	const auto loadShaderProgramForTech = [&](const CStr& name, const CShaderDefines& defines)
+	{
+		CShaderProgramPtr shaderProgram = LoadProgram(name.c_str(), defines);
+		if (shaderProgram)
+		{
+			for (const VfsPath& shaderProgramPath : shaderProgram->GetFileDependencies())
+				AddTechniqueFileDependency(tech, shaderProgramPath);
+		}
+		return shaderProgram;
+	};
 
 	CShaderDefines techDefines = tech->GetShaderDefines();
 	XERO_ITER_EL((*usableTech), Child)
@@ -430,11 +442,9 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 
 			// Load the shader program after we've read all the possibly-relevant <define>s.
 			CShaderProgramPtr shaderProgram =
-				LoadProgram(Child.GetAttributes().GetNamedItem(at_shader).c_str(), passDefines);
+				loadShaderProgramForTech(Child.GetAttributes().GetNamedItem(at_shader), passDefines);
 			if (shaderProgram)
 			{
-				for (const VfsPath& shaderProgramPath : shaderProgram->GetFileDependencies())
-					AddTechniqueFileDependency(tech, shaderProgramPath);
 				if (tech->GetPipelineStateDescCallback())
 					tech->GetPipelineStateDescCallback()(passPipelineStateDesc);
 				passPipelineStateDesc.shaderProgram = shaderProgram->GetBackendShaderProgram();
@@ -442,9 +452,22 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 					m_Device->CreateGraphicsPipelineState(passPipelineStateDesc), shaderProgram);
 			}
 		}
+		else if (Child.GetNodeName() == el_compute)
+		{
+			CShaderProgramPtr shaderProgram =
+				loadShaderProgramForTech(Child.GetAttributes().GetNamedItem(at_shader), techDefines);
+			if (shaderProgram)
+			{
+				Renderer::Backend::SComputePipelineStateDesc computePipelineStateDesc{};
+				computePipelineStateDesc.shaderProgram = shaderProgram->GetBackendShaderProgram();
+				tech->SetComputePipelineState(
+					m_Device->CreateComputePipelineState(computePipelineStateDesc), shaderProgram);
+			}
+		}
 	}
 
-	tech->SetPasses(std::move(techPasses));
+	if (!techPasses.empty())
+		tech->SetPasses(std::move(techPasses));
 
 	return true;
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -191,6 +191,8 @@ public:
 	}
 
 	VkDescriptorSetLayout GetDescriptorSetLayout() { return m_DescriptorSetLayout; }
+
+	const std::vector<DeviceObject*>& GetBoundDeviceObjects() const { return m_BoundDeviceObjects; }
 
 private:
 	CDevice* const m_Device;

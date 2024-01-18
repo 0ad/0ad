@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -56,10 +56,11 @@ public:
 	// Sets the current effect.
 	void SetPostEffect(const CStrW& name);
 
-	// Triggers update of shaders and FBO if needed.
+	// Triggers update of shaders and framebuffers if needed.
 	void UpdateAntiAliasingTechnique();
 	void UpdateSharpeningTechnique();
 	void UpdateSharpnessFactor();
+	void SetUpscaleTechnique(const CStr& upscaleName);
 
 	void SetDepthBufferClipPlanes(float nearPlane, float farPlane);
 
@@ -91,6 +92,34 @@ private:
 	void CreateMultisampleBuffer();
 	void DestroyMultisampleBuffer();
 
+	void RecalculateSize(const uint32_t width, const uint32_t height);
+
+	bool ShouldUpscale() const;
+	bool ShouldDownscale() const;
+
+	void UpscaleTextureByCompute(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		CShaderTechnique* shaderTechnique,
+		Renderer::Backend::ITexture* source,
+		Renderer::Backend::ITexture* destination);
+	void UpscaleTextureByFullscreenQuad(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		CShaderTechnique* shaderTechnique,
+		Renderer::Backend::ITexture* source,
+		Renderer::Backend::IFramebuffer* destination);
+
+	void ApplySharpnessAfterScale(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		CShaderTechnique* shaderTechnique,
+		Renderer::Backend::ITexture* source,
+		Renderer::Backend::ITexture* destination);
+
+	void DownscaleTextureByCompute(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		CShaderTechnique* shaderTechnique,
+		Renderer::Backend::ITexture* source,
+		Renderer::Backend::ITexture* destination);
+
 	Renderer::Backend::IDevice* m_Device = nullptr;
 
 	std::unique_ptr<Renderer::Backend::IFramebuffer> m_CaptureFramebuffer;
@@ -101,6 +130,12 @@ private:
 
 	// Unique color textures for the framebuffers.
 	std::unique_ptr<Renderer::Backend::ITexture> m_ColorTex1, m_ColorTex2;
+
+	std::unique_ptr<Renderer::Backend::ITexture>
+		m_UnscaledTexture1, m_UnscaledTexture2;
+	std::unique_ptr<Renderer::Backend::IFramebuffer>
+		m_UnscaledFramebuffer1, m_UnscaledFramebuffer2;
+	float m_Scale = 1.0f;
 
 	// The framebuffers share a depth/stencil texture.
 	std::unique_ptr<Renderer::Backend::ITexture> m_DepthTex;
@@ -132,6 +167,12 @@ private:
 	CShaderTechniquePtr m_SharpTech;
 	float m_Sharpness;
 
+	CShaderTechniquePtr m_UpscaleTech;
+	CShaderTechniquePtr m_UpscaleComputeTech;
+	CShaderTechniquePtr m_DownscaleComputeTech;
+	// Sharp technique only for FSR upscale.
+	CShaderTechniquePtr m_RCASComputeTech;
+
 	CStr m_AAName;
 	CShaderTechniquePtr m_AATech;
 	bool m_UsingMultisampleBuffer;
@@ -142,7 +183,8 @@ private:
 	std::vector<uint32_t> m_AllowedSampleCounts;
 
 	// The current screen dimensions in pixels.
-	int m_Width, m_Height;
+	uint32_t m_Width, m_Height;
+	uint32_t m_UnscaledWidth, m_UnscaledHeight;
 
 	// Is the postproc manager initialized? Buffers created? Default effect loaded?
 	bool m_IsInitialized;

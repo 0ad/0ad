@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -171,6 +171,13 @@ struct SGraphicsPipelineStateDesc
 	SRasterizationStateDesc rasterizationState;
 };
 
+struct SComputePipelineStateDesc
+{
+	// It's a backend client reponsibility to keep the shader program alive
+	// while it's bound.
+	IShaderProgram* shaderProgram;
+};
+
 // We don't provide additional helpers intentionally because all custom states
 // should be described with a related shader and should be switched together.
 SGraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc();
@@ -188,6 +195,15 @@ FrontFace ParseFrontFace(const CStr& str);
  * A holder for precompiled graphics pipeline description.
  */
 class IGraphicsPipelineState : public IDeviceObject<IGraphicsPipelineState>
+{
+public:
+	virtual IShaderProgram* GetShaderProgram() const = 0;
+};
+
+/**
+ * A holder for precompiled compute pipeline description.
+ */
+class IComputePipelineState : public IDeviceObject<IComputePipelineState>
 {
 public:
 	virtual IShaderProgram* GetShaderProgram() const = 0;

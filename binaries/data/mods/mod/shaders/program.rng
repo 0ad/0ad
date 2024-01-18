@@ -43,17 +43,26 @@
                         <value>glsl</value>
                     </attribute>
 
-                    <element name="vertex">
-                        <attribute name="file"><text/></attribute>
-                        <zeroOrMore>
-                            <ref name="streamContent"/>
-                        </zeroOrMore>
-                    </element>
+                    <zeroOrMore>
+                        <element name="vertex">
+                            <attribute name="file"><text/></attribute>
+                            <zeroOrMore>
+                                <ref name="streamContent"/>
+                            </zeroOrMore>
+                        </element>
+                    </zeroOrMore>
 
-                    <element name="fragment">
-                        <attribute name="file"><text/></attribute>
-                    </element>
+                    <zeroOrMore>
+                        <element name="fragment">
+                            <attribute name="file"><text/></attribute>
+                        </element>
+                    </zeroOrMore>
 
+                    <zeroOrMore>
+                        <element name="compute">
+                            <attribute name="file"><text/></attribute>
+                        </element>
+                    </zeroOrMore>
                 </group>
             </choice>
         </element>

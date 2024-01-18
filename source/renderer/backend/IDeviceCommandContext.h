@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,6 +46,12 @@ public:
 	 * framebuffer pass and as rarely as possible.
 	 */
 	virtual void SetGraphicsPipelineState(IGraphicsPipelineState* pipelineState) = 0;
+
+	/**
+	 * Binds the graphics pipeline state. It should be called only inside a
+	 * framebuffer pass and as rarely as possible.
+	 */
+	virtual void SetComputePipelineState(IComputePipelineState* pipelineState) = 0;
 
 	// TODO: maybe we should add a more common type, like CRectI.
 	struct Rect
@@ -159,7 +165,34 @@ public:
 		const uint32_t firstIndex, const uint32_t indexCount,
 		const uint32_t start, const uint32_t end) = 0;
 
+	/**
+	 * Starts a compute pass, can't be called inside a framebuffer pass.
+	 * It should be called as rarely as possible.
+	 */
+	virtual void BeginComputePass() = 0;
+
+	/**
+	 * Finishes a compute pass.
+	 */
+	virtual void EndComputePass() = 0;
+
+	/**
+	 * Dispatches groupCountX * groupCountY * groupCountZ compute groups.
+	 */
+	virtual void Dispatch(
+		const uint32_t groupCountX,
+		const uint32_t groupCountY,
+		const uint32_t groupCountZ) = 0;
+
+	/**
+	 * Sets a read-only texture to the binding slot.
+	 */
 	virtual void SetTexture(const int32_t bindingSlot, ITexture* texture) = 0;
+
+	/**
+	 * Sets a read & write resource to the binding slot.
+	 */
+	virtual void SetStorageTexture(const int32_t bindingSlot, ITexture* texture) = 0;
 
 	virtual void SetUniform(
 		const int32_t bindingSlot,
