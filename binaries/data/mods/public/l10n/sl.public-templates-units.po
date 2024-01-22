@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: Lukas Kotnik <kotnik.lukas2000@gmail.com>, 2021\n"
+"Last-Translator: Lukas Kotnik <kotnik.lukas2000@gmail.com>, 2021,2024\n"
 "Language-Team: Slovenian (http://app.transifex.com/wildfire-games/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -171,7 +171,7 @@ msgstr "Sulica"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:28
 msgid "Cavalry Spearman"
-msgstr "Konjenik suličar"
+msgstr "Konjenik s sulico"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
@@ -202,7 +202,7 @@ msgstr "Mečevalec"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:22
 msgid "Cavalry Swordsman"
-msgstr "Konjenica z meči"
+msgstr "Konjenik z mečem"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:23
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:19
@@ -642,7 +642,7 @@ msgstr "Zažge ladjo"
 #: simulation/templates/template_unit_ship_fire.xml:19
 msgid ""
 "Unrepairable. Gradually loses health after ignition. Can only attack Ships."
-msgstr ""
+msgstr "Nepopravljivo. Počasi izgublja zdravje po vžigu. Lahko napada samo ladje."
 
 #: simulation/templates/template_unit_ship_fire.xml:20
 msgid "Fireship"
@@ -660,7 +660,7 @@ msgstr "Bojna ladja"
 
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Ignite the Fire Ship to damage nearby enemy Ships."
-msgstr ""
+msgstr "Prižgi ognjeno ladjo, da poškoduješ bližnje sovražnikove ladje."
 
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -689,7 +689,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Improve sea "
 "trading at the Market."
-msgstr ""
+msgstr "Trgovina med pristanišči. Namesti trgovca za dodatni dobiček (+20% za vsakega, ki je nameščen). Nabira dobičkonosne pomorske zaklade. Izboljša pomorsko trgovino v tržnici."
 
 #: simulation/templates/template_unit_ship_merchant.xml:21
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -705,46 +705,46 @@ msgstr "Trgovec"
 #: simulation/templates/template_unit_ship_warship.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Arrow"
-msgstr ""
+msgstr "Puščica"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:32
 msgid "Arrow Ship"
-msgstr ""
+msgstr "Lokostrelska ladja"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:33
 msgid "ArrowShip"
-msgstr ""
+msgstr "LokostrelskaLadja"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:35
 msgid "Garrison units for transport across water. Countered by Siege Ships."
-msgstr ""
+msgstr "Namesti enote za prevoz po vodi. Ranljivo proti oblegovalnim napravam."
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:6
 msgctxt "Name of an attack, usually the weapon."
 msgid "Naval Ram"
-msgstr ""
+msgstr "Pomorski Oven"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:47
 msgid "Ramming Ship"
-msgstr ""
+msgstr "Rušilna ladja"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:48
 msgid ""
 "Garrison units for transport across water. Strong against Siege Ships. "
 "Countered by Arrow Ships."
-msgstr ""
+msgstr "Namesti enote za prevoz po vodi. Močno proti oblegovalnim napravam. Ranljivo proti lokostrelskim ladjam."
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:49
 msgid "NavalRam"
-msgstr ""
+msgstr "PomorskiOven"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:23
 msgid "Scout Ship"
-msgstr ""
+msgstr "Izvidniška Ladja"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:24
 msgid "ScoutShip"
-msgstr ""
+msgstr "IzvidniškaLadja"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:26
 msgid "Scout for coastlines. Garrison units for transport across water."
@@ -759,7 +759,7 @@ msgstr "Kamen"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:59
 msgid "Siege Ship"
-msgstr ""
+msgstr "Oblegovalna Ladja"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:60
 msgid ""

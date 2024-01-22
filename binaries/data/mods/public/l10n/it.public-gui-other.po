@@ -46,7 +46,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-08 08:08+0000\n"
+"POT-Creation-Date: 2024-01-19 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Matteo Nigro, 2023-2024\n"
 "Language-Team: Italian (http://app.transifex.com/wildfire-games/0ad/language/it/)\n"
@@ -956,8 +956,8 @@ msgstr "Fuoco Amico : %(enabled)s"
 #: gui/common/tooltips.js:409 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:53 gui/options/options.js:188
-#: gui/options/options.js:362 gui/options/options.js:427
-#: gui/options/options.js:452 gui/pregame/MainMenuItems.js:282
+#: gui/options/options.js:366 gui/options/options.js:431
+#: gui/options/options.js:456 gui/pregame/MainMenuItems.js:282
 #: gui/pregame/MainMenuItems.js:306 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "Sì"
@@ -965,8 +965,8 @@ msgstr "Sì"
 #: gui/common/tooltips.js:409 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:53 gui/options/options.js:188
-#: gui/options/options.js:362 gui/options/options.js:427
-#: gui/options/options.js:452 gui/pregame/MainMenuItems.js:282
+#: gui/options/options.js:366 gui/options/options.js:431
+#: gui/options/options.js:456 gui/pregame/MainMenuItems.js:282
 #: gui/pregame/MainMenuItems.js:306 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "No"
@@ -3609,8 +3609,8 @@ msgid "Do you still want to proceed?"
 msgstr "Vuoi comunque procedere?"
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:187
-#: gui/options/options.js:361 gui/options/options.js:426
-#: gui/options/options.js:451
+#: gui/options/options.js:365 gui/options/options.js:430
+#: gui/options/options.js:455
 msgid "Warning"
 msgstr "Attenzione"
 
@@ -3946,17 +3946,17 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Valore: %(val)s (min: %(min)s, max: %(max)s)"
 
-#: gui/options/options.js:360
+#: gui/options/options.js:364
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Resettare le opzioni cancellerà le tue impostazioni salvate. Vuoi continuare ?"
 
-#: gui/options/options.js:425
+#: gui/options/options.js:429
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr "Alcune impostazioni non sono valide! Vuoi davvero salvarle?"
 
-#: gui/options/options.js:450
+#: gui/options/options.js:454
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Hai cambiamenti non salvati, vuoi chiudere questa finestra ?"
 
@@ -4091,29 +4091,52 @@ msgid "Start 0 A.D. in a window."
 msgstr "Avvia 0 A.D. in una finestra."
 
 #: gui/options/options.json[1].options[10].label
+msgid "FPS throttling in games"
+msgstr "FPS throttling in gioco"
+
+#: gui/options/options.json[1].options[10].tooltip
+msgid ""
+"To save CPU workload, throttle render frequency in running games. Set to "
+"maximum to disable throttling."
+msgstr "Per risparmiare il carico di lavoro della CPU, abbassa la frequenza di renderizzazione in gioco. Impostare al massimo per disattivare."
+
+#: gui/options/options.json[1].options[11].label
+#: gui/options/options.json[1].options[11].tooltip
+msgid "GUI scale"
+msgstr "Ingrandimento dell'interfaccia grafica"
+
+#: gui/options/options.json[1].options[11].list[6].label
+msgid "225%"
+msgstr "225%"
+
+#: gui/options/options.json[1].options[11].list[7].label
+msgid "250%"
+msgstr "250%"
+
+#: gui/options/options.json[1].options[12].label
 msgid "Mouse drag"
 msgstr "Trascinamento del mouse"
 
-#: gui/options/options.json[1].options[10].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid ""
 "Number of pixels the mouse can move before the action is considered a drag."
 msgstr "Numero di pixel che il mouse può muovere prima che l'azione sia considerata un trascinamento."
 
-#: gui/options/options.json[1].options[11].label
+#: gui/options/options.json[1].options[13].label
 msgid "Mouse grab in fullscreen"
 msgstr "Afferrare il mouse se a schermo intero"
 
-#: gui/options/options.json[1].options[11].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid ""
 "Constrain mouse in the fullscreen mode to the window boundaries. It's used "
 "to avoid mouse going out of a display in case of multiple displays."
 msgstr "Vincola il mouse in modalità a schermo intero ai confini della finestra. Viene utilizzato per evitare che il mouse esca da uno schermo in caso di schermi multipli."
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[14].label
 msgid "Mouse grab in window mode"
 msgstr "Afferrare il mouse in modalità finestra"
 
-#: gui/options/options.json[1].options[12].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid "Constrain mouse in the window mode to the window boundaries."
 msgstr "Vincola il mouse in modalità finestra ai confini della finestra."
 
@@ -4138,95 +4161,133 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr "Usa filtri di post-elaborazione dello spazio dello schermo (HDR, Bloom, DOF, etc)."
 
 #: gui/options/options.json[1].options[3].label
+msgid "Resolution scale"
+msgstr "Scala di risoluzione"
+
+#: gui/options/options.json[1].options[3].list[0].label
+msgid "50%"
+msgstr "50%"
+
+#: gui/options/options.json[1].options[11].list[0].label
+#: gui/options/options.json[1].options[3].list[1].label
+msgid "75%"
+msgstr "75%"
+
+#: gui/options/options.json[1].options[3].list[2].label
+msgid "87.5%"
+msgstr "87.5%"
+
+#: gui/options/options.json[1].options[11].list[1].label
+#: gui/options/options.json[1].options[3].list[3].label
+msgid "100%"
+msgstr "100%"
+
+#: gui/options/options.json[1].options[11].list[2].label
+#: gui/options/options.json[1].options[3].list[4].label
+msgid "125%"
+msgstr "125%"
+
+#: gui/options/options.json[1].options[11].list[3].label
+#: gui/options/options.json[1].options[3].list[5].label
+msgid "150%"
+msgstr "150%"
+
+#: gui/options/options.json[1].options[11].list[4].label
+#: gui/options/options.json[1].options[3].list[6].label
+msgid "175%"
+msgstr "175%"
+
+#: gui/options/options.json[1].options[11].list[5].label
+#: gui/options/options.json[1].options[3].list[7].label
+msgid "200%"
+msgstr "200%"
+
+#: gui/options/options.json[1].options[3].tooltip
+msgid ""
+"A smaller scale makes rendering faster but produces a more blurry picture, a"
+" large scale makes rendering slower but produces a better picture."
+msgstr "Una scala più piccola rende il rendering più veloce ma produce un'immagine più sfocata, una scala più grande rende il rendering più lento ma produce un'immagine migliore."
+
+#: gui/options/options.json[1].options[4].label
+msgid "Upscale technique"
+msgstr "Tecnica dell'Upscale"
+
+#: gui/options/options.json[1].options[4].list[0].label
+msgid "FidelityFX Super Resolution 1.0"
+msgstr "FidelityFX Super Resolution 1.0"
+
+#: gui/options/options.json[1].options[4].list[0].tooltip
+msgid ""
+"Advanced upscale technique. For better results, use FSR with antialiasing "
+"enabled. Using it with the OpenGL backend may have some issues, consider "
+"using Vulkan backend instead."
+msgstr "Tecnica avanzata di Upscale. Per ottenere risultati migliori, utilizzare FSR con l'antialiasing abilitato. L'utilizzo con il backend OpenGL può presentare alcuni problemi; considerare invece l'utilizzo del backend Vulkan."
+
+#: gui/options/options.json[1].options[4].list[1].label
+msgid "Bilinear"
+msgstr "Bilineare"
+
+#: gui/options/options.json[1].options[4].list[1].tooltip
+msgid ""
+"Bilinear upscale technique. Produces a slightly blurry picture depending on "
+"the scale."
+msgstr "Tecnica di upscale bilineare. Produce un'immagine leggermente sfocata, a seconda della scala."
+
+#: gui/options/options.json[1].options[4].list[2].label
+msgid "Pixelated"
+msgstr "Pixelato"
+
+#: gui/options/options.json[1].options[4].list[2].tooltip
+msgid "Simplest upscale technique. Used mostly for stylized effect."
+msgstr "La tecnica più semplice per l'upscaling. Utilizzata principalmente per effetti stilizzati."
+
+#: gui/options/options.json[1].options[4].tooltip
+msgid "Technique defines performance and quality of upscaling process."
+msgstr "La tecnica definisce la performance e la qualità del processo di upscaling."
+
+#: gui/options/options.json[1].options[5].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][9].label
 msgid "Shadows"
 msgstr "Ombre"
 
-#: gui/options/options.json[1].options[3].tooltip
+#: gui/options/options.json[1].options[5].tooltip
 #: gui/options/options.json[2].options[6].list[0][7].list[0][9].tooltip
 msgid "Enable shadows."
 msgstr "Abilita le ombre."
 
-#: gui/options/options.json[1].options[4].label
+#: gui/options/options.json[1].options[6].label
 msgid "Unit silhouettes"
 msgstr "Silhouette unità"
 
-#: gui/options/options.json[1].options[4].tooltip
+#: gui/options/options.json[1].options[6].tooltip
 msgid "Show outlines of units behind structures."
 msgstr "Mostra i contorni delle unità dietro le strutture."
 
-#: gui/options/options.json[1].options[5].label
+#: gui/options/options.json[1].options[7].label
 msgid "Particles"
 msgstr "Particelle"
 
-#: gui/options/options.json[1].options[5].tooltip
+#: gui/options/options.json[1].options[7].tooltip
 msgid "Enable particles."
 msgstr "Abilita effetti particellari."
 
-#: gui/options/options.json[1].options[6].label
+#: gui/options/options.json[1].options[8].label
 msgid "VSync"
 msgstr "Sincronia Verticale"
 
-#: gui/options/options.json[1].options[6].tooltip
+#: gui/options/options.json[1].options[8].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Mantiene la sincronia verticale per evitare sfarfallii. RICHIEDE IL RIAVVIO DEL GIOCO"
 
-#: gui/options/options.json[1].options[7].label
+#: gui/options/options.json[1].options[9].label
 msgid "FPS throttling in menus"
 msgstr "FPS throttling nei menu"
 
-#: gui/options/options.json[1].options[7].tooltip
+#: gui/options/options.json[1].options[9].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "Per risparmiare il carico di lavoro della CPU, abbassa la frequenza di renderizzazione in tutti i menu. Impostare al massimo per disattivare."
-
-#: gui/options/options.json[1].options[8].label
-msgid "FPS throttling in games"
-msgstr "FPS throttling in gioco"
-
-#: gui/options/options.json[1].options[8].tooltip
-msgid ""
-"To save CPU workload, throttle render frequency in running games. Set to "
-"maximum to disable throttling."
-msgstr "Per risparmiare il carico di lavoro della CPU, abbassa la frequenza di renderizzazione in gioco. Impostare al massimo per disattivare."
-
-#: gui/options/options.json[1].options[9].label
-#: gui/options/options.json[1].options[9].tooltip
-msgid "GUI scale"
-msgstr "Ingrandimento dell'interfaccia grafica"
-
-#: gui/options/options.json[1].options[9].list[0].label
-msgid "75%"
-msgstr "75%"
-
-#: gui/options/options.json[1].options[9].list[1].label
-msgid "100%"
-msgstr "100%"
-
-#: gui/options/options.json[1].options[9].list[2].label
-msgid "125%"
-msgstr "125%"
-
-#: gui/options/options.json[1].options[9].list[3].label
-msgid "150%"
-msgstr "150%"
-
-#: gui/options/options.json[1].options[9].list[4].label
-msgid "175%"
-msgstr "175%"
-
-#: gui/options/options.json[1].options[9].list[5].label
-msgid "200%"
-msgstr "200%"
-
-#: gui/options/options.json[1].options[9].list[6].label
-msgid "225%"
-msgstr "225%"
-
-#: gui/options/options.json[1].options[9].list[7].label
-msgid "250%"
-msgstr "250%"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
