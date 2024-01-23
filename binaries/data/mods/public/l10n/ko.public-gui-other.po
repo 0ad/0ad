@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-08 08:08+0000\n"
+"POT-Creation-Date: 2024-01-19 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -912,8 +912,8 @@ msgstr "아군의 포격: %(enabled)s"
 #: gui/common/tooltips.js:409 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:53 gui/options/options.js:188
-#: gui/options/options.js:362 gui/options/options.js:427
-#: gui/options/options.js:452 gui/pregame/MainMenuItems.js:282
+#: gui/options/options.js:366 gui/options/options.js:431
+#: gui/options/options.js:456 gui/pregame/MainMenuItems.js:282
 #: gui/pregame/MainMenuItems.js:306 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "예"
@@ -921,8 +921,8 @@ msgstr "예"
 #: gui/common/tooltips.js:409 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:53 gui/options/options.js:188
-#: gui/options/options.js:362 gui/options/options.js:427
-#: gui/options/options.js:452 gui/pregame/MainMenuItems.js:282
+#: gui/options/options.js:366 gui/options/options.js:431
+#: gui/options/options.js:456 gui/pregame/MainMenuItems.js:282
 #: gui/pregame/MainMenuItems.js:306 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "아니오"
@@ -3553,8 +3553,8 @@ msgid "Do you still want to proceed?"
 msgstr "계속 진행하시겠습니까?"
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:187
-#: gui/options/options.js:361 gui/options/options.js:426
-#: gui/options/options.js:451
+#: gui/options/options.js:365 gui/options/options.js:430
+#: gui/options/options.js:455
 msgid "Warning"
 msgstr "경고"
 
@@ -3890,17 +3890,17 @@ msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "값: %(val)s (최소: %(min)s, 최대: %(max)s)"
 
-#: gui/options/options.js:360
+#: gui/options/options.js:364
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "옵션을 재설정하면 저장된 설정이 지워집니다. 계속하시겠습니까?"
 
-#: gui/options/options.js:425
+#: gui/options/options.js:429
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr "일부 설정 값은 유효하지 않습니다! 저장하시겠습니까?"
 
-#: gui/options/options.js:450
+#: gui/options/options.js:454
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "바뀐 내용을 저장하지 않으셨습니다. 이 창을 닫으시겠습니까?"
 
@@ -4035,29 +4035,52 @@ msgid "Start 0 A.D. in a window."
 msgstr "0 A.D.를 창 모드로 시작합니다."
 
 #: gui/options/options.json[1].options[10].label
+msgid "FPS throttling in games"
+msgstr "게임에서 FPS 조절"
+
+#: gui/options/options.json[1].options[10].tooltip
+msgid ""
+"To save CPU workload, throttle render frequency in running games. Set to "
+"maximum to disable throttling."
+msgstr "CPU 작업량을 줄이려면 실행중인 게임에서 렌더링 빈도를 조절합니다. 조절을 사용하지 않으려면 최대 값으로 설정합니다."
+
+#: gui/options/options.json[1].options[11].label
+#: gui/options/options.json[1].options[11].tooltip
+msgid "GUI scale"
+msgstr "GUI 스케일"
+
+#: gui/options/options.json[1].options[11].list[6].label
+msgid "225%"
+msgstr "225%"
+
+#: gui/options/options.json[1].options[11].list[7].label
+msgid "250%"
+msgstr "250%"
+
+#: gui/options/options.json[1].options[12].label
 msgid "Mouse drag"
 msgstr "마우스 드래그"
 
-#: gui/options/options.json[1].options[10].tooltip
+#: gui/options/options.json[1].options[12].tooltip
 msgid ""
 "Number of pixels the mouse can move before the action is considered a drag."
 msgstr "동작이 드래그로 간주되기 전에 마우스가 이동할 수 있는 픽셀 수입니다."
 
-#: gui/options/options.json[1].options[11].label
+#: gui/options/options.json[1].options[13].label
 msgid "Mouse grab in fullscreen"
 msgstr "전체 화면에서 마우스 가두기"
 
-#: gui/options/options.json[1].options[11].tooltip
+#: gui/options/options.json[1].options[13].tooltip
 msgid ""
 "Constrain mouse in the fullscreen mode to the window boundaries. It's used "
 "to avoid mouse going out of a display in case of multiple displays."
 msgstr "전체 화면 모드에서 마우스를 창 경계로 제한합니다. 다중 디스플레이의 경우 마우스가 디스플레이 밖으로 나가는 것을 방지하기 위해 사용됩니다."
 
-#: gui/options/options.json[1].options[12].label
+#: gui/options/options.json[1].options[14].label
 msgid "Mouse grab in window mode"
 msgstr "창 모드에서 마우스 가두기"
 
-#: gui/options/options.json[1].options[12].tooltip
+#: gui/options/options.json[1].options[14].tooltip
 msgid "Constrain mouse in the window mode to the window boundaries."
 msgstr "창 모드에서 마우스를 창 경계로 제한합니다."
 
@@ -4082,95 +4105,133 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr "화면 공간 후처리 필터(HDR, 꽃핌현상, DOF 등)를 사용합니다."
 
 #: gui/options/options.json[1].options[3].label
+msgid "Resolution scale"
+msgstr ""
+
+#: gui/options/options.json[1].options[3].list[0].label
+msgid "50%"
+msgstr ""
+
+#: gui/options/options.json[1].options[11].list[0].label
+#: gui/options/options.json[1].options[3].list[1].label
+msgid "75%"
+msgstr "75%"
+
+#: gui/options/options.json[1].options[3].list[2].label
+msgid "87.5%"
+msgstr ""
+
+#: gui/options/options.json[1].options[11].list[1].label
+#: gui/options/options.json[1].options[3].list[3].label
+msgid "100%"
+msgstr "100%"
+
+#: gui/options/options.json[1].options[11].list[2].label
+#: gui/options/options.json[1].options[3].list[4].label
+msgid "125%"
+msgstr "125%"
+
+#: gui/options/options.json[1].options[11].list[3].label
+#: gui/options/options.json[1].options[3].list[5].label
+msgid "150%"
+msgstr "150%"
+
+#: gui/options/options.json[1].options[11].list[4].label
+#: gui/options/options.json[1].options[3].list[6].label
+msgid "175%"
+msgstr "175%"
+
+#: gui/options/options.json[1].options[11].list[5].label
+#: gui/options/options.json[1].options[3].list[7].label
+msgid "200%"
+msgstr "200%"
+
+#: gui/options/options.json[1].options[3].tooltip
+msgid ""
+"A smaller scale makes rendering faster but produces a more blurry picture, a"
+" large scale makes rendering slower but produces a better picture."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].label
+msgid "Upscale technique"
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[0].label
+msgid "FidelityFX Super Resolution 1.0"
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[0].tooltip
+msgid ""
+"Advanced upscale technique. For better results, use FSR with antialiasing "
+"enabled. Using it with the OpenGL backend may have some issues, consider "
+"using Vulkan backend instead."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[1].label
+msgid "Bilinear"
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[1].tooltip
+msgid ""
+"Bilinear upscale technique. Produces a slightly blurry picture depending on "
+"the scale."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[2].label
+msgid "Pixelated"
+msgstr ""
+
+#: gui/options/options.json[1].options[4].list[2].tooltip
+msgid "Simplest upscale technique. Used mostly for stylized effect."
+msgstr ""
+
+#: gui/options/options.json[1].options[4].tooltip
+msgid "Technique defines performance and quality of upscaling process."
+msgstr ""
+
+#: gui/options/options.json[1].options[5].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][9].label
 msgid "Shadows"
 msgstr "그림자"
 
-#: gui/options/options.json[1].options[3].tooltip
+#: gui/options/options.json[1].options[5].tooltip
 #: gui/options/options.json[2].options[6].list[0][7].list[0][9].tooltip
 msgid "Enable shadows."
 msgstr "그림자 활성화."
 
-#: gui/options/options.json[1].options[4].label
+#: gui/options/options.json[1].options[6].label
 msgid "Unit silhouettes"
 msgstr "유닛 윤곽"
 
-#: gui/options/options.json[1].options[4].tooltip
+#: gui/options/options.json[1].options[6].tooltip
 msgid "Show outlines of units behind structures."
 msgstr "건축물들 뒤에 유닛 윤곽을 표시합니다."
 
-#: gui/options/options.json[1].options[5].label
+#: gui/options/options.json[1].options[7].label
 msgid "Particles"
 msgstr "입자"
 
-#: gui/options/options.json[1].options[5].tooltip
+#: gui/options/options.json[1].options[7].tooltip
 msgid "Enable particles."
 msgstr "입자 활성화."
 
-#: gui/options/options.json[1].options[6].label
+#: gui/options/options.json[1].options[8].label
 msgid "VSync"
 msgstr "수직 동기화"
 
-#: gui/options/options.json[1].options[6].tooltip
+#: gui/options/options.json[1].options[8].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "수직 동기화를 실행하여 화면 찢김 문제를 해결합니다. 게임을 다시 시작해야합니다"
 
-#: gui/options/options.json[1].options[7].label
+#: gui/options/options.json[1].options[9].label
 msgid "FPS throttling in menus"
 msgstr "메뉴에서 FPS 조절"
 
-#: gui/options/options.json[1].options[7].tooltip
+#: gui/options/options.json[1].options[9].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
 msgstr "CPU 작업량을 절약하려면 모든 메뉴에서 렌더링 빈도를 조절합니다. 조절을 사용하지 않으려면 최대 값으로 설정합니다."
-
-#: gui/options/options.json[1].options[8].label
-msgid "FPS throttling in games"
-msgstr "게임에서 FPS 조절"
-
-#: gui/options/options.json[1].options[8].tooltip
-msgid ""
-"To save CPU workload, throttle render frequency in running games. Set to "
-"maximum to disable throttling."
-msgstr "CPU 작업량을 줄이려면 실행중인 게임에서 렌더링 빈도를 조절합니다. 조절을 사용하지 않으려면 최대 값으로 설정합니다."
-
-#: gui/options/options.json[1].options[9].label
-#: gui/options/options.json[1].options[9].tooltip
-msgid "GUI scale"
-msgstr "GUI 스케일"
-
-#: gui/options/options.json[1].options[9].list[0].label
-msgid "75%"
-msgstr "75%"
-
-#: gui/options/options.json[1].options[9].list[1].label
-msgid "100%"
-msgstr "100%"
-
-#: gui/options/options.json[1].options[9].list[2].label
-msgid "125%"
-msgstr "125%"
-
-#: gui/options/options.json[1].options[9].list[3].label
-msgid "150%"
-msgstr "150%"
-
-#: gui/options/options.json[1].options[9].list[4].label
-msgid "175%"
-msgstr "175%"
-
-#: gui/options/options.json[1].options[9].list[5].label
-msgid "200%"
-msgstr "200%"
-
-#: gui/options/options.json[1].options[9].list[6].label
-msgid "225%"
-msgstr "225%"
-
-#: gui/options/options.json[1].options[9].list[7].label
-msgid "250%"
-msgstr "250%"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."

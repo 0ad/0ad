@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Iliya Iliev
 # Ivailo Monev
 # Yordan Grigorov (yoreei)
 # Любомир Василев
@@ -14,7 +15,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: Любомир Василев, 2023\n"
+"Last-Translator: Iliya Iliev, 2024\n"
 "Language-Team: Bulgarian (http://app.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -360,7 +361,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n"
 "\n"
 "A great flood moves across the valley. At some point you have to evacuate your units and use ships to reach the mainland and the other players."
-msgstr ""
+msgstr "[color=\"red\"]ВАЖНА ЗАБЕЛЕЖКА: ИГРАЧИТЕ С ИИ НЕ РАБОТЯТ С НАДАВАЩА СЕ ВОДА[/color]\n\nГолямо наводнение преминава през долината. В един момент трябва да евакуирате своите единици и да използвате кораби, за да достигнете до континента и до другите играчи."
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
@@ -368,35 +369,35 @@ msgstr "Наводнение"
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Description
 msgid "The water rises. The homeislands will become uninhabitable."
-msgstr ""
+msgstr "Водата се покачва. Родните острови ще станат необитаеми."
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Name
 msgid "Rising"
-msgstr ""
+msgstr "Покачване"
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Description
 msgid ""
 "The water doesn't rise. Ships and troops can battle in chest deep waters."
-msgstr ""
+msgstr "Водата не се покачва. Корабите и войските могат да се бият в дълбоки до гърдите води."
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Name
 msgid "Shallow"
-msgstr ""
+msgstr "Плитко"
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Description
 msgid ""
 "The water doesn't rise. You have to use ships to travel to the mainland."
-msgstr ""
+msgstr "Водата не се покачва. Трябва да използвате кораби, за да пътувате до континента."
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Name
 msgid "Deep"
-msgstr ""
+msgstr "Дълбоко"
 
 #: maps/random/flood_triggers.js:11
 msgid ""
 "The flood continues. Soon the waters will swallow the land. You should "
 "evacuate the units."
-msgstr ""
+msgstr "Наводнението продължава. Скоро водите ще погълнат земята. Трябва да евакуирате единиците."
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -1320,11 +1321,11 @@ msgstr "Диво езеро"
 
 #: maps/scenarios/Ship Combat Demo.xml:Description:39
 msgid "Ship Combat Demo."
-msgstr ""
+msgstr "Демонстрация на корабни битки."
 
 #: maps/scenarios/Ship Combat Demo.xml:Name:39
 msgid "Ship Combat Demo"
-msgstr ""
+msgstr "Демонстрация на корабни битки"
 
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
@@ -2684,11 +2685,11 @@ msgstr "Карта в стил „малък остров“, разположе
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2 players)"
-msgstr ""
+msgstr "Цикладски архипелаг (2-ма играчи)"
 
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
 msgid "Cycladic Archipelago (3 players)"
-msgstr ""
+msgstr "Цикладски архипелаг (3-ма играчи)"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""
@@ -2896,11 +2897,11 @@ msgid ""
 "This is the Ithmus at Corinth in Greece. The land is rich in raw resources and treasure, and the seas on either side of the isthmus are stocked with fish. Mercenary Camps can be found as well as large Metal Mine deposits.\n"
 "\n"
 "Watch out for pirate ships and brigands, though, as war-torn Greece is not without its share of dangers. And the enemy, marshalling their forces across the isthmus on the opposing landmass, will be looking for opportunities to invade your lands and take the strategic Corinthian Isthmus for themselves!"
-msgstr ""
+msgstr "провлак\nсъществително\nтясна ивица земя с море от двете страни, образуваща връзка между две по-големи площи земя.\n\nТова е провлакът в Коринт в Гърция. Земята е богата на суровини и съкровища, а моретата от двете страни на провлака са заредени с риба. Могат да бъдат намерени наемнически лагери, както и големи находища на метални мини.\n\nВнимавайте обаче за пиратски кораби и разбойници, тъй като разкъсваната от война Гърция не е лишена от опасности. И врагът, насочвайки силите си през провлака на противниковата суша, ще търси възможности да нахлуе във вашите земи и да превземе стратегическия Коринтски провлак за себе си!"
 
 #: maps/skirmishes/isthmus_of_corinth_2p.xml:Name:39
 msgid "Isthmus of Corinth (2)"
-msgstr ""
+msgstr "Коринтски провлак (2)"
 
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
@@ -3282,11 +3283,11 @@ msgid ""
 "As with all Savanna maps, huntable animals foragable plants are abundant, but there are no farmlands on the entire map, so farming is difficult.\n"
 "\n"
 "Wood is scattered, but comes in high-yield Baobab trees. The watering holes give life to clusters of trees and life to dangerous fauna, such as crocodiles and elephants."
-msgstr ""
+msgstr "Малка карта на Савана с 4 водопоя.\n\nКакто при всички карти на Савана, има изобилие от животни, годни за лов и фуражни растения, но на цялата карта няма земеделски земи, така че земеделието е трудно.\n\nДървото е разпръснато, но идва от баобабови дървета с висок добив. Водопоите дават живот на групи от дървета и живот на опасна фауна, като крокодили и слонове."
 
 #: maps/skirmishes/watering_holes_4p.xml:Name:39
 msgid "Watering Holes (4 players)"
-msgstr ""
+msgstr "Водопои (4-ма играчи)"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:Description:39
 msgid ""

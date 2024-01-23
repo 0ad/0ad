@@ -5,6 +5,7 @@
 # Translators:
 # Daniel Ignatov
 # Georgi Georgiev (Жоро)
+# Iliya Iliev
 # iron4o
 # Ivailo Monev
 # Yordan Grigorov (yoreei)
@@ -16,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-10-16 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
-"Last-Translator: Любомир Василев, 2020,2023\n"
+"Last-Translator: Iliya Iliev, 2024\n"
 "Language-Team: Bulgarian (http://app.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -549,7 +550,7 @@ msgstr "Включване на изкривяването на времето"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr ""
+msgstr "Активирайте теста за повторно присъединяване"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:248
 msgid "Promote selected units"
@@ -573,19 +574,19 @@ msgstr "Показване на отсечената пирамида на се�
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:22
 msgid "Render Debug Mode Disabled"
-msgstr ""
+msgstr "Изобразяване в режим на отстраняване на грешки - Забранено"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:23
 msgid "Render Debug Mode AO"
-msgstr ""
+msgstr "Изобразяване в режим на отстраняване на грешки - АО"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:24
 msgid "Render Debug Mode Alpha"
-msgstr ""
+msgstr "Изобразяване в режим на отстраняване на грешки - Алфа"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:25
 msgid "Render Debug Mode Custom"
-msgstr ""
+msgstr "Изобразяване в режим на отстраняване на грешки - Специфично"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -913,11 +914,11 @@ msgstr "Намиране на бездействащ работник\nБрой 
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr ""
+msgstr "%(secondaryName)s— В пакет"
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr ""
+msgstr "Пакетиран"
 
 #: gui/session/chat/ChatAddressees.js:79 gui/session/selection_details.js:78
 #, javascript-format
@@ -1054,31 +1055,31 @@ msgstr "Тревога!"
 
 #: gui/session/selection_panels.js:67
 msgid "Alert nearby Female Citizens to seek refuge."
-msgstr ""
+msgstr "Предупреждение на близките гражданки да потърсят убежище."
 
 #: gui/session/selection_panels.js:69
 msgid "Alert nearby Traders to seek refuge."
-msgstr ""
+msgstr "Предупреждение на търговците наблизо да потърсят убежище."
 
 #: gui/session/selection_panels.js:71
 msgid "Alert nearby vulnerable units to seek refuge."
-msgstr ""
+msgstr "Предупреждение на близките уязвими единици да потърсят убежище."
 
 #: gui/session/selection_panels.js:75
 msgid "End the alert."
-msgstr ""
+msgstr "Край на предупреждението."
 
 #: gui/session/selection_panels.js:77
 msgid "Unload nearby Female Citizens."
-msgstr ""
+msgstr "Разтоварване на близките гражданки."
 
 #: gui/session/selection_panels.js:79
 msgid "Unload nearby Traders."
-msgstr ""
+msgstr "Разтоварване на близките търговци."
 
 #: gui/session/selection_panels.js:81
 msgid "Unload nearby vulnerable units."
-msgstr ""
+msgstr "Разтоварване на близките уязвими единици."
 
 #: gui/session/selection_panels.js:291
 msgid "Default formation is disabled."
