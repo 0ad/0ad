@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,26 +30,6 @@ CFsmEvent::~CFsmEvent()
 	m_Param = nullptr;
 }
 
-CFsmTransition::CFsmTransition(const unsigned int state, const CallbackFunction action)
-	: m_CurrState{state},
-	m_Action{action}
-{}
-
-void CFsmTransition::SetEventType(const unsigned int eventType)
-{
-	m_EventType = eventType;
-}
-
-void CFsmTransition::SetNextState(unsigned int nextState)
-{
-	m_NextState = nextState;
-}
-
-bool CFsmTransition::RunAction(CFsmEvent& event) const
-{
-	return !m_Action.pFunction || m_Action.pFunction(m_Action.pContext, &event);
-}
-
 CFsm::CFsm()
 {
 	m_Done = false;
@@ -70,11 +50,6 @@ void CFsm::Setup()
 
 void CFsm::Shutdown()
 {
-	// Release transitions
-	TransitionList::iterator itTransition = m_Transitions.begin();
-	for (; itTransition < m_Transitions.end(); ++itTransition)
-		delete *itTransition;
-
 	m_States.clear();
 	m_Transitions.clear();
 
@@ -89,7 +64,7 @@ void CFsm::AddState(unsigned int state)
 	m_States.insert(state);
 }
 
-CFsmTransition* CFsm::AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
+void CFsm::AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
 	Action* pAction /* = nullptr */, void* pContext /* = nullptr*/)
 {
 	// Make sure we store the current state
@@ -98,38 +73,7 @@ CFsmTransition* CFsm::AddTransition(unsigned int state, unsigned int eventType, 
 	// Make sure we store the next state
 	AddState(nextState);
 
-	// Create new transition
-	CFsmTransition* pNewTransition = new CFsmTransition(state, {pAction, pContext});
-
-	// Setup new transition
-	pNewTransition->SetEventType(eventType);
-	pNewTransition->SetNextState(nextState);
-
-	// Store new transition
-	m_Transitions.push_back(pNewTransition);
-
-	return pNewTransition;
-}
-
-CFsmTransition* CFsm::GetTransition(unsigned int state, unsigned int eventType) const
-{
-	if (!IsValidState(state))
-		return nullptr;
-
-	TransitionList::const_iterator it = m_Transitions.begin();
-	for (; it != m_Transitions.end(); ++it)
-	{
-		CFsmTransition* pCurrTransition = *it;
-		if (!pCurrTransition)
-			continue;
-
-		// Is it our transition?
-		if (pCurrTransition->GetCurrState() == state && pCurrTransition->GetEventType() == eventType)
-			return pCurrTransition;
-	}
-
-	// No transition found
-	return nullptr;
+	m_Transitions.insert({TransitionKey{state, eventType}, Transition{{pAction, pContext}, nextState}});
 }
 
 void CFsm::SetFirstState(unsigned int firstState)
@@ -152,18 +96,21 @@ bool CFsm::Update(unsigned int eventType, void* pEventParam)
 	if (IsFirstTime())
 		m_CurrState = m_FirstState;
 
+	if (!IsValidState(m_CurrState))
+		return false;
+
 	// Lookup transition
-	CFsmTransition* pTransition = GetTransition(m_CurrState, eventType);
-	if (!pTransition)
+	auto transitionIterator = m_Transitions.find({m_CurrState, eventType});
+	if (transitionIterator == m_Transitions.end())
 		return false;
 
 	CFsmEvent event{eventType, pEventParam};
 
 	// Save the default state transition (actions might call SetNextState
 	// to override this)
-	SetNextState(pTransition->GetNextState());
+	SetNextState(transitionIterator->second.nextState);
 
-	if (!pTransition->RunAction(event))
+	if (!transitionIterator->second.action(event))
 		return false;
 
 	SetCurrState(GetNextState());

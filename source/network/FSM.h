@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,13 +20,12 @@
 
 #include <limits>
 #include <set>
-#include <vector>
+#include <unordered_map>
 
 
 constexpr unsigned int FSM_INVALID_STATE{std::numeric_limits<unsigned int>::max()};
 
 class CFsmEvent;
-class CFsmTransition;
 class CFsm;
 
 using Action = bool(void* pContext, CFsmEvent* pEvent);
@@ -35,10 +34,14 @@ struct CallbackFunction
 {
 	Action* pFunction{nullptr};
 	void* pContext{nullptr};
+
+	bool operator()(CFsmEvent& event) const
+	{
+		return !pFunction || pFunction(pContext, &event);
+	}
 };
 
 using StateSet = std::set<unsigned int>;
-using TransitionList = std::vector<CFsmTransition*>;
 
 /**
  * Represents a signal in the state machine that a change has occurred.
@@ -66,61 +69,6 @@ public:
 private:
 	unsigned int m_Type; // Event type
 	void* m_Param; // Event paramater
-};
-
-
-/**
- * An association of event, action and next state.
- */
-class CFsmTransition
-{
-	NONCOPYABLE(CFsmTransition);
-public:
-	/**
-	 * @param action Object executed upon transition.
-	 */
-	CFsmTransition(const unsigned int state, const CallbackFunction action);
-
-	/**
-	 * Set event for which transition will occur.
-	 */
-	void SetEventType(const unsigned int eventType);
-	unsigned int GetEventType() const
-	{
-		return m_EventType;
-	}
-
-	/**
-	 * Set next state the transition will switch the system to.
-	 */
-	void SetNextState(unsigned int nextState);
-	unsigned int GetNextState() const
-	{
-		return m_NextState;
-	}
-
-	unsigned int GetCurrState() const
-	{
-		return m_CurrState;
-	}
-
-	CallbackFunction GetAction() const
-	{
-		return m_Action;
-	}
-
-	/**
-	 * Executes action for the transition.
-	 * @note If there are no action, assume true.
-	 * @return whether the action returned true.
-	 */
-	bool RunAction(CFsmEvent& event) const;
-
-private:
-	unsigned int m_CurrState;
-	unsigned int m_NextState;
-	unsigned int m_EventType;
-	CallbackFunction m_Action;
 };
 
 /**
@@ -161,16 +109,9 @@ public:
 
 	/**
 	 * Adds a new transistion to the state machine.
-	 * @return a pointer to the new transition.
 	 */
-	CFsmTransition* AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
+	void AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
 		Action* pAction = nullptr, void* pContext = nullptr);
-
-	/**
-	 * Looks up the transition given the state, event and next state to transition to.
-	 */
-	CFsmTransition* GetTransition(unsigned int state, unsigned int eventType) const;
-	CFsmTransition* GetEventTransition (unsigned int eventType) const;
 
 	/**
 	 * Sets the initial state for FSM.
@@ -201,11 +142,6 @@ public:
 		return m_States;
 	}
 
-	const TransitionList& GetTransitions() const
-	{
-		return m_Transitions;
-	}
-
 	/**
 	 * Updates the FSM and retrieves next state.
 	 * @return whether the state was changed.
@@ -224,6 +160,37 @@ public:
 	virtual bool IsDone() const;
 
 private:
+	struct TransitionKey
+	{
+		using UnderlyingType = unsigned int;
+		UnderlyingType state;
+		UnderlyingType eventType;
+
+		struct Hash
+		{
+			size_t operator()(const TransitionKey& key) const noexcept
+			{
+				static_assert(sizeof(UnderlyingType) <= sizeof(size_t) / 2);
+				return (static_cast<size_t>(key.state) <<
+					((sizeof(size_t) / 2) * std::numeric_limits<unsigned char>::digits)) +
+					static_cast<size_t>(key.eventType);
+			}
+		};
+
+		friend bool operator==(const TransitionKey& lhs, const TransitionKey& rhs) noexcept
+		{
+			return lhs.state == rhs.state && lhs.eventType == rhs.eventType;
+		}
+	};
+
+	struct Transition
+	{
+		CallbackFunction action;
+		unsigned int nextState;
+	};
+
+	using TransitionMap = std::unordered_map<TransitionKey, const Transition, TransitionKey::Hash>;
+
 	/**
 	 * Verifies whether state machine has already been updated.
 	 */
@@ -234,7 +201,7 @@ private:
 	unsigned int m_CurrState;
 	unsigned int m_NextState;
 	StateSet m_States;
-	TransitionList m_Transitions;
+	TransitionMap m_Transitions;
 };
 
 #endif // FSM_H
