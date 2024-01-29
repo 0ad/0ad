@@ -5,6 +5,7 @@
 # Translators:
 # 04bb8793d352327271edd130cc3a5323_ecb0188
 # 12192b354109d39d9c701ab47471cc99
+# Iliya Iliev
 # Ivailo Monev
 # Yordan Grigorov (yoreei)
 # Любомир Василев
@@ -13,7 +14,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: Любомир Василев, 2023\n"
+"Last-Translator: Iliya Iliev, 2024\n"
 "Language-Team: Bulgarian (http://app.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -686,7 +687,7 @@ msgstr "Статуя на овена на Амон-Ре"
 
 #: simulation/templates/gaia/ruins/stone_statues_persian_lamassu.xml:8
 msgid "Lamassu Statue"
-msgstr ""
+msgstr "Статуя Ламасу"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statue"
@@ -768,15 +769,15 @@ msgstr "Товар от разбит кораб"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:8
 msgid "The Argo"
-msgstr ""
+msgstr "Аргото"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:9
 msgid "Mythological Treasure"
-msgstr ""
+msgstr "Митологично съкровище"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:10
 msgid "The mythological ship of the hero Theseus and his Argonauts."
-msgstr ""
+msgstr "Митологичният кораб на героя Тезей и неговите аргонавти."
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"
@@ -1041,11 +1042,11 @@ msgstr "Храст"
 
 #: simulation/templates/mixins/cataphract.xml:14
 msgid "Cataphract Cavalry"
-msgstr ""
+msgstr "Кавалерия на Катафракт"
 
 #: simulation/templates/mixins/cataphract.xml:15
 msgid "Cataphract"
-msgstr ""
+msgstr "Катафракт"
 
 #: simulation/templates/mixins/chariot.xml:16
 msgid "Chariot"
@@ -1054,15 +1055,15 @@ msgstr "Колесница"
 #: simulation/templates/mixins/fireship.xml:15
 msgctxt "Name of an attack, usually the weapon."
 msgid "Flames"
-msgstr ""
+msgstr "Пламъци"
 
 #: simulation/templates/mixins/fireship.xml:43
 msgid "Ignited"
-msgstr ""
+msgstr "Запалени"
 
 #: simulation/templates/mixins/longsword.xml:22
 msgid "Longsword"
-msgstr ""
+msgstr "Дълъг меч"
 
 #: simulation/templates/mixins/mercenary.xml:13
 msgid "Mercenary"
@@ -1070,7 +1071,7 @@ msgstr "Наемник"
 
 #: simulation/templates/mixins/pirate.xml:29
 msgid "Pirate"
-msgstr ""
+msgstr "Пират"
 
 #: simulation/templates/mixins/rotary_mill.xml:17
 #: simulation/templates/mixins/rotary_mill.xml:18
@@ -1095,7 +1096,7 @@ msgstr "Олтар"
 
 #: simulation/templates/mixins/shrine.xml:18
 msgid "Train Elite Healers and heal garrisoned units."
-msgstr ""
+msgstr "Обучете елитни лечители и лекувайте гарнизонни единици."
 
 #: simulation/templates/mixins/trading_post.xml:8
 msgid "Trading Post"
@@ -1242,35 +1243,35 @@ msgstr "Разпръсване"
 #: simulation/templates/special/formations/ships/column.xml:5
 #: simulation/templates/special/formations/ships/line_staggered.xml:5
 msgid "Requires at least 4 Ships."
-msgstr ""
+msgstr "Изисква поне 4 кораба."
 
 #: simulation/templates/special/formations/ships/column.xml:14
 msgid "Maneuvering Column"
-msgstr ""
+msgstr "Маневрена колона"
 
 #: simulation/templates/special/formations/ships/column.xml:16
 msgid "A column formation for fleet maneuvers."
-msgstr ""
+msgstr "Колона за маневри на флота."
 
 #: simulation/templates/special/formations/ships/flank.xml:5
 msgid "Requires at least 8 Ships."
-msgstr ""
+msgstr "Изисква поне 8 кораба."
 
 #: simulation/templates/special/formations/ships/flank.xml:14
 msgid "Flanking Formation"
-msgstr ""
+msgstr "Фланкираща формация"
 
 #: simulation/templates/special/formations/ships/flank.xml:16
 msgid "Formation to protect the sides or surprise attack the enemy flanks."
-msgstr ""
+msgstr "Формация за защита на страните или внезапна атака на вражеските флангове."
 
 #: simulation/templates/special/formations/ships/line_staggered.xml:17
 msgid "Fleet Battle Line"
-msgstr ""
+msgstr "Бойна линия на флота"
 
 #: simulation/templates/special/formations/ships/line_staggered.xml:19
 msgid "Common fleet formation for frontal attacks."
-msgstr ""
+msgstr "Обща формация на флота за фронтални атаки."
 
 #: simulation/templates/special/formations/skirmish.xml:4
 msgid "Ranged Soldiers only, requires at least 2."

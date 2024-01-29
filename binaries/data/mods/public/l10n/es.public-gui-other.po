@@ -4206,7 +4206,7 @@ msgstr "200%"
 msgid ""
 "A smaller scale makes rendering faster but produces a more blurry picture, a"
 " large scale makes rendering slower but produces a better picture."
-msgstr ""
+msgstr "Una escala menor acelera el renderizado pero produce una imagen más borrosa, mientras que una escala mayor ralentiza el renderizado aunque con una imagen mejor."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Upscale technique"
@@ -4221,7 +4221,7 @@ msgid ""
 "Advanced upscale technique. For better results, use FSR with antialiasing "
 "enabled. Using it with the OpenGL backend may have some issues, consider "
 "using Vulkan backend instead."
-msgstr ""
+msgstr "Técnica avanzada de escalado. Para obtener un mejor resultado, utiliza FSR con el antialiasing activado. Usarlo con el backend OpenGL puede presentar algunos problemas. considera utilizar el backend Vulkan en su lugar."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "Bilinear"
@@ -4231,19 +4231,19 @@ msgstr "Bilineal"
 msgid ""
 "Bilinear upscale technique. Produces a slightly blurry picture depending on "
 "the scale."
-msgstr ""
+msgstr "Técnica de escalado bilineal. Según la escala, puede producir una imagen ligeramente borrosa."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "Pixelated"
-msgstr ""
+msgstr "Pixelado"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid "Simplest upscale technique. Used mostly for stylized effect."
-msgstr ""
+msgstr "Técnica de escalado más sencilla. Se utiliza sobre todo como estilo."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Technique defines performance and quality of upscaling process."
-msgstr ""
+msgstr "Técnica con buen rendimiento y calidad de escalado."
 
 #: gui/options/options.json[1].options[5].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][9].label
