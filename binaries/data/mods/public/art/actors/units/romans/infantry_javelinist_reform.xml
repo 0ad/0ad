@@ -4,9 +4,9 @@
   <group>
     <variant frequency="1" name="Base">
       <props>
-        <prop actor="props/units/heads/new/rome_head_veteran.xml" attachpoint="head"/>
-        <prop actor="props/units/helmets/rome_helmet_coolus.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
+        <prop actor="props/units/shields/clipeus_rome_04.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/sheath_gladius.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/capes/cape_med_player_skirmisher.xml" attachpoint="root"/>
       </props>
@@ -17,30 +17,86 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="armor_chain_03_01">
+    <variant frequency="10" name="rome_helmet_coolus">
+      <props>
+        <prop actor="props/units/helmets/rome_helmet_coolus.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="2" name="Helmet Gallic">
+      <props>
+        <prop actor="props/units/helmets/rome_helmet_gallic.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="hele_thracian_b8">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b8.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="hele_thracian_a8">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_a8.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="head_hele_b">
+      <props>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="rome_head_veteran">
+      <props>
+        <prop actor="props/units/heads/new/rome_head_veteran.xml" attachpoint="head"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="tunic_01_01">
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <textures>
-        <texture file="skeletal/imp/chain_03_01.png" name="baseTex"/>
-	    <texture file="skeletal/imp/chain_03_spec.png" name="specTex"/>
+        <texture file="skeletal/rome/tunic_01_01.png" name="baseTex"/>
+	    <texture file="skeletal/rome/subarmalis_04_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="armor_chain_01_01">
-      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+    <variant frequency="2" name="tunic_01_02">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <textures>
-        <texture file="skeletal/imp/chain_01_01.png" name="baseTex"/>
-	    <texture file="skeletal/imp/chain_01_spec.png" name="specTex"/>
+        <texture file="skeletal/rome/tunic_01_02.png" name="baseTex"/>
+	    <texture file="skeletal/rome/subarmalis_04_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="tunic_01_03">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/rome/tunic_01_03.png" name="baseTex"/>
+	    <texture file="skeletal/rome/subarmalis_04_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="subarmalis_04_01">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/rome/subarmalis_04_01.png" name="baseTex"/>
+	    <texture file="skeletal/rome/subarmalis_04_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="subarmalis_01_01">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/rome/subarmalis_01_01.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Scutum-01">
+    <variant frequency="1" name="Greave-06">
       <props>
-        <prop actor="props/units/shields/scutum_rome_imp_01.xml" attachpoint="shield"/>
+        <prop actor="props/units/armor/greave_06_bronze_r.xml" attachpoint="leg_R"/>
+        <prop actor="props/units/armor/greave_06_bronze_l.xml" attachpoint="leg_L"/>
       </props>
     </variant>
-    <variant frequency="1" name="Scutum-02">
+    <variant frequency="1" name="Greave-08">
       <props>
-        <prop actor="props/units/shields/scutum_rome_imp_02.xml" attachpoint="shield"/>
+        <prop actor="props/units/armor/greave_08_bronze_r.xml" attachpoint="leg_R"/>
+        <prop actor="props/units/armor/greave_08_bronze_l.xml" attachpoint="leg_L"/>
       </props>
     </variant>
   </group>

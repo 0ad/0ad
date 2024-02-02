@@ -6,6 +6,10 @@
       <props>
         <prop actor="props/units/heads/new/head_pers_fem_1.xml" attachpoint="head"/>
       </props>
+      <textures>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -13,16 +17,18 @@
       <mesh>skeletal/new/f_dress.dae</mesh>
       <textures>
         <texture file="skeletal/pers/dress_female_01_01.dds" name="baseTex"/>
-        <texture file="default_norm.png" name="normTex"/>
-        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Dress-02">
       <mesh>skeletal/new/f_dress.dae</mesh>
       <textures>
         <texture file="skeletal/pers/dress_female_01_02.dds" name="baseTex"/>
-        <texture file="default_norm.png" name="normTex"/>
-        <texture file="null_black.dds" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Dress-03">
+      <mesh>skeletal/new/f_dress.dae</mesh>
+      <textures>
+        <texture file="skeletal/pers/dress_female_01_03.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>

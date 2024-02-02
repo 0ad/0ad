@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
-  <TrainingRestrictions>
-    <Category>Centurion</Category>
-  </TrainingRestrictions>
   <Auras datatype="tokens">
     units/centurion_1
     units/centurion_2
@@ -30,6 +27,9 @@
       <Techs datatype="tokens">roman_reforms -phase_city</Techs>
     </Requirements>
   </Identity>
+  <TrainingRestrictions>
+    <Category>Centurion</Category>
+  </TrainingRestrictions>
   <VisualActor>
     <Actor>units/romans/infantry_swordsman_f.xml</Actor>
   </VisualActor>

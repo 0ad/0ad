@@ -5,11 +5,11 @@
     <variant frequency="1" name="props a">
       <mesh>props/hele_stoa2_props_new.dae</mesh>
       <textures>
-		<texture file="props/hele_props_a.dds" name="baseTex"/>
-		<texture file="props/hele_props_a_norm.png" name="normTex"/>
-		<texture file="props/hele_props_a_spec.png" name="specTex"/>
-		<texture file="structural/ao/hele_stoa_great.png" name="aoTex"/>
-	  </textures>
+        <texture file="props/hele_props_a.dds" name="baseTex"/>
+        <texture file="props/hele_props_a_norm.png" name="normTex"/>
+        <texture file="props/hele_props_a_spec.png" name="specTex"/>
+        <texture file="structural/ao/hele_stoa_great.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>

@@ -18,14 +18,14 @@
         <prop actor="props/units/shields/scutum_rome_isp_12.xml" attachpoint="shield"/>
       </props>
     </variant>
-    <variant frequency="1" name="Scutum-13">
-      <props>
-        <prop actor="props/units/shields/scutum_rome_isp_13.xml" attachpoint="shield"/>
-      </props>
-    </variant>
     <variant frequency="1" name="Scutum-14">
       <props>
         <prop actor="props/units/shields/scutum_rome_isp_14.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="2" name="Scutum-marian">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_marian_04.xml" attachpoint="shield"/>
       </props>
     </variant>
   </group>
@@ -44,14 +44,34 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Apulo-Corinthian-e1">
+    <variant frequency="1" name="rome_helmet_gallic_centurion">
+      <props>
+        <prop actor="props/units/helmets/rome_helmet_gallic_centurion.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="4" name="rome_helmet_coolus_centurion">
+      <props>
+        <prop actor="props/units/helmets/rome_helmet_coolus_centurion.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="2" name="Apulo-Corinthian-e1">
       <props>
         <prop actor="props/units/helmets/rome_apulo_corinthian_e1.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Apulo-Corinthian-e2">
+    <variant frequency="2" name="Apulo-Corinthian-e2">
       <props>
         <prop actor="props/units/helmets/rome_apulo_corinthian_e2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="hele_thracian_b2_crested">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b2_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="hele_thracian_a8">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_a8.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
@@ -73,7 +93,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_swordsman_shield_relax.xml" name="Swordsman-Shield-Relax" frequency="1"/>
+    <variant file="biped/base_swordsman_shield_ready.xml" name="Swordsman-Shield-Ready" frequency="1"/>
     <variant file="biped/formations/testudo_top.xml"/>
     <variant file="biped/formations/testudo_front.xml"/>
     <variant file="biped/formations/testudo_front_left.xml"/>

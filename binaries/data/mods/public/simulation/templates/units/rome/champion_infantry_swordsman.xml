@@ -17,6 +17,10 @@
       <Techs datatype="tokens">-phase_city unlock_champion_infantry</Techs>
     </Requirements>
   </Identity>
+  <Promotion>
+    <Entity>units/rome/infantry_legionary</Entity>
+    <RequiredXp>3000</RequiredXp>
+  </Promotion>
   <VisualActor>
     <Actor>units/romans/infantry_swordsman_c.xml</Actor>
   </VisualActor>

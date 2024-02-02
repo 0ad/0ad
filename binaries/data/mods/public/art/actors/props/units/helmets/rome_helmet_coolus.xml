@@ -2,13 +2,13 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="Rome Coolus A">
+    <variant frequency="1" name="Rome Coolus A smooth">
       <mesh>props/helmet/rome_coolus_a.dae</mesh>
     </variant>
-    <variant name="Rome Coolus B">
+    <variant frequency="1" name="Rome Coolus B pointy">
       <mesh>props/helmet/rome_coolus_b.dae</mesh>
     </variant>
-    <variant name="base_a">
+    <variant frequency="3" name="Rome Coolus B feathers">
       <mesh>props/helmet/rome_coolus_b.dae</mesh>
       <props>
         <prop actor="props/units/helmets/props/helmet_feather_a.xml" attachpoint="feather_a"/>
@@ -17,7 +17,19 @@
         <prop actor="props/units/helmets/props/helmet_feather_b.xml" attachpoint="feather_d"/>
       </props>
     </variant>
-    <variant name="base_b">
+    <variant frequency="1" name="Rome Coolus C hair tuft">
+      <mesh>props/helmet/rome_coolus_c.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/helmet_hair_long.xml" attachpoint="hair_long"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Rome Coolus C hair long">
+      <mesh>props/helmet/rome_coolus_c.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/celt_helmet_hair.xml" attachpoint="hair_long"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Rome Coolus C feathers hair">
       <mesh>props/helmet/rome_coolus_c.dae</mesh>
       <props>
         <prop actor="props/units/helmets/props/helmet_hair_long.xml" attachpoint="hair_long"/>
@@ -39,6 +51,7 @@
     <variant frequency="1" name="idle"/>
     <variant frequency="1" name="testudo_top">
       <props>
+        <prop actor="" attachpoint="hair_long"/>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>
         <prop actor="" attachpoint="feather_c"/>
@@ -47,6 +60,7 @@
     </variant>
     <variant frequency="1" name="testudo_front">
       <props>
+        <prop actor="" attachpoint="hair_long"/>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>
         <prop actor="" attachpoint="feather_c"/>
@@ -55,6 +69,7 @@
     </variant>
     <variant frequency="1" name="testudo_front_left">
       <props>
+        <prop actor="" attachpoint="hair_long"/>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>
         <prop actor="" attachpoint="feather_c"/>
@@ -63,6 +78,7 @@
     </variant>
     <variant frequency="1" name="testudo_front_right">
       <props>
+        <prop actor="" attachpoint="hair_long"/>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>
         <prop actor="" attachpoint="feather_c"/>
@@ -71,6 +87,7 @@
     </variant>
     <variant frequency="1" name="testudo_top">
       <props>
+        <prop actor="" attachpoint="hair_long"/>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>
         <prop actor="" attachpoint="feather_c"/>
@@ -79,6 +96,7 @@
     </variant>
     <variant frequency="1" name="testudo_front">
       <props>
+        <prop actor="" attachpoint="hair_long"/>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>
         <prop actor="" attachpoint="feather_c"/>
@@ -87,6 +105,7 @@
     </variant>
     <variant frequency="1" name="testudo_front_left">
       <props>
+        <prop actor="" attachpoint="hair_long"/>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>
         <prop actor="" attachpoint="feather_c"/>
@@ -95,6 +114,7 @@
     </variant>
     <variant frequency="1" name="testudo_front_right">
       <props>
+        <prop actor="" attachpoint="hair_long"/>
         <prop actor="" attachpoint="feather_a"/>
         <prop actor="" attachpoint="feather_b"/>
         <prop actor="" attachpoint="feather_c"/>

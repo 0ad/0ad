@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="base">
+      <mesh>props/helmet/rome_coolus_c.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/rome_crest_bronze_03.xml" attachpoint="hair_long"/>
+      </props>
+      <textures>
+        <texture file="props/helmet/rome_coolus.png" name="baseTex"/>
+        <texture file="props/helmet/rome_coolus_norm.png" name="normTex"/>
+        <texture file="props/helmet/rome_coolus_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="idle"/>
+    <variant frequency="1" name="testudo_top">
+      <props>
+        <prop actor="" attachpoint="hair_long"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="testudo_front">
+      <props>
+        <prop actor="" attachpoint="hair_long"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="testudo_front_left">
+      <props>
+        <prop actor="" attachpoint="hair_long"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="testudo_front_right">
+      <props>
+        <prop actor="" attachpoint="hair_long"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="testudo_top">
+      <props>
+        <prop actor="" attachpoint="hair_long"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="testudo_front">
+      <props>
+        <prop actor="" attachpoint="hair_long"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="testudo_front_left">
+      <props>
+        <prop actor="" attachpoint="hair_long"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="testudo_front_right">
+      <props>
+        <prop actor="" attachpoint="hair_long"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

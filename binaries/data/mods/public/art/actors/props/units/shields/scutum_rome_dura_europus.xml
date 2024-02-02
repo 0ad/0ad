@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Base">
+      <mesh>props/shield/scutum_04_f.dae</mesh>
+      <textures>
+        <texture file="props/shield/rome_imp_scutum_e.dds" name="baseTex"/>
+        <texture file="props/shield/scutum_rome_imp_rect_norm.png" name="normTex"/>
+        <texture file="props/shield/scutum_rome_imp_rect_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="props/units/shields/props/scutum_rome_imp_back_02.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/props/scutum_rome_boss_04_gold.xml" attachpoint="boss"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>
