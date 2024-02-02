@@ -3,7 +3,10 @@
   <Identity>
     <Rank>Elite</Rank>
   </Identity>
-  <Promotion disable=""/>
+  <Promotion>
+    <Entity>units/rome/cavalry_auxiliary_b</Entity>
+    <RequiredXp>2000</RequiredXp>
+  </Promotion>
   <VisualActor>
     <Actor>units/romans/cavalry_spearman_e_m.xml</Actor>
   </VisualActor>

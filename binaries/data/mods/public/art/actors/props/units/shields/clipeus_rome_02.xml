@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Base-Imperial">
+      <mesh>props/shield/oval_01.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/props/shield_oval_a_iron_b.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/props/celt_manipula.xml" attachpoint="handle"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant file="shields/celt_shield_base.xml" name="texture_clipeus_01">
+      <textures>
+        <texture file="props/shield/clipeus_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant file="shields/celt_shield_base.xml" name="texture_clipeus_05">
+      <textures>
+        <texture file="props/shield/clipeus_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant file="shields/celt_shield_base.xml" name="texture_clipeus_06">
+      <textures>
+        <texture file="props/shield/clipeus_06.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant file="shields/celt_shield_base.xml" name="texture_clipeus_08">
+      <textures>
+        <texture file="props/shield/clipeus_08.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant file="shields/celt_shield_base.xml" name="texture_clipeus_09">
+      <textures>
+        <texture file="props/shield/clipeus_09.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Boss-iron">
+      <props>
+        <prop actor="props/units/shields/props/shield_boss_r.xml" attachpoint="spina"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_norm_spec.xml</material>
+</actor>

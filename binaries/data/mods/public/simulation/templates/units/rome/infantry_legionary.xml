@@ -4,7 +4,6 @@
     <Entities datatype="tokens">
       structures/rome/army_camp
       structures/rome/temple_vesta
-      units/rome/siege_onager
     </Entities>
   </Builder>
   <Cost>
@@ -22,7 +21,7 @@
     <Lang>latin</Lang>
     <SpecificName>Legiōnārius</SpecificName>
     <Rank>Elite</Rank>
-    <Icon>units/rome/champion_legion_marian.png</Icon>
+    <Icon>units/rome/infantry_legionary.png</Icon>
     <VisibleClasses datatype="tokens">Legionary</VisibleClasses>
     <Requirements>
       <Techs datatype="tokens">roman_reforms</Techs>

@@ -5,16 +5,17 @@
     <Lang>latin</Lang>
     <GenericName>Auxiliary Cavalry</GenericName>
     <SpecificName>Eques Alaris</SpecificName>
-    <SelectionGroupName>units/rome/cavalry_javelineer_02_b</SelectionGroupName>
-    <Icon>units/rome/cavalry_javelinist.png</Icon>
+    <VisibleClasses datatype="tokens">Auxiliary</VisibleClasses>
+    <SelectionGroupName>units/rome/cavalry_auxiliary_b</SelectionGroupName>
+    <Icon>units/rome/cavalry_auxiliary.png</Icon>
     <Requirements>
-      <Techs datatype="tokens">phase_town</Techs>
+      <Techs datatype="tokens">roman_reforms</Techs>
     </Requirements>
   </Identity>
   <Promotion>
-    <Entity>units/rome/cavalry_javelineer_02_a</Entity>
+    <Entity>units/rome/cavalry_auxiliary_a</Entity>
   </Promotion>
   <VisualActor>
-    <Actor>units/romans/cavalry_javelinist_b_m.xml</Actor>
+    <Actor>units/romans/cavalry_auxiliary_b_m.xml</Actor>
   </VisualActor>
 </Entity>

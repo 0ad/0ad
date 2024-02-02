@@ -4,7 +4,6 @@
     <Entities datatype="tokens">
       structures/rome/army_camp
       structures/rome/temple_vesta
-      units/rome/siege_onager
     </Entities>
   </Builder>
   <Cost>
@@ -18,12 +17,12 @@
   <Identity>
     <Civ>rome</Civ>
     <Lang>latin</Lang>
-    <SelectionGroupName>units/rome/infantry_lanciarius</SelectionGroupName>
+    <SelectionGroupName>units/rome/infantry_antesignanus</SelectionGroupName>
     <GenericName>Legionary Skirmisher</GenericName>
-    <SpecificName>lanciārius</SpecificName>
+    <SpecificName>Antesignānus</SpecificName>
     <VisibleClasses datatype="tokens">Legionary</VisibleClasses>
     <Rank>Elite</Rank>
-    <Icon>units/rome/infantry_javelinist.png</Icon>
+    <Icon>units/rome/infantry_antesignanus.png</Icon>
     <Requirements>
       <Techs datatype="tokens">roman_reforms</Techs>
     </Requirements>

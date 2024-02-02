@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Base-Auxilia">
+      <mesh>props/shield/oval_01.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/props/shield_oval_a_iron_b.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/props/celt_manipula.xml" attachpoint="handle"/>
+      </props>
+      <textures>
+        <texture file="props/shield/celt_shield_spec.png" name="specTex"/>
+        <texture file="props/shield/celt_shield_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="shields/celt_shield_base.xml" frequency="1" name="texture_clipeus_02">
+      <textures>
+        <texture file="props/shield/clipeus_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant file="shields/celt_shield_base.xml" frequency="2" name="texture_clipeus_03">
+      <textures>
+        <texture file="props/shield/clipeus_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant file="shields/celt_shield_base.xml" frequency="1" name="texture_clipeus_04">
+      <textures>
+        <texture file="props/shield/clipeus_04.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant file="shields/celt_shield_base.xml" frequency="1" name="texture_clipeus_07">
+      <textures>
+        <texture file="props/shield/clipeus_07.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant file="shields/celt_shield_base.xml" frequency="1" name="texture_scutum_rome_13">
+      <textures>
+        <texture file="props/shield/scutum_rome_13.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Boss-iron">
+      <props>
+        <prop actor="props/units/shields/props/shield_boss_r.xml" attachpoint="spina"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_norm_spec.xml</material>
+</actor>

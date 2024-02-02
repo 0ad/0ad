@@ -5,37 +5,95 @@
     <variant frequency="1">
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/new/rome_head_veteran.xml" attachpoint="head"/>
-        <prop actor="props/units/helmets/rome_helmet_coolus.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/sheath_gladius_e.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/weapons/gladius.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/scutum_rome_imp_01.xml" attachpoint="shield"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="rome-chainmail-4a">
       <textures>
-        <texture file="skeletal/imp/chain_03_01.png" name="baseTex"/>
-        <texture file="skeletal/imp/chain_03_spec.png" name="specTex"/>
         <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Scutum-01">
+    <variant frequency="5" name="Helmet Roman">
       <props>
-        <prop actor="props/units/shields/scutum_rome_imp_01.xml" attachpoint="shield"/>
+        <prop actor="props/units/helmets/rome_helmet_coolus.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Scutum-02">
+    <variant frequency="1" name="Helmet Gallic">
       <props>
-        <prop actor="props/units/shields/scutum_rome_imp_02.xml" attachpoint="shield"/>
+        <prop actor="props/units/helmets/rome_helmet_gallic.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant file="biped/base_swordsman_shield_relax_celt.xml"/>
+    <variant frequency="3" name="head_hele_b">
+      <props>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="rome_head_veteran">
+      <props>
+        <prop actor="props/units/heads/new/rome_head_veteran.xml" attachpoint="head"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="chainmail_05_01">
+      <textures>
+        <texture file="skeletal/rome/chainmail_05_01.png" name="baseTex"/>
+        <texture file="skeletal/rome/chainmail_05_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail_05_02">
+      <textures>
+        <texture file="skeletal/rome/chainmail_05_02.png" name="baseTex"/>
+        <texture file="skeletal/rome/chainmail_05_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail_06_01">
+      <textures>
+        <texture file="skeletal/rome/chainmail_06_01.png" name="baseTex"/>
+        <texture file="skeletal/rome/chainmail_06_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail_06_02">
+      <textures>
+        <texture file="skeletal/rome/chainmail_06_02.png" name="baseTex"/>
+        <texture file="skeletal/rome/chainmail_06_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail_07_01">
+      <textures>
+        <texture file="skeletal/rome/chainmail_07_01.png" name="baseTex"/>
+        <texture file="skeletal/rome/chainmail_07_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="chainmail_07_padded_01">
+      <textures>
+        <texture file="skeletal/rome/chainmail_07_padded_01.png" name="baseTex"/>
+        <texture file="skeletal/rome/chainmail_07_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="scutum_rome_marian_01">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_marian_01.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="scutum_rome_marian_02">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_marian_02.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="scutum_rome_marian_03">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_marian_03.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/base_swordsman_shield_relax_rome.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/gather_praise.xml"/>

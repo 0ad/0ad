@@ -3,10 +3,9 @@
   <Identity>
     <Rank>Elite</Rank>
   </Identity>
-  <Promotion disable=""/>
   <Upgrade>
     <Centurion>
-      <Entity>units/rome/infantry_swordsman_e_centurion</Entity>
+      <Entity>units/rome/champion_infantry_swordsman_centurion</Entity>
       <Tooltip>Give this combat veteran the rank of Centurion.</Tooltip>
       <Cost>
         <food>100</food>
@@ -16,6 +15,10 @@
       <Time>12</Time>
     </Centurion>
   </Upgrade>
+  <Promotion>
+    <Entity>units/rome/infantry_legionary</Entity>
+    <RequiredXp>2000</RequiredXp>
+  </Promotion>
   <VisualActor>
     <Actor>units/romans/infantry_swordsman_e.xml</Actor>
   </VisualActor>

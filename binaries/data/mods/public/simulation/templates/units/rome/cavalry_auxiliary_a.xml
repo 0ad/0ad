@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/rome/cavalry_javelineer_b">
+<Entity parent="units/rome/cavalry_auxiliary_b">
   <Identity>
     <Rank>Advanced</Rank>
   </Identity>
   <Promotion>
-    <Entity>units/rome/cavalry_javelineer_e</Entity>
+    <Entity>units/rome/cavalry_auxiliary_e</Entity>
   </Promotion>
   <VisualActor>
-    <Actor>units/romans/cavalry_javelinist_a_m.xml</Actor>
+    <Actor>units/romans/cavalry_auxiliary_a_m.xml</Actor>
   </VisualActor>
 </Entity>
