@@ -14,13 +14,5 @@
       </textures>
     </variant>
   </group>
-  <group>
-    <variant frequency="3" name="Crest">
-      <props>
-        <prop actor="props/units/helmets/props/hele_crest_bronze_01.xml" attachpoint="crest"/>
-      </props>
-    </variant>
-    <variant frequency="3" name="No Crest"/>
-  </group>
   <material>no_trans_norm_spec.xml</material>
 </actor>

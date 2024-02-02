@@ -10,7 +10,6 @@
         <prop actor="props/wooden_bars.xml" attachpoint="main_building_east"/>
         <prop actor="props/wooden_bars.xml" attachpoint="small_wall_infront"/>
         <prop actor="props/wooden_cart_big.xml" attachpoint="main_building_inside"/>
-        <prop actor="props/structures/han/storehouse_props.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/rome_corral_mud.xml" attachpoint="root"/>
       </props>
       <textures>
@@ -30,12 +29,12 @@
     </variant>
   </group>
   <group>
-    <variant frequency="50" name="many">
+    <variant frequency="50" name="many props">
       <props>
         <prop actor="props/structures/han/storehouse_props.xml" attachpoint="root"/>
       </props>
     </variant>
-    <variant frequency="50" name="few"/>
+    <variant frequency="50" name="few props"/>
   </group>
   <group>
     <variant frequency="1" name="alive"/>
