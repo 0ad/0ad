@@ -527,6 +527,9 @@ PETRA.DefenseArmy.prototype.checkEvents = function(gameState, events)
 		}
 		else if (this.ownEntities.indexOf(evt.entity) !== -1)
 		{
+			const newEnt = gameState.getEntityById(evt.newentity);
+			if (newEnt && (!newEnt.hasUnitAI() || !newEnt.attackTypes()))
+				continue;
 			let idx = this.ownEntities.indexOf(evt.entity);
 			this.ownEntities[idx] = evt.newentity;
 			this.assignedTo[evt.newentity] = this.assignedTo[evt.entity];
