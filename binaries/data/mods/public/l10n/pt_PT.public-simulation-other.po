@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: lecalam, 2022-2023\n"
+"Last-Translator: lecalam, 2022-2024\n"
 "Language-Team: Portuguese (Portugal) (http://app.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,7 +50,7 @@ msgstr "Juntei um exército enorme para esmagar %(_player_)s. Junta-te a mim e i
 msgid ""
 "I am launching an unprecedented attack against %(_player_)s. Bring your "
 "armies and we may soon win this war."
-msgstr ""
+msgstr "Estou a lançar um ataque sem precedentes contra %(_player_)s. Tragam os vossos exércitos e em breve poderemos ganhar esta guerra."
 
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
@@ -65,7 +65,7 @@ msgstr "Acabei de enviar um exército contra %(_player_)s."
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I am sending an army against %(_player_)s."
-msgstr ""
+msgstr "Estou a enviar um exército contra %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:16
 #, javascript-format
@@ -170,12 +170,12 @@ msgstr "Não posso aceitar a tua oferta para nos tornarmos aliados, %(_player_)s
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I must decline your offer of alliance, %(_player_)s."
-msgstr ""
+msgstr "Tenho de recusar a tua oferta de aliança, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:62
 #, javascript-format
 msgid "An alliance with you is not in my best interest, %(_player_)s."
-msgstr ""
+msgstr "Uma aliança contigo não é do meu interesse, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
@@ -400,11 +400,11 @@ msgstr "Os meus exércitos falharam ao defenderem o meu império. Por favor, hon
 msgid ""
 "My humble armies feel weak and tired. My civilization depends on our "
 "alliance, please send help!"
-msgstr ""
+msgstr "Os meus humildes exércitos sentem-se fracos e cansados. A minha civilização depende da nossa aliança, por favor envia ajuda!"
 
 #: simulation/ai/petra/chatHelper.js:143
 msgid "I need your help. Please do not let my armies fall!"
-msgstr ""
+msgstr "Preciso da tua ajuda. Por favor, não deixes que os meus exércitos caiam!"
 
 #: simulation/ai/petra/chatHelper.js:146
 msgid ""
@@ -416,14 +416,14 @@ msgstr "O meu império recuperou a sua antiga força, agora é tempo de procurar
 msgid ""
 "My civilization raised from the ashes. Now my armies feel stronger and eager"
 " to fight for our alliance."
-msgstr ""
+msgstr "A minha civilização ergueu-se das cinzas. Agora os meus exércitos sentem-se mais fortes e desejosos de lutar pela nossa aliança."
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra é o robô padrão com inteligência artificial do 0 A.D Por favor reporta problemas à Wildfire Games (vê a hiperligação no menu principal).\n\nA velocidade de recolha e o ganho no comércio depende do nível de dificuldade (simulação −58%, muito fácil  −44%, fácil −25%, médio ±0%, difícil +25%, muito difícil +56%). Os níveis mais fáceis também têm um tempo de desenvolvimento de tecnologias, treino e construção mais lentos. Para além disso o nível de simulação não se expande nem faz ataques."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -821,7 +821,7 @@ msgstr "Muito fácil"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
+msgstr "Escolhe esta dificuldade se estás a jogar pela primeira vez o 0 A.D."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -839,7 +839,7 @@ msgstr "Média"
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
+msgstr "Escolhe esta dificuldade se já tiveres uma boa experiência no 0 A.D."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"

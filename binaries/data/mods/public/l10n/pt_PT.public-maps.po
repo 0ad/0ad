@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: lecalam, 2022-2023\n"
+"Last-Translator: lecalam, 2022-2024\n"
 "Language-Team: Portuguese (Portugal) (http://app.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -368,7 +368,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n"
 "\n"
 "A great flood moves across the valley. At some point you have to evacuate your units and use ships to reach the mainland and the other players."
-msgstr ""
+msgstr "[color=\"red\"]NOTA IMPORTANTE: OS JOGADORES DE IA NÃO FUNCIONAM COM ÁGUA SUBINDO[/color]\n\nUma grande inundação atravessa o vale. A dada altura, tens de evacuar as tuas unidades e usar barcos para chegar ao continente e aos outros jogadores."
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
@@ -376,35 +376,35 @@ msgstr "Inundação"
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Description
 msgid "The water rises. The homeislands will become uninhabitable."
-msgstr ""
+msgstr "A água sobe. As ilhas natais tornar-se-ão inabitáveis."
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Name
 msgid "Rising"
-msgstr ""
+msgstr "Subindo"
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Description
 msgid ""
 "The water doesn't rise. Ships and troops can battle in chest deep waters."
-msgstr ""
+msgstr "A água não sobe. Os barcos e as tropas podem combater em águas profundas."
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Name
 msgid "Shallow"
-msgstr ""
+msgstr "Raso"
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Description
 msgid ""
 "The water doesn't rise. You have to use ships to travel to the mainland."
-msgstr ""
+msgstr "A água não sobe. É preciso usar barcos para chegar ao continente."
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Name
 msgid "Deep"
-msgstr ""
+msgstr "Fundo"
 
 #: maps/random/flood_triggers.js:11
 msgid ""
 "The flood continues. Soon the waters will swallow the land. You should "
 "evacuate the units."
-msgstr ""
+msgstr "A inundação continua. Em breve as águas vão engolir a terra. É preciso evacuar as unidades."
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -1328,11 +1328,11 @@ msgstr "Lago Selvagem"
 
 #: maps/scenarios/Ship Combat Demo.xml:Description:39
 msgid "Ship Combat Demo."
-msgstr ""
+msgstr "Demonstração de combate de barcos."
 
 #: maps/scenarios/Ship Combat Demo.xml:Name:39
 msgid "Ship Combat Demo"
-msgstr ""
+msgstr "Demonstração de combate de barcos"
 
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
@@ -2566,21 +2566,21 @@ msgid ""
 "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
 "\n"
 "This represents the Arabian Desert, South of Mesopotamia."
-msgstr ""
+msgstr "Um velho favorito. Um mapa de deserto plano e aberto é atravessado no centro por dois oásis luxuriantes.\n\nIsto representa o deserto da Arábia, a sul da Mesopotâmia."
 
 #: maps/skirmishes/arabian_oases_2p.xml:Name:39
 msgid "Arabian Oases (2 players)"
-msgstr ""
+msgstr "Oásis árabes (2 jogadores)"
 
 #: maps/skirmishes/arabian_oases_2p.xml:PlayerData[0].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[1].Name:39
 msgid "Northeast Player"
-msgstr ""
+msgstr "Jogador a nordeste"
 
 #: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[2].Name:39
 msgid "Southwest Player"
-msgstr ""
+msgstr "Jogador a sudoeste"
 
 #: maps/skirmishes/atlas_valleys_8p.xml:Description:39
 msgid ""
@@ -2698,11 +2698,11 @@ msgstr "Um mapa com pequenas ilhas situadas no Mar Egeu."
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2 players)"
-msgstr ""
+msgstr "Arquipélago das cíclades (2 jogadores)"
 
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
 msgid "Cycladic Archipelago (3 players)"
-msgstr ""
+msgstr "Arquipélago das cíclades (3 jogadores)"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""
@@ -2754,7 +2754,7 @@ msgid ""
 "- Fayyum: crocodile shrine, nile dam\n"
 "- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
 "- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
-msgstr ""
+msgstr "Luta pelos restos do antigo Egito!\n\nOs jogadores começam com cidades adultas e pequenos exércitos, cada um com vantagens e desvantagens distintas. Cuidado, há 7 fortes poderosos e bandidões saqueadores!\n\nEstamos no último século antes de 0 d.C. O Egito está dividido internamente entre influências helenísticas (Alexandria, representada pelos selêucidas) e tradicionais (Mênfis, representada pelos ptolomeus). Tebas, na zona sul do rio Nilo, já foi tomada pelos kush. No noroeste de Al-Dschabal al-Achdar, onde se situa a cidade mediterrânica de Cirene, os romanos estão a preparar a sua invasão. A partir do deserto oriental de At-Tih e do monte Sinai, os inimigos (representados pelos persas) avançam em direção ao oásis de Siwa. Os charga (representados por Cartago), no deserto do sudoeste, também estão a tentar obter uma parte do bolo.\nLocalizações:\n- Alexandria: biblioteca, porto\n- Mênfis: Necrópole, pirâmides, santuário de Apis\n- Tebas: bairro dos templos, Vale dos Reis \n- Cirene: Macchie mediterrânica, olivais\n- Fayyum: santuário dos crocodilos, barragem do Nilo\n- Deserto oriental: monte Sinai, wadi profundo, recifes do Mar Vermelho\n- Deserto ocidental: oásis de Charga e Siwa, depressão de Qattara\n"
 
 #: maps/skirmishes/egypt_3pv3p.xml:Name:39
 msgid "Egypt (3v3)"
@@ -2910,11 +2910,11 @@ msgid ""
 "This is the Ithmus at Corinth in Greece. The land is rich in raw resources and treasure, and the seas on either side of the isthmus are stocked with fish. Mercenary Camps can be found as well as large Metal Mine deposits.\n"
 "\n"
 "Watch out for pirate ships and brigands, though, as war-torn Greece is not without its share of dangers. And the enemy, marshalling their forces across the isthmus on the opposing landmass, will be looking for opportunities to invade your lands and take the strategic Corinthian Isthmus for themselves!"
-msgstr ""
+msgstr "ist·mo\n/ˈiʃ.tmu/\nsubstantivo\numa estreita faixa de terra com o mar de cada lado, formando uma ligação entre duas áreas maiores de terra.\n\nEste é o istmo de Corinto, na Grécia. A terra é rica em recursos brutos e tesouros, e os mares de ambos os lados do istmo estão repletos de peixes. Podes encontrar acampamentos de mercenários e grandes depósitos de minas de metal.\n\nMas cuidado com os barcos piratas e os bandidos, pois a Grécia devastada pela guerra tem a sua quota-parte de perigos. E o inimigo, que reúne as suas forças do outro lado do istmo, na massa de terra oposta, estará à procura de oportunidades para invadir as tuas terras e tomar para si o estratégico Istmo de Corinto!"
 
 #: maps/skirmishes/isthmus_of_corinth_2p.xml:Name:39
 msgid "Isthmus of Corinth (2)"
-msgstr ""
+msgstr "Istmo de Corinto (2)"
 
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
@@ -2936,7 +2936,7 @@ msgstr "Um velho favorito. Outro mapa desértico visível com dois oásis luxuos
 
 #: maps/skirmishes/libyan_oasis_2p.xml:Name:39
 msgid "Libyan Oasis (2 players)"
-msgstr ""
+msgstr "Oásis líbio (2 jogadores)"
 
 #: maps/skirmishes/lorraine_plain_2p.xml:Description:39
 msgid ""
@@ -3296,11 +3296,11 @@ msgid ""
 "As with all Savanna maps, huntable animals foragable plants are abundant, but there are no farmlands on the entire map, so farming is difficult.\n"
 "\n"
 "Wood is scattered, but comes in high-yield Baobab trees. The watering holes give life to clusters of trees and life to dangerous fauna, such as crocodiles and elephants."
-msgstr ""
+msgstr "Um pequeno mapa de savana com 4 furos de água. \n\nComo em todos os mapas de savana, os animais que podem ser caçados e as plantas que podem ser comidas são abundantes, mas não há terras agrícolas em todo o mapa, por isso a agricultura é difícil.\n\nA madeira está dispersa, mas vem em árvores baobá de alto rendimento. Os charcos dão vida a grupos de árvores e à fauna perigosa, como os crocodilos e os elefantes."
 
 #: maps/skirmishes/watering_holes_4p.xml:Name:39
 msgid "Watering Holes (4 players)"
-msgstr ""
+msgstr "Poços de água (4 jogadores)"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:Description:39
 msgid ""

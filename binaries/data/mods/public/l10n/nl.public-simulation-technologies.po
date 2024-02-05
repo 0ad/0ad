@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-02-02 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: rollieoo, 2021-2024\n"
 "Language-Team: Dutch (http://app.transifex.com/wildfire-games/0ad/language/nl/)\n"
@@ -214,7 +214,7 @@ msgstr "De Perzen bouwden een wonderbaarlijke koninklijke weg van 1677 mijl (270
 
 #: simulation/data/technologies/architecture_pers.jsongenericName
 msgid "Achaemenid Architecture"
-msgstr ""
+msgstr "Achaemenidische architectuur"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
@@ -233,7 +233,7 @@ msgstr "Arsenaal van Philon"
 #: simulation/data/technologies/arsenal_philon.jsonrequirementsTooltip
 #: simulation/data/technologies/juggernauts.jsonrequirementsTooltip
 msgid "Unlocked in City Phase. Requires “Shipwrights.”"
-msgstr ""
+msgstr "Beschikbaar in Grootstadsfase. Vereist “Scheepstimmerlieden.”"
 
 #: simulation/data/technologies/arsenal_philon.jsontooltip
 msgid "Warships +1 health/second self-repair rate."
@@ -374,7 +374,7 @@ msgstr "Delische Bond"
 
 #: simulation/data/technologies/civbonuses/delian_league.jsontooltip
 msgid "Ships −25% construction time."
-msgstr ""
+msgstr "Schepen -25% bouwtijd."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -644,7 +644,7 @@ msgstr "Neem geschoolde scheepsbouwers met speciaal gereedschap in dienst om sne
 
 #: simulation/data/technologies/dock_efficiency.jsongenericName
 msgid "Shipwrights"
-msgstr ""
+msgstr "Scheepstimmerlieden"
 
 #: simulation/data/technologies/dock_efficiency.jsonspecificName.athen
 #: simulation/data/technologies/dock_efficiency.jsonspecificName.mace
@@ -710,11 +710,11 @@ msgstr "Pekelen zorgt ervoor dat vis langer bewaard kan worden."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsongenericName
 msgid "Salt Curing"
-msgstr ""
+msgstr "Pekelen"
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase. Requires “Fishing Nets.”"
-msgstr ""
+msgstr "Beschikbaar in Dorpsfase. Vereist “Visnetten”."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -726,11 +726,11 @@ msgstr "Gebruik netten om de productiviteit van vissersboten te verhogen."
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsongenericName
 msgid "Fishing Nets"
-msgstr ""
+msgstr "Visnetten"
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsontooltip
 msgid "Fishing Boats +30% fish gather rate. Unlocks “Salt Curing.”"
-msgstr ""
+msgstr "Vissersboten +30% visverzamelingssnelheid. Maakt “Pekelen” beschikbaar."
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
@@ -1579,9 +1579,10 @@ msgstr "Mariaanse hervormingen"
 
 #: simulation/data/technologies/roman_reforms.jsontooltip
 msgid ""
-"Train Marian Legionaries, Centurions, and Onagers, but lose access to basic "
-"Citizen Infantry, Spear Cavalry, and Italic Heavy Infantry."
-msgstr "Rekruteer Mariaanse Legionairs, Centurions en Onagers maar verlies de basis Burger Infanterie, Cavalerie Speervechters en Italische Zware Infanterie."
+"Convert Infantry to Marian Legionaries, Cavalry to Auxiliary Cavalry, unlock"
+" Onagers and Centurions, but lose access to Spear Cavalry and Italic Heavy "
+"Infantry."
+msgstr ""
 
 #: simulation/data/technologies/roman_roads.jsondescription
 msgid "All roads lead to Rome."
@@ -1621,11 +1622,11 @@ msgstr "+2.0 metaalverwerving per seconde."
 
 #: simulation/data/technologies/ship_capture_resistance.jsondescription
 msgid "Marines were a vital part of ship defense and offense."
-msgstr ""
+msgstr "Mariniers waren een essentieel onderdeel van de aanval en verdediging ter zee."
 
 #: simulation/data/technologies/ship_capture_resistance.jsongenericName
 msgid "Marines"
-msgstr ""
+msgstr "Mariniers"
 
 #: simulation/data/technologies/ship_capture_resistance.jsonspecificName.athen
 #: simulation/data/technologies/ship_capture_resistance.jsonspecificName.cart
@@ -1639,7 +1640,7 @@ msgstr "Epibatai"
 
 #: simulation/data/technologies/ship_capture_resistance.jsontooltip
 msgid "All Warships +40% capture resistance."
-msgstr ""
+msgstr "Alle Oorlogsschepen +40% veroveringsweerstand."
 
 #: simulation/data/technologies/ship_cost_time.jsongenericName
 msgid "Naval Architects"
@@ -1659,7 +1660,7 @@ msgstr "Versterkte scheepsromp"
 
 #: simulation/data/technologies/ship_health.jsontooltip
 msgid "Ships +25% health, but −10% speed."
-msgstr ""
+msgstr "Schepen +25% kracht, maar −10% snelheid."
 
 #: simulation/data/technologies/ship_movement_speed.jsondescription
 msgid ""
@@ -1679,11 +1680,11 @@ msgstr "Schepen +10% snelheid."
 msgid ""
 "Lookouts aboard ship were important for sighting land, spotting navigational"
 " hazards, and directing fire in battle."
-msgstr ""
+msgstr "De uitkijk aan boord was belangrijk om land in zicht te krijgen, gevaren voor de navigatie op te merken en om de vuurrichting tijdens een gevecht aan te geven."
 
 #: simulation/data/technologies/ship_vision.jsongenericName
 msgid "Lookouts"
-msgstr ""
+msgstr "Uitkijk"
 
 #: simulation/data/technologies/ship_vision.jsonspecificName.athen
 #: simulation/data/technologies/ship_vision.jsonspecificName.mace
@@ -1697,7 +1698,7 @@ msgstr "Prōratēs"
 msgid ""
 "Ships and Boats +10% vision range; Scout Ships an additional +25% vision "
 "range. Unlocks “Exploration” for the Carthaginians and Han Chinese."
-msgstr ""
+msgstr "Schepen en boten +10% gezichtsveld; Verkenningsschepen krijgen nog eens +25% extra. Maakt “Ontdekkingsreizen” beschikbaar voor Carthago en de Han."
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
