@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-08 08:08+0000\n"
+"POT-Creation-Date: 2024-02-02 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: V S <v32itas@slacknet.eu>, 2021\n"
 "Language-Team: Lithuanian (http://app.transifex.com/wildfire-games/0ad/language/lt/)\n"
@@ -976,7 +976,7 @@ msgstr "Solonas"
 #: simulation/templates/units/ptol/infantry_spearman_merc_a.xml:4
 #: simulation/templates/units/ptol/infantry_swordsman_merc_a.xml:4
 #: simulation/templates/units/ptol/support_healer_a.xml:4
-#: simulation/templates/units/rome/cavalry_javelineer_02_a.xml:4
+#: simulation/templates/units/rome/cavalry_auxiliary_a.xml:4
 #: simulation/templates/units/rome/cavalry_javelineer_a.xml:4
 #: simulation/templates/units/rome/cavalry_spearman_a.xml:4
 #: simulation/templates/units/rome/infantry_javelineer_a.xml:4
@@ -1095,14 +1095,14 @@ msgstr "Prodromos"
 #: simulation/templates/units/ptol/infantry_spearman_merc_e.xml:4
 #: simulation/templates/units/ptol/infantry_swordsman_merc_e.xml:4
 #: simulation/templates/units/ptol/support_healer_e.xml:4
-#: simulation/templates/units/rome/cavalry_javelineer_02_e.xml:4
+#: simulation/templates/units/rome/cavalry_auxiliary_e.xml:4
 #: simulation/templates/units/rome/cavalry_javelineer_e.xml:4
 #: simulation/templates/units/rome/cavalry_spearman_e.xml:4
 #: simulation/templates/units/rome/champion_infantry_spear_gladiator.xml:22
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:22
+#: simulation/templates/units/rome/infantry_antesignanus.xml:24
 #: simulation/templates/units/rome/infantry_javelineer_e.xml:4
-#: simulation/templates/units/rome/infantry_lanciarius.xml:25
-#: simulation/templates/units/rome/infantry_legionary.xml:24
+#: simulation/templates/units/rome/infantry_legionary.xml:23
 #: simulation/templates/units/rome/infantry_spearman_e.xml:4
 #: simulation/templates/units/rome/infantry_swordsman_e.xml:4
 #: simulation/templates/units/rome/support_healer_e.xml:4
@@ -2969,12 +2969,16 @@ msgstr ""
 msgid "Lūcius Iūnius Brūtus"
 msgstr "Lūcius Iūnius Brūtus"
 
-#: simulation/templates/units/rome/cavalry_javelineer_02_b.xml:6
+#: simulation/templates/units/rome/cavalry_auxiliary_b.xml:6
 msgid "Auxiliary Cavalry"
 msgstr ""
 
-#: simulation/templates/units/rome/cavalry_javelineer_02_b.xml:7
+#: simulation/templates/units/rome/cavalry_auxiliary_b.xml:7
 msgid "Eques Alaris"
+msgstr ""
+
+#: simulation/templates/units/rome/cavalry_auxiliary_b.xml:8
+msgid "Auxiliary"
 msgstr ""
 
 #: simulation/templates/units/rome/cavalry_javelineer_b.xml:6
@@ -3032,23 +3036,23 @@ msgstr "Extrāōrdinārius"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_02.xml:4
 #: simulation/templates/units/rome/champion_infantry_swordsman_03.xml:11
-#: simulation/templates/units/rome/infantry_legionary.xml:21
+#: simulation/templates/units/rome/infantry_legionary.xml:20
 msgid "Marian Legionary"
 msgstr "Mariečių Legionierius"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_02.xml:5
 #: simulation/templates/units/rome/champion_infantry_swordsman_03.xml:12
-#: simulation/templates/units/rome/infantry_legionary.xml:23
+#: simulation/templates/units/rome/infantry_legionary.xml:22
 msgid "Legiōnārius"
 msgstr "Legionierius"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:14
-#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:24
+#: simulation/templates/units/rome/champion_infantry_swordsman_centurion.xml:21
 msgid "Roman Centurion"
 msgstr "Romėnų centurionas"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:15
-#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:25
+#: simulation/templates/units/rome/champion_infantry_swordsman_centurion.xml:22
 msgid "Centuriō"
 msgstr "Centuriō"
 
@@ -3058,6 +3062,16 @@ msgstr ""
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_05.xml:15
 msgid "Praetorianus"
+msgstr ""
+
+#: simulation/templates/units/rome/champion_infantry_swordsman_centurion.xml:24
+msgid ""
+"Centurions may be promoted from elite melee citizen infantry, and train from"
+" the Fortress after Marian Reforms."
+msgstr ""
+
+#: simulation/templates/units/rome/champion_infantry_swordsman_centurion.xml:25
+msgid "Centurion"
 msgstr ""
 
 #: simulation/templates/units/rome/hero_marcellus.xml:10
@@ -3075,6 +3089,19 @@ msgstr "Quīntus Fabius Maximus Verrūcōsus Cūnctātor"
 msgid "Pūblius Cornēlius Scīpiō Āfricānus"
 msgstr "Pūblius Cornēlius Scīpiō Āfricānus"
 
+#: simulation/templates/units/rome/infantry_antesignanus.xml:21
+msgid "Legionary Skirmisher"
+msgstr ""
+
+#: simulation/templates/units/rome/infantry_antesignanus.xml:22
+msgid "Antesignānus"
+msgstr ""
+
+#: simulation/templates/units/rome/infantry_antesignanus.xml:23
+#: simulation/templates/units/rome/infantry_legionary.xml:25
+msgid "Legionary"
+msgstr ""
+
 #: simulation/templates/units/rome/infantry_javelineer_b.xml:13
 msgid "Roman Skirmisher"
 msgstr "Romėnų skirmišeris"
@@ -3082,19 +3109,6 @@ msgstr "Romėnų skirmišeris"
 #: simulation/templates/units/rome/infantry_javelineer_b.xml:14
 msgid "Vēles"
 msgstr "Vēles"
-
-#: simulation/templates/units/rome/infantry_lanciarius.xml:22
-msgid "Legionary Skirmisher"
-msgstr ""
-
-#: simulation/templates/units/rome/infantry_lanciarius.xml:23
-msgid "lanciārius"
-msgstr ""
-
-#: simulation/templates/units/rome/infantry_lanciarius.xml:24
-#: simulation/templates/units/rome/infantry_legionary.xml:26
-msgid "Legionary"
-msgstr ""
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:19
 msgid "Veteran Spearman"
@@ -3108,8 +3122,8 @@ msgstr "Triārius"
 msgid "Elite rank Spearmen can be promoted to champion Centurions."
 msgstr ""
 
-#: simulation/templates/units/rome/infantry_spearman_e.xml:10
-#: simulation/templates/units/rome/infantry_swordsman_e.xml:10
+#: simulation/templates/units/rome/infantry_spearman_e.xml:9
+#: simulation/templates/units/rome/infantry_swordsman_e.xml:9
 msgid "Give this combat veteran the rank of Centurion."
 msgstr ""
 
@@ -3123,16 +3137,6 @@ msgstr "Hastātus"
 
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:22
 msgid "Elite rank Swordsmen can be promoted to champion Centurions."
-msgstr ""
-
-#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:27
-msgid ""
-"Centurions may be promoted from elite melee citizen infantry, and train from"
-" the Fortress after Marian Reforms."
-msgstr ""
-
-#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:28
-msgid "Centurion"
 msgstr ""
 
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:20
