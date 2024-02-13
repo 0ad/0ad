@@ -39,6 +39,7 @@
 # Paolo
 # rib ezz
 # Riccardo Cariboni
+# SebastianoPistore
 # Sergio
 # Stanislas Dolcini
 # andreac
@@ -48,7 +49,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-19 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Matteo Nigro, 2023-2024\n"
+"Last-Translator: SebastianoPistore <SebastianoPistore.info@protonmail.ch>, 2024\n"
 "Language-Team: Italian (http://app.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,7 +76,7 @@ msgstr "Tasto rapido non assegnato: %(hotkeyName)s"
 #: gui/common/color.js:196
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr "Premi %(hotkey)s per autocompletare nomi giocatori."
+msgstr "Premi %(hotkey)s per completare automaticamente nomi giocatori."
 
 #: gui/common/color.js:198
 msgctxt "hotkey"
@@ -84,7 +85,7 @@ msgstr "Tab"
 
 #: gui/common/functions_global_object.js:53
 msgid "Loading Aborted"
-msgstr "Caricamento Interrotto"
+msgstr "Caricamento interrotto"
 
 #: gui/common/functions_utility.js:42
 msgid "Gaia"
@@ -167,7 +168,7 @@ msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:130
 msgid "Unknown Civilization"
-msgstr "Civiltà Sconosciuta"
+msgstr "Civiltà sconosciuta"
 
 #: gui/common/gamedescription.js:137
 msgctxt "playerstate"
