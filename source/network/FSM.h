@@ -170,10 +170,10 @@ private:
 		{
 			size_t operator()(const TransitionKey& key) const noexcept
 			{
-				static_assert(sizeof(UnderlyingType) <= sizeof(size_t) / 2);
-				return (static_cast<size_t>(key.state) <<
-					((sizeof(size_t) / 2) * std::numeric_limits<unsigned char>::digits)) +
-					static_cast<size_t>(key.eventType);
+				constexpr size_t count{std::numeric_limits<size_t>::digits / 2};
+				const size_t wideState{static_cast<size_t>(key.state)};
+				const size_t rotatedState{(wideState << count) | (wideState >> count)};
+				return static_cast<size_t>(key.eventType) ^ rotatedState;
 			}
 		};
 
