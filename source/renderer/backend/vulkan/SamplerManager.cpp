@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -95,6 +95,8 @@ VkSampler CSamplerManager::GetOrCreateSampler(
 	if (it != m_SamplerMap.end())
 		return it->second;
 
+	const IDevice::Capabilities& capabilities = m_Device->GetCapabilities();
+
 	VkSamplerCreateInfo samplerCreateInfo{};
 	samplerCreateInfo.sType = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO;
 	samplerCreateInfo.magFilter = samplerDesc.magFilter == Sampler::Filter::LINEAR ? VK_FILTER_LINEAR : VK_FILTER_NEAREST;
@@ -104,10 +106,10 @@ VkSampler CSamplerManager::GetOrCreateSampler(
 	samplerCreateInfo.addressModeV = Mapping::FromAddressMode(samplerDesc.addressModeV);
 	samplerCreateInfo.addressModeW = Mapping::FromAddressMode(samplerDesc.addressModeW);
 	samplerCreateInfo.mipLodBias = samplerDesc.mipLODBias;
-	if (samplerDesc.anisotropyEnabled && m_Device->GetCapabilities().anisotropicFiltering)
+	if (samplerDesc.anisotropyEnabled && capabilities.anisotropicFiltering)
 	{
 		samplerCreateInfo.anisotropyEnable = VK_TRUE;
-		samplerCreateInfo.maxAnisotropy = samplerDesc.maxAnisotropy;
+		samplerCreateInfo.maxAnisotropy = std::min(samplerDesc.maxAnisotropy, capabilities.maxAnisotropy);
 	}
 	samplerCreateInfo.compareEnable = samplerDesc.compareEnabled ? VK_TRUE : VK_FALSE;
 	samplerCreateInfo.compareOp = Mapping::FromCompareOp(samplerDesc.compareOp);
