@@ -214,7 +214,7 @@ SlopeConstraint.prototype.allows = function(position)
  */
 function StaticConstraint(constraints)
 {
-	let mapSize = g_Map.getSize();
+	const mapSize = g_Map.getSize();
 
 	this.constraint = new AndConstraint(constraints);
 	this.cache = new Array(mapSize).fill(0).map(() => new Uint8Array(mapSize));

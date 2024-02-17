@@ -13,12 +13,12 @@ function TerrainTextureArrayPainter(textureIDs, textureNames)
 
 TerrainTextureArrayPainter.prototype.paint = function(area)
 {
-	let sourceSize = Math.sqrt(this.textureIDs.length);
-	let scale = sourceSize / g_Map.getSize();
+	const sourceSize = Math.sqrt(this.textureIDs.length);
+	const scale = sourceSize / g_Map.getSize();
 
-	for (let point of area.getPoints())
+	for (const point of area.getPoints())
 	{
-		let sourcePos = Vector2D.mult(point, scale).floor();
+		const sourcePos = Vector2D.mult(point, scale).floor();
 		g_Map.setTexture(point, this.textureNames[this.textureIDs[sourcePos.x * sourceSize + sourcePos.y]]);
 	}
 };

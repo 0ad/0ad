@@ -55,21 +55,21 @@ const heightLand = 0;
 const heightPlayer = 5;
 const heightHill = 12;
 
-var g_Map = new RandomMap(heightLand, tGrass);
+const g_Map = new RandomMap(heightLand, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 
-var clWater = g_Map.createTileClass();
-var clCliff = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clPlayer = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clCliff = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
 var WATER_WIDTH = 0.1;
 var horizontal = randBool();
@@ -83,8 +83,8 @@ function distanceToPlayers(x, z)
 	let r = Infinity;
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		var dx = x - tilesToFraction(playerPosition[i].x);
-		var dz = z - tilesToFraction(playerPosition[i].y);
+		let dx = x - tilesToFraction(playerPosition[i].x);
+		let dz = z - tilesToFraction(playerPosition[i].y);
 		r = Math.min(r, Math.square(dx) + Math.square(dz));
 	}
 	return Math.sqrt(r);
@@ -92,7 +92,7 @@ function distanceToPlayers(x, z)
 
 function playerNearness(x, z)
 {
-	var d = fractionToTiles(distanceToPlayers(x,z));
+	let d = fractionToTiles(distanceToPlayers(x,z));
 
 	if (d < 13)
 		return 0;
@@ -103,7 +103,7 @@ function playerNearness(x, z)
 	return 1;
 }
 
-for (let x of [mapBounds.left, mapBounds.right])
+for (const x of [mapBounds.left, mapBounds.right])
 	paintRiver({
 		"parallel": true,
 		"start": new Vector2D(x, mapBounds.top).rotateAround(startAngle, mapCenter),
@@ -136,14 +136,14 @@ var noise5 = new Noise2D(scaleByMapSize(11, 44));
 for (var ix = 0; ix <= mapSize; ix++)
 	for (var iz = 0; iz <= mapSize; iz++)
 	{
-		let position = new Vector2D(ix, iz);
+		const position = new Vector2D(ix, iz);
 
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);
 		var pn = playerNearness(x, z);
 
-		let c = startAngle ? z : x;
-		let distToWater = clWater.has(position) ? 0 : (0.5 - WATER_WIDTH - Math.abs(c - 0.5));
+		const c = startAngle ? z : x;
+		const distToWater = clWater.has(position) ? 0 : (0.5 - WATER_WIDTH - Math.abs(c - 0.5));
 		let h = distToWater ? heightHill * (1 - Math.abs(c - 0.5) / (0.5 - WATER_WIDTH)) : g_Map.getHeight(position);
 
 		// add some base noise
@@ -153,7 +153,7 @@ for (var ix = 0; ix <= mapSize; ix++)
 			baseNoise *= pn;
 			baseNoise *= Math.max(0.1, distToWater / (0.5 - WATER_WIDTH));
 		}
-		var oldH = h;
+		const oldH = h;
 		h += baseNoise;
 
 		// add some higher-frequency noise on land
@@ -163,7 +163,7 @@ for (var ix = 0; ix <= mapSize; ix++)
 		// create cliff noise
 		if ( h > -10 )
 		{
-			var cliffNoise = (noise3.get(x,z) + 0.5*noise4.get(x,z)) / 1.5;
+			let cliffNoise = (noise3.get(x,z) + 0.5*noise4.get(x,z)) / 1.5;
 			if (h < 1)
 			{
 				var u = 1 - 0.3*((h-1)/-10);
@@ -195,7 +195,7 @@ var noise10 = new Noise2D(scaleByMapSize(50, 200));
 for (var ix = 0; ix < mapSize; ix++)
 	for (var iz = 0; iz < mapSize; iz++)
 	{
-		let position = new Vector2D(ix, iz);
+		const position = new Vector2D(ix, iz);
 		var x = ix / (mapSize + 1.0);
 		var z = iz / (mapSize + 1.0);
 		var pn = playerNearness(x, z);
@@ -203,9 +203,9 @@ for (var ix = 0; ix < mapSize; ix++)
 		// Compute height difference
 		let minH = +Infinity;
 		let maxH = -Infinity;
-		for (let vertex of g_TileVertices)
+		for (const vertex of g_TileVertices)
 		{
-			let height = g_Map.getHeight(Vector2D.add(position, vertex));
+			const height = g_Map.getHeight(Vector2D.add(position, vertex));
 			minH = Math.min(minH, height);
 			maxH = Math.max(maxH, height);
 		}
@@ -223,7 +223,7 @@ for (var ix = 0; ix < mapSize; ix++)
 		}
 
 		// choose a terrain based on elevation
-		var t = tGrass;
+		let t = tGrass;
 
 		// water
 		if (maxH < -12)
@@ -276,7 +276,7 @@ for (var ix = 0; ix < mapSize; ix++)
 			{
 				if (minH < 11 && minH >= 4)
 				{
-					var typeNoise = noise10.get(x,z);
+					const typeNoise = noise10.get(x,z);
 
 					if (typeNoise < 0.43 && forestNoise < 0.05)
 						t = pPoplarForest;

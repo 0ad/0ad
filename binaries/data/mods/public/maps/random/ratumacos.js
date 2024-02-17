@@ -77,7 +77,7 @@ Engine.SetProgress(25);
 g_Map.log("Creating shallows");
 for (let i = 0; i < scaleByMapSize(5, 12); ++i)
 {
-	let x = fractionToTiles(randFloat(0, 1));
+	const x = fractionToTiles(randFloat(0, 1));
 	createPassage({
 		"start": new Vector2D(x, mapBounds.bottom).rotateAround(riverAngle + Math.PI / 2 * randFloat(0.8, 1.2), mapCenter),
 		"end": new Vector2D(x, mapBounds.top).rotateAround(riverAngle + Math.PI / 2 * randFloat(0.8, 1.2), mapCenter),

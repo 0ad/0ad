@@ -1,51 +1,51 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
-var tPrimary = ["alpine_snow_01"];
-var tSecondary = "alpine_snow_02";
-var tShore = "alpine_ice_01";
-var tWater = "alpine_ice_01";
+const tPrimary = ["alpine_snow_01"];
+const tSecondary = "alpine_snow_02";
+const tShore = "alpine_ice_01";
+const tWater = "alpine_ice_01";
 
-var oArcticFox = "gaia/fauna_fox_arctic";
-var oArcticWolf = "gaia/fauna_wolf_arctic_violent";
-var oMuskox = "gaia/fauna_muskox";
-var oWalrus = "gaia/fauna_walrus";
-var oWhaleFin = "gaia/fauna_whale_fin";
-var oWhaleHumpback = "gaia/fauna_whale_humpback";
-var oFish = "gaia/fish/generic";
-var oStoneLarge = "gaia/rock/polar_01";
-var oStoneSmall = "gaia/rock/alpine_small";
-var oMetalLarge = "gaia/ore/polar_01";
-var oWoodTreasure = "gaia/treasure/wood";
-var oMarket = "skirmish/structures/default_market";
+const oArcticFox = "gaia/fauna_fox_arctic";
+const oArcticWolf = "gaia/fauna_wolf_arctic_violent";
+const oMuskox = "gaia/fauna_muskox";
+const oWalrus = "gaia/fauna_walrus";
+const oWhaleFin = "gaia/fauna_whale_fin";
+const oWhaleHumpback = "gaia/fauna_whale_humpback";
+const oFish = "gaia/fish/generic";
+const oStoneLarge = "gaia/rock/polar_01";
+const oStoneSmall = "gaia/rock/alpine_small";
+const oMetalLarge = "gaia/ore/polar_01";
+const oWoodTreasure = "gaia/treasure/wood";
+const oMarket = "skirmish/structures/default_market";
 
-var aRockLarge = "actor|geology/stone_granite_med.xml";
-var aRockMedium = "actor|geology/stone_granite_med.xml";
-var aIceberg = "actor|props/special/eyecandy/iceberg.xml";
+const aRockLarge = "actor|geology/stone_granite_med.xml";
+const aRockMedium = "actor|geology/stone_granite_med.xml";
+const aIceberg = "actor|props/special/eyecandy/iceberg.xml";
 
-var heightSeaGround = -10;
-var heightLand = 2;
-var heightCliff = 3;
+const heightSeaGround = -10;
+const heightLand = 2;
+const heightCliff = 3;
 
-var g_Map = new RandomMap(heightLand, tPrimary);
+const g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clArcticWolf = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clArcticWolf = g_Map.createTileClass();
 
-var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
+const [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
-var treasures = [{
+const treasures = [{
 	"template": oWoodTreasure,
 	"count": isNomad() ? 16 : 14
 }];
@@ -54,7 +54,7 @@ g_Map.log("Creating player markets");
 if (!isNomad())
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		let marketPos = Vector2D.add(playerPosition[i], new Vector2D(12, 0).rotate(randomAngle())).round();
+		const marketPos = Vector2D.add(playerPosition[i], new Vector2D(12, 0).rotate(randomAngle())).round();
 		g_Map.placeEntityPassable(oMarket, playerIDs[i], marketPos, BUILDING_ORIENTATION);
 		addCivicCenterAreaToClass(marketPos, clBaseResource);
 	}
@@ -242,7 +242,7 @@ else
 
 if (isNomad())
 {
-	let constraint = avoidClasses(clWater, 4, clMetal, 4, clRock, 4, clHill, 4, clFood, 2);
+	const constraint = avoidClasses(clWater, 4, clMetal, 4, clRock, 4, clHill, 4, clFood, 2);
 	[playerIDs, playerPosition] = placePlayersNomad(clPlayer, constraint);
 
 	for (let i = 0; i < numPlayers; ++i)

@@ -18,14 +18,14 @@ DiskPlacer.prototype.setCenterPosition = function(position)
 
 DiskPlacer.prototype.place = function(constraint)
 {
-	let points = [];
+	const points = [];
 
 	const xMin = Math.floor(Math.max(0, this.centerPosition.x - this.radius));
 	const yMin = Math.floor(Math.max(0, this.centerPosition.y - this.radius));
 	const xMax = Math.ceil(Math.min(g_Map.getSize() - 1, this.centerPosition.x + this.radius));
 	const yMax = Math.ceil(Math.min(g_Map.getSize() - 1, this.centerPosition.y + this.radius));
 
-	let it = new Vector2D();
+	const it = new Vector2D();
 	for (it.x = xMin; it.x <= xMax; ++it.x)
 		for (it.y = yMin; it.y <= yMax; ++it.y)
 		{

@@ -47,26 +47,26 @@ const heightIsland = 6;
 const heightHill = 15;
 const heightOffsetBump = 2;
 
-var g_Map = new RandomMap(heightLand, tHill);
+const g_Map = new RandomMap(heightLand, tHill);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 
-var clPlayer = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clGrass = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clIsland = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clGrass = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clIsland = g_Map.createTileClass();
 
-var startAngle = randIntInclusive(0, 3) * Math.PI / 2;
+const startAngle = randIntInclusive(0, 3) * Math.PI / 2;
 
 placePlayerBases({
 	"PlayerPlacement": [
@@ -138,8 +138,8 @@ createAreas(
 	scaleByMapSize(1, 4) * numPlayers * 3);
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.5);
-var num = scaleByMapSize(10,42);
+const [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.5);
+const num = scaleByMapSize(10,42);
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 5))), 0.5),
 	[
@@ -152,7 +152,7 @@ createAreas(
 Engine.SetProgress(50);
 
 g_Map.log("Creating grass patches");
-for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
+for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
@@ -166,7 +166,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 Engine.SetProgress(55);
 
 g_Map.log("Creating dirt patches");
-for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
+for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
@@ -193,12 +193,12 @@ createAreas(
 	100);
 
 g_Map.log("Creating cyprus mines");
-var mines = [
+const mines = [
 	new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock),
 	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
 	new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3)], true, clRock)
 ];
-for (let mine of mines)
+for (const mine of mines)
 	createObjectGroups(
 		mine,
 		0,
@@ -209,7 +209,7 @@ for (let mine of mines)
 		scaleByMapSize(4, 16));
 
 g_Map.log("Creating stone mines");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
+let group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clWater, 3, clHill, 1),
 	scaleByMapSize(4,16), 100
@@ -293,12 +293,12 @@ createObjectGroupsDeprecated(group, 0,
 );
 Engine.SetProgress(90);
 
-var stragglerTreeConfig = [
+const stragglerTreeConfig = [
 	[1, avoidClasses(clForest, 0, clWater, 4, clPlayer, 8, clMetal, 6, clHill, 1)],
 	[3, [stayClasses(clIsland, 9), avoidClasses(clRock, 4, clMetal, 4)]]
 ];
 
-for (let [amount, constraint] of stragglerTreeConfig)
+for (const [amount, constraint] of stragglerTreeConfig)
 	createStragglerTrees(
 		[oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress],
 		constraint,

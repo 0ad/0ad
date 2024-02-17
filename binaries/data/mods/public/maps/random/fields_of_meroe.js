@@ -68,20 +68,20 @@ const numPlayers = getNumPlayers();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 
-var clPlayer = g_Map.createTileClass();
-var clKushiteVillages = g_Map.createTileClass();
-var clRiver = g_Map.createTileClass();
-var clShore = g_Map.createTileClass();
-var clDunes = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clRain = g_Map.createTileClass();
-var clCataract = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clKushiteVillages = g_Map.createTileClass();
+const clRiver = g_Map.createTileClass();
+const clShore = g_Map.createTileClass();
+const clDunes = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clRain = g_Map.createTileClass();
+const clCataract = g_Map.createTileClass();
 
-var kushVillageBuildings = {
+const kushVillageBuildings = {
 	"houseA": { "template": oHouse, "offset": new Vector2D(5, 5) },
 	"houseB": { "template": oHouse, "offset": new Vector2D(5, 0) },
 	"houseC": { "template": oHouse, "offset": new Vector2D(5, -5) },
@@ -124,7 +124,7 @@ paintRiver({
 		createTerrain(tRiverBank).place(position);
 	},
 	"landFunc": (position, shoreDist1, shoreDist2) => {
-		for (let riv of riverTextures)
+		for (const riv of riverTextures)
 			if (riv.left < +shoreDist1 && +shoreDist1 < riv.right || riv.left < -shoreDist2 && -shoreDist2 < riv.right)
 				{
 					riv.tileClass.add(position);
@@ -136,11 +136,11 @@ paintRiver({
 Engine.SetProgress(10);
 
 g_Map.log("Creating cataracts");
-for (let x of [fractionToTiles(randFloat(0.15, 0.25)), fractionToTiles(randFloat(0.75, 0.85))])
+for (const x of [fractionToTiles(randFloat(0.15, 0.25)), fractionToTiles(randFloat(0.75, 0.85))])
 {
-	let anglePassage = riverAngle + Math.PI / 2 * randFloat(0.8, 1.2);
+	const anglePassage = riverAngle + Math.PI / 2 * randFloat(0.8, 1.2);
 
-	let areaPassage = createArea(
+	const areaPassage = createArea(
 		new PathPlacer(
 			new Vector2D(x, mapBounds.bottom).rotateAround(anglePassage, mapCenter),
 			new Vector2D(x, mapBounds.top).rotateAround(anglePassage, mapCenter),
@@ -173,7 +173,7 @@ for (let x of [fractionToTiles(randFloat(0.15, 0.25)), fractionToTiles(randFloat
 		[areaPassage]);
 }
 
-var [playerIDs, playerPosition] = playerPlacementRandom(sortAllPlayers(), avoidClasses(clRiver, 15, clPlayer, 30));
+const [playerIDs, playerPosition] = playerPlacementRandom(sortAllPlayers(), avoidClasses(clRiver, 15, clPlayer, 30));
 placePlayerBases({
 	"PlayerPlacement": [playerIDs, playerPosition],
 	"BaseResourceClass": clBaseResource,
@@ -208,10 +208,10 @@ placePlayerBases({
 Engine.SetProgress(15);
 
 g_Map.log("Getting random coordinates for Kushite settlements");
-var kushiteTownPositions = [];
+let kushiteTownPositions = [];
 for (let retryCount = 0; retryCount < scaleByMapSize(3, 10); ++retryCount)
 {
-	let coordinate = g_Map.randomCoordinate(true);
+	const coordinate = g_Map.randomCoordinate(true);
 	if (new AndConstraint(avoidClasses(clPlayer, 40, clForest, 5, clKushiteVillages, 50, clRiver, 15)).allows(coordinate))
 	{
 		kushiteTownPositions.push(coordinate);
@@ -225,9 +225,9 @@ for (let retryCount = 0; retryCount < scaleByMapSize(3, 10); ++retryCount)
 }
 
 g_Map.log("Placing the Kushite buildings");
-for (let coordinate of kushiteTownPositions)
+for (const coordinate of kushiteTownPositions)
 {
-	for (let building in kushVillageBuildings)
+	for (const building in kushVillageBuildings)
 		g_Map.placeEntityPassable(kushVillageBuildings[building].template, 0, Vector2D.add(coordinate, kushVillageBuildings[building].offset), Math.PI);
 
 	createObjectGroup(new SimpleGroup([new SimpleObject(oKushUnits, 5, 7, 1, 2)], true, clKushiteVillages, coordinate), 0);
@@ -261,7 +261,7 @@ createAreas(
 
 Engine.SetProgress(25);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(400, 2000, 0.7);
+const [forestTrees, stragglerTrees] = getTreeCounts(400, 2000, 0.7);
 createForests(
 	[tMainDirt[0], tForestFloor, tForestFloor, pForestP, pForestP],
 	avoidClasses(clPlayer, 20, clForest, 20, clDunes, 2, clRiver, 20, clKushiteVillages, 10),
@@ -270,7 +270,7 @@ createForests(
 Engine.SetProgress(40);
 
 g_Map.log("Creating dirt patches");
-for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
+for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		new LayeredPainter([tSecondaryDirt, tDirt], [1]),
@@ -278,7 +278,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		scaleByMapSize(50, 90));
 
 g_Map.log("Creating patches of farmland");
-for (let size of [scaleByMapSize(30, 40), scaleByMapSize(35, 50)])
+for (const size of [scaleByMapSize(30, 40), scaleByMapSize(35, 50)])
 	createAreas(
 		new ClumpPlacer(size, 0.4, 0.6),
 		new TerrainPainter(tFarmland),

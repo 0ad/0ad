@@ -3,7 +3,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 Engine.LoadLibrary("heightmap");
 
-var g_Map = new RandomMap(0, "whiteness");
+const g_Map = new RandomMap(0, "whiteness");
 
 /**
  * getArray - To ensure a terrain texture is contained within an array
@@ -18,7 +18,7 @@ function getArray(stringOrArrayOfStrings)
 setSelectedBiome();
 
 // Terrain, entities and actors
-let wildLakeBiome = [
+const wildLakeBiome = [
 	// 0 Deep water
 	{
 		"texture": getArray(g_Terrains.water),
@@ -169,8 +169,8 @@ function placeMine(position, centerEntity,
 {
 	g_Map.placeEntityPassable(centerEntity, 0, position, randomAngle());
 
-	let quantity = randIntInclusive(11, 23);
-	let dAngle = 2 * Math.PI / quantity;
+	const quantity = randIntInclusive(11, 23);
+	const dAngle = 2 * Math.PI / quantity;
 	for (let i = 0; i < quantity; ++i)
 		g_Map.placeEntityPassable(
 			pickRandom(decorativeActors),
@@ -180,8 +180,8 @@ function placeMine(position, centerEntity,
 }
 
 // Groves, only wood
-let groveActors = [g_Decoratives.grass, g_Decoratives.rockMedium, g_Decoratives.bushMedium];
-let clGaiaCamp = g_Map.createTileClass();
+const groveActors = [g_Decoratives.grass, g_Decoratives.rockMedium, g_Decoratives.bushMedium];
+const clGaiaCamp = g_Map.createTileClass();
 
 function placeGrove(point,
 	groveEntities = [
@@ -194,23 +194,23 @@ function placeGrove(point,
 	groveTerrainTexture = getArray(g_Terrains.forestFloor1)
 )
 {
-	let position = new Vector2D(point.x, point.y);
+	const position = new Vector2D(point.x, point.y);
 	g_Map.placeEntityPassable(pickRandom(["structures/gaul/outpost", g_Gaia.tree1]), 0, position, randomAngle());
 
-	let quantity = randIntInclusive(20, 30);
-	let dAngle = 2 * Math.PI / quantity;
+	const quantity = randIntInclusive(20, 30);
+	const dAngle = 2 * Math.PI / quantity;
 	for (let i = 0; i < quantity; ++i)
 	{
-		let angle = dAngle * randFloat(i, i + 1);
-		let dist = randFloat(2, 5);
+		const angle = dAngle * randFloat(i, i + 1);
+		const dist = randFloat(2, 5);
 		let objectList = groveEntities;
 		if (i % 3 == 0)
 			objectList = groveActors;
 
-		let pos = Vector2D.add(position, new Vector2D(dist, 0).rotate(-angle));
+		const pos = Vector2D.add(position, new Vector2D(dist, 0).rotate(-angle));
 		g_Map.placeEntityPassable(pickRandom(objectList), 0, pos, randomAngle());
 
-		let painters = [new TerrainPainter(groveTerrainTexture)];
+		const painters = [new TerrainPainter(groveTerrainTexture)];
 		if (groveTileClass)
 			painters.push(new TileClassPainter(groveTileClass));
 
@@ -232,7 +232,7 @@ g_WallStyles.other = {
 	"farmstead": { "angle": Math.PI, "length": 0, "indent": -3, "bend": 0, "templateName": farmEntities.building }
 };
 
-let fences = [
+const fences = [
 	new Fortress("fence", [
 		"foodBin", "farmstead", "bench",
 		"turn_0.25", "animal", "turn_0.25", "fence",
@@ -264,7 +264,7 @@ let fences = [
 		"turn_0.25", "animal", "turn_0.25", "fence_short", "animal", "fence"
 	])
 ];
-let num = fences.length;
+const num = fences.length;
 for (let i = 0; i < num; ++i)
 	fences.push(new Fortress("fence", clone(fences[i].wall).reverse()));
 
@@ -275,12 +275,12 @@ function placeCamp(position,
 {
 	g_Map.placeEntityPassable(centerEntity, 0, position, randomAngle());
 
-	let quantity = randIntInclusive(5, 11);
-	let dAngle = 2 * Math.PI / quantity;
+	const quantity = randIntInclusive(5, 11);
+	const dAngle = 2 * Math.PI / quantity;
 	for (let i = 0; i < quantity; ++i)
 	{
-		let angle = dAngle * randFloat(i, i + 1);
-		let dist = randFloat(1, 3);
+		const angle = dAngle * randFloat(i, i + 1);
+		const dist = randFloat(1, 3);
 		g_Map.placeEntityPassable(pickRandom(campEntities), 0, Vector2D.add(position, new Vector2D(dist, 0).rotate(-angle)), randomAngle());
 	}
 
@@ -320,12 +320,12 @@ function placeStartLocationResources(
 	for (let i = 0; i < quantity; ++i)
 	{
 		angle = currentAngle + randFloat(0, dAngle);
-		let dist = getRandDist();
+		const dist = getRandDist();
 		let objectList = groveEntities;
 		if (i % 2 == 0)
 			objectList = groveActors;
 
-		let position = Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle));
+		const position = Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle));
 		g_Map.placeEntityPassable(pickRandom(objectList), 0, position, randomAngle());
 
 		createArea(
@@ -346,7 +346,7 @@ function placeStartLocationResources(
 	for (let i = 0; i < quantity; ++i)
 	{
 		angle = currentAngle + randFloat(0, dAngle);
-		let dist = getRandDist();
+		const dist = getRandDist();
 		g_Map.placeEntityPassable(pickRandom(foodEntities), 0, Vector2D.add(point, new Vector2D(dist, 0).rotate(-angle)), randomAngle());
 		currentAngle += dAngle;
 	}
@@ -357,18 +357,18 @@ function placeStartLocationResources(
  */
 
 // Height range by map size
-let heightScale = (g_Map.size + 512) / 1024 / 5;
-let heightRange = { "min": MIN_HEIGHT * heightScale, "max": MAX_HEIGHT * heightScale };
+const heightScale = (g_Map.size + 512) / 1024 / 5;
+const heightRange = { "min": MIN_HEIGHT * heightScale, "max": MAX_HEIGHT * heightScale };
 
 // Water coverage
-let averageWaterCoverage = 1 / 5; // NOTE: Since terrain generation is quite unpredictable actual water coverage might vary much with the same value
-let heightSeaGround = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min); // Water height in environment and the engine
-let heightSeaGroundAdjusted = heightSeaGround + MIN_HEIGHT; // Water height as terrain height
+const averageWaterCoverage = 1 / 5; // NOTE: Since terrain generation is quite unpredictable actual water coverage might vary much with the same value
+const heightSeaGround = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min); // Water height in environment and the engine
+const heightSeaGroundAdjusted = heightSeaGround + MIN_HEIGHT; // Water height as terrain height
 setWaterHeight(heightSeaGround);
 
 // Generate base terrain shape
-let lowH = heightRange.min;
-let medH = (heightRange.min + heightRange.max) / 2;
+const lowH = heightRange.min;
+const medH = (heightRange.min + heightRange.max) / 2;
 
 // Lake
 let initialHeightmap = [
@@ -422,7 +422,7 @@ Engine.SetProgress(25);
 /**
  * Prepare terrain texture placement
  */
-let heighLimits = [
+const heighLimits = [
 	heightRange.min + 3/4 * (heightSeaGroundAdjusted - heightRange.min), // 0 Deep water
 	heightSeaGroundAdjusted, // 1 Shallow water
 	heightSeaGroundAdjusted + 2/8 * (heightRange.max - heightSeaGroundAdjusted), // 2 Shore
@@ -432,15 +432,15 @@ let heighLimits = [
 	heightSeaGroundAdjusted + 7/8 * (heightRange.max - heightSeaGroundAdjusted), // 6 Lower forest border
 	heightRange.max // 7 Forest
 ];
-let playerHeightRange = { "min": heighLimits[3], "max": heighLimits[4] };
-let resourceSpotHeightRange = { "min": (heighLimits[2] + heighLimits[3]) / 2, "max": (heighLimits[4] + heighLimits[5]) / 2 };
-let playerHeight = (playerHeightRange.min + playerHeightRange.max) / 2; // Average player height
+const playerHeightRange = { "min": heighLimits[3], "max": heighLimits[4] };
+const resourceSpotHeightRange = { "min": (heighLimits[2] + heighLimits[3]) / 2, "max": (heighLimits[4] + heighLimits[5]) / 2 };
+const playerHeight = (playerHeightRange.min + playerHeightRange.max) / 2; // Average player height
 
 g_Map.log("Chosing starting locations");
-let [playerIDs, playerPosition] = groupPlayersCycle(getStartLocationsByHeightmap(playerHeightRange, 1000, 30));
+const [playerIDs, playerPosition] = groupPlayersCycle(getStartLocationsByHeightmap(playerHeightRange, 1000, 30));
 
 g_Map.log("Smoothing starting locations before height calculation");
-for (let position of playerPosition)
+for (const position of playerPosition)
 	createArea(
 		new ClumpPlacer(diskArea(20), 0.8, 0.8, Infinity, position),
 		new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 20));
@@ -451,10 +451,10 @@ Engine.SetProgress(30);
  * Calculate tile centered height map after start position smoothing but before placing paths
  * This has nothing to to with TILE_CENTERED_HEIGHT_MAP which should be false!
  */
-let tchm = getTileCenteredHeightmap();
+const tchm = getTileCenteredHeightmap();
 
 g_Map.log("Get points per height");
-let areas = heighLimits.map(heightLimit => []);
+const areas = heighLimits.map(heightLimit => []);
 for (let x = 0; x < tchm.length; ++x)
 	for (let y = 0; y < tchm[0].length; ++y)
 	{
@@ -472,16 +472,16 @@ for (let x = 0; x < tchm.length; ++x)
 	}
 
 g_Map.log("Get slope limits per heightrange");
-let slopeMap = getSlopeMap();
-let minSlope = [];
-let maxSlope = [];
+const slopeMap = getSlopeMap();
+const minSlope = [];
+const maxSlope = [];
 for (let h = 0; h < heighLimits.length; ++h)
 {
 	minSlope[h] = Infinity;
 	maxSlope[h] = 0;
-	for (let point of areas[h])
+	for (const point of areas[h])
 	{
-		let slope = slopeMap[point.x][point.y];
+		const slope = slopeMap[point.x][point.y];
 
 		if (slope > maxSlope[h])
 			maxSlope[h] = slope;
@@ -493,7 +493,7 @@ for (let h = 0; h < heighLimits.length; ++h)
 
 g_Map.log("Paint areas by height and slope");
 for (let h = 0; h < heighLimits.length; ++h)
-	for (let point of areas[h])
+	for (const point of areas[h])
 	{
 		let entity;
 		let texture = pickRandom(wildLakeBiome[h].texture);
@@ -518,10 +518,10 @@ for (let h = 0; h < heighLimits.length; ++h)
 Engine.SetProgress(40);
 
 g_Map.log("Placing resources");
-let avoidPoints = playerPosition.map(pos => pos.clone());
+const avoidPoints = playerPosition.map(pos => pos.clone());
 for (let i = 0; i < avoidPoints.length; ++i)
 	avoidPoints[i].dist = 30;
-let resourceSpots = getPointsByHeight(resourceSpotHeightRange, avoidPoints).map(point => new Vector2D(point.x, point.y));
+const resourceSpots = getPointsByHeight(resourceSpotHeightRange, avoidPoints).map(point => new Vector2D(point.x, point.y));
 
 Engine.SetProgress(55);
 
@@ -545,7 +545,7 @@ g_Map.log("Placing at most " + mercenaryCamps + " mercenary camps");
 for (let i = 0; i < resourceSpots.length; ++i)
 {
 	let radius;
-	let choice = i % (isNomad() ? 4 : 5);
+	const choice = i % (isNomad() ? 4 : 5);
 	if (choice == 0)
 		placeMine(resourceSpots[i], g_Gaia.stoneLarge);
 	if (choice == 1)

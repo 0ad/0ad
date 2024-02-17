@@ -45,23 +45,23 @@ const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TE
 const heightSeaGround = -3;
 const heightLand = 3;
 
-var g_Map = new RandomMap(heightLand, tMainTerrain);
+const g_Map = new RandomMap(heightLand, tMainTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
-var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
+const [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 g_Map.log("Preventing water in player territory");
 for (let i = 0; i < numPlayers; ++i)
@@ -180,7 +180,7 @@ createBalancedStoneMines(
 
 Engine.SetProgress(65);
 
-var planetm = 1;
+let planetm = 1;
 
 if (currentBiome() == "generic/india")
 	planetm = 8;

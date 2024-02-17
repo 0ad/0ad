@@ -217,7 +217,7 @@ const layoutFertileLandTextures = [
 	}
 ];
 
-var layoutKushTemples = [
+const layoutKushTemples = [
 	...new Array(2).fill(0).map((v, i) =>
 	({
 		"template": oTempleApedemak,
@@ -370,7 +370,7 @@ createArea(
 	new HeightConstraint(-Infinity, heightDesert));
 
 // Fertile land
-var widthFertileLand = fractionToTiles(0.33);
+const widthFertileLand = fractionToTiles(0.33);
 paintRiver({
 	"parallel": true,
 	"start": new Vector2D(mapBounds.left, mapBounds.bottom).rotateAround(-riverAngle, mapCenter),
@@ -388,7 +388,7 @@ paintRiver({
 	},
 	"landFunc": (position, shoreDist1, shoreDist2) => {
 
-		for (let riv of layoutFertileLandTextures)
+		for (const riv of layoutFertileLandTextures)
 			if (riv.left < +shoreDist1 && +shoreDist1 < riv.right ||
 			    riv.left < -shoreDist2 && -shoreDist2 < riv.right)
 			{
@@ -426,7 +426,7 @@ const playerPosition = playerPlacementArcs(
 if (!isNomad())
 {
 	g_Map.log("Marking player positions");
-	for (let position of playerPosition)
+	for (const position of playerPosition)
 		addCivicCenterAreaToClass(position, clPlayer);
 }
 
@@ -454,10 +454,10 @@ const stayDesert = new StaticConstraint(stayClasses(clDesert, 0));
 const stayFertileLand = new StaticConstraint(stayClasses(clFertileLand, 0));
 
 g_Map.log("Finding possible irrigation canal locations");
-var irrigationCanalAreas = [];
+let irrigationCanalAreas = [];
 for (let i = 0; i < 30; ++i)
 {
-	let x = fractionToTiles(randFloat(0, 1));
+	const x = fractionToTiles(randFloat(0, 1));
 	irrigationCanalAreas.push(
 		createArea(
 			new PathPlacer(
@@ -474,8 +474,8 @@ for (let i = 0; i < 30; ++i)
 }
 
 g_Map.log("Creating irrigation canals");
-var irrigationCanalLocations = [];
-for (let area of irrigationCanalAreas)
+let irrigationCanalLocations = [];
+for (const area of irrigationCanalAreas)
 	{
 		if (!area.getPoints().length ||
 		    area.getPoints().some(point => !avoidClasses(clPlayer, scaleByMapSize(8, 13), clIrrigationCanal, scaleByMapSize(15, 25)).allows(point)))
@@ -492,16 +492,16 @@ for (let area of irrigationCanalAreas)
 	}
 
 g_Map.log("Creating passages");
-var previousPassageY = randIntInclusive(0, widthFertileLand);
-var areasPassages = [];
+let previousPassageY = randIntInclusive(0, widthFertileLand);
+let areasPassages = [];
 irrigationCanalLocations.sort((a, b) => a - b);
 for (let i = 0; i < irrigationCanalLocations.length; ++i)
 {
-	let previous = i == 0 ? mapBounds.left : irrigationCanalLocations[i - 1];
-	let next = i == irrigationCanalLocations.length - 1 ? mapBounds.right : irrigationCanalLocations[i + 1];
+	const previous = i == 0 ? mapBounds.left : irrigationCanalLocations[i - 1];
+	const next = i == irrigationCanalLocations.length - 1 ? mapBounds.right : irrigationCanalLocations[i + 1];
 
-	let x1 = (irrigationCanalLocations[i] + previous) / 2;
-	let x2 = (irrigationCanalLocations[i] + next) / 2;
+	const x1 = (irrigationCanalLocations[i] + previous) / 2;
+	const x2 = (irrigationCanalLocations[i] + next) / 2;
 	let y;
 
 	// The passages should be at different locations, so that enemies can't attack each other easily
@@ -509,7 +509,7 @@ for (let i = 0; i < irrigationCanalLocations.length; ++i)
 	{
 		y = (previousPassageY + randIntInclusive(0.2 * widthFertileLand, 0.8 * widthFertileLand)) % widthFertileLand;
 
-		let pos = new Vector2D((x1 + x2) / 2, y).rotateAround(-riverAngle, mapCenter).round();
+		const pos = new Vector2D((x1 + x2) / 2, y).rotateAround(-riverAngle, mapCenter).round();
 
 		if (g_Map.validTilePassable(new Vector2D(pos.x, pos.y)) &&
 		    avoidClasses(clDesert, 12).allows(pos) &&
@@ -517,7 +517,7 @@ for (let i = 0; i < irrigationCanalLocations.length; ++i)
 			break;
 	}
 
-	let area =
+	const area =
 		createArea(
 			new PathPlacer(
 				new Vector2D(x1, y).rotateAround(-riverAngle, mapCenter),
@@ -582,7 +582,7 @@ Engine.SetProgress(50);
 
 for (let i = 0; i < numPlayers; ++i)
 {
-	let isDesert = clDesert.has(playerPosition[i]);
+	const isDesert = clDesert.has(playerPosition[i]);
 	placePlayerBase({
 		"playerID": playerIDs[i],
 		"playerPosition": playerPosition[i],
@@ -664,26 +664,26 @@ Engine.SetProgress(60);
 
 // The city is a circle segment of this maximum size
 g_Map.log("Computing city grid");
-var gridCenter = new Vector2D(0, fractionToTiles(0.3)).rotate(-riverAngle).add(mapCenter).round();
-var gridMaxAngle = Math.min(scaleByMapSize(1/3, 1), 2/3) * Math.PI;
-var gridStartAngle = -Math.PI / 2 -gridMaxAngle / 2 + riverAngle;
-var gridRadius = y => hillRadius + 18 * y;
+const gridCenter = new Vector2D(0, fractionToTiles(0.3)).rotate(-riverAngle).add(mapCenter).round();
+const gridMaxAngle = Math.min(scaleByMapSize(1/3, 1), 2/3) * Math.PI;
+const gridStartAngle = -Math.PI / 2 -gridMaxAngle / 2 + riverAngle;
+const gridRadius = y => hillRadius + 18 * y;
 
-var gridPointsX = layoutKushTemples.length;
-var gridPointsY = Math.floor(scaleByMapSize(2, 5));
-var gridPointXCenter = Math.floor(gridPointsX / 2);
-var gridPointYCenter = Math.floor(gridPointsY / 2);
+const gridPointsX = layoutKushTemples.length;
+const gridPointsY = Math.floor(scaleByMapSize(2, 5));
+const gridPointXCenter = Math.floor(gridPointsX / 2);
+const gridPointYCenter = Math.floor(gridPointsY / 2);
 
 // Maps from grid position to map position
-var cityGridPosition = [];
-var cityGridAngle = [];
+let cityGridPosition = [];
+let cityGridAngle = [];
 for (let y = 0; y < gridPointsY; ++y)
 	[cityGridPosition[y], cityGridAngle[y]] = distributePointsOnCircularSegment(
 		gridPointsX, gridMaxAngle, gridStartAngle, gridRadius(y), gridCenter);
 
 g_Map.log("Marking city path crossings");
-for (let y in cityGridPosition)
-	for (let x in cityGridPosition[y])
+for (const y in cityGridPosition)
+	for (const x in cityGridPosition[y])
 	{
 		cityGridPosition[y][x].round();
 		createArea(
@@ -695,11 +695,11 @@ for (let y in cityGridPosition)
 	}
 
 g_Map.log("Marking horizontal city paths");
-var areasCityPaths = [];
+const areasCityPaths = [];
 for (let y = 0; y < gridPointsY; ++y)
 	for (let x = 1; x < gridPointsX; ++x)
 	{
-		let width = y == gridPointYCenter ? pathWidthSecondary : pathWidth;
+		const width = y == gridPointYCenter ? pathWidthSecondary : pathWidth;
 		areasCityPaths.push(
 			createArea(
 				new PathPlacer(cityGridPosition[y][x - 1], cityGridPosition[y][x], width, 0, 8, 0, 0, Infinity),
@@ -710,7 +710,7 @@ g_Map.log("Marking vertical city paths");
 for (let y = 1; y < gridPointsY; ++y)
 	for (let x = 0; x < gridPointsX; ++x)
 	{
-		let width =
+		const width =
 			Math.abs(x - gridPointXCenter) == 0 ?
 				pathWidthCenter :
 			Math.abs(x - gridPointXCenter) == 1 ?
@@ -725,11 +725,11 @@ for (let y = 1; y < gridPointsY; ++y)
 Engine.SetProgress(70);
 
 g_Map.log("Placing kushite temples");
-var entitiesTemples = [];
-var templePosition = [];
+let entitiesTemples = [];
+const templePosition = [];
 for (let i = 0; i < layoutKushTemples.length; ++i)
 {
-	let x = i + (gridPointsX - layoutKushTemples.length) / 2;
+	const x = i + (gridPointsX - layoutKushTemples.length) / 2;
 	templePosition[i] = Vector2D.add(cityGridPosition[0][x], layoutKushTemples[i].pathOffset.rotate(-Math.PI / 2 - cityGridAngle[0][x]));
 	entitiesTemples[i] = g_Map.placeEntityPassable(layoutKushTemples[i].template, 0, templePosition[i], cityGridAngle[0][x]);
 }
@@ -767,15 +767,15 @@ createArea(
 	]);
 
 g_Map.log("Placing lion statues in the central path");
-var statueCount = scaleByMapSize(10, 40);
-var centralPathStart = cityGridPosition[0][gridPointXCenter];
-var centralPathLength = centralPathStart.distanceTo(cityGridPosition[gridPointsY - 1][gridPointXCenter]);
-var centralPathAngle = cityGridAngle[0][gridPointXCenter];
+const statueCount = scaleByMapSize(10, 40);
+const centralPathStart = cityGridPosition[0][gridPointXCenter];
+const centralPathLength = centralPathStart.distanceTo(cityGridPosition[gridPointsY - 1][gridPointXCenter]);
+const centralPathAngle = cityGridAngle[0][gridPointXCenter];
 for (let i = 0; i < 2; ++i)
 	for (let stat = 0; stat < statueCount; ++stat)
 	{
-		let start = new Vector2D(0, pathWidthCenter * 3/4 * (i - 0.5)).rotate(centralPathAngle).add(centralPathStart);
-		let position = new Vector2D(centralPathLength, 0).mult(stat / statueCount).rotate(-centralPathAngle).add(start).add(new Vector2D(0.5, 0.5));
+		const start = new Vector2D(0, pathWidthCenter * 3/4 * (i - 0.5)).rotate(centralPathAngle).add(centralPathStart);
+		const position = new Vector2D(centralPathLength, 0).mult(stat / statueCount).rotate(-centralPathAngle).add(start).add(new Vector2D(0.5, 0.5));
 
 		if (!avoidClasses(clPathCrossing, 2).allows(position))
 			continue;
@@ -785,12 +785,12 @@ for (let i = 0; i < 2; ++i)
 	}
 
 g_Map.log("Placing guardian infantry in the central path");
-var centralChampionsCount = scaleByMapSize(2, 40);
+const centralChampionsCount = scaleByMapSize(2, 40);
 for (let i = 0; i < 2; ++i)
 	for (let champ = 0; champ < centralChampionsCount; ++champ)
 	{
-		let start = new Vector2D(0, pathWidthCenter * 1/2 * (i - 0.5)).rotate(-centralPathAngle).add(centralPathStart);
-		let position = new Vector2D(centralPathLength, 0).mult(champ / centralChampionsCount).rotate(-centralPathAngle).add(start).add(new Vector2D(0.5, 0.5));
+		const start = new Vector2D(0, pathWidthCenter * 1/2 * (i - 0.5)).rotate(-centralPathAngle).add(centralPathStart);
+		const position = new Vector2D(centralPathLength, 0).mult(champ / centralChampionsCount).rotate(-centralPathAngle).add(start).add(new Vector2D(0.5, 0.5));
 
 		if (!avoidClasses(clPathCrossing, 2).allows(position))
 			continue;
@@ -800,21 +800,21 @@ for (let i = 0; i < 2; ++i)
 	}
 
 g_Map.log("Placing kushite statues in the secondary paths");
-for (let x of [gridPointXCenter - 1, gridPointXCenter + 1])
+for (const x of [gridPointXCenter - 1, gridPointXCenter + 1])
 {
 	g_Map.placeEntityAnywhere(aStatueKush, 0, cityGridPosition[gridPointYCenter][x], cityGridAngle[gridPointYCenter][x]);
 	clPathStatues.add(cityGridPosition[gridPointYCenter][x]);
 }
 
 g_Map.log("Creating ritual place near the wonder");
-var ritualPosition = Vector2D.average([
+const ritualPosition = Vector2D.average([
 	templePosition[Math.floor(templePosition.length / 2) - 1],
 	templePosition[Math.ceil(templePosition.length / 2) - 1],
 	cityGridPosition[0][gridPointXCenter],
 	cityGridPosition[0][gridPointXCenter - 1]
 ]).round();
 
-var ritualAngle = (cityGridAngle[0][gridPointXCenter] + cityGridAngle[0][gridPointXCenter - 1]) / 2 + Math.PI / 2;
+const ritualAngle = (cityGridAngle[0][gridPointXCenter] + cityGridAngle[0][gridPointXCenter - 1]) / 2 + Math.PI / 2;
 
 g_Map.placeEntityPassable(aStatueKush, 0, ritualPosition, ritualAngle - Math.PI / 2);
 
@@ -832,26 +832,26 @@ createArea(
 	new ElevationPainter(heightDesert + heightOffsetStatue));
 
 g_Map.log("Placing healers at the ritual place");
-var [healerPosition, healerAngle] = distributePointsOnCircularSegment(
+const [healerPosition, healerAngle] = distributePointsOnCircularSegment(
 	scaleByMapSize(2, 10), Math.PI, ritualAngle, scaleByMapSize(2, 3), ritualPosition);
 for (let i = 0; i < healerPosition.length; ++i)
 	g_Map.placeEntityPassable(oKushHealer, 0, healerPosition[i], healerAngle[i] + Math.PI);
 
 g_Map.log("Placing statues at the ritual place");
-var [statuePosition, statueAngle] = distributePointsOnCircularSegment(
+const [statuePosition, statueAngle] = distributePointsOnCircularSegment(
 	scaleByMapSize(4, 8), Math.PI, ritualAngle, scaleByMapSize(3, 4), ritualPosition);
 for (let i = 0; i < statuePosition.length; ++i)
 	g_Map.placeEntityPassable(pickRandom(aStatues), 0, statuePosition[i], statueAngle[i] + Math.PI);
 
 g_Map.log("Placing palms at the ritual place");
-var palmPosition = distributePointsOnCircularSegment(
+const palmPosition = distributePointsOnCircularSegment(
 	scaleByMapSize(6, 16), Math.PI, ritualAngle, scaleByMapSize(4, 5), ritualPosition)[0];
 for (let i = 0; i < palmPosition.length; ++i)
 	if (avoidClasses(clTemple, 1).allows(palmPosition[i]))
 		g_Map.placeEntityPassable(oPalmPath, 0, palmPosition[i], randomAngle());
 
 g_Map.log("Painting city paths");
-var areaPaths = createArea(
+const areaPaths = createArea(
 	new MapBoundsPlacer(),
 	[
 		new LayeredPainter([tPathWild, tPath], [1]),
@@ -880,14 +880,14 @@ for (let y = 1; y < gridPointsY; ++y)
 		],
 		new StaticConstraint(avoidClasses(clPath, 0)));
 
-var entitiesGates;
+let entitiesGates;
 if (placeNapataWall)
 {
 	g_Map.log("Placing front walls");
-	let wallGridMaxAngleSummand = scaleByMapSize(0.04, 0.03) * Math.PI;
-	let wallGridStartAngle = gridStartAngle - wallGridMaxAngleSummand / 2;
-	let wallGridRadiusFront = gridRadius(gridPointsY - 1) + pathWidth - 1;
-	let wallGridMaxAngleFront = gridMaxAngle + wallGridMaxAngleSummand;
+	const wallGridMaxAngleSummand = scaleByMapSize(0.04, 0.03) * Math.PI;
+	const wallGridStartAngle = gridStartAngle - wallGridMaxAngleSummand / 2;
+	const wallGridRadiusFront = gridRadius(gridPointsY - 1) + pathWidth - 1;
+	const wallGridMaxAngleFront = gridMaxAngle + wallGridMaxAngleSummand;
 	let entitiesWalls = placeCircularWall(
 		gridCenter,
 		wallGridRadiusFront,
@@ -901,11 +901,11 @@ if (placeNapataWall)
 		0);
 
 	g_Map.log("Placing side and back walls");
-	let wallGridRadiusBack = hillRadius - scaleByMapSize(15, 25);
-	let wallGridMaxAngleBack = gridMaxAngle + wallGridMaxAngleSummand;
-	let wallGridPositionFront = distributePointsOnCircularSegment(gridPointsX, wallGridMaxAngleBack, wallGridStartAngle, wallGridRadiusFront, gridCenter)[0];
-	let wallGridPositionBack = distributePointsOnCircularSegment(gridPointsX, wallGridMaxAngleBack, wallGridStartAngle, wallGridRadiusBack, gridCenter)[0];
-	let wallGridPosition = [wallGridPositionFront[0], ...wallGridPositionBack, wallGridPositionFront[wallGridPositionFront.length - 1]];
+	const wallGridRadiusBack = hillRadius - scaleByMapSize(15, 25);
+	const wallGridMaxAngleBack = gridMaxAngle + wallGridMaxAngleSummand;
+	const wallGridPositionFront = distributePointsOnCircularSegment(gridPointsX, wallGridMaxAngleBack, wallGridStartAngle, wallGridRadiusFront, gridCenter)[0];
+	const wallGridPositionBack = distributePointsOnCircularSegment(gridPointsX, wallGridMaxAngleBack, wallGridStartAngle, wallGridRadiusBack, gridCenter)[0];
+	const wallGridPosition = [wallGridPositionFront[0], ...wallGridPositionBack, wallGridPositionFront[wallGridPositionFront.length - 1]];
 	for (let x = 1; x < wallGridPosition.length; ++x)
 		entitiesWalls = entitiesWalls.concat(
 			placeLinearWall(
@@ -941,7 +941,7 @@ if (placeNapataWall)
 		]);
 
 	g_Map.log("Painting gate terrain");
-	for (let entity of entitiesGates)
+	for (const entity of entitiesGates)
 		createArea(
 			new DiskPlacer(pathWidth, entity.GetPosition2D()),
 			[
@@ -956,7 +956,7 @@ if (placeNapataWall)
 Engine.SetProgress(70);
 
 g_Map.log("Finding road starting points");
-var roadStartLocations = shuffleArray(
+const roadStartLocations = shuffleArray(
 	entitiesGates ?
 		entitiesGates.map(entity => entity.GetPosition2D()) :
 		[
@@ -966,24 +966,24 @@ var roadStartLocations = shuffleArray(
 		]);
 
 g_Map.log("Finding possible roads");
-var roadConstraint = new StaticConstraint(
+let roadConstraint = new StaticConstraint(
 	[
 		stayDesert,
 		avoidClasses(clHill, 0, clCity, 0, clPyramid, 6, clPlayer, 16)
 	]);
 
-var areaCityPaths = new Area(areasCityPaths.reduce((points, area) => points.concat(area.getPoints()), []));
-var areaRoads = [];
-for (let roadStart of roadStartLocations)
+const areaCityPaths = new Area(areasCityPaths.reduce((points, area) => points.concat(area.getPoints()), []));
+const areaRoads = [];
+for (const roadStart of roadStartLocations)
 {
 	if (areaRoads.length >= scaleByMapSize(2, 5))
 		break;
 
-	let closestPoint = areaCityPaths.getClosestPointTo(roadStart);
+	const closestPoint = areaCityPaths.getClosestPointTo(roadStart);
 	roadConstraint = new StaticConstraint([roadConstraint, avoidClasses(clRoad, 20)]);
 	for (let tries = 0; tries < 30; ++tries)
 	{
-		let area = createArea(
+		const area = createArea(
 			new PathPlacer(
 				Vector2D.add(closestPoint, new Vector2D(0, 3/4 * mapSize).rotate(closestPoint.angleTo(roadStart))),
 				roadStart,
@@ -1014,7 +1014,7 @@ createArea(
 	[stayClasses(clRoad, 0), avoidClasses(clPath, 0)]);
 
 g_Map.log("Marking road palm area");
-var areaRoadPalms = createArea(
+const areaRoadPalms = createArea(
 	new MapBoundsPlacer(),
 	undefined,
 	[
@@ -1045,7 +1045,7 @@ if (areaRoadPalms && areaRoadPalms.getPoints().length)
 Engine.SetProgress(75);
 
 g_Map.log("Marking city bush area");
-var areaCityBushes =
+const areaCityBushes =
 	createArea(
 		new MapBoundsPlacer(),
 		undefined,
@@ -1072,7 +1072,7 @@ var areaCityBushes =
 		]);
 
 g_Map.log("Marking city palm area");
-var areaCityPalms =
+const areaCityPalms =
 	createArea(
 		new MapBoundsPlacer(),
 		undefined,
@@ -1102,7 +1102,7 @@ createObjectGroupsByAreas(
 if (placeNapataWall)
 {
 	g_Map.log("Marking wall palm area");
-	var areaWallPalms = createArea(
+	const areaWallPalms = createArea(
 		new MapBoundsPlacer(),
 		undefined,
 		new StaticConstraint([
@@ -1132,7 +1132,7 @@ Engine.SetProgress(80);
 
 g_Map.log("Setting up common constraints and areas");
 const nearWater = new NearTileClassConstraint(clWater, 3);
-var avoidCollisionsNomad = new AndConstraint(
+const avoidCollisionsNomad = new AndConstraint(
 	[
 		new StaticConstraint(avoidClasses(
 			clCliff, 0, clHill, 0, clPlayer, 15, clWater, 1, clPath, 2, clRitualPlace, 10,
@@ -1140,7 +1140,7 @@ var avoidCollisionsNomad = new AndConstraint(
 		avoidClasses(clForest, 1, clRock, 4, clMetal, 4, clFood, 2, clSoldier, 1, clTreasure, 1)
 	]);
 
-var avoidCollisions = new AndConstraint(
+let avoidCollisions = new AndConstraint(
 	[
 		avoidCollisionsNomad,
 		new StaticConstraint(avoidClasses(clRoad, 6, clFood, 6))
@@ -1188,8 +1188,8 @@ const mineObjectsPerBiome = [
 
 for (let i = 0; i < scaleByMapSize(6, 22); ++i)
 {
-	let mineObjectsBiome = pickRandom(mineObjectsPerBiome);
-	for (let i in mineObjectsBiome.desert)
+	const mineObjectsBiome = pickRandom(mineObjectsPerBiome);
+	for (const i in mineObjectsBiome.desert)
 		createObjectGroupsByAreas(
 			new SimpleGroup(mineObjectsBiome.desert[i], true, mineObjectsBiome.tileClass),
 			0,
@@ -1201,7 +1201,7 @@ for (let i = 0; i < scaleByMapSize(6, 22); ++i)
 
 for (let i = 0; i < (isNomad() ? scaleByMapSize(6, 16) : scaleByMapSize(0, 8)); ++i)
 {
-	let mineObjectsBiome = pickRandom(mineObjectsPerBiome);
+	const mineObjectsBiome = pickRandom(mineObjectsPerBiome);
 	createObjectGroupsByAreas(
 		new SimpleGroup(mineObjectsBiome.fertileLand.small, true, mineObjectsBiome.tileClass),
 		0,
@@ -1297,7 +1297,7 @@ if (!isNomad())
 Engine.SetProgress(85);
 
 g_Map.log("Marking irrigation canal tree area");
-var areaIrrigationCanalTrees = createArea(
+const areaIrrigationCanalTrees = createArea(
 	new MapBoundsPlacer(),
 	undefined,
 	[
@@ -1392,7 +1392,7 @@ createObjectGroupsByAreas(
 	[areaHilltop]);
 
 g_Map.log("Placing treasures in the city");
-var pathBorderConstraint = new AndConstraint([
+const pathBorderConstraint = new AndConstraint([
 	new StaticConstraint([new NearTileClassConstraint(clCity, 1)]),
 	avoidClasses(clTreasure, 2, clStatue, 10, clPathStatues, 4, clWall, 2, clForest, 1)
 ]);
@@ -1464,7 +1464,7 @@ createObjectGroupsByAreas(
 	[areaWater]);
 
 g_Map.log("Creating reeds at the irrigation canals");
-for (let area of areasPassages)
+for (const area of areasPassages)
 	createObjectGroupsByAreas(
 		new SimpleGroup([new RandomObject(aWaterDecoratives, 2, 4, 1, 2)], true),
 		0,

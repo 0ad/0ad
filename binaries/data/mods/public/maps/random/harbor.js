@@ -5,11 +5,11 @@ Engine.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
-var heightSeaGround = -18;
-var heightLand = 2;
-var heightOffsetHarbor = -11;
+const heightSeaGround = -18;
+const heightLand = 2;
+const heightOffsetHarbor = -11;
 
-var g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
+const g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
 
 initTileClasses();
 
@@ -325,9 +325,9 @@ function addCenterLake()
 
 function addHarbors()
 {
-	for (let position of playerPosition)
+	for (const position of playerPosition)
 	{
-		let harborPosition = Vector2D.add(position, Vector2D.sub(mapCenter, position).div(2.5).round());
+		const harborPosition = Vector2D.add(position, Vector2D.sub(mapCenter, position).div(2.5).round());
 		createArea(
 			new ClumpPlacer(1200, 0.5, 0.5, Infinity, harborPosition),
 			[
@@ -345,12 +345,12 @@ function addHarbors()
 
 function addSpines()
 {
-	let smallSpines = mapSize <= 192;
-	let spineSize = smallSpines ? 0.02 : 0.5;
-	let spineTapering = smallSpines ?-0.1 :  -1.4;
-	let heightOffsetSpine = smallSpines ? 20 : 35;
+	const smallSpines = mapSize <= 192;
+	const spineSize = smallSpines ? 0.02 : 0.5;
+	const spineTapering = smallSpines ?-0.1 :  -1.4;
+	const heightOffsetSpine = smallSpines ? 20 : 35;
 
-	let numPlayers = getNumPlayers();
+	const numPlayers = getNumPlayers();
 	let spineTile = g_Terrains.dirt;
 
 	if (currentBiome() == "generic/arctic")
@@ -368,9 +368,9 @@ function addSpines()
 
 	for (let i = 0; i < numPlayers * split; ++i)
 	{
-		let tang = startAngle + (i + 0.5) * 2 * Math.PI / (numPlayers * split);
-		let start = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.12), 0).rotate(-tang));
-		let end = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.4), 0).rotate(-tang));
+		const tang = startAngle + (i + 0.5) * 2 * Math.PI / (numPlayers * split);
+		const start = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.12), 0).rotate(-tang));
+		const end = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.4), 0).rotate(-tang));
 
 		createArea(
 			new PathPlacer(start, end, scaleByMapSize(14, spineSize), 0.6, 0.1, 0.4, spineTapering),

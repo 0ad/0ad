@@ -18,24 +18,24 @@ setPPBrightness(0.4);
 setPPEffect("hdr");
 setPPBloom(0.4);
 
-var oStoneLarge = 'gaia/rock/alpine_large';
-var oMetalLarge = 'gaia/ore/alpine_large';
-var oFish = "gaia/fish/generic";
+const oStoneLarge = 'gaia/rock/alpine_large';
+const oMetalLarge = 'gaia/ore/alpine_large';
+const oFish = "gaia/fish/generic";
 
-var aGrass = 'actor|props/flora/grass_soft_small_tall.xml';
-var aGrassShort = 'actor|props/flora/grass_soft_large.xml';
-var aRockLarge = 'actor|geology/stone_granite_med.xml';
-var aRockMedium = 'actor|geology/stone_granite_med.xml';
-var aBushMedium = 'actor|props/flora/bush_medit_me.xml';
-var aBushSmall = 'actor|props/flora/bush_medit_sm.xml';
-var aReeds = 'actor|props/flora/reeds_pond_lush_b.xml';
+const aGrass = 'actor|props/flora/grass_soft_small_tall.xml';
+const aGrassShort = 'actor|props/flora/grass_soft_large.xml';
+const aRockLarge = 'actor|geology/stone_granite_med.xml';
+const aRockMedium = 'actor|geology/stone_granite_med.xml';
+const aBushMedium = 'actor|props/flora/bush_medit_me.xml';
+const aBushSmall = 'actor|props/flora/bush_medit_sm.xml';
+const aReeds = 'actor|props/flora/reeds_pond_lush_b.xml';
 
-var terrainPrimary = ["temp_grass_plants", "temp_plants_bog"];
-var terrainWood = ['alpine_forrestfloor|gaia/tree/oak', 'alpine_forrestfloor|gaia/tree/pine'];
-var terrainWoodBorder = ['new_alpine_grass_mossy|gaia/tree/oak', 'alpine_forrestfloor|gaia/tree/pine',
+const terrainPrimary = ["temp_grass_plants", "temp_plants_bog"];
+const terrainWood = ['alpine_forrestfloor|gaia/tree/oak', 'alpine_forrestfloor|gaia/tree/pine'];
+const terrainWoodBorder = ['new_alpine_grass_mossy|gaia/tree/oak', 'alpine_forrestfloor|gaia/tree/pine',
 	'temp_grass_long|gaia/tree/bush_temperate', 'temp_grass_clovers|gaia/fruit/berry_01', 'temp_grass_clovers_2|gaia/fruit/grapes',
 	'temp_grass_plants|gaia/fauna_deer', 'temp_grass_plants|gaia/fauna_rabbit', 'new_alpine_grass_dirt_a'];
-var terrainBase = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
+const terrainBase = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants',
@@ -47,7 +47,7 @@ var terrainBase = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants', 'temp_grass_plants|gaia/fauna_sheep'];
-var terrainBaseBorder = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
+const terrainBaseBorder = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants',
@@ -59,61 +59,61 @@ var terrainBaseBorder = ['temp_plants_bog', 'temp_grass_plants', 'temp_grass_d',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_d', 'temp_grass_plants',
 	'temp_plants_bog', 'temp_grass_plants', 'temp_grass_plants'];
-var baseTex = ['temp_road', 'temp_road_overgrown'];
-var terrainPath = ['temp_road', 'temp_road_overgrown'];
-var tWater = ['dirt_brown_d'];
-var tWaterBorder = ['dirt_brown_d'];
+const baseTex = ['temp_road', 'temp_road_overgrown'];
+const terrainPath = ['temp_road', 'temp_road_overgrown'];
+const tWater = ['dirt_brown_d'];
+const tWaterBorder = ['dirt_brown_d'];
 
 const heightLand = 1;
 const heightOffsetPath = -0.1;
 
-var g_Map = new RandomMap(heightLand, terrainPrimary);
+const g_Map = new RandomMap(heightLand, terrainPrimary);
 
-var clPlayer = g_Map.createTileClass();
-var clPath = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clOpen = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clPath = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clOpen = g_Map.createTileClass();
 
-var mapSize = g_Map.getSize();
-var mapCenter = g_Map.getCenter();
-var mapRadius = mapSize/2;
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
+const mapRadius = mapSize/2;
 
-var numPlayers = getNumPlayers();
-var baseRadius = 15;
-var minPlayerRadius = Math.min(mapRadius - 1.5 * baseRadius, 5/8 * mapRadius);
-var maxPlayerRadius = Math.min(mapRadius - baseRadius, 3/4 * mapRadius);
+const numPlayers = getNumPlayers();
+const baseRadius = 15;
+const minPlayerRadius = Math.min(mapRadius - 1.5 * baseRadius, 5/8 * mapRadius);
+const maxPlayerRadius = Math.min(mapRadius - baseRadius, 3/4 * mapRadius);
 
-var playerPosition = [];
-var playerAngleStart = randomAngle();
-var playerAngleAddAvrg = 2 * Math.PI / numPlayers;
-var playerAngleMaxOff = playerAngleAddAvrg/4;
+let playerPosition = [];
+const playerAngleStart = randomAngle();
+const playerAngleAddAvrg = 2 * Math.PI / numPlayers;
+const playerAngleMaxOff = playerAngleAddAvrg/4;
 
-var resourceRadius = fractionToTiles(1/3);
+const resourceRadius = fractionToTiles(1/3);
 
 // Set up woods.
 // For large maps there are memory errors with too many trees. A density of 256x192/mapArea works with 0 players.
 // Around each player there is an area without trees so with more players the max density can increase a bit.
-var maxTreeDensity = Math.min(256 * (192 + 8 * numPlayers) / Math.square(mapSize), 1); // Has to be tweeked but works ok.
-var bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood.
+const maxTreeDensity = Math.min(256 * (192 + 8 * numPlayers) / Math.square(mapSize), 1); // Has to be tweeked but works ok.
+const bushChance = 1/3; // 1 means 50% chance in deepest wood, 0.5 means 25% chance in deepest wood.
 
 // Set height limits and water level by map size.
 
 // Set target min and max height depending on map size to make average steepness about the same on all map sizes.
-var heightRange = { 'min': MIN_HEIGHT * (g_Map.size + 512) / 8192, 'max': MAX_HEIGHT * (g_Map.size + 512) / 8192, 'avg': (MIN_HEIGHT * (g_Map.size + 512) + MAX_HEIGHT * (g_Map.size + 512)) / 16384 };
+const heightRange = { 'min': MIN_HEIGHT * (g_Map.size + 512) / 8192, 'max': MAX_HEIGHT * (g_Map.size + 512) / 8192, 'avg': (MIN_HEIGHT * (g_Map.size + 512) + MAX_HEIGHT * (g_Map.size + 512)) / 16384 };
 
 // Set average water coverage.
-var averageWaterCoverage = 1/5; // NOTE: Since erosion is not predictable actual water coverage might vary much with the same values.
-var heightSeaGround = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min);
-var heightSeaGroundAdjusted = heightSeaGround + MIN_HEIGHT;
+const averageWaterCoverage = 1/5; // NOTE: Since erosion is not predictable actual water coverage might vary much with the same values.
+const heightSeaGround = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min);
+const heightSeaGroundAdjusted = heightSeaGround + MIN_HEIGHT;
 setWaterHeight(heightSeaGround);
 
 // Setting a 3x3 grid as initial heightmap.
-var initialReliefmap = [[heightRange.max, heightRange.max, heightRange.max], [heightRange.max, heightRange.min, heightRange.max], [heightRange.max, heightRange.max, heightRange.max]];
+const initialReliefmap = [[heightRange.max, heightRange.max, heightRange.max], [heightRange.max, heightRange.min, heightRange.max], [heightRange.max, heightRange.max, heightRange.max]];
 
 setBaseTerrainDiamondSquare(heightRange.min, heightRange.max, initialReliefmap);
 
@@ -124,7 +124,7 @@ createArea(
 
 rescaleHeightmap(heightRange.min, heightRange.max);
 
-var heighLimits = [
+const heighLimits = [
 	heightRange.min + 1/3 * (heightSeaGroundAdjusted - heightRange.min), // 0 Deep water
 	heightRange.min + 2/3 * (heightSeaGroundAdjusted - heightRange.min), // 1 Medium Water
 	heightRange.min + (heightSeaGroundAdjusted - heightRange.min), // 2 Shallow water
@@ -185,8 +185,8 @@ placePlayerBases({
 });
 
 g_Map.log("Creating mines");
-for (let [minHeight, maxHeight] of [[heighLimits[3], (heighLimits[4] + heighLimits[3]) / 2], [(heighLimits[5] + heighLimits[6]) / 2, heighLimits[7]]])
-	for (let [template, tileClass] of [[oStoneLarge, clRock], [oMetalLarge, clMetal]])
+for (const [minHeight, maxHeight] of [[heighLimits[3], (heighLimits[4] + heighLimits[3]) / 2], [(heighLimits[5] + heighLimits[6]) / 2, heighLimits[7]]])
+	for (const [template, tileClass] of [[oStoneLarge, clRock], [oMetalLarge, clMetal]])
 		createObjectGroups(
 			new SimpleGroup([new SimpleObject(template, 1, 1, 0, 4)], true, tileClass),
 			0,
@@ -201,7 +201,7 @@ for (let [minHeight, maxHeight] of [[heighLimits[3], (heighLimits[4] + heighLimi
 Engine.SetProgress(50);
 
 g_Map.log("Painting textures");
-var betweenShallowAndShore = (heighLimits[3] + heighLimits[2]) / 2;
+const betweenShallowAndShore = (heighLimits[3] + heighLimits[2]) / 2;
 createArea(
 	new HeightPlacer(Elevation_IncludeMin_IncludeMax, heighLimits[2], betweenShallowAndShore),
 	new LayeredPainter([terrainBase, terrainBaseBorder], [5]));
@@ -216,12 +216,12 @@ paintTileClassBasedOnHeight(heightRange.min, heighLimits[2], 1, clWater);
 Engine.SetProgress(60);
 
 g_Map.log("Painting paths");
-var pathBlending = numPlayers <= 4;
+const pathBlending = numPlayers <= 4;
 for (let i = 0; i < numPlayers + (pathBlending ? 1 : 0); ++i)
 	for (let j = pathBlending ? 0 : i + 1; j < numPlayers + 1; ++j)
 	{
-		let pathStart = i < numPlayers ? playerPosition[i] : mapCenter;
-		let pathEnd = j < numPlayers ? playerPosition[j] : mapCenter;
+		const pathStart = i < numPlayers ? playerPosition[i] : mapCenter;
+		const pathEnd = j < numPlayers ? playerPosition[j] : mapCenter;
 
 		createArea(
 			new RandomPathPlacer(pathStart, pathEnd, 1.75, baseRadius / 2, pathBlending),
@@ -268,8 +268,8 @@ createFood(
 Engine.SetProgress(85);
 
 g_Map.log("Planting reeds");
-var types = [aReeds];
-for (let type of types)
+const types = [aReeds];
+for (const type of types)
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 0)], true),
 		0,
@@ -280,31 +280,31 @@ for (let type of types)
 Engine.SetProgress(90);
 
 g_Map.log("Planting trees");
-for (var x = 0; x < mapSize; x++)
-	for (var z = 0; z < mapSize; z++)
+for (let x = 0; x < mapSize; x++)
+	for (let z = 0; z < mapSize; z++)
 	{
-		let position = new Vector2D(x, z);
+		const position = new Vector2D(x, z);
 
 		if (!g_Map.validTile(position))
 			continue;
 
 		// The 0.5 is a correction for the entities placed on the center of tiles
-		let radius = Vector2D.add(position, new Vector2D(0.5, 0.5)).distanceTo(mapCenter);
-		var minDistToSL = mapSize;
+		const radius = Vector2D.add(position, new Vector2D(0.5, 0.5)).distanceTo(mapCenter);
+		let minDistToSL = mapSize;
 		for (let i = 0; i < numPlayers; ++i)
 			minDistToSL = Math.min(minDistToSL, position.distanceTo(playerPosition[i]));
 
 		// Woods tile based
-		var tDensFactSL = Math.max(Math.min((minDistToSL - baseRadius) / baseRadius, 1), 0);
-		var tDensFactRad = Math.abs((resourceRadius - radius) / resourceRadius);
-		var tDensActual = (maxTreeDensity * tDensFactSL * tDensFactRad)*0.75;
+		const tDensFactSL = Math.max(Math.min((minDistToSL - baseRadius) / baseRadius, 1), 0);
+		const tDensFactRad = Math.abs((resourceRadius - radius) / resourceRadius);
+		const tDensActual = (maxTreeDensity * tDensFactSL * tDensFactRad)*0.75;
 
 		if (!randBool(tDensActual))
 			continue;
 
-		let border = tDensActual < randFloat(0, bushChance * maxTreeDensity);
+		const border = tDensActual < randFloat(0, bushChance * maxTreeDensity);
 
-		let constraint = border ?
+		const constraint = border ?
 			avoidClasses(clPath, 1, clOpen, 2, clWater, 3, clMetal, 4, clRock, 4) :
 			avoidClasses(clPath, 2, clOpen, 3, clWater, 4, clMetal, 4, clRock, 4);
 

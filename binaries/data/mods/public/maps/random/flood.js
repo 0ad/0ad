@@ -17,8 +17,8 @@ const tTier4Terrain = g_Terrains.tier4Terrain;
 const tShore = g_Terrains.shore;
 const tWater = g_Terrains.water;
 
-var tHill = g_Terrains.hill;
-var tDirt = g_Terrains.dirt;
+let tHill = g_Terrains.hill;
+let tDirt = g_Terrains.dirt;
 if (currentBiome() == "generic/temperate")
 {
 	tDirt = ["medit_shrubs_a", "grass_field"];
@@ -52,7 +52,7 @@ const heightLand = 6;
 const heightStartingIslands = 2;
 const shoreRadius = 6;
 
-var g_Map = new RandomMap(heightSeaGround, tWater);
+const g_Map = new RandomMap(heightSeaGround, tWater);
 
 const clPlayer = g_Map.createTileClass();
 const clHill = g_Map.createTileClass();
@@ -69,7 +69,7 @@ const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
 g_Map.log("Creating player islands...");
-var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.38));
+const [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.38));
 
 for (let i = 0; i < numPlayers; ++i)
 	createArea(
@@ -131,7 +131,7 @@ createArea(
 
 for (let m = 0; m < randIntInclusive(20, 34); ++m)
 {
-	let elevRand = randIntInclusive(6, 20);
+	const elevRand = randIntInclusive(6, 20);
 	createArea(
 		new ChainPlacer(
 			7,
@@ -151,7 +151,7 @@ for (let m = 0; m < randIntInclusive(20, 34); ++m)
 
 for (let m = 0; m < randIntInclusive(8, 17); ++m)
 {
-	let elevRand = randIntInclusive(15, 29);
+	const elevRand = randIntInclusive(15, 29);
 	createArea(
 		new ChainPlacer(
 				5,
@@ -203,7 +203,7 @@ createForests(
 	clForest,
 	forestTrees);
 
-let types = [oTree1, oTree2, oTree4, oTree3];
+const types = [oTree1, oTree2, oTree4, oTree3];
 createStragglerTrees(
 	types,
 	[avoidClasses(clBaseResource, 2, clMetal, 6, clRock, 6, clMountain, 2, clPlayer, 25), stayClasses(clHill, 6)],
@@ -212,8 +212,8 @@ createStragglerTrees(
 Engine.SetProgress(65);
 
 g_Map.log("Creating dirt patches");
-var numb = currentBiome() == "generic/savanna" ? 3 : 1;
-for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
+const numb = currentBiome() == "generic/savanna" ? 3 : 1;
+for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
@@ -228,7 +228,7 @@ paintTerrainBasedOnHeight(1, heightStartingIslands, 0, tMainTerrain);
 paintTerrainBasedOnHeight(heightSeaGround, 1, 3, tTier1Terrain);
 
 g_Map.log("Creating grass patches");
-for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
+for (const size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		new TerrainPainter(tTier4Terrain),

@@ -74,33 +74,33 @@ const heightOffsetBump = 2;
 const heightHill = 8;
 const heightVolano = 25;
 
-var g_Map = new RandomMap(heightSeaGround, tWater);
-var numPlayers = getNumPlayers();
+const g_Map = new RandomMap(heightSeaGround, tWater);
+const numPlayers = getNumPlayers();
 
-var clIsland = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clPlayer = g_Map.createTileClass();
-var clPlayerIsland = g_Map.createTileClass();
-var clShore = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clGrass = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clVolcano = g_Map.createTileClass();
-var clBridge = g_Map.createTileClass();
+const clIsland = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clPlayerIsland = g_Map.createTileClass();
+const clShore = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clGrass = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clVolcano = g_Map.createTileClass();
+const clBridge = g_Map.createTileClass();
 
 const playerIslandRadius = scaleByMapSize(20, 29);
 const bridgeLength = 16;
 const maxBridges = scaleByMapSize(2, 12);
 
-var [playerIDs, playerPosition] = playerPlacementRandom(sortAllPlayers());
+const [playerIDs, playerPosition] = playerPlacementRandom(sortAllPlayers());
 
 g_Map.log("Creating player islands");
-for (let position of playerPosition)
+for (const position of playerPosition)
 	createArea(
 		new ChainPlacer(2, 6, scaleByMapSize(15, 50), Infinity, position, 0, [playerIslandRadius]),
 		[
@@ -139,7 +139,7 @@ createAreas(
 Engine.SetProgress(35);
 
 g_Map.log("Creating volcano");
-var areasVolcano = createAreas(
+const areasVolcano = createAreas(
 	new ClumpPlacer(diskArea(scaleByMapSize(4, 8)), 0.5, 0.5, 0.1),
 	[
 		new LayeredPainter([tLavaOuter, tLavaInner], [4]),
@@ -182,7 +182,7 @@ paintTerrainBasedOnHeight(heightCoralsLower, heightCoralsUpper, Elevation_Includ
 paintTerrainBasedOnHeight(heightCoralsUpper, heightShoreLower, Elevation_IncludeMin_ExcludeMax, tCoralsUpper);
 
 g_Map.log("Painting shoreline");
-var areaShoreline = createArea(
+const areaShoreline = createArea(
 	new HeightPlacer(Elevation_IncludeMin_ExcludeMax, heightShoreLower, heightShoreUpper),
 	[
 		new TerrainPainter(tShoreLower),
@@ -258,7 +258,7 @@ Engine.SetProgress(80);
 
 placePlayersNomad(clPlayer, avoidClasses(clWater, 12, clVolcano, 4, clMetal, 4, clRock, 4, clHill, 4));
 
-var [forestTrees, stragglerTrees] = getTreeCounts(800, 4000, 0.7);
+const [forestTrees, stragglerTrees] = getTreeCounts(800, 4000, 0.7);
 createForests(
 	[tForestFloor, tForestFloor, tForestFloor, pForest1, pForest2],
 	avoidClasses(clWater, 2, clPlayer, 4, clVolcano, 2, clForest, 1, clBaseResource, 4, clMetal, 4, clRock, 4),
@@ -330,32 +330,32 @@ createDecoration(
 	avoidClasses(clWater, 4, clPlayer, 5, clVolcano, 4, clForest, 1, clBaseResource, 4, clRock, 4, clMetal, 4, clHill, 1));
 
 g_Map.log("Creating bridges");
-var bridges = 0;
-for (let bridgeStart of shuffleArray(areaShoreline.getPoints()))
+let bridges = 0;
+for (const bridgeStart of shuffleArray(areaShoreline.getPoints()))
 {
 	if (new NearTileClassConstraint(clBridge, bridgeLength * 8).allows(bridgeStart))
 		continue;
 
 	for (let direction = 0; direction < 4; ++direction)
 	{
-		let bridgeAngle = direction * Math.PI / 2;
-		let bridgeDirection = new Vector2D(1, 0).rotate(bridgeAngle);
+		const bridgeAngle = direction * Math.PI / 2;
+		const bridgeDirection = new Vector2D(1, 0).rotate(bridgeAngle);
 
-		let areaOffset = new Vector2D(1, 1);
+		const areaOffset = new Vector2D(1, 1);
 
-		let bridgeOffset = new Vector2D(direction % 2 ? 2 : 0, direction % 2 ? 0 : 2);
-		let bridgeCenter1 = Vector2D.add(bridgeStart, Vector2D.mult(bridgeDirection, bridgeLength / 2));
-		let bridgeCenter2 = Vector2D.add(bridgeCenter1, bridgeOffset);
+		const bridgeOffset = new Vector2D(direction % 2 ? 2 : 0, direction % 2 ? 0 : 2);
+		const bridgeCenter1 = Vector2D.add(bridgeStart, Vector2D.mult(bridgeDirection, bridgeLength / 2));
+		const bridgeCenter2 = Vector2D.add(bridgeCenter1, bridgeOffset);
 		if (avoidClasses(clWater, 0).allows(bridgeCenter1) && avoidClasses(clWater, 0).allows(bridgeCenter2))
 			continue;
 
-		let bridgeEnd1 = Vector2D.add(bridgeStart, Vector2D.mult(bridgeDirection, bridgeLength));
-		let bridgeEnd2 = Vector2D.add(bridgeEnd1, bridgeOffset);
+		const bridgeEnd1 = Vector2D.add(bridgeStart, Vector2D.mult(bridgeDirection, bridgeLength));
+		const bridgeEnd2 = Vector2D.add(bridgeEnd1, bridgeOffset);
 		if (avoidClasses(clShore, 0).allows(bridgeEnd1) && avoidClasses(clShore, 0).allows(bridgeEnd2))
 			continue;
 
-		let bridgePerpendicular = bridgeDirection.perpendicular();
-		let bridgeP = Vector2D.mult(bridgePerpendicular, bridgeLength / 2).round();
+		const bridgePerpendicular = bridgeDirection.perpendicular();
+		const bridgeP = Vector2D.mult(bridgePerpendicular, bridgeLength / 2).round();
 		if (avoidClasses(clWater, 0).allows(Vector2D.add(bridgeCenter1, bridgeP)) ||
 		    avoidClasses(clWater, 0).allows(Vector2D.sub(bridgeCenter2, bridgeP)))
 			continue;
@@ -364,7 +364,7 @@ for (let bridgeStart of shuffleArray(areaShoreline.getPoints()))
 
 		// This bridge model is not centered on the horizontal plane, so the angle is messy
 		// TILE_CENTERED_HEIGHT_MAP also influences the outcome of the placement.
-		let bridgeOrientation = direction % 2 ? 0 : Math.PI / 2;
+		const bridgeOrientation = direction % 2 ? 0 : Math.PI / 2;
 		bridgeCenter1[direction % 2 ? "y" : "x"] += 0.25;
 		bridgeCenter2[direction % 2 ? "y" : "x"] -= 0.25;
 
@@ -378,7 +378,7 @@ for (let bridgeStart of shuffleArray(areaShoreline.getPoints()))
 				new TileClassPainter(clBridge)
 			]);
 
-		for (let center of [bridgeStart, bridgeEnd2])
+		for (const center of [bridgeStart, bridgeEnd2])
 			createArea(
 				new DiskPlacer(2, center),
 				new SmoothingPainter(1, 1, 1));

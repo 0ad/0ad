@@ -113,14 +113,14 @@ MountainRangeBuilder.prototype.RemoveInvalidEdges = function()
 	{
 		this.UpdateCurrentEdge();
 
-		let comparedEdge = this.possibleEdges[i];
-		let comparedEdgeStart = this.vertices[comparedEdge[0]];
-		let comparedEdgeEnd = this.vertices[comparedEdge[1]];
+		const comparedEdge = this.possibleEdges[i];
+		const comparedEdgeStart = this.vertices[comparedEdge[0]];
+		const comparedEdgeEnd = this.vertices[comparedEdge[1]];
 
-		let edge0Equal = this.currentEdgeStart == comparedEdgeStart;
-		let edge1Equal = this.currentEdgeStart == comparedEdgeEnd;
-		let edge2Equal = this.currentEdgeEnd == comparedEdgeEnd;
-		let edge3Equal = this.currentEdgeEnd == comparedEdgeStart;
+		const edge0Equal = this.currentEdgeStart == comparedEdgeStart;
+		const edge1Equal = this.currentEdgeStart == comparedEdgeEnd;
+		const edge2Equal = this.currentEdgeEnd == comparedEdgeEnd;
+		const edge3Equal = this.currentEdgeEnd == comparedEdgeStart;
 
 		if (!edge0Equal && !edge2Equal && !edge1Equal && !edge3Equal  && testLineIntersection(this.currentEdgeStart, this.currentEdgeEnd, comparedEdgeStart, comparedEdgeEnd, this.minDistance) ||
 		   ( edge0Equal && !edge2Equal || !edge1Equal &&  edge3Equal) && distanceOfPointFromLine(this.currentEdgeStart, this.currentEdgeEnd, comparedEdgeEnd) < this.minDistance ||
@@ -140,13 +140,13 @@ MountainRangeBuilder.prototype.RemoveInvalidEdges = function()
  */
 MountainRangeBuilder.prototype.HasCycles = function()
 {
-	let tree = [];
-	let backtree = [];
-	let pointQueue = [this.currentEdge[0]];
+	const tree = [];
+	const backtree = [];
+	const pointQueue = [this.currentEdge[0]];
 
 	while (pointQueue.length)
 	{
-		let selectedPoint = pointQueue.shift();
+		const selectedPoint = pointQueue.shift();
 
 		if (tree.indexOf(selectedPoint) == -1)
 		{
@@ -184,7 +184,7 @@ MountainRangeBuilder.prototype.PaintCurrentEdge = function()
 		return false;
 
 	// Creating circular mountains at both ends of that mountainrange
-	for (let point of [this.currentEdgeStart, this.currentEdgeEnd])
+	for (const point of [this.currentEdgeStart, this.currentEdgeEnd])
 		createArea(
 			new ClumpPlacer(diskArea(this.mountainWidth / 2), 0.95, 0.6, Infinity, point),
 			this.painters,
@@ -200,7 +200,7 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function()
 {
 	g_Map.log("Creating mountainrange with " + this.possibleEdges.length + " possible edges");
 
-	let max = this.possibleEdges.length;
+	const max = this.possibleEdges.length;
 
 	while (this.possibleEdges.length)
 	{
@@ -290,19 +290,19 @@ var heightMountain = 30;
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-var g_Map = new RandomMap(heightLand, tPrimary);
+const g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
 var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
@@ -382,15 +382,15 @@ createAreas(
 Engine.SetProgress(50);
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
-var types = [
+const [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
+const types = [
 	[[tForestFloor, tPrimary, pForest], [tForestFloor, pForest]]
 ];
 
 var size = forestTrees / (scaleByMapSize(2,8) * numPlayers);
 
-var num = Math.floor(size / types.length);
-for (let type of types)
+const num = Math.floor(size / types.length);
+for (const type of types)
 	createAreas(
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
 		[
@@ -402,7 +402,7 @@ for (let type of types)
 Engine.SetProgress(60);
 
 g_Map.log("Creating dirt patches");
-for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
+for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
@@ -413,7 +413,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		scaleByMapSize(15, 45));
 
 g_Map.log("Creating grass patches");
-for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
+for (const size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		new TerrainPainter(tSecondary),

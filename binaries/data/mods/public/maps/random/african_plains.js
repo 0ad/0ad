@@ -9,64 +9,64 @@ else
 
 
 // Pick some biome defaults and overload a few settings.
-var tPrimary = g_Terrains.mainTerrain;
-var tForestFloor = g_Terrains.tier3Terrain;
-var tCliff = ["savanna_cliff_a", "savanna_cliff_a_red", "savanna_cliff_b", "savanna_cliff_b_red"];
-var tSecondary = g_Terrains.tier1Terrain;
-var tGrassShrubs = g_Terrains.tier2Terrain;
-var tDirt = g_Terrains.tier3Terrain;
-var tDirt2 = g_Terrains.tier4Terrain;
-var tDirt3 = g_Terrains.dirt;
-var tDirt4 = g_Terrains.dirt;
-var tCitytiles = "savanna_tile_a";
-var tShore = g_Terrains.shore;
-var tWater = g_Terrains.water;
+const tPrimary = g_Terrains.mainTerrain;
+const tForestFloor = g_Terrains.tier3Terrain;
+const tCliff = ["savanna_cliff_a", "savanna_cliff_a_red", "savanna_cliff_b", "savanna_cliff_b_red"];
+const tSecondary = g_Terrains.tier1Terrain;
+const tGrassShrubs = g_Terrains.tier2Terrain;
+const tDirt = g_Terrains.tier3Terrain;
+const tDirt2 = g_Terrains.tier4Terrain;
+const tDirt3 = g_Terrains.dirt;
+const tDirt4 = g_Terrains.dirt;
+const tCitytiles = "savanna_tile_a";
+const tShore = g_Terrains.shore;
+const tWater = g_Terrains.water;
 
-var oBaobab = pickRandom(["gaia/tree/baobab", "gaia/tree/baobab_3_mature", "gaia/tree/acacia"]);
-var oPalm = "gaia/tree/bush_tropic";
-var oPalm2 = "gaia/tree/cretan_date_palm_short";
-var oBerryBush = "gaia/fruit/berry_01";
-var oWildebeest = "gaia/fauna_wildebeest";
-var oZebra = "gaia/fauna_zebra";
-var oRhino = "gaia/fauna_rhinoceros_white";
-var oLion = "gaia/fauna_lion";
-var oLioness = "gaia/fauna_lioness";
-var oHawk = "birds/buzzard";
-var oGiraffe = "gaia/fauna_giraffe";
-var oGiraffe2 = "gaia/fauna_giraffe_infant";
-var oGazelle = "gaia/fauna_gazelle";
-var oElephant = "gaia/fauna_elephant_african_bush";
-var oElephant2 = "gaia/fauna_elephant_african_infant";
-var oCrocodile = "gaia/fauna_crocodile_nile";
-var oFish = g_Gaia.fish;
-var oStoneLarge = g_Gaia.stoneLarge;
-var oStoneSmall = g_Gaia.stoneSmall;
-var oMetalLarge = g_Gaia.metalLarge;
-var oMetalSmall = g_Gaia.metalSmall;
+const oBaobab = pickRandom(["gaia/tree/baobab", "gaia/tree/baobab_3_mature", "gaia/tree/acacia"]);
+const oPalm = "gaia/tree/bush_tropic";
+const oPalm2 = "gaia/tree/cretan_date_palm_short";
+const oBerryBush = "gaia/fruit/berry_01";
+const oWildebeest = "gaia/fauna_wildebeest";
+const oZebra = "gaia/fauna_zebra";
+const oRhino = "gaia/fauna_rhinoceros_white";
+const oLion = "gaia/fauna_lion";
+const oLioness = "gaia/fauna_lioness";
+const oHawk = "birds/buzzard";
+const oGiraffe = "gaia/fauna_giraffe";
+const oGiraffe2 = "gaia/fauna_giraffe_infant";
+const oGazelle = "gaia/fauna_gazelle";
+const oElephant = "gaia/fauna_elephant_african_bush";
+const oElephant2 = "gaia/fauna_elephant_african_infant";
+const oCrocodile = "gaia/fauna_crocodile_nile";
+const oFish = g_Gaia.fish;
+const oStoneLarge = g_Gaia.stoneLarge;
+const oStoneSmall = g_Gaia.stoneSmall;
+const oMetalLarge = g_Gaia.metalLarge;
+const oMetalSmall = g_Gaia.metalSmall;
 
-var aBush = g_Decoratives.bushMedium;
-var aRock = g_Decoratives.rockMedium;
+const aBush = g_Decoratives.bushMedium;
+const aRock = g_Decoratives.rockMedium;
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPalm, tForestFloor + TERRAIN_SEPARATOR + oPalm2, tForestFloor];
 
-var heightSeaGround = -5;
-var heightLand = 2;
-var heightCliff = 3;
+const heightSeaGround = -5;
+const heightLand = 2;
+const heightCliff = 3;
 
-var g_Map = new RandomMap(heightLand, tPrimary);
+const g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),

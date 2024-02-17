@@ -31,21 +31,21 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPoplar, tForestFloor];
 
-var heightLand = 1;
-var heightOffsetBump = 2;
+const heightLand = 1;
+const heightOffsetBump = 2;
 
-var g_Map = new RandomMap(heightLand, tPrimary);
+const g_Map = new RandomMap(heightLand, tPrimary);
 
-var numPlayers = getNumPlayers();
+const numPlayers = getNumPlayers();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
@@ -85,11 +85,11 @@ createAreas(
 	scaleByMapSize(300, 800));
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(220, 1000, 0.65);
-var types = [[[tForestFloor, tGrass, pForest], [tForestFloor, pForest]]];
-var size = forestTrees / (scaleByMapSize(2,8) * numPlayers);
-var num = 4 * Math.floor(size / types.length);
-for (let type of types)
+const [forestTrees, stragglerTrees] = getTreeCounts(220, 1000, 0.65);
+const types = [[[tForestFloor, tGrass, pForest], [tForestFloor, pForest]]];
+const size = forestTrees / (scaleByMapSize(2,8) * numPlayers);
+const num = 4 * Math.floor(size / types.length);
+for (const type of types)
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(2, 3)), 4, Infinity),
 		[
@@ -132,7 +132,7 @@ createLayeredPatches(
 Engine.SetProgress(60);
 
 g_Map.log("Creating stone mines");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
+let group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
 	scaleByMapSize(1,4), 100

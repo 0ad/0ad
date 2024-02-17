@@ -36,21 +36,21 @@ const heightLand = 1;
 const heightHill = 22;
 const heightOffsetBump = 2;
 
-var g_Map = new RandomMap(heightLand, tMainDirt);
+const g_Map = new RandomMap(heightLand, tMainDirt);
 
 const mapCenter = g_Map.getCenter();
 const numPlayers = getNumPlayers();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clGrass = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clGrass = g_Map.createTileClass();
 
-var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
+const [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 g_Map.log("Creating big grass patches around the playerbases");
 for (let i = 0; i < numPlayers; ++i)
@@ -127,14 +127,14 @@ createAreas(
 Engine.SetProgress(25);
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(400, 2000, 0.7);
-var types = [
+const [forestTrees, stragglerTrees] = getTreeCounts(400, 2000, 0.7);
+const types = [
 	[[tMainDirt, tForestFloor2, pForestP], [tForestFloor2, pForestP]],
 	[[tMainDirt, tForestFloor1, pForestT], [tForestFloor1, pForestT]]
 ];
-var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
-var num = Math.floor(size / types.length);
-for (let type of types)
+const forestSize = forestTrees / (scaleByMapSize(3,6) * numPlayers);
+const num = Math.floor(forestSize / types.length);
+for (const type of types)
 	createAreas(
 		new ChainPlacer(
 			1,
@@ -151,7 +151,7 @@ for (let type of types)
 Engine.SetProgress(40);
 
 g_Map.log("Creating dirt patches");
-for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
+for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		new LayeredPainter([tSecondaryDirt, tDirt], [1]),
@@ -160,7 +160,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 Engine.SetProgress(60);
 
 g_Map.log("Creating big patches");
-for (let size of [scaleByMapSize(6, 30), scaleByMapSize(10, 50), scaleByMapSize(16, 70)])
+for (const size of [scaleByMapSize(6, 30), scaleByMapSize(10, 50), scaleByMapSize(16, 70)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		new LayeredPainter([tSecondaryDirt, tDirt], [1]),
@@ -184,7 +184,7 @@ createObjectGroupsDeprecated(
 	100);
 
 g_Map.log("Creating small stone quarries");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
+let group = new SimpleGroup([new SimpleObject(oStoneSmall, 2,5, 1,3), new RandomObject(aBushes, 2,4, 0,2)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1, clGrass, 1)],
 	scaleByMapSize(2,8), 100

@@ -6,11 +6,11 @@ Engine.LoadLibrary("rmbiome");
 setSelectedBiome();
 
 // Random elevation with a bias towards lower elevations
-var randElevation = randIntInclusive(0, 29);
+let randElevation = randIntInclusive(0, 29);
 if (randElevation < 25)
 	randElevation = randIntInclusive(1, 4);
 
-var g_Map = new RandomMap(randElevation, g_Terrains.mainTerrain);
+const g_Map = new RandomMap(randElevation, g_Terrains.mainTerrain);
 
 initTileClasses();
 createArea(
@@ -22,7 +22,7 @@ Engine.SetProgress(20);
 if (!isNomad())
 {
 	// Note: `|| pickRandom(...)` is needed for atlas.
-	let pattern = g_MapSettings.TeamPlacement || pickRandom(["line", "radial", "randomGroup", "stronghold"]);
+	const pattern = g_MapSettings.TeamPlacement || pickRandom(["line", "radial", "randomGroup", "stronghold"]);
 	createBases(
 		...playerPlacementByPattern(
 			pattern,
@@ -34,7 +34,7 @@ if (!isNomad())
 }
 Engine.SetProgress(40);
 
-var features = [
+let features = [
 	{
 		"func": addBluffs,
 		"baseHeight": randElevation,

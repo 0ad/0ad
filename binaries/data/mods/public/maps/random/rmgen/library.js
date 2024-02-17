@@ -50,9 +50,9 @@ function actorTemplate(templateName)
 
 function getObstructionSize(templateName, margin = 0)
 {
-	let obstruction = Engine.GetTemplate(templateName).Obstruction;
+	const obstruction = Engine.GetTemplate(templateName).Obstruction;
 
-	let obstructionSize =
+	const obstructionSize =
 		obstruction.Static ?
 			new Vector2D(obstruction.Static["@depth"], obstruction.Static["@width"]) :
 		// Used for gates, should consider the position too
@@ -110,14 +110,14 @@ function randomPositionOnTile(tilePosition)
  */
 function retryPlacing(placeFunc, retryFactor, amount, behaveDeprecated = false)
 {
-	let maxFail = amount * retryFactor;
+	const maxFail = amount * retryFactor;
 
-	let results = [];
+	const results = [];
 	let bad = 0;
 
 	while (results.length < amount && bad <= maxFail)
 	{
-		let result = placeFunc();
+		const result = placeFunc();
 
 		if (result !== undefined || behaveDeprecated)
 			results.push(result);
@@ -146,7 +146,7 @@ function createObjectGroupsByAreasDeprecated(group, player, constraints, amount,
  */
 function createAreas(centeredPlacer, painter, constraints, amount, retryFactor = 10)
 {
-	let placeFunc = function() {
+	const placeFunc = function() {
 		centeredPlacer.setCenterPosition(g_Map.randomCoordinate(false));
 		return createArea(centeredPlacer, painter, constraints);
 	};
@@ -162,11 +162,11 @@ function createAreasInAreas(centeredPlacer, painter, constraints, amount, retryF
 {
 	areas = areas.filter(area => area.getPoints().length);
 	if (!areas.length) {
-		log("createAreasInAreas: 'areas' was either empty or only contained empty areas thus returning an empty array.\n" + new Error().stack)
+		log("createAreasInAreas: 'areas' was either empty or only contained empty areas thus returning an empty array.\n" + new Error().stack);
 		return [];
 	}
 	
-	let placeFunc = function() {
+	const placeFunc = function() {
 		centeredPlacer.setCenterPosition(pickRandom(pickRandom(areas).getPoints()));
 		return createArea(centeredPlacer, painter, constraints);
 	};
@@ -180,7 +180,7 @@ function createAreasInAreas(centeredPlacer, painter, constraints, amount, retryF
  */
 function createObjectGroups(group, player, constraints, amount, retryFactor = 10, behaveDeprecated = false)
 {
-	let placeFunc = function() {
+	const placeFunc = function() {
 		group.setCenterPosition(g_Map.randomCoordinate(true));
 		return createObjectGroup(group, player, constraints);
 	};
@@ -196,11 +196,11 @@ function createObjectGroupsByAreas(group, player, constraints, amount, retryFact
 {
 	areas = areas.filter(area => area.getPoints().length);
 	if (!areas.length) {
-		log("createObjectGroupsByAreas: 'areas' was either empty or only contained empty areas.\n" + new Error().stack)
+		log("createObjectGroupsByAreas: 'areas' was either empty or only contained empty areas.\n" + new Error().stack);
 		return [];
 	}
 	
-	let placeFunc = function() {
+	const placeFunc = function() {
 		group.setCenterPosition(pickRandom(pickRandom(areas).getPoints()));
 		return createObjectGroup(group, player, constraints);
 	};
@@ -221,11 +221,11 @@ function createTerrain(terrain)
  */
 function createArea(placer, painters, constraints)
 {
-	let points = placer.place(new AndConstraint(constraints));
+	const points = placer.place(new AndConstraint(constraints));
 	if (!points)
 		return undefined;
 
-	let area = new Area(points);
+	const area = new Area(points);
 
 	new MultiPainter(painters).paint(area);
 
@@ -270,7 +270,7 @@ function createObjectGroup(group, player, constraints)
  */
 function avoidClasses(/*class1, dist1, class2, dist2, etc*/)
 {
-	let ar = [];
+	const ar = [];
 	for (let i = 0; i < arguments.length/2; ++i)
 		ar.push(new AvoidTileClassConstraint(arguments[2*i], arguments[2*i+1]));
 
@@ -286,7 +286,7 @@ function avoidClasses(/*class1, dist1, class2, dist2, etc*/)
  */
 function stayClasses(/*class1, dist1, class2, dist2, etc*/)
 {
-	let ar = [];
+	const ar = [];
 	for (let i = 0; i < arguments.length/2; ++i)
 		ar.push(new StayInTileClassConstraint(arguments[2*i], arguments[2*i+1]));
 
@@ -302,7 +302,7 @@ function stayClasses(/*class1, dist1, class2, dist2, etc*/)
  */
 function borderClasses(/*class1, idist1, odist1, class2, idist2, odist2, etc*/)
 {
-	let ar = [];
+	const ar = [];
 	for (let i = 0; i < arguments.length/3; ++i)
 		ar.push(new BorderTileClassConstraint(arguments[3*i], arguments[3*i+1], arguments[3*i+2]));
 
@@ -318,7 +318,7 @@ function borderClasses(/*class1, idist1, odist1, class2, idist2, odist2, etc*/)
  */
 function extractHeightmap(heightmap, topLeft, size)
 {
-	let result = [];
+	const result = [];
 	for (let x = 0; x < size; ++x)
 	{
 		result[x] = new Float32Array(size);
@@ -330,8 +330,8 @@ function extractHeightmap(heightmap, topLeft, size)
 
 function convertHeightmap1Dto2D(heightmap)
 {
-	let result = [];
-	let hmSize = Math.sqrt(heightmap.length);
+	const result = [];
+	const hmSize = Math.sqrt(heightmap.length);
 	for (let x = 0; x < hmSize; ++x)
 	{
 		result[x] = new Float32Array(hmSize);
@@ -351,6 +351,6 @@ function getDifficulties()
  */
 function getDifficulty()
 {
-	let level = g_MapSettings.TriggerDifficulty || 3;
+	const level = g_MapSettings.TriggerDifficulty || 3;
 	return getDifficulties().find(difficulty => difficulty.Difficulty == level).Difficulty;
 }

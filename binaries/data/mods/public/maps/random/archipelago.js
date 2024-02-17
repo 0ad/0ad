@@ -46,27 +46,27 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-var heightSeaGround = -5;
-var heightLand = 3;
-var heightShore = 1;
+const heightSeaGround = -5;
+const heightLand = 3;
+const heightShore = 1;
 
-var g_Map = new RandomMap(heightSeaGround, tWater);
+const g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clLand = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clLand = g_Map.createTileClass();
 
-var islandRadius = scaleByMapSize(22, 31);
+const islandRadius = scaleByMapSize(22, 31);
 
-var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
+const [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 g_Map.log("Creating player islands");
 for (let i = 0; i < numPlayers; ++i)
@@ -155,7 +155,7 @@ else
 // adjust biomes (especially wood)
 const biomeSpecifics = biomeTweaks[currentBiome()] || biomeTweaks.baseline;
 
-var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(biomeSpecifics.treeAmount));
+const [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(biomeSpecifics.treeAmount));
 createForests(
 	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
 	[avoidClasses(clPlayer, biomeSpecifics.forestPlayerSpacing, clForest, biomeSpecifics.forestForestSpacing, clHill, 0), stayClasses(clLand, 3)],
@@ -202,7 +202,7 @@ createMines(
 );
 Engine.SetProgress(65);
 
-var planetm = currentBiome() == "generic/india" ? 8 : 1;
+const planetm = currentBiome() == "generic/india" ? 8 : 1;
 createDecoration(
 	[
 		[new SimpleObject(aRockMedium, 1, 3, 0, 1)],

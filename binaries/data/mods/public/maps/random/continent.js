@@ -45,21 +45,21 @@ const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TE
 const heightSeaGround = -5;
 const heightLand = 3;
 
-var g_Map = new RandomMap(heightSeaGround, tWater);
+const g_Map = new RandomMap(heightSeaGround, tWater);
 
-var numPlayers = getNumPlayers();
-var mapSize = g_Map.getSize();
-var mapCenter = g_Map.getCenter();
+const numPlayers = getNumPlayers();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clLand = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clLand = g_Map.createTileClass();
 
 g_Map.log("Creating continent");
 createArea(
@@ -76,7 +76,7 @@ createArea(
 		new TileClassPainter(clLand)
 	]);
 
-var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.25));
+const [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.25));
 
 g_Map.log("Ensuring initial player land");
 for (let i = 0; i < numPlayers; ++i)
@@ -136,7 +136,7 @@ if (randBool())
 else
 	createMountains(tCliff, [avoidClasses(clPlayer, 20, clHill, 15, clBaseResource, 3), stayClasses(clLand, 5)], clHill, scaleByMapSize(1, 4) * numPlayers);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
+const [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 createDefaultForests(
 	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
 	[avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clBaseResource,2), stayClasses(clLand, 4)],
@@ -182,7 +182,7 @@ createBalancedStoneMines(
 Engine.SetProgress(65);
 
 // create decoration
-var planetm = 1;
+let planetm = 1;
 
 if (currentBiome() == "generic/india")
 	planetm = 8;

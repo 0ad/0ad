@@ -88,8 +88,8 @@ const heightDockMax = heightScale(1);
 const heightLavaVesuv = heightScale(38);
 const heightMountains = 140;
 
-var g_Map = new RandomMap(0, g_Terrains.mainTerrain);
-var mapCenter = g_Map.getCenter();
+const g_Map = new RandomMap(0, g_Terrains.mainTerrain);
+const mapCenter = g_Map.getCenter();
 
 initTileClasses(["decorative", "lava", "dock"]);
 
@@ -137,7 +137,7 @@ createArea(
 Engine.SetProgress(45);
 
 g_Map.log("Painting lava");
-var areaVesuv = createArea(
+const areaVesuv = createArea(
 	new RectPlacer(new Vector2D(mapCenter.x, fractionToTiles(0.3)), new Vector2D(fractionToTiles(0.7), fractionToTiles(0.15))),
 	[
 		new LayeredPainter([g_Terrains.lavaOuter,g_Terrains.lavaInner, g_Terrains.lavaCenter], [scaleByMapSize(1, 3), 2]),
@@ -164,7 +164,7 @@ Engine.SetProgress(48);
 if (!isNomad())
 {
 	g_Map.log("Placing players");
-	let [playerIDs, playerPosition] = createBases(
+	const [playerIDs, playerPosition] = createBases(
 		...playerPlacementRandom(
 			sortAllPlayers(),
 			[
@@ -174,7 +174,7 @@ if (!isNomad())
 		false);
 
 	g_Map.log("Flatten the initial CC area");
-	for (let position of playerPosition)
+	for (const position of playerPosition)
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, position),
 			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 6));
@@ -182,11 +182,11 @@ if (!isNomad())
 Engine.SetProgress(50);
 
 g_Map.log("Placing docks");
-var dockTypes = [
+const dockTypes = [
 	{ "template": g_Gaia.dock, "count": scaleByMapSize(1, 2) },
 	{ "template": g_Gaia.dockRubble, "count": scaleByMapSize(2, 3) }
 ];
-for (let dockType of dockTypes)
+for (const dockType of dockTypes)
 	placeDocks(
 		dockType.template,
 		0,

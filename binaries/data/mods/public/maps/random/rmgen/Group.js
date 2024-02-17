@@ -41,9 +41,9 @@ SimpleGroup.prototype.place = function(playerID, constraint)
 
 	// Test if the Objects can be placed at the given location
 	// Place none of them if one can't be placed.
-	for (let object of this.objects)
+	for (const object of this.objects)
 	{
-		let entitySpecs = object.place(this.centerPosition, playerID, avoidPositions, constraint, 30);
+		const entitySpecs = object.place(this.centerPosition, playerID, avoidPositions, constraint, 30);
 
 		if (!entitySpecs)
 			return undefined;
@@ -58,8 +58,8 @@ SimpleGroup.prototype.place = function(playerID, constraint)
 	}
 
 	// Create and place entities as specified
-	let entities = [];
-	for (let entitySpecs of entitySpecsResult)
+	const entities = [];
+	for (const entitySpecs of entitySpecsResult)
 	{
 		// The Object must ensure that non-actor entities are not placed at the impassable map-border
 		entities.push(

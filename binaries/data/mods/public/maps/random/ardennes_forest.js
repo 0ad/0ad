@@ -44,7 +44,7 @@ const aCeltHomestead = "actor|structures/celts/homestead.xml";
 const aCeltHouse = "actor|structures/celts/house.xml";
 const aCeltLongHouse = "actor|structures/celts/longhouse.xml";
 
-var pForest = [
+const pForest = [
 		tPineForestFloor+TERRAIN_SEPARATOR+oOak, tForestFloor,
 		tPineForestFloor+TERRAIN_SEPARATOR+oPine, tForestFloor,
 		tPineForestFloor+TERRAIN_SEPARATOR+oAleppoPine, tForestFloor,
@@ -57,22 +57,22 @@ const heightRavineHill = 40;
 const heightHill = 50;
 const heightOffsetRavine = 10;
 
-var g_Map = new RandomMap(heightHill, tPrimary);
+const g_Map = new RandomMap(heightHill, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clForestJoin = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clHillDeco = g_Map.createTileClass();
-var clExplorable = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clForestJoin = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clHillDeco = g_Map.createTileClass();
+const clExplorable = g_Map.createTileClass();
 
 g_Map.log("Creating the central dip");
 createArea(
@@ -84,33 +84,33 @@ createArea(
 Engine.SetProgress(5);
 
 g_Map.log("Finding hills");
-var noise0 = new Noise2D(20);
-for (var ix = 0; ix < mapSize; ix++)
-	for (var iz = 0; iz < mapSize; iz++)
+const noise0 = new Noise2D(20);
+for (let ix = 0; ix < mapSize; ix++)
+	for (let iz = 0; iz < mapSize; iz++)
 	{
-		let position = new Vector2D(ix, iz);
-		let h = g_Map.getHeight(position);
+		const position = new Vector2D(ix, iz);
+		const h = g_Map.getHeight(position);
 		if (h > heightRavineHill)
 		{
 			clHill.add(position);
 
 			// Add hill noise
-			var x = ix / (mapSize + 1.0);
-			var z = iz / (mapSize + 1.0);
-			var n = (noise0.get(x, z) - 0.5) * heightRavineHill;
+			const x = ix / (mapSize + 1.0);
+			const z = iz / (mapSize + 1.0);
+			const n = (noise0.get(x, z) - 0.5) * heightRavineHill;
 			g_Map.setHeight(position, h + n);
 		}
 	}
 
-var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.3));
+const [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.3));
 
 function distanceToPlayers(x, z)
 {
-	var r = 10000;
-	for (var i = 0; i < numPlayers; i++)
+	let r = 10000;
+	for (let i = 0; i < numPlayers; i++)
 	{
-		var dx = x - tilesToFraction(playerPosition[i].x);
-		var dz = z - tilesToFraction(playerPosition[i].y);
+		let dx = x - tilesToFraction(playerPosition[i].x);
+		let dz = z - tilesToFraction(playerPosition[i].y);
 		r = Math.min(r, Math.square(dx) + Math.square(dz));
 	}
 	return Math.sqrt(r);
@@ -118,7 +118,7 @@ function distanceToPlayers(x, z)
 
 function playerNearness(x, z)
 {
-	var d = fractionToTiles(distanceToPlayers(x,z));
+	let d = fractionToTiles(distanceToPlayers(x,z));
 
 	if (d < 13)
 		return 0;
@@ -172,9 +172,9 @@ for (let i = 0; i < numPlayers; ++i)
 Engine.SetProgress(30);
 
 g_Map.log("Creating hills");
-for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSize(10, 30), scaleByMapSize(10, 30)])
+for (const size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSize(10, 30), scaleByMapSize(10, 30)])
 {
-	let mountains = createAreas(
+	const mountains = createAreas(
 		new ClumpPlacer(size, 0.1, 0.2, 0.1),
 		[
 			new LayeredPainter([tCliff, [tForestFloor, tForestFloor, tCliff]], [2]),
@@ -196,7 +196,7 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 			20,
 			mountains);
 
-	let ravine = createAreas(
+	const ravine = createAreas(
 		new ClumpPlacer(size, 0.1, 0.2, 0.1),
 		[
 			new LayeredPainter([tCliff, tForestFloor], [2]),
@@ -257,11 +257,11 @@ for (let size of [scaleByMapSize(50, 800), scaleByMapSize(50, 400), scaleByMapSi
 
 Engine.SetProgress(50);
 
-for (var ix = 0; ix < mapSize; ix++)
-	for (var iz = 0; iz < mapSize; iz++)
+for (let ix = 0; ix < mapSize; ix++)
+	for (let iz = 0; iz < mapSize; iz++)
 	{
-		let position = new Vector2D(ix, iz);
-		let h = g_Map.getHeight(position);
+		const position = new Vector2D(ix, iz);
+		const h = g_Map.getHeight(position);
 
 		if (h > 35 && randBool(0.1) ||
 		    h < 15 && randBool(0.05) && clHillDeco.countMembersInRadius(position, 1) == 0)
@@ -272,7 +272,7 @@ for (var ix = 0; ix < mapSize; ix++)
 				randomAngle());
 	}
 
-var explorableArea = createArea(
+const explorableArea = createArea(
 	new MapBoundsPlacer(),
 	undefined,
 	[
@@ -285,16 +285,16 @@ new TileClassPainter(clExplorable).paint(explorableArea);
 Engine.SetProgress(55);
 
 // Add some general noise - after placing height dependant trees
-for (var ix = 0; ix < mapSize; ix++)
+for (let ix = 0; ix < mapSize; ix++)
 {
-	var x = ix / (mapSize + 1.0);
-	for (var iz = 0; iz < mapSize; iz++)
+	const x = ix / (mapSize + 1.0);
+	for (let iz = 0; iz < mapSize; iz++)
 	{
-		let position = new Vector2D(ix, iz);
-		var z = iz / (mapSize + 1.0);
-		var h = g_Map.getHeight(position);
-		var pn = playerNearness(x,z);
-		var n = (noise0.get(x,z) - 0.5) * 10;
+		const position = new Vector2D(ix, iz);
+		const z = iz / (mapSize + 1.0);
+		const h = g_Map.getHeight(position);
+		const pn = playerNearness(x,z);
+		const n = (noise0.get(x,z) - 0.5) * 10;
 		g_Map.setHeight(position, h + (n * pn));
 	}
 }
@@ -335,7 +335,7 @@ createAreasInAreas(
 Engine.SetProgress(70);
 
 g_Map.log("Creating grass patches");
-for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
+for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		new TerrainPainter([tGrass, tGrassPatch]),
@@ -343,7 +343,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		scaleByMapSize(15, 45));
 
 g_Map.log("Creating chopped forest patches");
-for (let size of [scaleByMapSize(20, 120)])
+for (const size of [scaleByMapSize(20, 120)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		new TerrainPainter(tForestFloor),
@@ -435,9 +435,9 @@ createObjectGroupsByAreasDeprecated(
 Engine.SetProgress(90);
 
 g_Map.log("Creating straggler trees");
-var types = [oOak, oOakLarge, oPine, oAleppoPine];
+const types = [oOak, oOakLarge, oPine, oAleppoPine];
 var num = Math.floor(stragglerTrees / types.length);
-for (let type of types)
+for (const type of types)
 	createObjectGroupsByAreasDeprecated(
 		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
 		0,

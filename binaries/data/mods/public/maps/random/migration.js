@@ -48,26 +48,26 @@ const heightLand = 3;
 const heightHill = 18;
 const heightOffsetBump = 2;
 
-var g_Map = new RandomMap(heightSeaGround, tWater);
+const g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clLand = g_Map.createTileClass();
-var clIsland = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clLand = g_Map.createTileClass();
+const clIsland = g_Map.createTileClass();
 
-var startAngle = randomAngle();
-var playerIDs = sortAllPlayers();
-var [playerPosition, playerAngle] = playerPlacementCustomAngle(
+const startAngle = randomAngle();
+const playerIDs = sortAllPlayers();
+const [playerPosition, playerAngle] = playerPlacementCustomAngle(
 	fractionToTiles(0.35),
 	mapCenter,
 	i => startAngle - Math.PI * (i + 1) / (numPlayers + 1));
@@ -87,7 +87,7 @@ for (let i = 0; i < numPlayers; ++i)
 	if (isNomad())
 		continue;
 
-	let dockLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , 2.6, 3);
+	const dockLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , 2.6, 3);
 	g_Map.placeEntityPassable(oDock, playerIDs[i], dockLocation, playerAngle[i] + Math.PI);
 }
 Engine.SetProgress(10);
@@ -128,7 +128,7 @@ placePlayerBases({
 Engine.SetProgress(15);
 
 g_Map.log("Create the continent body");
-var continentPosition = Vector2D.add(mapCenter, new Vector2D(0, fractionToTiles(0.38)).rotate(-startAngle)).round();
+const continentPosition = Vector2D.add(mapCenter, new Vector2D(0, fractionToTiles(0.38)).rotate(-startAngle)).round();
 createArea(
 	new ClumpPlacer(diskArea(fractionToTiles(0.4)), 0.8, 0.08, Infinity, continentPosition),
 	[
@@ -181,17 +181,17 @@ createAreas(
 Engine.SetProgress(34);
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
-var types = [
+const [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
+const types = [
 	[[tForestFloor2, tMainTerrain, pForest1], [tForestFloor2, pForest1]],
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
 ];
 
-var size = forestTrees / (scaleByMapSize(2,8) * numPlayers) *
+const forestSize = forestTrees / (scaleByMapSize(2,8) * numPlayers) *
 	(currentBiome() == "generic/savanna" ? 2 : 1);
 
-var num = Math.floor(size / types.length);
-for (let type of types)
+const num = Math.floor(forestSize / types.length);
+for (const type of types)
 	createAreas(
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
 		[
@@ -203,7 +203,7 @@ for (let type of types)
 Engine.SetProgress(38);
 
 g_Map.log("Creating dirt patches");
-for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
+for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
@@ -225,7 +225,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 Engine.SetProgress(42);
 
 g_Map.log("Creating grass patches");
-for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
+for (const size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		new TerrainPainter(tTier4Terrain),
@@ -234,7 +234,7 @@ for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5
 Engine.SetProgress(46);
 
 g_Map.log("Creating stone mines");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
+let group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1), stayClasses(clLand, 7)],
 	scaleByMapSize(4,16), 100
@@ -331,7 +331,7 @@ createStragglerTrees(
 
 Engine.SetProgress(86);
 
-var planetm = currentBiome() == "generic/india" ? 8 : 1;
+const planetm = currentBiome() == "generic/india" ? 8 : 1;
 
 g_Map.log("Creating small grass tufts");
 group = new SimpleGroup(

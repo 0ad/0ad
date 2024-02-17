@@ -50,19 +50,19 @@ const heightHill = 15;
 const heightOffsetBump1 = 2;
 const heightOffsetBump2 = 1;
 
-var g_Map = new RandomMap(heightLand, tShoreBlend);
+const g_Map = new RandomMap(heightLand, tShoreBlend);
 
 const numPlayers = getNumPlayers();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
@@ -145,7 +145,7 @@ createAreas(
 	scaleByMapSize(50, 100));
 
 g_Map.log("Creating mud patches");
-for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
+for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(2, Math.floor(scaleByMapSize(3, 6)), size, Infinity),
 		[

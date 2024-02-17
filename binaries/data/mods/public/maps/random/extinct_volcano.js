@@ -51,33 +51,33 @@ const pForestP = [
 	tForestFloor1
 ];
 
-var heightSeaGround = -4;
-var heightLand = 1;
-var heightHill = 18;
-var heightPlayerHill = 25;
+const heightSeaGround = -4;
+const heightLand = 1;
+const heightHill = 18;
+const heightPlayerHill = 25;
 
-var g_Map = new RandomMap(heightLand, tHillMedium1);
+const g_Map = new RandomMap(heightLand, tHillMedium1);
 
-var numPlayers = getNumPlayers();
-var mapCenter = g_Map.getCenter();
+const numPlayers = getNumPlayers();
+const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clGrass = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clBumps = g_Map.createTileClass();
-var clTower = g_Map.createTileClass();
-var clRain = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clGrass = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clBumps = g_Map.createTileClass();
+const clTower = g_Map.createTileClass();
+const clRain = g_Map.createTileClass();
 
-var playerMountainSize = defaultPlayerBaseRadius();
+const playerMountainSize = defaultPlayerBaseRadius();
 
-var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
+const [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 g_Map.log("Creating CC mountains");
 if (!isNomad())
@@ -167,14 +167,14 @@ createAreas(
 Engine.SetProgress(35);
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(1200, 3000, 0.7);
-var types = [
+const [forestTrees, stragglerTrees] = getTreeCounts(1200, 3000, 0.7);
+const types = [
 	[[tGrassB, tGrassA, pForestD], [tGrassB, pForestD]],
 	[[tGrassB, tGrassA, pForestP], [tGrassB, pForestP]]
 ];
-var size = forestTrees / (scaleByMapSize(4, 12) * numPlayers);
-var num = Math.floor(size / types.length);
-for (let type of types)
+const size = forestTrees / (scaleByMapSize(4, 12) * numPlayers);
+const num = Math.floor(size / types.length);
+for (const type of types)
 	createAreas(
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
 		[
@@ -190,8 +190,8 @@ for (let type of types)
 Engine.SetProgress(40);
 
 g_Map.log("Creating hill patches");
-for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
-	for (let type of [[tHillMedium1, tHillDark], [tHillDark, tHillMedium2], [tHillMedium1, tHillMedium2]])
+for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
+	for (const type of [[tHillMedium1, tHillDark], [tHillDark, tHillMedium2], [tHillMedium1, tHillMedium2]])
 		createAreas(
 			new ClumpPlacer(size, 0.3, 0.06, 0.5),
 			[

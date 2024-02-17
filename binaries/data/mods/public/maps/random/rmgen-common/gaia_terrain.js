@@ -46,7 +46,7 @@ function createHills(terrainset, constraints, tileClass, count, minSize, maxSize
 function createMountains(terrain, constraints, tileClass, count, maxHeight, minRadius, maxRadius, numCircles)
 {
 	g_Map.log("Creating mountains");
-	let mapSize = g_Map.getSize();
+	const mapSize = g_Map.getSize();
 
 	for (let i = 0; i < (count || scaleByMapSize(1, 4) * getNumPlayers()); ++i)
 		createMountain(
@@ -67,8 +67,8 @@ function createMountains(terrain, constraints, tileClass, count, maxHeight, minR
  */
 function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints, x, z, terrain, tileClass, fcc = 0, q = [])
 {
-	let position = new Vector2D(x, z);
-	let constraint = new AndConstraint(constraints);
+	const position = new Vector2D(x, z);
+	const constraint = new AndConstraint(constraints);
 
 	if (!g_Map.inMapBounds(position) || !constraint.allows(position))
 		return;
@@ -76,7 +76,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 	let mapSize = g_Map.getSize();
 	let queueEmpty = !q.length;
 
-	let gotRet = [];
+	const gotRet = [];
 	for (let i = 0; i < mapSize; ++i)
 	{
 		gotRet[i] = [];
@@ -88,13 +88,13 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 
 	minRadius = Math.max(1, Math.min(minRadius, maxRadius));
 
-	let edges = [[x, z]];
-	let circles = [];
+	const edges = [[x, z]];
+	const circles = [];
 
 	for (let i = 0; i < numCircles; ++i)
 	{
 		let badPoint = false;
-		let [cx, cz] = pickRandom(edges);
+		const [cx, cz] = pickRandom(edges);
 
 		let radius;
 		if (queueEmpty)
@@ -105,18 +105,18 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 			queueEmpty = !q.length;
 		}
 
-		let sx = Math.max(0, cx - radius);
-		let sz = Math.max(0, cz - radius);
-		let lx = Math.min(cx + radius, mapSize);
-		let lz = Math.min(cz + radius, mapSize);
+		const sx = Math.max(0, cx - radius);
+		const sz = Math.max(0, cz - radius);
+		const lx = Math.min(cx + radius, mapSize);
+		const lz = Math.min(cz + radius, mapSize);
 
-		let radius2 = Math.square(radius);
+		const radius2 = Math.square(radius);
 
 		for (let ix = sx; ix <= lx; ++ix)
 		{
 			for (let iz = sz; iz <= lz; ++iz)
 			{
-				let pos = new Vector2D(ix, iz);
+				const pos = new Vector2D(ix, iz);
 
 				if (Math.euclidDistance2D(ix, iz, cx, cz) > radius2 || !g_Map.inMapBounds(pos))
 					continue;
@@ -127,7 +127,7 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 					break;
 				}
 
-				let state = gotRet[ix][iz];
+				const state = gotRet[ix][iz];
 				if (state == -1)
 				{
 					gotRet[ix][iz] = -2;
@@ -167,23 +167,23 @@ function createMountain(maxHeight, minRadius, maxRadius, numCircles, constraints
 			}
 	}
 
-	for (let [cx, cz, radius] of circles)
+	for (const [cx, cz, radius] of circles)
 	{
-		let circlePosition = new Vector2D(cx, cz);
-		let sx = Math.max(0, cx - radius);
-		let sz = Math.max(0, cz - radius);
-		let lx = Math.min(cx + radius, mapSize);
-		let lz = Math.min(cz + radius, mapSize);
+		const circlePosition = new Vector2D(cx, cz);
+		const sx = Math.max(0, cx - radius);
+		const sz = Math.max(0, cz - radius);
+		const lx = Math.min(cx + radius, mapSize);
+		const lz = Math.min(cz + radius, mapSize);
 
-		let clumpHeight = radius / maxRadius * maxHeight * randFloat(0.8, 1.2);
+		const clumpHeight = radius / maxRadius * maxHeight * randFloat(0.8, 1.2);
 
 		for (let ix = sx; ix <= lx; ++ix)
 			for (let iz = sz; iz <= lz; ++iz)
 			{
-				let position = new Vector2D(ix, iz);
-				let distance = position.distanceTo(circlePosition);
+				const position = new Vector2D(ix, iz);
+				const distance = position.distanceTo(circlePosition);
 
-				let newHeight =
+				const newHeight =
 					randIntInclusive(0, 2) +
 					Math.round(2/3 * clumpHeight * (Math.sin(Math.PI * 2/3 * (3/4 - distance / radius)) + 0.5));
 
@@ -218,8 +218,8 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
 {
 	g_Map.log("Creating volcano");
 
-	let clLava = g_Map.createTileClass();
-	let layers = [
+	const clLava = g_Map.createTileClass();
+	const layers = [
 		{
 			"clumps": diskArea(scaleByMapSize(18, 25)),
 			"elevation": 15,
@@ -265,7 +265,7 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
 
 	if (smoke)
 	{
-		let num = Math.floor(diskArea(scaleByMapSize(3, 5)));
+		const num = Math.floor(diskArea(scaleByMapSize(3, 5)));
 		createObjectGroup(
 			new SimpleGroup(
 				[new SimpleObject("actor|particle/smoke.xml", num, num, 0, 7)],
@@ -282,7 +282,7 @@ function createVolcano(position, tileClass, terrainTexture, lavaTextures, smoke,
  */
 function createPatches(sizes, terrain, constraints, count,  tileClass, failFraction =  0.5)
 {
-	for (let size of sizes)
+	for (const size of sizes)
 		createAreas(
 			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, failFraction),
 			[
@@ -298,7 +298,7 @@ function createPatches(sizes, terrain, constraints, count,  tileClass, failFract
  */
 function createLayeredPatches(sizes, terrains, terrainWidths, constraints, count, tileClass, failFraction = 0.5)
 {
-	for (let size of sizes)
+	for (const size of sizes)
 		createAreas(
 			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, failFraction),
 			[
@@ -335,45 +335,45 @@ function paintRiver(args)
 	g_Map.log("Creating river");
 
 	// Model the river meandering as the sum of two sine curves.
-	let meanderShort = fractionToTiles(args.meanderShort / scaleByMapSize(35, 160));
-	let meanderLong = fractionToTiles(args.meanderLong / scaleByMapSize(35, 100));
+	const meanderShort = fractionToTiles(args.meanderShort / scaleByMapSize(35, 160));
+	const meanderLong = fractionToTiles(args.meanderLong / scaleByMapSize(35, 100));
 
 	// Unless the river is parallel, each riverside will receive an own random seed and starting angle.
-	let seed1 = randFloat(2, 3);
-	let seed2 = randFloat(2, 3);
+	const seed1 = randFloat(2, 3);
+	const seed2 = randFloat(2, 3);
 
-	let startingAngle1 = randFloat(0, 1);
-	let startingAngle2 = randFloat(0, 1);
+	const startingAngle1 = randFloat(0, 1);
+	const startingAngle2 = randFloat(0, 1);
 
 	// Computes the deflection of the river at a given point.
-	let riverCurve = (riverFraction, startAngle, seed) =>
+	const riverCurve = (riverFraction, startAngle, seed) =>
 		meanderShort * rndRiver(startAngle + fractionToTiles(riverFraction) / 128, seed) +
 		meanderLong * rndRiver(startAngle + fractionToTiles(riverFraction) / 256, seed);
 
 	// Describe river location in vectors.
-	let riverLength = args.start.distanceTo(args.end);
-	let unitVecRiver = Vector2D.sub(args.start, args.end).normalize();
+	const riverLength = args.start.distanceTo(args.end);
+	const unitVecRiver = Vector2D.sub(args.start, args.end).normalize();
 
 	// Describe river boundaries.
-	let riverMinX = Math.min(args.start.x, args.end.x);
-	let riverMinZ = Math.min(args.start.y, args.end.y);
-	let riverMaxX = Math.max(args.start.x, args.end.x);
-	let riverMaxZ = Math.max(args.start.y, args.end.y);
+	const riverMinX = Math.min(args.start.x, args.end.x);
+	const riverMinZ = Math.min(args.start.y, args.end.y);
+	const riverMaxX = Math.max(args.start.x, args.end.x);
+	const riverMaxZ = Math.max(args.start.y, args.end.y);
 
-	let mapSize = g_Map.getSize();
+	const mapSize = g_Map.getSize();
 	for (let ix = 0; ix < mapSize; ++ix)
 		for (let iz = 0; iz < mapSize; ++iz)
 		{
-			let vecPoint = new Vector2D(ix, iz);
+			const vecPoint = new Vector2D(ix, iz);
 
 			if (args.constraint && !args.constraint.allows(vecPoint))
 				continue;
 
 			// Compute the shortest distance to the river.
-			let distanceToRiver = distanceOfPointFromLine(args.start, args.end, vecPoint);
+			const distanceToRiver = distanceOfPointFromLine(args.start, args.end, vecPoint);
 
 			// Closest point on the river (i.e the foot of the perpendicular).
-			let river = Vector2D.sub(vecPoint, unitVecRiver.perpendicular().mult(distanceToRiver));
+			const river = Vector2D.sub(vecPoint, unitVecRiver.perpendicular().mult(distanceToRiver));
 
 			// Only process points that actually are perpendicular with the river.
 			if (river.x < riverMinX || river.x > riverMaxX ||
@@ -381,18 +381,18 @@ function paintRiver(args)
 				continue;
 
 			// Coordinate between 0 and 1 on the axis parallel to the river.
-			let riverFraction = river.distanceTo(args.start) / riverLength;
+			const riverFraction = river.distanceTo(args.start) / riverLength;
 
 			// Amplitude of the river at this location.
-			let riverCurve1 = riverCurve(riverFraction, startingAngle1, seed1);
-			let riverCurve2 = args.parallel ? riverCurve1 : riverCurve(riverFraction, startingAngle2, seed2);
+			const riverCurve1 = riverCurve(riverFraction, startingAngle1, seed1);
+			const riverCurve2 = args.parallel ? riverCurve1 : riverCurve(riverFraction, startingAngle2, seed2);
 
 			// Add noise.
-			let deviation = args.deviation * randFloat(-1, 1);
+			const deviation = args.deviation * randFloat(-1, 1);
 
 			// Compute the distance to the shoreline.
-			let shoreDist1 = riverCurve1 + distanceToRiver - deviation - args.width / 2;
-			let shoreDist2 = riverCurve2 + distanceToRiver - deviation + args.width / 2;
+			const shoreDist1 = riverCurve1 + distanceToRiver - deviation - args.width / 2;
+			const shoreDist2 = riverCurve2 + distanceToRiver - deviation + args.width / 2;
 
 			// Create the elevation for the water and the slopy shoreline and call the user functions.
 			if (shoreDist1 < 0 && shoreDist2 > 0)
@@ -426,10 +426,10 @@ function rndRiver(f, seed)
 	for (let i = 0; i <= f; ++i)
 		rndRw = 10 * (rndRw % 1);
 
-	let rndRr = f % 1;
+	const rndRr = f % 1;
 	let retVal = (Math.floor(f) % 2 ? -1 : 1) * rndRr * (rndRr - 1);
 
-	let rndRe = Math.floor(rndRw) % 5;
+	const rndRe = Math.floor(rndRw) % 5;
 	if (rndRe == 0)
 		retVal *= 2.3 * (rndRr - 0.5) * (rndRr - 0.5);
 	else if (rndRe == 1)
@@ -450,15 +450,15 @@ function rndRiver(f, seed)
 function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbed, heightRange, maxAngle, tributaryRiverTileClass, shallowTileClass, constraint)
 {
 	g_Map.log("Creating tributary rivers");
-	let waviness = 0.4;
-	let smoothness = scaleByMapSize(3, 12);
-	let offset = 0.1;
-	let tapering = 0.05;
-	let heightShallow = -2;
+	const waviness = 0.4;
+	const smoothness = scaleByMapSize(3, 12);
+	const offset = 0.1;
+	const tapering = 0.05;
+	const heightShallow = -2;
 
-	let mapSize = g_Map.getSize();
-	let mapCenter = g_Map.getCenter();
-	let mapBounds = g_Map.getBounds();
+	const mapSize = g_Map.getSize();
+	const mapCenter = g_Map.getCenter();
+	const mapBounds = g_Map.getBounds();
 
 	let riverConstraint = avoidClasses(tributaryRiverTileClass, 3);
 	if (shallowTileClass)
@@ -467,19 +467,19 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
 	for (let i = 0; i < riverCount; ++i)
 	{
 		// Determining tributary river location
-		let searchCenter = new Vector2D(fractionToTiles(randFloat(tapering, 1 - tapering)), mapCenter.y);
-		let sign = randBool() ? 1 : -1;
-		let distanceVec = new Vector2D(0, sign * tapering);
+		const searchCenter = new Vector2D(fractionToTiles(randFloat(tapering, 1 - tapering)), mapCenter.y);
+		const sign = randBool() ? 1 : -1;
+		const distanceVec = new Vector2D(0, sign * tapering);
 
-		let searchStart = Vector2D.add(searchCenter, distanceVec).rotateAround(riverAngle, mapCenter);
-		let searchEnd = Vector2D.sub(searchCenter, distanceVec).rotateAround(riverAngle, mapCenter);
+		const searchStart = Vector2D.add(searchCenter, distanceVec).rotateAround(riverAngle, mapCenter);
+		const searchEnd = Vector2D.sub(searchCenter, distanceVec).rotateAround(riverAngle, mapCenter);
 
-		let start = findLocationInDirectionBasedOnHeight(searchStart, searchEnd, heightRange[0], heightRange[1], 4);
+		const start = findLocationInDirectionBasedOnHeight(searchStart, searchEnd, heightRange[0], heightRange[1], 4);
 		if (!start)
 			continue;
 
 		start.round();
-		let end = Vector2D.add(mapCenter, new Vector2D(mapSize, 0).rotate(riverAngle - sign * randFloat(maxAngle, 2 * Math.PI - maxAngle))).round();
+		const end = Vector2D.add(mapCenter, new Vector2D(mapSize, 0).rotate(riverAngle - sign * randFloat(maxAngle, 2 * Math.PI - maxAngle))).round();
 
 		// Create river
 		if (!createArea(
@@ -502,7 +502,7 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
 	if (shallowTileClass)
 	{
 		g_Map.log("Creating shallows in the tributary rivers");
-		for (let z of [0.25, 0.75])
+		for (const z of [0.25, 0.75])
 			createPassage({
 				"start": new Vector2D(mapBounds.left, fractionToTiles(z)).rotateAround(riverAngle, mapCenter),
 				"end": new Vector2D(mapBounds.right, fractionToTiles(z)).rotateAround(riverAngle, mapCenter),
@@ -536,27 +536,27 @@ function createTributaryRivers(riverAngle, riverCount, riverWidth, heightRiverbe
  */
 function createPassage(args)
 {
-	let bound = x => Math.max(0, Math.min(Math.round(x), g_Map.height.length - 1));
+	const bound = x => Math.max(0, Math.min(Math.round(x), g_Map.height.length - 1));
 
-	let startHeight = args.startHeight !== undefined ? args.startHeight : g_Map.getHeight(new Vector2D(bound(args.start.x), bound(args.start.y)));
-	let endHeight = args.endHeight !== undefined ? args.endHeight : g_Map.getHeight(new Vector2D(bound(args.end.x), bound(args.end.y)));
+	const startHeight = args.startHeight !== undefined ? args.startHeight : g_Map.getHeight(new Vector2D(bound(args.start.x), bound(args.start.y)));
+	const endHeight = args.endHeight !== undefined ? args.endHeight : g_Map.getHeight(new Vector2D(bound(args.end.x), bound(args.end.y)));
 
-	let passageVec = Vector2D.sub(args.end, args.start);
-	let widthDirection = passageVec.perpendicular().normalize();
-	let lengthStep = 1 / (2 * passageVec.length());
-	let points = [];
+	const passageVec = Vector2D.sub(args.end, args.start);
+	const widthDirection = passageVec.perpendicular().normalize();
+	const lengthStep = 1 / (2 * passageVec.length());
+	const points = [];
 
-	let constraint = args.constraints && new StaticConstraint(args.constraints);
+	const constraint = args.constraints && new StaticConstraint(args.constraints);
 
 	for (let lengthFraction = 0; lengthFraction <= 1; lengthFraction += lengthStep)
 	{
-		let locationLength = Vector2D.add(args.start, Vector2D.mult(passageVec, lengthFraction));
-		let halfPassageWidth = (args.startWidth + (args.endWidth - args.startWidth) * lengthFraction) / 2;
-		let passageHeight = startHeight + (endHeight - startHeight) * lengthFraction;
+		const locationLength = Vector2D.add(args.start, Vector2D.mult(passageVec, lengthFraction));
+		const halfPassageWidth = (args.startWidth + (args.endWidth - args.startWidth) * lengthFraction) / 2;
+		const passageHeight = startHeight + (endHeight - startHeight) * lengthFraction;
 
 		for (let stepWidth = -halfPassageWidth; stepWidth <= halfPassageWidth; stepWidth += 0.5)
 		{
-			let location = Vector2D.add(locationLength, Vector2D.mult(widthDirection, stepWidth)).round();
+			const location = Vector2D.add(locationLength, Vector2D.mult(widthDirection, stepWidth)).round();
 
 			if (!g_Map.inMapBounds(location) ||
 			    constraint && !constraint.allows(location))
@@ -564,7 +564,7 @@ function createPassage(args)
 
 			points.push(location);
 
-			let smoothDistance = args.smoothWidth + Math.abs(stepWidth) - halfPassageWidth;
+			const smoothDistance = args.smoothWidth + Math.abs(stepWidth) - halfPassageWidth;
 
 			g_Map.setHeight(
 				location,
@@ -590,14 +590,14 @@ function createPassage(args)
  */
 function findLocationInDirectionBasedOnHeight(startPoint, endPoint, minHeight, maxHeight, offset = 0)
 {
-	let stepVec = Vector2D.sub(endPoint, startPoint);
-	let distance = Math.ceil(stepVec.length());
+	const stepVec = Vector2D.sub(endPoint, startPoint);
+	const distance = Math.ceil(stepVec.length());
 	stepVec.normalize();
 
 	for (let i = 0; i < distance; ++i)
 	{
-		let pos = Vector2D.add(startPoint, Vector2D.mult(stepVec, i));
-		let ipos = pos.clone().round();
+		const pos = Vector2D.add(startPoint, Vector2D.mult(stepVec, i));
+		const ipos = pos.clone().round();
 
 		if (g_Map.validHeight(ipos) &&
 		    g_Map.getHeight(ipos) >= minHeight &&

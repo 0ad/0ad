@@ -62,24 +62,24 @@ const pForest2 = [
 	tForestFloor + TERRAIN_SEPARATOR + oTree4,
 	tForestFloor + TERRAIN_SEPARATOR + oTree5, tForestFloor];
 
-var g_Map = new RandomMap(heightLand, tPrimary);
+const g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clLake = g_Map.createTileClass();
-var clWater = isLakeFrozen ? g_Map.createTileClass() : clLake;
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clLake = g_Map.createTileClass();
+const clWater = isLakeFrozen ? g_Map.createTileClass() : clLake;
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
-var startAngle = randomAngle();
+const startAngle = randomAngle();
 
 placePlayerBases({
 	"PlayerPlacement": [sortAllPlayers(), ...playerPlacementCustomAngle(
@@ -114,15 +114,15 @@ placePlayerBases({
 Engine.SetProgress(20);
 
 g_Map.log("Creating the gulf");
-var gulfLakePositions = [
+const gulfLakePositions = [
 	{ "numCircles": 200, "x": fractionToTiles(0), "radius": fractionToTiles(0.175) },
 	{ "numCircles": 120, "x": fractionToTiles(0.3), "radius": fractionToTiles(0.2) },
 	{ "numCircles": 100, "x": fractionToTiles(0.5), "radius": fractionToTiles(0.225) }
 ];
 
-for (let gulfLake of gulfLakePositions)
+for (const gulfLake of gulfLakePositions)
 {
-	let position = Vector2D.add(mapCenter, new Vector2D(gulfLake.x, 0).rotate(-startAngle)).round();
+	const position = Vector2D.add(mapCenter, new Vector2D(gulfLake.x, 0).rotate(-startAngle)).round();
 
 	createArea(
 		new ChainPlacer(
@@ -185,7 +185,7 @@ if (randBool())
 else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15, clLake, 0), clHill, scaleByMapSize(1, 4) * numPlayers, Math.floor(scaleByMapSize(20, 40)));
 
-var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
+const [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createDefaultForests(
 	[tForestFloor, tForestFloor, tForestFloor, pForest1, pForest2],
 	avoidClasses(clPlayer, 20, clForest, 16, clHill, 0, clLake, 2),

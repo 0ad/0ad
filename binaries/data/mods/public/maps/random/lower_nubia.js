@@ -109,7 +109,7 @@ const heightmapWaterThreshold = convertHeightmap1Dto2D(Engine.LoadHeightmapImage
 Engine.SetProgress(3);
 
 g_Map.log("Composing heightmap");
-var heightmapCombined = [];
+let heightmapCombined = [];
 for (let x = 0; x < heightmapLand.length; ++x)
 {
 	heightmapCombined[x] = new Float32Array(heightmapLand.length);
@@ -140,7 +140,7 @@ g_Map.log("Creating Nile passages");
 const riverAngle = Math.PI * 3 / 4;
 for (let i = 0; i < scaleByMapSize(8, 15); ++i)
 {
-	let x = fractionToTiles(randFloat(0, 1));
+	const x = fractionToTiles(randFloat(0, 1));
 	createArea(
 		new PathPlacer(
 			new Vector2D(x, mapBounds.bottom).rotateAround(riverAngle, mapCenter),
@@ -197,15 +197,15 @@ createArea(
 	new HeightConstraint(heightPlateau2, Infinity));
 Engine.SetProgress(38);
 
-var playerIDs = [];
-var playerPosition = [];
+let playerIDs = [];
+let playerPosition = [];
 if (!isNomad())
 {
 	g_Map.log("Finding player locations");
 	[playerIDs, playerPosition] = playerPlacementRandom(sortAllPlayers(), avoidClasses(clWater, scaleByMapSize(8, 12), clCliff, scaleByMapSize(8, 12)));
 
 	g_Map.log("Flatten the initial CC area");
-	for (let position of playerPosition)
+	for (const position of playerPosition)
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, position),
 			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 6));
@@ -327,11 +327,11 @@ Engine.SetProgress(73);
 const avoidCollisions = avoidClasses(clPlayer, 12, clBaseResource, 5, clWater, 1, clForest, 1, clRock, 4, clMetal, 4, clFood, 6, clCliff, 0, clPyramid, 6);
 
 g_Map.log("Creating straggler trees and bushes");
-var stragglerTreeObjects = [
+const stragglerTreeObjects = [
 	[new SimpleObject(oAcacia, 1, 1, 0, 0), new SimpleObject(oBushBadlands, 0, 1, 2, 2)],
 	[new SimpleObject(oTreeDead, 1, 1, 0, 0), new SimpleObject(oBushBadlands, 0, 1, 2, 2)]
 ];
-for (let objects of stragglerTreeObjects)
+for (const objects of stragglerTreeObjects)
 	createObjectGroups(
 		new SimpleGroup(objects, true, clForest),
 		0,

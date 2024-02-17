@@ -25,7 +25,7 @@ function HeightPlacer(mode, minElevation, maxElevation)
 
 HeightPlacer.prototype.place = function(constraint)
 {
-	let mapSize = g_Map.getSize();
+	const mapSize = g_Map.getSize();
 
 	return getPointsInBoundingBox(getBoundingBox([new Vector2D(0, 0), new Vector2D(mapSize - 1, mapSize - 1)])).filter(
 		point => this.withinHeightRange(point) && constraint.allows(point));

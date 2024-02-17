@@ -37,27 +37,27 @@ const heightSeaGround = -5;
 const heightLand = 3;
 const heightHill = 25;
 
-var g_Map = new RandomMap(heightLand, tGrass);
+const g_Map = new RandomMap(heightLand, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
-var waterPosition = fractionToTiles(0.31);
-var playerPosition = fractionToTiles(0.55);
-var mountainPosition = fractionToTiles(0.69);
+const waterPosition = fractionToTiles(0.31);
+const playerPosition = fractionToTiles(0.55);
+const mountainPosition = fractionToTiles(0.69);
 
-var startAngle = randomAngle();
+const startAngle = randomAngle();
 
 placePlayerBases({
 	"PlayerPlacement": [
@@ -110,7 +110,7 @@ paintRiver({
 });
 
 g_Map.log("Marking mountain area");
-var areaMountains = createArea(
+const areaMountains = createArea(
 	new ConvexPolygonPlacer(
 		[
 			new Vector2D(mountainPosition, mapBounds.top),
@@ -123,7 +123,7 @@ var areaMountains = createArea(
 g_Map.log("Creating shores");
 for (let i = 0; i < scaleByMapSize(20, 120); ++i)
 {
-	let position = new Vector2D(fractionToTiles(randFloat(0.28, 0.34)), fractionToTiles(randFloat(0.1, 0.9))).rotateAround(startAngle - Math.PI / 2, mapCenter).round();
+	const position = new Vector2D(fractionToTiles(randFloat(0.28, 0.34)), fractionToTiles(randFloat(0.1, 0.9))).rotateAround(startAngle - Math.PI / 2, mapCenter).round();
 	createArea(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(4, 6)), Math.floor(scaleByMapSize(16, 30)), Infinity, position),
 		[
@@ -154,14 +154,14 @@ createAreasInAreas(
 	[areaMountains]);
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(1000, 6000, 0.7);
-var types = [
+const [forestTrees, stragglerTrees] = getTreeCounts(1000, 6000, 0.7);
+const types = [
 	[[tGrass, tGrass, tGrass, tGrass, pForestD], [tGrass, tGrass, tGrass, pForestD]],
 	[[tGrass, tGrass, tGrass, tGrass, pForestP], [tGrass, tGrass, tGrass, pForestP]]
 ];
-var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
-var num = Math.floor(size / types.length);
-for (let type of types)
+const forestSize = forestTrees / (scaleByMapSize(3,6) * numPlayers);
+const num = Math.floor(forestSize / types.length);
+for (const type of types)
 	createAreas(
 		new ChainPlacer(
 			1,
@@ -178,7 +178,7 @@ for (let type of types)
 Engine.SetProgress(70);
 
 g_Map.log("Creating grass patches");
-for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
+for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
@@ -188,7 +188,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		avoidClasses(clWater, 8, clForest, 0, clHill, 0, clPlayer, 12, clDirt, 16),
 		scaleByMapSize(20, 80));
 
-for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
+for (const size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
@@ -199,7 +199,7 @@ for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 
 		scaleByMapSize(20, 80));
 
 g_Map.log("Creating stone mines");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
+let group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
 	scaleByMapSize(4,16), 100

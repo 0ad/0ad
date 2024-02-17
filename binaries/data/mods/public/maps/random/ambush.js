@@ -5,11 +5,11 @@ Engine.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
-var heightLand = 2;
+const heightLand = 2;
 
-var g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
-var mapCenter = g_Map.getCenter();
-var mapSize = g_Map.getSize();
+const g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
+const mapCenter = g_Map.getCenter();
+const mapSize = g_Map.getSize();
 
 initTileClasses(["bluffsPassage", "nomadArea"]);
 createArea(
@@ -18,21 +18,20 @@ createArea(
 
 Engine.SetProgress(10);
 
-if (!isNomad())
-{
-	let pattern = g_MapSettings.TeamPlacement || pickRandom(["line", "radial", "randomGroup", "stronghold"]);
-	var [playerIDs, playerPosition] =
-		createBases(
-			...playerPlacementByPattern(
-				pattern,
-				fractionToTiles(randFloat(0.2, 0.35)),
-				fractionToTiles(randFloat(0.08, 0.1)),
-				randomAngle(),
-				undefined),
-			g_PlayerbaseTypes[pattern].walls);
+const pattern = g_MapSettings.TeamPlacement || pickRandom(["line", "radial", "randomGroup", "stronghold"]);
+let [playerIDs, playerPosition] =
+	createBases(
+		...playerPlacementByPattern(
+			pattern,
+			fractionToTiles(randFloat(0.2, 0.35)),
+			fractionToTiles(randFloat(0.08, 0.1)),
+			randomAngle(),
+			undefined),
+		g_PlayerbaseTypes[pattern].walls);
 
+if (!isNomad())
 	markPlayerAvoidanceArea(playerPosition, defaultPlayerBaseRadius());
-}
+
 Engine.SetProgress(20);
 
 addElements([

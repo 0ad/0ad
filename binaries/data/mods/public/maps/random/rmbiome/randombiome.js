@@ -32,7 +32,7 @@ function setBiome(biomeID)
 	loadBiomeFile(biomeID);
 
 	Engine.LoadLibrary("rmbiome/" + dirname(biomeID));
-	let setupBiomeFunc = global["setupBiome_" + basename(biomeID)];
+	const setupBiomeFunc = global["setupBiome_" + basename(biomeID)];
 	if (setupBiomeFunc)
 		setupBiomeFunc();
 }
@@ -42,7 +42,7 @@ function setBiome(biomeID)
  */
 function loadBiomeFile(file)
 {
-	let path = "maps/random/rmbiome/" + file + ".json";
+	const path = "maps/random/rmbiome/" + file + ".json";
 
 	if (!Engine.FileExists(path))
 	{
@@ -50,10 +50,10 @@ function loadBiomeFile(file)
 		return;
 	}
 
-	let biome = Engine.ReadJSONFile(path);
+	const biome = Engine.ReadJSONFile(path);
 
-	let copyProperties = (from, to) => {
-		for (let prop in from)
+	const copyProperties = (from, to) => {
+		for (const prop in from)
 		{
 			if (from[prop] !== null && typeof from[prop] == "object" && !Array.isArray(from[prop]))
 			{
@@ -67,7 +67,7 @@ function loadBiomeFile(file)
 		}
 	};
 
-	for (let rmsGlobal in biome)
+	for (const rmsGlobal in biome)
 	{
 		if (rmsGlobal == "Description")
 			continue;

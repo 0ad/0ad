@@ -37,23 +37,23 @@ const pForest = [tLush + TERRAIN_SEPARATOR + oDatePalm, tLush + TERRAIN_SEPARATO
 const heightLand = 1;
 const heightOffsetOasis = -3;
 
-var g_Map = new RandomMap(heightLand, tPrimary);
+const g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clTreasure = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clTreasure = g_Map.createTileClass();
 
-var [playerIDs, playerPosition, playerAngle] = playerPlacementCircle(fractionToTiles(0.35));
+const [playerIDs, playerPosition, playerAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 placePlayerBases({
 	"PlayerPlacement": [playerIDs, playerPosition],
@@ -84,10 +84,10 @@ placePlayerBases({
 Engine.SetProgress(30);
 
 g_Map.log("Creating oases");
-var oasisRadius = fractionToTiles(scaleByMapSize(0.19, 0.22));
+const oasisRadius = fractionToTiles(scaleByMapSize(0.19, 0.22));
 for (let i = 0; i < numPlayers; ++i)
 {
-	let position = Vector2D.add(mapCenter, new Vector2D(oasisRadius, 0).rotate(-playerAngle[i]));
+	const position = Vector2D.add(mapCenter, new Vector2D(oasisRadius, 0).rotate(-playerAngle[i]));
 	createArea(
 		new ClumpPlacer(diskArea(scaleByMapSize(16, 60)) * 0.185, 0.6, 0.15, 0, position),
 		[
@@ -101,7 +101,7 @@ for (let i = 0; i < numPlayers; ++i)
 Engine.SetProgress(50);
 
 g_Map.log("Creating grass patches");
-for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
+for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
@@ -116,7 +116,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 Engine.SetProgress(55);
 
 g_Map.log("Creating dirt patches");
-for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
+for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
@@ -131,7 +131,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 Engine.SetProgress(60);
 
 g_Map.log("Creating stone mines");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
+let group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 26, clRock, 10, clWater, 1),
 	2*scaleByMapSize(4,16), 100

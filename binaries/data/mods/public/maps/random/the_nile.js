@@ -1,44 +1,44 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
-var tPrimary = "desert_sand_dunes_100";
-var tCity = "desert_city_tile";
-var tCityPlaza = "desert_city_tile_plaza";
-var tFineSand = "desert_sand_smooth";
-var tForestFloor = "desert_forestfloor_palms";
-var tGrass = "desert_dirt_rough_2";
-var tGrassSand50 = "desert_sand_dunes_50";
-var tGrassSand25 = "desert_dirt_rough";
-var tDirt = "desert_dirt_rough";
-var tDirtCracks = "desert_dirt_cracks";
-var tShore = "desert_sand_wet";
-var tLush = "desert_grass_a";
-var tSLush = "desert_grass_a_sand";
-var tSDry = "desert_plants_b";
+const tPrimary = "desert_sand_dunes_100";
+const tCity = "desert_city_tile";
+const tCityPlaza = "desert_city_tile_plaza";
+const tFineSand = "desert_sand_smooth";
+const tForestFloor = "desert_forestfloor_palms";
+const tGrass = "desert_dirt_rough_2";
+const tGrassSand50 = "desert_sand_dunes_50";
+const tGrassSand25 = "desert_dirt_rough";
+const tDirt = "desert_dirt_rough";
+const tDirtCracks = "desert_dirt_cracks";
+const tShore = "desert_sand_wet";
+const tLush = "desert_grass_a";
+const tSLush = "desert_grass_a_sand";
+const tSDry = "desert_plants_b";
 
-var oBerryBush = "gaia/fruit/berry_01";
-var oCamel = "gaia/fauna_camel";
-var oGazelle = "gaia/fauna_gazelle";
-var oGoat = "gaia/fauna_goat";
-var oStoneLarge = "gaia/rock/badlands_large";
-var oStoneSmall = "gaia/rock/desert_small";
-var oMetalLarge = "gaia/ore/desert_large";
-var oDatePalm = "gaia/tree/date_palm";
-var oSDatePalm = "gaia/tree/cretan_date_palm_short";
-var eObelisk = "structures/obelisk";
-var ePyramid = "gaia/ruins/pyramid_minor";
-var oWoodTreasure = "gaia/treasure/wood";
-var oFoodTreasure = "gaia/treasure/food_bin";
+const oBerryBush = "gaia/fruit/berry_01";
+const oCamel = "gaia/fauna_camel";
+const oGazelle = "gaia/fauna_gazelle";
+const oGoat = "gaia/fauna_goat";
+const oStoneLarge = "gaia/rock/badlands_large";
+const oStoneSmall = "gaia/rock/desert_small";
+const oMetalLarge = "gaia/ore/desert_large";
+const oDatePalm = "gaia/tree/date_palm";
+const oSDatePalm = "gaia/tree/cretan_date_palm_short";
+const eObelisk = "structures/obelisk";
+const ePyramid = "gaia/ruins/pyramid_minor";
+const oWoodTreasure = "gaia/treasure/wood";
+const oFoodTreasure = "gaia/treasure/food_bin";
 
-var aBush1 = "actor|props/flora/bush_desert_a.xml";
-var aBush2 = "actor|props/flora/bush_desert_dry_a.xml";
-var aBush3 = "actor|props/flora/bush_medit_sm_dry.xml";
-var aBush4 = "actor|props/flora/plant_desert_a.xml";
-var aDecorativeRock = "actor|geology/stone_desert_med.xml";
-var aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
-var aLillies = "actor|props/flora/water_lillies.xml";
+const aBush1 = "actor|props/flora/bush_desert_a.xml";
+const aBush2 = "actor|props/flora/bush_desert_dry_a.xml";
+const aBush3 = "actor|props/flora/bush_medit_sm_dry.xml";
+const aBush4 = "actor|props/flora/plant_desert_a.xml";
+const aDecorativeRock = "actor|geology/stone_desert_med.xml";
+const aReeds = "actor|props/flora/reeds_pond_lush_a.xml";
+const aLillies = "actor|props/flora/water_lillies.xml";
 
-var pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
+const pForest = [tForestFloor + TERRAIN_SEPARATOR + oDatePalm, tForestFloor + TERRAIN_SEPARATOR + oSDatePalm, tForestFloor];
 
 const heightLand = 1;
 const heightShore = 2;
@@ -46,34 +46,34 @@ const heightPonds = -7;
 const heightSeaGround = -3;
 const heightOffsetBump = 2;
 
-var g_Map = new RandomMap(heightLand, tPrimary);
+const g_Map = new RandomMap(heightLand, tPrimary);
 
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 
-var aPlants = mapSize < 256 ?
+const aPlants = mapSize < 256 ?
 	"actor|props/flora/grass_tropical.xml" :
 	"actor|props/flora/grass_tropic_field_tall.xml";
 
-var numPlayers = getNumPlayers();
+const numPlayers = getNumPlayers();
 
-var clPlayer = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clGrass = g_Map.createTileClass();
-var clDesert = g_Map.createTileClass();
-var clPond = g_Map.createTileClass();
-var clShore = g_Map.createTileClass();
-var clTreasure = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clGrass = g_Map.createTileClass();
+const clDesert = g_Map.createTileClass();
+const clPond = g_Map.createTileClass();
+const clShore = g_Map.createTileClass();
+const clTreasure = g_Map.createTileClass();
 
-var desertWidth = fractionToTiles(0.25);
-var startAngle = randomAngle();
+const desertWidth = fractionToTiles(0.25);
+const startAngle = randomAngle();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementRiver(startAngle, fractionToTiles(0.4)),
@@ -131,7 +131,7 @@ const riverTextures = [
 ];
 
 const plantFrequency = 2;
-var plantID = 0;
+let plantID = 0;
 
 paintRiver({
 	"parallel": true,
@@ -162,7 +162,7 @@ paintRiver({
 	},
 	"landFunc": (position, shoreDist1, shoreDist2) => {
 
-		for (let riv of riverTextures)
+		for (const riv of riverTextures)
 			if (riv.left < +shoreDist1 && +shoreDist1 < riv.right ||
 			    riv.left < -shoreDist2 && -shoreDist2 < riv.right)
 			{
@@ -183,8 +183,8 @@ createAreas(
 	scaleByMapSize(100, 200));
 
 g_Map.log("Creating ponds");
-var numLakes = Math.round(scaleByMapSize(1, 4) * numPlayers / 2);
-var waterAreas = createAreas(
+const numLakes = Math.round(scaleByMapSize(1, 4) * numPlayers / 2);
+const waterAreas = createAreas(
 	new ClumpPlacer(scaleByMapSize(2, 5) * 50, 0.8, 0.1, Infinity),
 	[
 		new TerrainPainter(tShore),
@@ -213,8 +213,8 @@ createObjectGroupsByAreasDeprecated(
 	waterAreas);
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(700, 3500, 0.5);
-var num = scaleByMapSize(10,30);
+const [forestTrees, stragglerTrees] = getTreeCounts(700, 3500, 0.5);
+const num = scaleByMapSize(10,30);
 createAreas(
 	new ClumpPlacer(forestTrees / num, 0.15, 0.1, 0.5),
 	[
@@ -228,7 +228,7 @@ createAreas(
 Engine.SetProgress(50);
 
 g_Map.log("Creating grass patches");
-for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
+for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
@@ -242,7 +242,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 Engine.SetProgress(55);
 
 g_Map.log("Creating dirt patches");
-for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
+for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
@@ -257,7 +257,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 Engine.SetProgress(60);
 
 g_Map.log("Creating stone mines");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
+let group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clWater, 1, clPond, 1),
 	scaleByMapSize(4,16), 100

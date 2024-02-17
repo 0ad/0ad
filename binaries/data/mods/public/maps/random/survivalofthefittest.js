@@ -43,19 +43,19 @@ const triggerPointTreasures = [
 const heightLand = 3;
 const heightHill = 30;
 
-var g_Map = new RandomMap(heightHill, tMainTerrain);
+const g_Map = new RandomMap(heightHill, tMainTerrain);
 
-var numPlayers = getNumPlayers();
-var mapSize = g_Map.getSize();
-var mapCenter = g_Map.getCenter();
+const numPlayers = getNumPlayers();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clLand = g_Map.createTileClass();
-var clWomen = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clLand = g_Map.createTileClass();
+const clWomen = g_Map.createTileClass();
 
 g_Map.log("Creating central area");
 createArea(
@@ -67,10 +67,10 @@ createArea(
 	]);
 Engine.SetProgress(10);
 
-var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.3));
-var halfway = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.375), mapCenter)[0].map(v => v.round());
-var attacker = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.45), mapCenter)[0].map(v => v.round());
-var passage = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0];
+const [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.3));
+const halfway = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.375), mapCenter)[0].map(v => v.round());
+const attacker = distributePointsOnCircle(numPlayers, startAngle, fractionToTiles(0.45), mapCenter)[0].map(v => v.round());
+const passage = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0];
 
 g_Map.log("Creating player bases, passages, treasure seeker woman and attacker points");
 for (let  i = 0; i < numPlayers; ++i)
@@ -93,7 +93,7 @@ for (let  i = 0; i < numPlayers; ++i)
 		]);
 
 	// Treasure seeker woman
-	let femaleLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , 3.5, 3).round();
+	const femaleLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , 3.5, 3).round();
 	clWomen.add(femaleLocation);
 	g_Map.placeEntityPassable(oTreasureSeeker, playerIDs[i], femaleLocation, playerAngle[i] + Math.PI);
 
@@ -112,9 +112,9 @@ paintTerrainBasedOnHeight(heightLand + 0.12, heightHill - 1, Elevation_IncludeMi
 paintTileClassBasedOnHeight(heightLand + 0.12, heightHill - 1, Elevation_IncludeMin_ExcludeMax, clHill);
 Engine.SetProgress(30);
 
-var landConstraint = new StaticConstraint(stayClasses(clLand, 5));
+const landConstraint = new StaticConstraint(stayClasses(clLand, 5));
 
-for (let triggerPointTreasure of triggerPointTreasures)
+for (const triggerPointTreasure of triggerPointTreasures)
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(triggerPointTreasure, 1, 1, 0, 0)], true, clWomen),
 		0,
@@ -126,7 +126,7 @@ Engine.SetProgress(35);
 createBumps(landConstraint);
 Engine.SetProgress(40);
 
-var hillConstraint = new AndConstraint([avoidClasses(clHill, 5), new StaticConstraint(avoidClasses(clPlayer, 20, clBaseResource, 3, clWomen, 5))]);
+const hillConstraint = new AndConstraint([avoidClasses(clHill, 5), new StaticConstraint(avoidClasses(clPlayer, 20, clBaseResource, 3, clWomen, 5))]);
 if (randBool())
 	createHills([tMainTerrain, tCliff, tHill], [hillConstraint, landConstraint], clHill, scaleByMapSize(10, 60) * numPlayers);
 else
@@ -145,7 +145,7 @@ createHills(
 	55);
 Engine.SetProgress(50);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
+const [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 createForests(
 	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
 	[avoidClasses(clForest, 5), new StaticConstraint([avoidClasses(clPlayer, 20, clHill, 0, clBaseResource, 2, clWomen, 5), stayClasses(clLand, 4)])],
@@ -173,7 +173,7 @@ createPatches(
 	clDirt);
 Engine.SetProgress(80);
 
-var planetm = 1;
+let planetm = 1;
 if (currentBiome() == "generic/india")
 	planetm = 8;
 

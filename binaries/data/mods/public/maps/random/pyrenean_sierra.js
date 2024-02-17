@@ -73,36 +73,36 @@ const heightMountain = heightHighRocks + 20;
 const heightOffsetHill = 7;
 const heightOffsetHillRandom = 2;
 
-var g_Map = new RandomMap(heightInit, tGrass);
+const g_Map = new RandomMap(heightInit, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clPass = g_Map.createTileClass();
-var clPyrenneans = g_Map.createTileClass();
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clPass = g_Map.createTileClass();
+const clPyrenneans = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
 
-var startAngle = randomAngle();
-var oceanAngle = startAngle + randFloat(-1, 1) * Math.PI / 12;
+const startAngle = randomAngle();
+const oceanAngle = startAngle + randFloat(-1, 1) * Math.PI / 12;
 
-var mountainLength = fractionToTiles(0.68);
-var mountainWidth = scaleByMapSize(15, 55);
+const mountainLength = fractionToTiles(0.68);
+const mountainWidth = scaleByMapSize(15, 55);
 
-var mountainPeaks = 100 * scaleByMapSize(1, 10);
-var mountainOffset = randFloat(-1, 1) * scaleByMapSize(1, 12);
+const mountainPeaks = 100 * scaleByMapSize(1, 10);
+const mountainOffset = randFloat(-1, 1) * scaleByMapSize(1, 12);
 
-var passageLength = scaleByMapSize(8, 50);
+const passageLength = scaleByMapSize(8, 50);
 
-var terrainPerHeight = [
+const terrainPerHeight = [
 	{
 		"maxHeight": heightGrass,
 		"steepness": 5,
@@ -142,16 +142,16 @@ var terrainPerHeight = [
 ];
 
 g_Map.log("Creating initial sinusoidal noise");
-var baseHeights = [];
-for (var ix = 0; ix < mapSize; ix++)
+let baseHeights = [];
+for (let ix = 0; ix < mapSize; ix++)
 {
 	baseHeights.push([]);
-	for (var iz = 0; iz < mapSize; iz++)
+	for (let iz = 0; iz < mapSize; iz++)
 	{
-		let position = new Vector2D(ix, iz);
+		const position = new Vector2D(ix, iz);
 		if (g_Map.inMapBounds(position))
 		{
-			let height = heightBase + randFloat(-1, 1) + scaleByMapSize(1, 3) * (Math.cos(ix / scaleByMapSize(5, 30)) + Math.sin(iz / scaleByMapSize(5, 30)));
+			const height = heightBase + randFloat(-1, 1) + scaleByMapSize(1, 3) * (Math.cos(ix / scaleByMapSize(5, 30)) + Math.sin(iz / scaleByMapSize(5, 30)));
 			g_Map.setHeight(position, height);
 			baseHeights[ix].push(height);
 		}
@@ -160,8 +160,8 @@ for (var ix = 0; ix < mapSize; ix++)
 	}
 }
 
-var playerIDs = sortAllPlayers();
-var playerPosition = playerPlacementArcs(
+const playerIDs = sortAllPlayers();
+const playerPosition = playerPlacementArcs(
 	playerIDs,
 	mapCenter,
 	fractionToTiles(0.35),
@@ -198,9 +198,9 @@ placePlayerBases({
 Engine.SetProgress(30);
 
 g_Map.log("Creating the pyreneans");
-var mountainVec = new Vector2D(mountainLength, 0).rotate(-startAngle);
-var mountainStart = Vector2D.sub(mapCenter, Vector2D.div(mountainVec, 2));
-var mountainDirection = mountainVec.clone().normalize();
+const mountainVec = new Vector2D(mountainLength, 0).rotate(-startAngle);
+const mountainStart = Vector2D.sub(mapCenter, Vector2D.div(mountainVec, 2));
+const mountainDirection = mountainVec.clone().normalize();
 createPyreneans();
 paintTileClassBasedOnHeight(heightPyreneans, Infinity, Elevation_ExcludeMin_ExcludeMax, clPyrenneans);
 Engine.SetProgress(40);
@@ -222,23 +222,23 @@ function createPyreneans()
 {
 	for (let peak = 0; peak < mountainPeaks; ++peak)
 	{
-		let peakPosition = peak / mountainPeaks;
-		let peakHeight = randFloat(0, 10);
+		const peakPosition = peak / mountainPeaks;
+		const peakHeight = randFloat(0, 10);
 
 		for (let distance = 0; distance < mountainWidth; distance += 1/3)
 		{
-			let rest = 2 * (1 - distance / mountainWidth);
+			const rest = 2 * (1 - distance / mountainWidth);
 
-			let sigmoidX =
+			const sigmoidX =
 				- 1 * (rest - 1.9) +
 				- 4 *
 					(rest - randFloat(0.9, 1.1)) *
 					(rest - randFloat(0.9, 1.1)) *
 					(rest - randFloat(0.9, 1.1));
 
-			for (let direction of [-1, 1])
+			for (const direction of [-1, 1])
 			{
-				let pos = Vector2D.sum([
+				const pos = Vector2D.sum([
 					Vector2D.add(mountainStart, Vector2D.mult(mountainDirection, peakPosition * mountainLength)),
 					new Vector2D(mountainOffset, 0).rotate(-peakPosition * Math.PI * 4),
 					new Vector2D(distance, 0).rotate(-startAngle - direction * Math.PI / 2)
@@ -251,14 +251,14 @@ function createPyreneans()
 }
 
 g_Map.log("Creating passages");
-var passageLocation = 0.35;
-var passageVec = mountainDirection.perpendicular().mult(passageLength);
+const passageLocation = 0.35;
+const passageVec = mountainDirection.perpendicular().mult(passageLength);
 
-for (let passLoc of [passageLocation, 1 - passageLocation])
-	for (let direction of [1, -1])
+for (const passLoc of [passageLocation, 1 - passageLocation])
+	for (const direction of [1, -1])
 	{
-		let passageStart = Vector2D.add(mountainStart, Vector2D.mult(mountainVec, passLoc));
-		let passageEnd = Vector2D.add(passageStart, Vector2D.mult(passageVec, direction));
+		const passageStart = Vector2D.add(mountainStart, Vector2D.mult(mountainVec, passLoc));
+		const passageEnd = Vector2D.add(passageStart, Vector2D.mult(passageVec, direction));
 
 		createPassage({
 			"start": passageStart,
@@ -279,7 +279,7 @@ createArea(
 	new NearTileClassConstraint(clPyrenneans, 1));
 
 g_Map.log("Creating oceans");
-for (let ocean of distributePointsOnCircle(2, oceanAngle, fractionToTiles(0.48), mapCenter)[0])
+for (const ocean of distributePointsOnCircle(2, oceanAngle, fractionToTiles(0.48), mapCenter)[0])
 	createArea(
 		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.9, 0.05, Infinity, ocean),
 		[
@@ -305,12 +305,12 @@ createAreas(
 	avoidClasses(clWater, 5, clPlayer, 20, clBaseResource, 6, clPyrenneans, 2), scaleByMapSize(5, 35));
 
 g_Map.log("Creating forests");
-var types = [[tForestTransition, pForestLandVeryLight, pForestLandLight, pForestLand]];
-var size = scaleByMapSize(40, 115) * Math.PI;
-var num = Math.floor(scaleByMapSize(8,40) / types.length);
-for (let type of types)
+const types = [[tForestTransition, pForestLandVeryLight, pForestLandLight, pForestLand]];
+const forestSize = scaleByMapSize(40, 115) * Math.PI;
+let num = Math.floor(scaleByMapSize(8,40) / types.length);
+for (const type of types)
 	createAreas(
-		new ClumpPlacer(size, 0.2, 0.1, Infinity),
+		new ClumpPlacer(forestSize, 0.2, 0.1, Infinity),
 		[
 			new LayeredPainter(type, [scaleByMapSize(1, 2), scaleByMapSize(3, 6), scaleByMapSize(3, 6)]),
 			new TileClassPainter(clForest)
@@ -320,14 +320,14 @@ for (let type of types)
 Engine.SetProgress(60);
 
 g_Map.log("Creating lone trees");
-var num = scaleByMapSize(80,400);
+num = scaleByMapSize(80,400);
 
-var group = new SimpleGroup([new SimpleObject(oPine, 1,2, 1,3),new SimpleObject(oBeech, 1,2, 1,3)], true, clForest);
+let group = new SimpleGroup([new SimpleObject(oPine, 1,2, 1,3),new SimpleObject(oBeech, 1,2, 1,3)], true, clForest);
 createObjectGroupsDeprecated(group, 0,  avoidClasses(clWater, 3, clForest, 1, clPlayer, 8,clPyrenneans, 1), num, 20 );
 
 g_Map.log("Painting terrain by height and slope");
 for (let i = 0; i < terrainPerHeight.length; ++i)
-	for (let steep of [false, true])
+	for (const steep of [false, true])
 		createArea(
 			new MapBoundsPlacer(),
 			new TerrainPainter(steep ? terrainPerHeight[i].terrainSteep : terrainPerHeight[i].terrainGround),
@@ -342,11 +342,11 @@ for (let i = 0; i < terrainPerHeight.length; ++i)
 for (let x = 0; x < mapSize; ++x)
 	for (let z = 0; z < mapSize; ++z)
 	{
-		let position = new Vector2D(x, z);
-		let height = g_Map.getHeight(position);
-		let heightDiff = g_Map.getSlope(position);
+		const position = new Vector2D(x, z);
+		const height = g_Map.getHeight(position);
+		const heightDiff = g_Map.getSlope(position);
 
-		let terrainShore = getShoreTerrain(position, height, heightDiff);
+		const terrainShore = getShoreTerrain(position, height, heightDiff);
 		if (terrainShore)
 			createTerrain(terrainShore).place(position);
 	}
@@ -367,7 +367,7 @@ function getShoreTerrain(position, height, heightDiff)
 }
 
 g_Map.log("Creating dirt patches");
-for (let size of [scaleByMapSize(3, 20), scaleByMapSize(5, 40), scaleByMapSize(8, 60)])
+for (const size of [scaleByMapSize(3, 20), scaleByMapSize(5, 40), scaleByMapSize(8, 60)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
@@ -378,7 +378,7 @@ for (let size of [scaleByMapSize(3, 20), scaleByMapSize(5, 40), scaleByMapSize(8
 		scaleByMapSize(15, 45));
 
 g_Map.log("Creating grass patches");
-for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
+for (const size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		new TerrainPainter(tLushGrass),
@@ -389,7 +389,7 @@ Engine.SetProgress(70);
 
 // making more in dirt areas so as to appear different
 g_Map.log("Creating small grass tufts");
-var group = new SimpleGroup( [new SimpleObject(aGrassShort, 1,2, 0,1, -Math.PI / 8, Math.PI / 8)] );
+group = new SimpleGroup( [new SimpleObject(aGrassShort, 1,2, 0,1, -Math.PI / 8, Math.PI / 8)] );
 createObjectGroupsDeprecated(group, 0, avoidClasses(clWater, 2, clHill, 2, clPlayer, 5, clDirt, 0, clPyrenneans,2), scaleByMapSize(13, 200) );
 createObjectGroupsDeprecated(group, 0, stayClasses(clDirt,1), scaleByMapSize(13, 200),10);
 

@@ -16,8 +16,8 @@ function RandomPathPlacer(pathStart, pathEnd, pathWidth, offset, blended)
 RandomPathPlacer.prototype.place = function(constraint)
 {
 	let pathLength = 0;
-	let points = [];
-	let position = this.pathStart;
+	const points = [];
+	const position = this.pathStart;
 
 	while (position.distanceToSquared(this.pathEnd) >= this.offsetSquared && pathLength++ < this.maxPathLength)
 	{
@@ -28,7 +28,7 @@ RandomPathPlacer.prototype.place = function(constraint)
 
 		this.diskPlacer.setCenterPosition(position);
 
-		for (let point of this.diskPlacer.place(constraint))
+		for (const point of this.diskPlacer.place(constraint))
 			if (points.every(p => !Vector2D.isEqualTo(p, point)))
 				points.push(point);
 	}

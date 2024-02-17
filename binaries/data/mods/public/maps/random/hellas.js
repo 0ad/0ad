@@ -20,7 +20,7 @@ Engine.LoadLibrary("rmgen-common");
 
 TILE_CENTERED_HEIGHT_MAP = true;
 
-var mapStyles = [
+const mapStyles = [
 	// mainland
 	{
 		"minMapSize": 0,
@@ -56,47 +56,47 @@ const heightHighlands = heightScale(60);
 const heightmapMin = 0;
 const heightmapMax = 100;
 
-var g_Map = new RandomMap(0, biomes.lowlands.terrains.main);
-var mapSize = g_Map.getSize();
-var mapCenter = g_Map.getCenter();
-var numPlayers = getNumPlayers();
+const g_Map = new RandomMap(0, biomes.lowlands.terrains.main);
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
+const numPlayers = getNumPlayers();
 
-var clWater;
-var clCliffs;
-var clPlayer = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clDock = g_Map.createTileClass();
+let clWater =  g_Map.createTileClass();
+let clCliffs = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clDock = g_Map.createTileClass();
 
-var constraintLowlands = new HeightConstraint(heightShoreline, heightLowlands);
-var constraintHighlands = new HeightConstraint(heightLowlands, heightHighlands);
-var constraintMountains = new HeightConstraint(heightHighlands, Infinity);
+const constraintLowlands = new HeightConstraint(heightShoreline, heightLowlands);
+const constraintHighlands = new HeightConstraint(heightLowlands, heightHighlands);
+const constraintMountains = new HeightConstraint(heightHighlands, Infinity);
 
-var [minLandRatio, maxLandRatio] = mapStyles.filter(mapStyle => mapSize >= mapStyle.minMapSize).sort((a, b) => a.enabled - b.enabled).pop().landRatio;
-var [minCliffRatio, maxCliffRatio] = [maxLandRatio < 0.75 ? 0 : 0.08, 0.18];
+const [minLandRatio, maxLandRatio] = mapStyles.filter(mapStyle => mapSize >= mapStyle.minMapSize).sort((a, b) => a.enabled - b.enabled).pop().landRatio;
+const [minCliffRatio, maxCliffRatio] = [maxLandRatio < 0.75 ? 0 : 0.08, 0.18];
 
-var playerIDs = sortAllPlayers();
-var playerPosition;
+let playerIDs = sortAllPlayers();
+let playerPosition;
 
 // Pick a random subset of the heightmap that meets the mapStyle and has space for all players
-var subAreaSize;
-var subAreaTopLeft;
+let subAreaSize;
+let subAreaTopLeft;
 while (true)
 {
 	subAreaSize = Math.floor(randFloat(0.01, 0.2) * heightmapHellas.length);
 	subAreaTopLeft = new Vector2D(randFloat(0, 1), randFloat(0, 1)).mult(heightmapHellas.length - subAreaSize).floor();
 
-	let heightmap = extractHeightmap(heightmapHellas, subAreaTopLeft, subAreaSize);
-	let heightmapPainter = new HeightmapPainter(heightmap, heightmapMin, heightmapMax);
+	const heightmap = extractHeightmap(heightmapHellas, subAreaTopLeft, subAreaSize);
+	const heightmapPainter = new HeightmapPainter(heightmap, heightmapMin, heightmapMax);
 
 	// Quick area test
-	let points = new DiskPlacer(heightmap.length / 2 - MAP_BORDER_WIDTH, new Vector2D(1, 1).mult(heightmap.length / 2)).place(new NullConstraint());
+	const points = new DiskPlacer(heightmap.length / 2 - MAP_BORDER_WIDTH, new Vector2D(1, 1).mult(heightmap.length / 2)).place(new NullConstraint());
 	let landArea = 0;
-	for (let point of points)
+	for (const point of points)
 		if (heightmapPainter.scaleHeight(heightmap[point.x][point.y]) > heightShoreline)
 				++landArea;
 
@@ -111,7 +111,7 @@ while (true)
 		heightmapPainter);
 
 	g_Map.log("Measuring land area");
-	let passableLandArea = createArea(
+	const passableLandArea = createArea(
 		new DiskPlacer(fractionToTiles(0.5), mapCenter),
 		undefined,
 		new HeightConstraint(heightShoreline, Infinity));
@@ -145,7 +145,7 @@ while (true)
 		clCliffs = g_Map.createTileClass();
 
 		// Marking cliffs
-		let cliffsArea = createArea(
+		const cliffsArea = createArea(
 			new MapBoundsPlacer(),
 			new TileClassPainter(clCliffs),
 			[
@@ -169,7 +169,7 @@ while (true)
 		break;
 
 	g_Map.log("Finding player locations");
-	let players = playerPlacementRandom(
+	const players = playerPlacementRandom(
 		playerIDs,
 		avoidClasses(
 			clCliffs, scaleByMapSize(6, 15),
@@ -188,8 +188,8 @@ Engine.SetProgress(35);
 if (!isNomad())
 {
 	g_Map.log("Flattening initial CC area");
-	let playerRadius = defaultPlayerBaseRadius() * 0.8;
-	for (let position of playerPosition)
+	const playerRadius = defaultPlayerBaseRadius() * 0.8;
+	for (const position of playerPosition)
 		createArea(
 			new ClumpPlacer(diskArea(playerRadius), 0.95, 0.6, Infinity, position),
 			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), playerRadius / 2));
@@ -242,7 +242,7 @@ for (let i = 0; i < numPlayers; ++i)
 	if (isNomad())
 		break;
 
-	let localBiome = constraintHighlands.allows(playerPosition[i]) ? biomes.highlands : biomes.lowlands;
+	const localBiome = constraintHighlands.allows(playerPosition[i]) ? biomes.highlands : biomes.lowlands;
 	placePlayerBase({
 		"playerID": playerIDs[i],
 		"playerPosition": playerPosition[i],
@@ -296,9 +296,9 @@ placeDocks(
 	50);
 Engine.SetProgress(65);
 
-let [forestTrees, stragglerTrees] = getTreeCounts(600, 4000, 0.7);
-let biomeTreeRatioHighlands = 0.4;
-for (let biome of ["lowlands", "highlands"])
+const [forestTrees, stragglerTrees] = getTreeCounts(600, 4000, 0.7);
+const biomeTreeRatioHighlands = 0.4;
+for (const biome of ["lowlands", "highlands"])
 	createForests(
 		[
 			biomes[biome].terrains.main,
@@ -316,11 +316,11 @@ for (let biome of ["lowlands", "highlands"])
 Engine.SetProgress(70);
 
 g_Map.log("Creating stone mines");
-var minesStone = [
+const minesStone = [
 	[new SimpleObject(biomes.common.gaia.mines.stoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
 	[new SimpleObject(biomes.common.gaia.mines.stoneSmall, 2, 3, 1, 3, 0, 2 * Math.PI, 1)]
 ];
-for (let mine of minesStone)
+for (const mine of minesStone)
 	createObjectGroups(
 		new SimpleGroup(mine, true, clRock),
 		0,
@@ -330,11 +330,11 @@ for (let mine of minesStone)
 Engine.SetProgress(75);
 
 g_Map.log("Creating metal mines");
-var minesMetal = [
+const minesMetal = [
 	[new SimpleObject(biomes.common.gaia.mines.metalLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
 	[new SimpleObject(biomes.common.gaia.mines.metalSmall, 2, 3, 1, 3, 0, 2 * Math.PI, 1)]
 ];
-for (let mine of minesMetal)
+for (const mine of minesMetal)
 	createObjectGroups(
 		new SimpleGroup(mine, true, clMetal),
 		0,
@@ -343,7 +343,7 @@ for (let mine of minesMetal)
 		50);
 Engine.SetProgress(80);
 
-for (let biome of ["lowlands", "highlands"])
+for (const biome of ["lowlands", "highlands"])
 	createStragglerTrees(
 		biomes[biome].gaia.flora.trees,
 		[
@@ -417,8 +417,8 @@ createObjectGroups(
 Engine.SetProgress(95);
 
 g_Map.log("Creating grass patches");
-for (let biome of ["lowlands", "highlands"])
-	for (let patch of biomes[biome].terrains.patches)
+for (const biome of ["lowlands", "highlands"])
+	for (const patch of biomes[biome].terrains.patches)
 		createPatches(
 			[scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
 			patch,
@@ -430,7 +430,7 @@ for (let biome of ["lowlands", "highlands"])
 			clDirt);
 Engine.SetProgress(96);
 
-for (let biome of ["lowlands", "highlands"])
+for (const biome of ["lowlands", "highlands"])
 {
 	createDecoration(
 		[

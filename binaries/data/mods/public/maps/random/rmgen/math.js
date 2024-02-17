@@ -44,8 +44,8 @@ function distributePointsOnCircle(pointCount, startAngle, radius, center)
  */
 function distributePointsOnCircularSegment(pointCount, maxAngle, startAngle, radius, center)
 {
-	let points = [];
-	let angle = [];
+	const points = [];
+	const angle = [];
 	pointCount = Math.round(pointCount);
 
 	for (let i = 0; i < pointCount; ++i)
@@ -75,9 +75,9 @@ function distanceOfPointFromLine(lineStart, lineEnd, point)
  */
 function testLineIntersection(start1, end1, start2, end2, width)
 {
-	let start1end1 = Vector2D.sub(start1, end1);
-	let start2end2 = Vector2D.sub(start2, end2);
-	let start1start2 = Vector2D.sub(start1, start2);
+	const start1end1 = Vector2D.sub(start1, end1);
+	const start2end2 = Vector2D.sub(start2, end2);
+	const start1start2 = Vector2D.sub(start1, start2);
 
 	return (
 		Math.abs(distanceOfPointFromLine(start1, end1, start2)) < width ||
@@ -93,10 +93,10 @@ function testLineIntersection(start1, end1, start2, end2, width)
  */
 function getBoundingBox(points)
 {
-	let min = points[0].clone();
-	let max = points[0].clone();
+	const min = points[0].clone();
+	const max = points[0].clone();
 
-	for (let point of points)
+	for (const point of points)
 	{
 		min.set(Math.min(min.x, point.x), Math.min(min.y, point.y));
 		max.set(Math.max(max.x, point.x), Math.max(max.y, point.y));
@@ -110,7 +110,7 @@ function getBoundingBox(points)
 
 function getPointsInBoundingBox(boundingBox)
 {
-	let points = [];
+	const points = [];
 	for (let x = boundingBox.min.x; x <= boundingBox.max.x; ++x)
 		for (let y = boundingBox.min.y; y <= boundingBox.max.y; ++y)
 			points.push(new Vector2D(x, y));
@@ -124,8 +124,8 @@ function getPointsInBoundingBox(boundingBox)
  */
 function sortPointsShortestCycle(points)
 {
-	let order = [];
-	let distances = [];
+	const order = [];
+	const distances = [];
 	if (points.length <= 3)
 	{
 		for (let i = 0; i < points.length; ++i)
@@ -135,7 +135,7 @@ function sortPointsShortestCycle(points)
 	}
 
 	// Just add the first 3 points
-	let pointsToAdd = points.map(p => p.clone());
+	const pointsToAdd = points.map(p => p.clone());
 	for (let i = 0; i < 3; ++i)
 	{
 		order.push(i);
@@ -147,7 +147,7 @@ function sortPointsShortestCycle(points)
 	distances.push(points[order[0]].distanceTo(points[order[order.length - 1]]));
 
 	// Add remaining points so the path lengthens the least
-	let numPointsToAdd = pointsToAdd.length;
+	const numPointsToAdd = pointsToAdd.length;
 	for (let i = 0; i < numPointsToAdd; ++i)
 	{
 		let indexToAddTo;
@@ -156,10 +156,10 @@ function sortPointsShortestCycle(points)
 		let minDist2 = 0;
 		for (let k = 0; k < order.length; ++k)
 		{
-			let dist1 = pointsToAdd[0].distanceTo(points[order[k]]);
-			let dist2 = pointsToAdd[0].distanceTo(points[order[(k + 1) % order.length]]);
+			const dist1 = pointsToAdd[0].distanceTo(points[order[k]]);
+			const dist2 = pointsToAdd[0].distanceTo(points[order[(k + 1) % order.length]]);
 
-			let enlengthen = dist1 + dist2 - distances[k];
+			const enlengthen = dist1 + dist2 - distances[k];
 			if (enlengthen < minEnlengthen)
 			{
 				indexToAddTo = k;

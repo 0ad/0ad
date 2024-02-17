@@ -12,7 +12,7 @@ const heightPath = 10;
 const heightDen = 15;
 const heightHill = 50;
 
-var g_Map = new RandomMap(heightHill, topTerrain);
+const g_Map = new RandomMap(heightHill, topTerrain);
 
 const mapCenter = g_Map.getCenter();
 const numPlayers = getNumPlayers();
@@ -434,10 +434,10 @@ g_Map.ExportMap();
 
 function createSunkenTerrain()
 {
-	var base = g_Terrains.mainTerrain;
-	var middle = g_Terrains.dirt;
-	var lower = g_Terrains.tier2Terrain;
-	var road = g_Terrains.road;
+	let base = g_Terrains.mainTerrain;
+	let middle = g_Terrains.dirt;
+	let lower = g_Terrains.tier2Terrain;
+	let road = g_Terrains.road;
 
 	if (currentBiome() == "generic/arctic")
 	{
@@ -469,9 +469,9 @@ function createSunkenTerrain()
 	if (currentBiome() == "generic/autumn")
 		middle = g_Terrains.shore;
 
-	var expSize = diskArea(fractionToTiles(0.14)) / numPlayers;
-	var expDist = 0.1 + numPlayers / 200;
-	var expAngle = 0.75;
+	let expSize = diskArea(fractionToTiles(0.14)) / numPlayers;
+	let expDist = 0.1 + numPlayers / 200;
+	let expAngle = 0.75;
 
 	if (numPlayers <= 2)
 	{
@@ -479,8 +479,8 @@ function createSunkenTerrain()
 		expAngle = 0.72;
 	}
 
-	var nRoad = 0.44;
-	var nExp = 0.425;
+	let nRoad = 0.44;
+	let nExp = 0.425;
 
 	if (numPlayers < 4)
 	{
@@ -506,17 +506,17 @@ function createSunkenTerrain()
 			new TileClassPainter(g_TileClasses.mountain)
 		]);
 
-	let getCoords = (distance, playerID, playerIDOffset) => {
-		let angle = startAngle + (playerID + playerIDOffset) * 2 * Math.PI / numPlayers;
+	const getCoords = (distance, playerID, playerIDOffset) => {
+		const angle = startAngle + (playerID + playerIDOffset) * 2 * Math.PI / numPlayers;
 		return Vector2D.add(mapCenter, new Vector2D(fractionToTiles(distance), 0).rotate(-angle)).round();
 	};
 
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		let playerPosition = getCoords(0.4, i, 0);
+		const playerPosition = getCoords(0.4, i, 0);
 
 		// Path from player to expansion
-		let expansionPosition = getCoords(expDist, i, expAngle);
+		const expansionPosition = getCoords(expDist, i, expAngle);
 		createArea(
 			new PathPlacer(playerPosition, expansionPosition, 12, 0.7, 0.5, 0.1, -1),
 			[
@@ -526,10 +526,10 @@ function createSunkenTerrain()
 			]);
 
 		// Path from player to neighbor
-		for (let neighborOffset of [-0.5, 0.5])
+		for (const neighborOffset of [-0.5, 0.5])
 		{
-			let neighborPosition = getCoords(nRoad, i, neighborOffset);
-			let pathPosition = getCoords(0.47, i, 0);
+			const neighborPosition = getCoords(nRoad, i, neighborOffset);
+			const pathPosition = getCoords(0.47, i, 0);
 			createArea(
 				new PathPlacer(pathPosition, neighborPosition, 19, 0.4, 0.5, 0.1, -0.6),
 				[
@@ -562,7 +562,7 @@ function createSunkenTerrain()
 	g_Map.log("Creating the expansions between players");
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		let position = getCoords(nExp, i, 0.5);
+		const position = getCoords(nExp, i, 0.5);
 		createArea(
 			new ClumpPlacer(expSize, 0.9, 0.3, Infinity, position),
 			[

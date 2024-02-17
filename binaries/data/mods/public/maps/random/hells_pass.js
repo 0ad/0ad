@@ -8,7 +8,7 @@ setSelectedBiome();
 const heightLand = 1;
 const heightBarrier = 30;
 
-var g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
+const g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
 
 initTileClasses();
 
@@ -256,7 +256,7 @@ g_Map.ExportMap();
 
 function placeBarriers()
 {
-	var spineTerrain = g_Terrains.dirt;
+	let spineTerrain = g_Terrains.dirt;
 
 	if (currentBiome() == "generic/arctic")
 		spineTerrain = g_Terrains.tier1Terrain;
@@ -267,14 +267,14 @@ function placeBarriers()
 	if (currentBiome() == "generic/autumn")
 		spineTerrain = g_Terrains.tier4Terrain;
 
-	let spineCount = isNomad() ? randIntInclusive(1, 4) : teamsArray.length;
+	const spineCount = isNomad() ? randIntInclusive(1, 4) : teamsArray.length;
 
 	for (let i = 0; i < spineCount; ++i)
 	{
-		var mSize = 8;
-		var mWaviness = 0.6;
-		var mOffset = 0.5;
-		var mTaper = -1.5;
+		let mSize = 8;
+		let mWaviness = 0.6;
+		let mOffset = 0.5;
+		let mTaper = -1.5;
 
 		if (spineCount > 3 || g_Map.getSize() <= 192)
 		{
@@ -291,9 +291,9 @@ function placeBarriers()
 			mTaper = -0.7;
 		}
 
-		let angle = startAngle + (i + 0.5) * 2 * Math.PI / spineCount;
-		let start = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.075), 0).rotate(-angle));
-		let end = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.42), 0).rotate(-angle));
+		const angle = startAngle + (i + 0.5) * 2 * Math.PI / spineCount;
+		const start = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.075), 0).rotate(-angle));
+		const end = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.42), 0).rotate(-angle));
 		createArea(
 			new PathPlacer(start, end, scaleByMapSize(14, mSize), mWaviness, 0.1, mOffset, mTaper),
 			[

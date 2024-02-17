@@ -75,10 +75,10 @@ const heightSeaGround = heightScale(-6);
 const heightWaterLevel = heightScale(0);
 const heightShoreline = heightScale(0.5);
 
-var g_Map = new RandomMap(0, g_Terrains.mainTerrain);
-var mapBounds = g_Map.getBounds();
-var mapCenter = g_Map.getCenter();
-var numPlayers = getNumPlayers();
+const g_Map = new RandomMap(0, g_Terrains.mainTerrain);
+const mapBounds = g_Map.getBounds();
+const mapCenter = g_Map.getCenter();
+const numPlayers = getNumPlayers();
 
 g_Map.LoadHeightmapImage("bahrain.png", 0, 15);
 Engine.SetProgress(15);
@@ -113,7 +113,7 @@ createArea(
 Engine.SetProgress(35);
 
 g_Map.log("Marking island");
-var areaIsland = createArea(
+const areaIsland = createArea(
 	new RectPlacer(new Vector2D(fractionToTiles(0.4), mapBounds.top), new Vector2D(fractionToTiles(0.6), mapCenter.y), Infinity),
 	new TileClassPainter(g_TileClasses.island),
 	avoidClasses(g_TileClasses.water, 0));
@@ -145,7 +145,7 @@ Engine.SetProgress(45);
 if (!isNomad())
 {
 	g_Map.log("Placing players");
-	let [playerIDs, playerPosition] = createBases(
+	const [playerIDs, playerPosition] = createBases(
 		...playerPlacementRandom(
 			sortAllPlayers(),
 			[
@@ -155,7 +155,7 @@ if (!isNomad())
 		"towers");
 
 	g_Map.log("Flatten the initial CC area");
-	for (let position of playerPosition)
+	for (const position of playerPosition)
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, position),
 			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 6));
@@ -417,7 +417,7 @@ createObjectGroups(
 Engine.SetProgress(85);
 
 g_Map.log("Creating treasures");
-for (let treasure of [g_Gaia.woodTreasure, g_Gaia.foodTreasure])
+for (const treasure of [g_Gaia.woodTreasure, g_Gaia.foodTreasure])
 	createObjectGroups(
 		new SimpleGroup([new SimpleObject(treasure, 1, 1, 0, 2)], true),
 		0,

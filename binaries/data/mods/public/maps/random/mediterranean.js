@@ -34,21 +34,21 @@ const heightWaterLevel = heightScale(0);
 const heightShoreline = heightScale(0.5);
 const heightSnow = heightScale(10);
 
-var g_Map = new RandomMap(heightWaterLevel, g_Terrains.mainTerrain);
-var mapSize = g_Map.getSize();
-var mapCenter = g_Map.getCenter();
-var mapBounds = g_Map.getBounds();
+const g_Map = new RandomMap(heightWaterLevel, g_Terrains.mainTerrain);
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
+const mapBounds = g_Map.getBounds();
 
 g_Map.LoadHeightmapImage("mediterranean.png", 0, 40);
 Engine.SetProgress(15);
 
 initTileClasses(["autumn", "desert", "medit", "polar", "steppe", "temp", "shoreline", "africa", "northern_europe", "southern_europe", "western_europe", "eastern_europe"]);
 
-var northernTopLeft = new Vector2D(fractionToTiles(0.3), fractionToTiles(0.7));
-var westernTopLeft = new Vector2D(fractionToTiles(0.7), fractionToTiles(0.47));
-var africaTop = fractionToTiles(0.33);
+const northernTopLeft = new Vector2D(fractionToTiles(0.3), fractionToTiles(0.7));
+const westernTopLeft = new Vector2D(fractionToTiles(0.7), fractionToTiles(0.47));
+const africaTop = fractionToTiles(0.33);
 
-var climateZones = [
+const climateZones = [
 	{
 		"tileClass": g_TileClasses.northern_europe,
 		"position1": new Vector2D(northernTopLeft.x, mapBounds.top),
@@ -114,7 +114,7 @@ createArea(
 Engine.SetProgress(35);
 
 g_Map.log("Marking climate zones");
-for (let zone of climateZones)
+for (const zone of climateZones)
 {
 	setBiome(zone.biome);
 	createArea(
@@ -133,7 +133,7 @@ for (let zone of climateZones)
 Engine.SetProgress(40);
 
 g_Map.log("Fuzzing biome borders");
-for (let zone of climateZones)
+for (const zone of climateZones)
 {
 	setBiome(zone.biome);
 
@@ -163,7 +163,7 @@ if (!isNomad())
 {
 	g_Map.log("Finding player positions");
 
-	let [playerIDs, playerPosition] = playerPlacementRandom(
+	const [playerIDs, playerPosition] = playerPlacementRandom(
 		sortAllPlayers(),
 		[
 			avoidClasses(g_TileClasses.mountain, 5),
@@ -185,7 +185,7 @@ if (!isNomad())
 }
 Engine.SetProgress(50);
 
-for (let zone of climateZones)
+for (const zone of climateZones)
 {
 	setBiome(zone.biome);
 

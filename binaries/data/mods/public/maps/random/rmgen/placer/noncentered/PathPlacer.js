@@ -25,20 +25,20 @@ function PathPlacer(start, end, width, waviness, smoothness, offset, tapering, f
 
 PathPlacer.prototype.place = function(constraint)
 {
-	let pathLength = this.start.distanceTo(this.end);
+	const pathLength = this.start.distanceTo(this.end);
 
-	let numStepsWaviness = 1 + Math.floor(pathLength / 4 * this.waviness);
-	let numStepsLength = 1 + Math.floor(pathLength / 4 * this.smoothness);
-	let offset = 1 + Math.floor(pathLength / 4 * this.offset);
+	const numStepsWaviness = 1 + Math.floor(pathLength / 4 * this.waviness);
+	const numStepsLength = 1 + Math.floor(pathLength / 4 * this.smoothness);
+	const offset = 1 + Math.floor(pathLength / 4 * this.offset);
 
 	// Generate random offsets
-	let ctrlVals = new Float32Array(numStepsWaviness);
+	const ctrlVals = new Float32Array(numStepsWaviness);
 	for (let j = 1; j < numStepsWaviness - 1; ++j)
 		ctrlVals[j] = randFloat(-offset, offset);
 
 	// Interpolate for smoothed 1D noise
-	let totalSteps = numStepsWaviness * numStepsLength;
-	let noise = new Float32Array(totalSteps + 1);
+	const totalSteps = numStepsWaviness * numStepsLength;
+	const noise = new Float32Array(totalSteps + 1);
 	for (let j = 0; j < numStepsWaviness; ++j)
 		for (let k = 0; k < numStepsLength; ++k)
 			noise[j * numStepsLength + k] = cubicInterpolation(
@@ -50,42 +50,42 @@ PathPlacer.prototype.place = function(constraint)
 				ctrlVals[(j + 2) % numStepsWaviness]);
 
 	// Add smoothed noise to straight path
-	let pathPerpendicular = Vector2D.sub(this.end, this.start).normalize().perpendicular();
-	let segments1 = [];
-	let segments2 = [];
+	const pathPerpendicular = Vector2D.sub(this.end, this.start).normalize().perpendicular();
+	const segments1 = [];
+	const segments2 = [];
 
 	for (let j = 0; j < totalSteps; ++j)
 	{
 		// Interpolated points along straight path
-		let step1 = j / totalSteps;
-		let step2 = (j + 1) / totalSteps;
-		let stepStart = Vector2D.add(Vector2D.mult(this.start, 1 - step1), Vector2D.mult(this.end, step1));
-		let stepEnd = Vector2D.add(Vector2D.mult(this.start, 1 - step2), Vector2D.mult(this.end, step2));
+		const step1 = j / totalSteps;
+		const step2 = (j + 1) / totalSteps;
+		const stepStart = Vector2D.add(Vector2D.mult(this.start, 1 - step1), Vector2D.mult(this.end, step1));
+		const stepEnd = Vector2D.add(Vector2D.mult(this.start, 1 - step2), Vector2D.mult(this.end, step2));
 
 		// Find noise offset points
-		let noiseStart = Vector2D.add(stepStart, Vector2D.mult(pathPerpendicular, noise[j]));
-		let noiseEnd = Vector2D.add(stepEnd, Vector2D.mult(pathPerpendicular, noise[j + 1]));
-		let noisePerpendicular = Vector2D.sub(noiseEnd, noiseStart).normalize().perpendicular();
+		const noiseStart = Vector2D.add(stepStart, Vector2D.mult(pathPerpendicular, noise[j]));
+		const noiseEnd = Vector2D.add(stepEnd, Vector2D.mult(pathPerpendicular, noise[j + 1]));
+		const noisePerpendicular = Vector2D.sub(noiseEnd, noiseStart).normalize().perpendicular();
 
-		let taperedWidth = (1 - step1 * this.tapering) * this.width / 2;
+		const taperedWidth = (1 - step1 * this.tapering) * this.width / 2;
 
 		segments1.push(Vector2D.sub(noiseStart, Vector2D.mult(noisePerpendicular, taperedWidth)).round());
 		segments2.push(Vector2D.add(noiseEnd, Vector2D.mult(noisePerpendicular, taperedWidth)).round());
 	}
 
 	// Draw path segments
-	let size = g_Map.getSize();
-	let gotRet = new Array(size).fill(0).map(i => new Uint8Array(size));
-	let retVec = [];
+	const size = g_Map.getSize();
+	const gotRet = new Array(size).fill(0).map(i => new Uint8Array(size));
+	const retVec = [];
 	let failed = 0;
 
 	for (let j = 0; j < segments1.length - 1; ++j)
 	{
-		let points = new ConvexPolygonPlacer([segments1[j], segments1[j + 1], segments2[j], segments2[j + 1]], Infinity).place(new NullConstraint());
+		const points = new ConvexPolygonPlacer([segments1[j], segments1[j + 1], segments2[j], segments2[j + 1]], Infinity).place(new NullConstraint());
 		if (!points)
 			continue;
 
-		for (let point of points)
+		for (const point of points)
 		{
 			if (!constraint.allows(point))
 			{

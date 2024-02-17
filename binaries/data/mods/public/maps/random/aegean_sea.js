@@ -53,25 +53,25 @@ const heightShore = 1;
 const heightLand = 2;
 const heightIsland = 6;
 
-var g_Map = new RandomMap(heightShore, tHill);
+const g_Map = new RandomMap(heightShore, tHill);
 
 const numPlayers = getNumPlayers();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 
-var clPlayer = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clGrass = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clIsland = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clGrass = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clIsland = g_Map.createTileClass();
 
-var startAngle = randomAngle();
+const startAngle = randomAngle();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementRiver(startAngle , fractionToTiles(0.6)),
@@ -123,7 +123,7 @@ Engine.SetProgress(40);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
-var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
+const [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tForestFloor, tForestFloor, tForestFloor, pForest, pForest],
  avoidClasses(clPlayer, 20, clForest, 17, clWater, 2, clBaseResource, 3),
@@ -276,7 +276,7 @@ createFood(
 
 Engine.SetProgress(90);
 
-var types = [oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress];
+const types = [oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress];
 createStragglerTrees(
 	types,
 	avoidClasses(clForest, 1, clWater, 2, clPlayer, 12, clMetal, 6, clHill, 1),

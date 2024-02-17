@@ -18,7 +18,7 @@
  */
 function getMinAndMaxHeight(heightmap = g_Map.height)
 {
-	let height = {
+	const height = {
 		"min": Infinity,
 		"max": -Infinity
 	};
@@ -42,7 +42,7 @@ function getMinAndMaxHeight(heightmap = g_Map.height)
  */
 function rescaleHeightmap(minHeight = MIN_HEIGHT, maxHeight = MAX_HEIGHT, heightmap = g_Map.height)
 {
-	let oldHeightRange = getMinAndMaxHeight(heightmap);
+	const oldHeightRange = getMinAndMaxHeight(heightmap);
 	for (let x = 0; x < heightmap.length; ++x)
 		for (let y = 0; y < heightmap[x].length; ++y)
 			heightmap[x][y] = minHeight + (heightmap[x][y] - oldHeightRange.min) / (oldHeightRange.max - oldHeightRange.min) * (maxHeight - minHeight);
@@ -62,7 +62,7 @@ function translateHeightmap(offset, defaultHeight = undefined, heightmap = g_Map
 		defaultHeight = getMinAndMaxHeight(heightmap).min;
 	offset.round();
 
-	let sourceHeightmap = clone(heightmap);
+	const sourceHeightmap = clone(heightmap);
 	for (let x = 0; x < heightmap.length; ++x)
 		for (let y = 0; y < heightmap[x].length; ++y)
 			heightmap[x][y] =
@@ -86,16 +86,16 @@ function translateHeightmap(offset, defaultHeight = undefined, heightmap = g_Map
  */
 function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBorder = 20, numberOfPlayers = g_MapSettings.PlayerData.length - 1, heightmap = g_Map.height, isCircular = g_MapSettings.CircularMap)
 {
-	let validStartLoc = [];
-	let mapCenter = g_Map.getCenter();
-	let mapSize = g_Map.getSize();
+	const validStartLoc = [];
+	const mapCenter = g_Map.getCenter();
+	const mapSize = g_Map.getSize();
 
-	let heightConstraint = new HeightConstraint(heightRange.min, heightRange.max);
+	const heightConstraint = new HeightConstraint(heightRange.min, heightRange.max);
 
 	for (let x = minDistToBorder; x < mapSize - minDistToBorder; ++x)
 		for (let y = minDistToBorder; y < mapSize - minDistToBorder; ++y)
 		{
-			let position = new Vector2D(x, y);
+			const position = new Vector2D(x, y);
 			if (heightConstraint.allows(position) && (!isCircular || position.distanceTo(mapCenter)) < mapSize / 2 - minDistToBorder)
 				validStartLoc.push(position);
 		}
@@ -105,7 +105,7 @@ function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBor
 
 	for (let tries = 0; tries < maxTries; ++tries)
 	{
-		let startLoc = [];
+		const startLoc = [];
 		let minDist = Infinity;
 
 		for (let p = 0; p < numberOfPlayers; ++p)
@@ -114,7 +114,7 @@ function getStartLocationsByHeightmap(heightRange, maxTries = 1000, minDistToBor
 		for (let p1 = 0; p1 < numberOfPlayers - 1; ++p1)
 			for (let p2 = p1 + 1; p2 < numberOfPlayers; ++p2)
 			{
-				let dist = startLoc[p1].distanceTo(startLoc[p2]);
+				const dist = startLoc[p1].distanceTo(startLoc[p2]);
 				if (dist < minDist)
 					minDist = dist;
 			}
@@ -146,7 +146,7 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
 	g_Map.log("Generating map using the diamond-square algorithm");
 
 	initialHeightmap = (initialHeightmap || [[randFloat(minHeight / 2, maxHeight / 2), randFloat(minHeight / 2, maxHeight / 2)], [randFloat(minHeight / 2, maxHeight / 2), randFloat(minHeight / 2, maxHeight / 2)]]);
-	let heightRange = maxHeight - minHeight;
+	const heightRange = maxHeight - minHeight;
 	if (heightRange <= 0)
 		warn("setBaseTerrainDiamondSquare: heightRange <= 0");
 
@@ -157,7 +157,7 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
 	while (initialHeightmap.length < heightmap.length)
 	{
 		newHeightmap = [];
-		let oldWidth = initialHeightmap.length;
+		const oldWidth = initialHeightmap.length;
 		// Square
 		for (let x = 0; x < 2 * oldWidth - 1; ++x)
 		{
@@ -215,7 +215,7 @@ function setBaseTerrainDiamondSquare(minHeight = MIN_HEIGHT, maxHeight = MAX_HEI
 	}
 
 	// Cut initialHeightmap to fit target width
-	let shift = [Math.floor((newHeightmap.length - heightmap.length) / 2), Math.floor((newHeightmap[0].length - heightmap[0].length) / 2)];
+	const shift = [Math.floor((newHeightmap.length - heightmap.length) / 2), Math.floor((newHeightmap[0].length - heightmap[0].length) / 2)];
 	for (let x = 0; x < heightmap.length; ++x)
 		for (let y = 0; y < heightmap[0].length; ++y)
 			heightmap[x][y] = newHeightmap[x + shift[0]][y + shift[1]];
@@ -277,9 +277,9 @@ function getPointsByHeight(heightRange, avoidPoints = [], avoidClass = undefined
  */
 function getTileCenteredHeightmap(heightmap = g_Map.height)
 {
-	let max_x = heightmap.length - 1;
-	let max_y = heightmap[0].length - 1;
-	let tchm = [];
+	const max_x = heightmap.length - 1;
+	const max_y = heightmap[0].length - 1;
+	const tchm = [];
 	for (let x = 0; x < max_x; ++x)
 	{
 		tchm[x] = new Float32Array(max_y);
@@ -297,11 +297,11 @@ function getTileCenteredHeightmap(heightmap = g_Map.height)
  */
 function getSlopeMap(inclineMap = getInclineMap(g_Map.height))
 {
-	let max_x = inclineMap.length;
-	let slopeMap = [];
+	const max_x = inclineMap.length;
+	const slopeMap = [];
 	for (let x = 0; x < max_x; ++x)
 	{
-		let max_y = inclineMap[x].length;
+		const max_y = inclineMap[x].length;
 		slopeMap[x] = new Float32Array(max_y);
 		for (let y = 0; y < max_y; ++y)
 			slopeMap[x][y] = Math.euclidDistance2D(0, 0, inclineMap[x][y].x, inclineMap[x][y].y);
@@ -319,18 +319,18 @@ function getSlopeMap(inclineMap = getInclineMap(g_Map.height))
 function getInclineMap(heightmap)
 {
 	heightmap = (heightmap || g_Map.height);
-	let max_x = heightmap.length - 1;
-	let max_y = heightmap[0].length - 1;
-	let inclineMap = [];
+	const max_x = heightmap.length - 1;
+	const max_y = heightmap[0].length - 1;
+	const inclineMap = [];
 	for (let x = 0; x < max_x; ++x)
 	{
 		inclineMap[x] = [];
 		for (let y = 0; y < max_y; ++y)
 		{
-			let dx = heightmap[x + 1][y] - heightmap[x][y];
-			let dy = heightmap[x][y + 1] - heightmap[x][y];
-			let next_dx = heightmap[x + 1][y + 1] - heightmap[x][y + 1];
-			let next_dy = heightmap[x + 1][y + 1] - heightmap[x + 1][y];
+			const dx = heightmap[x + 1][y] - heightmap[x][y];
+			const dy = heightmap[x][y + 1] - heightmap[x][y];
+			const next_dx = heightmap[x + 1][y + 1] - heightmap[x][y + 1];
+			const next_dy = heightmap[x + 1][y + 1] - heightmap[x + 1][y];
 			inclineMap[x][y] = { "x": 0.5 * (dx + next_dx), "y": 0.5 * (dy + next_dy) };
 		}
 	}
@@ -339,7 +339,7 @@ function getInclineMap(heightmap)
 
 function getGrad(wrapped = true, scalarField = g_Map.height)
 {
-	let vectorField = [];
+	const vectorField = [];
 	let max_x = scalarField.length;
 	let max_y = scalarField[0].length;
 	if (!wrapped)
@@ -365,28 +365,28 @@ function getGrad(wrapped = true, scalarField = g_Map.height)
 
 function splashErodeMap(strength = 1, heightmap = g_Map.height)
 {
-	let max_x = heightmap.length;
-	let max_y = heightmap[0].length;
+	const max_x = heightmap.length;
+	const max_y = heightmap[0].length;
 
-	let dHeight = getGrad(heightmap);
+	const dHeight = getGrad(heightmap);
 
 	for (let x = 0; x < max_x; ++x)
 	{
-		let next_x = (x + 1) % max_x;
-		let prev_x = (x + max_x - 1) % max_x;
+		const next_x = (x + 1) % max_x;
+		const prev_x = (x + max_x - 1) % max_x;
 		for (let y = 0; y < max_y; ++y)
 		{
-			let next_y = (y + 1) % max_y;
-			let prev_y = (y + max_y - 1) % max_y;
+			const next_y = (y + 1) % max_y;
+			const prev_y = (y + max_y - 1) % max_y;
 
-			let slopes = [-dHeight[x][y].x, -dHeight[x][y].y, dHeight[prev_x][y].x, dHeight[x][prev_y].y];
+			const slopes = [-dHeight[x][y].x, -dHeight[x][y].y, dHeight[prev_x][y].x, dHeight[x][prev_y].y];
 
 			let sumSlopes = 0;
 			for (let i = 0; i < slopes.length; ++i)
 				if (slopes[i] > 0)
 					sumSlopes += slopes[i];
 
-			let drain = [];
+			const drain = [];
 			for (let i = 0; i < slopes.length; ++i)
 			{
 				drain.push(0);
