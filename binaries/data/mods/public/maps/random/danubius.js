@@ -137,48 +137,48 @@ const heightLand = 3;
 const heightPath = 1.5;
 const heightIsland = 6;
 
-var g_Map = new RandomMap(heightLand, tPrimary);
+const g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 
-var clPlayer = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clLand = [g_Map.createTileClass(), g_Map.createTileClass()];
-var clPatrolPointSiegeEngine = [g_Map.createTileClass(), g_Map.createTileClass()];
-var clPatrolPointSoldier = [g_Map.createTileClass(), g_Map.createTileClass()];
-var clShore = [g_Map.createTileClass(), g_Map.createTileClass()];
-var clShoreUngarrisonPoint = [g_Map.createTileClass(), g_Map.createTileClass()];
-var clShip = g_Map.createTileClass();
-var clShipPatrol = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clIsland = g_Map.createTileClass();
-var clTreasure = g_Map.createTileClass();
-var clWaterLog = g_Map.createTileClass();
-var clGauls = g_Map.createTileClass();
-var clTower = g_Map.createTileClass();
-var clOutpost = g_Map.createTileClass();
-var clPath = g_Map.createTileClass();
-var clRitualPlace = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clLand = [g_Map.createTileClass(), g_Map.createTileClass()];
+const clPatrolPointSiegeEngine = [g_Map.createTileClass(), g_Map.createTileClass()];
+const clPatrolPointSoldier = [g_Map.createTileClass(), g_Map.createTileClass()];
+const clShore = [g_Map.createTileClass(), g_Map.createTileClass()];
+const clShoreUngarrisonPoint = [g_Map.createTileClass(), g_Map.createTileClass()];
+const clShip = g_Map.createTileClass();
+const clShipPatrol = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clIsland = g_Map.createTileClass();
+const clTreasure = g_Map.createTileClass();
+const clWaterLog = g_Map.createTileClass();
+const clGauls = g_Map.createTileClass();
+const clTower = g_Map.createTileClass();
+const clOutpost = g_Map.createTileClass();
+const clPath = g_Map.createTileClass();
+const clRitualPlace = g_Map.createTileClass();
 
-var startAngle = randomAngle();
-var waterWidth = fractionToTiles(0.3);
+const startAngle = randomAngle();
+const waterWidth = fractionToTiles(0.3);
 
 // How many treasures will be placed near the gallic civic centers
-var gallicCCTreasureCount = randIntInclusive(8, 12);
+const gallicCCTreasureCount = randIntInclusive(8, 12);
 
 // How many treasures will be placed randomly on the map at most
-var randomTreasureCount = randIntInclusive(0, scaleByMapSize(0, 2));
+const randomTreasureCount = randIntInclusive(0, scaleByMapSize(0, 2));
 
-var ritualParticipants = [
+const ritualParticipants = [
 	{
 		"radius": 0.6,
 		"templates": [oFemale],
@@ -233,7 +233,7 @@ g_WallStyles.danubius_spikes = {
 	"overlap": 0
 };
 
-var fortressDanubiusVillage = new Fortress(
+const fortressDanubiusVillage = new Fortress(
 	"Geto-Dacian Tribal Confederation",
 	new Array(2).fill([
 		"gate", "pillar", "hut", "long", "long",
@@ -242,47 +242,47 @@ var fortressDanubiusVillage = new Fortress(
 		"cornerIn", "defense_tower", "long", "tavern", "long", "pillar"
 	]).reduce((result, items) => result.concat(items), []));
 
-var palisadeCorner = ["turn_0.25", "spike_single", "turn_0.25"];
-var palisadeGate = ["spike_single", "gap_3.6", "spike_single"];
-var palisadeWallShort = new Array(3).fill("spikes_tall");
-var palisadeWallLong = new Array(5).fill("spikes_tall");
-var palisadeSideShort = [...palisadeGate, ...palisadeWallShort, ...palisadeCorner, ...palisadeWallShort];
-var palisadeSideLong = [...palisadeGate, ...palisadeWallShort, ...palisadeCorner, ...palisadeWallLong];
-var fortressDanubiusSpikes = new Fortress(
+const palisadeCorner = ["turn_0.25", "spike_single", "turn_0.25"];
+const palisadeGate = ["spike_single", "gap_3.6", "spike_single"];
+const palisadeWallShort = new Array(3).fill("spikes_tall");
+const palisadeWallLong = new Array(5).fill("spikes_tall");
+const palisadeSideShort = [...palisadeGate, ...palisadeWallShort, ...palisadeCorner, ...palisadeWallShort];
+const palisadeSideLong = [...palisadeGate, ...palisadeWallShort, ...palisadeCorner, ...palisadeWallLong];
+const fortressDanubiusSpikes = new Fortress(
 	"Spikes Of The Geto-Dacian Tribal Confederation",
 	[...palisadeSideLong, ...palisadeSideShort, ...palisadeSideLong, ...palisadeSideShort]);
 
 // Place a gallic village on small maps and larger
-var gallicCC = mapSize >= smallMapSize;
+const gallicCC = mapSize >= smallMapSize;
 if (gallicCC)
 {
 	g_Map.log("Creating gallic villages");
-	let gaulCityRadius = 12;
-	let gaulCityBorderDistance = mapSize < mediumMapSize ? 10 : 18;
+	const gaulCityRadius = 12;
+	const gaulCityBorderDistance = mapSize < mediumMapSize ? 10 : 18;
 
 	// Whether to add a celtic ritual and a path from the gallic city leading to it
-	let addCelticRitual = randBool(0.9);
+	const addCelticRitual = randBool(0.9);
 
 	// One village left and right of the river
 	for (let i = 0; i < 2; ++i)
 	{
-		let civicCenterPosition = new Vector2D(
+		const civicCenterPosition = new Vector2D(
 			i == 0 ? mapBounds.left + gaulCityBorderDistance : mapBounds.right - gaulCityBorderDistance,
 			mapCenter.y).rotateAround(startAngle, mapCenter);
 
 		if (addCelticRitual)
 		{
 			// Don't position the meeting place at the center of the map
-			let meetingPlacePosition = new Vector2D(
+			const meetingPlacePosition = new Vector2D(
 				i == 0 ? mapBounds.left + waterWidth : mapBounds.right - waterWidth,
 				mapCenter.y + fractionToTiles(randFloat(0.1, 0.4)) * (randBool() ? 1 : -1)).rotateAround(startAngle, mapCenter);
 
 			// Radius of the meeting place
-			let mRadius = scaleByMapSize(4, 6);
+			const mRadius = scaleByMapSize(4, 6);
 
 			// Create a path connecting the gallic city with a meeting place at the shoreline.
 			// To avoid the path going through the palisade wall, start it at the gate, not at the city center.
-			let pathStart = Vector2D.add(civicCenterPosition, new Vector2D(gaulCityRadius * (i == 0 ? 1 : -1), 0).rotate(startAngle));
+			const pathStart = Vector2D.add(civicCenterPosition, new Vector2D(gaulCityRadius * (i == 0 ? 1 : -1), 0).rotate(startAngle));
 			createArea(
 				new PathPlacer(pathStart, meetingPlacePosition, 4, 0.4, 4, 0.2, 0.05),
 				[
@@ -302,9 +302,9 @@ if (gallicCC)
 
 			g_Map.placeEntityAnywhere(aCampfire, 0, meetingPlacePosition, randomAngle());
 
-			for (let participants of ritualParticipants)
+			for (const participants of ritualParticipants)
 			{
-				let [positions, angles] = distributePointsOnCircle(participants.count, startAngle, participants.radius * mRadius, meetingPlacePosition);
+				const [positions, angles] = distributePointsOnCircle(participants.count, startAngle, participants.radius * mRadius, meetingPlacePosition);
 				for (let j = 0; j < positions.length; ++j)
 					g_Map.placeEntityPassable(pickRandom(participants.templates), 0, positions[j], angles[j] + participants.angle);
 			}
@@ -380,7 +380,7 @@ paintRiver({
 	"meanderShort": 30,
 	"meanderLong": 0,
 	"waterFunc": (position, height, riverFraction) => {
-		let origPos = position.clone().rotateAround(-startAngle, mapCenter);
+		const origPos = position.clone().rotateAround(-startAngle, mapCenter);
 		// Distinguish left and right shoreline
 		if (0 < height && height < 1 &&
 			origPos.y > ShorelineDistance && origPos.y < mapSize - ShorelineDistance)
@@ -399,13 +399,13 @@ Engine.SetProgress(30);
 
 paintTileClassBasedOnHeight(-Infinity, 0.7, Elevation_ExcludeMin_ExcludeMax, clWater);
 
-var areasLand = [0, 1].map(i =>
+const areasLand = [0, 1].map(i =>
 	createArea(
 		new MapBoundsPlacer(),
 		undefined,
 		stayClasses(clLand[i], 0)));
 
-var areasWater =
+const areasWater =
 	[createArea(
 		new MapBoundsPlacer(),
 		undefined,
@@ -434,7 +434,7 @@ else
 
 Engine.SetProgress(45);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
+const [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
 	[tForestFloor, tForestFloor, tForestFloor, pForest1, pForest2],
 	avoidClasses(clPlayer, 16, clForest, 17, clWater, 5, clHill, 2, clGauls, 5, clPath, 1),
@@ -455,7 +455,7 @@ createLayeredPatches(
 Engine.SetProgress(55);
 
 g_Map.log("Creating islands");
-var areaIslands = createAreas(
+const areaIslands = createAreas(
 	new ChainPlacer(Math.floor(scaleByMapSize(3, 4)), Math.floor(scaleByMapSize(4, 8)), Math.floor(scaleByMapSize(50, 80)), 0.5),
 	[
 		new LayeredPainter([tWater, tShore, tIsland], [2, 1]),
@@ -720,7 +720,7 @@ createObjectGroupsByAreas(
 g_Map.log("Creating ungarrison points for ships");
 for (let i = 0; i < 2; ++i)
 {
-	let areaShore = [createArea(
+	const areaShore = [createArea(
 		new MapBoundsPlacer(),
 		undefined,
 		stayClasses(clShore[i], 0))];

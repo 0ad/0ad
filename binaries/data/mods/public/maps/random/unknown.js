@@ -51,26 +51,26 @@ const heightCliff = 3.12;
 const heightHill = 18;
 const heightOffsetBump = 2;
 
-var g_Map = new RandomMap(heightSeaGround, tWater);
+const g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 
-var clPlayer = g_Map.createTileClass();
-var clPlayerTerritory = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clPeninsulaSteam = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clLand = g_Map.createTileClass();
-var clShallow = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clPlayerTerritory = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clPeninsulaSteam = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clLand = g_Map.createTileClass();
+const clShallow = g_Map.createTileClass();
 
 var landElevationPainter = new SmoothElevationPainter(ELEVATION_SET, heightLand, 4);
 
@@ -127,7 +127,7 @@ function unknownArchipelago()
 	g_StartingWalls = "towers";
 	g_StartingTreasures = true;
 
-	let [pIDs, islandPosition] = playerPlacementCircle(fractionToTiles(0.35));
+	const [pIDs, islandPosition] = playerPlacementCircle(fractionToTiles(0.35));
 	if (!isNomad())
 	{
 		[playerIDs, playerPosition] = [pIDs, islandPosition];
@@ -135,13 +135,13 @@ function unknownArchipelago()
 	}
 
 	g_Map.log("Creating islands");
-	let islandSize = diskArea(scaleByMapSize(17, 29));
+	const islandSize = diskArea(scaleByMapSize(17, 29));
 	for (let i = 0; i < numPlayers; ++i)
 		createArea(
 			new ClumpPlacer(islandSize, 0.8, 0.1, Infinity, islandPosition[i]),
 			landElevationPainter);
 
-	let type = isNomad() ? randIntInclusive(1, 2) : randIntInclusive(1, 3);
+	const type = isNomad() ? randIntInclusive(1, 2) : randIntInclusive(1, 3);
 	if (type == 1)
 	{
 		g_Map.log("Creating archipelago");
@@ -207,7 +207,7 @@ function unknownArchipelago()
  */
 function unknownContinent()
 {
-	let waterHeight = -5;
+	const waterHeight = -5;
 
 	if (!isNomad())
 	{
@@ -242,8 +242,8 @@ function unknownContinent()
 	if (randBool(1/3))
 	{
 		g_Map.log("Creating peninsula (i.e. half the map not being surrounded by water)");
-		let angle = randomAngle();
-		let peninsulaPosition1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.25), 0).rotate(-angle));
+		const angle = randomAngle();
+		const peninsulaPosition1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.25), 0).rotate(-angle));
 		createArea(
 			new ClumpPlacer(diskArea(fractionToTiles(0.38)), 0.9, 0.09, Infinity, peninsulaPosition1),
 			[
@@ -252,7 +252,7 @@ function unknownContinent()
 			]);
 
 		g_Map.log("Remembering to not paint shorelines into the peninsula");
-		let peninsulaPosition2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.35), 0).rotate(-angle));
+		const peninsulaPosition2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.35), 0).rotate(-angle));
 		createArea(
 			new ClumpPlacer(diskArea(fractionToTiles(0.33)), 0.9, 0.01, Infinity, peninsulaPosition2),
 			new TileClassPainter(clPeninsulaSteam));
@@ -276,11 +276,11 @@ function unknownIsthmus()
  */
 function unknownCentralSeaOrIsthmus(isthmus)
 {
-	let waterHeight = -3;
+	const waterHeight = -3;
 
-	let startAngle = randomAngle();
+	const startAngle = randomAngle();
 
-	let [riverStart, riverEnd] = centralRiverCoordinates(startAngle);
+	const [riverStart, riverEnd] = centralRiverCoordinates(startAngle);
 
 	paintRiver({
 		"parallel": false,
@@ -312,7 +312,7 @@ function unknownCentralSeaOrIsthmus(isthmus)
 	if (isthmus)
 	{
 		g_Map.log("Creating isthmus (i.e. connecting the two riversides with a big land passage)");
-		let [isthmusStart, isthmusEnd] = centralRiverCoordinates(startAngle + Math.PI / 2);
+		const [isthmusStart, isthmusEnd] = centralRiverCoordinates(startAngle + Math.PI / 2);
 		createArea(
 			new PathPlacer(
 				isthmusStart,
@@ -348,14 +348,14 @@ function unknownCentralRiverNaval()
  */
 function unknownCentralRiver(shallows)
 {
-	let waterHeight = -4;
-	let heightShallow = -2;
+	const waterHeight = -4;
+	const heightShallow = -2;
 
 	createArea(
 		new MapBoundsPlacer(),
 		new ElevationPainter(heightLand));
 
-	let startAngle = randomAngle();
+	const startAngle = randomAngle();
 
 	if (!isNomad())
 	{
@@ -364,14 +364,14 @@ function unknownCentralRiver(shallows)
 	}
 
 	g_Map.log("Creating the main river");
-	let [coord1, coord2] = centralRiverCoordinates(startAngle);
+	const [coord1, coord2] = centralRiverCoordinates(startAngle);
 	createArea(
 		new PathPlacer(coord1, coord2, scaleByMapSize(14, 24), 0.5, scaleByMapSize(3, 12), 0.1, 0.01),
 		new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 		avoidClasses(clPlayerTerritory, 4));
 
 	g_Map.log("Creating small water spots at the map border to ensure separation of players");
-	for (let coord of [coord1, coord2])
+	for (const coord of [coord1, coord2])
 		createArea(
 			new ClumpPlacer(diskArea(scaleByMapSize(5, 10)), 0.95, 0.6, Infinity, coord),
 			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 2),
@@ -382,7 +382,7 @@ function unknownCentralRiver(shallows)
 		g_Map.log("Creating the shallows of the main river");
 		for (let i = 0; i <= randIntInclusive(1, scaleByMapSize(4, 8)); ++i)
 		{
-			let location = fractionToTiles(randFloat(0.15, 0.85));
+			const location = fractionToTiles(randFloat(0.15, 0.85));
 			createPassage({
 				"start": new Vector2D(location, mapBounds.top).rotateAround(startAngle, mapCenter),
 				"end": new Vector2D(location, mapBounds.bottom).rotateAround(startAngle, mapCenter),
@@ -415,7 +415,7 @@ function unknownCentralRiver(shallows)
  */
 function unknownRiversAndLake()
 {
-	let waterHeight = -4;
+	const waterHeight = -4;
 	createArea(
 		new MapBoundsPlacer(),
 		new ElevationPainter(heightLand));
@@ -428,7 +428,7 @@ function unknownRiversAndLake()
 		markPlayerArea("small");
 	}
 
-	let lake = randBool(3/4);
+	const lake = randBool(3/4);
 	if (lake)
 	{
 		g_Map.log("Creating lake");
@@ -446,7 +446,7 @@ function unknownRiversAndLake()
 
 	{
 		g_Map.log("Creating small rivers separating players");
-		for (let river of distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0])
+		for (const river of distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0])
 		{
 			createArea(
 				new PathPlacer(mapCenter, river, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
@@ -491,13 +491,13 @@ function unknownRiversAndLake()
  */
 function unknownEdgeSeas()
 {
-	let waterHeight = -4;
+	const waterHeight = -4;
 
 	createArea(
 		new MapBoundsPlacer(),
 		new ElevationPainter(heightLand));
 
-	let startAngle = randomAngle();
+	const startAngle = randomAngle();
 	if (!isNomad())
 	{
 		playerIDs = sortAllPlayers();
@@ -506,7 +506,7 @@ function unknownEdgeSeas()
 		markPlayerArea("small");
 	}
 
-	for (let side of pickRandom([[0], [Math.PI], [0, Math.PI]]))
+	for (const side of pickRandom([[0], [Math.PI], [0, Math.PI]]))
 		paintRiver({
 			"parallel": true,
 			"start": new Vector2D(mapBounds.left, mapBounds.top).rotateAround(side + startAngle, mapCenter),
@@ -530,13 +530,13 @@ function unknownEdgeSeas()
  */
 function unknownGulf()
 {
-	let waterHeight = -3;
+	const waterHeight = -3;
 
 	createArea(
 		new MapBoundsPlacer(),
 		new ElevationPainter(heightLand));
 
-	let startAngle = randomAngle();
+	const startAngle = randomAngle();
 	if (!isNomad())
 	{
 		g_Map.log("Determining player locations");
@@ -549,15 +549,15 @@ function unknownGulf()
 		markPlayerArea("large");
 	}
 
-	let gulfParts = [
+	const gulfParts = [
 		{ "radius": fractionToTiles(0.16), "distance": fractionToTiles(0) },
 		{ "radius": fractionToTiles(0.2), "distance": fractionToTiles(0.2) },
 		{ "radius": fractionToTiles(0.22), "distance": fractionToTiles(0.49) }
 	];
 
-	for (let gulfPart of gulfParts)
+	for (const gulfPart of gulfParts)
 	{
-		let position = Vector2D.sub(mapCenter, new Vector2D(gulfPart.distance, 0).rotate(-startAngle)).round();
+		const position = Vector2D.sub(mapCenter, new Vector2D(gulfPart.distance, 0).rotate(-startAngle)).round();
 		createArea(
 			new ClumpPlacer(diskArea(gulfPart.radius), 0.7, 0.05, Infinity, position),
 			[
@@ -573,7 +573,7 @@ function unknownGulf()
  */
 function unknownLakes()
 {
-	let waterHeight = -5;
+	const waterHeight = -5;
 
 	createArea(
 		new MapBoundsPlacer(),
@@ -601,8 +601,8 @@ function unknownLakes()
  */
 function unknownPasses()
 {
-	let heightMountain = 24;
-	let waterHeight = -4;
+	const heightMountain = 24;
+	const waterHeight = -4;
 
 	createArea(
 		new MapBoundsPlacer(),
@@ -619,7 +619,7 @@ function unknownPasses()
 		startAngle = randomAngle();
 
 	g_Map.log("Creating a mountain range between neighboring players");
-	for (let mountain of distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0])
+	for (const mountain of distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0])
 	{
 		createArea(
 			new PathPlacer(mapCenter, mountain, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
@@ -681,7 +681,7 @@ function unknownPasses()
  */
 function unknownLowlands()
 {
-	let heightMountain = 30;
+	const heightMountain = 30;
 
 	g_Map.log("Creating mountain that is going to separate players");
 	createArea(
@@ -708,7 +708,7 @@ function unknownLowlands()
 		valleys *= 2;
 
 	g_Map.log("Creating player valley");
-	for (let valley of distributePointsOnCircle(valleys, startAngle, fractionToTiles(0.35), mapCenter)[0])
+	for (const valley of distributePointsOnCircle(valleys, startAngle, fractionToTiles(0.35), mapCenter)[0])
 	{
 		createArea(
 			new ClumpPlacer(diskArea(scaleByMapSize(18, 32)), 0.65, 0.1, Infinity, valley),
@@ -780,7 +780,7 @@ function createShoreJaggedness(waterHeight, borderClass, shoreDist, inwards = tr
 
 function createExtensionsOrIslands()
 {
-	let rnd = randIntInclusive(1, 3);
+	const rnd = randIntInclusive(1, 3);
 
 	if (rnd == 1)
 	{
@@ -865,15 +865,15 @@ function createUnknownObjects()
 	Engine.SetProgress(30);
 
 	g_Map.log("Creating forests");
-	let [numForest, numStragglers] = getTreeCounts(...rBiomeTreeCount(1));
+	const [numForest, numStragglers] = getTreeCounts(...rBiomeTreeCount(1));
 	let types = [
 		[[tForestFloor2, tMainTerrain, pForest1], [tForestFloor2, pForest1]],
 		[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
 	];
 
-	let size = numForest / (scaleByMapSize(2, 8) * numPlayers);
+	const size = numForest / (scaleByMapSize(2, 8) * numPlayers);
 	let num = Math.floor(size / types.length);
-	for (let type of types)
+	for (const type of types)
 		createAreas(
 			new ClumpPlacer(numForest / num, 0.1, 0.1, Infinity),
 			[
@@ -885,8 +885,8 @@ function createUnknownObjects()
 	Engine.SetProgress(50);
 
 	g_Map.log("Creating dirt patches");
-	let patchCount = (currentBiome() == "generic/savanna" ? 3 : 1) * scaleByMapSize(15, 45);
-	for (let patchSize of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
+	const patchCount = (currentBiome() == "generic/savanna" ? 3 : 1) * scaleByMapSize(15, 45);
+	for (const patchSize of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 		createAreas(
 			new ClumpPlacer(patchSize, 0.3, 0.06, 0.5),
 			[
@@ -897,7 +897,7 @@ function createUnknownObjects()
 			patchCount);
 
 	g_Map.log("Creating grass patches");
-	for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
+	for (const size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
 		createAreas(
 			new ClumpPlacer(size, 0.3, 0.06, 0.5),
 			new TerrainPainter(tTier4Terrain),
@@ -986,14 +986,14 @@ function createUnknownObjects()
 	types = [g_Gaia.tree1, g_Gaia.tree2, g_Gaia.tree3, g_Gaia.tree4];
 
 	num = Math.floor(numStragglers / types.length);
-	for (let type of types)
+	for (const type of types)
 		createObjectGroupsDeprecated(
 			new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
 			0,
 			[avoidClasses(clWater, 1, clForest, 1, clHill, 2, clPlayer, 0, clMetal, 6, clRock, 6, clBaseResource, 6), stayClasses(clLand, 4)],
 			num);
 
-	let planetm = currentBiome() == "generic/india" ? 8 : 1;
+	const planetm = currentBiome() == "generic/india" ? 8 : 1;
 
 	g_Map.log("Creating small grass tufts");
 	createObjectGroupsDeprecated(

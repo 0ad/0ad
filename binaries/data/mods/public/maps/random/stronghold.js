@@ -7,7 +7,7 @@ setSelectedBiome();
 
 const heightLand = 30;
 
-var g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
+const g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
 
 initTileClasses();
 

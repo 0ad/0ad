@@ -85,8 +85,8 @@ function setBiomeEden()
 	g_Gaia.secondaryHuntableAnimal =  "gaia/fauna_elephant_african_bush";
 }
 
-var g_Map = new RandomMap(0, g_Terrains.mainTerrain);
-var mapCenter = g_Map.getCenter();
+const g_Map = new RandomMap(0, g_Terrains.mainTerrain);
+const mapCenter = g_Map.getCenter();
 
 initTileClasses(["eden", "highlands"]);
 
@@ -135,7 +135,7 @@ Engine.SetProgress(55);
 if (!isNomad())
 {
 	g_Map.log("Placing players");
-	let [playerIDs, playerPosition] = createBases(
+	const [playerIDs, playerPosition] = createBases(
 		...playerPlacementRandom(
 			sortAllPlayers(),
 			[
@@ -148,7 +148,7 @@ if (!isNomad())
 		true);
 
 	g_Map.log("Flatten the initial CC area");
-	for (let position of playerPosition)
+	for (const position of playerPosition)
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, position),
 			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 6));

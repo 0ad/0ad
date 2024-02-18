@@ -31,18 +31,18 @@ const aRock = "actor|geology/stone_savanna_med.xml";
 const heightSeaGround = -5;
 const heightLand = 1;
 
-var g_Map = new RandomMap(heightLand, tPrimary);
+const g_Map = new RandomMap(heightLand, tPrimary);
 
-var numPlayers = getNumPlayers();
-var mapSize = g_Map.getSize();
+const numPlayers = getNumPlayers();
+const mapSize = g_Map.getSize();
 
-var clPlayer = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
@@ -80,8 +80,8 @@ placePlayerBases({
 Engine.SetProgress(20);
 
 g_Map.log("Creating big patches");
-var patches = [tGrass2, tGrass3];
-for (var i = 0; i < patches.length; i++)
+const patches = [tGrass2, tGrass3];
+for (let i = 0; i < patches.length; i++)
 	createAreas(
 		new ChainPlacer(Math.floor(scaleByMapSize(3, 6)), Math.floor(scaleByMapSize(10, 20)), Math.floor(scaleByMapSize(15, 60)), Infinity),
 		new TerrainPainter(patches[i]),
@@ -89,8 +89,8 @@ for (var i = 0; i < patches.length; i++)
 		scaleByMapSize(5, 20));
 
 g_Map.log("Creating small patches");
-for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
-	for (let patch of [tDirt1, tDirt2, tDirt3])
+for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
+	for (const patch of [tDirt1, tDirt2, tDirt3])
 		createAreas(
 			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, Infinity),
 			new TerrainPainter(patch),
@@ -110,9 +110,9 @@ createAreas(
 Engine.SetProgress(55);
 
 g_Map.log("Creating stone mines");
-for (var i = 0; i < scaleByMapSize(12,30); ++i)
+for (let i = 0; i < scaleByMapSize(12,30); ++i)
 {
-	let position = new Vector2D(randIntExclusive(0, mapSize), randIntExclusive(0, mapSize));
+	const position = new Vector2D(randIntExclusive(0, mapSize), randIntExclusive(0, mapSize));
 	if (avoidClasses(clPlayer, 30, clRock, 25, clWater, 10).allows(position))
 	{
 		createStoneMineFormation(position, oStoneSmall, tDirt4);
@@ -121,7 +121,7 @@ for (var i = 0; i < scaleByMapSize(12,30); ++i)
 }
 
 g_Map.log("Creating metal mines");
-var group = new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal);
+let group = new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clPlayer, 20, clMetal, 10, clRock, 8, clWater, 4),
 	scaleByMapSize(2,8), 100

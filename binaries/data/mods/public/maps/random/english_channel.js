@@ -40,28 +40,28 @@ const aLillies = "actor|props/flora/water_lillies.xml";
 
 const pForestD = [tGrassDForest + TERRAIN_SEPARATOR + oBeech, tGrassDForest];
 
-var heightSeaGround = -4;
-var heightShore = 1;
-var heightLand = 3;
+const heightSeaGround = -4;
+const heightShore = 1;
+const heightLand = 3;
 
-var g_Map = new RandomMap(heightShore, tPrimary);
+const g_Map = new RandomMap(heightShore, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clShallow = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clShallow = g_Map.createTileClass();
 
-var startAngle = randomAngle();
+const startAngle = randomAngle();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementRiver(startAngle + Math.PI / 2, fractionToTiles(0.6)),
@@ -135,7 +135,7 @@ Engine.SetProgress(30);
 createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 20, clHill, 15, clWater, 5), clHill, scaleByMapSize(1, 4) * numPlayers);
 Engine.SetProgress(50);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
+const [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tGrass, tGrassDForest, tGrassDForest, pForestD, pForestD],
  avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 6),

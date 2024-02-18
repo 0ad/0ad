@@ -13,6 +13,6 @@ function MultiPainter(painters)
 
 MultiPainter.prototype.paint = function(area)
 {
-	for (let painter of this.painters)
+	for (const painter of this.painters)
 		painter.paint(area);
 };

@@ -11,7 +11,7 @@ function RectPlacer(start, end, failFraction = Infinity)
 
 RectPlacer.prototype.place = function(constraint)
 {
-	let bboxPoints = getPointsInBoundingBox(this.bounds);
-	let points = bboxPoints.filter(point => g_Map.inMapBounds(point) && constraint.allows(point));
+	const bboxPoints = getPointsInBoundingBox(this.bounds);
+	const points = bboxPoints.filter(point => g_Map.inMapBounds(point) && constraint.allows(point));
 	return (bboxPoints.length - points.length) / bboxPoints.length <= this.failFraction ? points : undefined;
 };

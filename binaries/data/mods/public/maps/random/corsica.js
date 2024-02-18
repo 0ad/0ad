@@ -1,90 +1,90 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
-var tGrass = ["medit_grass_field", "medit_grass_field_b", "temp_grass_c"];
-var tLushGrass = ["medit_grass_field","medit_grass_field_a"];
+const tGrass = ["medit_grass_field", "medit_grass_field_b", "temp_grass_c"];
+const tLushGrass = ["medit_grass_field","medit_grass_field_a"];
 
-var tSteepCliffs = ["temp_cliff_b", "temp_cliff_a"];
-var tCliffs = ["temp_cliff_b", "medit_cliff_italia", "medit_cliff_italia_grass"];
-var tHill = ["medit_cliff_italia_grass","medit_cliff_italia_grass", "medit_grass_field", "medit_grass_field", "temp_grass"];
-var tMountain = ["medit_cliff_italia_grass","medit_cliff_italia"];
+const tSteepCliffs = ["temp_cliff_b", "temp_cliff_a"];
+const tCliffs = ["temp_cliff_b", "medit_cliff_italia", "medit_cliff_italia_grass"];
+const tHill = ["medit_cliff_italia_grass","medit_cliff_italia_grass", "medit_grass_field", "medit_grass_field", "temp_grass"];
+const tMountain = ["medit_cliff_italia_grass","medit_cliff_italia"];
 
-var tRoad = ["medit_city_tile","medit_rocks_grass","medit_grass_field_b"];
-var tRoadWild = ["medit_rocks_grass","medit_grass_field_b"];
+const tRoad = ["medit_city_tile","medit_rocks_grass","medit_grass_field_b"];
+const tRoadWild = ["medit_rocks_grass","medit_grass_field_b"];
 
-var tShoreBlend = ["medit_sand_wet","medit_rocks_wet"];
-var tShore = ["medit_rocks","medit_sand","medit_sand"];
-var tSandTransition = ["medit_sand","medit_rocks_grass","medit_rocks_grass","medit_rocks_grass"];
-var tVeryDeepWater = ["medit_sea_depths","medit_sea_coral_deep"];
-var tDeepWater = ["medit_sea_coral_deep","tropic_ocean_coral"];
-var tCreekWater = "medit_sea_coral_plants";
+const tShoreBlend = ["medit_sand_wet","medit_rocks_wet"];
+const tShore = ["medit_rocks","medit_sand","medit_sand"];
+const tSandTransition = ["medit_sand","medit_rocks_grass","medit_rocks_grass","medit_rocks_grass"];
+const tVeryDeepWater = ["medit_sea_depths","medit_sea_coral_deep"];
+const tDeepWater = ["medit_sea_coral_deep","tropic_ocean_coral"];
+const tCreekWater = "medit_sea_coral_plants";
 
-var ePine = "gaia/tree/aleppo_pine";
-var ePalmTall = "gaia/tree/cretan_date_palm_tall";
-var eFanPalm = "gaia/tree/medit_fan_palm";
-var eApple = "gaia/fruit/apple";
-var eBush = "gaia/fruit/berry_01";
-var eFish = "gaia/fish/generic";
-var ePig = "gaia/fauna_pig";
-var eStoneMine = "gaia/rock/mediterranean_large";
-var eMetalMine = "gaia/ore/mediterranean_large";
+const ePine = "gaia/tree/aleppo_pine";
+const ePalmTall = "gaia/tree/cretan_date_palm_tall";
+const eFanPalm = "gaia/tree/medit_fan_palm";
+const eApple = "gaia/fruit/apple";
+const eBush = "gaia/fruit/berry_01";
+const eFish = "gaia/fish/generic";
+const ePig = "gaia/fauna_pig";
+const eStoneMine = "gaia/rock/mediterranean_large";
+const eMetalMine = "gaia/ore/mediterranean_large";
 
-var aRock = "actor|geology/stone_granite_med.xml";
-var aLargeRock = "actor|geology/stone_granite_large.xml";
-var aBushA = "actor|props/flora/bush_medit_sm_lush.xml";
-var aBushB = "actor|props/flora/bush_medit_me_lush.xml";
-var aPlantA = "actor|props/flora/plant_medit_artichoke.xml";
-var aPlantB = "actor|props/flora/grass_tufts_a.xml";
-var aPlantC = "actor|props/flora/grass_soft_tuft_a.xml";
+const aRock = "actor|geology/stone_granite_med.xml";
+const aLargeRock = "actor|geology/stone_granite_large.xml";
+const aBushA = "actor|props/flora/bush_medit_sm_lush.xml";
+const aBushB = "actor|props/flora/bush_medit_me_lush.xml";
+const aPlantA = "actor|props/flora/plant_medit_artichoke.xml";
+const aPlantB = "actor|props/flora/grass_tufts_a.xml";
+const aPlantC = "actor|props/flora/grass_soft_tuft_a.xml";
 
-var aStandingStone = "actor|props/special/eyecandy/standing_stones.xml";
+const aStandingStone = "actor|props/special/eyecandy/standing_stones.xml";
 
-var heightSeaGround = -8;
-var heightCreeks = -5;
-var heightBeaches = -1;
-var heightMain = 5;
+const heightSeaGround = -8;
+const heightCreeks = -5;
+const heightBeaches = -1;
+const heightMain = 5;
 
-var heightOffsetMainRelief = 30;
-var heightOffsetLevel1 = 9;
-var heightOffsetLevel2 = 8;
-var heightOffsetBumps = 2;
-var heightOffsetAntiBumps = -5;
+const heightOffsetMainRelief = 30;
+const heightOffsetLevel1 = 9;
+const heightOffsetLevel2 = 8;
+const heightOffsetBumps = 2;
+const heightOffsetAntiBumps = -5;
 
-var g_Map = new RandomMap(heightSeaGround, tVeryDeepWater);
+const g_Map = new RandomMap(heightSeaGround, tVeryDeepWater);
 
-var numPlayers = getNumPlayers();
-var mapSize = g_Map.getSize();
-var mapCenter = g_Map.getCenter();
+const numPlayers = getNumPlayers();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
 
-var clIsland = g_Map.createTileClass();
-var clCreek = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clCliffs = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clShore = g_Map.createTileClass();
-var clPlayer = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clPassage = g_Map.createTileClass();
-var clSettlement = g_Map.createTileClass();
+const clIsland = g_Map.createTileClass();
+const clCreek = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clCliffs = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clShore = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clPassage = g_Map.createTileClass();
+const clSettlement = g_Map.createTileClass();
 
-var radiusBeach = fractionToTiles(0.57);
-var radiusCreeks = fractionToTiles(0.52);
-var radiusIsland = fractionToTiles(0.4);
-var radiusLevel1 = fractionToTiles(0.35);
-var radiusPlayer = fractionToTiles(0.25);
-var radiusLevel2 = fractionToTiles(0.2);
+const radiusBeach = fractionToTiles(0.57);
+const radiusCreeks = fractionToTiles(0.52);
+const radiusIsland = fractionToTiles(0.4);
+const radiusLevel1 = fractionToTiles(0.35);
+const radiusPlayer = fractionToTiles(0.25);
+const radiusLevel2 = fractionToTiles(0.2);
 
-var creeksArea = () => randBool() ? randFloat(10, 50) : scaleByMapSize(75, 100) + randFloat(0, 20);
+const creeksArea = () => randBool() ? randFloat(10, 50) : scaleByMapSize(75, 100) + randFloat(0, 20);
 
-var nbCreeks = scaleByMapSize(6, 15);
-var nbSubIsland = 5;
-var nbBeaches = scaleByMapSize(2, 5);
-var nbPassagesLevel1 = scaleByMapSize(4, 8);
-var nbPassagesLevel2 = scaleByMapSize(2, 4);
+const nbCreeks = scaleByMapSize(6, 15);
+const nbSubIsland = 5;
+const nbBeaches = scaleByMapSize(2, 5);
+const nbPassagesLevel1 = scaleByMapSize(4, 8);
+const nbPassagesLevel2 = scaleByMapSize(2, 4);
 
 g_Map.log("Creating Corsica and Sardinia");
-var swapAngle = randBool() ? Math.PI / 2 : 0;
-var islandLocations = [new Vector2D(0.05, 0.05), new Vector2D(0.95, 0.95)].map(v => v.mult(mapSize).rotateAround(-swapAngle, mapCenter));
+const swapAngle = randBool() ? Math.PI / 2 : 0;
+const islandLocations = [new Vector2D(0.05, 0.05), new Vector2D(0.95, 0.95)].map(v => v.mult(mapSize).rotateAround(-swapAngle, mapCenter));
 
 for (let island = 0; island < 2; ++island)
 {
@@ -100,8 +100,8 @@ for (let island = 0; island < 2; ++island)
 	g_Map.log("Creating subislands");
 	for (let i = 0; i < nbSubIsland + 1; ++i)
 	{
-		let angle = Math.PI * (island + i / (nbSubIsland * 2)) + swapAngle;
-		let location = Vector2D.add(islandLocations[island], new Vector2D(radiusIsland, 0).rotate(-angle));
+		const angle = Math.PI * (island + i / (nbSubIsland * 2)) + swapAngle;
+		const location = Vector2D.add(islandLocations[island], new Vector2D(radiusIsland, 0).rotate(-angle));
 		createArea(
 			new ClumpPlacer(diskArea(fractionToTiles(0.09)), 0.6, 0.03, Infinity, location),
 			[
@@ -114,8 +114,8 @@ for (let island = 0; island < 2; ++island)
 	g_Map.log("Creating creeks");
 	for (let i = 0; i < nbCreeks + 1; ++i)
 	{
-		let angle = Math.PI * (island + i * (1 / (nbCreeks * 2))) + swapAngle;
-		let location = Vector2D.add(islandLocations[island], new Vector2D(radiusCreeks, 0).rotate(-angle));
+		const angle = Math.PI * (island + i * (1 / (nbCreeks * 2))) + swapAngle;
+		const location = Vector2D.add(islandLocations[island], new Vector2D(radiusCreeks, 0).rotate(-angle));
 		createArea(
 			new ClumpPlacer(creeksArea(), 0.4, 0.01, Infinity, location),
 			[
@@ -128,9 +128,9 @@ for (let island = 0; island < 2; ++island)
 	g_Map.log("Creating beaches");
 	for (let i = 0; i < nbBeaches + 1; ++i)
 	{
-		let angle = Math.PI * (island + (i / (nbBeaches * 2.5)) + 1 / (nbBeaches * 6) + randFloat(-1, 1) / (nbBeaches * 7)) + swapAngle;
-		let start = Vector2D.add(islandLocations[island], new Vector2D(radiusIsland, 0).rotate(-angle));
-		let end = Vector2D.add(islandLocations[island], new Vector2D(radiusBeach, 0).rotate(-angle));
+		const angle = Math.PI * (island + (i / (nbBeaches * 2.5)) + 1 / (nbBeaches * 6) + randFloat(-1, 1) / (nbBeaches * 7)) + swapAngle;
+		const start = Vector2D.add(islandLocations[island], new Vector2D(radiusIsland, 0).rotate(-angle));
+		const end = Vector2D.add(islandLocations[island], new Vector2D(radiusBeach, 0).rotate(-angle));
 
 		createArea(
 			new ClumpPlacer(130, 0.7, 0.8, Infinity, Vector2D.add(start, Vector2D.mult(end, 3)).div(4)),
@@ -159,7 +159,7 @@ for (let island = 0; island < 2; ++island)
 	g_Map.log("Creating first level passages");
 	for (let i = 0; i <= nbPassagesLevel1; ++i)
 	{
-		let angle = Math.PI * (i / 7 + 1 / 9 + island) + swapAngle;
+		const angle = Math.PI * (i / 7 + 1 / 9 + island) + swapAngle;
 		createPassage({
 			"start": Vector2D.add(islandLocations[island], new Vector2D(radiusLevel1 + 10, 0).rotate(-angle)),
 			"end": Vector2D.add(islandLocations[island], new Vector2D(radiusLevel1 - 4, 0).rotate(-angle)),
@@ -183,7 +183,7 @@ for (let island = 0; island < 2; ++island)
 		g_Map.log("Creating second level passages");
 		for (let i = 0; i < nbPassagesLevel2; ++i)
 		{
-			let angle = Math.PI * (i / (2 * nbPassagesLevel2) + 1 / (4 * nbPassagesLevel2) + island) + swapAngle;
+			const angle = Math.PI * (i / (2 * nbPassagesLevel2) + 1 / (4 * nbPassagesLevel2) + island) + swapAngle;
 			createPassage({
 				"start": Vector2D.add(islandLocations[island], new Vector2D(radiusLevel2 + 3, 0).rotate(-angle)),
 				"end": Vector2D.add(islandLocations[island], new Vector2D(radiusLevel2 - 6, 0).rotate(-angle)),
@@ -198,13 +198,13 @@ for (let island = 0; island < 2; ++island)
 Engine.SetProgress(30);
 
 g_Map.log("Determining player locations");
-var playerIDs = sortAllPlayers();
-var playerPosition = [];
-var playerAngle = [];
-var p = 0;
+const playerIDs = sortAllPlayers();
+let playerPosition = [];
+let playerAngle = [];
+let p = 0;
 for (let island = 0; island < 2; ++island)
 {
-	let playersPerIsland = island == 0 ? Math.ceil(numPlayers / 2) : Math.floor(numPlayers / 2);
+	const playersPerIsland = island == 0 ? Math.ceil(numPlayers / 2) : Math.floor(numPlayers / 2);
 
 	for (let i = 0; i < playersPerIsland; ++i)
 	{
@@ -270,8 +270,8 @@ g_Map.log("Painting land");
 for (let mapX = 0; mapX < mapSize; ++mapX)
 	for (let mapZ = 0; mapZ < mapSize; ++mapZ)
 	{
-		let position = new Vector2D(mapX, mapZ);
-		let terrain = getCosricaSardiniaTerrain(position);
+		const position = new Vector2D(mapX, mapZ);
+		const terrain = getCosricaSardiniaTerrain(position);
 		if (!terrain)
 			continue;
 
@@ -283,16 +283,16 @@ for (let mapX = 0; mapX < mapSize; ++mapX)
 
 function getCosricaSardiniaTerrain(position)
 {
-	let isWater = clWater.countMembersInRadius(position, 3);
-	let isShore = clShore.countMembersInRadius(position, 2);
-	let isPassage = clPassage.countMembersInRadius(position, 2);
-	let isSettlement = clSettlement.countMembersInRadius(position, 2);
+	const isWater = clWater.countMembersInRadius(position, 3);
+	const isShore = clShore.countMembersInRadius(position, 2);
+	const isPassage = clPassage.countMembersInRadius(position, 2);
+	const isSettlement = clSettlement.countMembersInRadius(position, 2);
 
 	if (isSettlement)
 		return undefined;
 
-	let height = g_Map.getHeight(position);
-	let slope = g_Map.getSlope(position);
+	const height = g_Map.getHeight(position);
+	const slope = g_Map.getSlope(position);
 
 	if (height >= 0.5 && height < 1.5 && isShore)
 		return tSandTransition;
@@ -339,7 +339,7 @@ function getCosricaSardiniaTerrain(position)
 Engine.SetProgress(65);
 
 g_Map.log("Creating mines");
-for (let mine of [eMetalMine, eStoneMine])
+for (const mine of [eMetalMine, eStoneMine])
 	createObjectGroupsDeprecated(
 		new SimpleGroup(
 			[
@@ -422,7 +422,7 @@ createObjectGroupsDeprecated(
 	50);
 
 g_Map.log("Creating large decorative rocks");
-var rocksGroup = new SimpleGroup(
+const rocksGroup = new SimpleGroup(
 	[
 		new SimpleObject(aLargeRock, 1, 2, 0, 1),
 		new SimpleObject(aRock, 1, 3, 0, 2)
@@ -449,7 +449,7 @@ createObjectGroupsDeprecated(
 	500);
 
 g_Map.log("Creating decorative plants");
-var plantGroups = [
+const plantGroups = [
 	new SimpleGroup(
 		[
 			new SimpleObject(aPlantA, 3, 7, 0, 3),
@@ -464,7 +464,7 @@ var plantGroups = [
 		],
 		true)
 ];
-for (let group of plantGroups)
+for (const group of plantGroups)
 	createObjectGroupsDeprecated(
 		group,
 		0,

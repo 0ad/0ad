@@ -51,24 +51,24 @@ const heightSeaGround = -7;
 const heightLand = 3;
 const heightHill = 20;
 
-var g_Map = new RandomMap(heightLand, tPrimary);
+const g_Map = new RandomMap(heightLand, tPrimary);
 
-var numPlayers = getNumPlayers();
-var mapSize = g_Map.getSize();
+const numPlayers = getNumPlayers();
+const mapSize = g_Map.getSize();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
-var playerHillRadius = defaultPlayerBaseRadius() / (isNomad() ? 1.5 : 1);
+const playerHillRadius = defaultPlayerBaseRadius() / (isNomad() ? 1.5 : 1);
 
-var [playerIDs, playerPosition, playerAngle] = playerPlacementCircle(fractionToTiles(0.35));
+const [playerIDs, playerPosition, playerAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 g_Map.log("Creating player hills and ramps");
 for (let i = 0; i < numPlayers; ++i)
@@ -81,7 +81,7 @@ for (let i = 0; i < numPlayers; ++i)
 			new TileClassPainter(clPlayer)
 		]);
 
-	let angle = playerAngle[i] + Math.PI * (1 + randFloat(-1, 1) / 8);
+	const angle = playerAngle[i] + Math.PI * (1 + randFloat(-1, 1) / 8);
 	createPassage({
 		"start": Vector2D.add(playerPosition[i], new Vector2D(playerHillRadius + 15, 0).rotate(-angle)),
 		"end": Vector2D.add(playerPosition[i], new Vector2D(playerHillRadius - 3, 0).rotate(-angle)),
@@ -125,8 +125,8 @@ placePlayerBases({
 Engine.SetProgress(10);
 
 g_Map.log("Creating lakes");
-var numLakes = Math.round(scaleByMapSize(1,4) * numPlayers);
-var waterAreas = createAreas(
+const numLakes = Math.round(scaleByMapSize(1,4) * numPlayers);
+const waterAreas = createAreas(
 	new ClumpPlacer(scaleByMapSize(100, 250), 0.8, 0.1, Infinity),
 	[
 		new LayeredPainter([tShoreBlend, tShore, tWater], [1, 1]),
@@ -139,7 +139,7 @@ var waterAreas = createAreas(
 Engine.SetProgress(15);
 
 g_Map.log("Creating reeds");
-var group = new SimpleGroup(
+const group = new SimpleGroup(
 	[new SimpleObject(aReeds, 5,10, 0,4), new SimpleObject(aLillies, 0,1, 0,4)], true
 );
 createObjectGroupsByAreas(group, 0,
@@ -169,7 +169,7 @@ Engine.SetProgress(30);
 createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 2, clWater, 5, clHill, 15), clHill, scaleByMapSize(1, 4) * numPlayers);
 Engine.SetProgress(35);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
+const [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 createDefaultForests(
 	[tGrass, tGrassDForest, tGrassPForest, pForestP, pForestD],
 	avoidClasses(clPlayer, 1, clWater, 3, clForest, 17, clHill, 1),

@@ -3,7 +3,7 @@
  */
 function MapBoundsPlacer(failFraction = Infinity)
 {
-	let mapBounds = g_Map.getBounds();
+	const mapBounds = g_Map.getBounds();
 	this.rectPlacer = new RectPlacer(new Vector2D(mapBounds.left, mapBounds.top), new Vector2D(mapBounds.right, mapBounds.bottom), failFraction);
 }
 

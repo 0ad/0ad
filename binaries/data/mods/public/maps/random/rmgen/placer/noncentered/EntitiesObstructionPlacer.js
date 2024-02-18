@@ -13,11 +13,11 @@ EntitiesObstructionPlacer.prototype.place = function(constraint)
 {
 	let points = [];
 
-	for (let entity of this.entities)
+	for (const entity of this.entities)
 	{
-		let halfObstructionSize = getObstructionSize(entity.templateName, this.margin).div(2);
+		const halfObstructionSize = getObstructionSize(entity.templateName, this.margin).div(2);
 
-		let obstructionCorners = [
+		const obstructionCorners = [
 			new Vector2D(-halfObstructionSize.x, -halfObstructionSize.y),
 			new Vector2D(-halfObstructionSize.x, +halfObstructionSize.y),
 			new Vector2D(+halfObstructionSize.x, -halfObstructionSize.y),

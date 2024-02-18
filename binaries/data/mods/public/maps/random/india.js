@@ -28,19 +28,19 @@ const heightLand = 1;
 const heightShore = 3;
 const heightOffsetBump = 2;
 
-var g_Map = new RandomMap(heightLand, tGrass1);
+const g_Map = new RandomMap(heightLand, tGrass1);
 
-var numPlayers = getNumPlayers();
-var mapSize = g_Map.getSize();
-var mapCenter = g_Map.getCenter();
+const numPlayers = getNumPlayers();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
@@ -120,7 +120,7 @@ Engine.SetProgress(55);
 g_Map.log("Creating stone mines");
 for (let i = 0; i < scaleByMapSize(12, 30); ++i)
 {
-	let position = new Vector2D(randIntInclusive(1, mapSize - 1), randIntInclusive(1, mapSize - 1));
+	const position = new Vector2D(randIntInclusive(1, mapSize - 1), randIntInclusive(1, mapSize - 1));
 	if (avoidClasses(clPlayer, 30, clRock, 25, clWater, 10).allows(position))
 	{
 		createStoneMineFormation(position, oStoneSmall, tDirt4);

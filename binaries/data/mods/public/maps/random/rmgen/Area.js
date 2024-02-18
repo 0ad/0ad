@@ -6,10 +6,10 @@ function Area(points)
 {
 	this.points = deepfreeze(points);
 
-	let mapSize = g_Map.getSize();
+	const mapSize = g_Map.getSize();
 
 	this.cache = new Array(mapSize).fill(0).map(() => new Uint8Array(mapSize));
-	for (let point of points)
+	for (const point of points)
 		this.cache[point.x][point.y] = 1;
 }
 
@@ -31,9 +31,9 @@ Area.prototype.getClosestPointTo = function(position)
 	let closestPoint = this.points[0];
 	let shortestDistance = Infinity;
 
-	for (let point of this.points)
+	for (const point of this.points)
 	{
-		let currentDistance = point.distanceToSquared(position);
+		const currentDistance = point.distanceToSquared(position);
 		if (currentDistance < shortestDistance)
 		{
 			shortestDistance = currentDistance;

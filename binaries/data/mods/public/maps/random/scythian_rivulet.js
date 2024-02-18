@@ -40,39 +40,39 @@ const aWorkshopChariot= "actor|props/structures/britons/workshop_chariot_01.xml"
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTreeDead, tForestFloor2 + TERRAIN_SEPARATOR + oOak, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTreeDead, tForestFloor1];
 
-var heightSeaGround = -2;
-var heightShoreLower = 0.7;
-var heightShoreUpper = 1;
-var heightLand = 2;
-var heightSnowline = 12;
-var heightOffsetLargeBumps = 4;
+const heightSeaGround = -2;
+const heightShoreLower = 0.7;
+const heightShoreUpper = 1;
+const heightLand = 2;
+const heightSnowline = 12;
+const heightOffsetLargeBumps = 4;
 
-var g_Map = new RandomMap(heightShoreUpper, tMainTerrain);
+const g_Map = new RandomMap(heightShoreUpper, tMainTerrain);
 
 const numPlayers = getNumPlayers();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 
-var clPlayer = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRiver = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clShallowsFlora = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRiver = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clShallowsFlora = g_Map.createTileClass();
 
-var riverWidth = fractionToTiles(0.1);
+const riverWidth = fractionToTiles(0.1);
 
-var startAngle = randomAngle();
+const startAngle = randomAngle();
 
-var [playerIDs, playerPosition] = playerPlacementRiver(startAngle, fractionToTiles(0.6));
+const [playerIDs, playerPosition] = playerPlacementRiver(startAngle, fractionToTiles(0.6));
 
 if (!isNomad())
-	for (let position of playerPosition)
+	for (const position of playerPosition)
 		addCivicCenterAreaToClass(position, clPlayer);
 
 paintRiver({
@@ -186,7 +186,7 @@ createLayeredPatches(
 	scaleByMapSize(25, 55),
 	clDirt);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(200, 1200, 0.7);
+const [forestTrees, stragglerTrees] = getTreeCounts(200, 1200, 0.7);
 createForests(
 	[tForestFloor1, tForestFloor2, tForestFloor1, pForest1, pForest2],
 	avoidClasses(clPlayer, 20, clWater, 2, clHill, 2, clForest, 12),

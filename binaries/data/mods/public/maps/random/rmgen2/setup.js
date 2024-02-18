@@ -86,7 +86,7 @@ var g_PlayerbaseTypes = {
  */
 function addElements(elements)
 {
-	for (let element of elements)
+	for (const element of elements)
 		element.func(
 			[
 				avoidClasses.apply(null, element.avoid),
@@ -103,7 +103,7 @@ function addElements(elements)
  */
 function pickAmount(amounts)
 {
-	let amount = pickRandom(amounts);
+	const amount = pickRandom(amounts);
 
 	if (amount in g_Amounts)
 		return g_Amounts[amount];
@@ -116,7 +116,7 @@ function pickAmount(amounts)
  */
 function pickMix(mixes)
 {
-	let mix = pickRandom(mixes);
+	const mix = pickRandom(mixes);
 
 	if (mix in g_Mixes)
 		return g_Mixes[mix];
@@ -129,7 +129,7 @@ function pickMix(mixes)
  */
 function pickSize(sizes)
 {
-	let size = pickRandom(sizes);
+	const size = pickRandom(sizes);
 
 	if (size in g_Sizes)
 		return g_Sizes[size];
@@ -221,12 +221,12 @@ function createBase(playerID, playerPosition, walls)
  */
 function initTileClasses(newClasses)
 {
-	var classNames = g_DefaultTileClasses;
+	let classNames = g_DefaultTileClasses;
 
 	if (newClasses)
 		classNames = classNames.concat(newClasses);
 
 	g_TileClasses = {};
-	for (var className of classNames)
+	for (let className of classNames)
 		g_TileClasses[className] = g_Map.createTileClass();
 }

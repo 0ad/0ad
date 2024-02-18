@@ -55,25 +55,25 @@ const heightOffsetHill2 = 16;
 const heightOffsetHill3 = 16;
 const heightOffsetBump = 2;
 
-var g_Map = new RandomMap(heightLand, tPrimary);
+const g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clHill1 = g_Map.createTileClass();
-var clOasis = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clPatch = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill1 = g_Map.createTileClass();
+const clOasis = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clPatch = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
-var oasisRadius = scaleByMapSize(14, 40);
+const oasisRadius = scaleByMapSize(14, 40);
 
-var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
+const [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 if (!isNomad())
 	for (let i = 0; i < numPlayers; ++i)
@@ -154,13 +154,13 @@ createArea(
 Engine.SetProgress(30);
 
 g_Map.log("Creating oasis wildlife");
-var num = Math.round(Math.PI * oasisRadius / 8);
-var constraint = new AndConstraint([borderClasses(clOasis, 0, 3), avoidClasses(clOasis, 0)]);
-for (var i = 0; i < num; ++i)
+let num = Math.round(Math.PI * oasisRadius / 8);
+let constraint = new AndConstraint([borderClasses(clOasis, 0, 3), avoidClasses(clOasis, 0)]);
+for (let i = 0; i < num; ++i)
 {
 	let animalPosition;
 	let r = 0;
-	let angle = 2 * Math.PI / num * i;
+	const angle = 2 * Math.PI / num * i;
 	do {
 		// Work outward until constraint met
 		animalPosition = Vector2D.add(mapCenter, new Vector2D(r, 0).rotate(-angle)).round();
@@ -183,11 +183,11 @@ for (var i = 0; i < num; ++i)
 g_Map.log("Creating oasis fish");
 constraint = new AndConstraint([borderClasses(clOasis, 15, 0), avoidClasses(clFood, 5)]);
 num = Math.round(Math.PI * oasisRadius / 16);
-for (var i = 0; i < num; ++i)
+for (let i = 0; i < num; ++i)
 {
 	let fishPosition;
-	var r = 0;
-	var angle = 2 * Math.PI / num * i;
+	let r = 0;
+	const angle = 2 * Math.PI / num * i;
 	do {
 		// Work outward until constraint met
 		fishPosition = Vector2D.add(mapCenter, new Vector2D(r, 0).rotate(-angle));
@@ -199,7 +199,7 @@ for (var i = 0; i < num; ++i)
 Engine.SetProgress(35);
 
 g_Map.log("Creating level 1 hills");
-var hillAreas = createAreas(
+let hillAreas = createAreas(
 	new ClumpPlacer(scaleByMapSize(50,300), 0.25, 0.1, 0.5),
 	[
 		new LayeredPainter([tCliff, tSand], [1]),
@@ -276,8 +276,8 @@ createAreas(
 Engine.SetProgress(65);
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.5);
-var num = g_DefaultNumberOfForests;
+const [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.5);
+num = g_DefaultNumberOfForests;
 createAreas(
 	new ClumpPlacer(forestTrees / num, 0.15, 0.1, 0.5),
 	[

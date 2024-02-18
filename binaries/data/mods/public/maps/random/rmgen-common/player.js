@@ -76,7 +76,7 @@ function placeStartingEntities(location, playerID, civEntities, dist = 6, orient
 {
 	// Place the central structure
 	let i = 0;
-	let firstTemplate = civEntities[i].Template;
+	const firstTemplate = civEntities[i].Template;
 	if (firstTemplate.startsWith("structures/"))
 	{
 		g_Map.placeEntityPassable(firstTemplate, playerID, location, orientation);
@@ -84,15 +84,15 @@ function placeStartingEntities(location, playerID, civEntities, dist = 6, orient
 	}
 
 	// Place entities surrounding it
-	let space = 2;
+	const space = 2;
 	for (let j = i; j < civEntities.length; ++j)
 	{
-		let angle = orientation - Math.PI * (1 - j / 2);
-		let count = civEntities[j].Count || 1;
+		const angle = orientation - Math.PI * (1 - j / 2);
+		const count = civEntities[j].Count || 1;
 
 		for (let num = 0; num < count; ++num)
 		{
-			let position = Vector2D.sum([
+			const position = Vector2D.sum([
 				location,
 				new Vector2D(dist, 0).rotate(-angle),
 				new Vector2D(space * (-num + (count - 1) / 2), 0).rotate(angle)
@@ -118,7 +118,7 @@ function placeCivDefaultStartingEntities(position, playerID, wallType, dist = 6,
  */
 function placeStartingWalls(position, playerID, wallType, orientation = BUILDING_ORIENTATION)
 {
-	let civ = getCivCode(playerID);
+	const civ = getCivCode(playerID);
 	if (civ != "iber" || g_Map.getSize() <= 128)
 		return;
 
@@ -138,7 +138,7 @@ function placePlayerBases(playerBaseArgs)
 {
 	g_Map.log("Creating playerbases");
 
-	let [playerIDs, playerPosition] = playerBaseArgs.PlayerPlacement;
+	const [playerIDs, playerPosition] = playerBaseArgs.PlayerPlacement;
 
 	for (let i = 0; i < getNumPlayers(); ++i)
 	{
@@ -166,20 +166,20 @@ function placePlayerBase(playerBaseArgs)
 	if (playerBaseArgs.PlayerTileClass)
 		addCivicCenterAreaToClass(playerBaseArgs.playerPosition, playerBaseArgs.PlayerTileClass);
 
-	for (let functionID of g_PlayerBaseFunctions)
+	for (const functionID of g_PlayerBaseFunctions)
 	{
-		let funcName = "placePlayerBase" + functionID;
-		let func = global[funcName];
+		const funcName = "placePlayerBase" + functionID;
+		const func = global[funcName];
 		if (!func)
 			throw new Error("Could not find " + funcName);
 
 		if (!playerBaseArgs[functionID])
 			continue;
 
-		let args = playerBaseArgs[functionID];
+		const args = playerBaseArgs[functionID];
 
 		// Copy some global arguments to the arguments for each function
-		for (let prop of ["playerID", "playerPosition", "BaseResourceClass", "baseResourceConstraint"])
+		for (const prop of ["playerID", "playerPosition", "BaseResourceClass", "baseResourceConstraint"])
 			args[prop] = playerBaseArgs[prop];
 
 		func(args);
@@ -221,7 +221,7 @@ function getPlayerBaseArgs(playerBaseArgs)
 
 function placePlayerBaseCityPatch(args)
 {
-	let [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
+	const [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
 
 	let painters = [];
 
@@ -243,18 +243,18 @@ function placePlayerBaseCityPatch(args)
 
 function placePlayerBaseStartingAnimal(args)
 {
-	let [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
+	const [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
 
 	const template = get("template", "gaia/fauna_chicken");
 	const count = template === "gaia/fauna_chicken" ? 5 :
-		Math.round(5 * (Engine.GetTemplate("gaia/fauna_chicken").ResourceSupply.Max / Engine.GetTemplate(get("template")).ResourceSupply.Max))
+		Math.round(5 * (Engine.GetTemplate("gaia/fauna_chicken").ResourceSupply.Max / Engine.GetTemplate(get("template")).ResourceSupply.Max));
 
 	for (let i = 0; i < get("groupCount", 2); ++i)
 	{
 		let success = false;
 		for (let tries = 0; tries < get("maxTries", 30); ++tries)
 		{
-			let position = new Vector2D(0, get("distance", 9)).rotate(randomAngle()).add(basePosition);
+			const position = new Vector2D(0, get("distance", 9)).rotate(randomAngle()).add(basePosition);
 			if (createObjectGroup(
 				new SimpleGroup(
 					[
@@ -286,10 +286,10 @@ function placePlayerBaseStartingAnimal(args)
 
 function placePlayerBaseBerries(args)
 {
-	let [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
+	const [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
 	for (let tries = 0; tries < get("maxTries", 30); ++tries)
 	{
-		let position = new Vector2D(0, get("distance", 12)).rotate(randomAngle()).add(basePosition);
+		const position = new Vector2D(0, get("distance", 12)).rotate(randomAngle()).add(basePosition);
 		if (createObjectGroup(
 			new SimpleGroup(
 				[new SimpleObject(args.template, get("minCount", 5), get("maxCount", 5), get("maxDist", 1), get("maxDist", 3))],
@@ -306,10 +306,10 @@ function placePlayerBaseBerries(args)
 
 function placePlayerBaseMines(args)
 {
-	let [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
+	const [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
 
-	let angleBetweenMines = randFloat(get("minAngle", Math.PI / 6), get("maxAngle", Math.PI / 3));
-	let mineCount = args.types.length;
+	const angleBetweenMines = randFloat(get("minAngle", Math.PI / 6), get("maxAngle", Math.PI / 3));
+	const mineCount = args.types.length;
 
 	let groupElements = [];
 	if (args.groupElements)
@@ -319,10 +319,10 @@ function placePlayerBaseMines(args)
 	{
 		// First find a place where all mines can be placed
 		let pos = [];
-		let startAngle = randomAngle();
+		const startAngle = randomAngle();
 		for (let i = 0; i < mineCount; ++i)
 		{
-			let angle = startAngle + angleBetweenMines * (i + (mineCount - 1) / 2);
+			const angle = startAngle + angleBetweenMines * (i + (mineCount - 1) / 2);
 			pos[i] = new Vector2D(0, get("distance", 12)).rotate(angle).add(basePosition).round();
 			if (!g_Map.validTilePassable(pos[i]) || !baseResourceConstraint.allows(pos[i]))
 			{
@@ -360,13 +360,13 @@ function placePlayerBaseMines(args)
 
 function placePlayerBaseTrees(args)
 {
-	let [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
+	const [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
 
-	let num = Math.floor(get("count", scaleByMapSize(7, 20)));
+	const num = Math.floor(get("count", scaleByMapSize(7, 20)));
 
 	for (let x = 0; x < get("maxTries", 30); ++x)
 	{
-		let position = new Vector2D(0, randFloat(get("minDist", 11), get("maxDist", 13))).rotate(randomAngle()).add(basePosition).round();
+		const position = new Vector2D(0, randFloat(get("minDist", 11), get("maxDist", 13))).rotate(randomAngle()).add(basePosition).round();
 
 		if (createObjectGroup(
 			new SimpleGroup(
@@ -386,7 +386,7 @@ function placePlayerBaseTreasures(args)
 {
 	let [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
 
-	for (let resourceTypeArgs of args.types)
+	for (const resourceTypeArgs of args.types)
 	{
 		get = (property, defaultVal) => resourceTypeArgs[property] === undefined ? defaultVal : resourceTypeArgs[property];
 
@@ -394,7 +394,7 @@ function placePlayerBaseTreasures(args)
 
 		for (let tries = 0; tries < get("maxTries", 30); ++tries)
 		{
-			let position = new Vector2D(0, randFloat(get("minDist", 11), get("maxDist", 13))).rotate(randomAngle()).add(basePosition).round();
+			const position = new Vector2D(0, randFloat(get("minDist", 11), get("maxDist", 13))).rotate(randomAngle()).add(basePosition).round();
 
 			if (createObjectGroup(
 				new SimpleGroup(
@@ -422,14 +422,14 @@ function placePlayerBaseTreasures(args)
  */
 function placePlayerBaseDecoratives(args)
 {
-	let [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
+	const [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
 
 	for (let i = 0; i < get("count", scaleByMapSize(2, 5)); ++i)
 	{
 		let success = false;
 		for (let x = 0; x < get("maxTries", 30); ++x)
 		{
-			let position = new Vector2D(0, randIntInclusive(get("minDist", 8), get("maxDist", 11))).rotate(randomAngle()).add(basePosition).round();
+			const position = new Vector2D(0, randIntInclusive(get("minDist", 8), get("maxDist", 11))).rotate(randomAngle()).add(basePosition).round();
 
 			if (createObjectGroup(
 				new SimpleGroup(
@@ -457,25 +457,25 @@ function placePlayersNomad(playerClass, constraints)
 
 	g_Map.log("Placing nomad starting units");
 
-	let distance = scaleByMapSize(60, 240);
-	let constraint = new StaticConstraint(constraints);
+	const distance = scaleByMapSize(60, 240);
+	const constraint = new StaticConstraint(constraints);
 
-	let numPlayers = getNumPlayers();
-	let playerIDs = shuffleArray(sortAllPlayers());
-	let playerPosition = [];
+	const numPlayers = getNumPlayers();
+	const playerIDs = shuffleArray(sortAllPlayers());
+	const playerPosition = [];
 
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		let objects = getStartingEntities(playerIDs[i]).filter(ents => ents.Template.startsWith("units/")).map(
+		const objects = getStartingEntities(playerIDs[i]).filter(ents => ents.Template.startsWith("units/")).map(
 			ents => new SimpleObject(ents.Template, ents.Count || 1, ents.Count || 1, 1, 3));
 
 		// Add treasure if too few resources for a civic center
-		let ccCost = Engine.GetTemplate("structures/" + getCivCode(playerIDs[i]) + "/civil_centre").Cost.Resources;
-		for (let resourceType in ccCost)
+		const ccCost = Engine.GetTemplate("structures/" + getCivCode(playerIDs[i]) + "/civil_centre").Cost.Resources;
+		for (const resourceType in ccCost)
 		{
-			let treasureTemplate = g_NomadTreasureTemplates[resourceType];
+			const treasureTemplate = g_NomadTreasureTemplates[resourceType];
 
-			let count = Math.max(0, Math.ceil(
+			const count = Math.max(0, Math.ceil(
 				(ccCost[resourceType] - (g_MapSettings.StartingResources || 0)) /
 				Engine.GetTemplate(treasureTemplate).Treasure.Resources[resourceType]));
 
@@ -483,9 +483,9 @@ function placePlayersNomad(playerClass, constraints)
 		}
 
 		// Try place these entities at a random location
-		let group = new SimpleGroup(objects, true, playerClass);
+		const group = new SimpleGroup(objects, true, playerClass);
 		let success = false;
-		for (let distanceFactor of [1, 1/2, 1/4, 0])
+		for (const distanceFactor of [1, 1/2, 1/4, 0])
 			if (createObjectGroups(group, playerIDs[i], new AndConstraint([constraint, avoidClasses(playerClass, distance * distanceFactor)]), 1, 200, false).length)
 			{
 				success = true;
@@ -516,7 +516,7 @@ function sortPlayers(playerIDs)
  */
 function sortAllPlayers()
 {
-	let playerIDs = [];
+	const playerIDs = [];
 	for (let i = 0; i < getNumPlayers(); ++i)
 		playerIDs.push(i+1);
 
@@ -528,7 +528,7 @@ function sortAllPlayers()
  */
 function primeSortPlayers(playerIDs)
 {
-	let prime = [];
+	const prime = [];
 	for (let i = 0; i < Math.floor(playerIDs.length / 2); ++i)
 	{
 		prime.push(playerIDs[i]);
@@ -552,14 +552,14 @@ function primeSortAllPlayers()
  */
 function partitionPlayers(playerIDs)
 {
-	let teamIDs = Array.from(new Set(playerIDs.map(getPlayerTeam)));
+	const teamIDs = Array.from(new Set(playerIDs.map(getPlayerTeam)));
 	let teams = teamIDs.map(teamID => playerIDs.filter(playerID => getPlayerTeam(playerID) == teamID));
 	if (teamIDs.indexOf(-1) != -1)
 		teams = teams.concat(teams.splice(teamIDs.indexOf(-1), 1)[0].map(playerID => [playerID]));
 
 	if (teams.length == 1)
 	{
-		let idx = Math.floor(teams[0].length / 2);
+		const idx = Math.floor(teams[0].length / 2);
 		teams = [teams[0].slice(idx), teams[0].slice(0, idx)];
 	}
 
@@ -578,14 +578,14 @@ function partitionPlayers(playerIDs)
  */
 function getTeamsArray()
 {
-	var playerIDs = sortAllPlayers();
-	var numPlayers = getNumPlayers();
+	let playerIDs = sortAllPlayers();
+	let numPlayers = getNumPlayers();
 
 	// Group players by team
-	var teams = [];
+	let teams = [];
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		let team = getPlayerTeam(playerIDs[i]);
+		const team = getPlayerTeam(playerIDs[i]);
 		if (team == -1)
 			continue;
 
@@ -634,8 +634,8 @@ function playerPlacementByPattern(patternName, distance = undefined, groupedDist
  */
 function playerPlacementCircle(radius, startingAngle = undefined, center = undefined)
 {
-	let startAngle = startingAngle !== undefined ? startingAngle : randomAngle();
-	let [playerPosition, playerAngle] = distributePointsOnCircle(getNumPlayers(), startAngle, radius, center || g_Map.getCenter());
+	const startAngle = startingAngle !== undefined ? startingAngle : randomAngle();
+	const [playerPosition, playerAngle] = distributePointsOnCircle(getNumPlayers(), startAngle, radius, center || g_Map.getCenter());
 	return [sortAllPlayers(), playerPosition.map(p => p.round()), playerAngle, startAngle];
 }
 
@@ -645,10 +645,10 @@ function playerPlacementCircle(radius, startingAngle = undefined, center = undef
  */
 function playerPlacementCustomAngle(radius, center, playerAngleFunc)
 {
-	let playerPosition = [];
-	let playerAngle = [];
+	const playerPosition = [];
+	const playerAngle = [];
 
-	let numPlayers = getNumPlayers();
+	const numPlayers = getNumPlayers();
 
 	for (let i = 0; i < numPlayers; ++i)
 	{
@@ -678,9 +678,9 @@ function playerPlacementArc(playerIDs, center, radius, startAngle, endAngle)
  */
 function playerPlacementArcs(playerIDs, center, radius, mapAngle, startAngle, endAngle)
 {
-	let [east, west] = partitionPlayers(playerIDs);
-	let eastPosition = playerPlacementArc(east, center, radius, mapAngle + startAngle, mapAngle + endAngle);
-	let westPosition = playerPlacementArc(west, center, radius, mapAngle - startAngle, mapAngle - endAngle);
+	const [east, west] = partitionPlayers(playerIDs);
+	const eastPosition = playerPlacementArc(east, center, radius, mapAngle + startAngle, mapAngle + endAngle);
+	const westPosition = playerPlacementArc(west, center, radius, mapAngle - startAngle, mapAngle - endAngle);
 	return playerIDs.map(playerID => east.indexOf(playerID) != -1 ?
 		eastPosition[east.indexOf(playerID)] :
 		westPosition[west.indexOf(playerID)]);
@@ -693,18 +693,18 @@ function playerPlacementArcs(playerIDs, center, radius, mapAngle, startAngle, en
  */
 function playerPlacementRiver(angle, width, center = undefined)
 {
-	let numPlayers = getNumPlayers();
-	let numPlayersEven = numPlayers % 2 == 0;
-	let mapSize = g_Map.getSize();
-	let centerPosition = center || g_Map.getCenter();
-	let playerPosition = [];
+	const numPlayers = getNumPlayers();
+	const numPlayersEven = numPlayers % 2 == 0;
+	const mapSize = g_Map.getSize();
+	const centerPosition = center || g_Map.getCenter();
+	const playerPosition = [];
 
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		let currentPlayerEven = i % 2 == 0;
+		const currentPlayerEven = i % 2 == 0;
 
-		let offsetDivident = numPlayersEven || currentPlayerEven ? (i + 1) % 2 : 0;
-		let offsetDivisor = numPlayersEven ? 0 : currentPlayerEven ? +1 : -1;
+		const offsetDivident = numPlayersEven || currentPlayerEven ? (i + 1) % 2 : 0;
+		const offsetDivisor = numPlayersEven ? 0 : currentPlayerEven ? +1 : -1;
 
 		playerPosition[i] = new Vector2D(
 			width * (i % 2) + (mapSize - width) / 2,
@@ -721,8 +721,8 @@ function playerPlacementRiver(angle, width, center = undefined)
  */
 function playerPlacementLine(angle, center, width)
 {
-	let playerPosition = [];
-	let numPlayers = getNumPlayers();
+	const playerPosition = [];
+	const numPlayers = getNumPlayers();
 
 	for (let i = 0; i < numPlayers; ++i)
 		playerPosition[i] = Vector2D.add(
@@ -748,19 +748,19 @@ function playerPlacementLine(angle, center, width)
  */
 function placeLine(teamsArray, distance, groupedDistance, startAngle)
 {
-	let playerIDs = [];
-	let playerPosition = [];
+	const playerIDs = [];
+	const playerPosition = [];
 
-	let mapCenter = g_Map.getCenter();
-	let dist = fractionToTiles(0.45);
+	const mapCenter = g_Map.getCenter();
+	const dist = fractionToTiles(0.45);
 
 	for (let i = 0; i < teamsArray.length; ++i)
 	{
-		var safeDist = distance;
+		let safeDist = distance;
 		if (distance + teamsArray[i].length * groupedDistance > dist)
 			safeDist = dist - teamsArray[i].length * groupedDistance;
 
-		var teamAngle = startAngle + (i + 1) * 2 * Math.PI / teamsArray.length;
+		let teamAngle = startAngle + (i + 1) * 2 * Math.PI / teamsArray.length;
 
 		for (let p = 0; p < teamsArray[i].length; ++p)
 		{
@@ -782,16 +782,16 @@ function placeLine(teamsArray, distance, groupedDistance, startAngle)
  */
 function placeStronghold(teamsArray, distance, groupedDistance, startAngle)
 {
-	var mapCenter = g_Map.getCenter();
+	let mapCenter = g_Map.getCenter();
 
-	let playerIDs = [];
-	let playerPosition = [];
+	const playerIDs = [];
+	const playerPosition = [];
 
 	for (let i = 0; i < teamsArray.length; ++i)
 	{
-		var teamAngle = startAngle + (i + 1) * 2 * Math.PI / teamsArray.length;
-		var teamPosition = Vector2D.add(mapCenter, new Vector2D(distance, 0).rotate(-teamAngle));
-		var teamGroupDistance = groupedDistance;
+		let teamAngle = startAngle + (i + 1) * 2 * Math.PI / teamsArray.length;
+		let teamPosition = Vector2D.add(mapCenter, new Vector2D(distance, 0).rotate(-teamAngle));
+		let teamGroupDistance = groupedDistance;
 
 		// If we have a team of above average size, make sure they're spread out
 		if (teamsArray[i].length > 4)
@@ -804,9 +804,9 @@ function placeStronghold(teamsArray, distance, groupedDistance, startAngle)
 		// TODO: Ensure players are not placed outside of the map area, similar to placeLine
 
 		// Create player base
-		for (var p = 0; p < teamsArray[i].length; ++p)
+		for (let p = 0; p < teamsArray[i].length; ++p)
 		{
-			var angle = startAngle + (p + 1) * 2 * Math.PI / teamsArray[i].length;
+			let angle = startAngle + (p + 1) * 2 * Math.PI / teamsArray[i].length;
 			playerIDs.push(teamsArray[i][p]);
 			playerPosition.push(Vector2D.add(teamPosition, new Vector2D(teamGroupDistance, 0).rotate(-angle)).round());
 		}
@@ -825,11 +825,11 @@ function playerPlacementRandom(playerIDs, constraints = undefined)
 	let attempts = 0;
 	let resets = 0;
 
-	let mapCenter = g_Map.getCenter();
+	const mapCenter = g_Map.getCenter();
 	let playerMinDistSquared = Math.square(fractionToTiles(0.25));
-	let borderDistance = fractionToTiles(0.08);
+	const borderDistance = fractionToTiles(0.08);
 
-	let area = createArea(new MapBoundsPlacer(), undefined, new AndConstraint(constraints));
+	const area = createArea(new MapBoundsPlacer(), undefined, new AndConstraint(constraints));
 
 	for (let i = 0; i < getNumPlayers(); ++i)
 	{
@@ -887,8 +887,8 @@ function groupPlayersByArea(playerIDs, locations)
 
 		for (let i = 1; i < playerIDs.length; ++i)
 		{
-			let team1 = getPlayerTeam(playerIDs[i - 1]);
-			let team2 = getPlayerTeam(playerIDs[i]);
+			const team1 = getPlayerTeam(playerIDs[i - 1]);
+			const team2 = getPlayerTeam(playerIDs[i]);
 			++teamSize;
 			if (team1 != -1 && team1 == team2)
 				teamDist += permutation[i - 1].distanceTo(permutation[i]);
@@ -918,9 +918,9 @@ function groupPlayersByArea(playerIDs, locations)
  */
 function groupPlayersCycle(startLocations)
 {
-	let startLocationOrder = sortPointsShortestCycle(startLocations);
+	const startLocationOrder = sortPointsShortestCycle(startLocations);
 
-	let newStartLocations = [];
+	const newStartLocations = [];
 	for (let i = 0; i < startLocations.length; ++i)
 		newStartLocations.push(startLocations[startLocationOrder[i]]);
 
@@ -928,11 +928,11 @@ function groupPlayersCycle(startLocations)
 
 	// Sort players by team
 	let playerIDs = [];
-	let teams = [];
+	const teams = [];
 	for (let i = 0; i < g_MapSettings.PlayerData.length - 1; ++i)
 	{
 		playerIDs.push(i+1);
-		let t = g_MapSettings.PlayerData[i + 1].Team;
+		const t = g_MapSettings.PlayerData[i + 1].Team;
 		if (teams.indexOf(t) == -1 && t !== undefined)
 			teams.push(t);
 	}
@@ -950,7 +950,7 @@ function groupPlayersCycle(startLocations)
 		let maxTeamDist = 0;
 		for (let pi = 0; pi < playerIDs.length - 1; ++pi)
 		{
-			let t1 = getPlayerTeam(playerIDs[(pi + s) % playerIDs.length]);
+			const t1 = getPlayerTeam(playerIDs[(pi + s) % playerIDs.length]);
 
 			if (teams.indexOf(t1) === -1)
 				continue;
@@ -979,7 +979,7 @@ function groupPlayersCycle(startLocations)
 
 	if (bestShift)
 	{
-		let newPlayerIDs = [];
+		const newPlayerIDs = [];
 		for (let i = 0; i < playerIDs.length; ++i)
 			newPlayerIDs.push(playerIDs[(i + bestShift) % playerIDs.length]);
 		playerIDs = newPlayerIDs;

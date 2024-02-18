@@ -11,7 +11,7 @@ var g_Props = {
  */
 function markPlayerAvoidanceArea(playerPosition, radius)
 {
-	for (let position of playerPosition)
+	for (const position of playerPosition)
 		createArea(
 			new ChainPlacer(3, 6, scaleByMapSize(25, 60), Infinity, position, radius),
 			new TileClassPainter(g_TileClasses.bluffIgnore),
@@ -31,14 +31,14 @@ function markPlayerAvoidanceArea(playerPosition, radius)
 function createBluffsPassages(playerPosition)
 {
 	g_Map.log("Creating passages towards the center");
-	for (let position of playerPosition)
+	for (const position of playerPosition)
 	{
-		let successful = true;
+		const successful = true;
 		for (let tryCount = 0; tryCount < 80; ++tryCount)
 		{
-			let angle = position.angleTo(g_Map.getCenter()) + randFloat(-1, 1) * Math.PI / 2;
-			let start = Vector2D.add(position, new Vector2D(defaultPlayerBaseRadius() * 0.7, 0).rotate(angle).perpendicular()).round();
-			let end = Vector2D.add(position, new Vector2D(defaultPlayerBaseRadius() * randFloat(1.7, 2), 0).rotate(angle).perpendicular()).round();
+			const angle = position.angleTo(g_Map.getCenter()) + randFloat(-1, 1) * Math.PI / 2;
+			const start = Vector2D.add(position, new Vector2D(defaultPlayerBaseRadius() * 0.7, 0).rotate(angle).perpendicular()).round();
+			const end = Vector2D.add(position, new Vector2D(defaultPlayerBaseRadius() * randFloat(1.7, 2), 0).rotate(angle).perpendicular()).round();
 
 			if (g_TileClasses.forest.has(end) || !stayClasses(g_TileClasses.bluff, 12).allows(end))
 				continue;
@@ -46,7 +46,7 @@ function createBluffsPassages(playerPosition)
 			if ((g_Map.getHeight(end.clone().floor()) - g_Map.getHeight(start.clone().floor())) / start.distanceTo(end) > 1.5)
 				continue;
 
-			let area = createPassage({
+			const area = createPassage({
 				"start": start,
 				"end": end,
 				"startWidth": scaleByMapSize(10, 20),
@@ -56,7 +56,7 @@ function createBluffsPassages(playerPosition)
 				"tileClass": g_TileClasses.bluffsPassage
 			});
 
-			for (let point of area.getPoints())
+			for (const point of area.getPoints())
 				g_Map.deleteTerrainEntity(point);
 
 			createArea(
@@ -86,10 +86,10 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 {
 	g_Map.log("Creating bluffs");
 
-	let elevation = 30;
+	const elevation = 30;
 
 	// Percent of the length of the bluff determining the entrance area
-	let margin = 0.08;
+	const margin = 0.08;
 
 	let constrastTerrain = g_Terrains.tier2Terrain;
 
@@ -101,10 +101,10 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 
 	for (let i = 0; i < fill * 15; ++i)
 	{
-		let bluffDeviation = getRandomDeviation(size, deviation);
+		const bluffDeviation = getRandomDeviation(size, deviation);
 
 		// Pick a random bluff location and shape
-		let areasBluff = createAreas(
+		const areasBluff = createAreas(
 			new ChainPlacer(5 * bluffDeviation, 7 * bluffDeviation, 100 * bluffDeviation, 0.5),
 			undefined,
 			constraint,
@@ -147,12 +147,12 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 			],
 			new StayAreasConstraint(areasBluff));
 
-		let slopeLength = (1 - margin) * Vector2D.average([baseLine.start, baseLine.end]).distanceTo(Vector2D.average([endLine.start, endLine.end]));
+		const slopeLength = (1 - margin) * Vector2D.average([baseLine.start, baseLine.end]).distanceTo(Vector2D.average([endLine.start, endLine.end]));
 
 		// Adjust the height of each point in the bluff
-		for (let point of areasBluff[0].getPoints())
+		for (const point of areasBluff[0].getPoints())
 		{
-			let dist = Math.abs(distanceOfPointFromLine(baseLine.start, baseLine.end, point));
+			const dist = Math.abs(distanceOfPointFromLine(baseLine.start, baseLine.end, point));
 			g_Map.setHeight(point, Math.max(g_Map.getHeight(point) * (1 - dist / slopeLength) - 2, baseHeight));
 		}
 
@@ -299,7 +299,7 @@ function addBluffs(constraint, size, deviation, fill, baseHeight)
 		}
 	]));
 
-	let savanna = currentBiome() == "generic/savanna";
+	const savanna = currentBiome() == "generic/savanna";
 	addElements(shuffleArray([
 		{
 			"func": addStragglerTrees,
@@ -359,8 +359,8 @@ function addDecoration(constraint, size, deviation, fill)
 {
 	g_Map.log("Creating decoration");
 
-	var offset = getRandomDeviation(size, deviation);
-	var decorations = [
+	let offset = getRandomDeviation(size, deviation);
+	let decorations = [
 		[
 			new SimpleObject(g_Decoratives.rockMedium, offset, 3 * offset, 0, offset)
 		],
@@ -381,11 +381,11 @@ function addDecoration(constraint, size, deviation, fill)
 		]
 	];
 
-	var baseCount = 1;
+	let baseCount = 1;
 	if (currentBiome() == "generic/india")
 		baseCount = 8;
 
-	var counts = [
+	let counts = [
 		scaleByMapSize(16, 262),
 		scaleByMapSize(8, 131),
 		baseCount * scaleByMapSize(13, 200),
@@ -393,10 +393,10 @@ function addDecoration(constraint, size, deviation, fill)
 		baseCount * scaleByMapSize(13, 200)
 	];
 
-	for (var i = 0; i < decorations.length; ++i)
+	for (let i = 0; i < decorations.length; ++i)
 	{
-		var decorCount = Math.floor(counts[i] * fill);
-		var group = new SimpleGroup(decorations[i], true);
+		let decorCount = Math.floor(counts[i] * fill);
+		let group = new SimpleGroup(decorations[i], true);
 		createObjectGroupsDeprecated(group, 0, constraint, decorCount, 5);
 	}
 }
@@ -423,32 +423,32 @@ function addDecoration(constraint, size, deviation, fill)
 
 function addElevation(constraint, el)
 {
-	var count = el.fill * el.count;
-	var minSize = el.minSize;
-	var maxSize = el.maxSize;
-	var spread = el.spread;
+	let count = el.fill * el.count;
+	let minSize = el.minSize;
+	let maxSize = el.maxSize;
+	let spread = el.spread;
 
-	var elType = ELEVATION_MODIFY;
+	let elType = ELEVATION_MODIFY;
 	if (el.class == g_TileClasses.water)
 		elType = ELEVATION_SET;
 
-	var widths = [];
+	let widths = [];
 
 	// Allow for shore and cliff rendering
-	for (var s = el.painter.length; s > 2; --s)
+	for (let s = el.painter.length; s > 2; --s)
 		widths.push(1);
 
-	for (var i = 0; i < count; ++i)
+	for (let i = 0; i < count; ++i)
 	{
-		var elevation = randIntExclusive(el.minElevation, el.maxElevation);
-		var smooth = Math.floor(elevation / el.steepness);
+		let elevation = randIntExclusive(el.minElevation, el.maxElevation);
+		let smooth = Math.floor(elevation / el.steepness);
 
-		var offset = getRandomDeviation(el.size, el.deviation);
-		var pMinSize = Math.floor(minSize * offset);
-		var pMaxSize = Math.floor(maxSize * offset);
-		var pSpread = Math.floor(spread * offset);
-		var pSmooth = Math.abs(Math.floor(smooth * offset));
-		var pElevation = Math.floor(elevation * offset);
+		let offset = getRandomDeviation(el.size, el.deviation);
+		let pMinSize = Math.floor(minSize * offset);
+		let pMaxSize = Math.floor(maxSize * offset);
+		let pSpread = Math.floor(spread * offset);
+		let pSmooth = Math.abs(Math.floor(smooth * offset));
+		let pElevation = Math.floor(elevation * offset);
 
 		pElevation = Math.max(el.minElevation, Math.min(pElevation, el.maxElevation));
 		pMinSize = Math.min(pMinSize, pMaxSize);
@@ -503,7 +503,7 @@ function addLakes(constraint, size, deviation, fill)
 {
 	g_Map.log("Creating lakes");
 
-	var lakeTile = g_Terrains.water;
+	let lakeTile = g_Terrains.water;
 
 	if (currentBiome() == "generic/temperate" || currentBiome() == "generic/india")
 		lakeTile = g_Terrains.dirt;
@@ -545,7 +545,7 @@ function addLakes(constraint, size, deviation, fill)
 		}
 	]);
 
-	var group = new SimpleGroup([new SimpleObject(g_Decoratives.rockMedium, 1, 3, 1, 3)], true, g_TileClasses.dirt);
+	let group = new SimpleGroup([new SimpleObject(g_Decoratives.rockMedium, 1, 3, 1, 3)], true, g_TileClasses.dirt);
 	createObjectGroupsDeprecated(group, 0, [stayClasses(g_TileClasses.water, 1), borderClasses(g_TileClasses.water, 4, 3)], 1000, 100);
 
 	group = new SimpleGroup([new SimpleObject(g_Decoratives.reeds, 10, 15, 1, 3), new SimpleObject(g_Decoratives.rockMedium, 1, 3, 1, 3)], true, g_TileClasses.dirt);
@@ -559,21 +559,21 @@ function addLayeredPatches(constraint, size, deviation, fill)
 {
 	g_Map.log("Creating layered patches");
 
-	var minRadius = 1;
-	var maxRadius = Math.floor(scaleByMapSize(3, 5));
-	var count = fill * scaleByMapSize(15, 45);
+	let minRadius = 1;
+	let maxRadius = Math.floor(scaleByMapSize(3, 5));
+	let count = fill * scaleByMapSize(15, 45);
 
-	var patchSizes = [
+	let patchSizes = [
 		scaleByMapSize(3, 6),
 		scaleByMapSize(5, 10),
 		scaleByMapSize(8, 21)
 	];
 
-	for (let patchSize of patchSizes)
+	for (const patchSize of patchSizes)
 	{
-		var offset = getRandomDeviation(size, deviation);
-		var patchMinRadius = Math.floor(minRadius * offset);
-		var patchMaxRadius = Math.floor(maxRadius * offset);
+		let offset = getRandomDeviation(size, deviation);
+		let patchMinRadius = Math.floor(minRadius * offset);
+		let patchMaxRadius = Math.floor(maxRadius * offset);
 
 		createAreas(
 			new ChainPlacer(Math.min(patchMinRadius, patchMaxRadius), patchMaxRadius, Math.floor(patchSize * offset), 0.5),
@@ -623,7 +623,7 @@ function addPlateaus(constraint, size, deviation, fill)
 {
 	g_Map.log("Creating plateaus");
 
-	var plateauTile = g_Terrains.dirt;
+	let plateauTile = g_Terrains.dirt;
 
 	if (currentBiome() == "generic/arctic")
 		plateauTile = g_Terrains.tier1Terrain;
@@ -649,9 +649,9 @@ function addPlateaus(constraint, size, deviation, fill)
 		"steepness": 8
 	});
 
-	for (var i = 0; i < 40; ++i)
+	for (let i = 0; i < 40; ++i)
 	{
-		var hillElevation = randIntInclusive(4, 18);
+		let hillElevation = randIntInclusive(4, 18);
 		createAreas(
 			new ChainPlacer(3, 15, 1, 0.5),
 			[
@@ -703,9 +703,9 @@ function addProps(constraint, size, deviation, fill)
 {
 	g_Map.log("Creating rare actors");
 
-	var offset = getRandomDeviation(size, deviation);
+	let offset = getRandomDeviation(size, deviation);
 
-	var props = [
+	let props = [
 		[
 			new SimpleObject(g_Props.skeleton, offset, 5 * offset, 0, 3 * offset + 2),
 		],
@@ -717,9 +717,9 @@ function addProps(constraint, size, deviation, fill)
 		]
 	];
 
-	var baseCount = 1;
+	let baseCount = 1;
 
-	var counts = [
+	let counts = [
 		scaleByMapSize(16, 262),
 		scaleByMapSize(8, 131),
 		baseCount * scaleByMapSize(13, 200),
@@ -728,15 +728,15 @@ function addProps(constraint, size, deviation, fill)
 	];
 
 	// Add small props
-	for (var i = 0; i < props.length; ++i)
+	for (let i = 0; i < props.length; ++i)
 	{
-		var propCount = Math.floor(counts[i] * fill);
-		var group = new SimpleGroup(props[i], true);
+		let propCount = Math.floor(counts[i] * fill);
+		let group = new SimpleGroup(props[i], true);
 		createObjectGroupsDeprecated(group, 0, constraint, propCount, 5);
 	}
 
 	// Add decorative trees
-	var trees = new SimpleObject(g_Decoratives.tree, 5 * offset, 30 * offset, 2, 3 * offset + 10);
+	let trees = new SimpleObject(g_Decoratives.tree, 5 * offset, 30 * offset, 2, 3 * offset + 10);
 	createObjectGroupsDeprecated(new SimpleGroup([trees], true), 0, constraint, counts[0] * 5 * fill, 5);
 }
 
@@ -747,10 +747,10 @@ function addValleys(constraint, size, deviation, fill, baseHeight)
 
 	g_Map.log("Creating valleys");
 
-	let minElevation = Math.max(-baseHeight, 1 - baseHeight / (size * (deviation + 1)));
+	const minElevation = Math.max(-baseHeight, 1 - baseHeight / (size * (deviation + 1)));
 
-	var valleySlope = g_Terrains.tier1Terrain;
-	var valleyFloor = g_Terrains.tier4Terrain;
+	let valleySlope = g_Terrains.tier1Terrain;
+	let valleyFloor = g_Terrains.tier4Terrain;
 
 	if (currentBiome() == "generic/sahara")
 	{
@@ -796,14 +796,14 @@ function addAnimals(constraint, size, deviation, fill)
 {
 	g_Map.log("Creating animals");
 
-	var groupOffset = getRandomDeviation(size, deviation);
+	let groupOffset = getRandomDeviation(size, deviation);
 
-	var animals = [
+	let animals = [
 		[new SimpleObject(g_Gaia.mainHuntableAnimal, 5 * groupOffset, 7 * groupOffset, 0, 4 * groupOffset)],
 		[new SimpleObject(g_Gaia.secondaryHuntableAnimal, 2 * groupOffset, 3 * groupOffset, 0, 2 * groupOffset)]
 	];
 
-	for (let animal of animals)
+	for (const animal of animals)
 		createObjectGroupsDeprecated(
 			new SimpleGroup(animal, true, g_TileClasses.animals),
 			0,
@@ -816,7 +816,7 @@ function addBerries(constraint, size, deviation, fill)
 {
 	g_Map.log("Creating berries");
 
-	let groupOffset = getRandomDeviation(size, deviation);
+	const groupOffset = getRandomDeviation(size, deviation);
 
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(g_Gaia.fruitBush, 5 * groupOffset, 5 * groupOffset, 0, 3 * groupOffset)], true, g_TileClasses.berries),
@@ -830,14 +830,14 @@ function addFish(constraint, size, deviation, fill)
 {
 	g_Map.log("Creating fish");
 
-	var groupOffset = getRandomDeviation(size, deviation);
+	let groupOffset = getRandomDeviation(size, deviation);
 
-	var fishes = [
+	let fishes = [
 		[new SimpleObject(g_Gaia.fish, groupOffset, 2 * groupOffset, 0, 2 * groupOffset)],
 		[new SimpleObject(g_Gaia.fish, 2 * groupOffset, 4 * groupOffset, 10 * groupOffset, 20 * groupOffset)]
 	];
 
-	for (let fish of fishes)
+	for (const fish of fishes)
 		createObjectGroupsDeprecated(
 			new SimpleGroup(fish, true, g_TileClasses.fish),
 			0,
@@ -853,7 +853,7 @@ function addForests(constraint, size, deviation, fill)
 
 	g_Map.log("Creating forests");
 
-	let treeTypes = [
+	const treeTypes = [
 		[
 			g_Terrains.forestFloor2 + TERRAIN_SEPARATOR + g_Gaia.tree1,
 			g_Terrains.forestFloor2 + TERRAIN_SEPARATOR + g_Gaia.tree2,
@@ -866,7 +866,7 @@ function addForests(constraint, size, deviation, fill)
 		]
 	];
 
-	let forestTypes = [
+	const forestTypes = [
 		[
 			[g_Terrains.forestFloor2, g_Terrains.mainTerrain, treeTypes[0]],
 			[g_Terrains.forestFloor2, treeTypes[0]]
@@ -883,9 +883,9 @@ function addForests(constraint, size, deviation, fill)
 		]
 	];
 
-	for (let forestType of forestTypes)
+	for (const forestType of forestTypes)
 	{
-		let offset = getRandomDeviation(size, deviation);
+		const offset = getRandomDeviation(size, deviation);
 		createAreas(
 			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5) * offset), Math.floor(50 * offset), 0.5),
 			[
@@ -901,7 +901,7 @@ function addMetal(constraint, size, deviation, fill)
 {
 	g_Map.log("Creating metal mines");
 
-	var offset = getRandomDeviation(size, deviation);
+	let offset = getRandomDeviation(size, deviation);
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(g_Gaia.metalLarge, offset, offset, 0, 4 * offset)], true, g_TileClasses.metal),
 		0,
@@ -914,7 +914,7 @@ function addSmallMetal(constraint, size, mixes, amounts)
 {
 	g_Map.log("Creating small metal mines");
 
-	let deviation = getRandomDeviation(size, mixes);
+	const deviation = getRandomDeviation(size, mixes);
 	createObjectGroupsDeprecated(
 		new SimpleGroup([new SimpleObject(g_Gaia.metalSmall, 2 * deviation, 5 * deviation, deviation, 3 * deviation)], true, g_TileClasses.metal),
 		0,
@@ -930,9 +930,9 @@ function addStone(constraint, size, deviation, fill)
 {
 	g_Map.log("Creating stone mines");
 
-	var offset = getRandomDeviation(size, deviation);
+	let offset = getRandomDeviation(size, deviation);
 
-	var mines = [
+	let mines = [
 		[
 			new SimpleObject(g_Gaia.stoneSmall, 0, 2 * offset, 0, 4 * offset),
 			new SimpleObject(g_Gaia.stoneLarge, offset, offset, 0, 4 * offset)
@@ -942,7 +942,7 @@ function addStone(constraint, size, deviation, fill)
 		]
 	];
 
-	for (let mine of mines)
+	for (const mine of mines)
 		createObjectGroupsDeprecated(
 			new SimpleGroup(mine, true, g_TileClasses.rock),
 			0,
@@ -965,20 +965,20 @@ function addStragglerTrees(constraint, size, deviation, fill)
 		size = Math.max(size, 1);
 	}
 
-	var trees = [g_Gaia.tree1, g_Gaia.tree2, g_Gaia.tree3, g_Gaia.tree4];
+	let trees = [g_Gaia.tree1, g_Gaia.tree2, g_Gaia.tree3, g_Gaia.tree4];
 
-	var treesPerPlayer = 40;
-	var playerBonus = Math.max(1, (getNumPlayers() - 3) / 2);
+	let treesPerPlayer = 40;
+	let playerBonus = Math.max(1, (getNumPlayers() - 3) / 2);
 
-	var offset = getRandomDeviation(size, deviation);
-	var treeCount = treesPerPlayer * playerBonus * fill;
-	var totalTrees = scaleByMapSize(treeCount, treeCount);
+	let offset = getRandomDeviation(size, deviation);
+	let treeCount = treesPerPlayer * playerBonus * fill;
+	let totalTrees = scaleByMapSize(treeCount, treeCount);
 
-	var count = Math.floor(totalTrees / trees.length) * fill;
-	var min = offset;
-	var max = 4 * offset;
-	var minDist = offset;
-	var maxDist = 5 * offset;
+	let count = Math.floor(totalTrees / trees.length) * fill;
+	let min = offset;
+	let max = 4 * offset;
+	let minDist = offset;
+	let maxDist = 5 * offset;
 
 	// More trees for the african biome
 	if (currentBiome() == "generic/savanna")
@@ -989,9 +989,9 @@ function addStragglerTrees(constraint, size, deviation, fill)
 		maxDist = 3 * offset + 2;
 	}
 
-	for (var i = 0; i < trees.length; ++i)
+	for (let i = 0; i < trees.length; ++i)
 	{
-		var treesMax = max;
+		let treesMax = max;
 
 		// Don't clump fruit trees
 		if (i == 2 && (currentBiome() == "generic/sahara" || currentBiome() == "generic/aegean"))
@@ -999,7 +999,7 @@ function addStragglerTrees(constraint, size, deviation, fill)
 
 		min = Math.min(min, treesMax);
 
-		var group = new SimpleGroup([new SimpleObject(trees[i], min, treesMax, minDist, maxDist)], true, g_TileClasses.forest);
+		let group = new SimpleGroup([new SimpleObject(trees[i], min, treesMax, minDist, maxDist)], true, g_TileClasses.forest);
 		createObjectGroupsDeprecated(group, 0, constraint, count);
 	}
 }
@@ -1015,22 +1015,22 @@ function isBluffPassable(bluffArea, baseLine, endLine)
 	    !g_Map.validTilePassable(endLine.end))
 		return false;
 
-	let minTilesInGroup = 2;
+	const minTilesInGroup = 2;
 	let insideBluff = false;
 	let outsideBluff = false;
 
 	// If there aren't enough points in each row
-	let corners = getBoundingBox(bluffArea.getPoints());
+	const corners = getBoundingBox(bluffArea.getPoints());
 	for (let x = corners.min.x; x <= corners.max.x; ++x)
 	{
 		let count = 0;
 		for (let y = corners.min.y; y <= corners.max.y; ++y)
 		{
-			let pos = new Vector2D(x, y);
+			const pos = new Vector2D(x, y);
 			if (!bluffArea.contains(pos))
 				continue;
 
-			let valid = g_Map.validTilePassable(pos);
+			const valid = g_Map.validTilePassable(pos);
 			if (valid)
 				++count;
 
@@ -1055,11 +1055,11 @@ function isBluffPassable(bluffArea, baseLine, endLine)
 		let count = 0;
 		for (let x = corners.min.x; x <= corners.max.x; ++x)
 		{
-			let pos = new Vector2D(x, y);
+			const pos = new Vector2D(x, y);
 			if (!bluffArea.contains(pos))
 				continue;
 
-			let valid = g_Map.validTilePassable(pos.add(corners.min));
+			const valid = g_Map.validTilePassable(pos.add(corners.min));
 			if (valid)
 				++count;
 
@@ -1083,7 +1083,7 @@ function isBluffPassable(bluffArea, baseLine, endLine)
  */
 function findClearLine(bluffArea, angle)
 {
-	let corners = getBoundingBox(bluffArea.getPoints());
+	const corners = getBoundingBox(bluffArea.getPoints());
 
 	// Angle - 0: northwest; 1: northeast; 2: southeast; 3: southwest
 	let offset;
@@ -1113,10 +1113,10 @@ function findClearLine(bluffArea, angle)
 	let clearLine;
 	for (let x = corners.min.x; x <= corners.max.x; ++x)
 	{
-		let start = new Vector2D(x, y);
+		const start = new Vector2D(x, y);
 
 		let intersectsBluff = false;
-		let end = start.clone();
+		const end = start.clone();
 
 		while (end.x >= corners.min.x && end.x <= corners.max.x && end.y >= corners.min.y && end.y <= corners.max.y)
 		{

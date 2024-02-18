@@ -39,21 +39,21 @@ const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor + TERRAI
 const heightLand = 10;
 const heightOffsetValley = -10;
 
-var g_Map = new RandomMap(heightLand, tDirtMain);
+const g_Map = new RandomMap(heightLand, tDirtMain);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clPatch = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clCP = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clPatch = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clCP = g_Map.createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
@@ -156,19 +156,19 @@ for (let i = 0; i < scaleByMapSize(20, 80); ++i)
 Engine.SetProgress(35);
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
-var types = [
+const [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
+const types = [
 	[[tDirtMain, tForestFloor, pForestO], [tForestFloor, pForestO]],
 	[[tDirtMain, tForestFloor, pForestO], [tForestFloor, pForestO]]
 ];
-var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
-var num = Math.floor(size / types.length);
-for (let type of types)
+const forestSize = forestTrees / (scaleByMapSize(3,6) * numPlayers);
+const num = Math.floor(forestSize / types.length);
+for (const type of types)
 	createAreas(
 		new ChainPlacer(
 			Math.floor(scaleByMapSize(1, 2)),
 			Math.floor(scaleByMapSize(2, 5)),
-			Math.floor(size / Math.floor(scaleByMapSize(8, 3))),
+			Math.floor(forestSize / Math.floor(scaleByMapSize(8, 3))),
 			Infinity),
 		[
 			new LayeredPainter(type, [2]),
@@ -229,7 +229,7 @@ createObjectGroupsDeprecated(
 	50);
 
 g_Map.log("Creating small stone quarries");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3), new RandomObject(aBushes, 2, 4, 0, 2)], true, clRock);
+let group = new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3), new RandomObject(aBushes, 2, 4, 0, 2)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	stayClasses(clCP, 6),
 	5*scaleByMapSize(5,30), 50

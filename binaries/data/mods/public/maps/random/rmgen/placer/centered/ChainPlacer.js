@@ -34,30 +34,30 @@ ChainPlacer.prototype.place = function(constraint)
 	if (!g_Map.inMapBounds(this.centerPosition) || !constraint.allows(this.centerPosition))
 		return undefined;
 
-	let points = [];
+	const points = [];
 	let size = g_Map.getSize();
 	let failed = 0;
 	let count = 0;
 
-	let gotRet = new Array(size).fill(0).map(p => new Array(size).fill(-1));
+	const gotRet = new Array(size).fill(0).map(p => new Array(size).fill(-1));
 	--size;
 
 	this.minRadius = Math.min(this.maxRadius, Math.max(this.minRadius, 1));
 
-	let edges = [this.centerPosition];
+	const edges = [this.centerPosition];
 
 	for (let i = 0; i < this.numCircles; ++i)
 	{
-		let chainPos = pickRandom(edges);
-		let radius = this.queue.length ? this.queue.pop() : randIntInclusive(this.minRadius, this.maxRadius);
-		let radius2 = Math.square(radius);
+		const chainPos = pickRandom(edges);
+		const radius = this.queue.length ? this.queue.pop() : randIntInclusive(this.minRadius, this.maxRadius);
+		const radius2 = Math.square(radius);
 
-		let bbox = getPointsInBoundingBox(getBoundingBox([
+		const bbox = getPointsInBoundingBox(getBoundingBox([
 			new Vector2D(Math.max(0, chainPos.x - radius), Math.max(0, chainPos.y - radius)),
 			new Vector2D(Math.min(chainPos.x + radius, size), Math.min(chainPos.y + radius, size))
 		]));
 
-		for (let position of bbox)
+		for (const position of bbox)
 		{
 			if (position.distanceToSquared(chainPos) >= radius2)
 				continue;
@@ -70,7 +70,7 @@ ChainPlacer.prototype.place = function(constraint)
 				continue;
 			}
 
-			let state = gotRet[position.x][position.y];
+			const state = gotRet[position.x][position.y];
 			if (state == -1)
 			{
 				points.push(position);
@@ -86,7 +86,7 @@ ChainPlacer.prototype.place = function(constraint)
 			}
 		}
 
-		for (let pos of bbox)
+		for (const pos of bbox)
 		{
 			if (this.maxDistance &&
 			    (Math.abs(this.centerPosition.x - pos.x) > this.maxDistance ||

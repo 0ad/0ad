@@ -59,8 +59,8 @@ const heightWaterLevel = heightScale(0);
 const heightShoreline = heightScale(0.5);
 const heightHills = heightScale(16);
 
-var g_Map = new RandomMap(0, g_Terrains.mainTerrain);
-var mapCenter = g_Map.getCenter();
+const g_Map = new RandomMap(0, g_Terrains.mainTerrain);
+const mapCenter = g_Map.getCenter();
 
 initTileClasses(["shoreline"]);
 
@@ -120,7 +120,7 @@ Engine.SetProgress(45);
 if (!isNomad())
 {
 	g_Map.log("Placing players");
-	let [playerIDs, playerPosition] = createBases(
+	const [playerIDs, playerPosition] = createBases(
 		...playerPlacementRandom(
 			sortAllPlayers(),
 			[
@@ -130,7 +130,7 @@ if (!isNomad())
 		true);
 
 	g_Map.log("Flatten the initial CC area");
-	for (let position of playerPosition)
+	for (const position of playerPosition)
 		createArea(
 			new ClumpPlacer(diskArea(defaultPlayerBaseRadius() * 0.8), 0.95, 0.6, Infinity, position),
 			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 6));
@@ -294,7 +294,7 @@ addElements([
 Engine.SetProgress(80);
 
 g_Map.log("Painting dirt patches");
-var dirtPatches = [
+const dirtPatches = [
 	{
 		"sizes": [2, 4],
 		"count": scaleByMapSize(2, 5),
@@ -306,7 +306,7 @@ var dirtPatches = [
 		"terrain": g_Terrains.additionalDirt2
 	}
 ];
-for (let dirtPatch of dirtPatches)
+for (const dirtPatch of dirtPatches)
 	createPatches(
 		dirtPatch.sizes,
 		dirtPatch.terrain,

@@ -187,7 +187,7 @@ createArea(
 Engine.SetProgress(10);
 
 g_Map.log("Marking islands");
-var areaIsland = createArea(
+const areaIsland = createArea(
 	new ConvexPolygonPlacer(
 		[
 			new Vector2D(mapCenter.x - riverWidthBorder / 2, mapBounds.top),
@@ -248,7 +248,7 @@ placePlayerBases({
 Engine.SetProgress(22);
 
 g_Map.log("Creating temple");
-var groupTemple = createObjectGroupsByAreas(
+const groupTemple = createObjectGroupsByAreas(
 	new SimpleGroup([new RandomObject(g_Map.getSize() >= 320 ? [oWonder] : oTemples, 1, 1, 0, 1, riverAngle, riverAngle)], true, clTemple),
 	0,
 	stayClasses(clIsland, scaleByMapSize(10, 20)),
@@ -258,7 +258,7 @@ var groupTemple = createObjectGroupsByAreas(
 Engine.SetProgress(34);
 
 g_Map.log("Creating pyramid");
-var groupPyramid = createObjectGroupsByAreas(
+const groupPyramid = createObjectGroupsByAreas(
 	new SimpleGroup([new SimpleObject(oPyramid, 1, 1, 0, 1, riverAngle, riverAngle)], true, clTemple),
 	0,
 	[stayClasses(clIsland, scaleByMapSize(10, 20)), avoidClasses(clTemple, scaleByMapSize(20, 50)), avoidCollisions],
@@ -268,11 +268,11 @@ var groupPyramid = createObjectGroupsByAreas(
 Engine.SetProgress(37);
 
 g_Map.log("Painting city patches");
-var cityCenters = [
+const cityCenters = [
 	groupTemple[0] && groupTemple[0][0] && { "pos": Vector2D.from3D(groupTemple[0][0].position), "radius": 10 },
 	groupPyramid[0] && groupPyramid[0][0] &&  { "pos": Vector2D.from3D(groupPyramid[0][0].position), "radius": 6 },].filter(pos => !!pos);
 
-var areaCityPatch = cityCenters.map(cityCenter =>
+const areaCityPatch = cityCenters.map(cityCenter =>
 	createArea(
 		new DiskPlacer(cityCenter.radius, cityCenter.pos),
 		new LayeredPainter([tRoadWildIsland, tRoadIsland], [2]),
@@ -339,7 +339,7 @@ createObjectGroups(
 	200);
 Engine.SetProgress(49);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(400, 3000, 0.7);
+const [forestTrees, stragglerTrees] = getTreeCounts(400, 3000, 0.7);
 createForests(
 	[tForestFloorLand, tForestFloorLand, tForestFloorLand, pForestPalmsLand, pForest2Land],
 	[avoidCollisions, avoidClasses(clIsland, 0, clPlayer, 20, clForest, 18, clWater, 2)],

@@ -9,53 +9,53 @@ setPPSaturation(0.48);
 setPPContrast(0.53);
 setPPBloom(0.12);
 
-var tPrimary = ["alpine_grass_rocky"];
-var tForestFloor = "alpine_grass";
-var tCliff = ["polar_cliff_a", "polar_cliff_b", "polar_cliff_snow"];
-var tSecondary = "alpine_grass";
-var tHalfSnow = ["polar_grass_snow", "ice_dirt"];
-var tSnowLimited = ["polar_snow_rocks", "polar_ice"];
-var tDirt = "ice_dirt";
-var tShore = "alpine_shore_rocks";
-var tWater = "polar_ice_b";
-var tHill = "polar_ice_cracked";
+const tPrimary = ["alpine_grass_rocky"];
+const tForestFloor = "alpine_grass";
+const tCliff = ["polar_cliff_a", "polar_cliff_b", "polar_cliff_snow"];
+const tSecondary = "alpine_grass";
+const tHalfSnow = ["polar_grass_snow", "ice_dirt"];
+const tSnowLimited = ["polar_snow_rocks", "polar_ice"];
+const tDirt = "ice_dirt";
+const tShore = "alpine_shore_rocks";
+const tWater = "polar_ice_b";
+const tHill = "polar_ice_cracked";
 
-var oBush = "gaia/tree/bush_badlands";
-var oBush2 = "gaia/tree/bush_temperate";
-var oBerryBush = "gaia/fruit/berry_01";
-var oRabbit = "gaia/fauna_rabbit";
-var oMuskox = "gaia/fauna_muskox";
-var oDeer = "gaia/fauna_deer";
-var oWolf = "gaia/fauna_wolf";
-var oWhaleFin = "gaia/fauna_whale_fin";
-var oWhaleHumpback = "gaia/fauna_whale_humpback";
-var oFish = "gaia/fish/generic";
-var oStoneLarge = "gaia/rock/alpine_large";
-var oStoneSmall = "gaia/rock/alpine_small";
-var oMetalLarge = "gaia/ore/alpine_large";
-var oWoodTreasure = "gaia/treasure/wood";
+const oBush = "gaia/tree/bush_badlands";
+const oBush2 = "gaia/tree/bush_temperate";
+const oBerryBush = "gaia/fruit/berry_01";
+const oRabbit = "gaia/fauna_rabbit";
+const oMuskox = "gaia/fauna_muskox";
+const oDeer = "gaia/fauna_deer";
+const oWolf = "gaia/fauna_wolf";
+const oWhaleFin = "gaia/fauna_whale_fin";
+const oWhaleHumpback = "gaia/fauna_whale_humpback";
+const oFish = "gaia/fish/generic";
+const oStoneLarge = "gaia/rock/alpine_large";
+const oStoneSmall = "gaia/rock/alpine_small";
+const oMetalLarge = "gaia/ore/alpine_large";
+const oWoodTreasure = "gaia/treasure/wood";
 
-var aRockLarge = "actor|geology/stone_granite_med.xml";
-var aRockMedium = "actor|geology/stone_granite_med.xml";
+const aRockLarge = "actor|geology/stone_granite_med.xml";
+const aRockMedium = "actor|geology/stone_granite_med.xml";
 
 const pForest = [tForestFloor + TERRAIN_SEPARATOR + oBush, tForestFloor + TERRAIN_SEPARATOR + oBush2, tForestFloor];
 
-var heightSeaGround = -5;
-var heightLand = 2;
+const heightSeaGround = -5;
+const heightLand = 2;
 
-var g_Map = new RandomMap(heightLand, tPrimary);
+const g_Map = new RandomMap(heightLand, tPrimary);
 
 const numPlayers = getNumPlayers();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
@@ -128,7 +128,7 @@ createBumps(avoidClasses(clPlayer, 6, clWater, 2), scaleByMapSize(30, 300), 1, 8
 paintTerrainBasedOnHeight(4, 15, 0, tCliff);
 paintTerrainBasedOnHeight(15, 100, 3, tSnowLimited);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
+const [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
 	[tSecondary, tForestFloor, tForestFloor, pForest, pForest],
 	avoidClasses(

@@ -43,39 +43,39 @@ const aBushSmall = g_Decoratives.bushSmall;
 const pForest1 = [tForestFloor2 + TERRAIN_SEPARATOR + oTree1, tForestFloor2 + TERRAIN_SEPARATOR + oTree2, tForestFloor2];
 const pForest2 = [tForestFloor1 + TERRAIN_SEPARATOR + oTree4, tForestFloor1 + TERRAIN_SEPARATOR + oTree5, tForestFloor1];
 
-var heightSeaGround = -4;
-var heightShallow = -2;
-var heightLand = 3;
-var heightRing = 4;
-var heightHill = 20;
+const heightSeaGround = -4;
+const heightShallow = -2;
+const heightLand = 3;
+const heightRing = 4;
+const heightHill = 20;
 
-var g_Map = new RandomMap(heightLand, tMainTerrain);
+const g_Map = new RandomMap(heightLand, tMainTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
-var radiusPlayers = fractionToTiles(0.35);
-var radiusCentralLake = fractionToTiles(0.27);
-var radiusCentralRingLand = fractionToTiles(0.21);
-var radiusCentralWaterRing = fractionToTiles(0.17);
-var radiusCentralIsland = fractionToTiles(0.14);
-var radiusCentralHill = fractionToTiles(0.12);
+const radiusPlayers = fractionToTiles(0.35);
+const radiusCentralLake = fractionToTiles(0.27);
+const radiusCentralRingLand = fractionToTiles(0.21);
+const radiusCentralWaterRing = fractionToTiles(0.17);
+const radiusCentralIsland = fractionToTiles(0.14);
+const radiusCentralHill = fractionToTiles(0.12);
 
-var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(radiusPlayers);
+const [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(radiusPlayers);
 
 g_Map.log("Determining number of rivers between players");
-var split = 1;
+let split = 1;
 if (mapSize == 128 && numPlayers <= 2)
 	split = 2;
 else if (mapSize == 192 && numPlayers <= 3)
@@ -123,9 +123,9 @@ createArea(
 g_Map.log("Creating rivers between players");
 for (let m = 0; m < numPlayers * split; ++m)
 {
-	let angle = startAngle + (m + 0.5) * 2 * Math.PI / (numPlayers * split);
-	let position1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.15), 0).rotate(-angle));
-	let position2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.6), 0).rotate(-angle));
+	const angle = startAngle + (m + 0.5) * 2 * Math.PI / (numPlayers * split);
+	const position1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.15), 0).rotate(-angle));
+	const position2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.6), 0).rotate(-angle));
 	createArea(
 		new PathPlacer(position1, position2, scaleByMapSize(14, 40), 0, scaleByMapSize(3, 9), 0.2, 0.05),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
@@ -135,9 +135,9 @@ for (let m = 0; m < numPlayers * split; ++m)
 g_Map.log("Create path from the island to the center");
 for (let m = 0; m < numPlayers * split; ++m)
 {
-	let angle = startAngle + m * 2 * Math.PI / (numPlayers * split);
-	let position1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.05), 0).rotate(-angle));
-	let position2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.49), 0).rotate(-angle));
+	const angle = startAngle + m * 2 * Math.PI / (numPlayers * split);
+	const position1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.05), 0).rotate(-angle));
+	const position2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.49), 0).rotate(-angle));
 	createArea(
 		new PathPlacer(position1, position2, scaleByMapSize(10, 40), 0, scaleByMapSize(3, 9), 0.2, 0.05),
 		new SmoothElevationPainter(ELEVATION_SET, heightLand, 4));
@@ -204,7 +204,7 @@ if (randBool())
 else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15, clWater, 2), clHill, scaleByMapSize(1, 4) * numPlayers);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
+const [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
  avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 2),
@@ -259,7 +259,7 @@ createObjectGroupsDeprecated(
 
 Engine.SetProgress(65);
 
-var planetm = 1;
+let planetm = 1;
 
 if (currentBiome() == "generic/india")
 	planetm = 8;

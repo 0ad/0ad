@@ -23,20 +23,20 @@ function SmoothingPainter(size, strength, iterations)
 
 SmoothingPainter.prototype.paint = function(area)
 {
-	let brushPoints = getPointsInBoundingBox(getBoundingBox(
+	const brushPoints = getPointsInBoundingBox(getBoundingBox(
 		new Array(2).fill(0).map((zero, i) => new Vector2D(1, 1).mult(this.size).mult(i ? 1 : -1))));
 
 	for (let i = 0; i < this.iterations; ++i)
 	{
-		let heightmap = clone(g_Map.height);
+		const heightmap = clone(g_Map.height);
 
 		// Additional complexity to process all 4 vertices of each tile, i.e the last row too
-		let seen = new Array(heightmap.length).fill(0).map(zero => new Uint8Array(heightmap.length).fill(0));
+		const seen = new Array(heightmap.length).fill(0).map(zero => new Uint8Array(heightmap.length).fill(0));
 
-		for (let point of area.getPoints())
-			for (let tileVertex of g_TileVertices)
+		for (const point of area.getPoints())
+			for (const tileVertex of g_TileVertices)
 			{
-				let vertex = Vector2D.add(point, tileVertex);
+				const vertex = Vector2D.add(point, tileVertex);
 				if (!g_Map.validHeight(vertex) || seen[vertex.x][vertex.y])
 					continue;
 
@@ -45,10 +45,10 @@ SmoothingPainter.prototype.paint = function(area)
 				let sumWeightedHeights = 0;
 				let sumWeights = 0;
 
-				for (let brushPoint of brushPoints)
+				for (const brushPoint of brushPoints)
 				{
-					let position = Vector2D.add(vertex, brushPoint);
-					let distance = Math.abs(brushPoint.x) + Math.abs(brushPoint.y);
+					const position = Vector2D.add(vertex, brushPoint);
+					const distance = Math.abs(brushPoint.x) + Math.abs(brushPoint.y);
 					if (!distance || !g_Map.validHeight(position))
 						continue;
 

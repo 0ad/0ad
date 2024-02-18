@@ -9,11 +9,11 @@ function ConvexPolygonPlacer(points, failFraction = 0)
 
 ConvexPolygonPlacer.prototype.place = function(constraint)
 {
-	let points = [];
+	const points = [];
 	let count = 0;
 	let failed = 0;
 
-	for (let point of getPointsInBoundingBox(getBoundingBox(this.polygonVertices)))
+	for (const point of getPointsInBoundingBox(getBoundingBox(this.polygonVertices)))
 	{
 		if (this.polygonVertices.some((vertex, i) =>
 		      distanceOfPointFromLine(this.polygonVertices[i], this.polygonVertices[(i + 1) % this.polygonVertices.length], point) > 0))
@@ -36,13 +36,13 @@ ConvexPolygonPlacer.prototype.place = function(constraint)
  */
 ConvexPolygonPlacer.prototype.getConvexHull = function(points)
 {
-	let uniquePoints = [];
-	for (let point of points)
+	const uniquePoints = [];
+	for (const point of points)
 		if (uniquePoints.every(p => p.x != point.x || p.y != point.y))
 			uniquePoints.push(point);
 
 	// Start with the leftmost point
-	let result = [uniquePoints.reduce((leftMost, point) => point.x < leftMost.x ? point : leftMost, uniquePoints[0])];
+	const result = [uniquePoints.reduce((leftMost, point) => point.x < leftMost.x ? point : leftMost, uniquePoints[0])];
 
 	// Add the vector most left of the most recently added point until a cycle is reached
 	while (result.length < uniquePoints.length)
@@ -50,7 +50,7 @@ ConvexPolygonPlacer.prototype.getConvexHull = function(points)
 		let nextLeftmostPoint;
 
 		// Of all points, find the one that is leftmost
-		for (let point of uniquePoints)
+		for (const point of uniquePoints)
 		{
 			if (point == result[result.length - 1])
 				continue;

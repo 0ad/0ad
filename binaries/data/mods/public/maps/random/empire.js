@@ -5,7 +5,7 @@ Engine.LoadLibrary("rmbiome");
 
 setSelectedBiome();
 
-var g_Map = new RandomMap(2, g_Terrains.mainTerrain);
+const g_Map = new RandomMap(2, g_Terrains.mainTerrain);
 
 initTileClasses();
 
@@ -28,7 +28,7 @@ createBases(
 Engine.SetProgress(20);
 
 // Change the starting angle and add the players again
-var rotation = Math.PI;
+let rotation = Math.PI;
 
 if (teamsArray.length == 2)
 	rotation = Math.PI / 2;

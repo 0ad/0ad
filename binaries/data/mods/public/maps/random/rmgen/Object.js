@@ -28,17 +28,17 @@ function SimpleObject(templateName, minCount, maxCount, minDistance, maxDistance
 
 SimpleObject.prototype.place = function(centerPosition, playerID, avoidPositions, constraint, maxRetries)
 {
-	let entitySpecs = [];
+	const entitySpecs = [];
 	let numRetries = 0;
-	let validTile = pos => this.templateName.startsWith(g_ActorPrefix) ? g_Map.validTile(pos) : g_Map.validTilePassable(pos);
+	const validTile = pos => this.templateName.startsWith(g_ActorPrefix) ? g_Map.validTile(pos) : g_Map.validTilePassable(pos);
 
 	for (let i = 0; i < randIntInclusive(this.minCount, this.maxCount); ++i)
 		while (true)
 		{
-			let distance = randFloat(this.minDistance, this.maxDistance);
-			let angle = randomAngle();
+			const distance = randFloat(this.minDistance, this.maxDistance);
+			const angle = randomAngle();
 
-			let position = Vector2D.sum([centerPosition, new Vector2D(0.5, 0.5), new Vector2D(distance, 0).rotate(-angle)]);
+			const position = Vector2D.sum([centerPosition, new Vector2D(0.5, 0.5), new Vector2D(distance, 0).rotate(-angle)]);
 
 			if (validTile(position) &&
 			    (!avoidPositions ||

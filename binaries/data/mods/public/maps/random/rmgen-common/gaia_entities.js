@@ -95,7 +95,7 @@ function createDefaultForests(terrainSet, constraints, tileClass, totalNumberOfT
 function createStragglerTrees(templateNames, constraint, tileClass, treeCount, retryFactor)
 {
 	g_Map.log("Creating straggler trees");
-	for (let templateName of templateNames)
+	for (const templateName of templateNames)
 		createObjectGroupsDeprecated(
 			new SimpleGroup([new SimpleObject(templateName, 1, 1, 0, 3)], true, tileClass),
 			0,
@@ -110,7 +110,7 @@ function createStragglerTrees(templateNames, constraint, tileClass, treeCount, r
  */
 function createMines(objects, constraint, tileClass, count)
 {
-	for (let object of objects)
+	for (const object of objects)
 		createObjectGroupsDeprecated(
 			new SimpleGroup(object, true, tileClass),
 			0,
@@ -226,7 +226,7 @@ function createStoneMineFormation(position, templateName, terrain, radius = 2.5,
 
 	for (let i = 0; i < count; ++i)
 	{
-		let pos = Vector2D.add(position, new Vector2D(radius + randFloat(0, maxOffset), 0).rotate(-angle)).round();
+		const pos = Vector2D.add(position, new Vector2D(radius + randFloat(0, maxOffset), 0).rotate(-angle)).round();
 		g_Map.placeEntityPassable(templateName, 0, pos, randomAngle());
 		angle += 3/2 * Math.PI / count;
 	}
@@ -280,28 +280,28 @@ function createDecoration(objects, counts, constraint)
  */
 function placeDocks(template, playerID, count, tileClassWater, tileClassDock, heightMin, heightMax, constraints, offset, retryFactor)
 {
-	let mapCenter = g_Map.getCenter();
+	const mapCenter = g_Map.getCenter();
 
 	g_Map.log("Marking dock search start area");
-	let areaSearchStart = createArea(
+	const areaSearchStart = createArea(
 		new DiskPlacer(fractionToTiles(0.5) - 10, mapCenter),
 		undefined,
 		avoidClasses(tileClassWater, 6));
 
 	g_Map.log("Marking dock search end area");
-	let areaSearchEnd = createArea(
+	const areaSearchEnd = createArea(
 		new DiskPlacer(fractionToTiles(0.5) - 10, mapCenter),
 		undefined,
 		stayClasses(tileClassWater, 20));
 
 	g_Map.log("Marking land area");
-	let areaLand = createArea(
+	const areaLand = createArea(
 		new MapBoundsPlacer(),
 		undefined,
 		avoidClasses(tileClassWater, 0));
 
 	g_Map.log("Marking water area");
-	let areaWater = createArea(
+	const areaWater = createArea(
 		new MapBoundsPlacer(),
 		undefined,
 		stayClasses(tileClassWater, 0));
@@ -310,14 +310,14 @@ function placeDocks(template, playerID, count, tileClassWater, tileClassDock, he
 		return;
 
 	// TODO: computing the exact intersection with the waterplane would both not require us to pass reasonable heights and be more precise
-	let constraint = new AndConstraint(constraints);
+	const constraint = new AndConstraint(constraints);
 	g_Map.log("Placing docks");
 	for (let i = 0; i < count; ++i)
 		for (let tries = 0; tries < retryFactor; ++tries)
 		{
-			let positionLand = pickRandom(areaSearchStart.getPoints());
-			let positionWaterLarge = areaSearchEnd.getClosestPointTo(positionLand);
-			let positionDock = findLocationInDirectionBasedOnHeight(positionWaterLarge, positionLand, heightMin, heightMax, offset);
+			const positionLand = pickRandom(areaSearchStart.getPoints());
+			const positionWaterLarge = areaSearchEnd.getClosestPointTo(positionLand);
+			const positionDock = findLocationInDirectionBasedOnHeight(positionWaterLarge, positionLand, heightMin, heightMax, offset);
 			if (!positionDock)
 				continue;
 
@@ -326,7 +326,7 @@ function placeDocks(template, playerID, count, tileClassWater, tileClassDock, he
 			if (!g_Map.inMapBounds(positionDock) || !constraint.allows(positionDock))
 				continue;
 
-			let angle = positionDock.angleTo(Vector2D.average(new DiskPlacer(8, positionDock).place(stayClasses(tileClassWater, 0))));
+			const angle = positionDock.angleTo(Vector2D.average(new DiskPlacer(8, positionDock).place(stayClasses(tileClassWater, 0))));
 
 			g_Map.placeEntityPassable(template, playerID, positionDock, -angle + Math.PI / 2);
 			tileClassDock.add(positionDock);

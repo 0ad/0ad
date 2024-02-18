@@ -40,18 +40,18 @@ const heightLand = 1;
 const heightOffsetBumpWater = 1;
 const heightOffsetBumpLand = 2;
 
-var g_Map = new RandomMap(heightLand, tGrass);
+const g_Map = new RandomMap(heightLand, tGrass);
 
 const numPlayers = getNumPlayers();
 
-var clPlayer = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
 placePlayerBases({
 	"PlayerPlacement": playerPlacementCircle(fractionToTiles(0.35)),
@@ -116,14 +116,14 @@ createAreas(
 	scaleByMapSize(50, 100));
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
-var types = [
+const [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
+const types = [
 	[[tForestFloor, tGrass, pForestD], [tForestFloor, pForestD]],
 	[[tForestFloor, tGrass, pForestP], [tForestFloor, pForestP]]
 ];
-var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
-var num = Math.floor(size / types.length);
-for (let type of types)
+const forestSize = forestTrees / (scaleByMapSize(3,6) * numPlayers);
+const num = Math.floor(forestSize / types.length);
+for (const type of types)
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 4))), Infinity),
 		[
@@ -135,7 +135,7 @@ for (let type of types)
 Engine.SetProgress(50);
 
 g_Map.log("Creating mud patches");
-for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
+for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, Infinity),
 		[
@@ -146,7 +146,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		scaleByMapSize(15, 45));
 
 g_Map.log("Creating stone mines");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
+let group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clWater, 0, clForest, 1, clPlayer, 20, clRock, 10)],
 	scaleByMapSize(4,16), 100

@@ -15,8 +15,8 @@ const tHill = g_Terrains.hill;
 const tRoad = g_Terrains.road;
 const tRoadWild = g_Terrains.roadWild;
 const tTier4Terrain = g_Terrains.tier4Terrain;
-var tShore = g_Terrains.shore;
-var tWater = g_Terrains.water;
+let tShore = g_Terrains.shore;
+let tWater = g_Terrains.water;
 if (currentBiome() == "generic/india")
 {
 	tShore = "tropic_dirt_b_plants";
@@ -52,24 +52,24 @@ const heightSeaGround = -3;
 const heightShallows = -1;
 const heightLand = 1;
 
-var g_Map = new RandomMap(heightLand, tMainTerrain);
+const g_Map = new RandomMap(heightLand, tMainTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clShallow = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clShallow = g_Map.createTileClass();
 
-var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
+const [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 placePlayerBases({
 	"PlayerPlacement": [playerIDs, playerPosition],
@@ -109,15 +109,15 @@ createArea(
 	]);
 
 g_Map.log("Creating rivers between opponents");
-let numRivers = isNomad() ? randIntInclusive(4, 8) : numPlayers;
-let rivers = distributePointsOnCircle(numRivers, startAngle + Math.PI / numRivers, fractionToTiles(0.5), mapCenter)[0];
+const numRivers = isNomad() ? randIntInclusive(4, 8) : numPlayers;
+const rivers = distributePointsOnCircle(numRivers, startAngle + Math.PI / numRivers, fractionToTiles(0.5), mapCenter)[0];
 for (let i = 0; i < numRivers; ++i)
 {
 	if (isNomad() ? randBool() : areAllies(playerIDs[i], playerIDs[(i + 1) % numPlayers]))
 		continue;
 
-	let shallowLocation = randFloat(0.2, 0.7);
-	let shallowWidth = randFloat(0.12, 0.21);
+	const shallowLocation = randFloat(0.2, 0.7);
+	const shallowWidth = randFloat(0.12, 0.21);
 
 	paintRiver({
 		"parallel": true,
@@ -135,11 +135,11 @@ for (let i = 0; i < numRivers; ++i)
 
 			clWater.add(position);
 
-			let isShallow = height < heightShallows &&
+			const isShallow = height < heightShallows &&
 				riverFraction > shallowLocation &&
 				riverFraction < shallowLocation + shallowWidth;
 
-			let newHeight = isShallow ? heightShallows : Math.max(height, heightSeaGround);
+			const newHeight = isShallow ? heightShallows : Math.max(height, heightSeaGround);
 
 			if (g_Map.getHeight(position) < newHeight)
 				return;
@@ -161,7 +161,7 @@ if (randBool())
 else
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15, clWater, 2), clHill, scaleByMapSize(3, 15));
 
-var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
+const [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 createDefaultForests(
 	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
 	avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 2),
@@ -206,7 +206,7 @@ createBalancedStoneMines(
 
 Engine.SetProgress(65);
 
-var planetm = 1;
+let planetm = 1;
 
 if (currentBiome() == "generic/india")
 	planetm = 8;

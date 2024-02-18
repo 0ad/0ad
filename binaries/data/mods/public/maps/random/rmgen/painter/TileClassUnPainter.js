@@ -8,6 +8,6 @@ function TileClassUnPainter(tileClass)
 
 TileClassUnPainter.prototype.paint = function(area)
 {
-	for (let point of area.getPoints())
+	for (const point of area.getPoints())
 		this.tileClass.remove(point);
 };

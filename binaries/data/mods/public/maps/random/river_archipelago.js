@@ -47,49 +47,49 @@ const heightShoreBlend = 2.8;
 const heightLand = 3;
 const heightHill = 25;
 
-var g_Map = new RandomMap(heightSeaGround, tGrass);
+const g_Map = new RandomMap(heightSeaGround, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 
-var clPlayer = g_Map.createTileClass();
-var clPlayerTerritory = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clGaia = g_Map.createTileClass();
-var clStrip = [];
+const clPlayer = g_Map.createTileClass();
+const clPlayerTerritory = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clGaia = g_Map.createTileClass();
+const clStrip = [];
 
-var startAngle = randomAngle();
-var connectPlayers = randBool();
+const startAngle = randomAngle();
+const connectPlayers = randBool();
 
 // Map layout
-var stripWidthsLeft = connectPlayers ?
+const stripWidthsLeft = connectPlayers ?
 	[[0.03, 0.09], [0.14, 0.25], [0.36, 0.46]] :
 	[[0, 0.06], [0.12, 0.23], [0.33, 0.43]];
 
 // Mirror
-var stripWidthsRight = clone(stripWidthsLeft);
+let stripWidthsRight = clone(stripWidthsLeft);
 stripWidthsRight.reverse();
 stripWidthsRight = stripWidthsRight.map(strip => [1 - strip[1], 1 - strip[0]]);
 
-var stripWidths = stripWidthsLeft.concat(stripWidthsRight);
+const stripWidths = stripWidthsLeft.concat(stripWidthsRight);
 
 g_Map.log("Creating strips");
 for (let i = 0; i < stripWidths.length; ++i)
 {
 	clStrip[i] = g_Map.createTileClass();
 
-	let isPlayerStrip = i == 2 || i == 3;
+	const isPlayerStrip = i == 2 || i == 3;
 	for (let j = 0; j < scaleByMapSize(20, 100); ++j)
 	{
-		let position = new Vector2D(
+		const position = new Vector2D(
 			randFloat(mapBounds.bottom, mapBounds.top),
 			fractionToTiles(randFloat(...stripWidths[i]))).rotateAround(startAngle, mapCenter).round();
 
@@ -109,13 +109,13 @@ for (let i = 0; i < stripWidths.length; ++i)
 }
 Engine.SetProgress(20);
 
-var playerPosition = playerPlacementLine(startAngle, mapCenter, fractionToTiles(1 - stripWidthsLeft[2][0] - stripWidthsLeft[2][1]));
+const playerPosition = playerPlacementLine(startAngle, mapCenter, fractionToTiles(1 - stripWidthsLeft[2][0] - stripWidthsLeft[2][1]));
 
 // Either left vs right or top vs bottom
-var playerIDs = randBool() ? sortAllPlayers() : primeSortAllPlayers();
+const playerIDs = randBool() ? sortAllPlayers() : primeSortAllPlayers();
 
 g_Map.log("Ensuring player territory");
-var playerRadius = scaleByMapSize(12, 20);
+const playerRadius = scaleByMapSize(12, 20);
 for (let i = 0; i < numPlayers; ++i)
 	createArea(
 		new ChainPlacer(1, 6, 40, 1, playerPosition[i], 0, [Math.floor(playerRadius)]),
@@ -156,7 +156,7 @@ placePlayerBases({
 });
 Engine.SetProgress(35);
 
-var areaWater = createArea(
+const areaWater = createArea(
 	new HeightPlacer(Elevation_IncludeMin_ExcludeMax, -Infinity, heightWaterLevel),
 	[
 		new TerrainPainter(tWater),
@@ -222,15 +222,15 @@ createBumps(avoidClasses(clPlayer, 8, clWater, 2), scaleByMapSize(20, 150), 2, 8
 Engine.SetProgress(50);
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(1000, 4000, 0.7);
-var types = [
+const [forestTrees, stragglerTrees] = getTreeCounts(1000, 4000, 0.7);
+const types = [
 	[[tGrass, tGrass, tGrass, tGrass, pForestD], [tGrass, tGrass, tGrass, pForestD]],
 	[[tGrass, tGrass, tGrass, tGrass, pForestP1], [tGrass, tGrass, tGrass, pForestP1]],
 	[[tGrass, tGrass, tGrass, tGrass, pForestP2], [tGrass, tGrass, tGrass, pForestP2]]
 ];
-var size = forestTrees / (scaleByMapSize(3, 6) * numPlayers);
-var num = Math.floor(size / types.length);
-for (let type of types)
+const forestSize = forestTrees / (scaleByMapSize(3, 6) * numPlayers);
+const num = Math.floor(forestSize / types.length);
+for (const type of types)
 	createAreas(
 		new ChainPlacer(
 			1,
@@ -266,7 +266,7 @@ createStragglerTrees(
 Engine.SetProgress(60);
 
 g_Map.log("Creating grass patches");
-for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
+for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
@@ -283,7 +283,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		scaleByMapSize(20, 80));
 
 g_Map.log("Creating dirt patches");
-for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
+for (const size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[

@@ -36,32 +36,32 @@ const aBushSmall = "actor|props/flora/bush_medit_sm.xml";
 const pForestP = [tForestFloorP + TERRAIN_SEPARATOR + oPoplar, tForestFloorP];
 const pForestC = [tForestFloorC + TERRAIN_SEPARATOR + oCarob, tForestFloorC];
 
-var heightSeaGround = -3;
-var heightShallow = -1.5;
-var heightShore = 2;
-var heightLand = 3;
+const heightSeaGround = -3;
+const heightShallow = -1.5;
+const heightShore = 2;
+const heightLand = 3;
 
-var g_Map = new RandomMap(heightSeaGround, tWater);
+const g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 const mapBounds = g_Map.getBounds();
 
-var clPlayer = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clLand = g_Map.createTileClass();
-var clRiver = g_Map.createTileClass();
-var clShallow = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clLand = g_Map.createTileClass();
+const clRiver = g_Map.createTileClass();
+const clShallow = g_Map.createTileClass();
 
 g_Map.log("Create the continent body");
-var startAngle = randomAngle();
-var continentCenter = new Vector2D(fractionToTiles(0.5), fractionToTiles(0.7)).rotateAround(startAngle, mapCenter).round();
+const startAngle = randomAngle();
+const continentCenter = new Vector2D(fractionToTiles(0.5), fractionToTiles(0.7)).rotateAround(startAngle, mapCenter).round();
 
 createArea(
 	new ChainPlacer(
@@ -78,8 +78,8 @@ createArea(
 		new TileClassPainter(clLand)
 	]);
 
-var playerIDs = sortAllPlayers();
-var playerPosition = playerPlacementArcs(
+const playerIDs = sortAllPlayers();
+const playerPosition = playerPlacementArcs(
 	playerIDs,
 	continentCenter,
 	fractionToTiles(0.35),
@@ -149,7 +149,7 @@ paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 
 createBumps([avoidClasses(clPlayer, 20, clRiver, 1), stayClasses(clLand, 3)]);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
+const [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
  [tGrass, tForestFloorP, tForestFloorC, pForestC, pForestP],
  [avoidClasses(clPlayer, 20, clForest, 17, clRiver, 1), stayClasses(clLand, 7)],

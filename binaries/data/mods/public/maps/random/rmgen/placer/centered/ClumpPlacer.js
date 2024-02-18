@@ -30,25 +30,25 @@ ClumpPlacer.prototype.place = function(constraint)
 	if (!g_Map.inMapBounds(this.centerPosition) || !constraint.allows(this.centerPosition))
 		return undefined;
 
-	var points = [];
+	let points = [];
 
-	var size = g_Map.getSize();
-	var gotRet = new Array(size).fill(0).map(p => new Uint8Array(size)); // booleans
-	var radius = Math.sqrt(this.size / Math.PI);
-	var perim = 4 * radius * 2 * Math.PI;
-	var intPerim = Math.ceil(perim);
+	let size = g_Map.getSize();
+	let gotRet = new Array(size).fill(0).map(p => new Uint8Array(size)); // booleans
+	let radius = Math.sqrt(this.size / Math.PI);
+	let perim = 4 * radius * 2 * Math.PI;
+	let intPerim = Math.ceil(perim);
 
-	var ctrlPts = 1 + Math.floor(1.0/Math.max(this.smoothness,1.0/intPerim));
+	let ctrlPts = 1 + Math.floor(1.0/Math.max(this.smoothness,1.0/intPerim));
 
 	if (ctrlPts > radius * 2 * Math.PI)
 		ctrlPts = Math.floor(radius * 2 * Math.PI) + 1;
 
-	var noise = new Float32Array(intPerim);			//float32
-	var ctrlCoords = new Float32Array(ctrlPts+1);	//float32
-	var ctrlVals = new Float32Array(ctrlPts+1);		//float32
+	let noise = new Float32Array(intPerim);			//float32
+	let ctrlCoords = new Float32Array(ctrlPts+1);	//float32
+	let ctrlVals = new Float32Array(ctrlPts+1);		//float32
 
 	// Generate some interpolated noise
-	for (var i=0; i < ctrlPts; i++)
+	for (let i=0; i < ctrlPts; i++)
 	{
 		ctrlCoords[i] = i * perim / ctrlPts;
 		ctrlVals[i] = randFloat(0, 2);
@@ -78,14 +78,14 @@ ClumpPlacer.prototype.place = function(constraint)
 	let count = 0;
 	for (let stepAngle = 0; stepAngle < intPerim; ++stepAngle)
 	{
-		let position = this.centerPosition.clone();
-		let radiusUnitVector = new Vector2D(0, 1).rotate(-2 * Math.PI * stepAngle / perim);
-		let maxRadiusSteps = Math.ceil(radius * (1 + (1 - this.coherence) * noise[stepAngle]));
+		const position = this.centerPosition.clone();
+		const radiusUnitVector = new Vector2D(0, 1).rotate(-2 * Math.PI * stepAngle / perim);
+		const maxRadiusSteps = Math.ceil(radius * (1 + (1 - this.coherence) * noise[stepAngle]));
 
 		count += maxRadiusSteps;
 		for (let stepRadius = 0; stepRadius < maxRadiusSteps; ++stepRadius)
 		{
-			let tilePos = position.clone().floor();
+			const tilePos = position.clone().floor();
 
 			if (g_Map.inMapBounds(tilePos) && constraint.allows(tilePos))
 			{

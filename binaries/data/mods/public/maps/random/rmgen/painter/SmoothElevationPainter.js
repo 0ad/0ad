@@ -31,11 +31,11 @@ function SmoothElevationPainter(type, elevation, blendRadius, randomElevation = 
 SmoothElevationPainter.prototype.paint = function(area)
 {
 	// The heightmap grid has one more vertex per side than the tile grid
-	let heightmapSize = g_Map.height.length;
+	const heightmapSize = g_Map.height.length;
 
 	// Remember height inside the area before changing it
-	let gotHeightPt = [];
-	let newHeight = [];
+	const gotHeightPt = [];
+	const newHeight = [];
 	for (let i = 0; i < heightmapSize; ++i)
 	{
 		gotHeightPt[i] = new Uint8Array(heightmapSize);
@@ -43,16 +43,16 @@ SmoothElevationPainter.prototype.paint = function(area)
 	}
 
 	// Get heightmap grid vertices within or adjacent to the area
-	let brushSize = 2;
-	let heightPoints = [];
-	for (let point of area.getPoints())
+	const brushSize = 2;
+	const heightPoints = [];
+	for (const point of area.getPoints())
 		for (let dx = -1; dx < 1 + brushSize; ++dx)
 		{
-			let nx = point.x + dx;
+			const nx = point.x + dx;
 			for (let dz = -1; dz < 1 + brushSize; ++dz)
 			{
-				let nz = point.y + dz;
-				let position = new Vector2D(nx, nz);
+				const nz = point.y + dz;
+				const position = new Vector2D(nx, nz);
 
 				if (g_Map.validHeight(position) && !gotHeightPt[nx][nz])
 				{
@@ -63,7 +63,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 			}
 		}
 
-	let withinArea = (area, position) => g_TileVertices.some(vertexPos => area.contains(Vector2D.sub(position, vertexPos)));
+	const withinArea = (area, position) => g_TileVertices.some(vertexPos => area.contains(Vector2D.sub(position, vertexPos)));
 
 	// Change height inside the area depending on the distance to the border
 	breadthFirstSearchPaint({
@@ -84,7 +84,7 @@ SmoothElevationPainter.prototype.paint = function(area)
 	});
 
 	// Smooth everything out
-	for (let point of heightPoints)
+	for (const point of heightPoints)
 	{
 		if (!withinArea(area, point))
 			continue;
@@ -94,11 +94,11 @@ SmoothElevationPainter.prototype.paint = function(area)
 
 		for (let dx = -1; dx <= 1; ++dx)
 		{
-			let nx = point.x + dx;
+			const nx = point.x + dx;
 
 			for (let dz = -1; dz <= 1; ++dz)
 			{
-				let nz = point.y + dz;
+				const nz = point.y + dz;
 
 				if (g_Map.validHeight(new Vector2D(nx, nz)))
 				{
@@ -126,27 +126,27 @@ SmoothElevationPainter.prototype.paint = function(area)
 function breadthFirstSearchPaint(args)
 {
 	// These variables save which points were visited already and the shortest distance to the area
-	let saw = [];
-	let dist = [];
+	const saw = [];
+	const dist = [];
 	for (let i = 0; i < args.gridSize; ++i)
 	{
 		saw[i] = new Uint8Array(args.gridSize);
 		dist[i] = new Uint16Array(args.gridSize);
 	}
 
-	let withinGrid = (x, z) => Math.min(x, z) >= 0 && Math.max(x, z) < args.gridSize;
+	const withinGrid = (x, z) => Math.min(x, z) >= 0 && Math.max(x, z) < args.gridSize;
 
 	// Find all points outside of the area, mark them as seen and set zero distance
-	let pointQueue = [];
-	for (let point of args.area.getPoints())
+	const pointQueue = [];
+	for (const point of args.area.getPoints())
 		// The brushSize is added because the entire brushSize is by definition part of the area
 		for (let dx = -1; dx < 1 + args.brushSize; ++dx)
 		{
-			let nx = point.x + dx;
+			const nx = point.x + dx;
 			for (let dz = -1; dz < 1 + args.brushSize; ++dz)
 			{
-				let nz = point.y + dz;
-				let position = new Vector2D(nx, nz);
+				const nz = point.y + dz;
+				const position = new Vector2D(nx, nz);
 
 				if (!withinGrid(nx, nz) || args.withinArea(args.area, position) || saw[nx][nz])
 					continue;
@@ -161,8 +161,8 @@ function breadthFirstSearchPaint(args)
 	// Call the paintTile method for each point within the area, with distance == 1 for the border.
 	while (pointQueue.length)
 	{
-		let point = pointQueue.shift();
-		let distance = dist[point.x][point.y];
+		const point = pointQueue.shift();
+		const distance = dist[point.x][point.y];
 
 		if (args.withinArea(args.area, point))
 			args.paintTile(point, distance);
@@ -170,11 +170,11 @@ function breadthFirstSearchPaint(args)
 		// Enqueue neighboring points
 		for (let dx = -1; dx <= 1; ++dx)
 		{
-			let nx = point.x + dx;
+			const nx = point.x + dx;
 			for (let dz = -1; dz <= 1; ++dz)
 			{
-				let nz = point.y + dz;
-				let position = new Vector2D(nx, nz);
+				const nz = point.y + dz;
+				const position = new Vector2D(nx, nz);
 
 				if (!withinGrid(nx, nz) || !args.withinArea(args.area, position) || saw[nx][nz])
 					continue;

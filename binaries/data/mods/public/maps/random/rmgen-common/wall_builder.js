@@ -22,14 +22,14 @@ var g_FortressTypes = createDefaultFortressTypes();
  */
 function loadWallsetsFromCivData()
 {
-	let wallsets = {};
-	for (let civ in g_CivData)
+	const wallsets = {};
+	for (const civ in g_CivData)
 	{
-		let civInfo = g_CivData[civ];
+		const civInfo = g_CivData[civ];
 		if (!civInfo.WallSets)
 			continue;
 
-		for (let path of civInfo.WallSets)
+		for (const path of civInfo.WallSets)
 		{
 			// File naming conventions:
 			// - structures/wallset_{style}
@@ -47,12 +47,12 @@ function loadWallsetsFromCivData()
 
 function loadWallset(wallsetPath, civ)
 {
-	let newWallset = { "curves": [] };
+	const newWallset = { "curves": [] };
 	const wallsetData = GetTemplateDataHelper(wallsetPath, null, null, g_Resources).wallSet;
 
-	for (let element in wallsetData.templates)
+	for (const element in wallsetData.templates)
 		if (element == "curves")
-			for (let filename of wallsetData.templates.curves)
+			for (const filename of wallsetData.templates.curves)
 				newWallset.curves.push(readyWallElement(filename, civ));
 		else
 			newWallset[element] = readyWallElement(wallsetData.templates[element], civ);
@@ -86,12 +86,12 @@ function Fortress(type, wall=[], centerToFirstElement=undefined)
 
 function createDefaultFortressTypes()
 {
-	let defaultFortresses = {};
+	const defaultFortresses = {};
 
 	/**
 	 * Define some basic default fortress types.
 	 */
-	let addFortress = (type, walls) => defaultFortresses[type] = { "wall": walls.concat(walls, walls, walls) };
+	const addFortress = (type, walls) => defaultFortresses[type] = { "wall": walls.concat(walls, walls, walls) };
 	addFortress("tiny", ["gate", "tower", "short", "cornerIn", "short", "tower"]);
 	addFortress("small", ["gate", "tower", "medium", "cornerIn", "medium", "tower"]);
 	addFortress("medium", ["gate", "tower", "long", "cornerIn", "long", "tower"]);
@@ -104,7 +104,7 @@ function createDefaultFortressTypes()
 	 * Define some fortresses based on those above, but designed for use
 	 * with the "palisades" wallset.
 	 */
-	for (let fortressType in defaultFortresses)
+	for (const fortressType in defaultFortresses)
 	{
 		const fillTowersBetween = ["short", "medium", "long", "start", "end", "cornerIn", "cornerOut"];
 		const newKey = fortressType + "Palisades";
@@ -156,7 +156,7 @@ function getWallElement(element, style)
 	// Attempt to derive any unknown elements.
 	// Defaults to a wall tower piece
 	const quarterBend = Math.PI / 2;
-	let wallset = g_WallStyles[style];
+	const wallset = g_WallStyles[style];
 	let civ = style.split("/")[0];
 	let ret = wallset.tower ? clone(wallset.tower) : { "angle": 0, "bend": 0, "length": 0, "indent": 0 };
 
@@ -164,7 +164,7 @@ function getWallElement(element, style)
 	{
 	case "cornerIn":
 		if (wallset.curves)
-			for (let curve of wallset.curves)
+			for (const curve of wallset.curves)
 				if (curve.bend == quarterBend)
 					ret = curve;
 
@@ -179,7 +179,7 @@ function getWallElement(element, style)
 
 	case "cornerOut":
 		if (wallset.curves)
-			for (let curve of wallset.curves)
+			for (const curve of wallset.curves)
 				if (curve.bend == quarterBend)
 				{
 					ret = clone(curve);
@@ -245,7 +245,7 @@ function getWallElement(element, style)
 			if (!g_CivData[civ])
 				civ = Object.keys(g_CivData)[0];
 
-			let templateName = "structures/" + civ + "/" + element;
+			const templateName = "structures/" + civ + "/" + element;
 			if (Engine.TemplateExists(templateName))
 			{
 				ret.indent = ret.length * (element == "outpost" || element.endsWith("_tower") ? -3 : 3.5);
@@ -272,7 +272,7 @@ function readyWallElement(path, civCode)
 {
 	path = path.replace(/\{civ\}/g, civCode);
 	const template = GetTemplateDataHelper(Engine.GetTemplate(path), null, null, g_Resources);
-	let length = template.wallPiece ? template.wallPiece.length : template.obstruction.shape.width;
+	const length = template.wallPiece ? template.wallPiece.length : template.obstruction.shape.width;
 
 	return deepfreeze({
 		"templateName": path,
@@ -297,12 +297,12 @@ function readyWallElement(path, civCode)
 function getWallAlignment(position, wall = [], style = "athen_stone", orientation = 0)
 {
 	style = validateStyle(style);
-	let alignment = [];
-	let wallPosition = position.clone();
+	const alignment = [];
+	const wallPosition = position.clone();
 
 	for (let i = 0; i < wall.length; ++i)
 	{
-		let element = getWallElement(wall[i], style);
+		const element = getWallElement(wall[i], style);
 		if (!element && i == 0)
 		{
 			warn("Not a valid wall element: style = " + style + ", wall[" + i + "] = " + wall[i] + "; " + uneval(element));
@@ -320,7 +320,7 @@ function getWallAlignment(position, wall = [], style = "athen_stone", orientatio
 		if (i + 1 < wall.length)
 		{
 			orientation += element.bend;
-			let nextElement = getWallElement(wall[i + 1], style);
+			const nextElement = getWallElement(wall[i + 1], style);
 			if (!nextElement)
 			{
 				warn("Not a valid wall element: style = " + style + ", wall[" + (i + 1) + "] = " + wall[i + 1] + "; " + uneval(nextElement));
@@ -330,8 +330,8 @@ function getWallAlignment(position, wall = [], style = "athen_stone", orientatio
 			let distance = (element.length + nextElement.length) / 2 - g_WallStyles[style].overlap;
 
 			// Corrections for elements with indent AND bending
-			let indent = element.indent;
-			let bend = element.bend;
+			const indent = element.indent;
+			const bend = element.bend;
 			if (bend != 0 && indent != 0)
 			{
 				// Indent correction to adjust distance
@@ -373,8 +373,8 @@ function getWallLength(style, wall)
 	style = validateStyle(style);
 
 	let length = 0;
-	let overlap = g_WallStyles[style].overlap;
-	for (let element of wall)
+	const overlap = g_WallStyles[style].overlap;
+	for (const element of wall)
 		length += getWallElement(element, style).length - overlap;
 
 	return length;
@@ -420,10 +420,10 @@ function placeWall(position, wall = [], style, playerId = 0, orientation = 0, co
 {
 	style = validateStyle(style, playerId);
 
-	let entities = [];
-	let constraint = new StaticConstraint(constraints);
+	const entities = [];
+	const constraint = new StaticConstraint(constraints);
 
-	for (let align of getWallAlignment(position, wall, style, orientation))
+	for (const align of getWallAlignment(position, wall, style, orientation))
 		if (align.templateName && g_Map.inMapBounds(align.position) && constraint.allows(align.position.clone().floor()))
 			entities.push(g_Map.placeEntityPassable(align.templateName, playerId, align.position, align.angle));
 
@@ -454,7 +454,7 @@ function placeCustomFortress(centerPosition, fortress, style, playerId = 0, orie
 		centerToFirstElement = getCenterToFirstElement(getWallAlignment(new Vector2D(0, 0), fortress.wall, style));
 
 	// Placing the fortress wall
-	let position = Vector2D.sum([
+	const position = Vector2D.sum([
 		centerPosition,
 		new Vector2D(centerToFirstElement.x, 0).rotate(-orientation),
 		new Vector2D(centerToFirstElement.y, 0).perpendicular().rotate(-orientation)
@@ -493,13 +493,13 @@ function placeLinearWall(startPosition, targetPosition, wallPart = undefined, st
 	style = validateStyle(style, playerId);
 
 	// Check arguments
-	for (let element of wallPart)
+	for (const element of wallPart)
 		if (getWallElement(element, style).bend != 0)
 			warn("placeLinearWall : Bending is not supported by this function, but the following bending wall element was used: " + element);
 
 	// Setup number of wall parts
-	let totalLength = startPosition.distanceTo(targetPosition);
-	let wallPartLength = getWallLength(style, wallPart);
+	const totalLength = startPosition.distanceTo(targetPosition);
+	const wallPartLength = getWallLength(style, wallPart);
 	let numParts = Math.ceil(totalLength / wallPartLength);
 	if (endWithFirst)
 		numParts = Math.ceil((totalLength - getWallElement(wallPart[0], style).length) / wallPartLength);
@@ -510,27 +510,27 @@ function placeLinearWall(startPosition, targetPosition, wallPart = undefined, st
 		scaleFactor = totalLength / (numParts * wallPartLength + getWallElement(wallPart[0], style).length);
 
 	// Setup angle
-	let wallAngle = getAngle(startPosition.x, startPosition.y, targetPosition.x, targetPosition.y);
-	let placeAngle = wallAngle - Math.PI / 2;
+	const wallAngle = getAngle(startPosition.x, startPosition.y, targetPosition.x, targetPosition.y);
+	const placeAngle = wallAngle - Math.PI / 2;
 
 	// Place wall entities
-	let entities = [];
-	let position = startPosition.clone();
-	let overlap = g_WallStyles[style].overlap;
-	let constraint = new StaticConstraint(constraints);
+	const entities = [];
+	const position = startPosition.clone();
+	const overlap = g_WallStyles[style].overlap;
+	const constraint = new StaticConstraint(constraints);
 	for (let partIndex = 0; partIndex < numParts; ++partIndex)
 		for (let elementIndex = 0; elementIndex < wallPart.length; ++elementIndex)
 		{
-			let wallEle = getWallElement(wallPart[elementIndex], style);
+			const wallEle = getWallElement(wallPart[elementIndex], style);
 
-			let wallLength = (wallEle.length - overlap) / 2;
-			let dist = new Vector2D(scaleFactor * wallLength, 0).rotate(-wallAngle);
+			const wallLength = (wallEle.length - overlap) / 2;
+			const dist = new Vector2D(scaleFactor * wallLength, 0).rotate(-wallAngle);
 
 			// Length correction
 			position.add(dist);
 
 			// Indent correction
-			let place = Vector2D.add(position, new Vector2D(0, wallEle.indent).rotate(-wallAngle));
+			const place = Vector2D.add(position, new Vector2D(0, wallEle.indent).rotate(-wallAngle));
 
 			if (wallEle.templateName && g_Map.inMapBounds(place) && constraint.allows(place.clone().floor()))
 				entities.push(g_Map.placeEntityPassable(wallEle.templateName, playerId, place, placeAngle + wallEle.angle));
@@ -540,8 +540,8 @@ function placeLinearWall(startPosition, targetPosition, wallPart = undefined, st
 
 	if (endWithFirst)
 	{
-		let wallEle = getWallElement(wallPart[0], style);
-		let wallLength = (wallEle.length - overlap) / 2;
+		const wallEle = getWallElement(wallPart[0], style);
+		const wallLength = (wallEle.length - overlap) / 2;
 		position.add(new Vector2D(scaleFactor * wallLength, 0).rotate(-wallAngle));
 		if (wallEle.templateName && g_Map.inMapBounds(position) && constraint.allows(position.clone().floor()))
 			entities.push(g_Map.placeEntityPassable(wallEle.templateName, playerId, position, placeAngle + wallEle.angle));
@@ -583,13 +583,13 @@ function placeCircularWall(center, radius, wallPart, style, playerId = 0, orient
 	if (maxBendOff > Math.PI / 2 || maxBendOff < 0)
 		warn("placeCircularWall : maxBendOff should satisfy 0 < maxBendOff < PI/2 (~1.5rad) but it is: " + maxBendOff);
 
-	for (let element of wallPart)
+	for (const element of wallPart)
 		if (getWallElement(element, style).bend != 0)
 			warn("placeCircularWall : Bending is not supported by this function, but the following bending wall element was used: " + element);
 
 	// Setup number of wall parts
-	let totalLength = maxAngle * radius;
-	let wallPartLength = getWallLength(style, wallPart);
+	const totalLength = maxAngle * radius;
+	const wallPartLength = getWallLength(style, wallPart);
 	let numParts = Math.ceil(totalLength / wallPartLength);
 	if (endWithFirst)
 		numParts = Math.ceil((totalLength - getWallElement(wallPart[0], style).length) / wallPartLength);
@@ -600,21 +600,21 @@ function placeCircularWall(center, radius, wallPart, style, playerId = 0, orient
 		scaleFactor = totalLength / (numParts * wallPartLength + getWallElement(wallPart[0], style).length);
 
 	// Place wall entities
-	let entities = [];
-	let constraint = new StaticConstraint(constraints);
+	const entities = [];
+	const constraint = new StaticConstraint(constraints);
 	let actualAngle = orientation;
 	let position = Vector2D.add(center, new Vector2D(radius, 0).rotate(-actualAngle));
-	let overlap = g_WallStyles[style].overlap;
+	const overlap = g_WallStyles[style].overlap;
 	for (let partIndex = 0; partIndex < numParts; ++partIndex)
 		for (let wallEle of wallPart)
 		{
 			wallEle = getWallElement(wallEle, style);
 
 			// Width correction
-			let addAngle = scaleFactor * (wallEle.length - overlap) / radius;
-			let target = Vector2D.add(center, new Vector2D(radius, 0).rotate(-actualAngle - addAngle));
-			let place = Vector2D.average([position, target]);
-			let placeAngle = actualAngle + addAngle / 2;
+			const addAngle = scaleFactor * (wallEle.length - overlap) / radius;
+			const target = Vector2D.add(center, new Vector2D(radius, 0).rotate(-actualAngle - addAngle));
+			const place = Vector2D.average([position, target]);
+			const placeAngle = actualAngle + addAngle / 2;
 
 			// Indent correction
 			place.sub(new Vector2D(wallEle.indent, 0).rotate(-placeAngle));
@@ -622,7 +622,7 @@ function placeCircularWall(center, radius, wallPart, style, playerId = 0, orient
 			// Placement
 			if (wallEle.templateName && g_Map.inMapBounds(place) && constraint.allows(place.clone().floor()))
 			{
-				let entity = g_Map.placeEntityPassable(wallEle.templateName, playerId, place, placeAngle + wallEle.angle);
+				const entity = g_Map.placeEntityPassable(wallEle.templateName, playerId, place, placeAngle + wallEle.angle);
 				if (entity)
 					entities.push(entity);
 			}
@@ -634,11 +634,11 @@ function placeCircularWall(center, radius, wallPart, style, playerId = 0, orient
 
 	if (endWithFirst)
 	{
-		let wallEle = getWallElement(wallPart[0], style);
-		let addAngle = scaleFactor * wallEle.length / radius;
-		let target = Vector2D.add(center, new Vector2D(radius, 0).rotate(-actualAngle - addAngle));
-		let place = Vector2D.average([position, target]);
-		let placeAngle = actualAngle + addAngle / 2;
+		const wallEle = getWallElement(wallPart[0], style);
+		const addAngle = scaleFactor * wallEle.length / radius;
+		const target = Vector2D.add(center, new Vector2D(radius, 0).rotate(-actualAngle - addAngle));
+		const place = Vector2D.average([position, target]);
+		const placeAngle = actualAngle + addAngle / 2;
 		if (g_Map.inMapBounds(place) && constraint.allows(place.clone().floor()))
 			entities.push(g_Map.placeEntityPassable(wallEle.templateName, playerId, place, placeAngle + wallEle.angle));
 	}
@@ -668,28 +668,28 @@ function placePolygonalWall(centerPosition, radius, wallPart, cornerWallElement 
 	style = validateStyle(style, playerId);
 
 	let entities = [];
-	let constraint = new StaticConstraint(constraints);
-	let angleAdd = Math.PI * 2 / numCorners;
-	let angleStart = orientation - angleAdd / 2;
-	let corners = new Array(numCorners).fill(0).map((zero, i) =>
+	const constraint = new StaticConstraint(constraints);
+	const angleAdd = Math.PI * 2 / numCorners;
+	const angleStart = orientation - angleAdd / 2;
+	const corners = new Array(numCorners).fill(0).map((zero, i) =>
 		Vector2D.add(centerPosition, new Vector2D(radius, 0).rotate(-angleStart - i * angleAdd)));
 
 	for (let i = 0; i < numCorners; ++i)
 	{
-		let angleToCorner = getAngle(corners[i].x, corners[i].y, centerPosition.x, centerPosition.y);
+		const angleToCorner = getAngle(corners[i].x, corners[i].y, centerPosition.x, centerPosition.y);
 		if (g_Map.inMapBounds(corners[i]) && constraint.allows(corners[i].clone().floor()))
 		{
-			let entity = g_Map.placeEntityPassable(getWallElement(cornerWallElement, style).templateName, playerId, corners[i], angleToCorner);
+			const entity = g_Map.placeEntityPassable(getWallElement(cornerWallElement, style).templateName, playerId, corners[i], angleToCorner);
 			if (entity)
 				entities.push(entity);
 		}
 
 		if (!skipFirstWall || i != 0)
 		{
-			let cornerLength = getWallElement(cornerWallElement, style).length / 2;
-			let cornerAngle = angleToCorner + angleAdd / 2;
-			let targetCorner = (i + 1) % numCorners;
-			let cornerPosition = new Vector2D(cornerLength, 0).rotate(-cornerAngle).perpendicular();
+			const cornerLength = getWallElement(cornerWallElement, style).length / 2;
+			const cornerAngle = angleToCorner + angleAdd / 2;
+			const targetCorner = (i + 1) % numCorners;
+			const cornerPosition = new Vector2D(cornerLength, 0).rotate(-cornerAngle).perpendicular();
 
 			entities = entities.concat(
 				placeLinearWall(
@@ -734,11 +734,11 @@ function placeIrregularPolygonalWall(centerPosition, radius, cornerWallElement =
 
 	// Generating a generic wall part assortment with each wall part including 1 gate lengthened by walls and towers
 	// NOTE: It might be a good idea to write an own function for that...
-	let defaultWallPartsAssortment = [["short"], ["medium"], ["long"], ["gate", "tower", "short"]];
-	let centeredWallPart = ["gate"];
-	let extendingWallPartAssortment = [["tower", "long"], ["tower", "medium"]];
+	const defaultWallPartsAssortment = [["short"], ["medium"], ["long"], ["gate", "tower", "short"]];
+	const centeredWallPart = ["gate"];
+	const extendingWallPartAssortment = [["tower", "long"], ["tower", "medium"]];
 	defaultWallPartsAssortment.push(centeredWallPart);
-	for (let assortment of extendingWallPartAssortment)
+	for (const assortment of extendingWallPartAssortment)
 	{
 		let wallPart = centeredWallPart;
 		for (let j = 0; j < radius; ++j)
@@ -760,7 +760,7 @@ function placeIrregularPolygonalWall(centerPosition, radius, cornerWallElement =
 
 	// Setup angles
 	let angleToCover = Math.PI * 2;
-	let angleAddList = [];
+	const angleAddList = [];
 	for (let i = 0; i < numCorners; ++i)
 	{
 		// Randomize covered angles. Variety scales down with raising angle though...
@@ -769,7 +769,7 @@ function placeIrregularPolygonalWall(centerPosition, radius, cornerWallElement =
 	}
 
 	// Setup corners
-	let corners = [];
+	const corners = [];
 	let angleActual = orientation - angleAddList[0] / 2;
 	for (let i = 0; i < numCorners; ++i)
 	{
@@ -780,28 +780,28 @@ function placeIrregularPolygonalWall(centerPosition, radius, cornerWallElement =
 	}
 
 	// Setup best wall parts for the different walls (a bit confusing naming...)
-	let wallPartLengths = [];
+	const wallPartLengths = [];
 	let maxWallPartLength = 0;
-	for (let wallPart of wallPartsAssortment)
+	for (const wallPart of wallPartsAssortment)
 	{
-		let length = getWallLength(style, wallPart);
+		const length = getWallLength(style, wallPart);
 		wallPartLengths.push(length);
 		if (length > maxWallPartLength)
 			maxWallPartLength = length;
 	}
 
-	let wallPartList = []; // This is the list of the wall parts to use for the walls between the corners, not to confuse with wallPartsAssortment!
+	const wallPartList = []; // This is the list of the wall parts to use for the walls between the corners, not to confuse with wallPartsAssortment!
 	for (let i = 0; i < numCorners; ++i)
 	{
 		let bestWallPart = []; // This is a simple wall part not a wallPartsAssortment!
 		let bestWallLength = Infinity;
-		let targetCorner = (i + 1) % numCorners;
+		const targetCorner = (i + 1) % numCorners;
 		// NOTE: This is not quite the length the wall will be in the end. Has to be tweaked...
-		let wallLength = corners[i].distanceTo(corners[targetCorner]);
-		let numWallParts = Math.ceil(wallLength / maxWallPartLength);
+		const wallLength = corners[i].distanceTo(corners[targetCorner]);
+		const numWallParts = Math.ceil(wallLength / maxWallPartLength);
 		for (let partIndex = 0; partIndex < wallPartsAssortment.length; ++partIndex)
 		{
-			let linearWallLength = numWallParts * wallPartLengths[partIndex];
+			const linearWallLength = numWallParts * wallPartLengths[partIndex];
 			if (linearWallLength < bestWallLength && linearWallLength > wallLength)
 			{
 				bestWallPart = wallPartsAssortment[partIndex];
@@ -813,20 +813,20 @@ function placeIrregularPolygonalWall(centerPosition, radius, cornerWallElement =
 
 	// Place Corners and walls
 	let entities = [];
-	let constraint = new StaticConstraint(constraints);
+	const constraint = new StaticConstraint(constraints);
 	for (let i = 0; i < numCorners; ++i)
 	{
-		let angleToCorner = getAngle(corners[i].x, corners[i].y, centerPosition.x, centerPosition.y);
+		const angleToCorner = getAngle(corners[i].x, corners[i].y, centerPosition.x, centerPosition.y);
 		if (g_Map.inMapBounds(corners[i]) && constraint.allows(corners[i].clone().floor()))
 			entities.push(
 				g_Map.placeEntityPassable(getWallElement(cornerWallElement, style).templateName, playerId, corners[i], angleToCorner));
 
 		if (!skipFirstWall || i != 0)
 		{
-			let cornerLength = getWallElement(cornerWallElement, style).length / 2;
-			let targetCorner = (i + 1) % numCorners;
-			let startAngle = angleToCorner + angleAddList[i] / 2;
-			let targetAngle = angleToCorner + angleAddList[targetCorner] / 2;
+			const cornerLength = getWallElement(cornerWallElement, style).length / 2;
+			const targetCorner = (i + 1) % numCorners;
+			const startAngle = angleToCorner + angleAddList[i] / 2;
+			const targetAngle = angleToCorner + angleAddList[targetCorner] / 2;
 
 			entities = entities.concat(
 				placeLinearWall(
@@ -867,10 +867,10 @@ function placeGenericFortress(center, radius = 20, playerId = 0, style, irregula
 	style = validateStyle(style, playerId);
 
 	// Setup some vars
-	let startAngle = randomAngle();
-	let actualOff = new Vector2D(radius, 0).rotate(-startAngle);
+	const startAngle = randomAngle();
+	const actualOff = new Vector2D(radius, 0).rotate(-startAngle);
 	let actualAngle = startAngle;
-	let pointDistance = getWallLength(style, ["long", "tower"]);
+	const pointDistance = getWallLength(style, ["long", "tower"]);
 
 	// Searching for a well fitting point derivation
 	let tries = 0;
@@ -879,20 +879,20 @@ function placeGenericFortress(center, radius = 20, playerId = 0, style, irregula
 	let overlap;
 	while (tries < maxTries && minOverlap > g_WallStyles[style].overlap)
 	{
-		let pointDerivation = [];
+		const pointDerivation = [];
 		let distanceToTarget = 1000;
 		while (true)
 		{
-			let indent = randFloat(-irregularity * pointDistance, irregularity * pointDistance);
-			let tmp = new Vector2D(radius + indent, 0).rotate(-actualAngle - pointDistance / radius);
-			let tmpAngle = getAngle(actualOff.x, actualOff.y, tmp.x, tmp.y);
+			const indent = randFloat(-irregularity * pointDistance, irregularity * pointDistance);
+			const tmp = new Vector2D(radius + indent, 0).rotate(-actualAngle - pointDistance / radius);
+			const tmpAngle = getAngle(actualOff.x, actualOff.y, tmp.x, tmp.y);
 
 			actualOff.add(new Vector2D(pointDistance, 0).rotate(-tmpAngle));
 			actualAngle = getAngle(0, 0, actualOff.x, actualOff.y);
 			pointDerivation.push(actualOff.clone());
 			distanceToTarget = pointDerivation[0].distanceTo(actualOff);
 
-			let numPoints = pointDerivation.length;
+			const numPoints = pointDerivation.length;
 			if (numPoints > 3 && distanceToTarget < pointDistance) // Could be done better...
 			{
 				overlap = pointDistance - pointDerivation[numPoints - 1].distanceTo(pointDerivation[0]);
@@ -910,12 +910,12 @@ function placeGenericFortress(center, radius = 20, playerId = 0, style, irregula
 	log("placeGenericFortress: Reduced overlap to " + minOverlap + " after " + tries + " tries");
 
 	// Place wall
-	let entities = [];
-	let constraint = new StaticConstraint(constraints);
+	const entities = [];
+	const constraint = new StaticConstraint(constraints);
 	for (let pointIndex = 0; pointIndex < bestPointDerivation.length; ++pointIndex)
 	{
 		let start = Vector2D.add(center, bestPointDerivation[pointIndex]);
-		let target = Vector2D.add(center, bestPointDerivation[(pointIndex + 1) % bestPointDerivation.length]);
+		const target = Vector2D.add(center, bestPointDerivation[(pointIndex + 1) % bestPointDerivation.length]);
 		let angle = getAngle(start.x, start.y, target.x, target.y);
 
 		let element = (pointIndex + 1) % gateOccurence == 0 ? "gate" : "long";
@@ -923,7 +923,7 @@ function placeGenericFortress(center, radius = 20, playerId = 0, style, irregula
 
 		if (element.templateName)
 		{
-			let pos = Vector2D.add(start, new Vector2D(start.distanceTo(target) / 2, 0).rotate(-angle));
+			const pos = Vector2D.add(start, new Vector2D(start.distanceTo(target) / 2, 0).rotate(-angle));
 			if (g_Map.inMapBounds(pos) && constraint.allows(pos.clone().floor()))
 				entities.push(g_Map.placeEntityPassable(element.templateName, playerId, pos, angle - Math.PI / 2 + element.angle));
 		}
@@ -932,8 +932,8 @@ function placeGenericFortress(center, radius = 20, playerId = 0, style, irregula
 		start = Vector2D.add(center, bestPointDerivation[(pointIndex + bestPointDerivation.length - 1) % bestPointDerivation.length]);
 		angle = getAngle(start.x, start.y, target.x, target.y);
 
-		let tower = getWallElement("tower", style);
-		let pos = Vector2D.add(center, bestPointDerivation[pointIndex]);
+		const tower = getWallElement("tower", style);
+		const pos = Vector2D.add(center, bestPointDerivation[pointIndex]);
 		if (g_Map.inMapBounds(pos) && constraint.allows(pos.clone().floor()))
 			entities.push(
 				g_Map.placeEntityPassable(tower.templateName, playerId, pos, angle - Math.PI / 2 + tower.angle));

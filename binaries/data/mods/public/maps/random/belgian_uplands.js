@@ -6,22 +6,22 @@ const tPrimary = ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d",
 	"temp_grass_long_b", "temp_grass_clovers_2", "temp_grass_mossy", "temp_grass_plants"];
 
 const heightLand = 0;
-var g_Map = new RandomMap(heightLand, tPrimary);
-var numPlayers = getNumPlayers();
-var mapSize = g_Map.getSize();
-var mapCenter = g_Map.getCenter();
+const g_Map = new RandomMap(heightLand, tPrimary);
+const numPlayers = getNumPlayers();
+const mapSize = g_Map.getSize();
+const mapCenter = g_Map.getCenter();
 
 // Set target min and max height depending on map size to make average stepness the same on all map sizes
-var heightRange = {"min": MIN_HEIGHT * mapSize / 8192, "max": MAX_HEIGHT * mapSize / 8192};
+const heightRange = {"min": MIN_HEIGHT * mapSize / 8192, "max": MAX_HEIGHT * mapSize / 8192};
 
 // Since erosion is not predictable, actual water coverage can differ much with the same value
-var averageWaterCoverage = scaleByMapSize(1/5, 1/3);
+const averageWaterCoverage = scaleByMapSize(1/5, 1/3);
 
-var heightSeaGround = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min);
-var heightSeaGroundAdjusted = heightSeaGround + MIN_HEIGHT;
+const heightSeaGround = -MIN_HEIGHT + heightRange.min + averageWaterCoverage * (heightRange.max - heightRange.min);
+const heightSeaGroundAdjusted = heightSeaGround + MIN_HEIGHT;
 setWaterHeight(heightSeaGround);
 
-var textueByHeight = [];
+const textueByHeight = [];
 
 // Deep water
 textueByHeight.push({"upperHeightLimit": heightRange.min + 1/3 * (heightSeaGroundAdjusted - heightRange.min), "terrain": "temp_sea_rocks"});
@@ -49,7 +49,7 @@ textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 2/6 * (height
 	"terrain": ["temp_grass", "temp_grass_d", "temp_grass_long_b", "temp_grass_plants"]});
 
 // Medium level grass
-// var testActor = "actor|geology/decal_stone_medit_a.xml";
+// const testActor = "actor|geology/decal_stone_medit_a.xml";
 textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 3/6 * (heightRange.max - heightSeaGroundAdjusted),
 	"terrain": ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_mossy"]});
 
@@ -63,8 +63,8 @@ var terrains = ["temp_grass_plants|gaia/tree/euro_beech", "temp_grass_mossy|gaia
 	"temp_grass_long|gaia/fruit/apple", "temp_grass_clovers|gaia/fruit/berry_01", "temp_grass_clovers_2|gaia/fruit/grapes",
 	"temp_grass_plants|gaia/fauna_deer", "temp_grass_long_b|gaia/fauna_rabbit"];
 
-var numTerrains = terrains.length;
-for (var i = 0; i < numTerrains; i++)
+const numTerrains = terrains.length;
+for (let i = 0; i < numTerrains; i++)
 	terrains.push("temp_grass_plants");
 textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 5/6 * (heightRange.max - heightSeaGroundAdjusted), "terrain": terrains});
 
@@ -77,11 +77,11 @@ textueByHeight.push({"upperHeightLimit": heightSeaGroundAdjusted + 6/6 * (height
 
 Engine.SetProgress(5);
 
-var lowerHeightLimit = textueByHeight[3].upperHeightLimit;
-var upperHeightLimit = textueByHeight[6].upperHeightLimit;
+const lowerHeightLimit = textueByHeight[3].upperHeightLimit;
+const upperHeightLimit = textueByHeight[6].upperHeightLimit;
 
-var playerPosition;
-var playerIDs;
+let playerPosition;
+let playerIDs;
 
 while (true)
 {
@@ -100,13 +100,13 @@ while (true)
 	rescaleHeightmap(heightRange.min, heightRange.max, g_Map.height);
 
 	g_Map.log("Mark valid heightrange for player starting positions");
-	let tHeightRange = g_Map.createTileClass();
-	let area = createArea(
+	const tHeightRange = g_Map.createTileClass();
+	const area = createArea(
 		new DiskPlacer(fractionToTiles(0.5) - MAP_BORDER_WIDTH, mapCenter),
 		new TileClassPainter(tHeightRange),
 		new HeightConstraint(lowerHeightLimit, upperHeightLimit));
 
-	let players = area && playerPlacementRandom(sortAllPlayers(), stayClasses(tHeightRange, 15), true);
+	const players = area && playerPlacementRandom(sortAllPlayers(), stayClasses(tHeightRange, 15), true);
 	if (players)
 	{
 		[playerIDs, playerPosition] = players;
@@ -118,7 +118,7 @@ while (true)
 Engine.SetProgress(60);
 
 g_Map.log("Painting terrain by height and add props");
-var propDensity = 1; // 1 means as determined in the loop, less for large maps as set below
+let propDensity = 1; // 1 means as determined in the loop, less for large maps as set below
 if (mapSize > 500)
 	propDensity = 1/4;
 else if (mapSize > 400)
@@ -127,12 +127,12 @@ else if (mapSize > 400)
 for (let x = 0; x < mapSize; ++x)
 	for (let y = 0; y < mapSize; ++y)
 	{
-		let position = new Vector2D(x, y);
+		const position = new Vector2D(x, y);
 		if (!g_Map.validHeight(position))
 			continue;
 
-		var textureMinHeight = heightRange.min;
-		for (var i = 0; i < textueByHeight.length; i++)
+		let textureMinHeight = heightRange.min;
+		for (let i = 0; i < textueByHeight.length; i++)
 		{
 			if (g_Map.getHeight(position) >= textureMinHeight && g_Map.getHeight(position) <= textueByHeight[i].upperHeightLimit)
 			{
@@ -254,9 +254,9 @@ else
 {
 	g_Map.log("Placing players and starting resources");
 
-	let resourceDistance = 8;
-	let resourceSpacing = 1;
-	let resourceCount = 4;
+	const resourceDistance = 8;
+	const resourceSpacing = 1;
+	const resourceCount = 4;
 
 	for (let i = 0; i < numPlayers; ++i)
 	{
@@ -264,10 +264,10 @@ else
 
 		for (let j = 1; j <= 4; ++j)
 		{
-			let uAngle = BUILDING_ORIENTATION - Math.PI * (2-j) / 2;
+			const uAngle = BUILDING_ORIENTATION - Math.PI * (2-j) / 2;
 			for (let k = 0; k < resourceCount; ++k)
 			{
-				let pos = Vector2D.sum([
+				const pos = Vector2D.sum([
 					playerPosition[i],
 					new Vector2D(resourceDistance, 0).rotate(-uAngle),
 					new Vector2D(k * resourceSpacing, 0).rotate(-uAngle - Math.PI/2),

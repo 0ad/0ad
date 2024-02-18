@@ -42,24 +42,24 @@ const heightLand = 3;
 const heightHill = 35;
 const heightOffsetBump = 2;
 
-var g_Map = new RandomMap(heightLand, tGrass);
+const g_Map = new RandomMap(heightLand, tGrass);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clShallows = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clShallows = g_Map.createTileClass();
 
-var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
+const [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 placePlayerBases({
 	"PlayerPlacement": [playerIDs, playerPosition],
@@ -91,12 +91,12 @@ placePlayerBases({
 Engine.SetProgress(20);
 
 g_Map.log("Creating rivers");
-var riverStart = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.15), mapCenter)[0];
-var riverEnd = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.49), mapCenter)[0];
+const riverStart = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.15), mapCenter)[0];
+const riverEnd = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.49), mapCenter)[0];
 
 for (let i = 0; i < numPlayers; ++i)
 {
-	let neighborID = (i + 1) % numPlayers;
+	const neighborID = (i + 1) % numPlayers;
 
 	// Lake near the center
 	createArea(
@@ -140,13 +140,13 @@ for (let i = 0; i < numPlayers; ++i)
 	});
 
 	// Animals in shallows
-	let shallowPosition = Vector2D.average([playerPosition[i], playerPosition[neighborID]]).round();
-	let objects = [
+	const shallowPosition = Vector2D.average([playerPosition[i], playerPosition[neighborID]]).round();
+	const objects = [
 		new SimpleObject(oWildebeest, 5, 6, 0, 4),
 		new SimpleObject(oElephant, 2, 3, 0, 4)
 	];
 
-	for (let object of objects)
+	for (const object of objects)
 		createObjectGroup(new SimpleGroup([object], true, clFood, shallowPosition), 0);
 }
 
@@ -171,14 +171,14 @@ createAreas(
 	scaleByMapSize(1, 4) * numPlayers);
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(160, 900, 0.02);
-var types = [
+const [forestTrees, stragglerTrees] = getTreeCounts(160, 900, 0.02);
+const types = [
 	[[tForestFloor, tGrass, pForest], [tForestFloor, pForest]]
 ];
 
-var size = forestTrees / (0.5 * scaleByMapSize(2,8) * numPlayers);
-var num = Math.floor(size / types.length);
-for (let type of types)
+const forestSize = forestTrees / (0.5 * scaleByMapSize(2,8) * numPlayers);
+const num = Math.floor(forestSize / types.length);
+for (const type of types)
 	createAreas(
 		new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
 		[
@@ -191,7 +191,7 @@ for (let type of types)
 Engine.SetProgress(50);
 
 g_Map.log("Creating dirt patches");
-for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
+for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		[
@@ -204,7 +204,7 @@ for (let size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8
 		scaleByMapSize(15, 45));
 
 g_Map.log("Creating grass patches");
-for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
+for (const size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
 	createAreas(
 		new ClumpPlacer(size, 0.3, 0.06, 0.5),
 		new TerrainPainter(tGrassPatch),
@@ -213,7 +213,7 @@ for (let size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5
 Engine.SetProgress(55);
 
 g_Map.log("Creating stone mines");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
+let group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
 	scaleByMapSize(4,16), 100
@@ -339,7 +339,7 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 
-var planetm = 4;
+let planetm = 4;
 g_Map.log("Creating small grass tufts");
 group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1,2, 0,1, -Math.PI / 8, Math.PI / 8)]

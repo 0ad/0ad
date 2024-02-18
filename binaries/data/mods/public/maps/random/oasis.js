@@ -43,30 +43,30 @@ const heightOasisPath = 4;
 const heightOffsetBump = 4;
 const heightOffsetDune = 18;
 
-var g_Map = new RandomMap(heightLand, tSand);
+const g_Map = new RandomMap(heightLand, tSand);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clOasis = g_Map.createTileClass();
-var clPassage = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clOasis = g_Map.createTileClass();
+const clPassage = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
-var waterRadius = scaleByMapSize(7, 50);
-var shoreDistance = scaleByMapSize(4, 10);
-var forestDistance = scaleByMapSize(6, 20);
+const waterRadius = scaleByMapSize(7, 50);
+const shoreDistance = scaleByMapSize(4, 10);
+const forestDistance = scaleByMapSize(6, 20);
 
-var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
+const [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 g_Map.log("Creating small oasis near the players...");
-var forestDist = 1.2 * defaultPlayerBaseRadius();
+const forestDist = 1.2 * defaultPlayerBaseRadius();
 for (let i = 0; i < numPlayers; ++i)
 {
 	let forestPosition;
@@ -87,7 +87,7 @@ for (let i = 0; i < numPlayers; ++i)
 	let flowerPosition;
 	let reedsPosition;
 	do {
-		let waterAngle = forestAngle + randFloat(1, 5) / 3 * Math.PI;
+		const waterAngle = forestAngle + randFloat(1, 5) / 3 * Math.PI;
 		waterPosition = Vector2D.add(forestPosition, new Vector2D(6, 0).rotate(-waterAngle)).round();
 		flowerPosition = Vector2D.add(forestPosition, new Vector2D(3, 0).rotate(-waterAngle)).round();
 		reedsPosition = Vector2D.add(forestPosition, new Vector2D(5, 0).rotate(-waterAngle)).round();
@@ -175,8 +175,8 @@ Engine.SetProgress(50);
 if (mapSize > 150 && randBool())
 {
 	g_Map.log("Creating path though the oasis");
-	let pathWidth = scaleByMapSize(7, 18);
-	let points = distributePointsOnCircle(2, randomAngle(), waterRadius + shoreDistance + forestDistance + pathWidth, mapCenter)[0];
+	const pathWidth = scaleByMapSize(7, 18);
+	const points = distributePointsOnCircle(2, randomAngle(), waterRadius + shoreDistance + forestDistance + pathWidth, mapCenter)[0];
 	createArea(
 		new PathPlacer(points[0], points[1], pathWidth, 0.4, 1, 0.2, 0),
 		[
@@ -186,7 +186,7 @@ if (mapSize > 150 && randBool())
 		]);
 }
 g_Map.log("Creating some straggler trees around the passage");
-var group = new SimpleGroup([new SimpleObject(ePalmTall, 1,1, 0,0),new SimpleObject(ePalmShort, 1, 2, 1, 2), new SimpleObject(aBushA, 0,2, 1,3)], true, clForest);
+let group = new SimpleGroup([new SimpleObject(ePalmTall, 1,1, 0,0),new SimpleObject(ePalmShort, 1, 2, 1, 2), new SimpleObject(aBushA, 0,2, 1,3)], true, clForest);
 createObjectGroupsDeprecated(group, 0, stayClasses(clPassage, 3), scaleByMapSize(60, 250), 100);
 
 g_Map.log("Creating stone mines");
@@ -237,7 +237,7 @@ Engine.SetProgress(85);
 g_Map.log("Creating oasis animals");
 for (let i = 0; i < scaleByMapSize(5, 30); ++i)
 {
-	let animalPos = Vector2D.add(mapCenter, new Vector2D(forestDistance + shoreDistance + waterRadius, 0).rotate(randomAngle()));
+	const animalPos = Vector2D.add(mapCenter, new Vector2D(forestDistance + shoreDistance + waterRadius, 0).rotate(randomAngle()));
 
 	createObjectGroup(
 		new RandomGroup(
@@ -255,7 +255,7 @@ for (let i = 0; i < scaleByMapSize(5, 30); ++i)
 Engine.SetProgress(90);
 
 g_Map.log("Creating bushes");
-var group = new SimpleGroup(
+group = new SimpleGroup(
 	[new SimpleObject(aBushB, 1,2, 0,2), new SimpleObject(aBushA, 2,4, 0,2)]
 );
 createObjectGroupsDeprecated(group, 0,
@@ -263,17 +263,17 @@ createObjectGroupsDeprecated(group, 0,
 	scaleByMapSize(10, 40), 20
 );
 
-var objectsWaterFlora = [
+const objectsWaterFlora = [
 	new SimpleObject(aReedsA, 5, 12, 0, 2),
 	new SimpleObject(aReedsB, 5, 12, 0, 2)
 ];
 
 g_Map.log("Creating sand blows and beautifications");
-for (var sandx = 0; sandx < mapSize; sandx += 4)
-	for (var sandz = 0; sandz < mapSize; sandz += 4)
+for (let sandx = 0; sandx < mapSize; sandx += 4)
+	for (let sandz = 0; sandz < mapSize; sandz += 4)
 	{
-		let position = new Vector2D(sandx, sandz);
-		let height = g_Map.getHeight(position);
+		const position = new Vector2D(sandx, sandz);
+		const height = g_Map.getHeight(position);
 
 		if (height > heightSand)
 		{

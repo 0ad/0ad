@@ -54,34 +54,34 @@ const pForest = [
 	tForestFloor
 ];
 
-var heightSeaGround = -7;
-var heightShallow = -0.8;
-var heightLand = 3;
+const heightSeaGround = -7;
+const heightShallow = -0.8;
+const heightLand = 3;
 
-var g_Map = new RandomMap(heightLand, tHill);
+const g_Map = new RandomMap(heightLand, tHill);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clGrass = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clPassageway = g_Map.createTileClass();
-var clShallow = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+let clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clGrass = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clPassageway = g_Map.createTileClass();
+const clShallow = g_Map.createTileClass();
 
 g_Map.log("Creating the main river");
-var riverAngle = randomAngle();
-var riverWidth = scaleByMapSize(20, 90);
-var riverStart = new Vector2D(mapCenter.x, 0).rotateAround(riverAngle, mapCenter);
-var riverEnd = new Vector2D(mapCenter.x, mapSize).rotateAround(riverAngle, mapCenter);
+const riverAngle = randomAngle();
+const riverWidth = scaleByMapSize(20, 90);
+const riverStart = new Vector2D(mapCenter.x, 0).rotateAround(riverAngle, mapCenter);
+const riverEnd = new Vector2D(mapCenter.x, mapSize).rotateAround(riverAngle, mapCenter);
 
 createArea(
 	new PathPlacer(riverStart, riverEnd, riverWidth, 0.2, scaleByMapSize(0.3, 1), 0.04, 0.01),

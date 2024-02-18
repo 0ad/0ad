@@ -42,41 +42,41 @@ const pForestD = [tForestFloor + TERRAIN_SEPARATOR + oBeech, tForestFloor];
 const pForestO = [tForestFloor + TERRAIN_SEPARATOR + oOak, tForestFloor];
 const pForestP = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
 
-var heightSeaGround = -4;
-var heightLand = 3;
+const heightSeaGround = -4;
+const heightLand = 3;
 
-var g_Map = new RandomMap(heightLand, tGrass);
+const g_Map = new RandomMap(heightLand, tGrass);
 
 const numPlayers = getNumPlayers();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clWater = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
 
-var treasures = [
+const treasures = [
 	{ "template": oFoodTreasure, "count": 5 },
 	{ "template": oWoodTreasure, "count": 5 },
 	{ "template": oMetalTreasure, "count": 4 },
 	{ "template": oStoneTreasure, "count": 2 }
 ];
 
-var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
+const [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
 
 g_Map.log("Creating playerbases");
-var playerAngle = BUILDING_ORIENTATION;
+const playerAngle = BUILDING_ORIENTATION;
 for (let i = 0; i < numPlayers; ++i)
 {
 	if (isNomad())
 		break;
 
 	// CC and units
-	for (let dist of [6, 8])
+	for (const dist of [6, 8])
 	{
 		let ents = getStartingEntities(playerIDs[i]);
 
@@ -97,8 +97,8 @@ for (let i = 0; i < numPlayers; ++i)
 			0);
 
 	// Ground texture
-	var civ = getCivCode(playerIDs[i]);
-	var tilesSize = civ == "cart" ? 23 : 21;
+	const civ = getCivCode(playerIDs[i]);
+	const tilesSize = civ == "cart" ? 23 : 21;
 	createArea(
 		new ConvexPolygonPlacer(
 			new Array(4).fill(0).map((zero, j) => new Vector2D(tilesSize, 0).rotate(j * Math.PI / 2 - playerAngle - Math.PI/4).add(playerPosition[i])),
@@ -109,7 +109,7 @@ for (let i = 0; i < numPlayers; ++i)
 		]);
 
 	// Fortress
-	var wall = ["gate", "tower", "long",
+	const wall = ["gate", "tower", "long",
 		"cornerIn", "long", "barracks", "tower", "long", "tower", "long",
 		"cornerIn", "long", "stable", "tower", "gate", "tower", "long",
 		"cornerIn", "long", "temple", "tower", "long", "tower", "long",
@@ -119,8 +119,8 @@ for (let i = 0; i < numPlayers; ++i)
 }
 
 g_Map.log("Creating lakes");
-var numLakes = Math.round(scaleByMapSize(1,4) * numPlayers);
-var waterAreas = createAreas(
+const numLakes = Math.round(scaleByMapSize(1,4) * numPlayers);
+const waterAreas = createAreas(
 	new ClumpPlacer(scaleByMapSize(100,250), 0.8, 0.1, Infinity),
 	[
 		new LayeredPainter([tShore, tWater], [1]),
@@ -162,15 +162,15 @@ createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 5, clWater, 5, clHil
 Engine.SetProgress(40);
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
-var types = [
+const [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
+const types = [
 	[[tForestFloor, tGrass, pForestD], [tForestFloor, pForestD]],
 	[[tForestFloor, tGrass, pForestO], [tForestFloor, pForestO]],
 	[[tForestFloor, tGrass, pForestP], [tForestFloor, pForestP]]
 ];
-var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
-var num = Math.floor(size / types.length);
-for (let type of types)
+const size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
+const num = Math.floor(size / types.length);
+for (const type of types)
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / num, 0.5),
 		[

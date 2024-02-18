@@ -71,9 +71,9 @@ RandomMap.prototype.log = function(text)
 RandomMap.prototype.LoadMapTerrain = function(filename)
 {
 	g_Map.log("Loading terrain file " + filename);
-	let mapTerrain = Engine.LoadMapTerrain("maps/random/" + filename + ".pmp");
+	const mapTerrain = Engine.LoadMapTerrain("maps/random/" + filename + ".pmp");
 
-	let heightmapPainter = new HeightmapPainter(convertHeightmap1Dto2D(mapTerrain.height));
+	const heightmapPainter = new HeightmapPainter(convertHeightmap1Dto2D(mapTerrain.height));
 
 	createArea(
 		new MapBoundsPlacer(),
@@ -94,7 +94,7 @@ RandomMap.prototype.LoadHeightmapImage = function(filename, normalMinHeight, nor
 {
 	g_Map.log("Loading heightmap " + filename);
 
-	let heightmapPainter = new HeightmapPainter(
+	const heightmapPainter = new HeightmapPainter(
 		convertHeightmap1Dto2D(Engine.LoadHeightmapImage("maps/random/" + filename)), normalMinHeight, normalMaxHeight);
 
 	createArea(
@@ -113,7 +113,7 @@ RandomMap.prototype.getTextureID = function(texture)
 	if (texture in this.nameToID)
 		return this.nameToID[texture];
 
-	let id = this.IDToName.length;
+	const id = this.IDToName.length;
 	this.nameToID[texture] = id;
 	this.IDToName[id] = texture;
 
@@ -217,7 +217,7 @@ RandomMap.prototype.validHeight = function(position)
  */
 RandomMap.prototype.randomCoordinate = function(passableOnly)
 {
-	let border = passableOnly ? MAP_BORDER_WIDTH : 0;
+	const border = passableOnly ? MAP_BORDER_WIDTH : 0;
 
 	if (this.isCircularMap())
 		// Polar coordinates
@@ -278,7 +278,7 @@ RandomMap.prototype.setHeight = function(position, height)
  */
 RandomMap.prototype.placeEntityAnywhere = function(templateName, playerID, position, orientation)
 {
-	let entity = new Entity(this.getEntityID(), templateName, playerID, position, orientation);
+	const entity = new Entity(this.getEntityID(), templateName, playerID, position, orientation);
 	this.entities.push(entity);
 	return entity;
 };
@@ -310,7 +310,7 @@ RandomMap.prototype.getTerrainEntity = function(position)
  */
 RandomMap.prototype.setTerrainEntity = function(templateName, playerID, position, orientation)
 {
-	let tilePosition = position.clone().floor();
+	const tilePosition = position.clone().floor();
 	if (!this.validTilePassable(tilePosition))
 		throw new Error("setTerrainEntity: invalid tile position " + uneval(position));
 
@@ -320,7 +320,7 @@ RandomMap.prototype.setTerrainEntity = function(templateName, playerID, position
 
 RandomMap.prototype.deleteTerrainEntity = function(position)
 {
-	let tilePosition = position.clone().floor();
+	const tilePosition = position.clone().floor();
 	if (!this.validTilePassable(tilePosition))
 		throw new Error("setTerrainEntity: invalid tile position " + uneval(position));
 
@@ -337,15 +337,15 @@ RandomMap.prototype.createTileClass = function()
  */
 RandomMap.prototype.getExactHeight = function(position)
 {
-	let xi = Math.min(Math.floor(position.x), this.size);
-	let zi = Math.min(Math.floor(position.y), this.size);
-	let xf = position.x - xi;
-	let zf = position.y - zi;
+	const xi = Math.min(Math.floor(position.x), this.size);
+	const zi = Math.min(Math.floor(position.y), this.size);
+	const xf = position.x - xi;
+	const zf = position.y - zi;
 
-	let h00 = this.height[xi][zi];
-	let h01 = this.height[xi][zi + 1];
-	let h10 = this.height[xi + 1][zi];
-	let h11 = this.height[xi + 1][zi + 1];
+	const h00 = this.height[xi][zi];
+	const h01 = this.height[xi][zi + 1];
+	const h10 = this.height[xi + 1][zi];
+	const h11 = this.height[xi + 1][zi + 1];
 
 	return (1 - zf) * ((1 - xf) * h00 + xf * h10) + zf * ((1 - xf) * h01 + xf * h11);
 };
@@ -356,9 +356,9 @@ RandomMap.prototype.cornerHeight = function(position)
 	let count = 0;
 	let sumHeight = 0;
 
-	for (let vertex of g_TileVertices)
+	for (const vertex of g_TileVertices)
 	{
-		let pos = Vector2D.sub(position, vertex);
+		const pos = Vector2D.sub(position, vertex);
 		if (this.validHeight(pos))
 		{
 			++count;
@@ -374,11 +374,11 @@ RandomMap.prototype.cornerHeight = function(position)
 
 RandomMap.prototype.getAdjacentPoints = function(position)
 {
-	let adjacentPositions = [];
+	const adjacentPositions = [];
 
-	for (let adjacentCoordinate of g_AdjacentCoordinates)
+	for (const adjacentCoordinate of g_AdjacentCoordinates)
 	{
-		let adjacentPos = Vector2D.add(position, adjacentCoordinate).round();
+		const adjacentPos = Vector2D.add(position, adjacentCoordinate).round();
 		if (this.inMapBounds(adjacentPos))
 			adjacentPositions.push(adjacentPos);
 	}
@@ -391,7 +391,7 @@ RandomMap.prototype.getAdjacentPoints = function(position)
  */
 RandomMap.prototype.getAverageHeight = function(position)
 {
-	let adjacentPositions = this.getAdjacentPoints(position);
+	const adjacentPositions = this.getAdjacentPoints(position);
 	if (!adjacentPositions.length)
 		return 0;
 
@@ -403,7 +403,7 @@ RandomMap.prototype.getAverageHeight = function(position)
  */
 RandomMap.prototype.getSlope = function(position)
 {
-	let adjacentPositions = this.getAdjacentPoints(position);
+	const adjacentPositions = this.getAdjacentPoints(position);
 	if (!adjacentPositions.length)
 		return 0;
 
@@ -416,10 +416,10 @@ RandomMap.prototype.getSlope = function(position)
  */
 RandomMap.prototype.exportEntityList = function()
 {
-	let nonTerrainCount = this.entities.length;
+	const nonTerrainCount = this.entities.length;
 
 	// Change rotation from simple 2d to 3d befor giving to engine
-	for (let entity of this.entities)
+	for (const entity of this.entities)
 		entity.rotation.y = Math.PI / 2 - entity.rotation.y;
 
 	// Terrain objects e.g. trees
@@ -441,14 +441,14 @@ RandomMap.prototype.exportEntityList = function()
  */
 RandomMap.prototype.exportHeightData = function()
 {
-	let heightmapSize = this.size + 1;
-	let heightmap = new Uint16Array(Math.square(heightmapSize));
+	const heightmapSize = this.size + 1;
+	const heightmap = new Uint16Array(Math.square(heightmapSize));
 
 	for (let x = 0; x < heightmapSize; ++x)
 		for (let z = 0; z < heightmapSize; ++z)
 		{
-			let position = new Vector2D(x, z);
-			let currentHeight = TILE_CENTERED_HEIGHT_MAP ? this.cornerHeight(position) : this.getHeight(position);
+			const position = new Vector2D(x, z);
+			const currentHeight = TILE_CENTERED_HEIGHT_MAP ? this.cornerHeight(position) : this.getHeight(position);
 
 			// Correct height by SEA_LEVEL and prevent under/overflow in terrain data
 			heightmap[z * heightmapSize + x] = Math.max(0, Math.min(0xFFFF, Math.floor((currentHeight + SEA_LEVEL) * HEIGHT_UNITS_PER_METRE)));
@@ -462,8 +462,8 @@ RandomMap.prototype.exportHeightData = function()
  */
 RandomMap.prototype.exportTerrainTextures = function()
 {
-	let tileIndex = new Uint16Array(Math.square(this.size));
-	let tilePriority = new Uint16Array(Math.square(this.size));
+	const tileIndex = new Uint16Array(Math.square(this.size));
+	const tilePriority = new Uint16Array(Math.square(this.size));
 
 	for (let x = 0; x < this.size; ++x)
 		for (let z = 0; z < this.size; ++z)

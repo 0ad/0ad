@@ -50,25 +50,25 @@ const heightLand = 3;
 const heightOffsetBump = 2;
 const heightHill = 18;
 
-var g_Map = new RandomMap(heightSeaGround, tWater);
+const g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
 const mapCenter = g_Map.getCenter();
 
-var clPlayer = g_Map.createTileClass();
-var clHill = g_Map.createTileClass();
-var clForest = g_Map.createTileClass();
-var clDirt = g_Map.createTileClass();
-var clRock = g_Map.createTileClass();
-var clMetal = g_Map.createTileClass();
-var clFood = g_Map.createTileClass();
-var clBaseResource = g_Map.createTileClass();
-var clLand = g_Map.createTileClass();
+const clPlayer = g_Map.createTileClass();
+const clHill = g_Map.createTileClass();
+const clForest = g_Map.createTileClass();
+const clDirt = g_Map.createTileClass();
+const clRock = g_Map.createTileClass();
+const clMetal = g_Map.createTileClass();
+const clFood = g_Map.createTileClass();
+const clBaseResource = g_Map.createTileClass();
+const clLand = g_Map.createTileClass();
 
-var playerIslandRadius = scaleByMapSize(20, 29);
+const playerIslandRadius = scaleByMapSize(20, 29);
 
-var [playerIDs, playerPosition, playerAngle] = playerPlacementCircle(fractionToTiles(0.35));
+const [playerIDs, playerPosition, playerAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 if (!isNomad())
 {
@@ -84,7 +84,7 @@ if (!isNomad())
 				new TileClassPainter(clPlayer)
 			]);
 
-		let dockLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , heightLand - 0.5, heightLand);
+		const dockLocation = findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3 , heightLand - 0.5, heightLand);
 		g_Map.placeEntityPassable(oDock, playerIDs[i], dockLocation, playerAngle[i] + Math.PI);
 	}
 }
@@ -179,17 +179,17 @@ createAreas(
 	scaleByMapSize(4, 13));
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
-var types = [
+const [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
+const types = [
 	[[tForestFloor2, tMainTerrain, pForest1], [tForestFloor2, pForest1]],
 	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
 ];
 
 if (currentBiome() != "generic/savanna")
 {
-	var size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
-	var num = Math.floor(size / types.length);
-	for (let type of types)
+	const size = forestTrees / (scaleByMapSize(3,6) * numPlayers);
+	const num = Math.floor(size / types.length);
+	for (const type of types)
 		createAreas(
 			new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), forestTrees / (num * Math.floor(scaleByMapSize(2, 5))), 0.5),
 			[
@@ -202,8 +202,8 @@ if (currentBiome() != "generic/savanna")
 
 Engine.SetProgress(50);
 g_Map.log("Creating dirt patches");
-var numberOfPatches = scaleByMapSize(15, 45) * (currentBiome() == "generic/savanna" ? 3 : 1);
-for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
+const numberOfPatches = scaleByMapSize(15, 45) * (currentBiome() == "generic/savanna" ? 3 : 1);
+for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
@@ -214,7 +214,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		numberOfPatches);
 
 g_Map.log("Creating grass patches");
-for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
+for (const size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		new TerrainPainter(tTier4Terrain),
@@ -224,7 +224,7 @@ for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 
 Engine.SetProgress(55);
 
 g_Map.log("Creating stone mines");
-var group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
+let group = new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock);
 createObjectGroupsDeprecated(group, 0,
 	[avoidClasses(clForest, 1, clPlayer, 0, clRock, 10, clHill, 1), stayClasses(clLand, 5)],
 	scaleByMapSize(4,16), 100
@@ -320,7 +320,7 @@ createStragglerTrees(
 	clForest,
 	stragglerTrees);
 
-var planetm = 1;
+let planetm = 1;
 if (currentBiome() == "generic/india")
 	planetm = 8;
 

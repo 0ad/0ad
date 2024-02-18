@@ -49,7 +49,7 @@ const heightSeaGround = -10;
 const heightLand = 3;
 const heightHill = 18;
 
-var g_Map = new RandomMap(heightSeaGround, tWater);
+const g_Map = new RandomMap(heightSeaGround, tWater);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
@@ -65,14 +65,14 @@ const clFood = g_Map.createTileClass();
 const clBaseResource = g_Map.createTileClass();
 const clLand = g_Map.createTileClass();
 
-var startAngle = randomAngle();
+const startAngle = randomAngle();
 
-var teams = getTeamsArray();
-var numTeams = teams.filter(team => team).length;
-var teamPosition = distributePointsOnCircle(numTeams, startAngle, fractionToTiles(0.3), mapCenter)[0];
-var teamRadius = fractionToTiles(0.05);
+const teams = getTeamsArray();
+const numTeams = teams.filter(team => team).length;
+const teamPosition = distributePointsOnCircle(numTeams, startAngle, fractionToTiles(0.3), mapCenter)[0];
+const teamRadius = fractionToTiles(0.05);
 
-var teamNo = 0;
+let teamNo = 0;
 
 g_Map.log("Creating player islands and bases");
 
@@ -83,7 +83,7 @@ for (let i = 0; i < teams.length; ++i)
 
 	++teamNo;
 
-	let [playerPosition, playerAngle] = distributePointsOnCircle(teams[i].length, startAngle + 2 * Math.PI / teams[i].length, teamRadius, teamPosition[i]);
+	const [playerPosition, playerAngle] = distributePointsOnCircle(teams[i].length, startAngle + 2 * Math.PI / teams[i].length, teamRadius, teamPosition[i]);
 	playerPosition.forEach(position => position.round());
 
 	for (let p = 0; p < teams[i].length; ++p)
@@ -101,17 +101,17 @@ for (let i = 0; i < teams.length; ++i)
 		placeCivDefaultStartingEntities(playerPosition[p], teams[i][p], false);
 	}
 
-	let mineAngle = randFloat(-1, 1) * Math.PI / teams[i].length;
-	let mines = [
+	const mineAngle = randFloat(-1, 1) * Math.PI / teams[i].length;
+	const mines = [
 		{ "template": oMetalLarge, "angle": mineAngle },
 		{ "template": oStoneLarge, "angle": mineAngle + Math.PI / 4 }
 	];
 
 	// Mines
 	for (let p = 0; p < teams[i].length; ++p)
-		for (let mine of mines)
+		for (const mine of mines)
 		{
-			let position = Vector2D.add(playerPosition[p], new Vector2D(g_InitialMineDistance, 0).rotate(-playerAngle[p] - mine.angle));
+			const position = Vector2D.add(playerPosition[p], new Vector2D(g_InitialMineDistance, 0).rotate(-playerAngle[p] - mine.angle));
 			createObjectGroup(
 				new SimpleGroup([new SimpleObject(mine.template, 1, 1, 0, 4)], true, clBaseResource, position),
 				0,
@@ -121,11 +121,11 @@ for (let i = 0; i < teams.length; ++i)
 	// Trees
 	for (let p = 0; p < teams[i].length; ++p)
 	{
-		let tries = 10;
+		const tries = 10;
 		for (let x = 0; x < tries; ++x)
 		{
-			let tAngle = playerAngle[p] + randFloat(-1, 1) * 2 * Math.PI / teams[i].length;
-			let treePosition = Vector2D.add(playerPosition[p], new Vector2D(16, 0).rotate(-tAngle)).round();
+			const tAngle = playerAngle[p] + randFloat(-1, 1) * 2 * Math.PI / teams[i].length;
+			const treePosition = Vector2D.add(playerPosition[p], new Vector2D(16, 0).rotate(-tAngle)).round();
 			if (createObjectGroup(
 				new SimpleGroup([new SimpleObject(oTree2, g_InitialTrees, g_InitialTrees, 0, 7)], true, clBaseResource, treePosition),
 				0,
@@ -229,7 +229,7 @@ createMines(
 	[avoidClasses(clForest, 1, clPlayer, 40, clMetal, 20), stayClasses(clLand, 4)],
 	clRock);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
+const [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 createForests(
  [tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
  [avoidClasses(clPlayer, 10, clForest, 20, clBaseResource, 5, clRock, 6, clMetal, 6), stayClasses(clLand, 3)],
@@ -282,7 +282,7 @@ createFood(
 if (currentBiome() == "generic/sahara")
 {
 	g_Map.log("Creating obelisks");
-	let group = new SimpleGroup(
+	const group = new SimpleGroup(
 		[new SimpleObject(oObelisk, 1, 1, 0, 1)],
 		true
 	);
@@ -294,8 +294,8 @@ if (currentBiome() == "generic/sahara")
 }
 
 g_Map.log("Creating dirt patches");
-let numb = currentBiome() == "generic/savanna" ? 3 : 1;
-for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
+const numb = currentBiome() == "generic/savanna" ? 3 : 1;
+for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		[
@@ -306,7 +306,7 @@ for (let size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8,
 		numb*scaleByMapSize(15, 45));
 
 g_Map.log("Creating grass patches");
-for (let size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
+for (const size of [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)])
 	createAreas(
 		new ChainPlacer(1, Math.floor(scaleByMapSize(3, 5)), size, 0.5),
 		new TerrainPainter(tTier4Terrain),
@@ -376,7 +376,7 @@ createObjectGroupsDeprecated(group, 0,
 );
 
 g_Map.log("Creating small grass tufts");
-let planetm = currentBiome() == "generic/india" ? 8 : 1;
+const planetm = currentBiome() == "generic/india" ? 8 : 1;
 group = new SimpleGroup(
 	[new SimpleObject(aGrassShort, 1, 2, 0, 1, -Math.PI / 8, Math.PI / 8)]
 );
