@@ -4214,14 +4214,14 @@ msgstr "Técnica de escalado"
 
 #: gui/options/options.json[1].options[4].list[0].label
 msgid "FidelityFX Super Resolution 1.0"
-msgstr "Superresolución FidelityFX 1.0"
+msgstr "FidelityFX™ SR"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid ""
 "Advanced upscale technique. For better results, use FSR with antialiasing "
 "enabled. Using it with the OpenGL backend may have some issues, consider "
 "using Vulkan backend instead."
-msgstr "Técnica avanzada de escalado. Para obtener un mejor resultado, utiliza FSR con el antialiasing activado. Usarlo con el backend OpenGL puede presentar algunos problemas. considera utilizar el backend Vulkan en su lugar."
+msgstr "Técnica avanzada de escalado. Para obtener un mejor resultado, utiliza FidelityFX™ con el suavizado de bordes activado. Usarlo con OpenGL puede presentar problemas. Utiliza Vulkan en su lugar."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "Bilinear"
@@ -4407,7 +4407,7 @@ msgstr "No refinar contornos."
 
 #: gui/options/options.json[2].options[4].list[1].label
 msgid "FidelityFX CAS"
-msgstr "FidelityFX CAS"
+msgstr "FidelityFX™ CAS"
 
 #: gui/options/options.json[2].options[4].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
