@@ -28,7 +28,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-01 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:48+0000\n"
-"Last-Translator: Peter Freund, 2023\n"
+"Last-Translator: Jonatan Nyberg, 2016,2021-2022,2024\n"
 "Language-Team: Swedish (http://app.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -175,7 +175,7 @@ msgstr "Tryck %(hotkey)s för att se en lista med alla tillgängliga kartor."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:26
 msgid "Allied View"
-msgstr "Allierad Vy"
+msgstr "Allierad vy"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
 msgid "Toggle allied view (see what your allies see)."
@@ -194,7 +194,7 @@ msgstr "Växla om fusk ska gå att använda."
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:26
 msgid "Explored Map"
-msgstr "Utforskad Karta"
+msgstr "Utforskad karta"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -205,7 +205,7 @@ msgstr "Växla upptäckt karta (se kartan i början)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:26
 msgid "Last Man Standing"
-msgstr "Sista Man Stående"
+msgstr "Sista man stående"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:29
 msgid ""
@@ -215,7 +215,7 @@ msgstr "Välj om sista överlevande spelare eller sista överlevande grupp allie
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:30
 msgid "Teams Locked"
-msgstr "Låsta Lag"
+msgstr "Låsta lag"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:33
 msgid "Toggle locked teams."
@@ -233,7 +233,7 @@ msgstr "I nomad-läge börjar spelare med endast ett fåtal enheter och måste h
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:27
 msgid "Rated Game"
-msgstr "Värderat Spel"
+msgstr "Värderat spel"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:30
 msgid "Toggle if this game will be rated for the leaderboard."
@@ -252,7 +252,7 @@ msgstr "Välj om hjältar kan garnisoneras."
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:26
 msgid "Revealed Map"
-msgstr "Synlig Karta"
+msgstr "Synlig karta"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -263,7 +263,7 @@ msgstr "Växla avslöjad karta (se allt)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:26
 msgid "Disable Spies"
-msgstr "Inaktivera Spioner"
+msgstr "Inaktivera spioner"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:29
 msgid "Disable spies during the game."
@@ -293,7 +293,7 @@ msgstr "Biom"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:60
 msgid "Select the flora and fauna."
-msgstr "Välj flora och fauna"
+msgstr "Välj flora och fauna."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:63
 msgctxt "biome"
@@ -407,7 +407,7 @@ msgstr "Befolkningsgräns"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:55
 msgid "Select population limit."
-msgstr "Välj befolkningsgräns"
+msgstr "Välj befolkningsgräns."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:58
 msgctxt "population limit"
@@ -479,7 +479,7 @@ msgstr "Världsbefolkningsgräns"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:50
 msgid "Select world population limit."
-msgstr "Välj världsbefolkningsgräns"
+msgstr "Välj världsbefolkningsgräns."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:53
 #, javascript-format
@@ -511,7 +511,7 @@ msgstr[1] "%(minutes)s minuter"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:38
 msgid "Relic Count"
-msgstr "Antal Reliker"
+msgstr "Antal reliker"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:41
 #, javascript-format
@@ -591,7 +591,7 @@ msgstr "Återgå till huvudmenyn."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Visa Civilisationsöversikt / Byggnadsträd\nSenast öppnad kommer att öppnas igen vid klick."
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Visa civilisationsöversikt / byggnadsträd\nSenast öppnad kommer att öppnas igen vid klick."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -904,7 +904,7 @@ msgstr "Lämna tom för att använda standardporten."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr "Lämna tomt för att inte kräva ett"
+msgstr "Lämna tomt för att inte kräva ett."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
