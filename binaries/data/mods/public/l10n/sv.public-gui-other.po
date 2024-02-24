@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-19 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Peter Freund, 2023\n"
+"Last-Translator: Jonatan Nyberg, 2016,2021-2022,2024\n"
 "Language-Team: Swedish (http://app.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -381,7 +381,7 @@ msgstr "Synlig karta"
 
 #: gui/common/gamedescription.js:402
 msgid "Allied View"
-msgstr "Allierad Vy"
+msgstr "Allierad vy"
 
 #: gui/common/gamedescription.js:407
 msgid "Cheats"
@@ -468,7 +468,7 @@ msgstr "Felaktigt version för nätverksprotokollet."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr "Spelet läses in, vänligen försök igen senare."
+msgstr "Spelet läses in, försök igen senare."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
@@ -1594,7 +1594,7 @@ msgstr "Kan skapa konflikt med:"
 
 #: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
-msgstr "Alla Snabbtangenter"
+msgstr "Alla snabbtangenter"
 
 #: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
@@ -1714,7 +1714,7 @@ msgstr "Följ den första enheten av de valda."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
 msgctxt "hotkey metadata"
 msgid "Follow Unit"
-msgstr "Följ Enhet"
+msgstr "Följ soldat"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
@@ -1844,7 +1844,7 @@ msgstr "Återställ kamera-rotationen till standardvärdet."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.name
 msgctxt "hotkey metadata"
 msgid "Reset Camera"
-msgstr "Återställ Kamera"
+msgstr "Återställ kamera"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
 msgctxt "hotkey metadata"
@@ -1886,7 +1886,7 @@ msgstr "Rotera kameran för att titta nedåt."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.name
 msgctxt "hotkey metadata"
 msgid "Rotate Down"
-msgstr "Rotera Nedåt"
+msgstr "Rotera nedåt"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.desc
 msgctxt "hotkey metadata"
@@ -2402,7 +2402,7 @@ msgstr "Modifierare för att ställa den önskade handelsresursen till 100%."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr "Ställ in handeln på 100 %"
+msgstr "Ställ in handeln på 100%"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
@@ -2846,7 +2846,7 @@ msgstr "Växla diplomatifärger."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors"
-msgstr "Växla diplomatifärger."
+msgstr "Växla diplomatifärger"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.desc
 msgctxt "hotkey metadata"
@@ -3759,7 +3759,7 @@ msgstr "Nya kartor"
 
 #: gui/maps/MapFilters.js:110
 msgid "Maps that are brand new in this release of the game."
-msgstr "Kartor som är nya i denna version av spelet"
+msgstr "Kartor som är nya i denna version av spelet."
 
 #: gui/maps/MapFilters.js:115
 msgid "Best for MP"
@@ -3925,7 +3925,7 @@ msgstr "Allmänt"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr "Spelarnamn (enspelarläge)"
+msgstr "Spelarnamn (en spelare)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
@@ -3933,7 +3933,7 @@ msgstr "Hur du vill bli adresserad i enspelarmatcher."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr "Spelarnamn (flerspelarläge)"
+msgstr "Spelarnamn (flera spelare)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
@@ -4274,7 +4274,7 @@ msgstr "OpenGL ARB"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
-msgstr "Legacy OpenGL backend med ARB shaders. KRÄVER OMSTART AV SPEL"
+msgstr "Legacy OpenGL backend med ARB shaders. KRÄVER OMSTART AV SPELET"
 
 #: gui/options/options.json[2].options[0].list[2].label
 msgid "Vulkan"
@@ -4382,7 +4382,7 @@ msgstr "Skärpningsfaktor"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr "Skärpningen för den valda genomgången"
+msgstr "Skärpningen för den valda genomgången."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Model quality"
@@ -4670,7 +4670,7 @@ msgstr "Spara och återställ matchinställningar för snabb återanvändning f�
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].label
 msgid "Default AI difficulty"
-msgstr "Standard AI svårighetsgrad"
+msgstr "Standard AI-svårighetsgrad"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0].label._string
 msgctxt "Option for the AI difficulty."
@@ -4967,7 +4967,7 @@ msgstr "Snappa till kanter"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr "Snabbtangent för att aktivera snappning."
+msgstr "Snabbtangent för att aktivera snappning"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
 msgid ""
@@ -4976,7 +4976,7 @@ msgstr "Nya byggnader inriktas längs med närliggande byggnader när snabbtange
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr "Snabbtangent för att avaktivera snappning."
+msgstr "Snabbtangent för att avaktivera snappning"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].tooltip
 msgid ""
@@ -5180,7 +5180,7 @@ msgstr "Enheternas utseende är normalt skapat slumpvis."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][8].label
 msgid "Shader effects"
-msgstr "Shadereffekter"
+msgstr "Skuggeffekter"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -5283,7 +5283,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:132
 msgid "Continue Campaign"
-msgstr "Fortsätt Kampanj"
+msgstr "Fortsätt kampanj"
 
 #: gui/pregame/MainMenuItems.js:77 gui/pregame/MainMenuItems.js:133
 #: gui/pregame/MainMenuItems.js:149 gui/pregame/MainMenuItems.js:156
@@ -5296,7 +5296,7 @@ msgstr "Fel vid öppning av kampanjkörning:"
 
 #: gui/pregame/MainMenuItems.js:92
 msgid "Single-player"
-msgstr "Enspelarläge"
+msgstr "En spelare"
 
 #: gui/pregame/MainMenuItems.js:93
 msgid "Start, load, or replay a single-player game."
@@ -5602,7 +5602,7 @@ msgstr ""
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr "Du kan automatiskt skicka oss återkoppling som kan hjälpa oss att åtgärda fel och förbättra prestanda och kompatibilitet."
+msgstr "Du kan automatiskt skicka återkoppling till oss som kan hjälpa oss att åtgärda fel och förbättra prestanda och kompatibilitet."
 
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
@@ -5763,7 +5763,7 @@ msgstr "%(hotkey)s: Stäng byggnadsträd."
 #: gui/reference/viewer/ViewerPage.js:178
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
-msgstr "%(hotkey)s: Stäng mallvisaren."
+msgstr "%(hotkey)s: Stäng mallvisaren"
 
 #: gui/reference/viewer/viewer.xml:(caption):16
 msgid "Information"
@@ -5861,12 +5861,12 @@ msgstr "Alla "
 #: gui/replaymenu/replay_filters.js:146
 msgctxt "replay filter"
 msgid "Single-player"
-msgstr "Enspelarläge"
+msgstr "En spelare"
 
 #: gui/replaymenu/replay_filters.js:147
 msgctxt "replay filter"
 msgid "Multiplayer"
-msgstr "Flerspelarläge"
+msgstr "Flera spelare"
 
 #: gui/replaymenu/replay_filters.js:148
 msgctxt "replay filter"
@@ -6343,7 +6343,7 @@ msgstr "Du har vunnit striden!"
 
 #: gui/summary/summary.js:520
 msgid "You have been defeated…"
-msgstr "Du har blivit besegrad..."
+msgstr "Du har blivit besegrad…"
 
 #: gui/summary/summary.js:521
 msgid "You have abandoned the game."
