@@ -50,7 +50,6 @@ void CFsm::Setup()
 
 void CFsm::Shutdown()
 {
-	m_States.clear();
 	m_Transitions.clear();
 
 	m_Done = false;
@@ -59,20 +58,9 @@ void CFsm::Shutdown()
 	m_NextState = FSM_INVALID_STATE;
 }
 
-void CFsm::AddState(unsigned int state)
-{
-	m_States.insert(state);
-}
-
 void CFsm::AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
 	Action* pAction /* = nullptr */, void* pContext /* = nullptr*/)
 {
-	// Make sure we store the current state
-	AddState(state);
-
-	// Make sure we store the next state
-	AddState(nextState);
-
 	m_Transitions.insert({TransitionKey{state, eventType}, Transition{{pAction, pContext}, nextState}});
 }
 
@@ -95,9 +83,6 @@ bool CFsm::Update(unsigned int eventType, void* pEventParam)
 {
 	if (IsFirstTime())
 		m_CurrState = m_FirstState;
-
-	if (!IsValidState(m_CurrState))
-		return false;
 
 	// Lookup transition
 	auto transitionIterator = m_Transitions.find({m_CurrState, eventType});
@@ -125,13 +110,4 @@ bool CFsm::IsDone() const
 {
 	// By default the internal flag m_Done is tested
 	return m_Done;
-}
-
-bool CFsm::IsValidState(unsigned int state) const
-{
-	StateSet::const_iterator it = m_States.find(state);
-	if (it == m_States.end())
-		return false;
-
-	return true;
 }

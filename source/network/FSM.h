@@ -19,7 +19,6 @@
 #define FSM_H
 
 #include <limits>
-#include <set>
 #include <unordered_map>
 
 
@@ -40,8 +39,6 @@ struct CallbackFunction
 		return !pFunction || pFunction(pContext, &event);
 	}
 };
-
-using StateSet = std::set<unsigned int>;
 
 /**
  * Represents a signal in the state machine that a change has occurred.
@@ -102,12 +99,6 @@ public:
 	void Shutdown();
 
 	/**
-	 * Adds the specified state to the internal list of states.
-	 * @note If a state with the specified ID exists, the state is not added.
-	 */
-	void AddState(unsigned int state);
-
-	/**
 	 * Adds a new transistion to the state machine.
 	 */
 	void AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
@@ -137,21 +128,11 @@ public:
 		return m_NextState;
 	}
 
-	const StateSet& GetStates() const
-	{
-		return m_States;
-	}
-
 	/**
 	 * Updates the FSM and retrieves next state.
 	 * @return whether the state was changed.
 	 */
 	bool Update(unsigned int eventType, void* pEventData);
-
-	/**
-	 * Verifies whether the specified state is managed by the FSM.
-	 */
-	bool IsValidState(unsigned int state) const;
 
 	/**
 	 * Tests whether the state machine has finished its work.
@@ -200,7 +181,6 @@ private:
 	unsigned int m_FirstState;
 	unsigned int m_CurrState;
 	unsigned int m_NextState;
-	StateSet m_States;
 	TransitionMap m_Transitions;
 };
 
