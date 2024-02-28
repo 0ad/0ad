@@ -84,7 +84,7 @@ function scaleByMapSize(min, max, minMapSize = 128, maxMapSize = 512)
  * Interpolate quadratic between (min, minMapArea) and (max, maxMapArea) with respect to the mapSize.
  * Default values set on the area of tiny and giant map sizes according to the map shape (square or circular).
  */
-function scaleByMapArea(min, max, minMapArea = g_Map.getArea(128), maxMapArea = g_Map.getArea(256))
+function scaleByMapArea(min, max, minMapArea = g_Map.getArea(128), maxMapArea = g_Map.getArea(512))
 {
 	return min + (max - min) * (g_Map.getArea() - minMapArea) / (maxMapArea - minMapArea);
 }
@@ -165,7 +165,7 @@ function createAreasInAreas(centeredPlacer, painter, constraints, amount, retryF
 		log("createAreasInAreas: 'areas' was either empty or only contained empty areas thus returning an empty array.\n" + new Error().stack);
 		return [];
 	}
-	
+
 	const placeFunc = function() {
 		centeredPlacer.setCenterPosition(pickRandom(pickRandom(areas).getPoints()));
 		return createArea(centeredPlacer, painter, constraints);
@@ -199,7 +199,7 @@ function createObjectGroupsByAreas(group, player, constraints, amount, retryFact
 		log("createObjectGroupsByAreas: 'areas' was either empty or only contained empty areas.\n" + new Error().stack);
 		return [];
 	}
-	
+
 	const placeFunc = function() {
 		group.setCenterPosition(pickRandom(pickRandom(areas).getPoints()));
 		return createObjectGroup(group, player, constraints);
