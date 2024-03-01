@@ -1363,7 +1363,7 @@ msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "Poďakovania 0 A.D."
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
@@ -1559,7 +1559,7 @@ msgstr "In memoriam"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "Zakladateľ 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
@@ -1575,7 +1575,7 @@ msgstr "Zvláštne poďakovanie:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "A ďakujeme celej komunite za to, že umožnila vznik 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -3585,7 +3585,7 @@ msgstr "Načítať"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Táto uložená hra vyžaduje verziu hry %(requiredVersion)s, no vaša aktuálna verzia je %(currentVersion)s."
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
@@ -4079,7 +4079,7 @@ msgstr "Mód v okne"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "Spustiť 0 A.D. v okne."
 
 #: gui/options/options.json[1].options[10].label
 msgid "FPS throttling in games"
@@ -4149,15 +4149,15 @@ msgstr "Post-processing"
 #: gui/options/options.json[1].options[2].tooltip
 #: gui/options/options.json[2].options[2].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Aplikovať na obrazovku post-processing filtre (HDR, Bloom, DOF atď.)."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Resolution scale"
-msgstr ""
+msgstr "Mierka rozlíšenia"
 
 #: gui/options/options.json[1].options[3].list[0].label
 msgid "50%"
-msgstr ""
+msgstr "50%"
 
 #: gui/options/options.json[1].options[11].list[0].label
 #: gui/options/options.json[1].options[3].list[1].label
@@ -4166,7 +4166,7 @@ msgstr "75%"
 
 #: gui/options/options.json[1].options[3].list[2].label
 msgid "87.5%"
-msgstr ""
+msgstr "87,5%"
 
 #: gui/options/options.json[1].options[11].list[1].label
 #: gui/options/options.json[1].options[3].list[3].label
@@ -4197,40 +4197,40 @@ msgstr "200%"
 msgid ""
 "A smaller scale makes rendering faster but produces a more blurry picture, a"
 " large scale makes rendering slower but produces a better picture."
-msgstr ""
+msgstr "Menšia mierka zrýchľuje vykresľovanie, ale produkuje rozmazaný obraz. Väčšia mierka spomaľuje vykresľovanie, ale produkuje lepší obraz."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Upscale technique"
-msgstr ""
+msgstr "Metóda zvýšenia rozlíšenia"
 
 #: gui/options/options.json[1].options[4].list[0].label
 msgid "FidelityFX Super Resolution 1.0"
-msgstr ""
+msgstr "FidelityFX Super Resolution 1.0"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid ""
 "Advanced upscale technique. For better results, use FSR with antialiasing "
 "enabled. Using it with the OpenGL backend may have some issues, consider "
 "using Vulkan backend instead."
-msgstr ""
+msgstr "Pokročilá metóda zvýšenia rozlíšenia. Pre lepšie výsledky použite FSR so zapnutým antialiasingom. Použitie s OpenGL backendom môže spôsobiť problémy, zvážte radšej použitie Vulkan backendu."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "Bilinear"
-msgstr ""
+msgstr "Bilineárna"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid ""
 "Bilinear upscale technique. Produces a slightly blurry picture depending on "
 "the scale."
-msgstr ""
+msgstr "Bilineárna metóda zvýšenia rozlíšenia. Produkuje mierne rozmazaný obrázok, v závislosti od mierky."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "Pixelated"
-msgstr ""
+msgstr "Pixelovaná"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid "Simplest upscale technique. Used mostly for stylized effect."
-msgstr ""
+msgstr "Najjednoduchšia metóda zvýšenia rozlíšenia. Používa sa hlavne pre svoj štylizovaný efekt."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Technique defines performance and quality of upscaling process."
@@ -4290,7 +4290,7 @@ msgstr "Nastavenia grafiky (pokročilé)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Renderer backend"
-msgstr ""
+msgstr "Backend vykresľovača"
 
 #: gui/options/options.json[2].options[0].list[0].label
 msgid "OpenGL"
@@ -4298,7 +4298,7 @@ msgstr "OpenGL"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Predvolený OpenGL backend s GLSL. VYŽADUJE REŠTART HRY"
 
 #: gui/options/options.json[2].options[0].list[1].label
 msgid "OpenGL ARB"
@@ -4306,19 +4306,19 @@ msgstr "OpenGL ARB"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Legacy OpenGL backend s ARB shadermi. VYŽADUJE REŠTART HRY"
 
 #: gui/options/options.json[2].options[0].list[2].label
 msgid "Vulkan"
-msgstr ""
+msgstr "Vulkan"
 
 #: gui/options/options.json[2].options[0].list[2].tooltip
 msgid "Modern API, requires up-to-date drivers. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Moderná API, vyžaduje aktuálne ovládače. VYŽADUJE REŠTART HRY"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Vyberte backend pre vykresľovač. VYŽADUJE REŠTART HRY"
 
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
@@ -5264,7 +5264,7 @@ msgstr "Manuál"
 
 #: gui/pregame/MainMenuItems.js:8
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Otvoriť herný manuál 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
@@ -5303,7 +5303,7 @@ msgstr "Prehľad katafalku"
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "Porovnať bonusy katafalkov zahrnutých v 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Map Overview"
@@ -5464,7 +5464,7 @@ msgstr "Otvoriť Atlas Scenario Editor v novom okne. Ak ho chcete otvoriť spoľ
 
 #: gui/pregame/MainMenuItems.js:280
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "Naozaj chceš ukončiť 0 A.D. a otvoriť Editor scenárov?"
 
 #: gui/pregame/MainMenuItems.js:287
 msgid ""
@@ -5502,7 +5502,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXVII: Agni"
-msgstr ""
+msgstr "Alfa XXVII: Agni"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5611,7 +5611,7 @@ msgstr "Povoliť spätnú väzbu"
 
 #: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr ""
+msgstr "Ďakujeme za pomoc pri zlepšovaní 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
@@ -5628,7 +5628,7 @@ msgstr "neznáme"
 
 #: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
-msgstr ""
+msgstr "Pomôž zlepšiť 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:87
 msgid ""
@@ -6862,7 +6862,7 @@ msgstr "Upozornenie: Každý hrdina môže byť trénovaný iba raz za hru!"
 
 #: gui/text/tips/iber_fireship.txt:1
 msgid "FIRESHIPS"
-msgstr ""
+msgstr "OHNIVÉ LODE"
 
 #: gui/text/tips/iber_fireship.txt:2
 msgid "Available to the Britons, Gauls, and Iberians."
@@ -6959,7 +6959,7 @@ msgstr "Väčšina civilizácií k nim má prístup už vo Fáze dediny."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "ACHAEMENID ARCHITECTURE"
-msgstr ""
+msgstr "ACHAJMENOVSKÁ ARCHITEKTÚRA"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."

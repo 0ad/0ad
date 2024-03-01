@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: he\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
+"Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
 
 #: gui/session/Cheats.js:78
 msgid "This cheat requires a numeric parameter."
@@ -705,7 +705,6 @@ msgid_plural "Basic range: %(range)s meters"
 msgstr[0] "טווח בסיסי: %(range)s מטר"
 msgstr[1] "טווח בסיסי: %(range)s מטרים"
 msgstr[2] "טווח בסיסי: %(range)s מטרים"
-msgstr[3] "טווח בסיסי: %(range)s מטרים"
 
 #: gui/session/input.js:192
 #, javascript-format
@@ -714,7 +713,6 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "ממוצע טווח מוסף: %(range)s מטר"
 msgstr[1] "ממוצע טווח מוסף: %(range)s מטרים"
 msgstr[2] "ממוצע טווח מוסף: %(range)s מטרים"
-msgstr[3] "ממוצע טווח מוסף: %(range)s מטרים"
 
 #: gui/session/input.js:701
 msgid "Cannot build wall here!"
@@ -1154,7 +1152,6 @@ msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/selection_panels.js:804
 #, javascript-format
@@ -1208,7 +1205,6 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
@@ -1288,7 +1284,6 @@ msgid_plural "Could only be constructed %(limit)s times."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/selection_panels_helpers.js:148
 #, javascript-format
@@ -1297,7 +1292,6 @@ msgid_plural "Can be constructed %(count)s more times."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/selection_panels_helpers.js:155
 msgid "Could only be trained once."
@@ -1305,7 +1299,6 @@ msgid_plural "Could only be trained %(limit)s times."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/selection_panels_helpers.js:159
 msgid "Can be trained only once."
@@ -1318,7 +1311,6 @@ msgid_plural "Can be trained %(count)s more times."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/selection_panels_helpers.js:168
 msgid "Could only be created once."
@@ -1326,7 +1318,6 @@ msgid_plural "Could only be created %(limit)s times."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/selection_panels_helpers.js:172
 msgid "Can be created only once."
@@ -1339,7 +1330,6 @@ msgid_plural "Can be created %(count)s more times."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/selection_panels_helpers.js:203
 #, javascript-format
@@ -1559,7 +1549,6 @@ msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/trade/TraderStatusTextLand.js:25
 #, javascript-format
@@ -1568,7 +1557,6 @@ msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s אינו פעיל"
 msgstr[1] "%(numberOfLandTraders)s אינם פעילים"
 msgstr[2] "%(numberOfLandTraders)s אינם פעילים"
-msgstr[3] "%(numberOfLandTraders)s אינם פעילים"
 
 #: gui/session/trade/TraderStatusTextLand.js:30
 #, javascript-format
@@ -1577,7 +1565,6 @@ msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/trade/TraderStatusTextLand.js:40
 #, javascript-format
@@ -1586,7 +1573,6 @@ msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/trade/TraderStatusTextLand.js:45
 #, javascript-format
@@ -1599,7 +1585,6 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/trade/TraderStatusTextLand.js:65
 #, javascript-format
@@ -1642,7 +1627,6 @@ msgid_plural "There are %(inactiveString)s."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/trade/TraderStatusTextLand.js:80
 msgid "There are no land traders."
@@ -1655,7 +1639,6 @@ msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/trade/TraderStatusTextShip.js:24
 #, javascript-format
@@ -1664,7 +1647,6 @@ msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/trade/TraderStatusTextShip.js:29
 #, javascript-format
@@ -1673,7 +1655,6 @@ msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/trade/TraderStatusTextShip.js:51
 msgid "There are no merchant ships."
@@ -1734,7 +1715,6 @@ msgid_plural "These entities cannot be controlled."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/session/unit_actions.js:1366
 msgid "Unload All."
