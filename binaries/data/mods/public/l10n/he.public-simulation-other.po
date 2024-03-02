@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: he\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
+"Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
 
 #: simulation/ai/petra/chatHelper.js:3
 #, javascript-format
@@ -507,7 +507,6 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: simulation/components/BuildRestrictions.js:287
 #, javascript-format
@@ -518,7 +517,6 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
@@ -568,7 +566,6 @@ msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: simulation/components/EndGameManager.js:177
 msgid "Last remaining player wins."

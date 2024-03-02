@@ -654,7 +654,7 @@ msgstr "Ohnivá loď"
 #: simulation/templates/template_unit_ship_fire.xml:19
 msgid ""
 "Unrepairable. Gradually loses health after ignition. Can only attack Ships."
-msgstr ""
+msgstr "Neopraviteľná. Po zapálení postupne stráca body zdrabie. Môže útočiť len na lode."
 
 #: simulation/templates/template_unit_ship_fire.xml:20
 msgid "Fireship"
@@ -672,7 +672,7 @@ msgstr "Vojnová loď"
 
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Ignite the Fire Ship to damage nearby enemy Ships."
-msgstr ""
+msgstr "Zapáľ ohnivú loď pre poškodenie okolitých nepriateľských lodí."
 
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -701,7 +701,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Improve sea "
 "trading at the Market."
-msgstr ""
+msgstr "Obchoduje medzi prístavmi. Naloď obchodníka pre vyšší zisk (+20% za každého nalodeného). Zbiera výnosné vodné poklady. Vylepši morský obchod cez trhovisko."
 
 #: simulation/templates/template_unit_ship_merchant.xml:21
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -734,11 +734,11 @@ msgstr ""
 #: simulation/templates/template_unit_ship_warship_ram.xml:6
 msgctxt "Name of an attack, usually the weapon."
 msgid "Naval Ram"
-msgstr ""
+msgstr "Námorný taran"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:47
 msgid "Ramming Ship"
-msgstr ""
+msgstr "Loď s taranom"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:48
 msgid ""
@@ -752,11 +752,11 @@ msgstr "NamornyTaran"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:23
 msgid "Scout Ship"
-msgstr ""
+msgstr "Prieskumná loď"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:24
 msgid "ScoutShip"
-msgstr ""
+msgstr "PrieskumnaLod"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:26
 msgid "Scout for coastlines. Garrison units for transport across water."
@@ -771,7 +771,7 @@ msgstr "Kameň"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:59
 msgid "Siege Ship"
-msgstr ""
+msgstr "Obliehacia loď"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:60
 msgid ""
@@ -781,7 +781,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:61
 msgid "NavalSiege"
-msgstr ""
+msgstr "NamorneObliehanie"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:61
 msgid "Heavy"
@@ -1440,7 +1440,7 @@ msgstr "Pontos"
 
 #: simulation/templates/units/brit/ship_fire.xml:5
 msgid "Briton Fire Ship"
-msgstr ""
+msgstr "Britónska ohnivá loď"
 
 #: simulation/templates/units/brit/ship_fishing.xml:9
 #: simulation/templates/units/gaul/ship_fishing.xml:9
@@ -1456,7 +1456,7 @@ msgstr "Nauson"
 #: simulation/templates/units/gaul/ship_scout.xml:9
 #: simulation/templates/units/iber/ship_scout.xml:9
 msgid "Skiff"
-msgstr ""
+msgstr "Čln"
 
 #: simulation/templates/units/brit/siege_ram.xml:5
 #: simulation/templates/units/gaul/siege_ram.xml:5
@@ -1736,7 +1736,7 @@ msgstr "Britomaros"
 
 #: simulation/templates/units/gaul/ship_fire.xml:5
 msgid "Gallic Fire Ship"
-msgstr ""
+msgstr "Galská ohnivá loď"
 
 #: simulation/templates/units/han/catafalque.xml:9
 msgid "Han Catafalque"
@@ -2797,11 +2797,11 @@ msgstr ""
 
 #: simulation/templates/units/pirates/ship_merchant.xml:10
 msgid "Treasure Ship"
-msgstr ""
+msgstr "Loď s pokladom"
 
 #: simulation/templates/units/pirates/ship_merchant.xml:11
 msgid "Destroy this ship to loot its large amount of treasure."
-msgstr ""
+msgstr "Znič túto loď pre ukoristenie veľkého množstva pokladu."
 
 #: simulation/templates/units/pirates/ship_scout.xml:8
 msgid "Cilician Pirate Ship"
@@ -2980,7 +2980,7 @@ msgstr "Lūcius Iūnius Brūtus"
 
 #: simulation/templates/units/rome/cavalry_auxiliary_b.xml:6
 msgid "Auxiliary Cavalry"
-msgstr ""
+msgstr "Kavaléria auxílie"
 
 #: simulation/templates/units/rome/cavalry_auxiliary_b.xml:7
 msgid "Eques Alaris"
@@ -2988,7 +2988,7 @@ msgstr "Eques Alaris"
 
 #: simulation/templates/units/rome/cavalry_auxiliary_b.xml:8
 msgid "Auxiliary"
-msgstr ""
+msgstr "Auxília"
 
 #: simulation/templates/units/rome/cavalry_javelineer_b.xml:6
 msgid "Allied Cavalry"
@@ -3100,11 +3100,11 @@ msgstr "Pūblius Cornēlius Scīpiō Āfricānus"
 
 #: simulation/templates/units/rome/infantry_antesignanus.xml:21
 msgid "Legionary Skirmisher"
-msgstr ""
+msgstr "Legionár harcovník"
 
 #: simulation/templates/units/rome/infantry_antesignanus.xml:22
 msgid "Antesignānus"
-msgstr ""
+msgstr "Antesignānus"
 
 #: simulation/templates/units/rome/infantry_antesignanus.xml:23
 #: simulation/templates/units/rome/infantry_legionary.xml:25
