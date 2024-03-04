@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-19 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2024\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1086,7 +1086,7 @@ msgstr "남은 건설 시간:"
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] "다른 일꾼을 추가하여 건설 속도를 %(second)s초 앞당깁니다."
+msgstr[0] "일꾼을 한 명 더 추가하면 건설 속도를 %(second)s초 앞당깁니다."
 
 #: gui/common/tooltips.js:698
 #, javascript-format
@@ -2724,12 +2724,12 @@ msgstr "게임 내 GUI"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter."
-msgstr "휴전 카운터를 전환합니다."
+msgstr "적대 행위 재개를 전환합니다."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter"
-msgstr "휴전 카운터 전환"
+msgstr "적대 행위 재개 전환"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.desc
 msgctxt "hotkey metadata"
@@ -3712,7 +3712,7 @@ msgstr "무작위"
 
 #: gui/maps/MapCache.js:66
 msgid "A randomly selected map."
-msgstr "아무거나 선택되는 지도입니다."
+msgstr "무작위로 선택되는 지도입니다."
 
 #: gui/maps/MapFilters.js:91
 msgid "Default"
@@ -3724,7 +3724,7 @@ msgstr "해상 및 데모 지도를 제외한 모든 지도입니다."
 
 #: gui/maps/MapFilters.js:97
 msgid "Naval Maps"
-msgstr "해전 지도"
+msgstr "해상 지도"
 
 #: gui/maps/MapFilters.js:98
 msgid "Maps where ships are needed to reach the enemy."
@@ -4106,11 +4106,11 @@ msgstr "화면 공간 후처리 필터(HDR, 꽃핌현상, DOF 등)를 사용합�
 
 #: gui/options/options.json[1].options[3].label
 msgid "Resolution scale"
-msgstr ""
+msgstr "해상도 배율"
 
 #: gui/options/options.json[1].options[3].list[0].label
 msgid "50%"
-msgstr ""
+msgstr "50%"
 
 #: gui/options/options.json[1].options[11].list[0].label
 #: gui/options/options.json[1].options[3].list[1].label
@@ -4119,7 +4119,7 @@ msgstr "75%"
 
 #: gui/options/options.json[1].options[3].list[2].label
 msgid "87.5%"
-msgstr ""
+msgstr "87.5%"
 
 #: gui/options/options.json[1].options[11].list[1].label
 #: gui/options/options.json[1].options[3].list[3].label
@@ -4150,44 +4150,44 @@ msgstr "200%"
 msgid ""
 "A smaller scale makes rendering faster but produces a more blurry picture, a"
 " large scale makes rendering slower but produces a better picture."
-msgstr ""
+msgstr "배율이 작을수록 렌더링 속도가 빨라지지만 그림이 더 흐려지고, 배율이 크면 렌더링이 느려지지만 그림이 더 선명해집니다."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Upscale technique"
-msgstr ""
+msgstr "업스케일 기법"
 
 #: gui/options/options.json[1].options[4].list[0].label
 msgid "FidelityFX Super Resolution 1.0"
-msgstr ""
+msgstr "FidelityFX 슈퍼 해상도 1.0"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid ""
 "Advanced upscale technique. For better results, use FSR with antialiasing "
 "enabled. Using it with the OpenGL backend may have some issues, consider "
 "using Vulkan backend instead."
-msgstr ""
+msgstr "고급 업스케일 기법입니다. 더 나은 결과를 위해 안티엘리어싱이 활성화된 FSR을 사용하십시오. OpenGL 백엔드와 함께 사용하면 몇 가지 문제가 발생할 수 있으므로, 대신 Vulkan 백엔드를 사용하는 것이 좋습니다."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "Bilinear"
-msgstr ""
+msgstr "Bilinear"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid ""
 "Bilinear upscale technique. Produces a slightly blurry picture depending on "
 "the scale."
-msgstr ""
+msgstr "Bilinear 업스케일 기법입니다. 배율에 따라 약간 흐릿한 이미지를 생성합니다."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "Pixelated"
-msgstr ""
+msgstr "픽셀화됨"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid "Simplest upscale technique. Used mostly for stylized effect."
-msgstr ""
+msgstr "가장 단순한 업스케일 기법입니다. 대부분 양식화된 효과를 위해 사용됩니다."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Technique defines performance and quality of upscaling process."
-msgstr ""
+msgstr "기법은 업스케일링 프로세스의 성능과 품질을 정의합니다."
 
 #: gui/options/options.json[1].options[5].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][9].label
@@ -4197,7 +4197,7 @@ msgstr "그림자"
 #: gui/options/options.json[1].options[5].tooltip
 #: gui/options/options.json[2].options[6].list[0][7].list[0][9].tooltip
 msgid "Enable shadows."
-msgstr "그림자 활성화."
+msgstr "그림자를 활성화합니다."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Unit silhouettes"
@@ -6024,7 +6024,7 @@ msgstr "무력 점수"
 
 #: gui/summary/layout.js:19
 msgid "Exploration score"
-msgstr "탐험 점수"
+msgstr "탐사 점수"
 
 #: gui/summary/layout.js:31
 msgid "Structures"
@@ -6182,7 +6182,7 @@ msgstr "지도 제어 (완성)"
 
 #: gui/summary/layout.js:198
 msgid "Map exploration"
-msgstr "지도 탐험"
+msgstr "지도 탐사"
 
 #: gui/summary/layout.js:199
 msgid "Vegetarian ratio"
@@ -6443,7 +6443,7 @@ msgstr "정착지를 단계적으로 향상시키는 동안 주민 병사들을 
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
-msgstr "신선한 부대로 습격을 다시 지원하기 위해 전방 기지에 건설합니다."
+msgstr "공격 거점을 구축하여 새로운 병력을 투입하고 공격을 지원합니다."
 
 #: gui/text/tips/biomes.txt:1
 msgid "BIOMES"
@@ -6546,11 +6546,11 @@ msgstr "유닛들은 건축물 내부에서 주둔하는 동안 경험치를 얻
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC HEAVY ARROW SHIP"
-msgstr ""
+msgstr "켈트족 중장 화살선"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "The main warship for the Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "브리튼인, 갈리아인, 이베리아인들의 주요 군선입니다."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Can transport up to 40 units."
@@ -6558,11 +6558,11 @@ msgstr "최대 40 유닛을 수송할 수 있습니다."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can be improved with greater health and garrison capacity."
-msgstr ""
+msgstr "체력과 주둔지 수용력을 향상시킬 수 있습니다."
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
-msgstr "성벽"
+msgstr "도시 성벽"
 
 #: gui/text/tips/city_walls.txt:2
 msgid "Strong stone walls that help you protect your city."
@@ -6768,7 +6768,7 @@ msgstr "기병 주민 병사들은 고기를 더 빨리 수집합니다."
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr "주민 병사 (상급병, 정예병) 수준이 높을수록 더 잘 싸울 수 있지만 자원 수집에는 효율성이 떨어집니다."
+msgstr "주민 병사(상급병, 정예병)의 수준이 높을수록 더 잘 싸울 수 있지만 자원 수집에는 효율성이 떨어집니다."
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
@@ -6794,11 +6794,11 @@ msgstr "주의: 각 영웅은 시합당 한 번만 모집할 수 있습니다!"
 
 #: gui/text/tips/iber_fireship.txt:1
 msgid "FIRESHIPS"
-msgstr ""
+msgstr "화공선"
 
 #: gui/text/tips/iber_fireship.txt:2
 msgid "Available to the Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "브리튼인, 갈리아인, 이베리아인이 사용할 수 있습니다."
 
 #: gui/text/tips/iber_fireship.txt:3
 msgid ""
@@ -6814,7 +6814,7 @@ msgstr ""
 
 #: gui/text/tips/iber_fireship.txt:5
 msgid "Very good against Siege Ships."
-msgstr ""
+msgstr "공성 선박에 매우 효과적입니다."
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
@@ -6879,7 +6879,7 @@ msgstr "광범위한 시야를 제공하고, 영토 붕괴로 인한 전초 기�
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
-msgstr "말뚝 울타리 벽"
+msgstr "말뚝 울타리 성벽"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
@@ -6891,7 +6891,7 @@ msgstr "대부분의 파벌은 부락 단계에서 접근할 수 있습니다."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "ACHAEMENID ARCHITECTURE"
-msgstr ""
+msgstr "아케메네스 건축양식"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
@@ -6930,13 +6930,13 @@ msgstr "사용 가능한 대상: 쿠시인, 마케도니아인, 프톨레마이�
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "SIEGE WARSHIP"
-msgstr ""
+msgstr "공성 군선"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, Seleucids, and Han Chinese."
-msgstr ""
+msgstr "가장 큰 대형 규격 군선입니다. 사용 가능한 대상: 카르타고인, 프톨레마이오스인, 로마인, 셀레우코스인, 한족."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid ""
@@ -6948,27 +6948,27 @@ msgstr ""
 msgid ""
 "Countered by melee ships, such as Ramming Ships and Fire Ships, and other "
 "Siege Ships."
-msgstr ""
+msgstr "충각선, 화공선 등 근접선과 다른 공성선으로 응전합니다."
 
 #: gui/text/tips/ramming_ships.txt:1
 msgid "RAMMING SHIPS"
-msgstr ""
+msgstr "충각선"
 
 #: gui/text/tips/ramming_ships.txt:2
 msgid "A strong and fast melee ship available to Mediterranean civilizations."
-msgstr ""
+msgstr "지중해 문명에서 사용할 수 있는 강력하고 빠른 근접선입니다."
 
 #: gui/text/tips/ramming_ships.txt:3
 msgid "Transport up to 30 troops swiftly across the water."
-msgstr ""
+msgstr "최대 30명의 병력을 신속하게 물을 가로질러 수송합니다."
 
 #: gui/text/tips/ramming_ships.txt:4
 msgid "Good against Siege Ships due to speed and strong ramming attack. "
-msgstr ""
+msgstr "속도와 강력한 충돌 공격으로 인해 공성 선박에 좋습니다."
 
 #: gui/text/tips/ramming_ships.txt:5
 msgid "Countered by Arrow Ships and Defense Towers. "
-msgstr ""
+msgstr "화살선과 방어탑으로 응전합니다."
 
 #: gui/text/tips/resource_counter.txt:1
 msgid "RESOURCE COUNTER"
@@ -7008,15 +7008,15 @@ msgstr "목재는 드문 편이지만 많은 목재를 낼수있는 바오밥 �
 
 #: gui/text/tips/shrine.txt:1
 msgid "SHRINES"
-msgstr ""
+msgstr "성지"
 
 #: gui/text/tips/shrine.txt:2
 msgid "Capturable map objects. Cannot be built or destroyed."
-msgstr ""
+msgstr "캡처 가능한 지도 오브젝트입니다. 만들거나 파괴할 수 없습니다."
 
 #: gui/text/tips/shrine.txt:3
 msgid "Train Elite Healers and heal garrisoned units."
-msgstr ""
+msgstr "정예 치료사들을 훈련하고 주둔한 유닛들을 치료합니다."
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
@@ -7070,13 +7070,13 @@ msgstr "공격 보너스로 기병을 상대로 사용됩니다."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
-msgstr "적절한 난도질 공격은 그들을 좋은 최전선 부대로 만듭니다."
+msgstr "난도질 공격만 잘하면 훌륭한 최전방 부대가 될 수 있습니다."
 
 #: gui/text/tips/spearmen.txt:5
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr "그들은 원거리 공격 유닛과 검병에 의해 대응되므로, 투석병 또는 기병으로 창병을 지원합니다."
+msgstr "그들은 원거리 유닛과 검병의 반격을 받기 때문에, 투석병이나 기병으로 창병을 지원합니다."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -7164,23 +7164,23 @@ msgstr "자원 부양책을 제공하므로, 탐색할 때 눈을 떼지 마십�
 
 #: gui/text/tips/triremes.txt:1
 msgid "ARROW SHIPS"
-msgstr ""
+msgstr "화살선"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The basic Warship for most factions."
-msgstr ""
+msgstr "대부분의 진영의 기본 군선입니다."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Transport up to 30 troops across the water."
-msgstr ""
+msgstr "최대 30명의 병력을 물을 가로질러 수송합니다."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Good against melee Warships, such as Ramming Ships and Fire Ships."
-msgstr ""
+msgstr "충각선 및 화공선과 같은 근접 군선에 적합합니다."
 
 #: gui/text/tips/triremes.txt:5
 msgid "Countered by Siege Ships and other Arrow Ships. "
-msgstr ""
+msgstr "공성선 및 다른 화살선으로 응전합니다."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"

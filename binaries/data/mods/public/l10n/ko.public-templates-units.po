@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-02-02 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2021-2023\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2021-2024\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -651,7 +651,7 @@ msgstr "화공선"
 #: simulation/templates/template_unit_ship_fire.xml:19
 msgid ""
 "Unrepairable. Gradually loses health after ignition. Can only attack Ships."
-msgstr ""
+msgstr "수리할 수 없습니다. 점화 후 점차적으로 내구력이 감소합니다. 선박만 공격할 수 있습니다."
 
 #: simulation/templates/template_unit_ship_fire.xml:20
 msgid "Fireship"
@@ -659,7 +659,7 @@ msgstr "화공선"
 
 #: simulation/templates/template_unit_ship_fire.xml:20
 msgid "Fire"
-msgstr "불"
+msgstr "화공"
 
 #: simulation/templates/template_unit_ship_fire.xml:20
 #: simulation/templates/template_unit_ship_warship.xml:31
@@ -669,7 +669,7 @@ msgstr "군선"
 
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Ignite the Fire Ship to damage nearby enemy Ships."
-msgstr ""
+msgstr "화공선을 점화해 근처의 적군 선박에 피해를 입힙니다."
 
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -698,7 +698,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Improve sea "
 "trading at the Market."
-msgstr ""
+msgstr "부두 간 교역입니다. 상인을 배에 주둔시켜 추가 수익을 얻습니다(한 명당 +20%). 이득이 되는 수중 보물을 모읍니다. 시장에서 해상 무역을 개선해야 합니다."
 
 #: simulation/templates/template_unit_ship_merchant.xml:21
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -714,38 +714,38 @@ msgstr "상인"
 #: simulation/templates/template_unit_ship_warship.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Arrow"
-msgstr ""
+msgstr "화살"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:32
 msgid "Arrow Ship"
-msgstr ""
+msgstr "화살선"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:33
 msgid "ArrowShip"
-msgstr ""
+msgstr "화살선"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:35
 msgid "Garrison units for transport across water. Countered by Siege Ships."
-msgstr ""
+msgstr "물을 가로질러 이동하는 주둔 유닛입니다. 공성선으로 응전합니다."
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:6
 msgctxt "Name of an attack, usually the weapon."
 msgid "Naval Ram"
-msgstr ""
+msgstr "수군 충선"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:47
 msgid "Ramming Ship"
-msgstr ""
+msgstr "충각선"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:48
 msgid ""
 "Garrison units for transport across water. Strong against Siege Ships. "
 "Countered by Arrow Ships."
-msgstr ""
+msgstr "물을 가로질러 이동하는 주둔 유닛입니다. 공성선에 강합니다. 화살선에 응전합니다."
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:49
 msgid "NavalRam"
-msgstr ""
+msgstr "수군 충선"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:23
 msgid "Scout Ship"
@@ -778,7 +778,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:61
 msgid "NavalSiege"
-msgstr ""
+msgstr "수군 공성선"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:61
 msgid "Heavy"
@@ -1437,7 +1437,7 @@ msgstr "폰토스"
 
 #: simulation/templates/units/brit/ship_fire.xml:5
 msgid "Briton Fire Ship"
-msgstr ""
+msgstr "브리튼족 화공선"
 
 #: simulation/templates/units/brit/ship_fishing.xml:9
 #: simulation/templates/units/gaul/ship_fishing.xml:9
@@ -3184,7 +3184,7 @@ msgstr "오나거는 군단병이 건설할 수 있습니다."
 
 #: simulation/templates/units/rome/siege_onager_packed.xml:18
 msgid "An area of effect siege unit unlocked by Marian Reforms."
-msgstr "마리우스 군제 개혁으로 잠금 해제된 광역 효과 공성 유닛입니다."
+msgstr "마리우스 군제 개혁으로 잠금해제된 광역 효과 공성 유닛입니다."
 
 #: simulation/templates/units/rome/siege_ram.xml:8
 msgid "Ariēs"

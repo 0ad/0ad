@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: he\n"
-"Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
+"Plural-Forms: nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;\n"
 
 #. dennis-ignore: *
 #: gui/common/OverlayCounterFPS.js:28
@@ -166,7 +166,6 @@ msgid_plural "Observers"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
@@ -185,7 +184,6 @@ msgid_plural "Wonder (%(min)s minutes)"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/common/gamedescription.js:216
 #, javascript-format
@@ -195,7 +193,6 @@ msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/common/gamedescription.js:232
 msgid "Relic Count"
@@ -272,7 +269,6 @@ msgid_plural "For the first %(min)s minutes, other players will stay neutral."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/common/gamedescription.js:288
 msgctxt "Map Selection"
@@ -716,7 +712,6 @@ msgid_plural "%(time)s %(second)s"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/common/tooltips.js:109 gui/common/tooltips.js:570
 #: gui/common/tooltips.js:1072
@@ -725,7 +720,6 @@ msgid_plural "seconds"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/common/tooltips.js:162 gui/common/tooltips.js:173
 msgid "Health:"
@@ -834,7 +828,6 @@ msgid_plural "%(projectileCount)s %(projectileName)s"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/common/tooltips.js:321
 msgid "arrow"
@@ -842,7 +835,6 @@ msgid_plural "arrows"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/common/tooltips.js:324
 #, javascript-format
@@ -897,7 +889,6 @@ msgid_plural "meters"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/common/tooltips.js:380
 #, javascript-format
@@ -1083,7 +1074,6 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/common/tooltips.js:664
 #, javascript-format
@@ -1092,7 +1082,6 @@ msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/common/tooltips.js:676
 msgid "Number of builders:"
@@ -1110,7 +1099,6 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/common/tooltips.js:698
 #, javascript-format
@@ -1119,7 +1107,6 @@ msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/common/tooltips.js:736 gui/common/tooltips.js:1009
 #, javascript-format
@@ -1258,7 +1245,6 @@ msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/common/tooltips.js:1062
 msgid "Health"
@@ -1266,7 +1252,6 @@ msgid_plural "Health"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/common/tooltips.js:1086
 #, javascript-format
@@ -5672,7 +5657,6 @@ msgid_plural "Civilization Bonuses"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
@@ -5680,7 +5664,6 @@ msgid_plural "Team Bonuses"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
@@ -5688,7 +5671,6 @@ msgid_plural "Heroes"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
@@ -5696,7 +5678,6 @@ msgid_plural "Specific Structures"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
@@ -5704,7 +5685,6 @@ msgid_plural "Specific Technologies"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
@@ -5865,7 +5845,6 @@ msgid_plural "< %(max)s min"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:127
@@ -5876,7 +5855,6 @@ msgid_plural "> %(min)s min"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-msgstr[3] ""
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:130
