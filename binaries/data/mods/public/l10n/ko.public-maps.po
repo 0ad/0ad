@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2024\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -322,7 +322,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "A once fertile valley, desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
-msgstr "[color=\"red\"]중요한 참고사항: 인공지능들은 이지도에서 작동하지 않습니다.[/color]\n\n한때 비옥했던 계곡으로, 이직역의 중심부에 있는 오랜 휴면 화산이 폭발로 인해 황폐화되었습니다. 수년간 텅비어 있고, 타 죽어, 삶의 흔적이 다시 나타나고 퍼지기 시작했습니다. 이제 그땅은 이전 시대의 완전한 풍성함에 절반이 되었습니다. 아아 그렇지않다: 오랜 가뭄이 오래 지속되고 북쪽의 높은 지역에 끊임없이 비가 내렸습니다. 수위가 급격히 높아지면서 플레이어들은 천천히 더 작고 멸종된 화산들 또는 지금은 잠들어있는 큰 원뿔의 높은 땅을 찾아야합니다."
+msgstr "[color=\"red\"]중요 사항: 인공지능들은 이지도에서 작동하지 않습니다.[/color]\n\n한때 비옥했던 계곡으로, 이직역의 중심부에 있는 오랜 휴면 화산이 폭발로 인해 황폐화되었습니다. 수년간 텅비어 있고, 타 죽어, 삶의 흔적이 다시 나타나고 퍼지기 시작했습니다. 이제 그땅은 이전 시대의 완전한 풍성함에 절반이 되었습니다. 아아 그렇지않다: 오랜 가뭄이 오래 지속되고 북쪽의 높은 지역에 끊임없이 비가 내렸습니다. 수위가 급격히 높아지면서 플레이어들은 천천히 더 작고 멸종된 화산들 또는 지금은 잠들어있는 큰 원뿔의 높은 땅을 찾아야합니다."
 
 #: maps/random/extinct_volcano.jsonsettings.Name
 msgid "Extinct Volcano"
@@ -362,7 +362,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n"
 "\n"
 "A great flood moves across the valley. At some point you have to evacuate your units and use ships to reach the mainland and the other players."
-msgstr ""
+msgstr "[color=\"red\"]중요 사항: AI 플레이어는 물이 불어나면 작동하지 않습니다[/color]\n\n거대한 홍수가 계곡을 가로질러 이동합니다. 어느 시점에서 유닛을 대피시키고 배를 이용해 본토와 다른 플레이어에게 도달해야 합니다."
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
@@ -370,35 +370,35 @@ msgstr "홍수"
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Description
 msgid "The water rises. The homeislands will become uninhabitable."
-msgstr ""
+msgstr "수위가 상승합니다. 고향 섬들은 사람이 살 수 없게 될 것입니다."
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Name
 msgid "Rising"
-msgstr ""
+msgstr "상승"
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Description
 msgid ""
 "The water doesn't rise. Ships and troops can battle in chest deep waters."
-msgstr ""
+msgstr "수위가 상승하지 않습니다. 선박과 병력들은 가슴까지 잠긴 물에서 전투를 할 수 있습니다."
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Name
 msgid "Shallow"
-msgstr ""
+msgstr "얕은 수위"
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Description
 msgid ""
 "The water doesn't rise. You have to use ships to travel to the mainland."
-msgstr ""
+msgstr "수위가 상승하지 않습니다. 본토로 이동하려면 선박을 이용해야 합니다."
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Name
 msgid "Deep"
-msgstr ""
+msgstr "깊은 수위"
 
 #: maps/random/flood_triggers.js:11
 msgid ""
 "The flood continues. Soon the waters will swallow the land. You should "
 "evacuate the units."
-msgstr ""
+msgstr "홍수가 계속됩니다. 곧 물이 땅을 삼킬 것입니다. 유닛을 대피시켜야 합니다."
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -1142,7 +1142,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to collect the treasures at the center of the map before others do, and try to build your base up. The last player remaining will be the winner!"
-msgstr "[color=\"red\"]중요한 참고 사항: 인공지능들은 이 지도에서 작동하지 않습니다.[/color]\n\n끝없는 적들의 파도로부터 당신의 기지를 보호합니다.  다른 사람들보다 먼저 지도의 중앙에 있는 보물을 모으기 위해 여성 주민을 이용하고 기지를 짓습니다. 마지막 남은 플레이어들이 승자가됩니다!"
+msgstr "[color=\"red\"]중요 사항: 인공지능들은 이 지도에서 작동하지 않습니다.[/color]\n\n끝없는 적들의 파도로부터 당신의 기지를 보호합니다.  다른 사람들보다 먼저 지도의 중앙에 있는 보물을 모으기 위해 여성 주민을 이용하고 기지를 짓습니다. 마지막 남은 플레이어들이 승자가됩니다!"
 
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
@@ -1186,7 +1186,7 @@ msgstr "알 수 없습니다."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Description
 msgid "Choose a random land landscape"
-msgstr "임의의 영토 풍경 선택"
+msgstr "무작위 영토 풍경 선택"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
 #: maps/skirmishes/corinthian_isthmus_2p.xml:Description:39
@@ -1260,7 +1260,7 @@ msgstr "무작위 육지"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Description
 msgid "Choose a random naval landscape"
-msgstr "임의의 해전 지형 선택"
+msgstr "무작위 해상 지형 선택"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Description
 msgid "A huge sea is dividing the map into two halves."
@@ -1268,7 +1268,7 @@ msgstr "거대한 바다가지도를 두 부분으로 나누고 있습니다."
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Name
 msgid "Naval: Central Sea"
-msgstr "해전: 중부 해역"
+msgstr "해상: 중부 해역"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Description
 msgid "Players are scattered across island chains and disconnected islands."
@@ -1276,7 +1276,7 @@ msgstr "플레이어들은 연결된 섬들과 단절된 섬들로 흩어져 있
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Name
 msgid "Naval: Archipelago"
-msgstr "해전: 군도"
+msgstr "해상: 군도"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Description
 msgid "A central lake with rivers possibly separating neighboring players."
@@ -1284,11 +1284,11 @@ msgstr "강이 흐르는 중앙 호수로 주변 플레이어들을 분리시킬
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Name
 msgid "Naval: Lake and rivers"
-msgstr "해전: 호수와 강"
+msgstr "해상: 호수와 강"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Name
 msgid "Random Naval"
-msgstr "무작위 해전"
+msgstr "무작위 해상"
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
@@ -1322,11 +1322,11 @@ msgstr "야생 호수"
 
 #: maps/scenarios/Ship Combat Demo.xml:Description:39
 msgid "Ship Combat Demo."
-msgstr ""
+msgstr "선박 전투 데모입니다."
 
 #: maps/scenarios/Ship Combat Demo.xml:Name:39
 msgid "Ship Combat Demo"
-msgstr ""
+msgstr "선박 전투 데모"
 
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
@@ -2018,7 +2018,7 @@ msgstr "샌드박스 - 아케메네스 왕조의 페르시아인"
 #: maps/scenarios/sandbox_ptolemies.xml:Description:38
 #: maps/skirmishes/sporades_islands_2p.xml:Description:39
 msgid "An islands map good for intense naval combat."
-msgstr "섬들이 있는 지도는 치열한 해전에 좋습니다."
+msgstr "치열한 해상 전투에 적합한 섬 지도입니다."
 
 #: maps/scenarios/sandbox_ptolemies.xml:Name:38
 msgid "Sandbox - The Ptolemaic Egyptians"
@@ -2680,11 +2680,11 @@ msgstr "에게 해를 배경으로 한 \"작은 섬\" 스타일의 지도입니�
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2 players)"
-msgstr ""
+msgstr "키클라데스 군도 (2인용)"
 
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
 msgid "Cycladic Archipelago (3 players)"
-msgstr ""
+msgstr "키클라데스 군도 (3인용)"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""

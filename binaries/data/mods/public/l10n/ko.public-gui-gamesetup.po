@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-01 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:48+0000\n"
-"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2024\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -125,7 +125,7 @@ msgstr "무작위"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:99
 msgid "Picks one civilization at random when the game starts."
-msgstr "게임을 시작할 때 임의로 한 문명을 고릅니다."
+msgstr "게임을 시작할 때 무작위로 한 문명을 고릅니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:48
 msgid "Pick a color."
@@ -334,7 +334,7 @@ msgstr "무작위"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:26
 msgctxt "landscape selection"
 msgid "Select a random landscape."
-msgstr "임의의 풍경을 선택합니다."
+msgstr "무작위로 풍경을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:78
 msgid "Landscape"
@@ -451,7 +451,7 @@ msgstr "무작위"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:61
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr "게임을 시작할 때 임의의 팀 배치 패턴을 선택합니다."
+msgstr "게임을 시작할 때 무작위로 팀 배치 패턴을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:41
 msgid "Difficulty"
@@ -463,11 +463,11 @@ msgstr "이 시나리오의 난이도를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WaterLevel.js:43
 msgid "Water level"
-msgstr ""
+msgstr "수위"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WaterLevel.js:46
 msgid "Select the water level of this map."
-msgstr ""
+msgstr "이 지도의 수위를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:47
 msgid "World Population Cap"
@@ -1450,7 +1450,7 @@ msgid ""
 "“Return with your shield, or on it.” \\n— Farewell of Spartan women to their"
 " warriors, implying that cowards would throw away their shield in battle to "
 "flee (Plutarch, “Moralia”, “Sayings of Spartan Women”, 241f)"
-msgstr "“방패를 들고 돌아오든지, 아니면 위에 놓아 두어라.” \\n— 스파르타의 여인들이 전사들에게 작벌의 인사를 하며, 겁쟁이들이 전투에서 방패를 버리고 도망칠것을 암시함 (플루타르크, “모랄리아”, “스파르타 여성의 명언”, 241f)"
+msgstr "“방패를 들고 돌아오든지, 아니면 그 위에 쓰러져라.” \\n— 스파르타 여인들이 전사들에게 남긴 작별 인사로, 겁쟁이는 전투에서 방패를 버리고 도망친다는 뜻입니다 (플루타르크, “모랄리아”, “스파르타 여성의 명언”, 241f)"
 
 #: gui/text/quotes.txt:79
 msgid ""
@@ -1957,7 +1957,7 @@ msgid ""
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbor and close to shore.” \\n— Polybius on the "
 "Athenian constitution (“Histories”, VI. 44)"
-msgstr "“아테네 사람들은 항상 사령관이 없는 배의 위치에 있다. 적이나 폭풍에 대한 두려움은 승무원이 한 마음으로 하고 투구맨에게 순종하게 하며, 모든 것이 잘 진행된다. 그러나 그들이 복구하는 경우 \\[...] 그들은 서로 싸운다. \\[...], 그리고 그 결과, 가장 넓은 바다와 가장 격렬한 폭풍의 위험을 피한 후, 그들은 항구와 해안 주변에서 배를 부수고 있었다.” \\n— 아테네 헌법에 관한 폴리비우스 (“역사”, VI. 44)"
+msgstr "“아테네 사람들은 항상 지휘관이 없는 배의 위치에 있다. 적이나 폭풍우에 대한 두려움은 선원들을 한마음으로 만들고 조타수에게 복종하게 하며 모든 일이 잘 진행된다; 하지만 그들이 회복된다면 \\[…]그들은 서로 사이가 틀어지고\\[...], 그 결과, 가장 넓은 바다와 가장 격렬한 폭풍의 위험에서 벗어난 후, 그들은 항구와 해안 가까이에서 배를 침몰시키는 경우가 종종 있었다.” \\n— 폴리비오스의 아테네 헌법에 대한 논의 (“역사”, VI. 44)"
 
 #: gui/text/quotes.txt:150
 msgid ""
