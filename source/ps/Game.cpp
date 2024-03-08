@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -69,7 +69,7 @@ const CStr CGame::EventNameSimulationUpdate = "SimulationUpdate";
  **/
 CGame::CGame(bool replayLog):
 	m_World(new CWorld(*this)),
-	m_Simulation2(new CSimulation2(&m_World->GetUnitManager(), g_ScriptContext, &m_World->GetTerrain())),
+	m_Simulation2{new CSimulation2{&m_World->GetUnitManager(), *g_ScriptContext, &m_World->GetTerrain()}},
 	// TODO: we need to remove that global dependency. Maybe the game view
 	// should be created outside only if needed.
 	m_GameView(CRenderer::IsInitialised() ? new CGameView(g_VideoMode.GetBackendDevice(), this) : nullptr),

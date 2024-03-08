@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -137,7 +137,7 @@ public:
 	{
 		CTerrain terrain;
 
-		CSimulation2 sim2(NULL, g_ScriptContext, &terrain);
+		CSimulation2 sim2{nullptr, *g_ScriptContext, &terrain};
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
@@ -196,7 +196,7 @@ public:
 		CTerrain terrain;
 		terrain.Initialize(5, NULL);
 
-		CSimulation2 sim2(NULL, g_ScriptContext, &terrain);
+		CSimulation2 sim2{nullptr, *g_ScriptContext, &terrain};
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
@@ -251,7 +251,7 @@ public:
 	{
 		CTerrain terrain;
 
-		CSimulation2 sim2(NULL, g_ScriptContext, &terrain);
+		CSimulation2 sim2{nullptr, *g_ScriptContext, &terrain};
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 
@@ -308,7 +308,7 @@ public:
 	{
 		CTerrain terrain;
 
-		CSimulation2 sim2(NULL, g_ScriptContext, &terrain);
+		CSimulation2 sim2{nullptr, *g_ScriptContext, &terrain};
 		sim2.LoadDefaultScripts();
 		sim2.ResetState();
 

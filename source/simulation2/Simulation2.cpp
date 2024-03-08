@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -53,10 +53,10 @@
 class CSimulation2Impl
 {
 public:
-	CSimulation2Impl(CUnitManager* unitManager, std::shared_ptr<ScriptContext> cx, CTerrain* terrain) :
-		m_SimContext(), m_ComponentManager(m_SimContext, *cx),
-		m_EnableOOSLog(false), m_EnableSerializationTest(false), m_RejoinTestTurn(-1), m_TestingRejoin(false),
-		m_MapSettings(cx->GetGeneralJSContext()), m_InitAttributes(cx->GetGeneralJSContext())
+	CSimulation2Impl(CUnitManager* unitManager, ScriptContext& cx, CTerrain* terrain) :
+		m_ComponentManager{m_SimContext, cx},
+		m_MapSettings{cx.GetGeneralJSContext()},
+		m_InitAttributes{cx.GetGeneralJSContext()}
 	{
 		m_SimContext.m_UnitManager = unitManager;
 		m_SimContext.m_Terrain = terrain;
@@ -131,14 +131,14 @@ public:
 
 	uint32_t m_TurnNumber;
 
-	bool m_EnableOOSLog;
+	bool m_EnableOOSLog{false};
 	OsPath m_OOSLogPath;
 
 	// Functions and data for the serialization test mode: (see Update() for relevant comments)
 
-	bool m_EnableSerializationTest;
-	int m_RejoinTestTurn;
-	bool m_TestingRejoin;
+	bool m_EnableSerializationTest{false};
+	int m_RejoinTestTurn{-1};
+	bool m_TestingRejoin{false};
 
 	// Secondary simulation (NB: order matters for destruction).
 	std::unique_ptr<CComponentManager> m_SecondaryComponentManager;
@@ -634,7 +634,7 @@ void CSimulation2Impl::DumpState()
 
 ////////////////////////////////////////////////////////////////
 
-CSimulation2::CSimulation2(CUnitManager* unitManager, std::shared_ptr<ScriptContext> cx, CTerrain* terrain) :
+CSimulation2::CSimulation2(CUnitManager* unitManager, ScriptContext& cx, CTerrain* terrain) :
 	m(new CSimulation2Impl(unitManager, cx, terrain))
 {
 }
