@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,7 +57,7 @@ public:
 
 	void test_AddEntity()
 	{
-		CSimulation2 sim(NULL, g_ScriptContext, &m_Terrain);
+		CSimulation2 sim{nullptr, *g_ScriptContext, &m_Terrain};
 		TS_ASSERT(sim.LoadScripts(L"simulation/components/addentity/"));
 
 		sim.ResetState(true, true);
@@ -77,7 +77,7 @@ public:
 
 	void test_DestroyEntity()
 	{
-		CSimulation2 sim(NULL, g_ScriptContext, &m_Terrain);
+		CSimulation2 sim{nullptr, *g_ScriptContext, &m_Terrain};
 		TS_ASSERT(sim.LoadScripts(L"simulation/components/addentity/"));
 
 		sim.ResetState(true, true);
@@ -133,7 +133,7 @@ public:
 
 	void test_hotload_scripts()
 	{
-		CSimulation2 sim(NULL, g_ScriptContext, &m_Terrain);
+		CSimulation2 sim{nullptr, *g_ScriptContext, &m_Terrain};
 
 		TS_ASSERT_OK(CreateDirectories(DataDir()/"mods"/"_test.sim"/"simulation"/"components"/"hotload"/"", 0700));
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -240,7 +240,7 @@ public:
 	void test_load_all_DISABLED() // disabled since it's a bit slow and noisy
 	{
 		CTerrain dummy;
-		CSimulation2 sim(NULL, g_ScriptContext, &dummy);
+		CSimulation2 sim{nullptr, *g_ScriptContext, &dummy};
 		sim.LoadDefaultScripts();
 		sim.ResetState();
 

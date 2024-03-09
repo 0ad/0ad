@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ class TestLOSTexture : public CxxTest::TestSuite
 public:
 	void test_basic()
 	{
-		CSimulation2 sim(NULL, g_ScriptContext, NULL);
+		CSimulation2 sim{nullptr, *g_ScriptContext, nullptr};
 		CLOSTexture tex(sim);
 
 		const ssize_t size = 8;
@@ -67,7 +67,7 @@ public:
 
 	void test_perf_DISABLED()
 	{
-		CSimulation2 sim(NULL, g_ScriptContext, NULL);
+		CSimulation2 sim{nullptr, *g_ScriptContext, nullptr};
 		CLOSTexture tex(sim);
 
 		const ssize_t size = 257;
