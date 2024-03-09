@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,8 +18,10 @@
 #ifndef NETFILETRANSFER_H
 #define NETFILETRANSFER_H
 
+#include <functional>
 #include <map>
 #include <string>
+#include <unordered_map>
 
 class CNetMessage;
 class CFileTransferResponseMessage;
@@ -39,35 +41,6 @@ static const size_t DEFAULT_FILE_TRANSFER_WINDOW_SIZE = 32;
 
 // Some arbitrary limit to make it slightly harder to use up all of someone's RAM
 static const size_t MAX_FILE_TRANSFER_SIZE = 8*MiB;
-
-/**
- * Asynchronous file-receiving task.
- * Other code should subclass this, implement OnComplete(),
- * then pass it to CNetFileTransferer::StartTask.
- */
-class CNetFileReceiveTask
-{
-public:
-	CNetFileReceiveTask() : m_RequestID(0), m_Length(0) { }
-	virtual ~CNetFileReceiveTask() {}
-
-	/**
-	 * Called when m_Buffer contains the full received data.
-	 */
-	virtual void OnComplete() = 0;
-
-	// TODO: Ought to have an OnFailure, e.g. when the session drops or there's another error
-
-	/**
-	 * Uniquely identifies the request within the scope of its CNetFileTransferer.
-	 * Set automatically by StartTask.
-	 */
-	u32 m_RequestID;
-
-	size_t m_Length;
-
-	std::string m_Buffer;
-};
 
 /**
  * Handles transferring files between clients and servers.
@@ -91,7 +64,7 @@ public:
 	/**
 	 * Registers a file-receiving task.
 	 */
-	void StartTask(const std::shared_ptr<CNetFileReceiveTask>& task);
+	void StartTask(std::function<void(std::string)> task);
 
 	/**
 	 * Registers data to be sent in response to a request.
@@ -127,7 +100,22 @@ private:
 
 	u32 m_NextRequestID;
 
-	using FileReceiveTasksMap = std::map<u32, std::shared_ptr<CNetFileReceiveTask>>;
+
+	struct AsyncFileReceiveTask
+	{
+		/**
+		 * Called when m_Buffer contains the full received data.
+		 */
+		std::function<void(std::string)> onComplete;
+
+		// TODO: Ought to have a failure channel, e.g. when the session drops or there's another error.
+
+		size_t length{0};
+
+		std::string buffer;
+	};
+
+	using FileReceiveTasksMap = std::unordered_map<u32, AsyncFileReceiveTask>;
 	FileReceiveTasksMap m_FileReceiveTasks;
 
 	using FileSendTasksMap = std::map<u32, CNetFileSendTask>;
