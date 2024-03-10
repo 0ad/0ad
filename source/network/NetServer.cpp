@@ -90,58 +90,6 @@ static CStr DebugName(CNetServerSession* session)
 	return "[" + session->GetGUID().substr(0, 8) + "...]";
 }
 
-/**
- * Async task for receiving the initial game state to be forwarded to another
- * client that is rejoining an in-progress network game.
- */
-class CNetFileReceiveTask_ServerRejoin : public CNetFileReceiveTask
-{
-	NONCOPYABLE(CNetFileReceiveTask_ServerRejoin);
-public:
-	CNetFileReceiveTask_ServerRejoin(CNetServerWorker& server, u32 hostID)
-		: m_Server(server), m_RejoinerHostID(hostID)
-	{
-	}
-
-	virtual void OnComplete()
-	{
-		// We've received the game state from an existing player - now
-		// we need to send it onwards to the newly rejoining player
-
-		// Find the session corresponding to the rejoining host (if any)
-		CNetServerSession* session = NULL;
-		for (CNetServerSession* serverSession : m_Server.m_Sessions)
-		{
-			if (serverSession->GetHostID() == m_RejoinerHostID)
-			{
-				session = serverSession;
-				break;
-			}
-		}
-
-		if (!session)
-		{
-			LOGMESSAGE("Net server: rejoining client disconnected before we sent to it");
-			return;
-		}
-
-		// Store the received state file, and tell the client to start downloading it from us
-		// TODO: this will get kind of confused if there's multiple clients downloading in parallel;
-		// they'll race and get whichever happens to be the latest received by the server,
-		// which should still work but isn't great
-		m_Server.m_JoinSyncFile = m_Buffer;
-
-		// Send the init attributes alongside - these should be correct since the game should be started.
-		CJoinSyncStartMessage message;
-		message.m_InitAttributes = Script::StringifyJSON(ScriptRequest(m_Server.GetScriptInterface()), &m_Server.m_InitAttributes);
-		session->SendMessage(&message);
-	}
-
-private:
-	CNetServerWorker& m_Server;
-	u32 m_RejoinerHostID;
-};
-
 /*
  * XXX: We use some non-threadsafe functions from the worker thread.
  * See http://trac.wildfiregames.com/ticket/654
@@ -1151,24 +1099,50 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 
 	server.OnUserJoin(session);
 
-	if (isRejoining)
-	{
-		ENSURE(server.m_State != SERVER_STATE_UNCONNECTED && server.m_State != SERVER_STATE_PREGAME);
+	if (!isRejoining)
+		return true;
 
-		// Request a copy of the current game state from an existing player,
-		// so we can send it on to the new player
+	ENSURE(server.m_State != SERVER_STATE_UNCONNECTED && server.m_State != SERVER_STATE_PREGAME);
 
-		// Assume session 0 is most likely the local player, so they're
-		// the most efficient client to request a copy from
-		CNetServerSession* sourceSession = server.m_Sessions.at(0);
+	// Request a copy of the current game state from an existing player, so we can send it on to the new
+	// player.
 
-		sourceSession->GetFileTransferer().StartTask(
-			std::shared_ptr<CNetFileReceiveTask>(new CNetFileReceiveTask_ServerRejoin(server, newHostID))
-		);
+	// Assume session 0 is most likely the local player, so they're the most efficient client to request a
+	// copy from.
+	CNetServerSession* sourceSession = server.m_Sessions.at(0);
 
-		session->SetNextState(NSS_JOIN_SYNCING);
-	}
+	sourceSession->GetFileTransferer().StartTask([&server, newHostID](std::string buffer)
+		{
+			// We've received the game state from an existing player - now we need to send it onwards
+			// to the newly rejoining player.
 
+			const auto sessionIt = std::find_if(server.m_Sessions.begin(), server.m_Sessions.end(),
+				[newHostID](const CNetServerSession* serverSession)
+				{
+					return serverSession->GetHostID() == newHostID;
+				});
+
+			if (sessionIt == server.m_Sessions.end())
+			{
+				LOGMESSAGE("Net server: rejoining client disconnected before we sent to it");
+				return;
+			}
+
+			// Store the received state file, and tell the client to stant downloading it from us.
+			// TODO: The server will get kind of confused if there's multiple clients downloading in
+			// parallel; they'll race and get whichever happens to be the latest received by the
+			// server, which should still work but isn't great.
+			server.m_JoinSyncFile = std::move(buffer);
+
+			// Send the init attributes alongside - these should be correct since the game should be
+			// started.
+			CJoinSyncStartMessage message;
+			message.m_InitAttributes = Script::StringifyJSON(
+				ScriptRequest{server.GetScriptInterface()}, &server.m_InitAttributes);
+			(*sessionIt)->SendMessage(&message);
+		});
+
+	session->SetNextState(NSS_JOIN_SYNCING);
 	return true;
 }
 bool CNetServerWorker::OnSimulationCommand(void* context, CFsmEvent* event)

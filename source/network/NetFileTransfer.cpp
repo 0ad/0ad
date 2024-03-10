@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 
 #include "NetFileTransfer.h"
 
+#include "lib/alignment.h"
 #include "lib/timer.h"
 #include "network/NetMessage.h"
 #include "network/NetSession.h"
@@ -57,12 +58,12 @@ Status CNetFileTransferer::OnFileTransferResponse(const CFileTransferResponseMes
 		return ERR::FAIL;
 	}
 
-	CNetFileReceiveTask& task = *it->second;
+	AsyncFileReceiveTask& task = it->second;
 
-	task.m_Length = message.m_Length;
-	task.m_Buffer.reserve(message.m_Length);
+	task.length = message.m_Length;
+	task.buffer.reserve(message.m_Length);
 
-	LOGMESSAGERENDER("Downloading data over network (%lu KB) - please wait...", task.m_Length / 1024);
+	LOGMESSAGERENDER("Downloading data over network (%lu KiB) - please wait...", task.length / KiB);
 	m_LastProgressReportTime = timer_Time();
 
 	return INFO::OK;
@@ -77,27 +78,28 @@ Status CNetFileTransferer::OnFileTransferData(const CFileTransferDataMessage& me
 		return ERR::FAIL;
 	}
 
-	CNetFileReceiveTask& task = *it->second;
+	AsyncFileReceiveTask& task = it->second;
 
-	task.m_Buffer += message.m_Data;
+	task.buffer += message.m_Data;
 
-	if (task.m_Buffer.size() > task.m_Length)
+	if (task.buffer.size() > task.length)
 	{
-		LOGERROR("Net transfer: Invalid size for file transfer data (length=%lu actual=%zu)", task.m_Length, task.m_Buffer.size());
+		LOGERROR("Net transfer: Invalid size for file transfer data (length=%lu actual=%zu)",
+			task.length, task.buffer.size());
 		return ERR::FAIL;
 	}
 
 	CFileTransferAckMessage ackMessage;
-	ackMessage.m_RequestID = task.m_RequestID;
+	ackMessage.m_RequestID = message.m_RequestID;
 	ackMessage.m_NumPackets = 1; // TODO: would be nice to send a single ack for multiple packets at once
 	m_Session->SendMessage(&ackMessage);
 
-	if (task.m_Buffer.size() == task.m_Length)
+	if (task.buffer.size() == task.length)
 	{
 		LOGMESSAGERENDER("Download completed");
 
-		task.OnComplete();
-		m_FileReceiveTasks.erase(message.m_RequestID);
+		task.onComplete(std::move(task.buffer));
+		m_FileReceiveTasks.erase(it);
 		return INFO::OK;
 	}
 
@@ -107,7 +109,8 @@ Status CNetFileTransferer::OnFileTransferData(const CFileTransferDataMessage& me
 	double t = timer_Time();
 	if (t > m_LastProgressReportTime + 0.5)
 	{
-		LOGMESSAGERENDER("Downloading data: %.1f%% of %lu KB", 100.f * task.m_Buffer.size() / task.m_Length, task.m_Length / 1024);
+		LOGMESSAGERENDER("Downloading data: %.1f%% of %lu KiB",
+			100.f * task.buffer.size() / task.length, task.length / KiB);
 		m_LastProgressReportTime = t;
 	}
 
@@ -138,12 +141,11 @@ Status CNetFileTransferer::OnFileTransferAck(const CFileTransferAckMessage& mess
 
 }
 
-void CNetFileTransferer::StartTask(const std::shared_ptr<CNetFileReceiveTask>& task)
+void CNetFileTransferer::StartTask(std::function<void(std::string)> task)
 {
 	u32 requestID = m_NextRequestID++;
 
-	task->m_RequestID = requestID;
-	m_FileReceiveTasks[requestID] = task;
+	m_FileReceiveTasks.emplace(requestID, AsyncFileReceiveTask{std::move(task)});
 
 	CFileTransferRequestMessage request;
 	request.m_RequestID = requestID;

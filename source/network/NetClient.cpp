@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,37 +52,6 @@
 constexpr u32 NETWORK_BAD_PING = DEFAULT_TURN_LENGTH * COMMAND_DELAY_MP / 2;
 
 CNetClient *g_NetClient = NULL;
-
-/**
- * Async task for receiving the initial game state when rejoining an
- * in-progress network game.
- */
-class CNetFileReceiveTask_ClientRejoin : public CNetFileReceiveTask
-{
-	NONCOPYABLE(CNetFileReceiveTask_ClientRejoin);
-public:
-	CNetFileReceiveTask_ClientRejoin(CNetClient& client, const CStr& initAttribs)
-		: m_Client(client), m_InitAttributes(initAttribs)
-	{
-	}
-
-	virtual void OnComplete()
-	{
-		// We've received the game state from the server
-
-		// Save it so we can use it after the map has finished loading
-		m_Client.m_JoinSyncBuffer = m_Buffer;
-
-		// Pretend the server told us to start the game
-		CGameStartMessage start;
-		start.m_InitAttributes = m_InitAttributes;
-		m_Client.HandleMessage(&start);
-	}
-
-private:
-	CNetClient& m_Client;
-	CStr m_InitAttributes;
-};
 
 CNetClient::CNetClient(CGame* game) :
 	m_Session(NULL),
@@ -834,8 +803,19 @@ bool CNetClient::OnJoinSyncStart(void* context, CFsmEvent* event)
 
 	// The server wants us to start downloading the game state from it, so do so
 	client->m_Session->GetFileTransferer().StartTask(
-		std::shared_ptr<CNetFileReceiveTask>(new CNetFileReceiveTask_ClientRejoin(*client, joinSyncStartMessage->m_InitAttributes))
-	);
+		[client, initAttributes = std::move(joinSyncStartMessage->m_InitAttributes)](std::string buffer)
+			mutable
+		{
+			// We've received the game state from the server.
+
+			// Save it so we can use it after the map has finished loading.
+			client->m_JoinSyncBuffer = std::move(buffer);
+
+			// Pretend the server told us to start the game.
+			CGameStartMessage start;
+			start.m_InitAttributes = std::move(initAttributes);
+			client->HandleMessage(&start);
+		});
 
 	return true;
 }
