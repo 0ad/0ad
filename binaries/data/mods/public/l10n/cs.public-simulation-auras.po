@@ -34,7 +34,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-12-04 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Marek Mojžíš <marek.moj@seznam.cz>, 2023\n"
+"Last-Translator: Tomáš Matýs <thommathys@gmail.com>, 2018,2021-2022,2024\n"
 "Language-Team: Czech (http://app.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,11 +52,11 @@ msgstr "Opravy arsenálu"
 
 #: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraDescription
 msgid "Garrisoned Heroes +6 health regeneration rate."
-msgstr ""
+msgstr "Hrdinové v posádce získají  +6 k rychlosti obnovení zdraví."
 
 #: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraName
 msgid "Officer Accommodation"
-msgstr ""
+msgstr "Ubytování důstojníka"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
@@ -86,15 +86,15 @@ msgstr "Posádka v ohradě pro pomalé získávání hrstky +1 jídla."
 
 #: simulation/data/auras/structures/eternal_fire.jsonauraDescription
 msgid "Structures +50% capture points."
-msgstr ""
+msgstr "Stavby  +50% k bodům za zajetí."
 
 #: simulation/data/auras/structures/eternal_fire.jsonauraName
 msgid "Eternal Fire"
-msgstr ""
+msgstr "Věčný oheň"
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Workers +75% grain gather rate around a captured Rotary Mill."
-msgstr ""
+msgstr "Dělníci +75% k rychlosti hospodaření s obilím v okolí dobytého Rotujícího mlýna."
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
@@ -162,11 +162,11 @@ msgstr "Ašókův výnos"
 #: simulation/data/auras/structures/satrapy_tribute.jsonauraDescription
 msgid ""
 "Upgrade the Throne Hall to receive a free trickle of a desired resource."
-msgstr ""
+msgstr "Vylepšete Trůnní sál a získejte zdarma přísun požadovaného zdroje."
 
 #: simulation/data/auras/structures/satrapy_tribute.jsonauraName
 msgid "Satrapy Tribute"
-msgstr ""
+msgstr "Satrapův tribut"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
@@ -213,7 +213,7 @@ msgstr "Důkladný výcvik"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Civic Center technologies −50% research time and −30% cost."
-msgstr ""
+msgstr "Správní středisko technologie −50% rychlost vývoje a −30% ceny."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
@@ -287,7 +287,7 @@ msgstr "Ašokova náboženská podpora"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Barracks and Stables −20% wood and stone cost and build time."
-msgstr ""
+msgstr "Kasárny a stáje −20% dřeva a ceny kamene a času stavění."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "Training Regimes"
@@ -312,7 +312,7 @@ msgstr "Branná povinnost"
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""
 "Civil Centers and Colonies −20% resource cost and −30% construction time."
-msgstr ""
+msgstr "Správní střediska a kolonie −20% náklady na zdroje a −30% doby výstavby."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -320,7 +320,7 @@ msgstr "Syrské čtyřměstí"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Heroes are trained for free."
-msgstr ""
+msgstr "Hrdinové jsou cvičeni zdarma."
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -419,7 +419,7 @@ msgstr "Územní rozšíření"
 msgid ""
 "The Music Bureau was charged directly by Emperor Wu to perform various tasks related to music, poetry, entertainment, or religious worship.\n"
 "Technologies −50% resource cost and research time."
-msgstr ""
+msgstr "Hudební úřad byl pověřen přímo císařem Wu, aby vykonával různé úkoly související s hudbou, poezií, zábavou nebo náboženským uctíváním.\nTechnologické náklady −50% zdrojů a rychlosti vývoje."
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraName
 msgid "Imperial Music Bureau"
@@ -602,7 +602,7 @@ msgstr "Železný pelanor"
 
 #: simulation/data/auras/units/celtic_healer.jsonauraDescription
 msgid "Soldiers +5% attack damage."
-msgstr ""
+msgstr "Vojáci získávají +5% k útoku. "
 
 #: simulation/data/auras/units/celtic_healer.jsonauraName
 msgid "Deas Celtica"
@@ -612,7 +612,7 @@ msgstr "Deas Celtica"
 msgid ""
 "Melee Soldiers +10% attack damage and all Soldiers −25% experience points "
 "for promotion."
-msgstr ""
+msgstr "Vojáci na blízko získávají +10% k útoku a všichni vojáci získávají −25% bodů zkušeností k promoci."
 
 #: simulation/data/auras/units/centurion.jsonauraName
 #: simulation/data/auras/units/centurion_1.jsonauraName
@@ -621,15 +621,15 @@ msgstr "Bojové velení"
 
 #: simulation/data/auras/units/centurion_1.jsonauraDescription
 msgid "Soldiers +10% attack damage and −25% experience points for promotion."
-msgstr ""
+msgstr "Vojáci získávají +10% k útoku a  −25% bodů zkušeností k promoci."
 
 #: simulation/data/auras/units/centurion_2.jsonauraDescription
 msgid "Marian Legionaries and Centurions +10% movement speed."
-msgstr ""
+msgstr "Máriovi legionáři a setníci +10% k rychlosti pohybu."
 
 #: simulation/data/auras/units/centurion_2.jsonauraName
 msgid "Century Maneuvers"
-msgstr ""
+msgstr "Manévry setníků"
 
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
@@ -669,15 +669,15 @@ msgstr "Zmocněnec nad lidem"
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraDescription
 msgid "Humans +0.5 health regeneration rate."
-msgstr ""
+msgstr "Lidé získají +0.5 k obnovení zdraví."
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraName
 msgid "Father of Medicine"
-msgstr ""
+msgstr "Otec medicíny"
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraDescription
 msgid "Own and Allied Healers +1 healing effect."
-msgstr ""
+msgstr "Vlastní a spojenečtí léčitelé +1 léčebný efekt."
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraName
 msgid "Hippocratic Oath"
@@ -685,7 +685,7 @@ msgstr "Hippokratova přísaha"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid "Soldiers +2 crush, hack, pierce resistance."
-msgstr ""
+msgstr "Vojáci +2 k obraně proti drtivým, sečným a bodným útokům."
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -703,23 +703,23 @@ msgstr "Reformy peltastů"
 msgid ""
 "Soldiers, Ships, Siege Engines and Structures do not give loot, +50% "
 "Structure capture points."
-msgstr ""
+msgstr "Vojáci, lodě, obléhací stroje a struktury neposkytují kořist, +50% k bodům zajmutí."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Defensive Strategy"
-msgstr ""
+msgstr "Periklejská obranná strategie"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Technologies −10% resource costs, −50% research time."
-msgstr ""
+msgstr "technologie jsou o −10% levnější. a jsou o −50% rychleji vyzkoumané."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Scholarship and the Arts"
-msgstr ""
+msgstr "Stipendium a umění"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid "Ships −50% metal cost, construction time, and +15% movement speed."
-msgstr ""
+msgstr "Lodě −50% ceny kovu, doby výstavby a +15% k rychlosti pohybu."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Preparation"
@@ -727,11 +727,11 @@ msgstr "Námořní příprava"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Walls and Palisades −50% resource costs and −20% construction time."
-msgstr ""
+msgstr "Hradby a palisády −50% náklady na zdroje a −20% doby výstavby."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Themistoclean Walls"
-msgstr ""
+msgstr "Themistoklejské hradby"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid ""
@@ -867,7 +867,7 @@ msgstr "Nepřátelská jízda -10% k poškození při útoku na blízko a na dá
 msgid ""
 "When garrisoned, the Structure has +1 capture points garrison regeneration "
 "rate."
-msgstr "Když je Struktura obsazena posádkou, dostává +1 bodů k rychlost regenerace zajetí."
+msgstr "Když je Struktura obsazena posádkou, dostává +1 bodů k rychlosti regenerace zajetí."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
@@ -960,7 +960,7 @@ msgstr "Dar válečných lodí"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraDescription
 msgid "Soldiers +10% attack damage, +15% movement speed."
-msgstr ""
+msgstr "Vojáci +10% k poškození, +15% k rychlosti pohybu."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraName
 msgid "Rapid Conquest"
@@ -1175,15 +1175,15 @@ msgstr "Zooiarchos"
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_1.jsonauraDescription
 msgid "Soldiers −25% metal cost, and training time."
-msgstr ""
+msgstr "Vojáci −25% z ceny kovu, a doby výcviku."
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_1.jsonauraName
 msgid "Great Revolt"
-msgstr ""
+msgstr "Velká vzpoura"
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_2.jsonauraDescription
 msgid "Agis +50% health."
-msgstr ""
+msgstr "Agis získá +50% na zdraví."
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_2.jsonauraName
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
@@ -1208,8 +1208,8 @@ msgstr "Bojovníci s oštěpem +1 k síle útoku při zajímání jednotek a +25
 msgid ""
 "Battering Rams +0.15 speed, +1 acceleration, and +0.5 turn rate for each "
 "garrisoned soldier."
-msgstr ""
+msgstr "Beranidla získají +0,15 k rychlosti, +1 zrychlení a +0,5 otáčky za každého vojáka v posádce."
 
 #: simulation/data/auras/units/ram_garrison.jsonauraName
 msgid "Battering Team"
-msgstr ""
+msgstr "Beranidlový tým"

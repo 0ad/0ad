@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:50+0000\n"
-"Last-Translator: fri, 2014-2018,2021,2023\n"
+"Last-Translator: Tomáš Matýs <thommathys@gmail.com>, 2018,2021,2024\n"
 "Language-Team: Czech (http://app.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,7 +81,7 @@ msgstr "Chcete přejít na stránku výběru upravených verzí?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:45
 msgid "Incompatible mods"
-msgstr "Nekompatibilní úpravy"
+msgstr "Nekompatibilní módy"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 msgid "The game has already started. Do you want to join as observer?"
@@ -117,7 +117,7 @@ msgstr "Hlavní nabídka"
 msgid ""
 "The command '%(cmd)s' is not supported. Try %(help)s to get more information"
 " about the supported commands."
-msgstr "Příkaz '%(cmd)s' není podporován. Zkus %(help)s k získání více informací k podporovaným příkazům."
+msgstr "Příkaz '%(cmd)s' není podporován. Zkus %(help)sk získání více informací o podporovaných příkazech."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
@@ -365,11 +365,11 @@ msgstr "Nekonečná hra"
 msgid ""
 "You have some incompatible mods:\n"
 "%(details)s"
-msgstr "Máte několik nekompatibilních úprav:\n%(details)s"
+msgstr "Máte několik nekompatibilních módů:\n%(details)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
-msgstr "Tato úprava nemá vliv na více-hráčskou kompatibilitu"
+msgstr "Tato modifikace nemá vliv na více-hráčskou kompatibilitu"
 
 #: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
@@ -396,7 +396,7 @@ msgstr "Upravené verze:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:153
 msgid "Mods (incompatible):"
-msgstr "Upravené verze (nekompatibilní):"
+msgstr "Modifikace (nekompatibilní):"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:156
@@ -672,13 +672,13 @@ msgstr "Zrušit"
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"] Zásady ochrany osobních údajů hry pro více hráčů jedné zájmové skupiny ve hře 0 A.D. Empires Ascendant[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2023-07-27"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Datum dokumentu:[/font] 2023-07-27"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:5
 msgid ""
@@ -903,7 +903,7 @@ msgid ""
 "Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
 "Lobby, in enforcing the Terms of Use and in the protection against "
 "cyberattacks (GDPR 6.1.f)."
-msgstr ""
+msgstr "2. Wildfire Games má oprávněné zájmy na poskytování Hry pro více hráčů, na vývoji a vylepšování hry 0 A.D. a Hry pro více hráčů, na prosazování Podmínek užití a na ochraně před kybernetickými útoky (GDPR 6.1.f)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:51
 msgid ""
@@ -1079,7 +1079,7 @@ msgstr "Další informace o zásadách ochrany soukromí Wildfire Games naleznet
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Service[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Podmínky užití služby hry pro více hráčů jedné zájmové skupiny ve hře 0 A.D. Empires Ascendant[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:5
 msgid ""
@@ -1087,14 +1087,14 @@ msgid ""
 " by Wildfire Games that allows players to set up online multiplayer matches,"
 " discuss the game in a public chat room and gain a rating that reflects "
 "their skill."
-msgstr ""
+msgstr "The 0 A.D. Empires Ascendant Multiplayer Lobby je online služba poskytovaná Wildfire Games, která umožňuje hráčům nastavit internetové zápasy pro více hráčů, diskutovat o hře ve veřejné chatovací místnosti a získat hodnocení, které odráží jejich dovednosti."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
 "Due to the subject matter of historic warfare, description and depiction of "
 "violence and the language on the Multiplayer Lobby, 0 A.D. and the "
 "Multiplayer Lobby are not directed to young children (COPPA §312.2)."
-msgstr ""
+msgstr "Vzhledem k předmětu historické války, popisu a vyobrazení násilí a jazyka ve hře pro více hráčů není hra 0 A.D. a hra pro více hráčů zaměřena na malé děti (COPPA §312.2)."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
@@ -1105,7 +1105,7 @@ msgstr "Nejnižší věk pro používání zájmové herní skupiny pro více hr
 msgid ""
 "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
 "to:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Užíváním zájmové herní skupiny 0 A.D. pro více hráčů souhlasíte s tím, že:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
@@ -1167,19 +1167,19 @@ msgstr "Pokud jsou části podmínek považovány za nezákonné nebo jinak nevy
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Use[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Podmínky užití hry pro více hráčů sdružených v zájmové skupině ve hře 0 A.D. Empires Ascendant[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:6
 msgid ""
 " 1. a. Only create one account per person on the service unless authorized "
 "by Wildfire Games."
-msgstr ""
+msgstr "1. a. Při použití této služby vytvořte pouze jeden účet na osobu, pokud to není povoleno Wildfire Games."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:7
 msgid ""
 "    b. Not share your account with anyone and not publish or divulge to "
 "anyone the account password."
-msgstr ""
+msgstr "b. Nesdílejte svůj účet s nikým a nezveřejňujte ani nikomu neprozrazujte heslo k účtu."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:8
 msgid ""
