@@ -30,34 +30,6 @@ CFsmEvent::~CFsmEvent()
 	m_Param = nullptr;
 }
 
-CFsm::CFsm()
-{
-	m_Done = false;
-	m_FirstState = FSM_INVALID_STATE;
-	m_CurrState = FSM_INVALID_STATE;
-	m_NextState = FSM_INVALID_STATE;
-}
-
-CFsm::~CFsm()
-{
-	Shutdown();
-}
-
-void CFsm::Setup()
-{
-	// Does nothing by default
-}
-
-void CFsm::Shutdown()
-{
-	m_Transitions.clear();
-
-	m_Done = false;
-	m_FirstState = FSM_INVALID_STATE;
-	m_CurrState = FSM_INVALID_STATE;
-	m_NextState = FSM_INVALID_STATE;
-}
-
 void CFsm::AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
 	Action* pAction /* = nullptr */, void* pContext /* = nullptr*/)
 {
@@ -108,6 +80,5 @@ bool CFsm::Update(unsigned int eventType, void* pEventParam)
 
 bool CFsm::IsDone() const
 {
-	// By default the internal flag m_Done is tested
 	return m_Done;
 }
