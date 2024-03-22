@@ -81,23 +81,7 @@ private:
  */
 class CFsm
 {
-	NONCOPYABLE(CFsm);
 public:
-
-	CFsm();
-	virtual ~CFsm();
-
-	/**
-	 * Constructs the state machine. This method must be overriden so that
-	 * connections are constructed for the particular state machine implemented.
-	 */
-	virtual void Setup();
-
-	/**
-	 * Clear event, transition lists and reset state machine.
-	 */
-	void Shutdown();
-
 	/**
 	 * Adds a new transistion to the state machine.
 	 */
@@ -136,9 +120,8 @@ public:
 
 	/**
 	 * Tests whether the state machine has finished its work.
-	 * @note This is state machine specific.
 	 */
-	virtual bool IsDone() const;
+	bool IsDone() const;
 
 private:
 	struct TransitionKey
@@ -177,10 +160,10 @@ private:
 	 */
 	bool IsFirstTime() const;
 
-	bool m_Done;
-	unsigned int m_FirstState;
-	unsigned int m_CurrState;
-	unsigned int m_NextState;
+	bool m_Done{false};
+	unsigned int m_FirstState{FSM_INVALID_STATE};
+	unsigned int m_CurrState{FSM_INVALID_STATE};
+	unsigned int m_NextState{FSM_INVALID_STATE};
 	TransitionMap m_Transitions;
 };
 
