@@ -30,7 +30,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022-2023\n"
+"Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022-2024\n"
 "Language-Team: Chinese (http://app.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -376,7 +376,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n"
 "\n"
 "A great flood moves across the valley. At some point you have to evacuate your units and use ships to reach the mainland and the other players."
-msgstr ""
+msgstr "[color=\"red\"]重要提示：水位上升后，AI 势力不会迁徙。[/color]\n\n大洪水席卷山谷，无论敌我都需尽快撤到其他大陆。"
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
@@ -384,35 +384,35 @@ msgstr "洪水"
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Description
 msgid "The water rises. The homeislands will become uninhabitable."
-msgstr ""
+msgstr "水位上升，家园不再宜居。"
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Name
 msgid "Rising"
-msgstr ""
+msgstr "洪水泛滥"
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Description
 msgid ""
 "The water doesn't rise. Ships and troops can battle in chest deep waters."
-msgstr ""
+msgstr "水位不再上升，海陆军队可在齐胸的水深处战斗。"
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Name
 msgid "Shallow"
-msgstr ""
+msgstr "浅滩"
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Description
 msgid ""
 "The water doesn't rise. You have to use ships to travel to the mainland."
-msgstr ""
+msgstr "水位不再上升，必须使用船只迁徙到新大陆。"
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Name
 msgid "Deep"
-msgstr ""
+msgstr "深坑"
 
 #: maps/random/flood_triggers.js:11
 msgid ""
 "The flood continues. Soon the waters will swallow the land. You should "
 "evacuate the units."
-msgstr ""
+msgstr "洪水持续泛滥，不久就会淹没整片土地。必须尽快让人员撤离。"
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -1336,11 +1336,11 @@ msgstr "野外湖泊"
 
 #: maps/scenarios/Ship Combat Demo.xml:Description:39
 msgid "Ship Combat Demo."
-msgstr ""
+msgstr "船只战斗演示。"
 
 #: maps/scenarios/Ship Combat Demo.xml:Name:39
 msgid "Ship Combat Demo"
-msgstr ""
+msgstr "船只战斗演示"
 
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
@@ -2694,11 +2694,11 @@ msgstr "一个在爱琴海的“岛屿风格”地图集。"
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2 players)"
-msgstr ""
+msgstr "希腊基克拉泽斯群岛（2人）"
 
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
 msgid "Cycladic Archipelago (3 players)"
-msgstr ""
+msgstr "希腊基克拉泽斯群岛（3人）"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""
@@ -2906,7 +2906,7 @@ msgid ""
 "This is the Ithmus at Corinth in Greece. The land is rich in raw resources and treasure, and the seas on either side of the isthmus are stocked with fish. Mercenary Camps can be found as well as large Metal Mine deposits.\n"
 "\n"
 "Watch out for pirate ships and brigands, though, as war-torn Greece is not without its share of dangers. And the enemy, marshalling their forces across the isthmus on the opposing landmass, will be looking for opportunities to invade your lands and take the strategic Corinthian Isthmus for themselves!"
-msgstr ""
+msgstr "地峡\n连接两块较大陆地或较大陆地与半岛间的狭窄地带一条狭窄的土地。\n\n本图为希腊的科林斯地峡。这里拥有丰富的原始资源和宝藏，还有佣兵营地以及大型金属矿藏。地峡两侧的海洋都有鱼类。\n\n然而，饱受战争蹂躏的希腊并非安然无虞，当心海盗船和强盗团。敌人会在对面的陆地集结部队，并寻机入侵，妄图将战略要地科林斯地峡据为己有！"
 
 #: maps/skirmishes/isthmus_of_corinth_2p.xml:Name:39
 msgid "Isthmus of Corinth (2)"
@@ -3292,7 +3292,7 @@ msgid ""
 "As with all Savanna maps, huntable animals foragable plants are abundant, but there are no farmlands on the entire map, so farming is difficult.\n"
 "\n"
 "Wood is scattered, but comes in high-yield Baobab trees. The watering holes give life to clusters of trees and life to dangerous fauna, such as crocodiles and elephants."
-msgstr ""
+msgstr "一张带有 4 个水坑的小型稀树草原地图。\n\n和其他稀树草原地图一样，动植物很丰富，但全图上没有农田，耕种困难。\n\n高产的猴面包树提供木材，但分布分散。水坑字样了成群的树木，也繁育了鳄鱼和大象等危险动物。"
 
 #: maps/skirmishes/watering_holes_4p.xml:Name:39
 msgid "Watering Holes (4 players)"

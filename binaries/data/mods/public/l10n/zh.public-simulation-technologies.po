@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-02-02 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: CHEN XINUO, 2024\n"
+"Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022-2024\n"
 "Language-Team: Chinese (http://app.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -103,7 +103,7 @@ msgstr "于城市阶段解锁。"
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Hoplites +25% health, but +5% training time."
-msgstr ""
+msgstr "冠勇重步兵生命值 +25% ，训练时间 +5% 。"
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
@@ -210,7 +210,7 @@ msgstr "波斯人建造了从萨第斯到苏萨全长近2700公里的御道；�
 
 #: simulation/data/technologies/architecture_pers.jsongenericName
 msgid "Achaemenid Architecture"
-msgstr ""
+msgstr "阿契美尼德王朝建筑"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
@@ -220,20 +220,20 @@ msgstr "建筑的生命值及忠诚 +25%、而建造时间 +20% ."
 msgid ""
 "The arsenal was mainly used as a warehouse for materials and instruments for"
 " the equipment of warships."
-msgstr ""
+msgstr "军械库，主要用来存放战舰需要的材料和设备。"
 
 #: simulation/data/technologies/arsenal_philon.jsongenericName
 msgid "Arsenal of Philon"
-msgstr ""
+msgstr "菲隆军械库"
 
 #: simulation/data/technologies/arsenal_philon.jsonrequirementsTooltip
 #: simulation/data/technologies/juggernauts.jsonrequirementsTooltip
 msgid "Unlocked in City Phase. Requires “Shipwrights.”"
-msgstr ""
+msgstr "城市阶段解锁，需要“船匠”科技。"
 
 #: simulation/data/technologies/arsenal_philon.jsontooltip
 msgid "Warships +1 health/second self-repair rate."
-msgstr ""
+msgstr "战舰生命值自我修复 +1/秒 。"
 
 #: simulation/data/technologies/art_of_war.jsondescription
 msgid ""
@@ -319,15 +319,15 @@ msgstr "骑兵移动速度 +10% ."
 msgid ""
 "Britons paint their bodies with Woad, which produces a blue color and gives "
 "them a fiercesome appearance in battle."
-msgstr ""
+msgstr "布立吞战士使用菘蓝涂抹身体，蓝色外形在战斗中可以震慑敌人。"
 
 #: simulation/data/technologies/civbonuses/brit_woad_warriors.jsongenericName
 msgid "Woad Warriors"
-msgstr ""
+msgstr "菘蓝战士"
 
 #: simulation/data/technologies/civbonuses/brit_woad_warriors.jsontooltip
 msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
-msgstr ""
+msgstr "所有步兵的移动速度 +5%，掠夺 +1 。"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
@@ -362,7 +362,7 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 BC, whose purpose "
 "was to push the Persians out of the Aegean region. The allied states "
 "contributed ships and money, while the Athenians offered their entire navy."
-msgstr ""
+msgstr "在萨拉米斯及米凯勒海战大捷不久之后，希腊城邦于公元前 478 年成立了“提洛同盟”，目标是将波斯人驱离爱琴海地区。各个同盟城邦都贡献了船舰或金钱，而雅典则贡献了全部海军。"
 
 #: simulation/data/technologies/civbonuses/delian_league.jsongenericName
 msgid "Delian League"
@@ -370,7 +370,7 @@ msgstr "提洛同盟"
 
 #: simulation/data/technologies/civbonuses/delian_league.jsontooltip
 msgid "Ships −25% construction time."
-msgstr ""
+msgstr "船只建造时间 -20% 。"
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -603,21 +603,21 @@ msgstr "殖民主义"
 msgid ""
 "Civic Structures (Civic Center, Temples, and Houses) −25% build time and "
 "resource costs."
-msgstr ""
+msgstr "市政建筑（市政中心、神庙和房屋）的建造花费和建造时间都 -25% 。"
 
 #: simulation/data/technologies/cost_healer.jsondescription
 msgid ""
 "Sacrificial rituals were quite common in ancient times, whether to satisfy "
 "the gods, calm natural disasters, or even improve harvests."
-msgstr ""
+msgstr "古代的祭牲极为普遍，以求取悦神明、平息灾害甚至是物产丰收。"
 
 #: simulation/data/technologies/cost_healer.jsongenericName
 msgid "Sacrificial Ritual"
-msgstr ""
+msgstr "祭牲"
 
 #: simulation/data/technologies/cost_healer.jsontooltip
 msgid "Healers –40% training time, and the metal cost is removed."
-msgstr ""
+msgstr "训练医师不花费金属，且训练时间 -40% 。"
 
 #: simulation/data/technologies/crossbow_training.jsondescription
 msgid "The Han had a penchant for using massed crossbowmen in battle."
@@ -640,7 +640,7 @@ msgstr "雇用熟练的工人使用专门的工具来加快船舶的建造。"
 
 #: simulation/data/technologies/dock_efficiency.jsongenericName
 msgid "Shipwrights"
-msgstr ""
+msgstr "船匠"
 
 #: simulation/data/technologies/dock_efficiency.jsonspecificName.athen
 #: simulation/data/technologies/dock_efficiency.jsonspecificName.mace
@@ -694,11 +694,11 @@ msgstr "探险家"
 
 #: simulation/data/technologies/exploration.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase. Requires “Lookouts.”"
-msgstr ""
+msgstr "乡村阶段解锁，需要“警戒”科技。"
 
 #: simulation/data/technologies/exploration.jsontooltip
 msgid "Traders and Ships +20% vision range."
-msgstr ""
+msgstr "商人和船只 +20% 的视野。"
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
 msgid "Salting allows to preserve fish longer."
@@ -706,11 +706,11 @@ msgstr "腌制可延长鱼肉的保质期。"
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsongenericName
 msgid "Salt Curing"
-msgstr ""
+msgstr "盐渍"
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase. Requires “Fishing Nets.”"
-msgstr ""
+msgstr "乡村阶段解锁，需要“渔网”科技。"
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -722,11 +722,11 @@ msgstr "使用渔网，提高捕鱼效率。"
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsongenericName
 msgid "Fishing Nets"
-msgstr ""
+msgstr "渔网"
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsontooltip
 msgid "Fishing Boats +30% fish gather rate. Unlocks “Salt Curing.”"
-msgstr ""
+msgstr "渔船打渔效率 +30%，解锁“盐渍”科技。"
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
@@ -1182,7 +1182,7 @@ msgstr ""
 
 #: simulation/data/technologies/juggernauts.jsongenericName
 msgid "Juggernauts"
-msgstr ""
+msgstr "巨型战船"
 
 #: simulation/data/technologies/juggernauts.jsonspecificName.ptol
 msgid "Tessarakonterēs"
@@ -1190,7 +1190,7 @@ msgstr "托勒密七列桨战船"
 
 #: simulation/data/technologies/juggernauts.jsontooltip
 msgid "Siege Ships +50% health, +25% more projectiles, but −25% speed."
-msgstr ""
+msgstr "攻城船生命值 +50%，弹药 +25%，速度 -25% 。"
 
 #: simulation/data/technologies/krypteia.jsondescription
 msgid ""
@@ -1316,7 +1316,7 @@ msgstr ""
 
 #: simulation/data/technologies/pharaonic_cult.jsongenericName
 msgid "Pharaonic Cult"
-msgstr ""
+msgstr "法老崇拜"
 
 #: simulation/data/technologies/pharaonic_cult.jsontooltip
 msgid "Heroes +2 health/second self-regen rate."
@@ -1586,15 +1586,15 @@ msgstr ""
 
 #: simulation/data/technologies/roman_roads.jsongenericName
 msgid "Roman Roads"
-msgstr ""
+msgstr "罗马大道"
 
 #: simulation/data/technologies/roman_roads.jsonspecificName.rome
 msgid "Viae Romanum"
-msgstr ""
+msgstr "罗马大道"
 
 #: simulation/data/technologies/roman_roads.jsontooltip
 msgid "All Land Units +5% movement speed."
-msgstr ""
+msgstr "所有陆地单位的移动速度 + 5% 。"
 
 #: simulation/data/technologies/serapis_cult.jsondescription
 msgid ""
@@ -1694,7 +1694,7 @@ msgstr ""
 msgid ""
 "Ships and Boats +10% vision range; Scout Ships an additional +25% vision "
 "range. Unlocks “Exploration” for the Carthaginians and Han Chinese."
-msgstr ""
+msgstr "船只的视野 + 10%，而侦察船的视野 + 25% 。迦太基和汉朝解锁“探索”科技。"
 
 #: simulation/data/technologies/siege_attack.jsondescription
 msgid "Advanced technologies improve siege efficiency."
@@ -2154,7 +2154,7 @@ msgid ""
 "Paeans were battle hymns that were sung by the Hoplites when they charged "
 "the enemy lines. One of the first known Paeans was composed by Tirteus, a "
 "warrior poet of Sparta, during the First Messenian War."
-msgstr ""
+msgstr "赞歌，重装步兵冲锋陷阵时传唱的曲子。其中最著名的一首是斯巴达军旅诗人提尔泰奥斯（Τυρταῖος ）在第一次美塞尼亚战争时谱写的。"
 
 #: simulation/data/technologies/tyrtean_paeans.jsongenericName
 msgid "Tyrtean Paeans"
@@ -2162,7 +2162,7 @@ msgstr "军歌"
 
 #: simulation/data/technologies/tyrtean_paeans.jsontooltip
 msgid "Champion Hoplites +10% movement speed."
-msgstr ""
+msgstr "冠勇重步兵的移动速度 +10% 。"
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
@@ -2249,15 +2249,15 @@ msgstr "解锁从民居训练妇女的能力。"
 msgid ""
 "In ancient Sparta, the Helots who were freed by the state in reward for "
 "military service were known as Neodamodes."
-msgstr ""
+msgstr "在古代斯巴达，由服兵役而获得自由的奴隶（希洛人）被称为“新公民”（νεοδαμώδεις） 。"
 
 #: simulation/data/technologies/unlock_neodamodes.jsongenericName
 msgid "Unlock Neodamodes"
-msgstr ""
+msgstr "解锁“新公民”"
 
 #: simulation/data/technologies/unlock_neodamodes.jsontooltip
 msgid "Unlock the ability to train Spearman Neodamodes at the Barracks."
-msgstr ""
+msgstr "可在军营里训练“新公民矛兵”。"
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsondescription
 msgid ""
@@ -2324,11 +2324,11 @@ msgstr "雇佣兵起始为高阶。"
 
 #: simulation/data/technologies/warship_arrow_attack.jsondescription
 msgid "Mounting bolt shooters onto ships helped give added firepower."
-msgstr ""
+msgstr "在船上加装弩炮，增加船只火力。"
 
 #: simulation/data/technologies/warship_arrow_attack.jsongenericName
 msgid "Naval Oxybeles"
-msgstr ""
+msgstr "海军锐箭弩"
 
 #: simulation/data/technologies/warship_arrow_attack.jsontooltip
 msgid "Arrow Ships +10 crush attack damage and +10% attack range."
