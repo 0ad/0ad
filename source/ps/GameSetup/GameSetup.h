@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,14 +52,6 @@ enum InitFlags
 	INIT_MODS_PUBLIC = 16
 };
 
-enum ShutdownFlags
-{
-	// start shutdown from config down
-	// needed for loading mods as specified in the config
-	// without having to go through a full init-shutdown cycle
-	SHUTDOWN_FROM_CONFIG = 1
-};
-
 extern const std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags);
 
 /**
@@ -73,13 +65,27 @@ void InitVfs(const CmdLineArgs& args);
 /**
  * Returns true if successful, false if Init is aborted early (for instance if
  * mods changed, or if we are using -dumpSchema).
- * If false is returned, the caller should call Shutdown() with SHUTDOWN_FROM_CONFIG.
+ * `ShutdownConfigAndSubsequent` has to be called later.
  */
 extern bool Init(const CmdLineArgs& args, int flags);
 extern void InitInput();
+
+/**
+ * `ShutdownNetworkAndUI` has to be called later.
+ */
 extern void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& installedMods = std::vector<CStr>());
+
+/**
+ * `ShutdownNetworkAndUI` has to be called later.
+ */
 extern bool InitNonVisual(const CmdLineArgs& args);
-extern void Shutdown(int flags);
+
+/**
+ * Has to be called before `ShutdownConfigAndSubsequent`.
+ */
+void ShutdownNetworkAndUI();
+void ShutdownConfigAndSubsequent();
+
 extern void CancelLoad(const CStrW& message);
 
 extern bool InDevelopmentCopy();
