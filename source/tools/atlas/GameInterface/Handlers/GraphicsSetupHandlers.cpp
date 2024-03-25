@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -81,7 +81,7 @@ MESSAGEHANDLER(Init)
 	{
 		// There are no mods specified on the command line,
 		// but there are in the config file, so mount those.
-		Shutdown(SHUTDOWN_FROM_CONFIG);
+		ShutdownConfigAndSubsequent();
 		ENSURE(Init(g_AtlasGameLoop->args, g_InitFlags));
 	}
 
@@ -146,8 +146,8 @@ MESSAGEHANDLER(Shutdown)
 	AtlasView::DestroyViews();
 	g_AtlasGameLoop->view = AtlasView::GetView_None();
 
-	int flags = 0;
-	Shutdown(flags);
+	ShutdownNetworkAndUI();
+	ShutdownConfigAndSubsequent();
 	g_FileLogger.reset();
 }
 

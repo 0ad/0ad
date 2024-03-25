@@ -333,12 +333,9 @@ void EndGame()
 	}
 }
 
-void Shutdown(int flags)
+void ShutdownNetworkAndUI()
 {
 	const bool hasRenderer = CRenderer::IsInitialised();
-
-	if ((flags & SHUTDOWN_FROM_CONFIG))
-		goto from_config;
 
 	EndGame();
 
@@ -374,8 +371,10 @@ void Shutdown(int flags)
 	curl_global_cleanup();
 
 	delete &g_L10n;
+}
 
-from_config:
+void ShutdownConfigAndSubsequent()
+{
 	TIMER_BEGIN(L"shutdown ConfigDB");
 	CConfigDB::Shutdown();
 	TIMER_END(L"shutdown ConfigDB");

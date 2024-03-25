@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -654,7 +654,7 @@ static void RunGameOrAtlas(const PS::span<const char* const> argv)
 		if (!Init(args, flags))
 		{
 			flags &= ~INIT_MODS;
-			Shutdown(SHUTDOWN_FROM_CONFIG);
+			ShutdownConfigAndSubsequent();
 			continue;
 		}
 
@@ -708,7 +708,8 @@ static void RunGameOrAtlas(const PS::span<const char* const> argv)
 		// Do not install mods again in case of restart (typically from the mod selector)
 		modsToInstall.clear();
 
-		Shutdown(0);
+		ShutdownNetworkAndUI();
+		ShutdownConfigAndSubsequent();
 		MainControllerShutdown();
 		flags &= ~INIT_MODS;
 
