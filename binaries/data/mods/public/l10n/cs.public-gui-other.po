@@ -32,7 +32,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-19 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>, 2023\n"
+"Last-Translator: fri, 2014-2019,2021,2024\n"
 "Language-Team: Czech (http://app.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1371,7 +1371,7 @@ msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "Přispěvatelé do 0 A.D."
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
@@ -1567,7 +1567,7 @@ msgstr "Posmrtně"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "Zakladatel 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
@@ -1583,7 +1583,7 @@ msgstr "Zvláštní poděkování:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "A děkujeme celému společenství. Bez pospolitosti by vznik 0 A.D. nebyl možný."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -2396,7 +2396,7 @@ msgstr "Volání do zbraně"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.capture.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to capture instead of another action (e.g. attack)."
-msgstr ""
+msgstr "Modifikátor pro zajmutí namísto jiné činnosti (např. zaútočení)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.capture.name
 msgctxt "hotkey metadata"
@@ -3593,11 +3593,11 @@ msgstr "Načíst"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Tato uložená hra vyžaduje verzi %(requiredVersion)s 0 A.D., toto je však verze %(currentVersion)s."
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Tato uložená verze potřebuje starší verzi 0 A.D."
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
@@ -4087,11 +4087,11 @@ msgstr "Okenní režim"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "Spustit hru 0 A.D. v okně."
 
 #: gui/options/options.json[1].options[10].label
 msgid "FPS throttling in games"
-msgstr "Přidušení FPS ve hrách"
+msgstr "Omezení FPS ve hrách"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid ""
