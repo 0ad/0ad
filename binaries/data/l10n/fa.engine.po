@@ -8,6 +8,7 @@
 # *Sociologist Abedi*
 # hamed farri
 # Kasra D. Tabrizi
+# Kaveh Arabi
 # Mostafa Lotfi
 # Spahbod
 # reza latifi
@@ -17,7 +18,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2013-06-22 12:54+0000\n"
-"Last-Translator: 46131046a8a0c6ab8774c49e23aa37bf_71b6ad4, 2023\n"
+"Last-Translator: Kaveh Arabi, 2024\n"
 "Language-Team: Persian (http://app.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,32 +29,32 @@ msgstr ""
 #: graphics/CameraController.cpp:659
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr "سرعت حرکت افزایش یافت به %.1f"
+msgstr "سرعت اسکرول موس افزایش یافت به %.1f"
 
 #: graphics/CameraController.cpp:665
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr "سرعت حرکت کاهش یافت به %.1f"
+msgstr "سرعت اسکرول موس کاهش یافت به %.1f"
 
 #: graphics/CameraController.cpp:672
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr "سرعت چرخش به افزایش یافت X= %.3f , Y= %.3f"
+msgstr "سرعت چرخش افزایش یافت به X= %.3f , Y= %.3f"
 
 #: graphics/CameraController.cpp:679
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr "سرعت چرخش به افزایش یافت X= %.3f , Y= %.3f"
+msgstr "سرعت چرخش کاهش یافت به X= %.3f , Y= %.3f"
 
 #: graphics/CameraController.cpp:685
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr "سرعت بزرگنمایی به افزایش یافت %.1f"
+msgstr "سرعت بزرگنمایی افزایش یافت به %.1f"
 
 #: graphics/CameraController.cpp:691
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr "سرعت بزرگنمایی به افزایش یافت %.1f"
+msgstr "سرعت بزرگنمایی کاهش یافت به %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -203,7 +204,7 @@ msgstr "نام کاربری قبلا انتخاب شده است"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "نمی‌توان mod.json خارجی را برای حالت فشرده '%s' نوشت. مود باید مجدد نصب شود."
+msgstr "نمی‌توان mod.json خارجی را برای حالت فشرده '%s' نوشت. ماد باید مجدد نصب شود."
 
 #: ps/ModIo.cpp:264
 #, c-format
