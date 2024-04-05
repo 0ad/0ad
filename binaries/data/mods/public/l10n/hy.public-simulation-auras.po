@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-12-04 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Sargis ., 2022\n"
+"Last-Translator: Sargis ., 2022,2024\n"
 "Language-Team: Armenian (http://app.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgstr "Զինանոցի վերանորոգում"
 
 #: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraDescription
 msgid "Garrisoned Heroes +6 health regeneration rate."
-msgstr ""
+msgstr "+6 կայազորի հերոսների առողջության վերականգնմանը։"
 
 #: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraName
 msgid "Officer Accommodation"
@@ -67,7 +67,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/eternal_fire.jsonauraName
 msgid "Eternal Fire"
-msgstr ""
+msgstr "Հավերժական կրակ"
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Workers +75% grain gather rate around a captured Rotary Mill."
@@ -75,7 +75,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
-msgstr ""
+msgstr "Վարելահող"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -143,7 +143,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/satrapy_tribute.jsonauraName
 msgid "Satrapy Tribute"
-msgstr ""
+msgstr "Սատրապության տուրք"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
@@ -194,7 +194,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
-msgstr ""
+msgstr "Ժողովրդավարություն"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
@@ -226,7 +226,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraName
 msgid "Silk Road"
-msgstr ""
+msgstr "Մետաքսի ճանապարհ"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
@@ -250,7 +250,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Mechanical Innovation"
-msgstr ""
+msgstr "Մեխանիկական նորարարություն"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
@@ -309,7 +309,7 @@ msgstr ""
 
 #: simulation/data/auras/units/carnyx.jsonauraName
 msgid "Intimidating Sound"
-msgstr ""
+msgstr "Ահաբեկող ձայն"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
@@ -460,7 +460,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/mace_catafalque_2.jsonauraName
 msgid "Financial Reorganization"
-msgstr ""
+msgstr "Տնտեսական վերակազմակերպում"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraDescription
 msgid ""
@@ -650,7 +650,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraName
 msgid "Father of Medicine"
-msgstr ""
+msgstr "Բժշկության նախահայր"
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraDescription
 msgid "Own and Allied Healers +1 healing effect."
@@ -658,7 +658,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraName
 msgid "Hippocratic Oath"
-msgstr ""
+msgstr "Հիպոկրատի երդում"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid "Soldiers +2 crush, hack, pierce resistance."
@@ -801,7 +801,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraName
 msgid "Northern Army"
-msgstr ""
+msgstr "Հյուսիսային բանակ"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraDescription
 msgid "Own and Allied Soldiers +25% vision range."
@@ -809,7 +809,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraName
 msgid "Southern Army"
-msgstr ""
+msgstr "Հարավային բանակ"
 
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_1.jsonauraDescription
 msgid "Walls +10 health regeneration rate."
@@ -822,7 +822,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_2.jsonauraDescription
 msgid "Cavalry +20% attack damage."
-msgstr ""
+msgstr "+20% հեծելազորի հարձակման վնասին։"
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_1.jsonauraDescription
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
@@ -949,7 +949,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Undefeated"
-msgstr ""
+msgstr "Անհաղթ"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_3.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
@@ -1073,7 +1073,7 @@ msgstr "-10% թշնամական հերոսների առողջությանը։"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraDescription
 msgid "Builders +10% build rate."
-msgstr ""
+msgstr "+10% շինարարների կառուցման արագությանը։"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraName
 msgid "Patron of Construction"
@@ -1156,7 +1156,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_1.jsonauraName
 msgid "Great Revolt"
-msgstr ""
+msgstr "Մեծ ապստամբություն"
 
 #: simulation/data/auras/units/heroes/spart_hero_agis_2.jsonauraDescription
 msgid "Agis +50% health."
