@@ -32,7 +32,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-19 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: fri, 2014-2019,2021,2024\n"
+"Last-Translator: Tomáš Matýs <thommathys@gmail.com>, 2018,2021-2022,2024\n"
 "Language-Team: Czech (http://app.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4123,21 +4123,21 @@ msgstr "Počet pixelů, o které se může myš pohybovat, než je akce považov
 
 #: gui/options/options.json[1].options[13].label
 msgid "Mouse grab in fullscreen"
-msgstr ""
+msgstr "Držení myši v režimu celé obrazovky"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid ""
 "Constrain mouse in the fullscreen mode to the window boundaries. It's used "
 "to avoid mouse going out of a display in case of multiple displays."
-msgstr ""
+msgstr "Omezte myš v režimu celé obrazovky na hranice okna. Používá se k zabránění vypadnutí myši z displeje v případě více displejů."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Mouse grab in window mode"
-msgstr ""
+msgstr "Držení myši v režimu okna"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Constrain mouse in the window mode to the window boundaries."
-msgstr ""
+msgstr "Omezte myš v režimu okna na hranice okna."
 
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label
@@ -4161,11 +4161,11 @@ msgstr "Použít filtry pro další zpracování plochy obrazovky (HDR, Bloom, D
 
 #: gui/options/options.json[1].options[3].label
 msgid "Resolution scale"
-msgstr ""
+msgstr "Měřítko rozlišení"
 
 #: gui/options/options.json[1].options[3].list[0].label
 msgid "50%"
-msgstr ""
+msgstr "50%"
 
 #: gui/options/options.json[1].options[11].list[0].label
 #: gui/options/options.json[1].options[3].list[1].label
@@ -4174,7 +4174,7 @@ msgstr "75%"
 
 #: gui/options/options.json[1].options[3].list[2].label
 msgid "87.5%"
-msgstr ""
+msgstr "87.5%"
 
 #: gui/options/options.json[1].options[11].list[1].label
 #: gui/options/options.json[1].options[3].list[3].label
@@ -4205,44 +4205,44 @@ msgstr "200%"
 msgid ""
 "A smaller scale makes rendering faster but produces a more blurry picture, a"
 " large scale makes rendering slower but produces a better picture."
-msgstr ""
+msgstr "Menší měřítko zrychluje vykreslování, ale vytváří více rozmazaný obrázek, velké měřítko zpomaluje vykreslování, ale vytváří lepší obrázek."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Upscale technique"
-msgstr ""
+msgstr "Upscale technika"
 
 #: gui/options/options.json[1].options[4].list[0].label
 msgid "FidelityFX Super Resolution 1.0"
-msgstr ""
+msgstr "FidelityFX Super Resolution 1.0"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid ""
 "Advanced upscale technique. For better results, use FSR with antialiasing "
 "enabled. Using it with the OpenGL backend may have some issues, consider "
 "using Vulkan backend instead."
-msgstr ""
+msgstr "Pokročilá upscale technika. Pro lepší výsledky použijte FSR s povoleným vyhlazováním. Použití s backendem OpenGL může mít nějaké problémy, zvažte použití backendu Vulkan."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "Bilinear"
-msgstr ""
+msgstr "Bilineární"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid ""
 "Bilinear upscale technique. Produces a slightly blurry picture depending on "
 "the scale."
-msgstr ""
+msgstr "Bilineární upscale technika. Vytváří mírně rozmazaný obraz v závislosti na měřítku."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "Pixelated"
-msgstr ""
+msgstr "Pixelováno"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid "Simplest upscale technique. Used mostly for stylized effect."
-msgstr ""
+msgstr "Nejjednodušší upscale technika. Používá se většinou pro stylizovaný efekt."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Technique defines performance and quality of upscaling process."
-msgstr ""
+msgstr "Technika definuje výkon a kvalitu procesu upscalingu."
 
 #: gui/options/options.json[1].options[5].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][9].label
@@ -4322,7 +4322,7 @@ msgstr "Vulkán"
 
 #: gui/options/options.json[2].options[0].list[2].tooltip
 msgid "Modern API, requires up-to-date drivers. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Moderní API, vyžaduje aktuální ovladače. VYŽADUJE RESTART HRY"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
@@ -5272,7 +5272,7 @@ msgstr "Příručka"
 
 #: gui/pregame/MainMenuItems.js:8
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Otevřít příručku k 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
@@ -5292,7 +5292,7 @@ msgstr "Strom staveb"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Podívejte se na strom staveb civilizací uváděných v 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:48
 #: gui/reference/civinfo/civinfo.xml:(caption):21
@@ -5303,7 +5303,7 @@ msgstr "Přehled civilizace"
 #: gui/pregame/MainMenuItems.js:49
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Učte se o civilizacích uváděných v 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:60
 msgid "Catafalque Overview"
@@ -5311,7 +5311,7 @@ msgstr "Přehled katafalku"
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "Porovnejte přídavky katafalků z roku 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Map Overview"
@@ -5319,7 +5319,7 @@ msgstr "Přehled map"
 
 #: gui/pregame/MainMenuItems.js:68
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "Prohlédněte si různé mapy přítomné v 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:132
 msgid "Continue Campaign"
@@ -5472,7 +5472,7 @@ msgstr "Otevřít editor scénářů Atlas v novém okně. Spolehlivěji jej mů
 
 #: gui/pregame/MainMenuItems.js:280
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "Opravdu chcete vypnout hru 0 A.D. a spustit editor scénářů?"
 
 #: gui/pregame/MainMenuItems.js:287
 msgid ""
@@ -5490,7 +5490,7 @@ msgstr "Zásluhy"
 
 #: gui/pregame/MainMenuItems.js:293
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Zobrazit zásluhy o 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:299
 msgid "Exit"
@@ -5502,7 +5502,7 @@ msgstr "Ukončit hru."
 
 #: gui/pregame/MainMenuItems.js:304
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr ""
+msgstr "Opravdu chcete ukončit 0 A.D.?"
 
 #: gui/pregame/ProjectInformation.js:6
 msgid "WILDFIRE GAMES"
@@ -5536,7 +5536,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr ""
+msgstr "Klepnutím otevřete chat IRC 0 A.D. v prohlížeči (#0ad na webchat.quakenet.org). Je provozován dobrovolníky, kteří dělají nejrůznější úkoly. Než vám odpovíme na vaši otázku, může to chvíli trvat. Alternativně můžete použít fórum (viz stránky)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5544,7 +5544,7 @@ msgstr "Nahlásit chybu"
 
 #: gui/pregame/ProjectInformation.js:42
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Klepněte pro navštívení 0 A.D. Trac, pro nahlášení chyby, pádu nebo problému."
 
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
@@ -5561,7 +5561,7 @@ msgstr "Překládat hru"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Klepněte pro otevření překladatelské stránky 0 A.D. ve svém prohlížeči."
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
@@ -5619,7 +5619,7 @@ msgstr "Povolit zpětnou vazbu"
 
 #: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr ""
+msgstr "Děkujeme za pomoc při vylepšování 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
@@ -5636,7 +5636,7 @@ msgstr "Neznámý"
 
 #: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
-msgstr ""
+msgstr "Pomozte zlepšit 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:87
 msgid ""
@@ -6030,7 +6030,7 @@ msgstr "Postavit vyrovnávací paměť pro opakované přehrání záznamu hry z
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"] Děkujeme vám za nainstalování 0 A.D. Empires Ascendant!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -6052,7 +6052,7 @@ msgstr "[imgleft=\"iconLag\"]Tato hra může mít potíže s výkonem, zvlášt�
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]0 A.D. je svobodný software: můžete se podílet na jeho vývoji."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
@@ -6622,11 +6622,11 @@ msgstr "Jednotky získávají zkušenosti, když jsou umístěny uvnitř stavby.
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC HEAVY ARROW SHIP"
-msgstr ""
+msgstr "LOĎ KELTSKÝCH TĚŽKÝCH ŠÍPŮ"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "The main warship for the Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Hlavní válečná loď pro Brity, Galy a Iberany."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Can transport up to 40 units."
@@ -6634,7 +6634,7 @@ msgstr "Může přepravit až 40 jednotek."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can be improved with greater health and garrison capacity."
-msgstr ""
+msgstr "Může být vylepšena s větším zdravím a kapacitou posádky."
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
@@ -6870,27 +6870,27 @@ msgstr "Upozornění: Každý hrdina může být přijat pouze jednou za zápas!
 
 #: gui/text/tips/iber_fireship.txt:1
 msgid "FIRESHIPS"
-msgstr ""
+msgstr "Požární lodě"
 
 #: gui/text/tips/iber_fireship.txt:2
 msgid "Available to the Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Dostupné Britům, Galům a Iberům."
 
 #: gui/text/tips/iber_fireship.txt:3
 msgid ""
 "Construct them, move them near enemy ships, then ignite them to set them "
 "ablaze."
-msgstr ""
+msgstr "Postavte je, přesuňte je do blízkosti nepřátelských lodí a poté je zapalte, abyste je zapálily."
 
 #: gui/text/tips/iber_fireship.txt:4
 msgid ""
 "They cause Fire damage to nearby enemy ships and themselves start to lose "
 "health."
-msgstr ""
+msgstr "Způsobují poškození ohněm blízkým nepřátelským lodím a sami začínají ztrácet zdraví."
 
 #: gui/text/tips/iber_fireship.txt:5
 msgid "Very good against Siege Ships."
-msgstr ""
+msgstr "Velmi dobré proti Obléhacím lodím."
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
@@ -6967,7 +6967,7 @@ msgstr "Většina stran je může používat od vesnické fáze."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "ACHAEMENID ARCHITECTURE"
-msgstr ""
+msgstr "ACHAEMENIDSKÁ ARCHITEKTURA"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
@@ -7006,45 +7006,45 @@ msgstr "Dostupné: Kušitům, Makedoncům, Ptolemaiovcům a Seleukovcům."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "SIEGE WARSHIP"
-msgstr ""
+msgstr "OBLÉHACÍ VÁLEČNÁ LOĎ"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, Seleucids, and Han Chinese."
-msgstr ""
+msgstr "Nejtěžší dostupná válečná loď. Dostupná pro: Kartágince, Ptolemaiovce, Římany, Seleukovce a Číňany Han."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid ""
 "Strong crush damage and long range make them good against Arrow Ships and "
 "Buildings near the shore."
-msgstr ""
+msgstr "Silné poškození rozdrcením a velký dosah je činí dobrými proti Střelným lodím a budovám poblíž pobřeží."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid ""
 "Countered by melee ships, such as Ramming Ships and Fire Ships, and other "
 "Siege Ships."
-msgstr ""
+msgstr "Kontrováno loděmi na blízko, jako jsou Lodě s beranidlem a Ohnivé lodě a další obléhací lodě."
 
 #: gui/text/tips/ramming_ships.txt:1
 msgid "RAMMING SHIPS"
-msgstr ""
+msgstr "LODĚ S BERANIDLEM"
 
 #: gui/text/tips/ramming_ships.txt:2
 msgid "A strong and fast melee ship available to Mediterranean civilizations."
-msgstr ""
+msgstr "Silná a rychlá loď pro boj zblízka dostupná středomořským civilizacím."
 
 #: gui/text/tips/ramming_ships.txt:3
 msgid "Transport up to 30 troops swiftly across the water."
-msgstr ""
+msgstr "Přepravte rychle až 30 vojáků přes vodu."
 
 #: gui/text/tips/ramming_ships.txt:4
 msgid "Good against Siege Ships due to speed and strong ramming attack. "
-msgstr ""
+msgstr "Dobré proti obléhacím lodím díky rychlosti a silnému útoku nájezdu."
 
 #: gui/text/tips/ramming_ships.txt:5
 msgid "Countered by Arrow Ships and Defense Towers. "
-msgstr ""
+msgstr "Kontrováno šípovými loděmi a obrannými věžemi."
 
 #: gui/text/tips/resource_counter.txt:1
 msgid "RESOURCE COUNTER"
@@ -7084,15 +7084,15 @@ msgstr "Les bývá řídký, ale sestává z vysoce výnosných stromů baobabu.
 
 #: gui/text/tips/shrine.txt:1
 msgid "SHRINES"
-msgstr ""
+msgstr "SVATYNĚ"
 
 #: gui/text/tips/shrine.txt:2
 msgid "Capturable map objects. Cannot be built or destroyed."
-msgstr ""
+msgstr "Mapové objekty, které lze zajmout. Nelze postavit ani zničit."
 
 #: gui/text/tips/shrine.txt:3
 msgid "Train Elite Healers and heal garrisoned units."
-msgstr ""
+msgstr "Trénujte elitní léčitele a léčte jednotky s posádkou."
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
@@ -7240,23 +7240,23 @@ msgstr "Poskytuje posílení zdrojů, takže na ně při průzkumu dávejte pozo
 
 #: gui/text/tips/triremes.txt:1
 msgid "ARROW SHIPS"
-msgstr ""
+msgstr "STŘELNÉ LODĚ"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The basic Warship for most factions."
-msgstr ""
+msgstr "Základní válečná loď pro většinu frakcí."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Transport up to 30 troops across the water."
-msgstr ""
+msgstr "Přepravte přes vodu až 30 vojáků."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Good against melee Warships, such as Ramming Ships and Fire Ships."
-msgstr ""
+msgstr "Dobré proti válečným lodím na blízko, jako jsou Lodě s beranidlem a Ohnivé lodě."
 
 #: gui/text/tips/triremes.txt:5
 msgid "Countered by Siege Ships and other Arrow Ships. "
-msgstr ""
+msgstr "Kontrováno Obléhacími loděmi a dalšímy šípovými loděmi."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
