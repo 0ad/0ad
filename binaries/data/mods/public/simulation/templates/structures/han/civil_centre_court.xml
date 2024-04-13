@@ -32,7 +32,7 @@
     </Technologies>
   </Researcher>
   <Trainer>
-    <BatchTimeModifier op="mul">0.75</BatchTimeModifier>
+    <BatchTimeModifier op="add">-0.2</BatchTimeModifier>
     <Entities datatype="tokens">
       units/{civ}/hero_han_xin_horse
       units/{civ}/hero_liu_bang_horse

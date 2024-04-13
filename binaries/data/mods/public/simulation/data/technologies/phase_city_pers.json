@@ -1,6 +1,6 @@
 {
 	"genericName": "City Phase",
-	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase, where stable training rates are decreased because of the 'Times of War' bonus.",
+	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase.\nThe 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\nIn mathematical terms: The training time of one batch gets divided by `batchSize^0.1`.",
 	"cost": {
 		"stone": 750,
 		"metal": 750
@@ -16,7 +16,7 @@
 	"replaces": ["phase_city"],
 	"icon": "city_phase.png",
 	"researchTime": 60,
-	"tooltip": "Advance to City Phase, which unlocks more entities and technologies. Civic Centers +25% territory influence radius. Structures +1 capture points regeneration rate for garrisoned units. Stable −10% batch training time.",
+	"tooltip": "Advance to City Phase, which unlocks more entities and technologies. Civic Centers +25% territory influence radius. Structures +1 capture points regeneration rate for garrisoned units. Decrease batch training time of units trained in Stables.",
 	"modifications": [
 		{ "value": "Capturable/GarrisonRegenRate", "add": 1, "affects": "Structure" },
 		{ "value": "Trainer/BatchTimeModifier", "add": -0.1, "affects": "Stable" },

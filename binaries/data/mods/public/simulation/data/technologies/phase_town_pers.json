@@ -1,6 +1,6 @@
 {
 	"genericName": "Town Phase",
-	"description": "Advances from a small village to a bustling town, ready to expand rapidly. This is the Persian town phase, where stable training rates are decreased because of the 'Times of War' bonus.",
+	"description": "Advances from a small village to a bustling town, ready to expand rapidly. This is the Persian town phase.\nThe 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\nIn mathematical terms: The training time of one batch gets divided by `batchSize^0.1`.",
 	"cost": {
 		"food": 500,
 		"wood": 500
@@ -16,7 +16,7 @@
 	"replaces": ["phase_town"],
 	"icon": "town_phase.png",
 	"researchTime": 30,
-	"tooltip": "Advance to Town Phase, which unlocks more entities and technologies. Civic Centers +25% territory influence radius. Structures +0.5 capture points regeneration rate for garrisoned units. Stable −10% batch training time.",
+	"tooltip": "Advance to Town Phase, which unlocks more entities and technologies. Civic Centers +25% territory influence radius. Structures +0.5 capture points regeneration rate for garrisoned units. Decrease batch training time of units trained in Stables.",
 	"modifications": [
 		{ "value": "Capturable/GarrisonRegenRate", "add": 0.5, "affects": "Structure" },
 		{ "value": "Trainer/BatchTimeModifier", "add": -0.1, "affects": "Stable" },
