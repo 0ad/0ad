@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,14 +27,24 @@
 #include "scriptinterface/JSON.h"
 #include "scriptinterface/Object.h"
 
+#include <algorithm>
 #include <sstream>
 
 namespace JSI_VFS
 {
+using namespace std::literals;
+
 // Only allow engine compartments to read files they may be concerned about.
-#define PathRestriction_GUI {L"gui/", L"simulation/", L"maps/", L"campaigns/", L"saves/campaigns/", L"config/matchsettings.json", L"config/matchsettings.mp.json", L"moddata"}
-#define PathRestriction_Simulation {L"simulation/"}
-#define PathRestriction_Maps {L"simulation/", L"maps/"}
+namespace PathRestriction
+{
+constexpr std::array<std::wstring_view, 8> GUI{L"gui/"sv, L"simulation/"sv, L"maps/"sv, L"campaigns/"sv,
+	L"saves/campaigns/"sv, L"config/matchsettings.json"sv, L"config/matchsettings.mp.json"sv,
+	L"moddata"sv};
+
+constexpr std::array<std::wstring_view, 1> SIMULATION{L"simulation/"sv};
+
+constexpr std::array<std::wstring_view, 2> MAPS{L"simulation/"sv, L"maps/"sv};
+}
 
 // shared error handling code
 #define JS_CHECK_FILE_ERR(err)\
@@ -50,19 +60,24 @@ namespace JSI_VFS
 
 
 // Tests whether the current script context is allowed to read from the given directory
-bool PathRestrictionMet(const ScriptRequest& rq, const std::vector<CStrW>& validPaths, const CStrW& filePath)
+template<auto& restriction>
+bool PathRestrictionMet(const ScriptRequest& rq, const std::wstring& filePath)
 {
-	for (const CStrW& validPath : validPaths)
-		if (filePath.find(validPath) == 0)
-			return true;
+	if (std::any_of(restriction.begin(), restriction.end(), [&](const std::wstring_view allowedPath)
+		{
+			return filePath.find(allowedPath) == 0;
+		}))
+	{
+		return true;
+	}
 
-	CStrW allowedPaths;
-	for (std::size_t i = 0; i < validPaths.size(); ++i)
+	std::wstring allowedPaths;
+	for (std::size_t i = 0; i < restriction.size(); ++i)
 	{
 		if (i != 0)
 			allowedPaths += L", ";
 
-		allowedPaths += L"\"" + validPaths[i] + L"\"";
+		allowedPaths += L"\"" + static_cast<std::wstring>(restriction[i]) + L"\"";
 	}
 
 	ScriptException::Raise(rq, "Restricted access to %s. This part of the engine may only read from %s!", utf8_from_wstring(filePath).c_str(), utf8_from_wstring(allowedPaths).c_str());
@@ -104,9 +119,11 @@ static Status BuildDirEntListCB(const VfsPath& pathname, const CFileInfo& UNUSED
 // specified directory.
 //   filter_string: default "" matches everything; otherwise, see vfs_next_dirent.
 //   recurse: should subdirectories be included in the search? default false.
-JS::Value BuildDirEntList(const ScriptRequest& rq, const std::vector<CStrW>& validPaths, const std::wstring& path, const std::wstring& filterStr, bool recurse)
+template<auto& restriction>
+JS::Value BuildDirEntList(const ScriptRequest& rq, const std::wstring& path, const std::wstring& filterStr,
+	bool recurse)
 {
-	if (!PathRestrictionMet(rq, validPaths, path))
+	if (!PathRestrictionMet<restriction>(rq, path))
 		return JS::NullValue();
 
 	// convert to const wchar_t*; if there's no filter, pass 0 for speed
@@ -125,9 +142,10 @@ JS::Value BuildDirEntList(const ScriptRequest& rq, const std::vector<CStrW>& val
 }
 
 // Return true iff the file exits
-bool FileExists(const ScriptRequest& rq, const std::vector<CStrW>& validPaths, const CStrW& filename)
+template<auto& restriction>
+bool FileExists(const ScriptRequest& rq, const std::wstring& filename)
 {
-	return PathRestrictionMet(rq, validPaths, filename) && g_VFS->GetFileInfo(filename, 0) == INFO::OK;
+	return PathRestrictionMet<restriction>(rq, filename) && g_VFS->GetFileInfo(filename, 0) == INFO::OK;
 }
 
 // Return time [seconds since 1970] of the last modification to the specified file.
@@ -151,9 +169,10 @@ unsigned int GetFileSize(const std::wstring& filename)
 }
 
 // Return file contents in a string. Assume file is UTF-8 encoded text.
-JS::Value ReadFile(const ScriptRequest& rq, const std::vector<CStrW>& validPaths, const CStrW& filename)
+template<auto& restriction>
+JS::Value ReadFile(const ScriptRequest& rq, const std::wstring& filename)
 {
-	if (!PathRestrictionMet(rq, validPaths, filename))
+	if (!PathRestrictionMet<restriction>(rq, filename))
 		return JS::NullValue();
 
 	CVFSFile file;
@@ -172,9 +191,10 @@ JS::Value ReadFile(const ScriptRequest& rq, const std::vector<CStrW>& validPaths
 }
 
 // Return file contents as an array of lines. Assume file is UTF-8 encoded text.
-JS::Value ReadFileLines(const ScriptRequest& rq, const std::vector<CStrW>& validPaths, const CStrW& filename)
+template<auto& restriction>
+JS::Value ReadFileLines(const ScriptRequest& rq, const std::wstring& filename)
 {
-	if (!PathRestrictionMet(rq, validPaths, filename))
+	if (!PathRestrictionMet<restriction>(rq, filename))
 		return JS::NullValue();
 
 	CVFSFile file;
@@ -207,10 +227,11 @@ JS::Value ReadFileLines(const ScriptRequest& rq, const std::vector<CStrW>& valid
 }
 
 // Return file contents parsed as a JS Object
-JS::Value ReadJSONFile(const ScriptInterface& scriptInterface, const std::vector<CStrW>& validPaths, const CStrW& filePath)
+template<auto& restriction>
+JS::Value ReadJSONFile(const ScriptInterface& scriptInterface, const std::wstring& filePath)
 {
 	ScriptRequest rq(scriptInterface);
-	if (!PathRestrictionMet(rq, validPaths, filePath))
+	if (!PathRestrictionMet<restriction>(rq, filePath))
 		return JS::NullValue();
 
 	JS::RootedValue out(rq.cx);
@@ -219,10 +240,12 @@ JS::Value ReadJSONFile(const ScriptInterface& scriptInterface, const std::vector
 }
 
 // Save given JS Object to a JSON file
-void WriteJSONFile(const ScriptInterface& scriptInterface, const std::vector<CStrW>& validPaths, const CStrW& filePath, JS::HandleValue val1)
+template<auto& restriction>
+void WriteJSONFile(const ScriptInterface& scriptInterface, const std::wstring& filePath,
+	JS::HandleValue val1)
 {
 	ScriptRequest rq(scriptInterface);
-	if (!PathRestrictionMet(rq, validPaths, filePath))
+	if (!PathRestrictionMet<restriction>(rq, filePath))
 		return;
 
 	// TODO: This is a workaround because we need to pass a MutableHandle to StringifyJSON.
@@ -255,64 +278,33 @@ bool DeleteCampaignSave(const CStrW& filePath)
 		wunlink(realPath) == 0;
 }
 
-#define VFS_ScriptFunctions(context)\
-JS::Value Script_ReadJSONFile_##context(const ScriptInterface& scriptInterface, const std::wstring& filePath)\
-{\
-	return ReadJSONFile(scriptInterface, PathRestriction_##context, filePath);\
-}\
-void Script_WriteJSONFile_##context(const ScriptInterface& scriptInterface, const std::wstring& filePath, JS::HandleValue val1)\
-{\
-	return WriteJSONFile(scriptInterface, PathRestriction_##context, filePath, val1);\
-}\
-JS::Value Script_ReadFile_##context(const ScriptInterface& scriptInterface, const std::wstring& filePath)\
-{\
-	return ReadFile(scriptInterface, PathRestriction_##context, filePath);\
-}\
-JS::Value Script_ReadFileLines_##context(const ScriptInterface& scriptInterface, const std::wstring& filePath)\
-{\
-	return ReadFileLines(scriptInterface, PathRestriction_##context, filePath);\
-}\
-JS::Value Script_ListDirectoryFiles_##context(const ScriptInterface& scriptInterface, const std::wstring& path, const std::wstring& filterStr, bool recurse)\
-{\
-	return BuildDirEntList(scriptInterface, PathRestriction_##context, path, filterStr, recurse);\
-}\
-bool Script_FileExists_##context(const ScriptInterface& scriptInterface, const std::wstring& filePath)\
-{\
-	return FileExists(scriptInterface, PathRestriction_##context, filePath);\
-}\
-
-VFS_ScriptFunctions(GUI);
-VFS_ScriptFunctions(Simulation);
-VFS_ScriptFunctions(Maps);
-#undef VFS_ScriptFunctions
-
 void RegisterScriptFunctions_ReadWriteAnywhere(const ScriptRequest& rq,
 	const u16 flags /*= JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT */)
 {
-	ScriptFunction::Register<&Script_ListDirectoryFiles_GUI>(rq, "ListDirectoryFiles", flags);
-	ScriptFunction::Register<&Script_FileExists_GUI>(rq, "FileExists", flags);
+	ScriptFunction::Register<&BuildDirEntList<PathRestriction::GUI>>(rq, "ListDirectoryFiles", flags);
+	ScriptFunction::Register<&FileExists<PathRestriction::GUI>>(rq, "FileExists", flags);
 	ScriptFunction::Register<&GetFileMTime>(rq, "GetFileMTime", flags);
 	ScriptFunction::Register<&GetFileSize>(rq, "GetFileSize", flags);
-	ScriptFunction::Register<&Script_ReadFile_GUI>(rq, "ReadFile", flags);
-	ScriptFunction::Register<&Script_ReadFileLines_GUI>(rq, "ReadFileLines", flags);
-	ScriptFunction::Register<&Script_ReadJSONFile_GUI>(rq, "ReadJSONFile", flags);
-	ScriptFunction::Register<&Script_WriteJSONFile_GUI>(rq, "WriteJSONFile", flags);
+	ScriptFunction::Register<&ReadFile<PathRestriction::GUI>>(rq, "ReadFile", flags);
+	ScriptFunction::Register<&ReadFileLines<PathRestriction::GUI>>(rq, "ReadFileLines", flags);
+	ScriptFunction::Register<&ReadJSONFile<PathRestriction::GUI>>(rq, "ReadJSONFile", flags);
+	ScriptFunction::Register<&WriteJSONFile<PathRestriction::GUI>>(rq, "WriteJSONFile", flags);
 	ScriptFunction::Register<&DeleteCampaignSave>(rq, "DeleteCampaignSave", flags);
 }
 
 void RegisterScriptFunctions_ReadOnlySimulation(const ScriptRequest& rq,
 	const u16 flags /*= JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT */)
 {
-	ScriptFunction::Register<&Script_ListDirectoryFiles_Simulation>(rq, "ListDirectoryFiles", flags);
-	ScriptFunction::Register<&Script_FileExists_Simulation>(rq, "FileExists", flags);
-	ScriptFunction::Register<&Script_ReadJSONFile_Simulation>(rq, "ReadJSONFile", flags);
+	ScriptFunction::Register<&BuildDirEntList<PathRestriction::SIMULATION>>(rq, "ListDirectoryFiles", flags);
+	ScriptFunction::Register<&FileExists<PathRestriction::SIMULATION>>(rq, "FileExists", flags);
+	ScriptFunction::Register<&ReadJSONFile<PathRestriction::SIMULATION>>(rq, "ReadJSONFile", flags);
 }
 
 void RegisterScriptFunctions_ReadOnlySimulationMaps(const ScriptRequest& rq,
 	const u16 flags /*= JSPROP_ENUMERATE | JSPROP_READONLY | JSPROP_PERMANENT */)
 {
-	ScriptFunction::Register<&Script_ListDirectoryFiles_Maps>(rq, "ListDirectoryFiles", flags);
-	ScriptFunction::Register<&Script_FileExists_Maps>(rq, "FileExists", flags);
-	ScriptFunction::Register<&Script_ReadJSONFile_Maps>(rq, "ReadJSONFile", flags);
+	ScriptFunction::Register<&BuildDirEntList<PathRestriction::MAPS>>(rq, "ListDirectoryFiles", flags);
+	ScriptFunction::Register<&FileExists<PathRestriction::MAPS>>(rq, "FileExists", flags);
+	ScriptFunction::Register<&ReadJSONFile<PathRestriction::MAPS>>(rq, "ReadJSONFile", flags);
 }
 }
