@@ -672,7 +672,7 @@ msgstr "Válečná loď"
 
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Ignite the Fire Ship to damage nearby enemy Ships."
-msgstr ""
+msgstr "Zapalte Zápalnou loď a poškoďte blízké nepřátelské lodě."
 
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -701,7 +701,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Improve sea "
 "trading at the Market."
-msgstr ""
+msgstr "Obchoduje mezi přístavy. Obsaďte obchodníkem kvůli vyššímu zisku (+20% za každého naloděného). Sbírá výnosné vodní poklady. Zlepšuje námořní obchodování na trhu."
 
 #: simulation/templates/template_unit_ship_merchant.xml:21
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -717,50 +717,50 @@ msgstr "Obchodník"
 #: simulation/templates/template_unit_ship_warship.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Arrow"
-msgstr ""
+msgstr "Šíp"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:32
 msgid "Arrow Ship"
-msgstr ""
+msgstr "Loď střílející šípy"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:33
 msgid "ArrowShip"
-msgstr ""
+msgstr "Loď střílející šípy"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:35
 msgid "Garrison units for transport across water. Countered by Siege Ships."
-msgstr ""
+msgstr "Umísti posádku pro přepravu přes vodu. Kontrováno obléhacími loděmi."
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:6
 msgctxt "Name of an attack, usually the weapon."
 msgid "Naval Ram"
-msgstr ""
+msgstr "Námořní beranidlo"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:47
 msgid "Ramming Ship"
-msgstr ""
+msgstr "Loď s beranidlem"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:48
 msgid ""
 "Garrison units for transport across water. Strong against Siege Ships. "
 "Countered by Arrow Ships."
-msgstr ""
+msgstr "Umísti posádku pro přepravu přes vodu. Silný proti obléhacím lodím. Kontrováno Loděmi střílející šípy."
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:49
 msgid "NavalRam"
-msgstr ""
+msgstr "Námořní beranidlo"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:23
 msgid "Scout Ship"
-msgstr ""
+msgstr "Průzkumná loď"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:24
 msgid "ScoutShip"
-msgstr ""
+msgstr "Průzkumná loď"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:26
 msgid "Scout for coastlines. Garrison units for transport across water."
-msgstr ""
+msgstr "Prozkoumávejte pobřeží. Umísti posádky pro přepravu přes vodu."
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:5
 #: simulation/templates/template_unit_siege_stonethrower.xml:5
@@ -771,13 +771,13 @@ msgstr "Kámen"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:59
 msgid "Siege Ship"
-msgstr ""
+msgstr "Obléhací loď"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:60
 msgid ""
 "Garrison units for transport across water. Good against Arrow Ships and "
 "Structures."
-msgstr ""
+msgstr "Umísti posádku pro přepravu přes vodu. Silný proti Lodím střílející šípy a stavbám."
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:61
 msgid "NavalSiege"
@@ -888,7 +888,7 @@ msgstr "Obchoduje se surovinami mezi vašimi trhy a trhy vašich spojenců."
 
 #: simulation/templates/units/athen/catafalque.xml:9
 msgid "Athenian Catafalque"
-msgstr ""
+msgstr "Athénský katafalk"
 
 #: simulation/templates/units/athen/catafalque.xml:10
 msgid "Solon"
@@ -1183,7 +1183,7 @@ msgstr "Toxótēs Skythikós"
 #: simulation/templates/units/athen/hero_hippocrates.xml:12
 #: simulation/templates/units/athen/hero_hippocrates.xml:13
 msgid "Hippocrates"
-msgstr ""
+msgstr "Hippokrates"
 
 #: simulation/templates/units/athen/hero_iphicrates.xml:8
 msgid "Iphicrates"
@@ -1340,7 +1340,7 @@ msgstr "Émporos"
 
 #: simulation/templates/units/brit/catafalque.xml:9
 msgid "Briton Catafalque"
-msgstr ""
+msgstr "Britský katafalk"
 
 #: simulation/templates/units/brit/catafalque.xml:10
 msgid "Cassiuellaunos"
@@ -1440,7 +1440,7 @@ msgstr "Pontos"
 
 #: simulation/templates/units/brit/ship_fire.xml:5
 msgid "Briton Fire Ship"
-msgstr ""
+msgstr "Britská zápalná loď"
 
 #: simulation/templates/units/brit/ship_fishing.xml:9
 #: simulation/templates/units/gaul/ship_fishing.xml:9
@@ -1456,7 +1456,7 @@ msgstr "Nauson"
 #: simulation/templates/units/gaul/ship_scout.xml:9
 #: simulation/templates/units/iber/ship_scout.xml:9
 msgid "Skiff"
-msgstr ""
+msgstr "Skif"
 
 #: simulation/templates/units/brit/siege_ram.xml:5
 #: simulation/templates/units/gaul/siege_ram.xml:5
@@ -1491,7 +1491,7 @@ msgstr "Agrocuna"
 
 #: simulation/templates/units/cart/catafalque.xml:8
 msgid "Carthaginian Catafalque"
-msgstr ""
+msgstr "Kartáginský katafalk"
 
 #: simulation/templates/units/cart/catafalque.xml:9
 msgid "Hasdrubal (Quartermaster)"
@@ -1678,7 +1678,7 @@ msgstr "Mekir"
 
 #: simulation/templates/units/gaul/catafalque.xml:9
 msgid "Gallic Catafalque"
-msgstr ""
+msgstr "Galský katafalk"
 
 #: simulation/templates/units/gaul/catafalque.xml:10
 msgid "Ambiorix"
@@ -1736,11 +1736,11 @@ msgstr "Britomaros"
 
 #: simulation/templates/units/gaul/ship_fire.xml:5
 msgid "Gallic Fire Ship"
-msgstr ""
+msgstr "Galská zápalná loď"
 
 #: simulation/templates/units/han/catafalque.xml:9
 msgid "Han Catafalque"
-msgstr ""
+msgstr "Hanský katafalk"
 
 #: simulation/templates/units/han/catafalque.xml:10
 msgid "Emperor Wǔ (Liu Che)"
@@ -1912,7 +1912,7 @@ msgstr "Shāngrén"
 
 #: simulation/templates/units/iber/catafalque.xml:9
 msgid "Iberian Catafalque"
-msgstr ""
+msgstr "Iberský katafalk"
 
 #: simulation/templates/units/iber/catafalque.xml:10
 msgid "Mandonius"
@@ -2005,7 +2005,7 @@ msgstr "Merkatari"
 
 #: simulation/templates/units/kush/catafalque.xml:9
 msgid "Kushite Catafalque"
-msgstr ""
+msgstr "katafalk z Kuše"
 
 #: simulation/templates/units/kush/catafalque.xml:11
 msgid "Shanakdakheto"
@@ -2208,7 +2208,7 @@ msgstr "rmt sbt"
 
 #: simulation/templates/units/mace/catafalque.xml:9
 msgid "Macedonian Catafalque"
-msgstr ""
+msgstr "Makedonský katafalk"
 
 #: simulation/templates/units/mace/catafalque.xml:10
 msgid "Philip V"
@@ -2332,7 +2332,7 @@ msgstr "Sphendonḗtēs Rhódios"
 #: simulation/templates/units/mace/ship_arrow.xml:10
 #: simulation/templates/units/ptol/ship_arrow.xml:9
 msgid "Tetrērēs"
-msgstr ""
+msgstr "Trojveslice"
 
 #: simulation/templates/units/mace/ship_ram.xml:10
 msgid "Triḗrēs Makedonikḗ"
@@ -2358,7 +2358,7 @@ msgstr "Makedonská žena"
 
 #: simulation/templates/units/maur/catafalque.xml:9
 msgid "Mauryan Catafalque"
-msgstr ""
+msgstr "Mauryjský katafalk"
 
 #: simulation/templates/units/maur/catafalque.xml:10
 #: simulation/templates/units/maur/hero_bindusara_infantry.xml:5
@@ -2576,7 +2576,7 @@ msgstr "Arštibara"
 
 #: simulation/templates/units/pers/catafalque.xml:8
 msgid "Persian Catafalque"
-msgstr ""
+msgstr "Perský katafalk"
 
 #: simulation/templates/units/pers/catafalque.xml:10
 msgid "Artaxšaçā"
@@ -2789,19 +2789,19 @@ msgstr "Obchodovat se surovinami mezi vašimi vlastními obchody a spojeneckými
 
 #: simulation/templates/units/pirates/ship_arrow.xml:8
 msgid "Rhodian Marauder"
-msgstr ""
+msgstr "Rhodský nájezdník"
 
 #: simulation/templates/units/pirates/ship_merchant.xml:9
 msgid "Blockade Runner"
-msgstr ""
+msgstr "Blokádní běžec"
 
 #: simulation/templates/units/pirates/ship_merchant.xml:10
 msgid "Treasure Ship"
-msgstr ""
+msgstr "Loď pokladů"
 
 #: simulation/templates/units/pirates/ship_merchant.xml:11
 msgid "Destroy this ship to loot its large amount of treasure."
-msgstr ""
+msgstr "Zničte tuto loď a ukořistite její velké množství pokladů."
 
 #: simulation/templates/units/pirates/ship_scout.xml:8
 msgid "Cilician Pirate Ship"
@@ -2822,7 +2822,7 @@ msgstr "Americká stíhačka z druhé světové války."
 
 #: simulation/templates/units/ptol/catafalque.xml:8
 msgid "Ptolemaic Catafalque"
-msgstr ""
+msgstr "Ptolemaiovský katafalk"
 
 #: simulation/templates/units/ptol/catafalque.xml:9
 msgid "Ptolemy III Euergetes (Benefactor)"
@@ -2946,7 +2946,7 @@ msgstr "Gallikós Mistophorós"
 
 #: simulation/templates/units/ptol/ship_ram.xml:10
 msgid "Pentērēs"
-msgstr ""
+msgstr "Pětiveslice"
 
 #: simulation/templates/units/ptol/ship_scout.xml:9
 #: simulation/templates/units/sele/ship_scout.xml:10
@@ -2956,7 +2956,7 @@ msgstr "Dierēs"
 
 #: simulation/templates/units/ptol/ship_siege.xml:5
 msgid "Octērēs"
-msgstr ""
+msgstr "Osmiveslice"
 
 #: simulation/templates/units/ptol/siege_polybolos_packed.xml:19
 msgid "Polybolos"
@@ -2972,7 +2972,7 @@ msgstr "Egyptská žena"
 
 #: simulation/templates/units/rome/catafalque.xml:9
 msgid "Roman Catafalque"
-msgstr ""
+msgstr "Římský katafalk"
 
 #: simulation/templates/units/rome/catafalque.xml:10
 msgid "Lūcius Iūnius Brūtus"
@@ -2980,15 +2980,15 @@ msgstr "Lūcius Iūnius Brūtus"
 
 #: simulation/templates/units/rome/cavalry_auxiliary_b.xml:6
 msgid "Auxiliary Cavalry"
-msgstr ""
+msgstr "Pomocná jízda"
 
 #: simulation/templates/units/rome/cavalry_auxiliary_b.xml:7
 msgid "Eques Alaris"
-msgstr ""
+msgstr "Eques Alaris"
 
 #: simulation/templates/units/rome/cavalry_auxiliary_b.xml:8
 msgid "Auxiliary"
-msgstr ""
+msgstr "Pomocná"
 
 #: simulation/templates/units/rome/cavalry_javelineer_b.xml:6
 msgid "Allied Cavalry"
@@ -3077,11 +3077,11 @@ msgstr "Praetorianus"
 msgid ""
 "Centurions may be promoted from elite melee citizen infantry, and train from"
 " the Fortress after Marian Reforms."
-msgstr ""
+msgstr "Centurioni mohou být povýšeni z elitní občanské pěchoty na blízko a trénovat z Pevnosti po Mariánských reformách."
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_centurion.xml:25
 msgid "Centurion"
-msgstr ""
+msgstr "Centurion"
 
 #: simulation/templates/units/rome/hero_marcellus.xml:10
 #: simulation/templates/units/rome/hero_marcellus_infantry.xml:10
@@ -3100,16 +3100,16 @@ msgstr "Pūblius Cornēlius Scīpiō Āfricānus"
 
 #: simulation/templates/units/rome/infantry_antesignanus.xml:21
 msgid "Legionary Skirmisher"
-msgstr ""
+msgstr "Legionářský harcovník"
 
 #: simulation/templates/units/rome/infantry_antesignanus.xml:22
 msgid "Antesignānus"
-msgstr ""
+msgstr "Antesignānus"
 
 #: simulation/templates/units/rome/infantry_antesignanus.xml:23
 #: simulation/templates/units/rome/infantry_legionary.xml:25
 msgid "Legionary"
-msgstr ""
+msgstr "Legionář"
 
 #: simulation/templates/units/rome/infantry_javelineer_b.xml:13
 msgid "Roman Skirmisher"
@@ -3129,12 +3129,12 @@ msgstr "Triārius"
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:25
 msgid "Elite rank Spearmen can be promoted to champion Centurions."
-msgstr ""
+msgstr "Elitní kopiníci mohou být povýšeni na šampiónské centuriony."
 
 #: simulation/templates/units/rome/infantry_spearman_e.xml:9
 #: simulation/templates/units/rome/infantry_swordsman_e.xml:9
 msgid "Give this combat veteran the rank of Centurion."
-msgstr ""
+msgstr "Dejte tomuto válečnému veteránovi hodnost Centurion."
 
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:19
 msgid "Roman Swordsman"
@@ -3146,7 +3146,7 @@ msgstr "Hastātus"
 
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:22
 msgid "Elite rank Swordsmen can be promoted to champion Centurions."
-msgstr ""
+msgstr "Elitní šermíři mohou být povýšeni na šampiónské centuriony."
 
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:20
 msgid "Servus"
@@ -3166,7 +3166,7 @@ msgstr "Corbīta"
 
 #: simulation/templates/units/rome/ship_ram.xml:9
 msgid "Quadrirēmis Rōmāna"
-msgstr ""
+msgstr "Quadrirēmis Rōmāna"
 
 #: simulation/templates/units/rome/ship_scout.xml:9
 msgid "Liburna"
@@ -3183,11 +3183,11 @@ msgstr "Onager"
 
 #: simulation/templates/units/rome/siege_onager.xml:23
 msgid "Onagers may be built by Legionaries."
-msgstr ""
+msgstr "Onagery mohou stavět legionáři."
 
 #: simulation/templates/units/rome/siege_onager_packed.xml:18
 msgid "An area of effect siege unit unlocked by Marian Reforms."
-msgstr ""
+msgstr "Oblast efektu obléhací jednotky odemčená Mariánskými reformami."
 
 #: simulation/templates/units/rome/siege_ram.xml:8
 msgid "Ariēs"
@@ -3239,7 +3239,7 @@ msgstr "Samnitský bojovník s mečem"
 
 #: simulation/templates/units/sele/catafalque.xml:10
 msgid "Seleucid Catafalque"
-msgstr ""
+msgstr "Seleucijský katafalk"
 
 #: simulation/templates/units/sele/catafalque.xml:11
 msgid "Antiochus I Soter (Savior)"
@@ -3375,7 +3375,7 @@ msgstr "Seleukovská triéra"
 
 #: simulation/templates/units/sele/ship_ram.xml:10
 msgid "Seleukidó̱n Tetrērēs"
-msgstr ""
+msgstr "Seleukovská triéra"
 
 #: simulation/templates/units/sele/ship_siege.xml:6
 msgid "Pentères"
@@ -3391,7 +3391,7 @@ msgstr "Syrská žena"
 
 #: simulation/templates/units/spart/catafalque.xml:10
 msgid "Spartan Catafalque"
-msgstr ""
+msgstr "Spartský katafalk"
 
 #: simulation/templates/units/spart/catafalque.xml:11
 msgid "Lycurgus"
@@ -3431,7 +3431,7 @@ msgstr "Spartiátēs"
 
 #: simulation/templates/units/spart/champion_infantry_spear_olympian.xml:15
 msgid "Spartan Olympic Hoplite"
-msgstr ""
+msgstr "Spartský olympijský hoplíta"
 
 #: simulation/templates/units/spart/champion_infantry_swordsman.xml:18
 msgid "Skiritai Commando"
@@ -3480,11 +3480,11 @@ msgstr "Hoplítēs Períoikos"
 
 #: simulation/templates/units/spart/infantry_spearman_neodamodes.xml:15
 msgid "Neodamodes Hoplite"
-msgstr ""
+msgstr "Nedamodský hoplíta"
 
 #: simulation/templates/units/spart/infantry_spearman_neodamodes.xml:16
 msgid "Neodamōdeis"
-msgstr ""
+msgstr "Neodamōdeis"
 
 #: simulation/templates/units/spart/ship_ram.xml:10
 msgid "Triḗrēs"
