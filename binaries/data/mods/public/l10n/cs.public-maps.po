@@ -28,7 +28,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-05 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: fri, 2014-2018,2021-2022,2024\n"
+"Last-Translator: Tomáš Matýs <thommathys@gmail.com>, 2018,2021-2022,2024\n"
 "Language-Team: Czech (http://app.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -374,7 +374,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n"
 "\n"
 "A great flood moves across the valley. At some point you have to evacuate your units and use ships to reach the mainland and the other players."
-msgstr ""
+msgstr "[color=\"red\"]DŮLEŽITÁ POZNÁMKA: AI HRÁČI NEPRACUJÍ SE STOUPACÍ VODOU[/color]\n\nÚdolím se táhne velká povodeň. V určitém okamžiku musíte evakuovat své jednotky a pomocí lodí se dostat na pevninu i s ostatními hráči."
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
@@ -382,35 +382,35 @@ msgstr "Povodeň"
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Description
 msgid "The water rises. The homeislands will become uninhabitable."
-msgstr ""
+msgstr "Voda stoupá. Domovské ostrovy se stanou neobyvatelnými."
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Name
 msgid "Rising"
-msgstr ""
+msgstr "Stoupající"
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Description
 msgid ""
 "The water doesn't rise. Ships and troops can battle in chest deep waters."
-msgstr ""
+msgstr "Voda nestoupá. Lodě a jednotky mohou bojovat v hlubokých vodách."
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Name
 msgid "Shallow"
-msgstr ""
+msgstr "Mělký"
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Description
 msgid ""
 "The water doesn't rise. You have to use ships to travel to the mainland."
-msgstr ""
+msgstr "Voda nestoupá. K cestě na pevninu musíte použít lodě."
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Name
 msgid "Deep"
-msgstr ""
+msgstr "Hluboký"
 
 #: maps/random/flood_triggers.js:11
 msgid ""
 "The flood continues. Soon the waters will swallow the land. You should "
 "evacuate the units."
-msgstr ""
+msgstr "Povodeň pokračuje. Vody brzy pohltí zemi. Měli byste evakuovat jednotky."
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -1334,11 +1334,11 @@ msgstr "Přírodní jezero"
 
 #: maps/scenarios/Ship Combat Demo.xml:Description:39
 msgid "Ship Combat Demo."
-msgstr ""
+msgstr "Bojová ukázka lodí."
 
 #: maps/scenarios/Ship Combat Demo.xml:Name:39
 msgid "Ship Combat Demo"
-msgstr ""
+msgstr "Bojová ukázka lodí"
 
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
@@ -2578,21 +2578,21 @@ msgid ""
 "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
 "\n"
 "This represents the Arabian Desert, South of Mesopotamia."
-msgstr ""
+msgstr "Stará oblíbená. Jinak široce rozevřená, plochá pouštní mapa je uprostřed proražena bujnými dvěmi oázami.\n\nTo představuje Arabskou poušť, jižně od Mezopotámie."
 
 #: maps/skirmishes/arabian_oases_2p.xml:Name:39
 msgid "Arabian Oases (2 players)"
-msgstr ""
+msgstr "Arabské oázy (2hráči)"
 
 #: maps/skirmishes/arabian_oases_2p.xml:PlayerData[0].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[1].Name:39
 msgid "Northeast Player"
-msgstr ""
+msgstr "Severovýchodní hráč"
 
 #: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[2].Name:39
 msgid "Southwest Player"
-msgstr ""
+msgstr "Jihozápadní hráč"
 
 #: maps/skirmishes/atlas_valleys_8p.xml:Description:39
 msgid ""
@@ -2710,11 +2710,11 @@ msgstr "Mapa ve stylu \"Malý ostrov\" umístěná do Egejského moře."
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2 players)"
-msgstr ""
+msgstr "Kykladské souostroví (2 hráči)"
 
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
 msgid "Cycladic Archipelago (3 players)"
-msgstr ""
+msgstr "Kykladské souostroví (3 hráči)"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""
@@ -2766,7 +2766,7 @@ msgid ""
 "- Fayyum: crocodile shrine, nile dam\n"
 "- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
 "- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
-msgstr ""
+msgstr "Bojujte za pozůstatky starověkého Egypta!\n\nHráči začínají s dospělými městy a malými armádami, z nichž každý má své výhody a nevýhody. Pozor, je tu 7 mocných pevností a loupeživých bandidů!!\n\nJe to poslední století před rokem 0 A.D. Egypt je vnitřně rozdělen na helénistické (Alexandrie, reprezentovaná Seleukovci) a tradiční vlivy (Memphis, reprezentovaná Ptolemaiovci). Théby v jižním podnebí řeky Nilu již zabral Kush. Na severozápadě Al-Dschabal al-Achdar, kde se nachází středomořské město Kyréna, se Římané připravují na invazi. Z východní pouště at-Tih a hory Sinaj se tlačí vpřed nepřátelé (reprezentovaní Peršany) a oáza Siwa. Charga (zastoupená Kartágem) v jihozápadní poušti se také snaží získat část koláče.\nUmístění:\n- Alexandrie: knihovna, přístav\n- Memphis: Nekropole, pyramidy, svatyně Apis\n- Théby: chrámová čtvrť, Údolí králů\n- Kyréna: středozemní Macchie, olivové háje\n- Fayyum: krokodýlí svatyně, nilská přehrada\n- Východní poušť: hora Sinaj, hluboké Wadi, útesy Rudého moře\n- Západní poušť: Oáza Charga a Siwa, katarská propadlina\n"
 
 #: maps/skirmishes/egypt_3pv3p.xml:Name:39
 msgid "Egypt (3v3)"
@@ -2922,11 +2922,11 @@ msgid ""
 "This is the Ithmus at Corinth in Greece. The land is rich in raw resources and treasure, and the seas on either side of the isthmus are stocked with fish. Mercenary Camps can be found as well as large Metal Mine deposits.\n"
 "\n"
 "Watch out for pirate ships and brigands, though, as war-torn Greece is not without its share of dangers. And the enemy, marshalling their forces across the isthmus on the opposing landmass, will be looking for opportunities to invade your lands and take the strategic Corinthian Isthmus for themselves!"
-msgstr ""
+msgstr "isth·mus\n/ˈis(TH)məs/\npodstatné jméno\núzký pruh země s mořem na obou stranách, tvořící spojnici mezi dvěma většími oblastmi země.\n\nToto je Šíje v Korintu v Řecku. Země je bohatá na suroviny a poklady a moře na obou stranách šíje jsou zásobena rybami. Nachází se zde Žoldnéřské tábory a také velká naleziště kovových dolů.\n\nDejte si však pozor na pirátské lodě a lupiče, protože válkou zničené Řecko není bez nebezpečí. A nepřítel, seskupující své síly přes šíji na nepřátelské pevnině, bude hledat příležitosti k invazi do vašich zemí a dobytí strategickou Korintskou šíji pro sebe!"
 
 #: maps/skirmishes/isthmus_of_corinth_2p.xml:Name:39
 msgid "Isthmus of Corinth (2)"
-msgstr ""
+msgstr "Korintská šíje (2)"
 
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
@@ -2944,11 +2944,11 @@ msgid ""
 "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.\n"
 "\n"
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt."
-msgstr ""
+msgstr "Stará oblíbená. Jinak široce rozevřená, plochá pouštní mapa je uprostřed proražena bujnou oázou.\n\nTo představuje Libyjskou poušť, část Saharské pouště, západně od řeky Nil v Egyptě."
 
 #: maps/skirmishes/libyan_oasis_2p.xml:Name:39
 msgid "Libyan Oasis (2 players)"
-msgstr ""
+msgstr "Libyjská oáza (2 hráči)"
 
 #: maps/skirmishes/lorraine_plain_2p.xml:Description:39
 msgid ""
@@ -3044,7 +3044,7 @@ msgid ""
 "The Savanna is open and foreboding, chock full of animal, both huntable and hunter. \n"
 "\n"
 "Here we have an example of the two seasons prevelant on the savanna: The wet season and the dry season."
-msgstr ""
+msgstr "Savana je otevřená a má předtuchy, je plná zvířat, lovných i loveckých.\n\nZde máme příklad dvou ročních období převládajících na savaně: období dešťů a období sucha."
 
 #: maps/skirmishes/north_african_savanna_2p.xml:Name:39
 msgid "North African Savanna (2 players)"
@@ -3308,11 +3308,11 @@ msgid ""
 "As with all Savanna maps, huntable animals foragable plants are abundant, but there are no farmlands on the entire map, so farming is difficult.\n"
 "\n"
 "Wood is scattered, but comes in high-yield Baobab trees. The watering holes give life to clusters of trees and life to dangerous fauna, such as crocodiles and elephants."
-msgstr ""
+msgstr "Malá mapa Savanna se 4 napajedly.\n\nStejně jako na všech mapách Savanna je zde hojnost lovných zvířat a rostlin, které se živí potravou, ale na celé mapě není žádná zemědělská půda, takže farmaření je obtížné.\n\nDřevo je rozptýlené, ale pochází z vysoce výnosných stromů Baobab. Napajedla dávají život shlukům stromů a život nebezpečné fauně, jako jsou krokodýli a sloni."
 
 #: maps/skirmishes/watering_holes_4p.xml:Name:39
 msgid "Watering Holes (4 players)"
-msgstr ""
+msgstr "Díry s vodou (4 hráči)"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:Description:39
 msgid ""
@@ -3360,7 +3360,7 @@ msgid ""
 "Players start the match nestled in their own province with 1 free Persian temple. Access to untapped resources and territories can be found through the rugged hinterlands, but is also chock full of dangerous animals, such as Asian bears and Caspian tigers.\n"
 "\n"
 "The central valley is wide open for expansion, with an unclaimed Civic Center, farms, and Trading Posts. Cliffs along the valley's edge may offer vantage points for defensive or offensive fortifications."
-msgstr ""
+msgstr "Hory obklopující perskou vlast, rozkládající se na Persis, Susianě a Médii. Tato mapa simuluje mnoho údolí a škrticích bodů, které křižují pohoří.\n\nHráči zahájí zápas ve své vlastní provincii s 1 perským chrámem zdarma. Přístup k nevyužitým zdrojům a územím lze nalézt přes drsné vnitrozemí, ale je také plné nebezpečných zvířat, jako jsou asijští medvědi a kaspičtí tygři.\n\nCentrální údolí je široce otevřené pro expanzi, s neobsazeným Občanským centrem, farmami a obchodními stanicemi. Útesy podél okraje údolí mohou nabízet výhodné body pro obranná nebo útočná opevnění."
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Name:39
 msgid "Zagros Mountains (2 players)"
