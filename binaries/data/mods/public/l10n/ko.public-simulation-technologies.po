@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-02-02 08:08+0000\n"
+"POT-Creation-Date: 2024-04-19 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: JungHee Lee <daemul72@gmail.com>, 2019,2021-2024\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -272,9 +272,9 @@ msgstr "병사, 공성 무기, 선박들의 공격 피해량이  +25% 증가합�
 
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
-"Significantly increase training speed of infantry by training them in large "
-"batches or companies."
-msgstr "보병을 대규모 무리 또는 편대에서 훈련시킴으로써 보병의 훈련 속도를 크게 향상시킵니다."
+"Decreases training time of infantry if they are trained in batches or companies. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -282,8 +282,8 @@ msgid "Conscription"
 msgstr "징병제"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
-msgid "Barracks −10% batch training time."
-msgstr "병영의 일괄 훈련 시간이 -10% 감소합니다."
+msgid "Decreases batch training time of units trained in Barracks."
+msgstr ""
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -1376,17 +1376,18 @@ msgstr "더 많은 개체들과 기술을 잠금 해제하는 도시 단계로 �
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology. This is the Persian city phase, where stable training"
-" rates are decreased because of the 'Times of War' bonus."
-msgstr "분주한 소도시에서 현대 기술의 경이로운 것으로 가득한 진정한 대도시로 발전합니다. 이것은 '전쟁의 시대' 보너스 때문에 안정적인 훈련율이 떨어지는 페르시아 도시 단계입니다."
+"Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase.\n"
+"The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +1 capture points "
-"regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "더 많은 개체들과 기술을 잠금 해제하는 도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +25% 증가합니다. 건축물들의 주둔 유닛당 점령 포인트 회복율이 +1 증가합니다. 사육장은 일괄 훈련 시간이 -10% 감소합니다."
+"regeneration rate for garrisoned units. Decrease batch training time of "
+"units trained in Stables."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1447,17 +1448,18 @@ msgstr "더 많은 개체들과 기술을 잠금 해제하는 소도시 단계�
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly. "
-"This is the Persian town phase, where stable training rates are decreased "
-"because of the 'Times of War' bonus."
-msgstr "작은 마을에서 분주한 소도시로 빠르게 확장할 준비가 되었습니다. 이것은 '전쟁의 시대' 보너스로 인해 안정적인 훈련률이 감소하는 페르시아의 소도시 단계입니다."
+"Advances from a small village to a bustling town, ready to expand rapidly. This is the Persian town phase.\n"
+"The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +0.5 capture points "
-"regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "더 많은 개체들과 기술을 잠금 해제하는 소도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +25% 증가합니다. 건축물들의 주둔 유닛당 점령 포인트 회복 속도가 +0.5 증가합니다. 사육장은 일괄 훈련 시간이 -10% 감소합니다."
+"regeneration rate for garrisoned units. Decrease batch training time of "
+"units trained in Stables."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1985,13 +1987,13 @@ msgstr "뇌물로 유닛을 50 % 더 비싸게 만듭니다."
 
 #: simulation/data/technologies/stable_batch_training.jsondescription
 msgid ""
-"Significantly increase training speed of cavalry by training them in large "
-"batches or squadrons."
-msgstr "기병을 대규모 무리 또는 편대에서 훈련시켜 기병의 훈련 속도를 크게 향상시킵니다."
+"Decreases training time of cavalry if they are trained in batches or squadrons. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
-msgid "Stables −10% batch training time."
-msgstr "사육장의 일괄 훈련 시간이 -10% 감소합니다."
+msgid "Decrease batch training time of units trained in Stables."
+msgstr ""
 
 #: simulation/data/technologies/subterranean_aqueducts.jsondescription
 msgid ""

@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-02-02 08:08+0000\n"
+"POT-Creation-Date: 2024-04-19 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: rollieoo, 2021-2024\n"
 "Language-Team: Dutch (http://app.transifex.com/wildfire-games/0ad/language/nl/)\n"
@@ -282,9 +282,9 @@ msgstr "Soldaten, belegeringswerktuigen en schepen +25% aanvalskracht."
 
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
-"Significantly increase training speed of infantry by training them in large "
-"batches or companies."
-msgstr "Verbeter de rekruteersnelheid van infanterie fors door hen in grote groepen of compagnieën tegelijk te rekruteren."
+"Decreases training time of infantry if they are trained in batches or companies. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -292,8 +292,8 @@ msgid "Conscription"
 msgstr "Dienstplicht"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
-msgid "Barracks −10% batch training time."
-msgstr "Kazerne −10% rekruteringstijd voor groepen."
+msgid "Decreases batch training time of units trained in Barracks."
+msgstr "Maakt de rekruteringstijd van groepen eenheden in  Kazernes korter."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -1386,17 +1386,18 @@ msgstr "Ga door naar de grootstadsfase, die meer entiteiten en technologieën on
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology. This is the Persian city phase, where stable training"
-" rates are decreased because of the 'Times of War' bonus."
-msgstr "Ga van een bruisend stadje naar een waarachtige metropool, vol met de wonderen van moderne technologie. Dit is de Perzische grootstadsfase, waar rekrutering in de stallen sneller gaat dankzij de \"Tijden van Oorlog\" bonus."
+"Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase.\n"
+"The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +1 capture points "
-"regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "Ga door naar de grootstadsfase, die meer entiteiten en technologieën ontsluit. Beschavingscentra +25% territorium invloed. Gebouwen met bemanning +1 herstelsnelheid van veroverpunten. Stallen −10% rekruteringstijd voor groepen."
+"regeneration rate for garrisoned units. Decrease batch training time of "
+"units trained in Stables."
+msgstr "Ga door naar de grootstadsfase, die meer entiteiten en technologieën ontsluit. Beschavingscentra +25% territorium invloed. Gebouwen met bemanning +1 herstelsnelheid van veroverpunten. Kortere rekruteringstijd voor groepen in de Stallen."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1457,17 +1458,18 @@ msgstr "Ga door naar de stadsfase, die meer entiteiten en technologieën ontslui
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly. "
-"This is the Persian town phase, where stable training rates are decreased "
-"because of the 'Times of War' bonus."
-msgstr "Ga van een klein dorpje naar een bloeiende stad, klaar om snel uit te breiden. Dit is de Perzische stadsfase waar rekrutering in de stallen sneller gaat dankzij de \"Tijden van Oorlog\" bonus."
+"Advances from a small village to a bustling town, ready to expand rapidly. This is the Persian town phase.\n"
+"The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +0.5 capture points "
-"regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "Ga door naar de stadsfase, die meer entiteiten en technologieën ontsluit. Beschavingscentra +25% territorium invloed. Gebouwen met bemanning +0,5 herstelsnelheid van veroverpunten. Stallen -10% rekruteringstijd voor groepen."
+"regeneration rate for garrisoned units. Decrease batch training time of "
+"units trained in Stables."
+msgstr "Ga door naar de grootstadsfase, die meer entiteiten en technologieën ontsluit. Beschavingscentra +25% territorium invloed. Gebouwen met bemanning +0.5 herstelsnelheid van veroverpunten. Kortere rekruteringstijd voor groepen in de Stallen."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1995,13 +1997,13 @@ msgstr "Maak uw eenheden 50% duurder voor omkoperij."
 
 #: simulation/data/technologies/stable_batch_training.jsondescription
 msgid ""
-"Significantly increase training speed of cavalry by training them in large "
-"batches or squadrons."
-msgstr "Verbeter de rekruteersnelheid van cavalerie fors door hen in grote groepen of eskaders tegelijk te rekruteren."
+"Decreases training time of cavalry if they are trained in batches or squadrons. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
-msgid "Stables −10% batch training time."
-msgstr "Stallen −10% rekruteringstijd voor groepen."
+msgid "Decrease batch training time of units trained in Stables."
+msgstr "Maakt de rekruteringstijd van groepen eenheden in Stallen korter."
 
 #: simulation/data/technologies/subterranean_aqueducts.jsondescription
 msgid ""
