@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-02-02 08:08+0000\n"
+"POT-Creation-Date: 2024-04-19 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>, 2016-2017,2021-2023\n"
 "Language-Team: Polish (http://app.transifex.com/wildfire-games/0ad/language/pl/)\n"
@@ -295,9 +295,9 @@ msgstr "Wojownicy, machiny oblężnicze i łodzie +25% obrażeń."
 
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
-"Significantly increase training speed of infantry by training them in large "
-"batches or companies."
-msgstr "Znacznie zwiększa szybkość szkolenia żołnierzy, szkoląc ich w dużych partiach lub batalionach."
+"Decreases training time of infantry if they are trained in batches or companies. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -305,8 +305,8 @@ msgid "Conscription"
 msgstr "Pobór"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
-msgid "Barracks −10% batch training time."
-msgstr "Koszary -10% czasu szkolenia w grupie."
+msgid "Decreases batch training time of units trained in Barracks."
+msgstr ""
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -1399,17 +1399,18 @@ msgstr "Przejdź do fazy miasta, która zapewnia więcej jednostek i technologii
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology. This is the Persian city phase, where stable training"
-" rates are decreased because of the 'Times of War' bonus."
-msgstr "Awansuje z tętniącego życiem miasta w prawdziwą metropolię, pełną cudów nowoczesnej technologii. Jest to faza perskiego miasta, gdzie czas szkolenia w stajniach jest zmniejszona z powodu premii \"Czasy Wojny\"."
+"Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase.\n"
+"The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +1 capture points "
-"regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "Przejdź do fazy miasta, która zapewnia więcej jednostek i technologii. Centra osady +25% zasięgu wpływu terytorialnego. Budowle +1 do tempa regeneracji punktów przejęcia dla jednostek w garnizonie. Stajnie -10% do czasu szkolenia."
+"regeneration rate for garrisoned units. Decrease batch training time of "
+"units trained in Stables."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1470,17 +1471,18 @@ msgstr "Przejdź do fazy miasta, która zapewnia więcej jednostek i technologii
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly. "
-"This is the Persian town phase, where stable training rates are decreased "
-"because of the 'Times of War' bonus."
-msgstr "Awansuje z małej wsi w prawdziwą metropolię, gotową do szybkiego rozwoju. Jest to faza miasta perskiego, w której czas szkolenia jest zmniejszony ze względu na bonus \"Czasy Wojny\"."
+"Advances from a small village to a bustling town, ready to expand rapidly. This is the Persian town phase.\n"
+"The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +0.5 capture points "
-"regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "Przejdź do fazy miasta, która zapewnia więcej jednostek i technologii. Centra osady +25% zasięgu wpływu terytorialnego. Budowle +0.5 do tempa regeneracji punktów przejęcia dla jednostek w garnizonie. Stajnie -10% do czasu szkolenia."
+"regeneration rate for garrisoned units. Decrease batch training time of "
+"units trained in Stables."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -2008,13 +2010,13 @@ msgstr "Spraw, by twoje jednostki były o 50% droższe przy próbie przekupstwa.
 
 #: simulation/data/technologies/stable_batch_training.jsondescription
 msgid ""
-"Significantly increase training speed of cavalry by training them in large "
-"batches or squadrons."
-msgstr "Znacznie zwiększa szybkość szkolenia kawalerii, szkoląc ją w dużych partiach lub batalionach."
+"Decreases training time of cavalry if they are trained in batches or squadrons. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
-msgid "Stables −10% batch training time."
-msgstr "Stajnie -10% czasu szkolenia w grupie."
+msgid "Decrease batch training time of units trained in Stables."
+msgstr ""
 
 #: simulation/data/technologies/subterranean_aqueducts.jsondescription
 msgid ""

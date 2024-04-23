@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-02-02 08:08+0000\n"
+"POT-Creation-Date: 2024-04-19 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2024\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -274,9 +274,9 @@ msgstr "士兵、攻城武器和船隻 +25% 攻擊傷害。"
 
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
-"Significantly increase training speed of infantry by training them in large "
-"batches or companies."
-msgstr "通過批次或連隊訓練，大大提高步兵的訓練速度。"
+"Decreases training time of infantry if they are trained in batches or companies. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr "如果步兵分批或連隊訓練，則可減少步兵的訓練時間。大批量比小批量受益更多。\n計算成：一個批次的訓練時間除以「批量大小的 0.1 次方」。"
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -284,8 +284,8 @@ msgid "Conscription"
 msgstr "募兵"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
-msgid "Barracks −10% batch training time."
-msgstr "軍營 -10% 批次訓練時間。"
+msgid "Decreases batch training time of units trained in Barracks."
+msgstr "減少軍營裡訓練單位的批次訓練時間。"
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -1378,17 +1378,18 @@ msgstr "發展到城市階段，解鎖更多單位、建築和科技。城鎮中
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology. This is the Persian city phase, where stable training"
-" rates are decreased because of the 'Times of War' bonus."
-msgstr "從繁華的大城市進展為一個名副其實的大都市，充滿著奇蹟與現代科技。這就是波斯人的城市階段，其中馬廄的訓練速率因為「戰爭時期」的加成而大幅降低。"
+"Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase.\n"
+"The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr "從繁華的小鎮發展成為名副其實的大都市，充滿現代科技的奇蹟。這是波斯的城市階段。\n「戰爭時期」加成減少了馬厩中的批次訓練時間。大批量比小批量受益更多。\n計算成：一個批次的訓練時間除以「批量大小的 0.1 次方」。"
 
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +1 capture points "
-"regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "發展到城市階段，解鎖更多單位、建築和科技。城鎮中心 +25% 領土影響半徑。駐紮單位使建築 +1 占領值恢復率。馬廄 -10% 批次訓練時間。"
+"regeneration rate for garrisoned units. Decrease batch training time of "
+"units trained in Stables."
+msgstr "進入城市階段，解鎖更多實體和科技。城鎮中心 +25% 領土影響半徑。駐防單位的建築物占領值恢復率 +1。減少在馬厩中訓練的單位的批量訓練時間。"
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1449,17 +1450,18 @@ msgstr "發展到鄉鎮階段，解鎖更多單位、建築和科技。城鎮中
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly. "
-"This is the Persian town phase, where stable training rates are decreased "
-"because of the 'Times of War' bonus."
-msgstr "從小村莊進展為繁華的城鎮，準備好快速擴張。這就是波斯人的鄉鎮階段，其中馬廄的訓練速率因為「戰爭時期」的加成而大幅降低。"
+"Advances from a small village to a bustling town, ready to expand rapidly. This is the Persian town phase.\n"
+"The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr "從小村莊發展成為繁華的城鎮，並準備迅速擴張。這是波斯的鄉鎮階段。\n「戰爭時期」加成減少了馬厩中的批次訓練時間。大批量比小批量受益更多。\n計算成：一個批次的訓練時間除以「批量大小的 0.1 次方」。"
 
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +0.5 capture points "
-"regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "發展到鄉鎮階段，解鎖更多單位、建築和科技。城鎮中心 +25% 領土影響半徑。駐紮單位使建築 +0.5 占領值恢復率。馬廄 -10% 批次訓練時間。"
+"regeneration rate for garrisoned units. Decrease batch training time of "
+"units trained in Stables."
+msgstr "進入鄉鎮階段，解鎖更多實體和科技。城鎮中心 +25% 領土影響半徑。駐防單位的建築物占領值恢復率 +0.5。減少在馬厩中訓練的單位的批量訓練時間。"
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1987,13 +1989,13 @@ msgstr "讓您的單位賄賂成本多 50%。"
 
 #: simulation/data/technologies/stable_batch_training.jsondescription
 msgid ""
-"Significantly increase training speed of cavalry by training them in large "
-"batches or squadrons."
-msgstr "大規模訓練顯著提升騎兵的訓練速度。"
+"Decreases training time of cavalry if they are trained in batches or squadrons. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr "如果騎兵按批次或中隊訓練，則可減少騎兵的訓練時間。大批量比小批量受益更多。\n計算成：一個批次的訓練時間除以「批量大小的 0.1 次方」。"
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
-msgid "Stables −10% batch training time."
-msgstr "馬廄 -10% 批次訓練時間。"
+msgid "Decrease batch training time of units trained in Stables."
+msgstr "減少馬廄裡訓練單位的批次訓練時間。"
 
 #: simulation/data/technologies/subterranean_aqueducts.jsondescription
 msgid ""

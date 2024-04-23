@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-02-02 08:08+0000\n"
+"POT-Creation-Date: 2024-04-19 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022-2024\n"
 "Language-Team: Chinese (http://app.transifex.com/wildfire-games/0ad/language/zh/)\n"
@@ -278,9 +278,9 @@ msgstr "士兵、攻城机械和战船的攻击伤害 +25％ ."
 
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
-"Significantly increase training speed of infantry by training them in large "
-"batches or companies."
-msgstr "通过批量训练来大幅度提高士兵的训练速度。"
+"Decreases training time of infantry if they are trained in batches or companies. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -288,8 +288,8 @@ msgid "Conscription"
 msgstr "募兵"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
-msgid "Barracks −10% batch training time."
-msgstr "军营中士兵的批量训练时间 -10% ."
+msgid "Decreases batch training time of units trained in Barracks."
+msgstr ""
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -1382,17 +1382,18 @@ msgstr "升级到城市阶段，解锁建筑、单位及科技。市政中心的
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
-"Advances from a bustling town to a veritable metropolis, full of the wonders"
-" of modern technology. This is the Persian city phase, where stable training"
-" rates are decreased because of the 'Times of War' bonus."
-msgstr "从繁华的城镇，进展为名副其实的城市，充满了奇观与现代技术。此为波斯的城市阶段，鉴于“战时”科技的辅助，马厩单位的生产效率大幅提升。"
+"Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase.\n"
+"The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +1 capture points "
-"regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "升级到城市阶段，解锁更建筑、单位及科技。 市政中心的领土影响范围 +25% ；每进驻一个单位，建筑的占领值就 +1 ；马厩的批次训练时间 -10% 。"
+"regeneration rate for garrisoned units. Decrease batch training time of "
+"units trained in Stables."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1453,17 +1454,18 @@ msgstr "升级到城镇阶段，解锁建筑、单位及科技。市政中心的
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
-"Advances from a small village to a bustling town, ready to expand rapidly. "
-"This is the Persian town phase, where stable training rates are decreased "
-"because of the 'Times of War' bonus."
-msgstr "从小乡村发展为繁华城镇，准备快速扩张吧。此为波斯的城镇阶段，鉴于“战时”科技的辅助，马厩单位的生产效率大幅提升。"
+"Advances from a small village to a bustling town, ready to expand rapidly. This is the Persian town phase.\n"
+"The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +0.5 capture points "
-"regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "升级到城镇阶段，解锁建筑、单位及科技。市政中心的领土影响范围 +25% ；每进驻一个单位，建筑的占领值+0.5；马厩的批次训练时间 -10% 。"
+"regeneration rate for garrisoned units. Decrease batch training time of "
+"units trained in Stables."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1991,13 +1993,13 @@ msgstr "己方单位被贿赂时，费用 +50％."
 
 #: simulation/data/technologies/stable_batch_training.jsondescription
 msgid ""
-"Significantly increase training speed of cavalry by training them in large "
-"batches or squadrons."
-msgstr "通过批量训练，来大幅度提高训练骑兵的速度。"
+"Decreases training time of cavalry if they are trained in batches or squadrons. Large batches will benefit more than small batches.\n"
+"In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
+msgstr ""
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
-msgid "Stables −10% batch training time."
-msgstr "马厩单位的批量训练时间 -10% ."
+msgid "Decrease batch training time of units trained in Stables."
+msgstr ""
 
 #: simulation/data/technologies/subterranean_aqueducts.jsondescription
 msgid ""
