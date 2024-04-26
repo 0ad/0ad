@@ -284,7 +284,7 @@ msgstr "Vojáci, obléhací stroje a lodě +25% k poškození při útoku."
 msgid ""
 "Decreases training time of infantry if they are trained in batches or companies. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Snižuje dobu výcviku pěchoty, pokud je cvičena v šaržích nebo rotách. Velké šarže budou mít větší užitek než malé šarže.\nMatematicky: Čas tréninku jedné šarže se vydělí `batchSize^0.1`."
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -293,7 +293,7 @@ msgstr "Branná povinnost"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Decreases batch training time of units trained in Barracks."
-msgstr ""
+msgstr "Snižuje čas výcviku šarží jednotek vycvičených v kasárnách."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -1389,7 +1389,7 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase.\n"
 "The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Pokroky z rušného města do skutečné metropole plné zázraků moderní technologie. Toto je fáze perského velkoměsta.\nBonus 'Čas Války' zvyšuje dobu tréninku šarží ve stájích. Velké šarže budou mít větší užitek než malé šarže.\nMatematicky: Čas tréninku jedné šarže se vydělí `batchSize^0.1`."
 
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
@@ -1397,7 +1397,7 @@ msgid ""
 "Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Decrease batch training time of "
 "units trained in Stables."
-msgstr ""
+msgstr "Postupujte do fáze velkoměsta, která odemkne více jednotek a technologií. Správní střediska +25% k poloměru územního vlivu. Stavby +1 k rychlosti obnovy bodů zajetí za usazenou jednotku. Snižuje dobu výcviku šarží jednotek trénovaných ve stájích."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1461,7 +1461,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. This is the Persian town phase.\n"
 "The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Pokroky z malé vesnice do rušného města, připraveného k rychlé expanzi. Toto je fáze perského města.\nBonus 'Čas Války' zvyšuje dobu tréninku šarží ve stájích. Velké šarže budou mít větší užitek než malé šarže.\nMatematicky: Čas tréninku jedné šarže se vydělí `batchSize^0.1`."
 
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
@@ -1469,7 +1469,7 @@ msgid ""
 "Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Decrease batch training time of "
 "units trained in Stables."
-msgstr ""
+msgstr "Postupujte do fáze města, která odemkne více jednotek a technologií. Správní střediska +25% k poloměru územního vlivu. Stavby +0.5 k rychlosti obnovy bodů zajetí za usazenou jednotku. Snižuje dobu výcviku šarží jednotek trénovaných ve stájích."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1999,11 +1999,11 @@ msgstr "Udělejte své jednotky o 50% dražší při uplácení."
 msgid ""
 "Decreases training time of cavalry if they are trained in batches or squadrons. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Snižuje dobu výcviku kavalérie, pokud je cvičena v šaržích nebo eskadrech. Velké šarže budou mít větší užitek než malé šarže.\nMatematicky: Čas tréninku jedné šarže se vydělí `batchSize^0.1`."
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Decrease batch training time of units trained in Stables."
-msgstr ""
+msgstr "Snižuje čas výcviku šarží jednotek vycvičených ve stájích."
 
 #: simulation/data/technologies/subterranean_aqueducts.jsondescription
 msgid ""

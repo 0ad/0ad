@@ -6,7 +6,7 @@
 # 76407af6b051a571d67c2577de2183db_7380deb
 # Aksidion Kreimben (programmer)
 # Asakura
-# JungHee Lee
+# Junghee Lee
 # 미워하지 않아
 # Gu Hong Min
 # Hn Dsu
@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2022-2023\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2024\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -698,7 +698,7 @@ msgstr "암몬 라 램 동상"
 
 #: simulation/templates/gaia/ruins/stone_statues_persian_lamassu.xml:8
 msgid "Lamassu Statue"
-msgstr ""
+msgstr "라마수 조각상"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statue"
@@ -737,11 +737,11 @@ msgstr "반쯤 묻힌 통"
 
 #: simulation/templates/gaia/treasure/food_persian_big.xml:8
 msgid "Persian Food Stores"
-msgstr "페르시아의 식량 저장고"
+msgstr "페르시아족 식량 저장고"
 
 #: simulation/templates/gaia/treasure/food_persian_small.xml:8
 msgid "Persian Food Treasure"
-msgstr "페르시아의 식량 보물"
+msgstr "페르시아족 식량 보물"
 
 #: simulation/templates/gaia/treasure/golden_fleece.xml:8
 msgid "Golden Fleece"
@@ -753,11 +753,11 @@ msgstr "비밀 상자"
 
 #: simulation/templates/gaia/treasure/metal_persian_big.xml:8
 msgid "Persian Wares"
-msgstr "페르시아의 상품"
+msgstr "페르시아족 상품"
 
 #: simulation/templates/gaia/treasure/metal_persian_small.xml:8
 msgid "Persian Rugs"
-msgstr "페르시아의 양탄자"
+msgstr "페르시아족 양탄자"
 
 #: simulation/templates/gaia/treasure/metal_weapons_small.xml:8
 msgid "Iron Weapons"
@@ -780,15 +780,15 @@ msgstr "난파선 화물"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:8
 msgid "The Argo"
-msgstr ""
+msgstr "아르고"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:9
 msgid "Mythological Treasure"
-msgstr ""
+msgstr "신화 속 보물"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:10
 msgid "The mythological ship of the hero Theseus and his Argonauts."
-msgstr ""
+msgstr "영웅 테세우스와 그의 아르고선 선원들의 신화 속의 선박입니다."
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"
@@ -1066,11 +1066,11 @@ msgstr "전차"
 #: simulation/templates/mixins/fireship.xml:15
 msgctxt "Name of an attack, usually the weapon."
 msgid "Flames"
-msgstr ""
+msgstr "화염"
 
 #: simulation/templates/mixins/fireship.xml:43
 msgid "Ignited"
-msgstr ""
+msgstr "점화"
 
 #: simulation/templates/mixins/longsword.xml:22
 msgid "Longsword"
@@ -1082,7 +1082,7 @@ msgstr "용병"
 
 #: simulation/templates/mixins/pirate.xml:29
 msgid "Pirate"
-msgstr ""
+msgstr "해적"
 
 #: simulation/templates/mixins/rotary_mill.xml:17
 #: simulation/templates/mixins/rotary_mill.xml:18
@@ -1254,35 +1254,35 @@ msgstr "분산대형"
 #: simulation/templates/special/formations/ships/column.xml:5
 #: simulation/templates/special/formations/ships/line_staggered.xml:5
 msgid "Requires at least 4 Ships."
-msgstr ""
+msgstr "최소 4척 이상의 선박이 필요합니다."
 
 #: simulation/templates/special/formations/ships/column.xml:14
 msgid "Maneuvering Column"
-msgstr ""
+msgstr "기동 대열"
 
 #: simulation/templates/special/formations/ships/column.xml:16
 msgid "A column formation for fleet maneuvers."
-msgstr ""
+msgstr "함대 기동을 위한 종대 대형입니다."
 
 #: simulation/templates/special/formations/ships/flank.xml:5
 msgid "Requires at least 8 Ships."
-msgstr ""
+msgstr "최소 8척 이상의 선박이 필요합니다."
 
 #: simulation/templates/special/formations/ships/flank.xml:14
 msgid "Flanking Formation"
-msgstr ""
+msgstr "측면공격 대형"
 
 #: simulation/templates/special/formations/ships/flank.xml:16
 msgid "Formation to protect the sides or surprise attack the enemy flanks."
-msgstr ""
+msgstr "측면을 보호하거나 적의 측면을 기습 공격하기 위한 대형입니다."
 
 #: simulation/templates/special/formations/ships/line_staggered.xml:17
 msgid "Fleet Battle Line"
-msgstr ""
+msgstr "함대 전선"
 
 #: simulation/templates/special/formations/ships/line_staggered.xml:19
 msgid "Common fleet formation for frontal attacks."
-msgstr ""
+msgstr "전방 공격을 위한 일반적인 함대 대형입니다."
 
 #: simulation/templates/special/formations/skirmish.xml:4
 msgid "Ranged Soldiers only, requires at least 2."
