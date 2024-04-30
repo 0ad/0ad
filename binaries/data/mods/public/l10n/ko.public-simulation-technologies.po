@@ -2372,15 +2372,15 @@ msgstr "선체 아래 끈"
 
 #: simulation/data/technologies/warship_health.jsontooltip
 msgid "Arrow Ships and Ramming Ships +25% health."
-msgstr "화살선과 충각선의 내구력이 +25% 증가합니다."
+msgstr "화살선과 돌격선의 내구력이 +25% 증가합니다."
 
 #: simulation/data/technologies/warship_ramming_attack.jsondescription
 msgid "A bronze beak at the prow of the ship, used for ramming enemy ships."
-msgstr "선박의 뱃머리에 있는 청동으로 된 뾰족한 돌출부로 적의 선박을 공격하는 데 사용됩니다."
+msgstr "선박의 뱃머리에 있는 청동으로 된 뾰족한 돌출부로, 적의 선박을 들이받는 데 사용됩니다."
 
 #: simulation/data/technologies/warship_ramming_attack.jsongenericName
 msgid "Bronze Ram"
-msgstr "청동숫양 충각"
+msgstr "청동 충각"
 
 #: simulation/data/technologies/warship_ramming_attack.jsonrequirementsTooltip
 msgid "Unlocked in City Phase. Requires “Flanking Maneuvers.”"
@@ -2398,7 +2398,7 @@ msgstr "충각"
 
 #: simulation/data/technologies/warship_ramming_attack.jsontooltip
 msgid "Ramming Ships +30% attack damage."
-msgstr "충각선의 공격 피해량이 +20% 증가합니다."
+msgstr "돌격선의 공격 피해량이 +20% 증가합니다."
 
 #: simulation/data/technologies/warship_ramming_speed.jsondescription
 msgid ""
@@ -2423,7 +2423,7 @@ msgstr "페리비우스"
 
 #: simulation/data/technologies/warship_ramming_speed.jsontooltip
 msgid "Ramming Ships +25% speed and acceleration. Unlocks “Bronze Rams.”"
-msgstr "충각선의 속도와 가속도가 +25% 증가합니다. \"청동 충각\"을 잠금 해제합니다."
+msgstr "돌격선의 속도와 가속도가 +25% 증가합니다. \"청동 충각\"을 잠금 해제합니다."
 
 #: simulation/data/technologies/warship_ranged_attack.jsondescription
 msgid ""
@@ -2482,7 +2482,7 @@ msgstr "명성의 전개"
 #: simulation/data/technologies/wonder_population_cap.jsonspecificName.sele
 #: simulation/data/technologies/wonder_population_cap.jsonspecificName.spart
 msgid "Peristasis"
-msgstr "페리스타시스"
+msgstr "Peristasis"
 
 #: simulation/data/technologies/wonder_population_cap.jsontooltip
 msgid ""
