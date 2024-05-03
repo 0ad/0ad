@@ -5,6 +5,7 @@
 # Translators:
 # AAAAA BBBBB
 # adrien vigneron
+# Andy H
 # 86668e36d9581c35a92a79ff56987a57_880f0d9
 # Arnaud Rochés
 # BAHIDJ Ryadh
@@ -48,7 +49,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-04-19 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Charlie Drögehorn, 2023\n"
+"Last-Translator: Andy H, 2024\n"
 "Language-Team: French (http://app.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -191,7 +192,7 @@ msgstr "Les archers ont -20% de dispersion lors des attaques à distance."
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
 " a penchant for using massed archers in battle."
-msgstr "Les Indiens, les Iraniens et les Koushites avaient traditionnellement de bons archers et un penchant pour l'utilisation en masse d'archers au cours des batailles. "
+msgstr "Les Indiens, les Iraniens et les Koushites avaient pour tradition la maîtrise du tir à l'arc et l'habitude d'utiliser leurs archers en masse au cours des batailles. "
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -214,7 +215,7 @@ msgstr "Débloqué dans la Phase des Villages."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid "Archers +10 attack range."
-msgstr "Les archers ont +10 de distance d'attaque."
+msgstr "Les archers ont +10 de portée d'attaque."
 
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
@@ -239,7 +240,7 @@ msgstr ""
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr "Structures : +25% de points de vie, mais +20 de temps de construction."
+msgstr "Structures : +25% de points de vie et de capture, mais +20% de temps de construction."
 
 #: simulation/data/technologies/arsenal_philon.jsondescription
 msgid ""
@@ -305,7 +306,7 @@ msgstr "Soldats, Engins de Siège et Bateaux : +25% de dégâts."
 msgid ""
 "Decreases training time of infantry if they are trained in batches or companies. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Réduit le temps d'entraînement de l'infanterie s'ils sont formés en groupes ou en compagnies. Les grands groupes en bénéficieront davantage que les petits groupes.\nEn des termes mathématiques : Le temps d'entraînement d'un groupe sera divisé par `batchSize^0.1`."
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -314,7 +315,7 @@ msgstr "Conscription"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Decreases batch training time of units trained in Barracks."
-msgstr ""
+msgstr "Réduit le temps d'entraînement en groupe des unités formés dans les casernes."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -344,11 +345,11 @@ msgstr "Cavalerie : +10% de vitesse de déplacement"
 msgid ""
 "Britons paint their bodies with Woad, which produces a blue color and gives "
 "them a fiercesome appearance in battle."
-msgstr ""
+msgstr "Les Britons peignèrent leurs corps avec de la guède, laquelle est d'une couleur bleuté qui leur donne une apparence féroce en bataille."
 
 #: simulation/data/technologies/civbonuses/brit_woad_warriors.jsongenericName
 msgid "Woad Warriors"
-msgstr ""
+msgstr "Guerriers en guède"
 
 #: simulation/data/technologies/civbonuses/brit_woad_warriors.jsontooltip
 msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
@@ -395,7 +396,7 @@ msgstr "Ligue de Délos"
 
 #: simulation/data/technologies/civbonuses/delian_league.jsontooltip
 msgid "Ships −25% construction time."
-msgstr ""
+msgstr "Navires -25% de temps de construction."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -731,7 +732,7 @@ msgstr "Le salage permet de conserver le poisson plus longtemps."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsongenericName
 msgid "Salt Curing"
-msgstr ""
+msgstr "Salaison"
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase. Requires “Fishing Nets.”"
@@ -770,7 +771,7 @@ msgid ""
 "Ahimsa is the ancient Indian principle of nonviolence which applies to "
 "actions towards all living beings. It is a key virtue in Indian religions "
 "like Jainism, Buddhism, Hinduism, and Sikhism."
-msgstr ""
+msgstr "L'Ahimsa est l'antique principe indien de non-violence qui s'applique à l'égard de tous les êtres vivants. Elle est une vertu clé dans les religions indiennes telles le jaïnisme, le bouddhisme, l'hindouisme ou le sikhisme."
 
 #: simulation/data/technologies/gather_ahimsa.jsongenericName
 msgid "Ahimsa"
@@ -1341,7 +1342,7 @@ msgstr ""
 
 #: simulation/data/technologies/pharaonic_cult.jsongenericName
 msgid "Pharaonic Cult"
-msgstr ""
+msgstr "Culte pharaonique "
 
 #: simulation/data/technologies/pharaonic_cult.jsontooltip
 msgid "Heroes +2 health/second self-regen rate."
