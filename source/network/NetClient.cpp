@@ -64,62 +64,60 @@ CNetClient::CNetClient(CGame* game) :
 {
 	m_Game->SetTurnManager(NULL); // delete the old local turn manager so we don't accidentally use it
 
-	void* context = this;
-
 	JS_AddExtraGCRootsTracer(GetScriptInterface().GetGeneralJSContext(), CNetClient::Trace, this);
 
 	// Set up transitions for session
-	AddTransition(NCS_UNCONNECTED, (uint)NMT_CONNECT_COMPLETE, NCS_CONNECT, &OnConnect, context);
+	AddTransition(NCS_UNCONNECTED, (uint)NMT_CONNECT_COMPLETE, NCS_CONNECT, &OnConnect, this);
 
-	AddTransition(NCS_CONNECT, (uint)NMT_SERVER_HANDSHAKE, NCS_HANDSHAKE, &OnHandshake, context);
+	AddTransition(NCS_CONNECT, (uint)NMT_SERVER_HANDSHAKE, NCS_HANDSHAKE, &OnHandshake, this);
 
-	AddTransition(NCS_HANDSHAKE, (uint)NMT_SERVER_HANDSHAKE_RESPONSE, NCS_AUTHENTICATE, &OnHandshakeResponse, context);
+	AddTransition(NCS_HANDSHAKE, (uint)NMT_SERVER_HANDSHAKE_RESPONSE, NCS_AUTHENTICATE, &OnHandshakeResponse, this);
 
-	AddTransition(NCS_AUTHENTICATE, (uint)NMT_AUTHENTICATE, NCS_AUTHENTICATE, &OnAuthenticateRequest, context);
-	AddTransition(NCS_AUTHENTICATE, (uint)NMT_AUTHENTICATE_RESULT, NCS_PREGAME, &OnAuthenticate, context);
+	AddTransition(NCS_AUTHENTICATE, (uint)NMT_AUTHENTICATE, NCS_AUTHENTICATE, &OnAuthenticateRequest, this);
+	AddTransition(NCS_AUTHENTICATE, (uint)NMT_AUTHENTICATE_RESULT, NCS_PREGAME, &OnAuthenticate, this);
 
-	AddTransition(NCS_PREGAME, (uint)NMT_CHAT, NCS_PREGAME, &OnChat, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_READY, NCS_PREGAME, &OnReady, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_GAME_SETUP, NCS_PREGAME, &OnGameSetup, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_PREGAME, &OnPlayerAssignment, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_KICKED, NCS_PREGAME, &OnKicked, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_CLIENT_TIMEOUT, NCS_PREGAME, &OnClientTimeout, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_CLIENT_PERFORMANCE, NCS_PREGAME, &OnClientPerformance, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_GAME_START, NCS_LOADING, &OnGameStart, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_JOIN_SYNC_START, NCS_JOIN_SYNCING, &OnJoinSyncStart, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_CHAT, NCS_PREGAME, &OnChat, this);
+	AddTransition(NCS_PREGAME, (uint)NMT_READY, NCS_PREGAME, &OnReady, this);
+	AddTransition(NCS_PREGAME, (uint)NMT_GAME_SETUP, NCS_PREGAME, &OnGameSetup, this);
+	AddTransition(NCS_PREGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_PREGAME, &OnPlayerAssignment, this);
+	AddTransition(NCS_PREGAME, (uint)NMT_KICKED, NCS_PREGAME, &OnKicked, this);
+	AddTransition(NCS_PREGAME, (uint)NMT_CLIENT_TIMEOUT, NCS_PREGAME, &OnClientTimeout, this);
+	AddTransition(NCS_PREGAME, (uint)NMT_CLIENT_PERFORMANCE, NCS_PREGAME, &OnClientPerformance, this);
+	AddTransition(NCS_PREGAME, (uint)NMT_GAME_START, NCS_LOADING, &OnGameStart, this);
+	AddTransition(NCS_PREGAME, (uint)NMT_JOIN_SYNC_START, NCS_JOIN_SYNCING, &OnJoinSyncStart, this);
 
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CHAT, NCS_JOIN_SYNCING, &OnChat, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_GAME_SETUP, NCS_JOIN_SYNCING, &OnGameSetup, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_PLAYER_ASSIGNMENT, NCS_JOIN_SYNCING, &OnPlayerAssignment, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_KICKED, NCS_JOIN_SYNCING, &OnKicked, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CLIENT_TIMEOUT, NCS_JOIN_SYNCING, &OnClientTimeout, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CLIENT_PERFORMANCE, NCS_JOIN_SYNCING, &OnClientPerformance, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_GAME_START, NCS_JOIN_SYNCING, &OnGameStart, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_SIMULATION_COMMAND, NCS_JOIN_SYNCING, &OnInGame, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_END_COMMAND_BATCH, NCS_JOIN_SYNCING, &OnJoinSyncEndCommandBatch, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_LOADED_GAME, NCS_INGAME, &OnLoadedGame, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CHAT, NCS_JOIN_SYNCING, &OnChat, this);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_GAME_SETUP, NCS_JOIN_SYNCING, &OnGameSetup, this);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_PLAYER_ASSIGNMENT, NCS_JOIN_SYNCING, &OnPlayerAssignment, this);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_KICKED, NCS_JOIN_SYNCING, &OnKicked, this);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CLIENT_TIMEOUT, NCS_JOIN_SYNCING, &OnClientTimeout, this);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CLIENT_PERFORMANCE, NCS_JOIN_SYNCING, &OnClientPerformance, this);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_GAME_START, NCS_JOIN_SYNCING, &OnGameStart, this);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_SIMULATION_COMMAND, NCS_JOIN_SYNCING, &OnInGame, this);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_END_COMMAND_BATCH, NCS_JOIN_SYNCING, &OnJoinSyncEndCommandBatch, this);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_LOADED_GAME, NCS_INGAME, &OnLoadedGame, this);
 
-	AddTransition(NCS_LOADING, (uint)NMT_CHAT, NCS_LOADING, &OnChat, context);
-	AddTransition(NCS_LOADING, (uint)NMT_GAME_SETUP, NCS_LOADING, &OnGameSetup, context);
-	AddTransition(NCS_LOADING, (uint)NMT_PLAYER_ASSIGNMENT, NCS_LOADING, &OnPlayerAssignment, context);
-	AddTransition(NCS_LOADING, (uint)NMT_KICKED, NCS_LOADING, &OnKicked, context);
-	AddTransition(NCS_LOADING, (uint)NMT_CLIENT_TIMEOUT, NCS_LOADING, &OnClientTimeout, context);
-	AddTransition(NCS_LOADING, (uint)NMT_CLIENT_PERFORMANCE, NCS_LOADING, &OnClientPerformance, context);
-	AddTransition(NCS_LOADING, (uint)NMT_CLIENTS_LOADING, NCS_LOADING, &OnClientsLoading, context);
-	AddTransition(NCS_LOADING, (uint)NMT_LOADED_GAME, NCS_INGAME, &OnLoadedGame, context);
+	AddTransition(NCS_LOADING, (uint)NMT_CHAT, NCS_LOADING, &OnChat, this);
+	AddTransition(NCS_LOADING, (uint)NMT_GAME_SETUP, NCS_LOADING, &OnGameSetup, this);
+	AddTransition(NCS_LOADING, (uint)NMT_PLAYER_ASSIGNMENT, NCS_LOADING, &OnPlayerAssignment, this);
+	AddTransition(NCS_LOADING, (uint)NMT_KICKED, NCS_LOADING, &OnKicked, this);
+	AddTransition(NCS_LOADING, (uint)NMT_CLIENT_TIMEOUT, NCS_LOADING, &OnClientTimeout, this);
+	AddTransition(NCS_LOADING, (uint)NMT_CLIENT_PERFORMANCE, NCS_LOADING, &OnClientPerformance, this);
+	AddTransition(NCS_LOADING, (uint)NMT_CLIENTS_LOADING, NCS_LOADING, &OnClientsLoading, this);
+	AddTransition(NCS_LOADING, (uint)NMT_LOADED_GAME, NCS_INGAME, &OnLoadedGame, this);
 
-	AddTransition(NCS_INGAME, (uint)NMT_REJOINED, NCS_INGAME, &OnRejoined, context);
-	AddTransition(NCS_INGAME, (uint)NMT_KICKED, NCS_INGAME, &OnKicked, context);
-	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_TIMEOUT, NCS_INGAME, &OnClientTimeout, context);
-	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_PERFORMANCE, NCS_INGAME, &OnClientPerformance, context);
-	AddTransition(NCS_INGAME, (uint)NMT_CLIENTS_LOADING, NCS_INGAME, &OnClientsLoading, context);
-	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_PAUSED, NCS_INGAME, &OnClientPaused, context);
-	AddTransition(NCS_INGAME, (uint)NMT_CHAT, NCS_INGAME, &OnChat, context);
-	AddTransition(NCS_INGAME, (uint)NMT_GAME_SETUP, NCS_INGAME, &OnGameSetup, context);
-	AddTransition(NCS_INGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_INGAME, &OnPlayerAssignment, context);
-	AddTransition(NCS_INGAME, (uint)NMT_SIMULATION_COMMAND, NCS_INGAME, &OnInGame, context);
-	AddTransition(NCS_INGAME, (uint)NMT_SYNC_ERROR, NCS_INGAME, &OnInGame, context);
-	AddTransition(NCS_INGAME, (uint)NMT_END_COMMAND_BATCH, NCS_INGAME, &OnInGame, context);
+	AddTransition(NCS_INGAME, (uint)NMT_REJOINED, NCS_INGAME, &OnRejoined, this);
+	AddTransition(NCS_INGAME, (uint)NMT_KICKED, NCS_INGAME, &OnKicked, this);
+	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_TIMEOUT, NCS_INGAME, &OnClientTimeout, this);
+	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_PERFORMANCE, NCS_INGAME, &OnClientPerformance, this);
+	AddTransition(NCS_INGAME, (uint)NMT_CLIENTS_LOADING, NCS_INGAME, &OnClientsLoading, this);
+	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_PAUSED, NCS_INGAME, &OnClientPaused, this);
+	AddTransition(NCS_INGAME, (uint)NMT_CHAT, NCS_INGAME, &OnChat, this);
+	AddTransition(NCS_INGAME, (uint)NMT_GAME_SETUP, NCS_INGAME, &OnGameSetup, this);
+	AddTransition(NCS_INGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_INGAME, &OnPlayerAssignment, this);
+	AddTransition(NCS_INGAME, (uint)NMT_SIMULATION_COMMAND, NCS_INGAME, &OnInGame, this);
+	AddTransition(NCS_INGAME, (uint)NMT_SYNC_ERROR, NCS_INGAME, &OnInGame, this);
+	AddTransition(NCS_INGAME, (uint)NMT_END_COMMAND_BATCH, NCS_INGAME, &OnInGame, this);
 
 	// Set first state
 	SetFirstState(NCS_UNCONNECTED);
@@ -604,11 +602,9 @@ void CNetClient::SendAuthenticateMessage()
 	SendMessage(&authenticate);
 }
 
-bool CNetClient::OnConnect(void* context, CFsmEvent* event)
+bool CNetClient::OnConnect(CNetClient* client, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_CONNECT_COMPLETE);
-
-	CNetClient* client = static_cast<CNetClient*>(context);
 
 	client->PushGuiMessage(
 		"type", "netstatus",
@@ -617,11 +613,9 @@ bool CNetClient::OnConnect(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnHandshake(void* context, CFsmEvent* event)
+bool CNetClient::OnHandshake(CNetClient* client, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_SERVER_HANDSHAKE);
-
-	CNetClient* client = static_cast<CNetClient*>(context);
 
 	CCliHandshakeMessage handshake;
 	handshake.m_MagicResponse = PS_PROTOCOL_MAGIC_RESPONSE;
@@ -632,11 +626,10 @@ bool CNetClient::OnHandshake(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnHandshakeResponse(void* context, CFsmEvent* event)
+bool CNetClient::OnHandshakeResponse(CNetClient* client, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_SERVER_HANDSHAKE_RESPONSE);
 
-	CNetClient* client = static_cast<CNetClient*>(context);
 	CSrvHandshakeResponseMessage* message = static_cast<CSrvHandshakeResponseMessage*>(event->GetParamRef());
 
 	client->m_GUID = message->m_GUID;
@@ -661,20 +654,18 @@ bool CNetClient::OnHandshakeResponse(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnAuthenticateRequest(void* context, CFsmEvent* event)
+bool CNetClient::OnAuthenticateRequest(CNetClient* client, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_AUTHENTICATE);
 
-	CNetClient* client = static_cast<CNetClient*>(context);
 	client->SendAuthenticateMessage();
 	return true;
 }
 
-bool CNetClient::OnAuthenticate(void* context, CFsmEvent* event)
+bool CNetClient::OnAuthenticate(CNetClient* client, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_AUTHENTICATE_RESULT);
 
-	CNetClient* client = static_cast<CNetClient*>(context);
 	CAuthenticateResultMessage* message = static_cast<CAuthenticateResultMessage*>(event->GetParamRef());
 
 	LOGMESSAGE("Net: Authentication result: host=%u, %s", message->m_HostID, utf8_from_wstring(message->m_Message));
@@ -691,11 +682,10 @@ bool CNetClient::OnAuthenticate(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnChat(void* context, CFsmEvent* event)
+bool CNetClient::OnChat(CNetClient* client, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_CHAT);
 
-	CNetClient* client = static_cast<CNetClient*>(context);
 	CChatMessage* message = static_cast<CChatMessage*>(event->GetParamRef());
 
 	client->PushGuiMessage(
@@ -706,11 +696,10 @@ bool CNetClient::OnChat(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnReady(void* context, CFsmEvent* event)
+bool CNetClient::OnReady(CNetClient* client, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_READY);
 
-	CNetClient* client = static_cast<CNetClient*>(context);
 	CReadyMessage* message = static_cast<CReadyMessage*>(event->GetParamRef());
 
 	client->PushGuiMessage(
@@ -721,11 +710,10 @@ bool CNetClient::OnReady(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnGameSetup(void* context, CFsmEvent* event)
+bool CNetClient::OnGameSetup(CNetClient* client, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_GAME_SETUP);
 
-	CNetClient* client = static_cast<CNetClient*>(context);
 	CGameSetupMessage* message = static_cast<CGameSetupMessage*>(event->GetParamRef());
 
 	client->PushGuiMessage(
@@ -735,11 +723,10 @@ bool CNetClient::OnGameSetup(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnPlayerAssignment(void* context, CFsmEvent* event)
+bool CNetClient::OnPlayerAssignment(CNetClient* client, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_PLAYER_ASSIGNMENT);
 
-	CNetClient* client = static_cast<CNetClient*>(context);
 	CPlayerAssignmentMessage* message = static_cast<CPlayerAssignmentMessage*>(event->GetParamRef());
 
 	// Unpack the message
@@ -763,11 +750,10 @@ bool CNetClient::OnPlayerAssignment(void* context, CFsmEvent* event)
 
 // This is called either when the host clicks the StartGame button or
 // if this client rejoins and finishes the download of the simstate.
-bool CNetClient::OnGameStart(void* context, CFsmEvent* event)
+bool CNetClient::OnGameStart(CNetClient* client, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_GAME_START);
 
-	CNetClient* client = static_cast<CNetClient*>(context);
 	CGameStartMessage* message = static_cast<CGameStartMessage*>(event->GetParamRef());
 
 	// Find the player assigned to our GUID
@@ -793,11 +779,9 @@ bool CNetClient::OnGameStart(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnJoinSyncStart(void* context, CFsmEvent* event)
+bool CNetClient::OnJoinSyncStart(CNetClient* client, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_JOIN_SYNC_START);
-
-	CNetClient* client = static_cast<CNetClient*>(context);
 
 	CJoinSyncStartMessage* joinSyncStartMessage = (CJoinSyncStartMessage*)event->GetParamRef();
 
@@ -820,11 +804,9 @@ bool CNetClient::OnJoinSyncStart(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnJoinSyncEndCommandBatch(void* context, CFsmEvent* event)
+bool CNetClient::OnJoinSyncEndCommandBatch(CNetClient* client, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_END_COMMAND_BATCH);
-
-	CNetClient* client = static_cast<CNetClient*>(context);
 
 	CEndCommandBatchMessage* endMessage = (CEndCommandBatchMessage*)event->GetParamRef();
 
@@ -836,11 +818,10 @@ bool CNetClient::OnJoinSyncEndCommandBatch(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnRejoined(void* context, CFsmEvent* event)
+bool CNetClient::OnRejoined(CNetClient* client, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_REJOINED);
 
-	CNetClient* client = static_cast<CNetClient*>(context);
 	CRejoinedMessage* message = static_cast<CRejoinedMessage*>(event->GetParamRef());
 
 	client->PushGuiMessage(
@@ -850,11 +831,10 @@ bool CNetClient::OnRejoined(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnKicked(void *context, CFsmEvent* event)
+bool CNetClient::OnKicked(CNetClient* client, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_KICKED);
 
-	CNetClient* client = static_cast<CNetClient*>(context);
 	CKickedMessage* message = static_cast<CKickedMessage*>(event->GetParamRef());
 
 	client->PushGuiMessage(
@@ -865,13 +845,12 @@ bool CNetClient::OnKicked(void *context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnClientTimeout(void *context, CFsmEvent* event)
+bool CNetClient::OnClientTimeout(CNetClient* client, CFsmEvent* event)
 {
 	// Report the timeout of some other client
 
 	ENSURE(event->GetType() == (uint)NMT_CLIENT_TIMEOUT);
 
-	CNetClient* client = static_cast<CNetClient*>(context);
 	CClientTimeoutMessage* message = static_cast<CClientTimeoutMessage*>(event->GetParamRef());
 
 	client->PushGuiMessage(
@@ -883,13 +862,12 @@ bool CNetClient::OnClientTimeout(void *context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnClientPerformance(void *context, CFsmEvent* event)
+bool CNetClient::OnClientPerformance(CNetClient* client, CFsmEvent* event)
 {
 	// Performance statistics for one or multiple clients
 
 	ENSURE(event->GetType() == (uint)NMT_CLIENT_PERFORMANCE);
 
-	CNetClient* client = static_cast<CNetClient*>(context);
 	CClientPerformanceMessage* message = static_cast<CClientPerformanceMessage*>(event->GetParamRef());
 
 	// Display warnings for other clients with bad ping
@@ -908,11 +886,10 @@ bool CNetClient::OnClientPerformance(void *context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnClientsLoading(void *context, CFsmEvent *event)
+bool CNetClient::OnClientsLoading(CNetClient* client, CFsmEvent *event)
 {
 	ENSURE(event->GetType() == (uint)NMT_CLIENTS_LOADING);
 
-	CNetClient* client = static_cast<CNetClient*>(context);
 	CClientsLoadingMessage* message = static_cast<CClientsLoadingMessage*>(event->GetParamRef());
 
 	std::vector<CStr> guids;
@@ -926,11 +903,10 @@ bool CNetClient::OnClientsLoading(void *context, CFsmEvent *event)
 	return true;
 }
 
-bool CNetClient::OnClientPaused(void *context, CFsmEvent *event)
+bool CNetClient::OnClientPaused(CNetClient* client, CFsmEvent *event)
 {
 	ENSURE(event->GetType() == (uint)NMT_CLIENT_PAUSED);
 
-	CNetClient* client = static_cast<CNetClient*>(context);
 	CClientPausedMessage* message = static_cast<CClientPausedMessage*>(event->GetParamRef());
 
 	client->PushGuiMessage(
@@ -941,11 +917,9 @@ bool CNetClient::OnClientPaused(void *context, CFsmEvent *event)
 	return true;
 }
 
-bool CNetClient::OnLoadedGame(void* context, CFsmEvent* event)
+bool CNetClient::OnLoadedGame(CNetClient* client, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_LOADED_GAME);
-
-	CNetClient* client = static_cast<CNetClient*>(context);
 
 	// All players have loaded the game - start running the turn manager
 	// so that the game begins
@@ -962,11 +936,10 @@ bool CNetClient::OnLoadedGame(void* context, CFsmEvent* event)
 	return true;
 }
 
-bool CNetClient::OnInGame(void *context, CFsmEvent* event)
+bool CNetClient::OnInGame(CNetClient* client, CFsmEvent* event)
 {
 	// TODO: should split each of these cases into a separate method
 
-	CNetClient* client = static_cast<CNetClient*>(context);
 	CNetMessage* message = static_cast<CNetMessage*>(event->GetParamRef());
 
 	if (message)

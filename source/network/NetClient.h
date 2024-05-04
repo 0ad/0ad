@@ -56,7 +56,7 @@ enum
  * It provides an interface between the GUI, the network (via CNetClientSession),
  * and the game (via CGame and CNetClientTurnManager).
  */
-class CNetClient : public CFsm
+class CNetClient : public CFsm<CNetClient>
 {
 	NONCOPYABLE(CNetClient);
 
@@ -266,26 +266,26 @@ private:
 	void SendAuthenticateMessage();
 
 	// Net message / FSM transition handlers
-	static bool OnConnect(void* context, CFsmEvent* event);
-	static bool OnHandshake(void* context, CFsmEvent* event);
-	static bool OnHandshakeResponse(void* context, CFsmEvent* event);
-	static bool OnAuthenticateRequest(void* context, CFsmEvent* event);
-	static bool OnAuthenticate(void* context, CFsmEvent* event);
-	static bool OnChat(void* context, CFsmEvent* event);
-	static bool OnReady(void* context, CFsmEvent* event);
-	static bool OnGameSetup(void* context, CFsmEvent* event);
-	static bool OnPlayerAssignment(void* context, CFsmEvent* event);
-	static bool OnInGame(void* context, CFsmEvent* event);
-	static bool OnGameStart(void* context, CFsmEvent* event);
-	static bool OnJoinSyncStart(void* context, CFsmEvent* event);
-	static bool OnJoinSyncEndCommandBatch(void* context, CFsmEvent* event);
-	static bool OnRejoined(void* context, CFsmEvent* event);
-	static bool OnKicked(void* context, CFsmEvent* event);
-	static bool OnClientTimeout(void* context, CFsmEvent* event);
-	static bool OnClientPerformance(void* context, CFsmEvent* event);
-	static bool OnClientsLoading(void* context, CFsmEvent* event);
-	static bool OnClientPaused(void* context, CFsmEvent* event);
-	static bool OnLoadedGame(void* context, CFsmEvent* event);
+	static bool OnConnect(CNetClient* client, CFsmEvent* event);
+	static bool OnHandshake(CNetClient* client, CFsmEvent* event);
+	static bool OnHandshakeResponse(CNetClient* client, CFsmEvent* event);
+	static bool OnAuthenticateRequest(CNetClient* client, CFsmEvent* event);
+	static bool OnAuthenticate(CNetClient* client, CFsmEvent* event);
+	static bool OnChat(CNetClient* client, CFsmEvent* event);
+	static bool OnReady(CNetClient* client, CFsmEvent* event);
+	static bool OnGameSetup(CNetClient* client, CFsmEvent* event);
+	static bool OnPlayerAssignment(CNetClient* client, CFsmEvent* event);
+	static bool OnInGame(CNetClient* client, CFsmEvent* event);
+	static bool OnGameStart(CNetClient* client, CFsmEvent* event);
+	static bool OnJoinSyncStart(CNetClient* client, CFsmEvent* event);
+	static bool OnJoinSyncEndCommandBatch(CNetClient* client, CFsmEvent* event);
+	static bool OnRejoined(CNetClient* client, CFsmEvent* event);
+	static bool OnKicked(CNetClient* client, CFsmEvent* event);
+	static bool OnClientTimeout(CNetClient* client, CFsmEvent* event);
+	static bool OnClientPerformance(CNetClient* client, CFsmEvent* event);
+	static bool OnClientsLoading(CNetClient* client, CFsmEvent* event);
+	static bool OnClientPaused(CNetClient* client, CFsmEvent* event);
+	static bool OnLoadedGame(CNetClient* client, CFsmEvent* event);
 
 	/**
 	 * Take ownership of a session object, and use it for all network communication.
