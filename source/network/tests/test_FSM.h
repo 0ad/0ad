@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,13 +29,13 @@ class TestFSM : public CxxTest::TestSuite
 	};
 
 	template<size_t N>
-	static bool IncrementGlobal(void* state, CFsmEvent*)
+	static bool IncrementGlobal(FSMGlobalState* state, CFsmEvent*)
 	{
-		++std::get<N>(reinterpret_cast<FSMGlobalState*>(state)->occurCount);
+		++std::get<N>(state->occurCount);
 		return true;
 	}
 
-	static bool IncrementParam(void*, CFsmEvent* event)
+	static bool IncrementParam(FSMGlobalState*, CFsmEvent* event)
 	{
 		++*reinterpret_cast<size_t*>(event->GetParamRef());
 		return true;
@@ -60,7 +60,7 @@ public:
 	void test_global()
 	{
 		FSMGlobalState globalState;
-		CFsm FSMObject;
+		CFsm<FSMGlobalState> FSMObject;
 
 		/*
 		Corresponding pseudocode
@@ -83,16 +83,16 @@ public:
 
 		FSMObject.AddTransition(static_cast<unsigned int>(State::ZERO),
 			static_cast<unsigned int>(Instruction::TO_ONE), static_cast<unsigned int>(State::ONE),
-			&IncrementGlobal<1>, static_cast<void*>(&globalState));
+			&IncrementGlobal<1>, &globalState);
 		FSMObject.AddTransition(static_cast<unsigned int>(State::ONE),
 			static_cast<unsigned int>(Instruction::TO_TWO), static_cast<unsigned int>(State::TWO),
-			&IncrementGlobal<2>, static_cast<void*>(&globalState));
+			&IncrementGlobal<2>, &globalState);
 		FSMObject.AddTransition(static_cast<unsigned int>(State::ONE),
 			static_cast<unsigned int>(Instruction::TO_ZERO), static_cast<unsigned int>(State::ZERO),
-			&IncrementGlobal<0>, static_cast<void*>(&globalState));
+			&IncrementGlobal<0>, &globalState);
 		FSMObject.AddTransition(static_cast<unsigned int>(State::TWO),
 			static_cast<unsigned int>(Instruction::TO_ZERO), static_cast<unsigned int>(State::ZERO),
-			&IncrementGlobal<0>, static_cast<void*>(&globalState));
+			&IncrementGlobal<0>, &globalState);
 
 		FSMObject.SetFirstState(static_cast<unsigned int>(State::ZERO));
 
@@ -125,7 +125,7 @@ public:
 	void test_param()
 	{
 		FSMGlobalState globalState;
-		CFsm FSMObject;
+		CFsm<FSMGlobalState> FSMObject;
 
 		// Equal to the FSM in test_global.
 		FSMObject.AddTransition(static_cast<unsigned int>(State::ZERO),

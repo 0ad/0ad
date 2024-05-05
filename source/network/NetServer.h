@@ -294,23 +294,23 @@ private:
 	void OnUserJoin(CNetServerSession* session);
 	void OnUserLeave(CNetServerSession* session);
 
-	static bool OnClientHandshake(void* context, CFsmEvent* event);
-	static bool OnAuthenticate(void* context, CFsmEvent* event);
-	static bool OnSimulationCommand(void* context, CFsmEvent* event);
-	static bool OnSyncCheck(void* context, CFsmEvent* event);
-	static bool OnEndCommandBatch(void* context, CFsmEvent* event);
-	static bool OnChat(void* context, CFsmEvent* event);
-	static bool OnReady(void* context, CFsmEvent* event);
-	static bool OnClearAllReady(void* context, CFsmEvent* event);
-	static bool OnGameSetup(void* context, CFsmEvent* event);
-	static bool OnAssignPlayer(void* context, CFsmEvent* event);
-	static bool OnGameStart(void* context, CFsmEvent* event);
-	static bool OnLoadedGame(void* context, CFsmEvent* event);
-	static bool OnJoinSyncingLoadedGame(void* context, CFsmEvent* event);
-	static bool OnRejoined(void* context, CFsmEvent* event);
-	static bool OnKickPlayer(void* context, CFsmEvent* event);
-	static bool OnDisconnect(void* context, CFsmEvent* event);
-	static bool OnClientPaused(void* context, CFsmEvent* event);
+	static bool OnClientHandshake(CNetServerSession* session, CFsmEvent* event);
+	static bool OnAuthenticate(CNetServerSession* session, CFsmEvent* event);
+	static bool OnSimulationCommand(CNetServerSession* session, CFsmEvent* event);
+	static bool OnSyncCheck(CNetServerSession* session, CFsmEvent* event);
+	static bool OnEndCommandBatch(CNetServerSession* session, CFsmEvent* event);
+	static bool OnChat(CNetServerSession* session, CFsmEvent* event);
+	static bool OnReady(CNetServerSession* session, CFsmEvent* event);
+	static bool OnClearAllReady(CNetServerSession* session, CFsmEvent* event);
+	static bool OnGameSetup(CNetServerSession* session, CFsmEvent* event);
+	static bool OnAssignPlayer(CNetServerSession* session, CFsmEvent* event);
+	static bool OnGameStart(CNetServerSession* session, CFsmEvent* event);
+	static bool OnLoadedGame(CNetServerSession* session, CFsmEvent* event);
+	static bool OnJoinSyncingLoadedGame(CNetServerSession* session, CFsmEvent* event);
+	static bool OnRejoined(CNetServerSession* session, CFsmEvent* event);
+	static bool OnKickPlayer(CNetServerSession* session, CFsmEvent* event);
+	static bool OnDisconnect(CNetServerSession* session, CFsmEvent* event);
+	static bool OnClientPaused(CNetServerSession* session, CFsmEvent* event);
 
 	/**
 	 * Checks if all clients have finished loading.

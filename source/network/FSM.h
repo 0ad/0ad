@@ -24,22 +24,6 @@
 
 constexpr unsigned int FSM_INVALID_STATE{std::numeric_limits<unsigned int>::max()};
 
-class CFsmEvent;
-class CFsm;
-
-using Action = bool(void* pContext, CFsmEvent* pEvent);
-
-struct CallbackFunction
-{
-	Action* pFunction{nullptr};
-	void* pContext{nullptr};
-
-	bool operator()(CFsmEvent& event) const
-	{
-		return !pFunction || pFunction(pContext, &event);
-	}
-};
-
 /**
  * Represents a signal in the state machine that a change has occurred.
  * The CFsmEvent objects are under the control of CFsm so
@@ -47,11 +31,11 @@ struct CallbackFunction
  */
 class CFsmEvent
 {
-	NONCOPYABLE(CFsmEvent);
 public:
-
-	CFsmEvent(unsigned int type, void* pParam);
-	~CFsmEvent();
+	CFsmEvent(unsigned int type, void* pParam) :
+		m_Type{type},
+		m_Param{pParam}
+	{}
 
 	unsigned int GetType() const
 	{
@@ -79,24 +63,47 @@ private:
  * transitions; Mealy machines are event driven where an
  * event triggers a state transition.
  */
+template <typename Context>
 class CFsm
 {
+	using Action = bool(Context* pContext, CFsmEvent* pEvent);
+
+	struct CallbackFunction
+	{
+		Action* pFunction{nullptr};
+		Context* pContext{nullptr};
+
+		bool operator()(CFsmEvent& event) const
+		{
+			return !pFunction || pFunction(pContext, &event);
+		}
+	};
 public:
 	/**
 	 * Adds a new transistion to the state machine.
 	 */
 	void AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
-		Action* pAction = nullptr, void* pContext = nullptr);
+		Action* pAction = nullptr, Context* pContext = nullptr)
+	{
+		m_Transitions.insert({TransitionKey{state, eventType},
+			Transition{{pAction, pContext}, nextState}});
+	}
 
 	/**
 	 * Sets the initial state for FSM.
 	 */
-	void SetFirstState(unsigned int firstState);
+	void SetFirstState(unsigned int firstState)
+	{
+		m_FirstState = firstState;
+	}
 
 	/**
 	 * Sets the current state and update the last state to the current state.
 	 */
-	void SetCurrState(unsigned int state);
+	void SetCurrState(unsigned int state)
+	{
+		m_CurrState = state;
+	}
 	unsigned int GetCurrState() const
 	{
 		return m_CurrState;
@@ -116,12 +123,40 @@ public:
 	 * Updates the FSM and retrieves next state.
 	 * @return whether the state was changed.
 	 */
-	bool Update(unsigned int eventType, void* pEventData);
+	bool Update(unsigned int eventType, void* pEventData)
+	{
+		if (IsFirstTime())
+			m_CurrState = m_FirstState;
+
+		// Lookup transition
+		auto transitionIterator = m_Transitions.find({m_CurrState, eventType});
+		if (transitionIterator == m_Transitions.end())
+			return false;
+
+		CFsmEvent event{eventType, pEventData};
+
+		// Save the default state transition (actions might call SetNextState
+		// to override this)
+		SetNextState(transitionIterator->second.nextState);
+
+		if (!transitionIterator->second.action(event))
+			return false;
+
+		SetCurrState(GetNextState());
+
+		// Reset the next state since it's no longer valid
+		SetNextState(FSM_INVALID_STATE);
+
+		return true;
+	}
 
 	/**
 	 * Tests whether the state machine has finished its work.
 	 */
-	bool IsDone() const;
+	bool IsDone() const
+	{
+		return m_Done;
+	}
 
 private:
 	struct TransitionKey
@@ -153,12 +188,16 @@ private:
 		unsigned int nextState;
 	};
 
-	using TransitionMap = std::unordered_map<TransitionKey, const Transition, TransitionKey::Hash>;
+	using TransitionMap = std::unordered_map<TransitionKey, const Transition,
+		typename TransitionKey::Hash>;
 
 	/**
 	 * Verifies whether state machine has already been updated.
 	 */
-	bool IsFirstTime() const;
+	bool IsFirstTime() const
+	{
+		return m_CurrState == FSM_INVALID_STATE;
+	}
 
 	bool m_Done{false};
 	unsigned int m_FirstState{FSM_INVALID_STATE};
