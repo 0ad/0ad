@@ -293,7 +293,7 @@ msgstr "Soldati, Armi d'Assedio e le Navi +25% di danno in attacco."
 msgid ""
 "Decreases training time of infantry if they are trained in batches or companies. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Diminuisce il tempo di addestramento della fanteria se viene addestrata in gruppi o compagnie. I grandi gruppi ne beneficeranno più di quelli piccoli.\nIn termini matematici: Il tempo di addestramento di un gruppo viene diviso per `dimensione gruppo^0,1`."
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -302,7 +302,7 @@ msgstr "Coscrizione"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Decreases batch training time of units trained in Barracks."
-msgstr ""
+msgstr "Diminuisce il tempo di addestramento dei gruppi di unità addestrate in caserma."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -1398,7 +1398,7 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase.\n"
 "The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Avanza da una città vivace a una vera e propria metropoli, piena di meraviglie della tecnologia moderna. Il bonus \"Tempi di guerra\" aumenta il tempo di addestramento dei gruppi nelle Scuderie. I gruppi grandi ne beneficeranno più dei piccoli.\nIn termini matematici: Il tempo di allenamento di un gruppo viene diviso per `dimensione gruppo^0,1`."
 
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
@@ -1406,7 +1406,7 @@ msgid ""
 "Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Decrease batch training time of "
 "units trained in Stables."
-msgstr ""
+msgstr "Avanzamento alla Fase Città, che sblocca più entità e tecnologie. Centri civici +25% raggio di influenza del territorio. Strutture +1 tasso di rigenerazione dei punti di cattura per le unità presidiate. Diminuisce il tempo di addestramento delle unità addestrate nelle Stalle."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1470,7 +1470,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. This is the Persian town phase.\n"
 "The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Avanza da un piccolo villaggio a una città vivace, pronta a espandersi rapidamente. Il bonus \"Tempi di guerra\" aumenta il tempo di addestramento dei gruppi nelle scuderie. i gruppi grandi ne beneficeranno più di quelli piccoli.\nIn termini matematici: Il tempo di addestramento di un gruppo viene diviso per `dimensione gruppo^0,1`."
 
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
@@ -1478,7 +1478,7 @@ msgid ""
 "Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Decrease batch training time of "
 "units trained in Stables."
-msgstr ""
+msgstr "Avanzamento alla Fase Città, che sblocca più entità e tecnologie. Centri civici +25% raggio di influenza del territorio. Strutture +0,5 tasso di rigenerazione dei punti di cattura per le unità presidiate. Diminuisce il tempo di addestramento delle unità addestrate nelle scuderie."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -2008,11 +2008,11 @@ msgstr "Rende le tue unità del 50% più costose da corrompere."
 msgid ""
 "Decreases training time of cavalry if they are trained in batches or squadrons. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Diminuisce il tempo di addestramento della cavalleria se viene addestrata in gruppi o squadroni. I gruppi grandi beneficeranno più di quelli piccoli.\nIn termini matematici: Il tempo di addestramento di un gruppo viene diviso per `dimensione gruppo^0,1`."
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Decrease batch training time of units trained in Stables."
-msgstr ""
+msgstr "Diminuisce il tempo di addestramento dei gruppi di unità addestrate nelle Stalle."
 
 #: simulation/data/technologies/subterranean_aqueducts.jsondescription
 msgid ""
