@@ -5,8 +5,6 @@ class StartGameButton
 		this.setupWindow = setupWindow;
 		this.gameStarted = false;
 
-		this.buttonHiddenChangeHandlers = new Set();
-
 		this.startGameButton = Engine.GetGUIObjectByName("startGameButton");
 		this.startGameButton.caption = this.Caption;
 		this.startGameButton.onPress = this.onPress.bind(this);
@@ -15,16 +13,9 @@ class StartGameButton
 		setupWindow.controls.playerAssignmentsController.registerPlayerAssignmentsChangeHandler(this.update.bind(this));
 	}
 
-	registerButtonHiddenChangeHandler(handler)
-	{
-		this.buttonHiddenChangeHandlers.add(handler);
-	}
-
 	onLoad()
 	{
 		this.startGameButton.hidden = !g_IsController;
-		for (let handler of this.buttonHiddenChangeHandlers)
-			handler();
 	}
 
 	update()
