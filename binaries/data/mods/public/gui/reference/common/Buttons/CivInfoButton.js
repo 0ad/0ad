@@ -12,7 +12,12 @@ class CivInfoButton
 
 	onPress()
 	{
-		Engine.PopGuiPage({ "civ": this.parentPage.activeCiv, "nextPage": "page_civinfo.xml" });
+		Engine.PopGuiPage({
+			"nextPage": "page_civinfo.xml",
+			"args": {
+				"civ": this.parentPage.activeCiv
+			}
+		});
 	}
 
 }

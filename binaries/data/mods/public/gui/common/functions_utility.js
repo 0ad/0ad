@@ -282,3 +282,25 @@ function getBuildString()
 		"revision": Engine.GetBuildRevision()
 	});
 }
+
+/**
+ * Opens a page. If that page completes with an object with a @a nextPage
+ *	property that page is opened with the @a args property of that object.
+ *	That continues untill there is no @a nextPage property in the completion
+ *	value. If there is no @a nextPage in the completion value the
+ *	@a continuation is called with the completion value.
+ * @param {String} page - The page first opened.
+ * @param args - passed to the first page opened.
+ * @param continuation {function | undefined} - Completion callback, called when
+ *	there is no @a nextPage property in the completion value.
+ */
+function pageLoop(page, args, continuation)
+{
+	(function recursiveFunction(completionValue)
+		{
+			if (completionValue?.nextPage != null)
+				Engine.PushGuiPage(completionValue.nextPage, completionValue.args, recursiveFunction);
+			else
+				continuation?.(completionValue);
+		})({ "nextPage": page, "args": args });
+}

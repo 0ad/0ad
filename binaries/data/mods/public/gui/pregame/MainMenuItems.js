@@ -36,25 +36,13 @@ var g_MainMenuItems = [
 				"caption": translate("Structure Tree"),
 				"tooltip": colorizeHotkey(translate("%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."), "structree"),
 				"hotkey": "structree",
-				"onPress": () => {
-					let callback = data => {
-						if (data.nextPage)
-							Engine.PushGuiPage(data.nextPage, { "civ": data.civ }, callback);
-					};
-					Engine.PushGuiPage("page_structree.xml", {}, callback);
-				},
+				"onPress": pageLoop.bind(null, "page_structree.xml")
 			},
 			{
 				"caption": translate("Civilization Overview"),
 				"tooltip": colorizeHotkey(translate("%(hotkey)s: Learn about the civilizations featured in 0 A.D."), "civinfo"),
 				"hotkey": "civinfo",
-				"onPress": () => {
-					let callback = data => {
-						if (data.nextPage)
-							Engine.PushGuiPage(data.nextPage, { "civ": data.civ }, callback);
-					};
-					Engine.PushGuiPage("page_civinfo.xml", {}, callback);
-				}
+				"onPress": pageLoop.bind(null, "page_civinfo.xml")
 			},
 			{
 				"caption": translate("Catafalque Overview"),
