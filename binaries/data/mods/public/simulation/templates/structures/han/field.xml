@@ -6,6 +6,9 @@
       <wood>60</wood>
     </Resources>
   </Cost>
+  <Health>
+    <SpawnEntityOnDeath>decay|rubble/rubble_field_rice</SpawnEntityOnDeath>
+  </Health>
   <Footprint>
     <Square depth="22.0" width="22.0"/>
     <Height>2.0</Height>

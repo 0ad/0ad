@@ -7,8 +7,6 @@ class GameSettingWarning
 
 		this.gameSettingWarning = Engine.GetGUIObjectByName("gameSettingWarning");
 
-		cancelButton.registerCancelButtonResizeHandler(this.onCancelButtonResize.bind(this));
-
 		g_GameSettings.cheats.watch(() => this.onSettingsChange(), ["enabled"]);
 		g_GameSettings.rating.watch(() => this.onSettingsChange(), ["enabled"]);
 	}
@@ -25,16 +23,7 @@ class GameSettingWarning
 		this.gameSettingWarning.caption = caption;
 		this.gameSettingWarning.hidden = !caption;
 	}
-
-	onCancelButtonResize(cancelButton)
-	{
-		let size = this.gameSettingWarning.size;
-		size.right = cancelButton.size.left - this.Margin;
-		this.gameSettingWarning.size = size;
-	}
 }
-
-GameSettingWarning.prototype.Margin = 10;
 
 GameSettingWarning.prototype.CheatsEnabled =
 	translate("Cheats enabled.");

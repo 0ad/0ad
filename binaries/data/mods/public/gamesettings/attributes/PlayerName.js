@@ -62,10 +62,11 @@ GameSettings.prototype.Attributes.PlayerName = class PlayerName extends GameSett
 	}
 
 	/**
-	 * Pick bot names.
+	 * Pick AI names.
 	 */
 	pickRandomItems()
 	{
+		const AIPlayerNamesList = [];
 		let picked = false;
 		for (let i in this.values)
 		{
@@ -82,22 +83,29 @@ GameSettings.prototype.Attributes.PlayerName = class PlayerName extends GameSett
 				continue;
 
 			picked = true;
-			// Pick one of the available botnames for the chosen civ
-			// Determine botnames
-			let chosenName = pickRandom(this.settings.civData[civ].AINames);
-			if (!this.settings.isNetworked)
-				chosenName = translate(chosenName);
 
-			// Count how many players use the chosenName
-			let usedName = this.values.filter(oName => oName && oName.indexOf(chosenName) !== -1).length;
+			const names = this.settings.civData[civ].AINames;
+			const remainingNames = names.filter(name => !AIPlayerNamesList.includes(name));
+			const chosenName = pickRandom(remainingNames.length ? remainingNames : names);
+			
+			// Avoid translating AI names if the game is networked, so all players see and refer to
+			// English names instead of names in the language of the host.
+			const translatedCountLabel = this.settings.isNetworked ? this.CountLabel : translate(this.CountLabel);
+			const translatedChosenName = this.settings.isNetworked ? chosenName : translate(chosenName);
 
-			this.values[i] =
-				usedName ?
-					sprintf(this.RomanLabel, {
-						"playerName": chosenName,
-						"romanNumber": this.RomanNumbers[usedName + 1]
-					}) :
-					chosenName;
+			const duplicateNameCount = AIPlayerNamesList.reduce((count, name) => {
+				if (name == chosenName)
+					count++;
+				return count;
+			}, 0);
+			
+			AIPlayerNamesList.push(chosenName);
+
+			this.values[i] = !duplicateNameCount ? translatedChosenName :
+				sprintf(translatedCountLabel, {
+					"playerName": translatedChosenName,
+					"nameCount": duplicateNameCount + 1
+				});
 		}
 		if (picked)
 			this.trigger("values");
@@ -128,9 +136,8 @@ GameSettings.prototype.Attributes.PlayerName = class PlayerName extends GameSett
 	}
 };
 
-
-GameSettings.prototype.Attributes.PlayerName.prototype.RomanLabel =
-	translate("%(playerName)s %(romanNumber)s");
-
-GameSettings.prototype.Attributes.PlayerName.prototype.RomanNumbers =
-	[undefined, "I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
+/** Translation: This is a template (sprintf format specifier) for the name of
+ * an AI-controlled player and a unique number for each of the players with
+ * that same name. Example: Perseus (2)
+ */
+GameSettings.prototype.Attributes.PlayerName.prototype.CountLabel = markForTranslation("%(playerName)s (%(nameCount)i)");

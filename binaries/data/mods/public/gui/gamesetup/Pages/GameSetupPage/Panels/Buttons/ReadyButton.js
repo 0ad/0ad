@@ -6,7 +6,6 @@ class ReadyButton
 
 		this.hidden = undefined;
 
-		this.buttonHiddenChangeHandlers = new Set();
 		this.readyButtonPressHandlers = new Set();
 
 		this.readyButton = Engine.GetGUIObjectByName("readyButton");
@@ -18,11 +17,6 @@ class ReadyButton
 
 		if (g_IsController && g_IsNetworked)
 			this.readyController.setReady(this.readyController.StayReady, true);
-	}
-
-	registerButtonHiddenChangeHandler(handler)
-	{
-		this.buttonHiddenChangeHandlers.add(handler);
 	}
 
 	onNetStatusMessage(message)
@@ -47,9 +41,6 @@ class ReadyButton
 
 		this.hidden = hidden;
 		this.readyButton.hidden = hidden;
-
-		for (let handler of this.buttonHiddenChangeHandlers)
-			handler(this.readyButton);
 	}
 
 	registerReadyButtonPressHandler(handler)
