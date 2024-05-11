@@ -39,7 +39,12 @@ class StructreePage extends ReferencePage
 
 	closePage()
 	{
-		Engine.PopGuiPage({ "civ": this.activeCiv, "page": "page_structree.xml" });
+		Engine.PopGuiPage({
+			"page": "page_structree.xml",
+			"args": {
+				"civ": this.activeCiv
+			}
+		});
 	}
 
 	selectCiv(civCode)

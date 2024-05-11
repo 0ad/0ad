@@ -17,12 +17,22 @@ class CivInfoPage extends ReferencePage
 
 	switchToStructreePage()
 	{
-		Engine.PopGuiPage({ "civ": this.activeCiv, "nextPage": "page_structree.xml" });
+		Engine.PopGuiPage({
+			"nextPage": "page_structree.xml",
+			"args": {
+				"civ": this.activeCiv
+			}
+		});
 	}
 
 	closePage()
 	{
-		Engine.PopGuiPage({ "civ": this.activeCiv, "page": "page_civinfo.xml" });
+		Engine.PopGuiPage({
+			"page": "page_civinfo.xml",
+			"args": {
+				"civ": this.activeCiv
+			}
+		});
 	}
 
 	/**

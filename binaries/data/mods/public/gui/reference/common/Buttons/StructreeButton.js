@@ -12,7 +12,12 @@ class StructreeButton
 
 	onPress()
 	{
-		Engine.PopGuiPage({ "civ": this.parentPage.activeCiv, "nextPage": "page_structree.xml" });
+		Engine.PopGuiPage({
+			"nextPage": "page_structree.xml",
+			"args": {
+				"civ": this.parentPage.activeCiv
+			}
+		});
 	}
 
 }
