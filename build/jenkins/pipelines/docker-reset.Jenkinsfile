@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,16 +42,34 @@ pipeline {
 			steps {
 				sh 'docker build --no-cache -t build-base ~/dockerfiles/build-base'
 				sh 'docker build --no-cache -t 0ad-gcc7 ~/dockerfiles/gcc7'
-				sh 'docker build --no-cache -t 0ad-coala ~/dockerfiles/coala'
+				sh 'docker build --no-cache -t 0ad-gcc7-docs ~/dockerfiles/gcc7-docs'
+				sh 'docker build --no-cache -t 0ad-clang8 ~/dockerfiles/clang8'
 				sh 'docker build --no-cache -t 0ad-translations ~/dockerfiles/translations'
+				sh 'docker build --no-cache -t 0ad-lint ~/dockerfiles/lint'
 			}
 		}
 		stage("Build") {
+			when {
+				environment name: 'no-cache', value: 'true'
+			}
 			steps {
 				sh 'docker build -t build-base ~/dockerfiles/build-base'
 				sh 'docker build -t 0ad-gcc7 ~/dockerfiles/gcc7'
-				sh 'docker build -t 0ad-coala ~/dockerfiles/coala'
+				sh 'docker build -t 0ad-gcc7-docs ~/dockerfiles/gcc7-docs'
+				sh 'docker build -t 0ad-clang8 ~/dockerfiles/clang8'
 				sh 'docker build -t 0ad-translations ~/dockerfiles/translations'
+				sh 'docker build -t 0ad-lint ~/dockerfiles/lint'
+				sh """
+					docker rmi debian:buster
+					DANGLING_IMAGES="\$(docker images --filter \"\"\"dangling=true\"\"\" -q --no-trunc)"
+					if [ -n "\$DANGLING_IMAGES" ]; then
+							echo "Removing dangling images: \$DANGLING_IMAGES"
+							docker rmi \$(docker images --filter \"\"\"dangling=true\"\"\" -q --no-trunc)
+							echo "Done."
+					else
+							echo "No dangling images found."
+					fi
+				"""
 			}
 		}
 		stage("Update") {
@@ -72,8 +90,10 @@ pipeline {
 
 				sh "sudo zfs snapshot zpool0/trunk@base"
 				sh "sudo zfs clone zpool0/trunk@base zpool0/gcc7"
-
+				sh "sudo zfs clone zpool0/trunk@base zpool0/clang8"
 				sh "sudo zfs snapshot zpool0/trunk@latest"
+				sh "sudo zfs snapshot zpool0/clang8@latest"
+				sh "sudo zfs snapshot zpool0/gcc7@latest"
 			}
 		}
 	}
