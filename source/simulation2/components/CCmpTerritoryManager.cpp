@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -324,36 +324,53 @@ struct Tile
 	u16 x, z;
 };
 
-// Floodfill templates that expand neighbours from a certain source onwards
-// (posX, posZ) are the coordinates of the currently expanded tile
-// (nx, nz) are the coordinates of the current neighbour handled
-// The user of this floodfill should use "continue" on every neighbour that
-// shouldn't be expanded on its own. (without continue, an infinite loop will happen)
-# define FLOODFILL(i, j, code)\
-	do {\
-		const int NUM_NEIGHBOURS = 8;\
-		const int NEIGHBOURS_X[NUM_NEIGHBOURS] = {1,-1, 0, 0, 1,-1, 1,-1};\
-		const int NEIGHBOURS_Z[NUM_NEIGHBOURS] = {0, 0, 1,-1, 1,-1,-1, 1};\
-		std::queue<Tile> openTiles;\
-		openTiles.emplace(i, j);\
-		while (!openTiles.empty())\
-		{\
-			u16 posX = openTiles.front().x;\
-			u16 posZ = openTiles.front().z;\
-			openTiles.pop();\
-			for (int n = 0; n < NUM_NEIGHBOURS; ++n)\
-			{\
-				u16 nx = posX + NEIGHBOURS_X[n];\
-				u16 nz = posZ + NEIGHBOURS_Z[n];\
-				/* Check the bounds, underflow will cause the values to be big again */\
-				if (nx >= tilesW || nz >= tilesH)\
-					continue;\
-				code\
-				openTiles.emplace(nx, nz);\
-			}\
-		}\
-	}\
-	while (false)
+/**
+ * Queue based eight directional floodfill algorithm.
+ *
+ * @param origin Where to start the floodfill. In the first iteration it is
+ *	passed as the second argument to the @see decider and the floodfill only
+ *	continues when the invocation returns @c true.
+ * @param gridSize Tiles outside the boundary are never exteded. The
+ *	@see decider isn't called with thous tiles.
+ * @param decider It is called with a tile wich was already added as the first
+ *	argument and a neighbour as the second argument. The invocation shall
+ *	return whether to extend the wavefront to the neighbour (if allways
+ *	@c true is returned, an infinite loop will occur). In the first iteration
+ *	the @see decider is invoked with a null pointer as the first argument and
+ *	@see origin as the second argument.
+ */
+template<typename Decider>
+void Floodfill(const Tile& origin, const Tile& gridSize, Decider decider)
+{
+	static_assert(std::is_invocable_r_v<bool, Decider, const Tile*, const Tile&>);
+
+	constexpr std::array<std::array<int, 2>, 8> neighbours{{{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1},
+		{-1, -1}, {1, -1}, {-1, 1}}};
+	std::queue<Tile> openTiles;
+
+	const auto emplaceIfRequested = [decider = std::move(decider), &openTiles](
+		const Tile* currentTile, const Tile& neighbourTile)
+		{
+			if (decider(currentTile, neighbourTile))
+				openTiles.emplace(neighbourTile);
+		};
+
+	emplaceIfRequested(nullptr, origin);
+	while (!openTiles.empty())
+	{
+		const Tile currentTile{openTiles.front()};
+		openTiles.pop();
+		for (const std::array<int, 2>& neighbour : neighbours)
+		{
+			const Tile neighbourTile{static_cast<u16>(currentTile.x + std::get<0>(neighbour)),
+				static_cast<u16>(currentTile.z + std::get<1>(neighbour))};
+
+			// Check the bounds, underflow will cause the values to be big again.
+			if (neighbourTile.x < gridSize.x && neighbourTile.z < gridSize.z)
+				emplaceIfRequested(&currentTile, neighbourTile);
+		}
+	}
+}
 
 /**
  * Compute the tile indexes on the grid nearest to a given point
@@ -478,11 +495,13 @@ void CCmpTerritoryManager::CalculateTerritories()
 				continue;
 
 			CmpPtr<ICmpTerritoryInfluence> cmpTerritoryInfluence(GetSimContext(), ent);
-			u32 weight = cmpTerritoryInfluence->GetWeight();
+			const u32 originWeight = cmpTerritoryInfluence->GetWeight();
 			u32 radius = cmpTerritoryInfluence->GetRadius();
-			if (weight == 0 || radius == 0)
+			if (originWeight == 0 || radius == 0)
 				continue;
-			u32 falloff = weight * (Pathfinding::NAVCELL_SIZE * NAVCELLS_PER_TERRITORY_TILE).ToInt_RoundToNegInfinity() / radius;
+			const u32 relativeFalloff = originWeight *
+				(Pathfinding::NAVCELL_SIZE * NAVCELLS_PER_TERRITORY_TILE)
+				.ToInt_RoundToNegInfinity() / radius;
 
 			CFixedVector2D pos = cmpPosition->GetPosition2D();
 			u16 i, j;
@@ -491,40 +510,44 @@ void CCmpTerritoryManager::CalculateTerritories()
 			if (cmpTerritoryInfluence->IsRoot())
 				rootInfluenceEntities.push_back(ent);
 
-			// Initialise the tile under the entity
-			entityGrid.set(i, j, weight);
-			if (weight > bestWeightGrid.get(i, j))
-			{
-				bestWeightGrid.set(i, j, weight);
-				m_Territories->set(i, j, owner);
-			}
-
 			// Expand influences outwards
-			FLOODFILL(i, j,
-				u32 dg = falloff * m_CostGrid->get(nx, nz);
-
-				// diagonal neighbour -> multiply with approx sqrt(2)
-				if (nx != posX && nz != posZ)
-					dg = (dg * 362) / 256;
-
-				// Don't expand if new cost is not better than previous value for that tile
-				// (arranged to avoid underflow if entityGrid.get(x, z) < dg)
-				if (entityGrid.get(posX, posZ) <= entityGrid.get(nx, nz) + dg)
-					continue;
-
-				// weight of this tile = weight of predecessor - falloff from predecessor
-				u32 newWeight = entityGrid.get(posX, posZ) - dg;
-				u32 totalWeight = playerGrid.get(nx, nz) - entityGrid.get(nx, nz) + newWeight;
-				playerGrid.set(nx, nz, totalWeight);
-				entityGrid.set(nx, nz, newWeight);
-				// if this weight is better than the best thus far, set the owner
-				if (totalWeight > bestWeightGrid.get(nx, nz))
+			Floodfill({i, j}, {tilesW, tilesH}, [&](const Tile* current, const Tile& neighbour)
 				{
-					bestWeightGrid.set(nx, nz, totalWeight);
-					m_Territories->set(nx, nz, owner);
-				}
-			);
+					const bool diagonalProgression{current && neighbour.x != current->x &&
+						neighbour.z != current->z};
 
+					const u32 falloffPerTile{relativeFalloff *
+						m_CostGrid->get(neighbour.x, neighbour.z)};
+					// diagonal neighbour -> multiply with approx sqrt(2)
+					const u32 falloff{diagonalProgression ? (falloffPerTile * 362) / 256 :
+						falloffPerTile};
+
+					// Don't expand if new cost is not better than previous value for that tile
+					// (arranged to avoid underflow if entityGrid.get(x, z) < falloff)
+					if (current &&
+						entityGrid.get(current->x, current->z) <=
+							entityGrid.get(neighbour.x, neighbour.z) + falloff)
+						{
+							return false;
+						}
+
+					// weight of this tile = weight of predecessor - falloff from predecessor
+					const u32 weight{current ? entityGrid.get(current->x, current->z) - falloff :
+						originWeight};
+					const u32 totalWeight{weight + (current ?
+						playerGrid.get(neighbour.x, neighbour.z) -
+						entityGrid.get(neighbour.x, neighbour.z) : 0)};
+
+					playerGrid.set(neighbour.x, neighbour.z, totalWeight);
+					entityGrid.set(neighbour.x, neighbour.z, weight);
+					// if this weight is better than the best thus far, set the owner
+					if (totalWeight > bestWeightGrid.get(neighbour.x, neighbour.z))
+					{
+						bestWeightGrid.set(neighbour.x, neighbour.z, totalWeight);
+						m_Territories->set(neighbour.x, neighbour.z, owner);
+					}
+					return true;
+				});
 			entityGrid.reset();
 		}
 	}
@@ -543,22 +566,16 @@ void CCmpTerritoryManager::CalculateTerritories()
 
 		u8 owner = (u8)cmpOwnership->GetOwner();
 
-		if (m_Territories->get(i, j) != owner)
-			continue;
-
-		m_Territories->set(i, j, owner | TERRITORY_CONNECTED_MASK);
-
-		if (m_CostGrid->get(i, j) < m_ImpassableCost)
-			++m_TerritoryCellCounts[owner];
-
-		FLOODFILL(i, j,
-			// Don't expand non-owner tiles, or tiles that already have a connected mask
-			if (m_Territories->get(nx, nz) != owner)
-				continue;
-			m_Territories->set(nx, nz, owner | TERRITORY_CONNECTED_MASK);
-			if (m_CostGrid->get(nx, nz) < m_ImpassableCost)
-				++m_TerritoryCellCounts[owner];
-		);
+		Floodfill({i, j}, {tilesW, tilesH}, [&](const Tile*, const Tile& neighbour)
+			{
+				// Don't expand non-owner tiles, or tiles that already have a connected mask
+				if (m_Territories->get(neighbour.x, neighbour.z) != owner)
+					return false;
+				m_Territories->set(neighbour.x, neighbour.z, owner | TERRITORY_CONNECTED_MASK);
+				if (m_CostGrid->get(neighbour.x, neighbour.z) < m_ImpassableCost)
+					++m_TerritoryCellCounts[owner];
+				return true;
+			});
 	}
 
 	// Then recomputes the blinking tiles
@@ -750,21 +767,22 @@ std::vector<u32> CCmpTerritoryManager::GetNeighbours(entity_pos_t x, entity_pos_
 
 	// use a flood-fill algorithm that fills up to the borders and remembers the owners
 	Grid<bool> markerGrid(tilesW, tilesH);
-	markerGrid.set(i, j, true);
 
-	FLOODFILL(i, j,
-		if (markerGrid.get(nx, nz))
-			continue;
-		// mark the tile as visited in any case
-		markerGrid.set(nx, nz, true);
-		int owner = m_Territories->get(nx, nz) & TERRITORY_PLAYER_MASK;
-		if (owner != thisOwner)
+	Floodfill({i, j}, {tilesW, tilesH}, [&](const Tile*, const Tile& neighbour)
 		{
-			if (owner == 0 || !filterConnected || (m_Territories->get(nx, nz) & TERRITORY_CONNECTED_MASK) != 0)
-				ret[owner]++; // add player to the neighbour list when requested
-			continue; // don't expand non-owner tiles further
-		}
-	);
+			if (markerGrid.get(neighbour.x, neighbour.z))
+				return false;
+			// mark the tile as visited in any case
+			markerGrid.set(neighbour.x, neighbour.z, true);
+			int owner = m_Territories->get(neighbour.x, neighbour.z) & TERRITORY_PLAYER_MASK;
+			if (owner != thisOwner)
+			{
+				if (owner == 0 || !filterConnected || (m_Territories->get(neighbour.x, neighbour.z) & TERRITORY_CONNECTED_MASK) != 0)
+					ret[owner]++; // add player to the neighbour list when requested
+				return false; // don't expand non-owner tiles further
+			}
+			return true;
+		});
 
 	return ret;
 }
@@ -794,25 +812,20 @@ void CCmpTerritoryManager::SetTerritoryBlinking(entity_pos_t x, entity_pos_t z, 
 
 	player_id_t thisOwner = m_Territories->get(i, j) & TERRITORY_PLAYER_MASK;
 
-	u8 bitmask = m_Territories->get(i, j);
-	u8 blinking = bitmask & TERRITORY_BLINKING_MASK;
-	if (enable && !blinking)
-		m_Territories->set(i, j, bitmask | TERRITORY_BLINKING_MASK);
-	else if (!enable && blinking)
-		m_Territories->set(i, j, bitmask & ~TERRITORY_BLINKING_MASK);
-
-	FLOODFILL(i, j,
-		bitmask = m_Territories->get(nx, nz);
-		if ((bitmask & TERRITORY_PLAYER_MASK) != thisOwner)
-			continue;
-		blinking = bitmask & TERRITORY_BLINKING_MASK;
-		if (enable && !blinking)
-			m_Territories->set(nx, nz, bitmask | TERRITORY_BLINKING_MASK);
-		else if (!enable && blinking)
-			m_Territories->set(nx, nz, bitmask & ~TERRITORY_BLINKING_MASK);
-		else
-			continue;
-	);
+	Floodfill({i, j}, {tilesW, tilesH}, [&](const Tile*, const Tile& neighbour)
+		{
+			const u8 bitmask{m_Territories->get(neighbour.x, neighbour.z)};
+			if ((bitmask & TERRITORY_PLAYER_MASK) != thisOwner)
+				return false;
+			const bool blinking{(bitmask & TERRITORY_BLINKING_MASK) != 0};
+			if (enable != blinking)
+			{
+				m_Territories->set(neighbour.x, neighbour.z, enable ?
+					bitmask | TERRITORY_BLINKING_MASK : bitmask & ~TERRITORY_BLINKING_MASK);
+				return true;
+			}
+			return false;
+		});
 	++m_DirtyBlinkingID;
 	m_BoundaryLinesDirty = true;
 }
@@ -868,5 +881,3 @@ void TerritoryOverlay::BuildTextureRGBA(u8* data, size_t w, size_t h)
 		}
 	}
 }
-
-#undef FLOODFILL
