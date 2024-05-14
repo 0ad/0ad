@@ -8,6 +8,7 @@
 # 2001c3bfc7421750b343e20d6f8feae5_62d342a
 # Martin Plávala
 # Miroslav Kadlec
+# Patrik Špaňo
 # Peto (wt-ts)
 # c1d3d4413723242329060e6153cf18b8_282267d
 # Zuzana Miadoková
@@ -16,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Zuzana Miadoková, 2019,2021-2022,2024\n"
+"Last-Translator: Patrik Špaňo <pa4k.xyon@gmail.com>, 2024\n"
 "Language-Team: Slovak (http://app.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,14 +27,14 @@ msgstr ""
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. príručka v hre[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:2
 msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr ""
+msgstr "Thank you for installing 0 A.D.! Na tejto stránke nájdete stručný prehľad funkcií, ktoré sú k dispozícii v tejto nedokončenej, vyvíjanej alfa verzii hry."
 
 #: gui/manual/intro.txt:4
 msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
@@ -87,7 +88,7 @@ msgstr "• Ctrl + šípky alebo shift + koliesko myši otáčajú kameru."
 msgid ""
 "• Mouse wheel, or “hotkey.camera.zoom.in” and “hotkey.camera.zoom.out” keys,"
 " to zoom"
-msgstr ""
+msgstr "• Koliesko myši alebo klávesy “hotkey.camera.zoom.in” a “hotkey.camera.zoom.out” pre priblíženie"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -121,7 +122,7 @@ msgstr "Na založenie hry pre viac hráčov musí jeden hráč vybrať možnosť
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Nastavenie hry[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
@@ -173,13 +174,13 @@ msgstr "Ak ste pripravení, kliknite na tlačidlo \"Spustiť hru\"."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Klávesové skratky[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:40
 msgid ""
 "You may change hotkeys in [font=\"sans-bold-14\"]Options > "
 "Hotkeys[font=\"sans-14\"] to suit your liking."
-msgstr ""
+msgstr "Klávesové skratky môžete cez [font=\"sans-bold-14\"]Možnosti > Klávesové skratky[font=\"sans-14\"] zmeniť podľa svojich predstáv."
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -229,15 +230,15 @@ msgstr ""
 
 #: gui/manual/intro.txt:51
 msgid "  hotkey.tab.next – Switch to the next tab"
-msgstr ""
+msgstr "  hotkey.tab.next – Prepnúť na ďalšiu kartu"
 
 #: gui/manual/intro.txt:52
 msgid "  hotkey.tab.prev – Switch to the previous tab"
-msgstr ""
+msgstr "  hotkey.tab.prev – Prepnúť na predošlú kartu"
 
 #: gui/manual/intro.txt:54
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]V hre[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:55
 msgid ""
@@ -372,19 +373,19 @@ msgstr ""
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr ""
+msgstr "  hotkey.selection.group.save.1 – Vytvorenie ovládanej skupiny 1 (predvolene, prípadne 2,3, ...) z vybraných jednotiek/štruktúr"
 
 #: gui/manual/intro.txt:82
 msgid ""
 "  hotkey.selection.group.select.1 – Select the unit(s)/structure(s) in "
 "control group 1"
-msgstr ""
+msgstr "  hotkey.selection.group.select.1 – Vyberte jednotku(ky)/štruktúru(ry) v ovládanej skupine 1"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr ""
+msgstr "  hotkey.selection.group.add.1 – Pridanie ovládanej skupiny 1 (až 0) k vybranej jednotke(tkám)/štruktúre(ram)"
 
 #: gui/manual/intro.txt:84
 msgid ""

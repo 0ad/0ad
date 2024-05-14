@@ -11,6 +11,7 @@
 # Majid Al-Dharrab
 # Mohamed Moanis
 # mustapha ali abdulkarim
+# Olive Walle
 # 425467bb0c9da71484550c3c99a0865a_432023a
 # nitro361
 # Safa Alfulaij
@@ -25,7 +26,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-10-16 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
-"Last-Translator: ahmed t, 2023\n"
+"Last-Translator: Olive Walle, 2024\n"
 "Language-Team: Arabic (http://app.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +36,7 @@ msgstr ""
 
 #: gui/session/Cheats.js:78
 msgid "This cheat requires a numeric parameter."
-msgstr "This cheat requires a numeric parameter."
+msgstr "هذا الغش يحتاج إلى معلم رقمي."
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
@@ -80,7 +81,7 @@ msgstr "خيارات"
 
 #: gui/session/MenuButtons.js:185
 msgid "Hotkeys"
-msgstr ""
+msgstr "أزرار الاختصار"
 
 #: gui/session/MenuButtons.js:220
 msgid "Resume"
@@ -270,7 +271,7 @@ msgstr "تنبيهات اللعبة"
 #: gui/session/chat/ChatHistory.js:137
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "إشعارات الشبكة"
 
 #: gui/session/chat/ChatInput.js:36
 msgctxt "chat input"
@@ -566,23 +567,23 @@ msgstr "رقِّ الوحدات المحدّدة"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:269
 msgid "Enable culling"
-msgstr ""
+msgstr "تمكين التجنيد"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:287
 msgid "Lock cull camera"
-msgstr ""
+msgstr "قفل كاميرا التجنيد"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:305
 msgid "Display camera frustum"
-msgstr ""
+msgstr "عرض هرم الكاميرا"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:323
 msgid "Display shadows frustum"
-msgstr ""
+msgstr "عرض هرم الظلال"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:22
 msgid "Render Debug Mode Disabled"
-msgstr ""
+msgstr "تعطيل وضع تصحيح الرسومات"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:23
 msgid "Render Debug Mode AO"
@@ -594,7 +595,7 @@ msgstr ""
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:25
 msgid "Render Debug Mode Custom"
-msgstr ""
+msgstr "وضع تصحيح الرسومات المخصص"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -1071,19 +1072,19 @@ msgstr "أطلق إنذارًا!"
 
 #: gui/session/selection_panels.js:67
 msgid "Alert nearby Female Citizens to seek refuge."
-msgstr ""
+msgstr "تنبيه المواطنات القريبات للجوء."
 
 #: gui/session/selection_panels.js:69
 msgid "Alert nearby Traders to seek refuge."
-msgstr ""
+msgstr "تنبيه التجار القريبين للجوء."
 
 #: gui/session/selection_panels.js:71
 msgid "Alert nearby vulnerable units to seek refuge."
-msgstr ""
+msgstr "تنبيه الوحدات الضعيفة القريبة للجوء."
 
 #: gui/session/selection_panels.js:75
 msgid "End the alert."
-msgstr ""
+msgstr "إنهاء التنبيه."
 
 #: gui/session/selection_panels.js:77
 msgid "Unload nearby Female Citizens."
@@ -1099,11 +1100,11 @@ msgstr ""
 
 #: gui/session/selection_panels.js:291
 msgid "Default formation is disabled."
-msgstr "Default formation is disabled."
+msgstr "التشكيلة الافتراضية معطلة."
 
 #: gui/session/selection_panels.js:292
 msgid "Right-click to disable the default formation feature."
-msgstr "Right-click to disable the default formation feature."
+msgstr "انقر بزر الماوس الأيمن لتعطيل ميزة التشكيلة الافتراضية."
 
 #: gui/session/selection_panels.js:295
 msgid "This is the default formation, used for movement orders."
