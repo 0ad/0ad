@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-04-19 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Hugo Alves <hribalves@gmail.com>, 2020,2023\n"
+"Last-Translator: lecalam, 2022-2024\n"
 "Language-Team: Portuguese (Portugal) (http://app.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -101,7 +101,7 @@ msgstr "Desbloqueado na Fase de Cidade."
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Hoplites +25% health, but +5% training time."
-msgstr ""
+msgstr "Hoplitas campeões +25% vida, mas +5% tempo de treino."
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
@@ -208,7 +208,7 @@ msgstr "Os Persas construíram uma impressionante Estrada Real de 2000 km que ia
 
 #: simulation/data/technologies/architecture_pers.jsongenericName
 msgid "Achaemenid Architecture"
-msgstr ""
+msgstr "Arquitetura aqueménida"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
@@ -218,20 +218,20 @@ msgstr "Estruturas +25% vida e pontos de captura, mas também +20% tempo de cons
 msgid ""
 "The arsenal was mainly used as a warehouse for materials and instruments for"
 " the equipment of warships."
-msgstr ""
+msgstr "O arsenal era principalmente utilizado como armazém de materiais e instrumentos para o equipamento de barcos de guerra."
 
 #: simulation/data/technologies/arsenal_philon.jsongenericName
 msgid "Arsenal of Philon"
-msgstr ""
+msgstr "Arsenal de Filón"
 
 #: simulation/data/technologies/arsenal_philon.jsonrequirementsTooltip
 #: simulation/data/technologies/juggernauts.jsonrequirementsTooltip
 msgid "Unlocked in City Phase. Requires “Shipwrights.”"
-msgstr ""
+msgstr "Desbloqueado na fase da cidade. Requer \"Construtores navais\"."
 
 #: simulation/data/technologies/arsenal_philon.jsontooltip
 msgid "Warships +1 health/second self-repair rate."
-msgstr ""
+msgstr "Barcos de guerra +1 vida por segundo de autorreparação."
 
 #: simulation/data/technologies/art_of_war.jsondescription
 msgid ""
@@ -278,7 +278,7 @@ msgstr "Soldados, armas de cerco e barcos +25% dano de ataque."
 msgid ""
 "Decreases training time of infantry if they are trained in batches or companies. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Diminui o tempo de treino da infantaria se esta for treinada em lotes ou companhias. Os lotes grandes beneficiam mais do que os lotes pequenos.\nEm termos matemáticos: o tempo de treino de um lote é dividido por `tamanho do lote^0.1`."
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -287,7 +287,7 @@ msgstr "Conscrição"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Decreases batch training time of units trained in Barracks."
-msgstr ""
+msgstr "Diminui o tempo de treino em lote das unidades treinadas no quartel."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -317,15 +317,15 @@ msgstr "Cavalaria +10% velocidade de deslocação."
 msgid ""
 "Britons paint their bodies with Woad, which produces a blue color and gives "
 "them a fiercesome appearance in battle."
-msgstr ""
+msgstr "Os bretões pintam os seus corpos com pastel-dos-tintureiros, que produz uma cor azul e dá-lhes uma aparência feroz em batalha."
 
 #: simulation/data/technologies/civbonuses/brit_woad_warriors.jsongenericName
 msgid "Woad Warriors"
-msgstr ""
+msgstr "Guerreiros indigo"
 
 #: simulation/data/technologies/civbonuses/brit_woad_warriors.jsontooltip
 msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
-msgstr ""
+msgstr "Todas unidades de infantaria +5% de velocidade de movimento e +1 de pilhagem"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
@@ -360,7 +360,7 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 BC, whose purpose "
 "was to push the Persians out of the Aegean region. The allied states "
 "contributed ships and money, while the Athenians offered their entire navy."
-msgstr ""
+msgstr "Pouco depois das grandes vitórias navais de Salamina e Micale, as cidades-estado gregas instituíram, em 478 a.C., a chamada Liga de Delos, cujo objetivo era expulsar os persas da região do Egeu. Os Estados aliados contribuíram com barcos e dinheiro, enquanto os atenienses ofereceram toda a sua marinha."
 
 #: simulation/data/technologies/civbonuses/delian_league.jsongenericName
 msgid "Delian League"
@@ -368,7 +368,7 @@ msgstr "Liga de Delos"
 
 #: simulation/data/technologies/civbonuses/delian_league.jsontooltip
 msgid "Ships −25% construction time."
-msgstr ""
+msgstr "Barcos −25% tempo de construção."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -520,7 +520,7 @@ msgstr "Casas e estruturas económicas -40% custo da madeira, vida e pontos de c
 
 #: simulation/data/technologies/civbonuses/rome_siege.jsondescription
 msgid "Soldiers were well Trained to Operate Siege Engines."
-msgstr ""
+msgstr "Os soldados foram bem treinados para operar máquinas de cerco."
 
 #: simulation/data/technologies/civbonuses/rome_siege.jsongenericName
 msgid "Legionary Engineers"
@@ -529,7 +529,7 @@ msgstr "Engenheiros legionários"
 #: simulation/data/technologies/civbonuses/rome_siege.jsontooltip
 msgid ""
 "Siege Catapults and Onagers 10% faster fire rate and +20% movement speed."
-msgstr ""
+msgstr "Catapultas de cerco e onagros 10% velocidade de fogo e +20% velocidade de movimento."
 
 #: simulation/data/technologies/civbonuses/sele_farms.jsondescription
 msgid ""
@@ -638,7 +638,7 @@ msgstr "Emprega construtores navais qualificados com ferramentas especializadas 
 
 #: simulation/data/technologies/dock_efficiency.jsongenericName
 msgid "Shipwrights"
-msgstr ""
+msgstr "Construtores navais"
 
 #: simulation/data/technologies/dock_efficiency.jsonspecificName.athen
 #: simulation/data/technologies/dock_efficiency.jsonspecificName.mace
@@ -1242,7 +1242,7 @@ msgstr "Nisioi"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
-msgstr "Cavalaria de Lanceiros Campeões +20% vida, mas +10% tempo de treino."
+msgstr "Cavalaria de lanceiros campeões +20% vida, mas +10% tempo de treino."
 
 #: simulation/data/technologies/ostracism.jsondescription
 msgid ""
@@ -1567,34 +1567,34 @@ msgid ""
 " were a series of military reforms in the last century BC attributed to "
 "Gaius Marius involving the abolition of citzen cavalry, equipment changes, "
 "and standardization of the heavy infantry unit: the Legionary."
-msgstr ""
+msgstr "Regularizar o exército numa força profissional e organizada. As reformas de Mário foram uma série de reformas militares no século passado a.C. atribuídas a Caio Mário, envolvendo a abolição da cavalaria cidadã, mudanças de equipamento e padronização da unidade de infantaria pesada: o legionário."
 
 #: simulation/data/technologies/roman_reforms.jsongenericName
 msgid "Marian Reforms"
-msgstr ""
+msgstr "Reformas de Mário"
 
 #: simulation/data/technologies/roman_reforms.jsontooltip
 msgid ""
 "Convert Infantry to Marian Legionaries, Cavalry to Auxiliary Cavalry, unlock"
 " Onagers and Centurions, but lose access to Spear Cavalry and Italic Heavy "
 "Infantry."
-msgstr ""
+msgstr "Converte infantaria em legionários de Mário, cavalaria em cavalaria auxiliar, desbloqueia onagros e centuriões, mas perde o acesso à cavalaria de lança e à infantaria pesada italiota."
 
 #: simulation/data/technologies/roman_roads.jsondescription
 msgid "All roads lead to Rome."
-msgstr ""
+msgstr "Todos os caminhos vão dar a Roma."
 
 #: simulation/data/technologies/roman_roads.jsongenericName
 msgid "Roman Roads"
-msgstr ""
+msgstr "Estradas romanas"
 
 #: simulation/data/technologies/roman_roads.jsonspecificName.rome
 msgid "Viae Romanum"
-msgstr ""
+msgstr "Viae Romanum"
 
 #: simulation/data/technologies/roman_roads.jsontooltip
 msgid "All Land Units +5% movement speed."
-msgstr ""
+msgstr "Todas as unidades terrestres +5% velocidade de movimento."
 
 #: simulation/data/technologies/serapis_cult.jsondescription
 msgid ""
@@ -1606,23 +1606,23 @@ msgid ""
 "precinct devoted to Serapis. The cult of Serapis was spread as a matter of "
 "deliberate policy by the Ptolemaic kings, who also built an immense serapeum"
 " in Alexandria."
-msgstr ""
+msgstr "O culto de Serápis foi introduzido durante o século III a.C. por ordem de Ptolomeu I do Egipto, como forma de unificar os gregos e os egípcios no seu reino. O deus era representado com um aspeto grego, mas com traços egípcios, e combinava iconografia de muitos cultos, significando tanto a abundância como a ressurreição. Um serapeion era qualquer templo ou recinto religioso dedicado a Serápis. O culto de Serápis foi difundido de forma deliberada pelos reis ptolemaicos, que construíram também um imenso serapeum em Alexandria."
 
 #: simulation/data/technologies/serapis_cult.jsongenericName
 msgid "Serapis Cult"
-msgstr ""
+msgstr "Culto de Serápis"
 
 #: simulation/data/technologies/serapis_cult.jsontooltip
 msgid "+2.0 metal trickle per second."
-msgstr ""
+msgstr "+2.0 recebimento de metal por segundo ao longo do tempo."
 
 #: simulation/data/technologies/ship_capture_resistance.jsondescription
 msgid "Marines were a vital part of ship defense and offense."
-msgstr ""
+msgstr "A infantaria naval eram uma parte vital da defesa e do ataque dos barcos."
 
 #: simulation/data/technologies/ship_capture_resistance.jsongenericName
 msgid "Marines"
-msgstr ""
+msgstr "Infantaria naval"
 
 #: simulation/data/technologies/ship_capture_resistance.jsonspecificName.athen
 #: simulation/data/technologies/ship_capture_resistance.jsonspecificName.cart
@@ -1636,7 +1636,7 @@ msgstr ""
 
 #: simulation/data/technologies/ship_capture_resistance.jsontooltip
 msgid "All Warships +40% capture resistance."
-msgstr ""
+msgstr "Todos os barcos de guerra +40% resistência à captura."
 
 #: simulation/data/technologies/ship_cost_time.jsongenericName
 msgid "Naval Architects"
@@ -1656,7 +1656,7 @@ msgstr "Casco reforçado"
 
 #: simulation/data/technologies/ship_health.jsontooltip
 msgid "Ships +25% health, but −10% speed."
-msgstr ""
+msgstr "Barcos +25% vida, mas -10% velocidade."
 
 #: simulation/data/technologies/ship_movement_speed.jsondescription
 msgid ""
@@ -1779,7 +1779,7 @@ msgstr "Regimento dos Escudos de Prata"
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr "Aprimora o campeão portador de escudo para escudo de prata, com mais pontos de vida e dano de ataque."
+msgstr "Promove o campeão portador de escudo para escudo de prata, com mais pontos de vida e dano de ataque."
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsondescription
 msgid ""
@@ -1993,11 +1993,11 @@ msgstr "Torna as tuas unidades 50% mais caras para subornar."
 msgid ""
 "Decreases training time of cavalry if they are trained in batches or squadrons. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Diminui o tempo de treino da cavalaria se esta for treinada em lotes ou esquadrões. Os lotes grandes beneficiam mais do que os lotes pequenos.\nEm termos matemáticos: o tempo de treino de um lote é dividido por `tamanho do lote^0.1`."
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Decrease batch training time of units trained in Stables."
-msgstr ""
+msgstr "Diminui o tempo de treino em lote das unidades treinadas em estábulos."
 
 #: simulation/data/technologies/subterranean_aqueducts.jsondescription
 msgid ""

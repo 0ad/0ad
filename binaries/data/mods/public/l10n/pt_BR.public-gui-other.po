@@ -57,7 +57,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-19 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>, 2021,2023\n"
+"Last-Translator: Leonardo, 2024\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1381,7 +1381,7 @@ msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "Créditos do 0 A.D."
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
@@ -1577,7 +1577,7 @@ msgstr "Em memória"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "Fundador do 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
@@ -1593,7 +1593,7 @@ msgstr "Agradecimentos especiais à:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "E agradecimentos à comunidade inteira pela realização do 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -3603,11 +3603,11 @@ msgstr "Carregar"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Este jogo gravado necessita da versão %(requiredVersion)s do 0 A.D. mas você está usando a versão %(currentVersion)s."
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Este jogo gravado necessita de uma versão anterior do 0 A.D."
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
@@ -4097,7 +4097,7 @@ msgstr "Modo Janela"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "Iniciar o 0 A.D. numa janela"
 
 #: gui/options/options.json[1].options[10].label
 msgid "FPS throttling in games"
@@ -4171,11 +4171,11 @@ msgstr "Use filtros de pós-processamento  (HDR, Bloom, DOF, etc)."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Resolution scale"
-msgstr ""
+msgstr "Escala de resolução"
 
 #: gui/options/options.json[1].options[3].list[0].label
 msgid "50%"
-msgstr ""
+msgstr "50%"
 
 #: gui/options/options.json[1].options[11].list[0].label
 #: gui/options/options.json[1].options[3].list[1].label
@@ -4184,7 +4184,7 @@ msgstr "75%"
 
 #: gui/options/options.json[1].options[3].list[2].label
 msgid "87.5%"
-msgstr ""
+msgstr "87.5%"
 
 #: gui/options/options.json[1].options[11].list[1].label
 #: gui/options/options.json[1].options[3].list[3].label
@@ -4215,44 +4215,44 @@ msgstr "200%"
 msgid ""
 "A smaller scale makes rendering faster but produces a more blurry picture, a"
 " large scale makes rendering slower but produces a better picture."
-msgstr ""
+msgstr "Uma escala menor torna a renderização mais rápida mas produz uma imagem mais desfocada, uma escala grande torna a renderização mais lenta mas produz uma imagem melhor."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Upscale technique"
-msgstr ""
+msgstr "Técnica de aumento da escala"
 
 #: gui/options/options.json[1].options[4].list[0].label
 msgid "FidelityFX Super Resolution 1.0"
-msgstr ""
+msgstr "FidelityFX Super Resolution 1.0"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid ""
 "Advanced upscale technique. For better results, use FSR with antialiasing "
 "enabled. Using it with the OpenGL backend may have some issues, consider "
 "using Vulkan backend instead."
-msgstr ""
+msgstr "Técnica avançada de aumento da escala. Para obter melhores resultados, use FSR com antisserilhamento ativado. Usá-lo com o OpenGL pode ter alguns problemas, considere usar o Vulkan."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "Bilinear"
-msgstr ""
+msgstr "Bilinear"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid ""
 "Bilinear upscale technique. Produces a slightly blurry picture depending on "
 "the scale."
-msgstr ""
+msgstr "Técnica de aumento da escala bilinear. Produz uma imagem ligeiramente desfocada, dependendo da escala."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "Pixelated"
-msgstr ""
+msgstr "Pixelizado"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid "Simplest upscale technique. Used mostly for stylized effect."
-msgstr ""
+msgstr "A técnica mais simples de aumento da escala. Utilizada sobretudo para efeitos estilizados."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Technique defines performance and quality of upscaling process."
-msgstr ""
+msgstr "A técnica define o desempenho e a qualidade do processo de aumento da escala."
 
 #: gui/options/options.json[1].options[5].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][9].label
@@ -5282,7 +5282,7 @@ msgstr "Manual"
 
 #: gui/pregame/MainMenuItems.js:8
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Abrir o manual do Jogo 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
@@ -5302,7 +5302,7 @@ msgstr "Árvore de Estrutura"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Ver a árvore de estrutura de civilizações presentes no 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:48
 #: gui/reference/civinfo/civinfo.xml:(caption):21
@@ -5313,7 +5313,7 @@ msgstr "Visão Geral da Civilização"
 #: gui/pregame/MainMenuItems.js:49
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Aprenda sobre as civilizações presentes no 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:60
 msgid "Catafalque Overview"
@@ -5321,7 +5321,7 @@ msgstr "Visão geral do Catafalque"
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "Compare os bónus dos catafalcos apresentados no 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Map Overview"
@@ -5329,7 +5329,7 @@ msgstr "Visão geral do mapa"
 
 #: gui/pregame/MainMenuItems.js:68
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "Veja os diferentes mapas presentes no 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:132
 msgid "Continue Campaign"
@@ -5482,7 +5482,7 @@ msgstr "Abre o Editor de Cenário Atlas em uma nova janela. Você pode executá-
 
 #: gui/pregame/MainMenuItems.js:280
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "Tem certeza de que deseja sair do 0 A.D. e abrir o Editor de Cenário?"
 
 #: gui/pregame/MainMenuItems.js:287
 msgid ""
@@ -5500,7 +5500,7 @@ msgstr "Créditos"
 
 #: gui/pregame/MainMenuItems.js:293
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Mostra os créditos do 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:299
 msgid "Exit"
@@ -5512,7 +5512,7 @@ msgstr "Sair do jogo."
 
 #: gui/pregame/MainMenuItems.js:304
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr ""
+msgstr "Tem certeza de que quer sair do 0 A.D.?"
 
 #: gui/pregame/ProjectInformation.js:6
 msgid "WILDFIRE GAMES"
@@ -5546,7 +5546,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr ""
+msgstr "Clique para abrir o bate-papo 0 A.D. IRC em seu navegador (#0ad em webchat.quakenet.org). É administrado por voluntários que realizam todo tipo de tarefas, pode demorar um pouco para que sua pergunta seja respondida. Como alternativa, você pode usar o fórum (consulte o site)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5554,7 +5554,7 @@ msgstr "Reportar um Bug"
 
 #: gui/pregame/ProjectInformation.js:42
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Clique para visitar o 0 A.D. Trac para reportar um bug, uma falha, ou um erro."
 
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
@@ -5571,7 +5571,7 @@ msgstr "Traduza o Jogo"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Clique para abrir a página de tradução do 0 A.D. no seu navegador."
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
@@ -5629,7 +5629,7 @@ msgstr "Ativar Feedback"
 
 #: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr ""
+msgstr "Obrigado por ajudar a melhorar o 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
@@ -5646,7 +5646,7 @@ msgstr "desconhecido"
 
 #: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
-msgstr ""
+msgstr "Ajude a melhorar 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:87
 msgid ""
@@ -6033,7 +6033,7 @@ msgstr "Recrie o cache de gravações a partir do princípio. Potencialmente len
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"] Obrigado por instalar o 0 A.D. Empires Ascendant!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -6055,7 +6055,7 @@ msgstr "[imgleft=\"iconLag\"]O jogo pode experienciar problemas de desempenho, e
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]0 A.D. é um Software Livre: você pode participar do seu desenvolvimento."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
@@ -6625,11 +6625,11 @@ msgstr "Unidades ganham experiência enquanto guarnecidas dentro da estrutura."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC HEAVY ARROW SHIP"
-msgstr ""
+msgstr "NAVIO ARQUEIRO CELTA PESADO"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "The main warship for the Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "O principal navio de guerra dos Bretões, Gauleses e Ibéricos."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Can transport up to 40 units."
@@ -6637,7 +6637,7 @@ msgstr "Pode transportar até 40 unidades."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can be improved with greater health and garrison capacity."
-msgstr ""
+msgstr "Pode ser melhorado com mais pontos de vida e capacidade de guarnição."
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
@@ -6877,23 +6877,23 @@ msgstr ""
 
 #: gui/text/tips/iber_fireship.txt:2
 msgid "Available to the Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Disponível para os Bretões, Gauleses e Ibéricos."
 
 #: gui/text/tips/iber_fireship.txt:3
 msgid ""
 "Construct them, move them near enemy ships, then ignite them to set them "
 "ablaze."
-msgstr ""
+msgstr "Constua-os, aproxime-os dos navios inimigos e acenda-os para os incendiar."
 
 #: gui/text/tips/iber_fireship.txt:4
 msgid ""
 "They cause Fire damage to nearby enemy ships and themselves start to lose "
 "health."
-msgstr ""
+msgstr "Causam danos de fogo a barcos inimigos próximos e começam a perder pontos de vida."
 
 #: gui/text/tips/iber_fireship.txt:5
 msgid "Very good against Siege Ships."
-msgstr ""
+msgstr "Muito bom contra barcos de cerco."
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
@@ -6970,7 +6970,7 @@ msgstr "A maioria das facções têm acesso a eles na Fase de Aldeia."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "ACHAEMENID ARCHITECTURE"
-msgstr ""
+msgstr "ARQUITETURA AQUEMÉNIDA"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
@@ -7009,13 +7009,13 @@ msgstr "Disponível para: Kushitas, Macedônios, Ptolomeus e Selêucidas."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "SIEGE WARSHIP"
-msgstr ""
+msgstr "NAVIO DE GUERRA DE CERCO"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, Seleucids, and Han Chinese."
-msgstr ""
+msgstr "O navio de guerra padrão mais pesado. Disponível para: cartagineses, ptolomeus, romanos, selêucidas e chineses Han."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid ""
@@ -7031,7 +7031,7 @@ msgstr ""
 
 #: gui/text/tips/ramming_ships.txt:1
 msgid "RAMMING SHIPS"
-msgstr ""
+msgstr "NAVIOS ARÍETE"
 
 #: gui/text/tips/ramming_ships.txt:2
 msgid "A strong and fast melee ship available to Mediterranean civilizations."
@@ -7039,15 +7039,15 @@ msgstr ""
 
 #: gui/text/tips/ramming_ships.txt:3
 msgid "Transport up to 30 troops swiftly across the water."
-msgstr ""
+msgstr "Transporta até 30 tropas rapidamente através da água."
 
 #: gui/text/tips/ramming_ships.txt:4
 msgid "Good against Siege Ships due to speed and strong ramming attack. "
-msgstr ""
+msgstr "Bom contra barcos de cerco devido à velocidade e ao forte ataque de abalroamento."
 
 #: gui/text/tips/ramming_ships.txt:5
 msgid "Countered by Arrow Ships and Defense Towers. "
-msgstr ""
+msgstr "Fraco contra Navios Arqueiros e Torres de Defesa."
 
 #: gui/text/tips/resource_counter.txt:1
 msgid "RESOURCE COUNTER"
@@ -7087,15 +7087,15 @@ msgstr "A madeira tende a ser escassa, mas consiste de Baobás de alto rendiment
 
 #: gui/text/tips/shrine.txt:1
 msgid "SHRINES"
-msgstr ""
+msgstr "SANTUÁRIOS"
 
 #: gui/text/tips/shrine.txt:2
 msgid "Capturable map objects. Cannot be built or destroyed."
-msgstr ""
+msgstr "Objetos capturáveis do mapa. Não podem ser construídos ou destruídos."
 
 #: gui/text/tips/shrine.txt:3
 msgid "Train Elite Healers and heal garrisoned units."
-msgstr ""
+msgstr "Treina curandeiros de elite e cura unidades guarnecidas."
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
@@ -7243,15 +7243,15 @@ msgstr "Fornece um aumento de recursos, portanto, fique de olho neles enquanto v
 
 #: gui/text/tips/triremes.txt:1
 msgid "ARROW SHIPS"
-msgstr ""
+msgstr "BARCOS ARQUEIROS"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The basic Warship for most factions."
-msgstr ""
+msgstr "O navio de guerra básico para a maioria das civilizações."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Transport up to 30 troops across the water."
-msgstr ""
+msgstr "Transporta até 30 tropas através da água."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Good against melee Warships, such as Ramming Ships and Fire Ships."
