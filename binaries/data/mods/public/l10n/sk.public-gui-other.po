@@ -2791,7 +2791,7 @@ msgstr "Prepni správy"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the civilization info."
-msgstr ""
+msgstr "Prepnúť informácie o civilizácii."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
@@ -2933,12 +2933,12 @@ msgstr "Prepnúť viditeľnosť GUI"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Prepnúť panel tutorálu v hre. "
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle tutorial"
-msgstr ""
+msgstr "Prepnúť tutoriál"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
@@ -2995,22 +2995,22 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.desc
 msgctxt "hotkey metadata"
 msgid "Activate fast-forward mode. Must have activated timewarp."
-msgstr ""
+msgstr "Aktivujte režim pretočenia-vpred. Musíte mať aktivovaný timewarp."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.name
 msgctxt "hotkey metadata"
 msgid "Fast-forward (timewarp)"
-msgstr ""
+msgstr "Pretočenie-vpred (timewarp)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.desc
 msgctxt "hotkey metadata"
 msgid "Rewind time. Must have activated timewarp."
-msgstr ""
+msgstr "Spätné-pretočenie času. Musíte mať aktivovaný timewarp."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
 msgid "Rewind (timewarp)"
-msgstr ""
+msgstr "Spätné-pretočnie (timewarp)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
 msgctxt "hotkey metadata"
@@ -3057,7 +3057,7 @@ msgstr "Prepnúť siluety jednotiek"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the structure tree."
-msgstr ""
+msgstr "Prepnúť strom stavieb."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
@@ -3589,7 +3589,7 @@ msgstr "Táto uložená hra vyžaduje verziu hry %(requiredVersion)s, no vaša a
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Táto uložená hra potrebuje staršiu verziu 0 A.D."
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
@@ -4115,7 +4115,7 @@ msgstr "O koľko pixelov sa môže myš posunúť než sa akcia považuje za ťa
 
 #: gui/options/options.json[1].options[13].label
 msgid "Mouse grab in fullscreen"
-msgstr ""
+msgstr "Uzamknutie myši v režime celej obrazovky"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid ""
@@ -4125,7 +4125,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[14].label
 msgid "Mouse grab in window mode"
-msgstr ""
+msgstr "Uzamknutie myši v režime okna"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Constrain mouse in the window mode to the window boundaries."
@@ -4414,7 +4414,7 @@ msgstr "Súčiniteľ ostrosti"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr ""
+msgstr "Ostrosť zvoleného priechodu."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Model quality"
@@ -5284,7 +5284,7 @@ msgstr "Strom stavieb"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Zobraziť strom stavieb civilizácií v 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:48
 #: gui/reference/civinfo/civinfo.xml:(caption):21
@@ -5482,7 +5482,7 @@ msgstr "Poďakovanie"
 
 #: gui/pregame/MainMenuItems.js:293
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Zobraziť kredity ľudí podieľajúcich sa 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:299
 msgid "Exit"
@@ -5494,7 +5494,7 @@ msgstr "Ukončiť hru."
 
 #: gui/pregame/MainMenuItems.js:304
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr ""
+msgstr "Naozaj chcete opustiť hru 0 A.D.?"
 
 #: gui/pregame/ProjectInformation.js:6
 msgid "WILDFIRE GAMES"
@@ -5528,7 +5528,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr ""
+msgstr "Kliknutím otvoríš 0 A.D. IRC chat vo svojom prehliadači (#0ad na webchat.quakenet.org). Spravujú ho dobrovoľníci, ktorí vykonávajú rôzne úlohy a preto im môže chvíľu trvať než sa dostanú k tvojej otázke. Ako alternatívu môžeš použiť fórum (pozri Webovú stránku)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5536,7 +5536,7 @@ msgstr "Nahlásiť chybu"
 
 #: gui/pregame/ProjectInformation.js:42
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Kliknite pre navštívenie 0 A.D. Trac pre nahlásenie chyby, pádu hry a podobne."
 
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
@@ -5553,7 +5553,7 @@ msgstr "Prelož hru"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Kliknutím otvoríte stránku prekladu 0 A.D. vo svojom prehliadači."
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
@@ -6022,7 +6022,7 @@ msgstr "Znovu načítaj cache záznamov od začiatku. Potenciálne pomalé!"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"] Ďakujeme Vám za inštaláciu 0 A.D. Empires Ascendant!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"

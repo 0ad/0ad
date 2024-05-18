@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: lecalam, 2022-2023\n"
+"Last-Translator: lecalam, 2022-2024\n"
 "Language-Team: Portuguese (Portugal) (http://app.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -690,7 +690,7 @@ msgstr "Estátua do carneiro de Ámon-Rá"
 
 #: simulation/templates/gaia/ruins/stone_statues_persian_lamassu.xml:8
 msgid "Lamassu Statue"
-msgstr ""
+msgstr "Estátua de Lamassu"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statue"
@@ -772,15 +772,15 @@ msgstr "Carga de Naufrágio"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:8
 msgid "The Argo"
-msgstr ""
+msgstr "O Argo"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:9
 msgid "Mythological Treasure"
-msgstr ""
+msgstr "Tesouro mitológico"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:10
 msgid "The mythological ship of the hero Theseus and his Argonauts."
-msgstr ""
+msgstr "O navio mitológico do herói Teseu e dos seus Argonautas."
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"
@@ -856,7 +856,7 @@ msgstr "Arbusto"
 
 #: simulation/templates/gaia/tree/bush_mediterranean_dry.xml:4
 msgid "Dry Scrub"
-msgstr ""
+msgstr "Arbusto seco"
 
 #: simulation/templates/gaia/tree/carob.xml:4
 msgid "Carob"
@@ -975,7 +975,7 @@ msgstr "Palmeira-de-leque"
 
 #: simulation/templates/gaia/tree/palm_royal.xml:4
 msgid "Royal Palm"
-msgstr ""
+msgstr "Palmeira-real-de-cuba"
 
 #: simulation/templates/gaia/tree/palm_tropic.xml:4
 msgid "Palm"
@@ -1045,11 +1045,11 @@ msgstr "Arbusto"
 
 #: simulation/templates/mixins/cataphract.xml:14
 msgid "Cataphract Cavalry"
-msgstr ""
+msgstr "Cavalaria catafractária"
 
 #: simulation/templates/mixins/cataphract.xml:15
 msgid "Cataphract"
-msgstr ""
+msgstr "Catafractário"
 
 #: simulation/templates/mixins/chariot.xml:16
 msgid "Chariot"
@@ -1058,15 +1058,15 @@ msgstr "Biga"
 #: simulation/templates/mixins/fireship.xml:15
 msgctxt "Name of an attack, usually the weapon."
 msgid "Flames"
-msgstr ""
+msgstr "Chamas"
 
 #: simulation/templates/mixins/fireship.xml:43
 msgid "Ignited"
-msgstr ""
+msgstr "Aceso"
 
 #: simulation/templates/mixins/longsword.xml:22
 msgid "Longsword"
-msgstr ""
+msgstr "Espada longa"
 
 #: simulation/templates/mixins/mercenary.xml:13
 msgid "Mercenary"
@@ -1074,12 +1074,12 @@ msgstr "Mercenário"
 
 #: simulation/templates/mixins/pirate.xml:29
 msgid "Pirate"
-msgstr ""
+msgstr "Pirata"
 
 #: simulation/templates/mixins/rotary_mill.xml:17
 #: simulation/templates/mixins/rotary_mill.xml:18
 msgid "Rotary Mill"
-msgstr "Moinho Giratório"
+msgstr "Moinho Rotativo"
 
 #: simulation/templates/mixins/rotary_mill.xml:19
 msgid "RotaryMill"
@@ -1157,7 +1157,7 @@ msgstr "Anti-cavalaria"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:26
 msgid "Square formation of Melee Infantry to fight Cavalry."
-msgstr ""
+msgstr "Formação quadrada de infantaria corpo a corpo para combater a cavalaria."
 
 #: simulation/templates/special/formations/battle_line.xml:13
 msgid "Battle Line"
@@ -1165,7 +1165,7 @@ msgstr "Linha de Batalha"
 
 #: simulation/templates/special/formations/battle_line.xml:15
 msgid "Common formation for frontal attacks."
-msgstr ""
+msgstr "Formação comum para ataques frontais."
 
 #: simulation/templates/special/formations/box.xml:5
 msgid "Requires at least 4 Soldiers or Siege engines."
@@ -1177,7 +1177,7 @@ msgstr "Caixa"
 
 #: simulation/templates/special/formations/box.xml:14
 msgid "Square formation to protect all sides."
-msgstr ""
+msgstr "Formação quadrada para proteger todos os lados."
 
 #: simulation/templates/special/formations/column_closed.xml:10
 msgid "Forced March"
@@ -1185,7 +1185,7 @@ msgstr "Marcha Forçada"
 
 #: simulation/templates/special/formations/column_closed.xml:12
 msgid "Closed column formation for risky movements."
-msgstr ""
+msgstr "Formação em coluna fechada para movimentos de risco."
 
 #: simulation/templates/special/formations/column_open.xml:10
 msgid "Column Open"
@@ -1193,7 +1193,7 @@ msgstr "Coluna aberta"
 
 #: simulation/templates/special/formations/column_open.xml:12
 msgid "Dispersed formation for open field crossings."
-msgstr ""
+msgstr "Formação dispersa para travessias em campo aberto."
 
 #: simulation/templates/special/formations/flank.xml:5
 msgid "Requires at least 8 Soldiers or Siege engines."
@@ -1205,7 +1205,7 @@ msgstr "Flanco"
 
 #: simulation/templates/special/formations/flank.xml:13
 msgid "Formation to protect the sides or surprise attack the enemy flank."
-msgstr ""
+msgstr "Formação para proteger os flancos ou atacar de surpresa o flanco inimigo."
 
 #: simulation/templates/special/formations/line_closed.xml:9
 msgid "Close Order"
@@ -1213,7 +1213,7 @@ msgstr "Falange Fechada"
 
 #: simulation/templates/special/formations/line_closed.xml:11
 msgid "Flexible closed line formation."
-msgstr ""
+msgstr "Formação flexível em linha fechada."
 
 #: simulation/templates/special/formations/line_open.xml:11
 msgid "Open Order"
@@ -1221,7 +1221,7 @@ msgstr "Falange Aberta"
 
 #: simulation/templates/special/formations/line_open.xml:13
 msgid "Dispersed formation for open field combat."
-msgstr ""
+msgstr "Formação dispersa para combate em campo aberto."
 
 #: simulation/templates/special/formations/null.xml:7
 msgid "None"
@@ -1237,7 +1237,7 @@ msgstr "Falange"
 
 #: simulation/templates/special/formations/phalanx.xml:25
 msgid "Compact formation of Infantry Hoplites creating a shield wall."
-msgstr ""
+msgstr "Formação compacta de infantaria hoplita criando uma parede de escudos."
 
 #: simulation/templates/special/formations/scatter.xml:8
 msgid "Scatter"
@@ -1246,35 +1246,35 @@ msgstr "Espalhados"
 #: simulation/templates/special/formations/ships/column.xml:5
 #: simulation/templates/special/formations/ships/line_staggered.xml:5
 msgid "Requires at least 4 Ships."
-msgstr ""
+msgstr "Necessita de pelo menos 4 barcos."
 
 #: simulation/templates/special/formations/ships/column.xml:14
 msgid "Maneuvering Column"
-msgstr ""
+msgstr "Coluna de manobra"
 
 #: simulation/templates/special/formations/ships/column.xml:16
 msgid "A column formation for fleet maneuvers."
-msgstr ""
+msgstr "Uma formação em coluna para manobras de frota."
 
 #: simulation/templates/special/formations/ships/flank.xml:5
 msgid "Requires at least 8 Ships."
-msgstr ""
+msgstr "Necessita de pelo menos 8 barcos."
 
 #: simulation/templates/special/formations/ships/flank.xml:14
 msgid "Flanking Formation"
-msgstr ""
+msgstr "Formação de flanco"
 
 #: simulation/templates/special/formations/ships/flank.xml:16
 msgid "Formation to protect the sides or surprise attack the enemy flanks."
-msgstr ""
+msgstr "Formação para proteger os flancos ou atacar de surpresa os flancos inimigos."
 
 #: simulation/templates/special/formations/ships/line_staggered.xml:17
 msgid "Fleet Battle Line"
-msgstr ""
+msgstr "Linha de batalha da frota"
 
 #: simulation/templates/special/formations/ships/line_staggered.xml:19
 msgid "Common fleet formation for frontal attacks."
-msgstr ""
+msgstr "Formação de frota comum para ataques frontais."
 
 #: simulation/templates/special/formations/skirmish.xml:4
 msgid "Ranged Soldiers only, requires at least 2."
@@ -1286,7 +1286,7 @@ msgstr "Escaramuça"
 
 #: simulation/templates/special/formations/skirmish.xml:16
 msgid "Dispersed formation for reconnaissance, ambushes or hit-and-run."
-msgstr ""
+msgstr "Formação dispersa para reconhecimento, emboscadas ou ataques e fugas."
 
 #: simulation/templates/special/formations/syntagma.xml:5
 msgid "Infantry Pikemen only, requires at least 16."
@@ -1298,7 +1298,7 @@ msgstr "Sintagma"
 
 #: simulation/templates/special/formations/syntagma.xml:31
 msgid "Compact formation of Infantry Pikemen creating a defensive wall."
-msgstr ""
+msgstr "Formação compacta de infantaria de piqueiros criando uma muralha defensiva."
 
 #: simulation/templates/special/formations/testudo.xml:70
 msgid "Testudo"
@@ -1306,7 +1306,7 @@ msgstr "Tartaruga"
 
 #: simulation/templates/special/formations/testudo.xml:72
 msgid "Compact formation of Melee Infantry creating a shield shell."
-msgstr ""
+msgstr "Formação compacta de infantaria corpo a corpo criando um escudo."
 
 #: simulation/templates/special/formations/wedge.xml:5
 msgid "Cavalry only, requires at least 6."
@@ -1318,7 +1318,7 @@ msgstr "Cunha"
 
 #: simulation/templates/special/formations/wedge.xml:18
 msgid "Triangular Cavalry formation to break through enemy lines."
-msgstr ""
+msgstr "Formação triangular de cavalaria para romper as linhas inimigas."
 
 #: simulation/templates/special/spy.xml:16
 msgid "Spy"
