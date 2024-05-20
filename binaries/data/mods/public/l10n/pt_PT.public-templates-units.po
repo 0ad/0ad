@@ -712,50 +712,50 @@ msgstr "Comerciante"
 #: simulation/templates/template_unit_ship_warship.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Arrow"
-msgstr ""
+msgstr "Flecha"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:32
 msgid "Arrow Ship"
-msgstr ""
+msgstr "Barco flecha"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:33
 msgid "ArrowShip"
-msgstr ""
+msgstr "BarcoFlecha"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:35
 msgid "Garrison units for transport across water. Countered by Siege Ships."
-msgstr ""
+msgstr "Guarnecer com unidades para transporte através da água. Fraco contra barcos de cerco."
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:6
 msgctxt "Name of an attack, usually the weapon."
 msgid "Naval Ram"
-msgstr ""
+msgstr "Aríete naval"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:47
 msgid "Ramming Ship"
-msgstr ""
+msgstr "Barco aríete"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:48
 msgid ""
 "Garrison units for transport across water. Strong against Siege Ships. "
 "Countered by Arrow Ships."
-msgstr ""
+msgstr "Guarnecer com unidades para transporte através da água. Bom contra barcos de cerco. Fraco contra barcos flecha."
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:49
 msgid "NavalRam"
-msgstr ""
+msgstr "AríeteNaval"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:23
 msgid "Scout Ship"
-msgstr ""
+msgstr "Barco batedor"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:24
 msgid "ScoutShip"
-msgstr ""
+msgstr "BarcoBatedor"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:26
 msgid "Scout for coastlines. Garrison units for transport across water."
-msgstr ""
+msgstr "Batedor para as linhas costeiras. Guarnecer com unidades para o transporte através da água."
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:5
 #: simulation/templates/template_unit_siege_stonethrower.xml:5
@@ -766,17 +766,17 @@ msgstr "Pedra"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:59
 msgid "Siege Ship"
-msgstr ""
+msgstr "Barco de cerco"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:60
 msgid ""
 "Garrison units for transport across water. Good against Arrow Ships and "
 "Structures."
-msgstr ""
+msgstr "Guarnecer com unidades para transporte através da água. Bom contra barcos e estruturas de ataque com flechas."
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:61
 msgid "NavalSiege"
-msgstr ""
+msgstr "CercoNaval"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:61
 msgid "Heavy"
@@ -883,7 +883,7 @@ msgstr "Comercializa recursos entre os teus mercados e dos teus aliados."
 
 #: simulation/templates/units/athen/catafalque.xml:9
 msgid "Athenian Catafalque"
-msgstr "Catafalco Ateniense"
+msgstr "Catafalco ateniense"
 
 #: simulation/templates/units/athen/catafalque.xml:10
 msgid "Solon"
@@ -1335,7 +1335,7 @@ msgstr "Émporos"
 
 #: simulation/templates/units/brit/catafalque.xml:9
 msgid "Briton Catafalque"
-msgstr "Catafalco Bretão"
+msgstr "Catafalco bretão"
 
 #: simulation/templates/units/brit/catafalque.xml:10
 msgid "Cassiuellaunos"
@@ -1435,7 +1435,7 @@ msgstr "Pontos"
 
 #: simulation/templates/units/brit/ship_fire.xml:5
 msgid "Briton Fire Ship"
-msgstr ""
+msgstr "Brulote bretão"
 
 #: simulation/templates/units/brit/ship_fishing.xml:9
 #: simulation/templates/units/gaul/ship_fishing.xml:9
@@ -1451,7 +1451,7 @@ msgstr "Nauson"
 #: simulation/templates/units/gaul/ship_scout.xml:9
 #: simulation/templates/units/iber/ship_scout.xml:9
 msgid "Skiff"
-msgstr ""
+msgstr "Esquife"
 
 #: simulation/templates/units/brit/siege_ram.xml:5
 #: simulation/templates/units/gaul/siege_ram.xml:5
@@ -1486,7 +1486,7 @@ msgstr "Agrocuna"
 
 #: simulation/templates/units/cart/catafalque.xml:8
 msgid "Carthaginian Catafalque"
-msgstr "Catafalco Cartaginense"
+msgstr "Catafalco cartaginês"
 
 #: simulation/templates/units/cart/catafalque.xml:9
 msgid "Hasdrubal (Quartermaster)"
@@ -1673,7 +1673,7 @@ msgstr "Mekir"
 
 #: simulation/templates/units/gaul/catafalque.xml:9
 msgid "Gallic Catafalque"
-msgstr "Catafalco Gaulês"
+msgstr "Catafalco gaulês"
 
 #: simulation/templates/units/gaul/catafalque.xml:10
 msgid "Ambiorix"
@@ -1731,11 +1731,11 @@ msgstr "Britomaros"
 
 #: simulation/templates/units/gaul/ship_fire.xml:5
 msgid "Gallic Fire Ship"
-msgstr ""
+msgstr "Brulote gaulês"
 
 #: simulation/templates/units/han/catafalque.xml:9
 msgid "Han Catafalque"
-msgstr "Catafalco Han"
+msgstr "Catafalco han"
 
 #: simulation/templates/units/han/catafalque.xml:10
 msgid "Emperor Wǔ (Liu Che)"
@@ -1907,7 +1907,7 @@ msgstr "Shāngrén"
 
 #: simulation/templates/units/iber/catafalque.xml:9
 msgid "Iberian Catafalque"
-msgstr "Catafalco Ibérico"
+msgstr "Catafalco ibérico"
 
 #: simulation/templates/units/iber/catafalque.xml:10
 msgid "Mandonius"
@@ -2000,7 +2000,7 @@ msgstr "Merkatari"
 
 #: simulation/templates/units/kush/catafalque.xml:9
 msgid "Kushite Catafalque"
-msgstr "Catafalco Cuxita"
+msgstr "Catafalco cuxita"
 
 #: simulation/templates/units/kush/catafalque.xml:11
 msgid "Shanakdakheto"
@@ -2203,7 +2203,7 @@ msgstr "rmt sbt"
 
 #: simulation/templates/units/mace/catafalque.xml:9
 msgid "Macedonian Catafalque"
-msgstr "Catafalco Macedónico"
+msgstr "Catafalco macedónico"
 
 #: simulation/templates/units/mace/catafalque.xml:10
 msgid "Philip V"
@@ -2327,7 +2327,7 @@ msgstr "Sphendonḗtēs Rhódios"
 #: simulation/templates/units/mace/ship_arrow.xml:10
 #: simulation/templates/units/ptol/ship_arrow.xml:9
 msgid "Tetrērēs"
-msgstr ""
+msgstr "Tetrērēs"
 
 #: simulation/templates/units/mace/ship_ram.xml:10
 msgid "Triḗrēs Makedonikḗ"
@@ -2353,7 +2353,7 @@ msgstr "Mulher Macedónia"
 
 #: simulation/templates/units/maur/catafalque.xml:9
 msgid "Mauryan Catafalque"
-msgstr "Catafalco Mauro"
+msgstr "Catafalco mauro"
 
 #: simulation/templates/units/maur/catafalque.xml:10
 #: simulation/templates/units/maur/hero_bindusara_infantry.xml:5
@@ -2571,7 +2571,7 @@ msgstr "Arštibara"
 
 #: simulation/templates/units/pers/catafalque.xml:8
 msgid "Persian Catafalque"
-msgstr "Catafalco Persa"
+msgstr "Catafalco persa"
 
 #: simulation/templates/units/pers/catafalque.xml:10
 msgid "Artaxšaçā"
@@ -2784,19 +2784,19 @@ msgstr "Comercializa recursos entre o teu mercado e os dos teus aliados. Os pers
 
 #: simulation/templates/units/pirates/ship_arrow.xml:8
 msgid "Rhodian Marauder"
-msgstr ""
+msgstr "Saqueador rodesiano"
 
 #: simulation/templates/units/pirates/ship_merchant.xml:9
 msgid "Blockade Runner"
-msgstr ""
+msgstr "Corredor de bloqueio"
 
 #: simulation/templates/units/pirates/ship_merchant.xml:10
 msgid "Treasure Ship"
-msgstr ""
+msgstr "Barco do Tesouro"
 
 #: simulation/templates/units/pirates/ship_merchant.xml:11
 msgid "Destroy this ship to loot its large amount of treasure."
-msgstr ""
+msgstr "Destrói este barco para pilhar a sua grande quantidade de tesouros."
 
 #: simulation/templates/units/pirates/ship_scout.xml:8
 msgid "Cilician Pirate Ship"
@@ -2817,7 +2817,7 @@ msgstr "Um avião de combate americano da Segunda Guerra Mundial."
 
 #: simulation/templates/units/ptol/catafalque.xml:8
 msgid "Ptolemaic Catafalque"
-msgstr "Catafalco Ptolomaico"
+msgstr "Catafalco ptolomaico"
 
 #: simulation/templates/units/ptol/catafalque.xml:9
 msgid "Ptolemy III Euergetes (Benefactor)"
@@ -2941,7 +2941,7 @@ msgstr "Gallikós Mistophorós"
 
 #: simulation/templates/units/ptol/ship_ram.xml:10
 msgid "Pentērēs"
-msgstr ""
+msgstr "Pentērēs"
 
 #: simulation/templates/units/ptol/ship_scout.xml:9
 #: simulation/templates/units/sele/ship_scout.xml:10
@@ -2951,7 +2951,7 @@ msgstr "Dierēs"
 
 #: simulation/templates/units/ptol/ship_siege.xml:5
 msgid "Octērēs"
-msgstr ""
+msgstr "Octērēs"
 
 #: simulation/templates/units/ptol/siege_polybolos_packed.xml:19
 msgid "Polybolos"
@@ -2967,7 +2967,7 @@ msgstr "Mulher Egípcia"
 
 #: simulation/templates/units/rome/catafalque.xml:9
 msgid "Roman Catafalque"
-msgstr "Catafalco Romano"
+msgstr "Catafalco romano"
 
 #: simulation/templates/units/rome/catafalque.xml:10
 msgid "Lūcius Iūnius Brūtus"
@@ -2975,15 +2975,15 @@ msgstr "Lūcius Iūnius Brūtus"
 
 #: simulation/templates/units/rome/cavalry_auxiliary_b.xml:6
 msgid "Auxiliary Cavalry"
-msgstr "Cavalaria Auxiliar"
+msgstr "Cavalaria auxiliar"
 
 #: simulation/templates/units/rome/cavalry_auxiliary_b.xml:7
 msgid "Eques Alaris"
-msgstr "Ajudante de Cavalaria"
+msgstr "Eques alaris"
 
 #: simulation/templates/units/rome/cavalry_auxiliary_b.xml:8
 msgid "Auxiliary"
-msgstr ""
+msgstr "Auxiliar"
 
 #: simulation/templates/units/rome/cavalry_javelineer_b.xml:6
 msgid "Allied Cavalry"
@@ -3062,7 +3062,7 @@ msgstr "Centurião"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_05.xml:14
 msgid "Praetorian Guard"
-msgstr "Guarda Pretoriana"
+msgstr "Guarda pretoriana"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_05.xml:15
 msgid "Praetorianus"
@@ -3081,25 +3081,25 @@ msgstr "Centurião"
 #: simulation/templates/units/rome/hero_marcellus.xml:10
 #: simulation/templates/units/rome/hero_marcellus_infantry.xml:10
 msgid "Mārcus Claudius Mārcellus"
-msgstr "Marco Cláudio Marcelo"
+msgstr "Mārcus Claudius Mārcellus"
 
 #: simulation/templates/units/rome/hero_maximus.xml:9
 #: simulation/templates/units/rome/hero_maximus_infantry.xml:9
 msgid "Quīntus Fabius Maximus Verrūcōsus Cūnctātor"
-msgstr "Quinto Fábio Máximo Verrugoso Protelador"
+msgstr "Quīntus Fabius Maximus Verrūcōsus Cūnctātor"
 
 #: simulation/templates/units/rome/hero_scipio.xml:9
 #: simulation/templates/units/rome/hero_scipio_infantry.xml:9
 msgid "Pūblius Cornēlius Scīpiō Āfricānus"
-msgstr "Públio Cornélio Cipião Africano"
+msgstr "Pūblius Cornēlius Scīpiō Āfricānus"
 
 #: simulation/templates/units/rome/infantry_antesignanus.xml:21
 msgid "Legionary Skirmisher"
-msgstr "Legionário Escaramuçador"
+msgstr "Legionário escaramuçador"
 
 #: simulation/templates/units/rome/infantry_antesignanus.xml:22
 msgid "Antesignānus"
-msgstr ""
+msgstr "Antesignānus"
 
 #: simulation/templates/units/rome/infantry_antesignanus.xml:23
 #: simulation/templates/units/rome/infantry_legionary.xml:25
@@ -3112,7 +3112,7 @@ msgstr "Vélite Romano"
 
 #: simulation/templates/units/rome/infantry_javelineer_b.xml:14
 msgid "Vēles"
-msgstr "Escaramuçador"
+msgstr "Vēles"
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:19
 msgid "Veteran Spearman"
@@ -3120,7 +3120,7 @@ msgstr "Lanceiro Veterano"
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:20
 msgid "Triārius"
-msgstr "Triário"
+msgstr "Triārius"
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:25
 msgid "Elite rank Spearmen can be promoted to champion Centurions."
@@ -3157,11 +3157,11 @@ msgstr "Nāvicula Piscātōria"
 
 #: simulation/templates/units/rome/ship_merchant.xml:9
 msgid "Corbīta"
-msgstr "Navio de mercadorias à vela"
+msgstr "Corbīta"
 
 #: simulation/templates/units/rome/ship_ram.xml:9
 msgid "Quadrirēmis Rōmāna"
-msgstr ""
+msgstr "Quadrirēmis Rōmāna"
 
 #: simulation/templates/units/rome/ship_scout.xml:9
 msgid "Liburna"
@@ -3322,7 +3322,7 @@ msgstr "Seleuco I"
 
 #: simulation/templates/units/sele/hero_seleucus_i.xml:10
 msgid "Seleukos A' Nikatōr"
-msgstr "Seleuco Nicátor"
+msgstr "Seleukos A' Nikatōr"
 
 #: simulation/templates/units/sele/infantry_archer_merc_b.xml:7
 msgid "Syrian Archer"
@@ -3370,7 +3370,7 @@ msgstr "Seleukidó̱n Triērēs"
 
 #: simulation/templates/units/sele/ship_ram.xml:10
 msgid "Seleukidó̱n Tetrērēs"
-msgstr ""
+msgstr "Seleukidó̱n Tetrērēs"
 
 #: simulation/templates/units/sele/ship_siege.xml:6
 msgid "Pentères"
@@ -3386,7 +3386,7 @@ msgstr "Mulher Síria"
 
 #: simulation/templates/units/spart/catafalque.xml:10
 msgid "Spartan Catafalque"
-msgstr "Catafalco Espartano"
+msgstr "Catafalco espartano"
 
 #: simulation/templates/units/spart/catafalque.xml:11
 msgid "Lycurgus"
@@ -3426,7 +3426,7 @@ msgstr "Spartiátēs"
 
 #: simulation/templates/units/spart/champion_infantry_spear_olympian.xml:15
 msgid "Spartan Olympic Hoplite"
-msgstr "Hoplita Olímpico Espartano"
+msgstr "Hoplita olímpico espartano"
 
 #: simulation/templates/units/spart/champion_infantry_swordsman.xml:18
 msgid "Skiritai Commando"
@@ -3475,11 +3475,11 @@ msgstr "Hoplítēs Períoikos"
 
 #: simulation/templates/units/spart/infantry_spearman_neodamodes.xml:15
 msgid "Neodamodes Hoplite"
-msgstr "Hoplita Neodamode "
+msgstr "Hoplita neodamodes"
 
 #: simulation/templates/units/spart/infantry_spearman_neodamodes.xml:16
 msgid "Neodamōdeis"
-msgstr "Neodamodes"
+msgstr "Neodamōdeis"
 
 #: simulation/templates/units/spart/ship_ram.xml:10
 msgid "Triḗrēs"
