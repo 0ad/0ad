@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,8 +22,10 @@
 #include "ScriptExceptions.h"
 #include "ScriptRequest.h"
 
+#include <fmt/format.h>
 #include <tuple>
 #include <type_traits>
+#include <stdexcept>
 #include <utility>
 
 class ScriptInterface;
@@ -79,6 +81,17 @@ private:
 	struct args_info<R(C::*)(Types ...)> : public args_info<R(*)(Types ...)> { using object_type = C; };
 	template<typename C, typename R, typename ...Types>
 	struct args_info<R(C::*)(Types ...) const> : public args_info<R(C::*)(Types ...)> {};
+
+	struct IteratorResultError : std::runtime_error
+	{
+		IteratorResultError(const std::string& property) :
+			IteratorResultError{property.c_str()}
+		{}
+		IteratorResultError(const char* property) :
+			std::runtime_error{fmt::format("Failed to get `{}` from an `IteratorResult`.", property)}
+		{}
+		using std::runtime_error::runtime_error;
+	};
 
 	///////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////
@@ -344,6 +357,59 @@ public:
 	static bool CallVoid(const ScriptRequest& rq, JS::HandleValue val, const char* name, const Args&... args)
 	{
 		return Call(rq, val, name, IgnoreResult, std::forward<const Args>(args)...);
+	}
+
+	/**
+	 * Call a JS function @a name, property of object @a val, with the argument @a args. Repeatetly
+	 * invokes @a yieldCallback with the yielded value.
+	 * @return the final value of the generator.
+	 */
+	template<typename Callback>
+	static JS::Value RunGenerator(const ScriptRequest& rq, JS::HandleValue val, const char* name,
+		JS::HandleValue arg, Callback yieldCallback)
+	{
+		JS::RootedValue generator{rq.cx};
+		if (!ScriptFunction::Call(rq, val, name, &generator, arg))
+			throw std::runtime_error{fmt::format("Failed to call the generator `{}`.", name)};
+
+		const auto continueGenerator = [&](const char* property, auto... args) -> JS::Value
+			{
+				JS::RootedValue iteratorResult{rq.cx};
+				if (!ScriptFunction::Call(rq, generator, property, &iteratorResult, args...))
+					throw std::runtime_error{fmt::format("Failed to call `{}`.", name)};
+				return iteratorResult;
+			};
+
+		JS::PersistentRootedValue error{rq.cx, JS::UndefinedValue()};
+		while (true)
+		{
+			JS::RootedValue iteratorResult{rq.cx, error.isUndefined() ? continueGenerator("next") :
+				continueGenerator("throw", std::exchange(error, JS::UndefinedValue()))};
+
+			try
+			{
+				JS::RootedObject iteratorResultObject{rq.cx, &iteratorResult.toObject()};
+
+				bool done;
+				if (!Script::FromJSProperty(rq, iteratorResult, "done", done, true))
+					throw IteratorResultError{"done"};
+
+				JS::RootedValue value{rq.cx};
+				if (!JS_GetProperty(rq.cx, iteratorResultObject, "value", &value))
+					throw IteratorResultError{"value"};
+
+				if (done)
+					return value;
+
+				yieldCallback(value);
+			}
+			catch (const std::exception& e)
+			{
+				JS::RootedValue global{rq.cx, rq.globalValue()};
+				if (!ScriptFunction::Call(rq, global, "Error", &error, e.what()))
+					throw std::runtime_error{"Failed to construct `Error`."};
+			}
+		}
 	}
 
 	/**

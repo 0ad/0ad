@@ -479,14 +479,14 @@ RandomMap.prototype.exportTerrainTextures = function()
 	};
 };
 
-RandomMap.prototype.ExportMap = function()
+RandomMap.prototype.MakeExportable = function()
 {
 	if (g_Environment.Water.WaterBody.Height === undefined)
 		g_Environment.Water.WaterBody.Height = SEA_LEVEL - 0.1;
 
 	this.logger.close();
 
-	Engine.ExportMap({
+	return {
 		"entities": this.exportEntityList(),
 		"height": this.exportHeightData(),
 		"seaLevel": SEA_LEVEL,
@@ -495,5 +495,10 @@ RandomMap.prototype.ExportMap = function()
 		"tileData": this.exportTerrainTextures(),
 		"Camera": g_Camera,
 		"Environment": g_Environment
-	});
+	};
+};
+
+RandomMap.prototype.ExportMap = function()
+{
+	Engine.ExportMap(this.MakeExportable());
 };

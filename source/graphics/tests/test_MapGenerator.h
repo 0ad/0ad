@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -51,19 +51,31 @@ public:
 
 		for (const VfsPath& path : paths)
 		{
+			TestLogger logger;
 			ScriptInterface scriptInterface("Engine", "MapGenerator", g_ScriptContext);
 			ScriptTestSetup(scriptInterface);
 
-			// It's never read in the test so it doesn't matter to what value it's initialized. For
-			// good practice it's initialized to 1.
 			std::atomic<int> progress{1};
 
 			const Script::StructuredClone result{RunMapGenerationScript(progress, scriptInterface,
 				path, "{\"Seed\": 0}", JSPROP_ENUMERATE | JSPROP_PERMANENT)};
 
-			// The test scripts don't call `ExportMap` so `RunMapGenerationScript` allways returns
-			// `nullptr`.
-			TS_ASSERT_EQUALS(result, nullptr);
+			if (path == "maps/random/tests/test_Generator.js" ||
+				path == "maps/random/tests/test_RecoverableError.js")
+			{
+				TS_ASSERT_EQUALS(progress.load(), 50);
+				TS_ASSERT_DIFFERS(result, nullptr);
+			}
+			else
+			{
+				// The test scripts don't call `ExportMap` so `RunMapGenerationScript` allways
+				// returns `nullptr`.
+				TS_ASSERT_EQUALS(result, nullptr);
+				// Because the test scripts don't call `ExportMap`, `GenerateMap` is searched, which
+				// doesn't exist.
+				TS_ASSERT_STR_CONTAINS(logger.GetOutput(),
+					"Failed to call the generator `GenerateMap`.");
+			}
 		}
 	}
 };
