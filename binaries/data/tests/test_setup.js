@@ -32,6 +32,12 @@ global.TS_ASSERT_EQUALS = function(x, y)
 		fail("Expected equal, got " + uneval(x) + " !== " + uneval(y));
 };
 
+global.TS_ASSERT_DIFFER = function(x, y)
+{
+	if (x === y)
+		fail("Expected differ, got " + uneval(x) + " === " + uneval(y));
+};
+
 global.TS_ASSERT_EQUALS_APPROX = function(x, y, maxDifference)
 {
 	TS_ASSERT_NUMBER(maxDifference);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,6 +47,8 @@ extern bool IsQuitRequested();
 
 namespace
 {
+constexpr const char* GENERATOR_NAME{"GenerateMap"};
+
 bool MapGenerationInterruptCallback(JSContext* UNUSED(cx))
 {
 	// This may not use SDL_IsQuitRequested(), because it runs in a thread separate to SDL, see SDL_PumpEvents
@@ -423,5 +425,49 @@ Script::StructuredClone RunMapGenerationScript(std::atomic<int>& progress, Scrip
 		return nullptr;
 	}
 
-	return mapData;
+	LOGMESSAGE("Run RMS generator");
+	bool hasGenerator;
+	JS::RootedObject globalAsObject{rq.cx, &JS::HandleValue{global}.toObject()};
+	if (!JS_HasProperty(rq.cx, globalAsObject, GENERATOR_NAME, &hasGenerator))
+	{
+		LOGERROR("RunMapGenerationScript: failed to search `%s`.", GENERATOR_NAME);
+		return nullptr;
+	}
+
+	if (mapData != nullptr)
+	{
+		LOGWARNING("The map generation script called `Engine.ExportMap` that's deprecated. The "
+			"generator based interface should be used.");
+		if (hasGenerator)
+			LOGWARNING("The map generation script contains a `%s` but `Engine.ExportMap` was already "
+				"called. `%s` isn't called, preserving the old behavior.", GENERATOR_NAME,
+				GENERATOR_NAME);
+		return mapData;
+	}
+
+	try
+	{
+		JS::RootedValue map{rq.cx, ScriptFunction::RunGenerator(rq, global, GENERATOR_NAME, settingsVal,
+			[&](const JS::HandleValue value)
+			{
+				int tempProgress;
+				if (!Script::FromJSVal(rq, value, tempProgress))
+					throw std::runtime_error{"Failed to convert the yielded value to an "
+						"integer."};
+				progress.store(tempProgress);
+			})};
+
+		JS::RootedValue exportedMap{rq.cx};
+		const bool exportSuccess{ScriptFunction::Call(rq, map, "MakeExportable", &exportedMap)};
+		return Script::WriteStructuredClone(rq, exportSuccess ? exportedMap : map);
+	}
+	catch(const std::exception& e)
+	{
+		LOGERROR("%s", e.what());
+		return nullptr;
+	}
+	catch(...)
+	{
+		return nullptr;
+	}
 }
