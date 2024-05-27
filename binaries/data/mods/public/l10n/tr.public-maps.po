@@ -32,7 +32,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-05-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: 9d4282795e87ad099e39d98812f1a822_ade2f01 <c3fa67bcf1b8b90bf10d2d5dae1637ab_127851>, 2014-2018,2021-2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
@@ -1393,6 +1393,7 @@ msgstr "Arcadia"
 #: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/sporades_islands_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[1].Name:39
 msgid "Player 1"
 msgstr "Oyuncu 1"
@@ -1421,6 +1422,7 @@ msgstr "Oyuncu 1"
 #: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/sporades_islands_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[2].Name:39
 msgid "Player 2"
 msgstr "Oyuncu 2"
@@ -2034,7 +2036,6 @@ msgid "Sandbox - The Achaemenid Persians"
 msgstr "Kum Havuzu - Ahamenişli Persler"
 
 #: maps/scenarios/sandbox_ptolemies.xml:Description:38
-#: maps/skirmishes/sporades_islands_2p.xml:Description:39
 msgid "An islands map good for intense naval combat."
 msgstr "Bir adalar yoğun deniz mücadeleleri için iyi bir haritadır."
 
@@ -3193,9 +3194,13 @@ msgstr "Demo Çatışma haritası."
 msgid "Skirmish Demo (2)"
 msgstr "Çatışma Demosu (2)"
 
+#: maps/skirmishes/sporades_islands_2p.xml:Description:39
+msgid "An islands map designed for intense naval combat."
+msgstr ""
+
 #: maps/skirmishes/sporades_islands_2p.xml:Name:39
-msgid "Sporades Islands (2)"
-msgstr "Sporades Adaları (2)"
+msgid "Sporades Islands (2 player)"
+msgstr ""
 
 #: maps/skirmishes/syria_2p.xml:Description:39
 msgid ""

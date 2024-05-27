@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-05-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: rollieoo, 2021-2024\n"
 "Language-Team: Dutch (http://app.transifex.com/wildfire-games/0ad/language/nl/)\n"
@@ -1385,6 +1385,7 @@ msgstr "Arcadië"
 #: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/sporades_islands_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[1].Name:39
 msgid "Player 1"
 msgstr "Speler 1"
@@ -1413,6 +1414,7 @@ msgstr "Speler 1"
 #: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/sporades_islands_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[2].Name:39
 msgid "Player 2"
 msgstr "Speler 2"
@@ -2026,7 +2028,6 @@ msgid "Sandbox - The Achaemenid Persians"
 msgstr "Zandbak - Achaemenidisch Perzië"
 
 #: maps/scenarios/sandbox_ptolemies.xml:Description:38
-#: maps/skirmishes/sporades_islands_2p.xml:Description:39
 msgid "An islands map good for intense naval combat."
 msgstr "Een eilandkaart, goed voor intense zeeslagen."
 
@@ -3185,8 +3186,12 @@ msgstr "Een demo schermutselkaart"
 msgid "Skirmish Demo (2)"
 msgstr "Schermutseling demo (2)"
 
+#: maps/skirmishes/sporades_islands_2p.xml:Description:39
+msgid "An islands map designed for intense naval combat."
+msgstr "Een eilandkaart, speciaal voor intense zeeslagen."
+
 #: maps/skirmishes/sporades_islands_2p.xml:Name:39
-msgid "Sporades Islands (2)"
+msgid "Sporades Islands (2 player)"
 msgstr "Sporades eilanden (2)"
 
 #: maps/skirmishes/syria_2p.xml:Description:39
