@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# Gontzal Pujana Onaindia
+# Thadah D. Denyse
 # Mielanjel Iraeta
 # Osoitz
 # Stanislas Dolcini
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-05-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Osoitz <oelkoro@gmail.com>, 2015,2019-2020,2022\n"
 "Language-Team: Basque (http://app.transifex.com/wildfire-games/0ad/language/eu/)\n"
@@ -1371,6 +1371,7 @@ msgstr "Arkadia"
 #: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/sporades_islands_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[1].Name:39
 msgid "Player 1"
 msgstr "1. jokalaria"
@@ -1399,6 +1400,7 @@ msgstr "1. jokalaria"
 #: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/sporades_islands_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[2].Name:39
 msgid "Player 2"
 msgstr "2. jokalaria"
@@ -2012,7 +2014,6 @@ msgid "Sandbox - The Achaemenid Persians"
 msgstr ""
 
 #: maps/scenarios/sandbox_ptolemies.xml:Description:38
-#: maps/skirmishes/sporades_islands_2p.xml:Description:39
 msgid "An islands map good for intense naval combat."
 msgstr "Uharte mapa bat, ona baino hobea itsas borroka amaiezina burutzeko."
 
@@ -3171,9 +3172,13 @@ msgstr "Liskarren adibidezko mapa."
 msgid "Skirmish Demo (2)"
 msgstr "Liskar Adibidea (2)"
 
+#: maps/skirmishes/sporades_islands_2p.xml:Description:39
+msgid "An islands map designed for intense naval combat."
+msgstr ""
+
 #: maps/skirmishes/sporades_islands_2p.xml:Name:39
-msgid "Sporades Islands (2)"
-msgstr "Esporada Uharteak (2)"
+msgid "Sporades Islands (2 player)"
+msgstr ""
 
 #: maps/skirmishes/syria_2p.xml:Description:39
 msgid ""

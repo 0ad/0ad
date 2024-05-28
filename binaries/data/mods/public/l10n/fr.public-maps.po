@@ -46,7 +46,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-05-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Etienne Malandain <malandain.etienne@gmail.com>, 2023\n"
 "Language-Team: French (http://app.transifex.com/wildfire-games/0ad/language/fr/)\n"
@@ -1407,6 +1407,7 @@ msgstr "Arcadia"
 #: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/sporades_islands_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[1].Name:39
 msgid "Player 1"
 msgstr "Joueur 1"
@@ -1435,6 +1436,7 @@ msgstr "Joueur 1"
 #: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/sporades_islands_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[2].Name:39
 msgid "Player 2"
 msgstr "Joueur 2"
@@ -2048,7 +2050,6 @@ msgid "Sandbox - The Achaemenid Persians"
 msgstr "Bac à sable - Les Perses Achéménides"
 
 #: maps/scenarios/sandbox_ptolemies.xml:Description:38
-#: maps/skirmishes/sporades_islands_2p.xml:Description:39
 msgid "An islands map good for intense naval combat."
 msgstr "Une carte d'archipel adéquat pour une bataille navale intense"
 
@@ -3213,9 +3214,13 @@ msgstr "Une carte de démo du mode escarmouche."
 msgid "Skirmish Demo (2)"
 msgstr "Démo Escarmouche (2)"
 
+#: maps/skirmishes/sporades_islands_2p.xml:Description:39
+msgid "An islands map designed for intense naval combat."
+msgstr ""
+
 #: maps/skirmishes/sporades_islands_2p.xml:Name:39
-msgid "Sporades Islands (2)"
-msgstr "Îles Sporades (2)"
+msgid "Sporades Islands (2 player)"
+msgstr ""
 
 #: maps/skirmishes/syria_2p.xml:Description:39
 msgid ""

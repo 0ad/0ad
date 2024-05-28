@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-05 08:08+0000\n"
+"POT-Creation-Date: 2024-05-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Christian Marcus <mrsovietduck@gmail.com>, 2023\n"
 "Language-Team: Vietnamese (http://app.transifex.com/wildfire-games/0ad/language/vi/)\n"
@@ -1370,6 +1370,7 @@ msgstr ""
 #: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/sporades_islands_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[1].Name:39
 msgid "Player 1"
 msgstr "Người chơi 1"
@@ -1398,6 +1399,7 @@ msgstr "Người chơi 1"
 #: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/sporades_islands_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[2].Name:39
 msgid "Player 2"
 msgstr "Người chơi 2"
@@ -2011,7 +2013,6 @@ msgid "Sandbox - The Achaemenid Persians"
 msgstr ""
 
 #: maps/scenarios/sandbox_ptolemies.xml:Description:38
-#: maps/skirmishes/sporades_islands_2p.xml:Description:39
 msgid "An islands map good for intense naval combat."
 msgstr "Một bản đồ các đảo dành cho những trận hải chiến quy mô lớn."
 
@@ -3164,8 +3165,12 @@ msgstr ""
 msgid "Skirmish Demo (2)"
 msgstr ""
 
+#: maps/skirmishes/sporades_islands_2p.xml:Description:39
+msgid "An islands map designed for intense naval combat."
+msgstr ""
+
 #: maps/skirmishes/sporades_islands_2p.xml:Name:39
-msgid "Sporades Islands (2)"
+msgid "Sporades Islands (2 player)"
 msgstr ""
 
 #: maps/skirmishes/syria_2p.xml:Description:39
