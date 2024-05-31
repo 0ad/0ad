@@ -36,7 +36,7 @@ msgstr ""
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr "Estou a começar uma campanha militar massiva contra %(_player_)s, junta-te a mim!"
+msgstr "Estou a iniciar uma campanha militar massiva contra %(_player_)s, vem e junta-te a mim."
 
 #: simulation/ai/petra/chatHelper.js:4
 #, javascript-format
@@ -292,7 +292,7 @@ msgstr "Ainda estou à espera de %(_amount_)s unidades de %(_resource_)s antes d
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
-msgstr "%(_player_)s, se não me enviares parte do tributo %(_amount_)s unidades de %(_resource_)s em breve, eu vou interromper as nossas negociações."
+msgstr "%(_player_)s, se não me enviares em breve uma parte do tributo de %(_amount_)s unidades de %(_resource_)s, vou interromper as nossas negociações."
 
 #: simulation/ai/petra/chatHelper.js:96
 #, javascript-format
@@ -337,14 +337,14 @@ msgstr "Se me enviares um tributo de %(_amount_)s unidades de %(_resource_)s, eu
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
-msgstr "%(_player_)s, se me mandares %(_amount_)s unidades de %(_resource_)s, irei aceitar um pacto de neutralidade."
+msgstr "%(_player_)s, se me enviares %(_amount_)s unidades de %(_resource_)s, irei aceitar um pacto de neutralidade."
 
 #: simulation/ai/petra/chatHelper.js:111
 #, javascript-format
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
-msgstr "%(_player_)s, não irei aceitar o teu pedido de neutralidade a não ser que me tributes %(_amount_)s unidades de %(_resource_)s brevemente."
+msgstr "%(_player_)s, não aceitarei o teu pedido de neutralidade a não ser que me envies em breve o tributo de %(_amount_)s unidades de %(_resource_)s."
 
 #: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
@@ -423,7 +423,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra é o robô padrão com inteligência artificial do 0 A.D Por favor reporta problemas à Wildfire Games (vê a hiperligação no menu principal).\n\nA velocidade de recolha e o ganho no comércio depende do nível de dificuldade (simulação −58%, muito fácil  −44%, fácil −25%, médio ±0%, difícil +25%, muito difícil +56%). Os níveis mais fáceis também têm um tempo de desenvolvimento de tecnologias, treino e construção mais lentos. Para além disso o nível de simulação não se expande nem faz ataques."
+msgstr "Petra é o robô padrão com inteligência artificial do 0 A.D. Por favor reporta problemas à Wildfire Games (vê a hiperligação no menu principal).\n\nA velocidade de recolha de recursos e o ganho no comércio depende do nível de dificuldade (simulação −58%, muito fácil −44%, fácil −25%, médio ±0%, difícil +25%, muito difícil +56%). Os níveis mais fáceis também têm uma velocidade de desenvolvimento de tecnologias, velocidade de treino e velocidade de construção mais lentas. Para além disso o nível de simulação não se expande nem faz ataques."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -507,7 +507,7 @@ msgstr "Não é possível construir %(name)s em território %(territoryType)s. T
 #: simulation/components/BuildRestrictions.js:239
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr "%(name)s só pode ser construído numa linha de costa válida."
+msgstr "%(name)s tem de ser construído numa linha costeira válida"
 
 #: simulation/components/BuildRestrictions.js:266
 #, javascript-format
@@ -517,9 +517,9 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] "%(name)s está muito perto de %(category)s, tem que ser afastado pelo menos %(distance)s metro"
-msgstr[1] "%(name)s está muito perto de %(category)s, tem que ser afastado pelo menos %(distance)s metros"
-msgstr[2] "%(name)s está muito perto de %(category)s, tem que ser afastado pelo menos %(distance)s metros"
+msgstr[0] "%(name)s está muito perto de %(category)s, tem de estar afastado pelo menos %(distance)s metro"
+msgstr[1] "%(name)s está muito perto de %(category)s, tem de estar afastado pelo menos %(distance)s metros"
+msgstr[2] "%(name)s está muito perto de %(category)s, tem de estar afastado pelo menos %(distance)s metros"
 
 #: simulation/components/BuildRestrictions.js:287
 #, javascript-format
@@ -527,9 +527,9 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] "%(name)s está muito afastado de %(category)s, tem que estar a pelo menos %(distance)s metro"
-msgstr[1] "%(name)s está muito afastado de %(category)s, tem que estar a pelo menos %(distance)s metros"
-msgstr[2] "%(name)s está muito afastado de %(category)s, tem que estar a pelo menos %(distance)s metros"
+msgstr[0] "%(name)s está muito afastado de %(category)s, tem de estar a uma distância inferior a %(distance)s metro"
+msgstr[1] "%(name)s está muito afastado de %(category)s, tem de estar a uma distância inferior a %(distance)s metros"
+msgstr[2] "%(name)s está muito afastado de %(category)s, tem de estar a uma distância inferior a %(distance)s metros"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
@@ -648,47 +648,47 @@ msgstr "A entidade está a produzir. Não é possível iniciar a promoção."
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
-msgstr "Tartaruga (0.1x)"
+msgstr "Tartaruga (0.1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20×)"
-msgstr "Avanço rápido (20x)"
+msgstr "Avanço rápido (20×)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25×)"
-msgstr "Devagar (0.25x)"
+msgstr "Devagar (0.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5×)"
-msgstr "Vagaroso (0.5x)"
+msgstr "Vagaroso (0.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75×)"
-msgstr "Relaxado (0.75x)"
+msgstr "Relaxado (0.75×)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1×)"
-msgstr "Normal (1x)"
+msgstr "Normal (1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25×)"
-msgstr "Rápido (1,25x)"
+msgstr "Rápido (1,25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5×)"
-msgstr "Muito rápido (1,5x)"
+msgstr "Muito rápido (1,5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2×)"
-msgstr "Insano (2x)"
+msgstr "Insano (2×)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5×)"
-msgstr "Avanço rápido (5x)"
+msgstr "Avanço rápido (5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10×)"
-msgstr "Avanço rápido (10x)"
+msgstr "Avanço rápido (10×)"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
@@ -736,7 +736,7 @@ msgstr "O mapa grande é recomendado quando grandes partes do mapa estão cobert
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
-msgstr "Muito Grande"
+msgstr "Muito grande"
 
 #: simulation/data/settings/map_sizes.jsonData[5].Tooltip
 #: simulation/data/settings/map_sizes.jsonData[6].Tooltip
@@ -788,7 +788,7 @@ msgstr "Jogador 8"
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr "Muito Poucos"
+msgstr "Muito poucos"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
@@ -891,7 +891,7 @@ msgstr "Derrota os oponentes destruindo todas as estruturas deles."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
-msgstr "Conquistar Estruturas"
+msgstr "Conquistar estruturas"
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Defeat opponents by killing all their units."
@@ -899,7 +899,7 @@ msgstr "Derrota os oponentes matando todas as unidades deles."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
-msgstr "Unidades de Conquista"
+msgstr "Unidades de conquista"
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
@@ -915,7 +915,7 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr "Sê o primeiro a construir ou capturar uma Maravilha e mantém-na por um certo tempo para ganhares o jogo. O relógio voltará a zero se a Maravilha for destruída ou capturada. Se o modo de vitória do aliado estiver ativo, o relógio também volta a zero quando as alianças mudam."
+msgstr "Sê o primeiro a construir ou capturar uma maravilha e mantém-na por um certo tempo para ganhares o jogo. O relógio voltará a zero se a maravilha for destruída ou capturada. Se o modo de vitória do aliado estiver ativo, o relógio também volta a zero quando as alianças mudam."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -951,7 +951,7 @@ msgstr "(Batota - unidades promovidas)"
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
-msgstr "Não é possível fazer a promoção porque os requisitos de distância não se verificam ou o terreno está obstruído."
+msgstr "Não é possível fazer a promoção porque a distância mínima não seria respeitada ou o terreno está obstruído."
 
 #: simulation/helpers/Commands.js:803
 #, javascript-format
@@ -964,7 +964,7 @@ msgstr "Não existem unidades subornáveis"
 
 #: simulation/helpers/Commands.js:919
 msgid "Unable to unload unit(s)."
-msgstr "Não se consegue retirar as unidades."
+msgstr "Não se consegue desalojar as unidades."
 
 #: simulation/helpers/Commands.js:933
 msgid "Some unit(s) can't go back to work"

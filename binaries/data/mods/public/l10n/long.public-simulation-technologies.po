@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-05-20 07:18+0000\n"
-"PO-Revision-Date: 2024-05-20 07:18+0000\n"
+"POT-Creation-Date: 2024-05-31 07:19+0000\n"
+"PO-Revision-Date: 2024-05-31 07:19+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -50,7 +50,7 @@ msgstr ""
 "boogschutterij en zetten bij voorkeur grote groepen boogschutters in bij het gevecht."
 
 msgid "Archery Tradition"
-msgstr "Tradição de Tiro com Arco"
+msgstr "Tradição de tiro com arco"
 
 msgid "Unlocked in Village Phase."
 msgstr "Divorailhet e Pazenn ar C'hêriadennoù ."
@@ -97,7 +97,7 @@ msgid "Arsenal of Philon"
 msgstr "Arsenaal van Philon"
 
 msgid "Unlocked in City Phase. Requires “Shipwrights.”"
-msgstr "Beschikbaar in Grootstadsfase. Vereist “Scheepstimmerlieden.”"
+msgstr "Desbloqueado na fase de cidade. Necessita de \"construtores navais\"."
 
 msgid "Warships +1 health/second self-repair rate."
 msgstr "Buques de guerra (Tasa de regeneración: +1 resistencia/segundo)."
@@ -555,7 +555,7 @@ msgid "Unlocked in Village Phase. Requires “Lookouts.”"
 msgstr "Si sblocca nella fase Villaggio. Richiede le \"Vedette\".\""
 
 msgid "Traders and Ships +20% vision range."
-msgstr "O raio de visão de todos os comerciantes e embarcações aumenta +25%."
+msgstr "O raio de visão de todos os comerciantes e embarcações aumenta +20%."
 
 msgid "Salting allows to preserve fish longer."
 msgstr "A salgadeira permite preservar os peixes durante mais tempo."
@@ -573,14 +573,14 @@ msgid "Use nets to improve the productivity of fishing boats."
 msgstr "Χρησιμοποίησε δίκτυα για να βελτιώσεις την παραγωγικότητα των αλιευτικών σκαφών."
 
 msgid "Fishing Nets"
-msgstr "Redes de pesca"
+msgstr "मासेमारीची जाळे"
 
 #, python-format
 msgid "Fishing Boats +30% fish gather rate. Unlocks “Salt Curing.”"
 msgstr "Barcos de pesca +30% velocidade de recolha de peixe. Desbloqueia “Cura de sal”."
 
 msgid "Units regain health over time while garrisoned."
-msgstr "Οι μονάδες αναπληρώνουν υγεία με το πέρασμα του χρόνου όσο βρίσκονται επανδρωμένες."
+msgstr "As unidades ganham pontos de vida ao longo do tempo enquanto estiverem aquarteladas."
 
 msgid "Living Conditions"
 msgstr "Conditionsertên jiyanê"
@@ -1146,9 +1146,9 @@ msgid ""
 "garrisoned units. Decrease batch training time of units trained in Stables."
 msgstr ""
 "Avança para a fase de cidade, que desbloqueia mais entidades e tecnologias. Centros "
-"cívicos +25% do raio de influência do território. Estruturas +1 taxa de regeneração de "
-"pontos de captura para unidades guarnecidas. Diminuição do tempo de treino das unidades"
-" treinadas nos estábulos."
+"cívicos +25% do raio de influência do território. Estruturas +1 velocidade de "
+"regeneração de pontos de captura para unidades aquarteladas. Diminuição do tempo de "
+"treino das unidades treinadas nos estábulos."
 
 msgid ""
 "Dummy technology for use in templates requirements, replaced by phase_town_generic or "
@@ -1223,7 +1223,7 @@ msgid ""
 msgstr ""
 "Avança para a fase de cidade, que desbloqueia mais entidades e tecnologias. Centros "
 "cívicos +25% raio de influência territorial. Estruturas +0,5 velocidade de regeneração "
-"de pontos de captura para unidades guarnecidas. Diminuição do tempo de treino das "
+"de pontos de captura para unidades aquarteladas. Diminuição do tempo de treino das "
 "unidades treinadas nos estábulos."
 
 msgid "Village Phase"
@@ -1363,7 +1363,7 @@ msgid "Serapis Cult"
 msgstr "Cultus van Serapis"
 
 msgid "+2.0 metal trickle per second."
-msgstr "+2.0 recebimento de metal por segundo ao longo do tempo."
+msgstr "+2 recebimento de metal por segundo ao longo do tempo."
 
 msgid "Marines were a vital part of ship defense and offense."
 msgstr "La infantería de marina era un elemento fundamental de la defensa y ataque de un barco."
@@ -1979,7 +1979,7 @@ msgid "Burning Pitch"
 msgstr "Brea inflamable"
 
 msgid "Unlocked in City Phase. Requires “Naval Construction.”"
-msgstr "Se desbloquea en la fase urbana. Requiere «construcción naval»."
+msgstr "Desbloqueado na fase de cidade. Necessita de “construção naval”."
 
 #, python-format
 msgid "Fire Ships +25% health and +25% attack damage."
@@ -1992,7 +1992,7 @@ msgid "Undergirding Cables"
 msgstr "Cavi di collegamento"
 
 msgid "Unlocked in City Phase. Requires “Ship Cladding.”"
-msgstr "Si sblocca nella fase Città. Richiede il \"Rivestimento della nave\"."
+msgstr "Desbloqueado na fase de cidade. Necessita de “revestimento de barco”."
 
 msgid "Hypozomata"
 msgstr "Hypozomata"
@@ -2010,7 +2010,7 @@ msgid "Bronze Ram"
 msgstr "Carneiro de bronze"
 
 msgid "Unlocked in City Phase. Requires “Flanking Maneuvers.”"
-msgstr "Desbloqueado na fase da cidade. Necessita de “Manobras de flanqueamento”."
+msgstr "Si sblocca nella Fase Città. Richiede \"Manovre di fiancheggiamento\"."
 
 msgid "Embolon"
 msgstr "Embolon"
@@ -2044,7 +2044,7 @@ msgid "Flaming Projectiles"
 msgstr "Proyectiles inflamables."
 
 msgid "Unlocked in City Phase. Requires “Naval Ballistae.”"
-msgstr "Desbloqueado na fase da cidade. Necessita de “Balista naval”."
+msgstr "Desbloqueado na fase de cidade. Necessita de “Balista naval”."
 
 msgid "Ranged Warships +10% attack damage."
 msgstr "Barcos de guerra de ataque à distância +10% dano de ataque."

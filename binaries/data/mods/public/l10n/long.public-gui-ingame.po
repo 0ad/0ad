@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-05-10 07:18+0000\n"
-"PO-Revision-Date: 2024-05-10 07:18+0000\n"
+"POT-Creation-Date: 2024-05-31 07:19+0000\n"
+"PO-Revision-Date: 2024-05-31 07:19+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -413,7 +413,7 @@ msgid "Reveal map"
 msgstr "Tampilkan seluruh peta"
 
 msgid "Enable time warp"
-msgstr "Ativar o modo de velocidade hiper rápida"
+msgstr "Включване на изкривяването на времето"
 
 msgid "Activate Rejoin Test"
 msgstr "Активирайте теста за повторно присъединяване"
@@ -530,8 +530,8 @@ msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click to tribute "
 "%(greaterAmount)s."
 msgstr ""
-"Tributar %(resourceAmount)s %(resourceType)s a %(playerName)s. Shift + clique do botão "
-"direito do rato para tributar %(greaterAmount)s."
+"Pagar o tributo %(resourceAmount)s %(resourceType)s a %(playerName)s. Shift + clique do"
+" botão direito do rato para pagar o tributo %(greaterAmount)s."
 
 #, python-format
 msgid "Basic range: %(range)s meter"
@@ -706,7 +706,7 @@ msgstr "\\[ЧЕЛТӘРГӘ ТОТАШМАГАН] %(player)s"
 
 #, python-format
 msgid "%(rank)s Rank"
-msgstr "Graduação %(rank)s"
+msgstr "%(rank)s Pangkat"
 
 #, python-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
@@ -768,7 +768,7 @@ msgid "%(label)s: %(details)s\n"
 msgstr "%(label)s : %(details)s\n"
 
 msgid "Garrison Size"
-msgstr "Tamaño de la guarnición"
+msgstr "Tamanho do aquartelamento"
 
 #, python-format
 msgid "%(label)s %(details)s\n"
@@ -833,7 +833,7 @@ msgid "This is the default formation, used for movement orders."
 msgstr "Aquesta és la formació per defecte, que s'utilitza per donar ordres de moviment."
 
 msgid "Right-click to set this as the default formation."
-msgstr "Clic droit pour sélectionner cette formation en tant que formation par défaut."
+msgstr "Clica com o botão direito do rato para definir esta como a formação predefinida."
 
 #, python-format
 msgid "Unload %(name)s"
@@ -1000,7 +1000,7 @@ msgstr[1] "Może zostać stworzone jeszcze tylko %(count)s razy."
 #, python-format
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] "Só podia ser treinado mais %(limit)s vez."
+msgstr[0] "Could only be trained %(limit)s times."
 msgstr[1] "Cha b’ urrainnear oideachadh ach %(limit)s thuras."
 
 msgid "Can be trained only once."
@@ -1207,7 +1207,7 @@ msgstr "Nyersanyagok:"
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "Aici este %(numberTrading)s un comerciant de terenuri"
-msgstr[1] "Há %(numberTrading)s comerciantes terrestres a comercializar"
+msgstr[1] "Hi ha %(numberTrading)s mercaders comerciant per terra"
 
 #, python-format
 msgid "%(numberOfLandTraders)s inactive"
@@ -1231,7 +1231,7 @@ msgstr[1] "%(numberGarrisoned)s abelhogados n un barcu mercante activu"
 msgid "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant ship"
 msgid_plural "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant ship"
 msgstr[0] "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant ship"
-msgstr[1] "Há %(numberGarrisoned)s comerciantes terrestres guarnecidos numa embarcação mercante"
+msgstr[1] "Hay %(numberGarrisoned)s comerciantes terrestres guarnecidos en un navío mercante"
 
 #, python-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
@@ -1282,7 +1282,7 @@ msgstr[1] "%(numberOfShipTraders)s inactius"
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s-لاتوجد سفن تجارية خاملة"
-msgstr[1] "%(numberOfShipTraders)s navios mercantes inativos"
+msgstr[1] "%(numberOfShipTraders)s barcos mercantes inativos"
 
 msgid "There are no merchant ships."
 msgstr "Nevlastníte žiadne obchodné lode."
@@ -1295,7 +1295,7 @@ msgid ""
 "Right-click to cancel trade route."
 msgstr ""
 "Este é o mercado de origem da rota de comércio.\n"
-"Clica com o botão direito para cancelar a rota de comércio."
+"Clica com o botão direito do rato para cancelar a rota de comércio."
 
 msgid "Origin trade market."
 msgstr "Origen del intercambio comercial."

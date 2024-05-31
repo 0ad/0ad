@@ -28,7 +28,7 @@ msgstr ""
 #: simulation/data/attack_effects/applystatus.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Various (timed) effects."
-msgstr "Vários efeitos (cronometrados)."
+msgstr "Vários efeitos (temporizados)."
 
 #: simulation/data/attack_effects/applystatus.jsonname
 msgctxt "effect caused by an attack"
@@ -58,7 +58,7 @@ msgstr "Dano"
 #: simulation/data/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "Dano causado por completa força, como por um bastão ou por esmagamento"
+msgstr "Danos causados por força bruta, como com um bastão ou por esmagamento."
 
 #: simulation/data/damage_types/crush.jsonname
 msgctxt "damage type"
@@ -155,11 +155,11 @@ msgstr "Este seria o aspeto de um exército no diagrama estratégico."
 
 #: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
-msgstr "Exército Macedónio"
+msgstr "Exército macedónio"
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedon"
-msgstr "Exército Macedónio"
+msgstr "Exército macedónio"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:24
 msgid "Army of Leonidas I."
@@ -181,27 +181,27 @@ msgstr "Povoação"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:23
 msgid "Minor Greek Polis"
-msgstr "Pólis Grega Secundária"
+msgstr "Pólis grega menor"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:24
 msgid "This is a minor Greek city."
-msgstr "Uma pequena cidade Grega."
+msgstr "Uma pequena cidade grega."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:23
 msgid "Greek Polis"
-msgstr "Pólis Grega"
+msgstr "Pólis grega"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:24
 msgid "This is a major Greek city."
-msgstr "Uma importante cidade Grega."
+msgstr "Uma importante cidade grega."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
-msgstr "Santuário Religioso"
+msgstr "Santuário religioso"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
-msgstr "Santuário Religioso Grego"
+msgstr "Santuário religioso grego"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:5
 #: simulation/templates/gaia/fauna_bear_brown.xml:5
@@ -245,7 +245,7 @@ msgstr "Presas"
 
 #: simulation/templates/gaia/fauna_boar.xml:23
 msgid "Wild Boar"
-msgstr "Javali Selvagem"
+msgstr "Javali selvagem"
 
 #: simulation/templates/gaia/fauna_boar.xml:24
 msgid "Sus scrofa"
@@ -308,7 +308,7 @@ msgstr "Dentes"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:23
 msgid "Nile Crocodile"
-msgstr "Crocodilo do Nilo"
+msgstr "Crocodilo-do-nilo"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:24
 msgid "Crocodylus niloticus"
@@ -361,7 +361,7 @@ msgstr "Tronco"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:25
 msgid "African Bush Elephant"
-msgstr "Elefante-da-Savana"
+msgstr "Elefante-da-savana"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:26
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:12
@@ -374,7 +374,7 @@ msgstr "Cria de elefante africano da savana"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:25
 msgid "Asian Elephant"
-msgstr "Elefante Asiático"
+msgstr "Elefante asiático"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:26
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:12
@@ -496,7 +496,7 @@ msgstr "Sus scrofa domesticus"
 
 #: simulation/templates/gaia/fauna_pig_flaming.xml:18
 msgid "Flaming Pig"
-msgstr "Porco Flamejante"
+msgstr "Porco flamejante"
 
 #: simulation/templates/gaia/fauna_piglet.xml:11
 msgid "Piglet"
@@ -557,7 +557,7 @@ msgstr "Odobenus rosmarus"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:11
 msgid "Fin Whale"
-msgstr "Baleia-Comum"
+msgstr "Baleia-comum"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:12
 msgid "Balaenoptera physalus"
@@ -565,7 +565,7 @@ msgstr "Balaenoptera physalus"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:11
 msgid "Humpback Whale"
-msgstr "Baleia-Corcunda"
+msgstr "Baleia-corcunda"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:12
 msgid "Megaptera novaeangliae"
@@ -647,16 +647,16 @@ msgstr "Imagem de culto a Ísis"
 
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
-msgstr "Grande Pirâmide"
+msgstr "Grande pirâmide"
 
 #: simulation/templates/gaia/ruins/pyramid_minor.xml:8
 msgid "Minor Pyramid"
-msgstr "Pequena Pirâmide"
+msgstr "Pequena pirâmide"
 
 #: simulation/templates/gaia/ruins/standing_stone.xml:8
 #: simulation/templates/gaia/treasure/standing_stone.xml:8
 msgid "Celtic Standing Stone"
-msgstr "Pedra Celta"
+msgstr "Pedra celta"
 
 #: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:8
 msgid "Egyptian Statue"
@@ -714,42 +714,42 @@ msgstr "Torre em ruínas"
 
 #: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:8
 msgid "Unfinished Greek Temple"
-msgstr "Templo Grego Inacabado"
+msgstr "Templo grego inacabado"
 
 #: simulation/templates/gaia/treasure/food_barrel.xml:8
 #: simulation/templates/gaia/treasure/food_bin.xml:8
 #: simulation/templates/gaia/treasure/food_crate.xml:8
 #: simulation/templates/gaia/treasure/food_jars.xml:8
 msgid "Food Treasure"
-msgstr "Tesouro de Comida"
+msgstr "Tesouro de comida"
 
 #: simulation/templates/gaia/treasure/food_barrels_buried.xml:8
 msgid "Half-buried Barrels"
-msgstr "Barris Meio Enterrados"
+msgstr "Barris meio enterrados"
 
 #: simulation/templates/gaia/treasure/food_persian_big.xml:8
 msgid "Persian Food Stores"
-msgstr "Armazéns de Comida Persa"
+msgstr "Armazéns de comida persa"
 
 #: simulation/templates/gaia/treasure/food_persian_small.xml:8
 msgid "Persian Food Treasure"
-msgstr "Tesouro de Comida Persa"
+msgstr "Tesouro de comida persa"
 
 #: simulation/templates/gaia/treasure/golden_fleece.xml:8
 msgid "Golden Fleece"
-msgstr "Tosão de Ouro"
+msgstr "Tosão de ouro"
 
 #: simulation/templates/gaia/treasure/metal.xml:8
 msgid "Secret Box"
-msgstr "Caixa Secreta"
+msgstr "Caixa secreta"
 
 #: simulation/templates/gaia/treasure/metal_persian_big.xml:8
 msgid "Persian Wares"
-msgstr "Produtos Persas"
+msgstr "Produtos persas"
 
 #: simulation/templates/gaia/treasure/metal_persian_small.xml:8
 msgid "Persian Rugs"
-msgstr "Tapetes Persas"
+msgstr "Tapetes persas"
 
 #: simulation/templates/gaia/treasure/metal_weapons_small.xml:8
 msgid "Iron Weapons"
@@ -768,7 +768,7 @@ msgstr "Naufrágio"
 
 #: simulation/templates/gaia/treasure/shipwreck_debris.xml:8
 msgid "Shipwreck Cargo"
-msgstr "Carga de Naufrágio"
+msgstr "Carga de naufrágio"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:8
 msgid "The Argo"
@@ -784,7 +784,7 @@ msgstr "O navio mitológico do herói Teseu e dos seus Argonautas."
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"
-msgstr "Tesouro de Pedra"
+msgstr "Tesouro de pedra"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite.xml:4
 msgid "Cut Granite"
@@ -801,7 +801,7 @@ msgstr "Arenito esculpido"
 
 #: simulation/templates/gaia/treasure/wood.xml:8
 msgid "Wood Treasure"
-msgstr "Tesouro de Madeira"
+msgstr "Tesouro de madeira"
 
 #: simulation/templates/gaia/treasure/wood_lumber.xml:8
 msgid "Milled Lumber"
@@ -848,7 +848,7 @@ msgstr "Pequeno embondeiro"
 
 #: simulation/templates/gaia/tree/bush_badlands.xml:4
 msgid "Hardy Bush"
-msgstr "Arbusto Robusto"
+msgstr "Arbusto robusto"
 
 #: simulation/templates/gaia/tree/bush_mediterranean.xml:4
 msgid "Scrub"
@@ -880,7 +880,7 @@ msgstr "Cerejeira"
 #: simulation/templates/gaia/tree/cretan_date_palm_short.xml:4
 #: simulation/templates/gaia/tree/cretan_date_palm_tall.xml:4
 msgid "Cretan Date Palm"
-msgstr "Palmeira Cretense"
+msgstr "Palmeira cretense"
 
 #: simulation/templates/gaia/tree/cypress.xml:4
 #: simulation/templates/gaia/tree/cypress_wild.xml:4
@@ -920,7 +920,7 @@ msgstr "Rebento de pinheiro"
 
 #: simulation/templates/gaia/tree/juniper_prickly.xml:4
 msgid "Prickly Juniper"
-msgstr "Cedro de espanha"
+msgstr "Cedro-de-espanha"
 
 #: simulation/templates/gaia/tree/mangrove.xml:4
 msgid "Mangrove"
@@ -933,7 +933,7 @@ msgstr "Acer"
 
 #: simulation/templates/gaia/tree/medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
-msgstr "Palmeira Ibérica"
+msgstr "Palmeira ibérica"
 
 #: simulation/templates/gaia/tree/oak.xml:4
 #: simulation/templates/gaia/tree/oak_aut.xml:4
@@ -967,7 +967,7 @@ msgstr "Palmeira areca"
 
 #: simulation/templates/gaia/tree/palm_doum.xml:4
 msgid "Doum Palm"
-msgstr "Palmeira do egipto"
+msgstr "Palmeira da Tebaida"
 
 #: simulation/templates/gaia/tree/palm_palmyra.xml:4
 msgid "Palmyra Palm"
@@ -983,7 +983,7 @@ msgstr "Palmeira"
 
 #: simulation/templates/gaia/tree/palm_tropical.xml:4
 msgid "Tropical Palm"
-msgstr "Palmeira Tropical"
+msgstr "Palmeira tropical"
 
 #: simulation/templates/gaia/tree/pine.xml:4
 #: simulation/templates/gaia/tree/pine_w.xml:4
@@ -1013,7 +1013,7 @@ msgstr "Álamo preto"
 
 #: simulation/templates/gaia/tree/senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
-msgstr "Palmeira Senegalesa"
+msgstr "Palmeira senegalesa"
 
 #: simulation/templates/gaia/tree/strangler.xml:8
 msgid "Strangler Fig"
@@ -1079,7 +1079,7 @@ msgstr "Pirata"
 #: simulation/templates/mixins/rotary_mill.xml:17
 #: simulation/templates/mixins/rotary_mill.xml:18
 msgid "Rotary Mill"
-msgstr "Moinho Rotativo"
+msgstr "Moinho rotativo"
 
 #: simulation/templates/mixins/rotary_mill.xml:19
 msgid "RotaryMill"
@@ -1089,7 +1089,7 @@ msgstr "MoinhoRotativo"
 msgid ""
 "Dropsite for harvested Food. Capture one of these to increase nearby food "
 "production."
-msgstr "Armazém para comida recolhida. Capturar um destes para aumentar a produção de comida nas redondezas."
+msgstr "Armazém para comida recolhida. Captura um destes para aumentar a produção de comida nas proximidades."
 
 #: simulation/templates/mixins/shrine.xml:12
 #: simulation/templates/mixins/shrine.xml:13
@@ -1099,7 +1099,7 @@ msgstr "Santuário"
 
 #: simulation/templates/mixins/shrine.xml:18
 msgid "Train Elite Healers and heal garrisoned units."
-msgstr "Treina curandeiros de elite e cura unidades guarnecidas."
+msgstr "Treina curandeiros de elite e cura unidades que estejam aquarteladas."
 
 #: simulation/templates/mixins/trading_post.xml:8
 msgid "Trading Post"
@@ -1109,30 +1109,30 @@ msgstr "Posto de comércio"
 #: simulation/templates/obstructors/movement_8x36.xml:9
 #: simulation/templates/obstructors/movement_8x8.xml:9
 msgid "Movement Obstructor"
-msgstr "Obstrução de movimento"
+msgstr "Obstáculo de movimento"
 
 #: simulation/templates/obstructors/movement_36x36.xml:11
 #: simulation/templates/obstructors/movement_8x36.xml:11
 #: simulation/templates/obstructors/movement_8x8.xml:11
 msgid "Placement obstructor to prevent movement and construction."
-msgstr "Obstrutor de localização para impedir construção e movimento"
+msgstr "Colocação de obstáculo para impedir o movimento e a construção."
 
 #: simulation/templates/obstructors/placement.xml:10
 msgid "Obstructor"
-msgstr "Obstrução"
+msgstr "Obstáculo"
 
 #: simulation/templates/obstructors/placement.xml:12
 #: simulation/templates/obstructors/placement_36x36.xml:11
 #: simulation/templates/obstructors/placement_8x36.xml:11
 #: simulation/templates/obstructors/placement_8x8.xml:11
 msgid "Placement obstructor to prevent construction but not movement"
-msgstr "Obstrutor de localização para impedir construção mas não movimento"
+msgstr "Colocação de obstáculo para impedir a construção mas não o movimento."
 
 #: simulation/templates/obstructors/placement_36x36.xml:9
 #: simulation/templates/obstructors/placement_8x36.xml:9
 #: simulation/templates/obstructors/placement_8x8.xml:9
 msgid "Placement Obstructor"
-msgstr "Obstrutor de localização"
+msgstr "Obstáculo de colocação"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -1149,7 +1149,7 @@ msgstr "Mudanças nas casas de 5 pessoas para civilizações com estes edifício
 #: simulation/templates/special/formations/anti_cavalry.xml:5
 #: simulation/templates/special/formations/testudo.xml:5
 msgid "Melee Infantry only, requires at least 16."
-msgstr "Apenas infantaria corpo a corpo, requer pelo menos 16."
+msgstr "Apenas infantaria corpo a corpo, necessita de pelo menos 16."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:25
 msgid "Anti Cavalry"
@@ -1161,7 +1161,7 @@ msgstr "Formação quadrada de infantaria corpo a corpo para combater a cavalari
 
 #: simulation/templates/special/formations/battle_line.xml:13
 msgid "Battle Line"
-msgstr "Linha de Batalha"
+msgstr "Linha de batalha"
 
 #: simulation/templates/special/formations/battle_line.xml:15
 msgid "Common formation for frontal attacks."
@@ -1169,7 +1169,7 @@ msgstr "Formação comum para ataques frontais."
 
 #: simulation/templates/special/formations/box.xml:5
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr "Requer pelo menos 4 soldados ou máquinas de cerco."
+msgstr "Necessita de pelo menos 4 soldados ou máquinas de cerco."
 
 #: simulation/templates/special/formations/box.xml:12
 msgid "Box"
@@ -1181,7 +1181,7 @@ msgstr "Formação quadrada para proteger todos os lados."
 
 #: simulation/templates/special/formations/column_closed.xml:10
 msgid "Forced March"
-msgstr "Marcha Forçada"
+msgstr "Marcha forçada"
 
 #: simulation/templates/special/formations/column_closed.xml:12
 msgid "Closed column formation for risky movements."
@@ -1197,7 +1197,7 @@ msgstr "Formação dispersa para travessias em campo aberto."
 
 #: simulation/templates/special/formations/flank.xml:5
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr "Requer pelo menos 8 soldados ou máquinas de cerco."
+msgstr "Necessita de pelo menos 8 soldados ou máquinas de cerco."
 
 #: simulation/templates/special/formations/flank.xml:11
 msgid "Flank"
@@ -1209,7 +1209,7 @@ msgstr "Formação para proteger os flancos ou atacar de surpresa o flanco inimi
 
 #: simulation/templates/special/formations/line_closed.xml:9
 msgid "Close Order"
-msgstr "Falange Fechada"
+msgstr "Falange fechada"
 
 #: simulation/templates/special/formations/line_closed.xml:11
 msgid "Flexible closed line formation."
@@ -1217,7 +1217,7 @@ msgstr "Formação flexível em linha fechada."
 
 #: simulation/templates/special/formations/line_open.xml:11
 msgid "Open Order"
-msgstr "Falange Aberta"
+msgstr "Falange aberta"
 
 #: simulation/templates/special/formations/line_open.xml:13
 msgid "Dispersed formation for open field combat."
@@ -1229,7 +1229,7 @@ msgstr "Nenhuma"
 
 #: simulation/templates/special/formations/phalanx.xml:5
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr "Apenas infantaria de hoplitas, requer pelo menos 10."
+msgstr "Apenas infantaria de hoplitas, necessita de pelo menos 10."
 
 #: simulation/templates/special/formations/phalanx.xml:23
 msgid "Phalanx"
@@ -1278,7 +1278,7 @@ msgstr "Formação de frota comum para ataques frontais."
 
 #: simulation/templates/special/formations/skirmish.xml:4
 msgid "Ranged Soldiers only, requires at least 2."
-msgstr "Apenas soldados de ataque à distância, requer pelo menos 2."
+msgstr "Apenas soldados de ataque à distância, necessita de pelo menos 2."
 
 #: simulation/templates/special/formations/skirmish.xml:14
 msgid "Skirmish"
@@ -1290,7 +1290,7 @@ msgstr "Formação dispersa para reconhecimento, emboscadas ou ataques e fugas."
 
 #: simulation/templates/special/formations/syntagma.xml:5
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr "Apenas infantaria de piqueiros, requer pelo menos 16."
+msgstr "Apenas infantaria de piqueiros, necessita de pelo menos 16."
 
 #: simulation/templates/special/formations/syntagma.xml:29
 msgid "Syntagma"
@@ -1310,7 +1310,7 @@ msgstr "Formação compacta de infantaria corpo a corpo criando um escudo."
 
 #: simulation/templates/special/formations/wedge.xml:5
 msgid "Cavalry only, requires at least 6."
-msgstr "Apenas cavalaria, requer pelo menos 6."
+msgstr "Apenas cavalaria, necessita de pelo menos 6."
 
 #: simulation/templates/special/formations/wedge.xml:16
 msgid "Wedge"
@@ -1326,7 +1326,7 @@ msgstr "Espião"
 
 #: simulation/templates/template_formation.xml:15
 msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr "Requer pelo menos 2 soldados ou armas de cerco."
+msgstr "Necessita de menos 2 soldados ou armas de cerco."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -1347,11 +1347,11 @@ msgstr "Fruta"
 
 #: simulation/templates/template_gaia_fruit.xml:9
 msgid "Pick fruit for food."
-msgstr "Apanha fruta para obter comida"
+msgstr "Apanha fruta para obter comida."
 
 #: simulation/templates/template_gaia_ore.xml:8
 msgid "Metal Mine"
-msgstr "Mina de Metal"
+msgstr "Mina de metal"
 
 #: simulation/templates/template_gaia_ore.xml:9
 msgid "Mine ore for metal."
@@ -1376,7 +1376,7 @@ msgstr "Ruínas"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr "Demolui ruínas para extrair pedra."
+msgstr "Demolir ruínas para extrair pedra."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -1396,7 +1396,7 @@ msgstr "Corta árvores para obter madeira."
 
 #: simulation/templates/template_structure.xml:46
 msgid "Structure"
-msgstr "Edifício"
+msgstr "Estrutura"
 
 #: simulation/templates/template_unit.xml:39
 msgid "Unit"
