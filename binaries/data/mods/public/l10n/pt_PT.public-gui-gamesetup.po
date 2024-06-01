@@ -143,7 +143,7 @@ msgstr "Escolhe uma cor."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:47
 msgid "Select player's team."
-msgstr "Selecionar a equipa do jogador."
+msgstr "Seleciona a equipa do jogador."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:50
 msgctxt "team"
@@ -247,11 +247,11 @@ msgstr "Define se este jogo conta para a tabela classificativa dos jogadores."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:27
 msgid "Hero Garrison"
-msgstr "Herói guarnecido"
+msgstr "Aquartelamento de herói"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:30
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Opção se o herói pode ser guarnecido ou não."
+msgstr "Opção se o herói pode ser aquartelado num edifício ou não."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -291,7 +291,7 @@ msgstr "População mundial"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr "Esta opção ativa um limite global de população, distribuída entre todos os jogadores vivos."
+msgstr "Quando selecionado, o limite de população será distribuído uniformemente por todos os jogadores vivos."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
@@ -344,7 +344,7 @@ msgstr "Aleatório"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:26
 msgctxt "landscape selection"
 msgid "Select a random landscape."
-msgstr "Seleciona uma paisagem."
+msgstr "Seleciona uma paisagem aleatória."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:78
 msgid "Landscape"
@@ -360,7 +360,7 @@ msgstr "Filtro de mapas"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:85
 msgid "Select a map filter."
-msgstr "Selecionar um filtro de mapas."
+msgstr "Selecione um filtro de mapas."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:26
 msgid "Map"
@@ -409,7 +409,7 @@ msgstr "Selecionar o número de jogadores."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:52
 msgid "Population Cap"
-msgstr "Limite populacional"
+msgstr "Limite de população"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:55
 msgid "Select population limit."
@@ -447,7 +447,7 @@ msgstr "Por jogador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:53
 msgid "Team Placement"
-msgstr "Colocação na equipa"
+msgstr "Colocação de equipas"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:56
 msgid "Select one of the starting position patterns of this map."
@@ -481,7 +481,7 @@ msgstr "Seleciona o nível da água deste mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:47
 msgid "World Population Cap"
-msgstr "Limite da população mundial"
+msgstr "Limite de população mundial"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:50
 msgid "Select world population limit."
@@ -492,7 +492,7 @@ msgstr "Seleciona o limite da população total."
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr "Aviso: poderão surgir problemas de desempenho se atingir o limite de %(popCap)s população total."
+msgstr "Aviso: poderão surgir problemas de desempenho se for atingida uma população de %(popCap)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"
@@ -524,7 +524,7 @@ msgstr "Contagem de relíquias"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] "%(number)s relíquias"
+msgstr[0] "%(number)s relíquia"
 msgstr[1] "%(number)s relíquias"
 msgstr[2] "%(number)s relíquias"
 
@@ -541,7 +541,7 @@ msgstr "Duração das relíquias"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:41
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr "Minutos até que o jogador obtenha uma Vitória de Relíquias."
+msgstr "Minutos até que o jogador obtenha uma vitória de relíquias."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:47
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:44
@@ -549,7 +549,7 @@ msgstr "Minutos até que o jogador obtenha uma Vitória de Relíquias."
 msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
-msgstr[0] "%(min)s minutos"
+msgstr[0] "%(min)s minuto"
 msgstr[1] "%(min)s minutos"
 msgstr[2] "%(min)s minutos"
 
@@ -572,9 +572,9 @@ msgstr "Seleciona a altura em que o nível da água vai começar a subir."
 msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
-msgstr[0] "%(minutes)s minutos"
-msgstr[1] "%(minutes)s"
-msgstr[2] "%(minutes)s"
+msgstr[0] "%(minutes)s minuto"
+msgstr[1] "%(minutes)s minutos"
+msgstr[2] "%(minutes)s minutos"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:38
 msgid "Wonder Duration"
@@ -582,7 +582,7 @@ msgstr "Duração da maravilha"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:41
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr "Minutos até que o jogador alcance uma vitória por maravilha."
+msgstr "Minutos até que o jogador alcance uma vitória por maravilha"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -601,7 +601,7 @@ msgstr "Regressar ao menu principal."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: visão geral da civilização / árvore estrutural\nA última aberta será reaberta ao clicar."
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: ver visão geral da civilização / árvore estrutural\nA última aberta será reaberta ao clicar."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -761,7 +761,7 @@ msgstr "A carregar"
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
 msgid "Loading map data. Please wait…"
-msgstr "A carregar os dados do mapa. Por favor aguarda..."
+msgstr "A carregar os dados do mapa. Por favor aguarda…"
 
 #: gui/gamesetup/gamesetup.xml:(caption):17
 msgid "Match Setup"
@@ -783,7 +783,7 @@ msgstr "O número da porta do servidor deve estar entre %(min)s e %(max)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:150
 msgid "Connecting to server..."
-msgstr "A conectar ao servidor..."
+msgstr "A conectar ao servidor…"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:165
 msgid "Server is not running."
@@ -823,11 +823,11 @@ msgstr "Mensagem da rede: %(message)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:276
 msgid "Registering with server..."
-msgstr "A registar no servidor..."
+msgstr "A registar no servidor…"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:282
 msgid "Game has already started, rejoining..."
-msgstr "O jogo já começou, a reentrar..."
+msgstr "O jogo já começou, a entrar novamente…"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:361
 msgid "Game name already in use."
@@ -945,7 +945,7 @@ msgid ""
 "“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
-msgstr "“Zeus \\[...] estabeleceu a sua lei: a sabedoria vem através do sofrimento. \\[...] Assim, os homens, contra a sua vontade, aprendem a praticar a moderação. \\[...] Tal graça é dura e violenta.” \\n— Ésquilo (“Agamemnon”, 176–183)"
+msgstr "“Zeus \\[…] estabeleceu a sua lei: a sabedoria vem através do sofrimento. \\[…] Assim, os homens, contra a sua vontade, aprendem a praticar a moderação. \\[…] Tal graça é dura e violenta.” \\n— Ésquilo (“Agamemnon”, 176–183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -1097,7 +1097,7 @@ msgstr "“Para o mais forte!” \\n— Alexandre o Grande no seu leito de morte
 msgid ""
 "“I do not steal victory.” \\n— Alexander the Great, when suggested to raid "
 "the Persians at night (Plutarch, “Parallel Lives”, “Alexander”, sec. 31)"
-msgstr "“Não roubo a vitória.” \\n— Alexandre, o Grande, quando lhe sugeriram invadir os Persas à noite (Plutarco, “Vidas Paralelas”, “Alexandre”, secção 31)"
+msgstr "“Não roubo a vitória.” \\n— Alexandre, o Grande, quando lhe foi sugerido que atacasse os persas à noite (Plutarco, “Vidas Paralelas”, “Alexandre”, secção 31)"
 
 #: gui/text/quotes.txt:27
 msgid ""
@@ -1139,7 +1139,7 @@ msgid ""
 "“Give me a place to stand, and I shall move the world.” \\n— Archimedes, on "
 "his usage of the lever (Diodorus Siculus, “The Library of History”, "
 "fragments of book XXVI, sec. 18)"
-msgstr "“Dá-me um lugar para ficar, e eu vou mover o mundo.\" - Arquimedes, sobre o uso da alavanca (Diodoro Sículo, “A  Biblioteca da História”, fragmentos do livro XXVI, secção 18)"
+msgstr "“Dá-me um lugar para ficar, e eu vou mover o mundo.\"\\n— Arquimedes, sobre o uso da alavanca (Diodoro Sículo, “A Biblioteca da História”, fragmentos do livro XXVI, secção 18)"
 
 #: gui/text/quotes.txt:33
 msgid ""
@@ -1269,7 +1269,7 @@ msgid ""
 " gold, but not without using false weights and adding the weight of his "
 "sword on the scale when the Romans complained (Polybius, “Histories”, II. "
 "18)"
-msgstr "“Ai dos Derrotados!” \\n— Brennus, chefe Gaulês que havia tomado Roma (com exceção de uma guarnição no Capitólio). Quando Camilo chegou de Veios e sitiou-o, negociou a sua retirada por 1000 quilos de ouro, mas não sem usar pesos falsos e acrescentando o peso da sua espada na balança quando os romanos se queixaram (Políbio, “Histórias”, II. 18)"
+msgstr "“Ai dos Derrotados!” \\n— Brennus, chefe Gaulês que havia tomado Roma (com exceção de um aquartelamento no Capitólio). Quando Camilo chegou de Veios e sitiou-o, negociou a sua retirada por 1000 quilos de ouro, mas não sem usar pesos falsos e acrescentando o peso da sua espada na balança quando os romanos se queixaram (Políbio, “Histórias”, II. 18)"
 
 #: gui/text/quotes.txt:50
 msgid ""
@@ -1277,7 +1277,7 @@ msgid ""
 "they make a wasteland and call it peace.” \\n— Calgacus, Caledonian "
 "chieftain in a speech before the Battle of Mons Graupius (Tacitus, "
 "“Agricola”, 30)"
-msgstr "“Roubo, massacre, pilhagem, eles \\[os Romanos] de forma enganosa nomeiam o império, eles fazem um deserto e chamam a isso paz.” \\n— Calgaco, chefe caledónio num discurso antes da Batalha de Monte Gráupio (Tácito, “Agrícola”, 30)"
+msgstr "“Roubo, massacre, pilhagem, eles \\[os romanos] de forma enganosa nomeiam o império, eles fazem um deserto e chamam a isso paz.” \\n— Calgaco, chefe caledónio num discurso antes da Batalha de Monte Gráupio (Tácito, “Agrícola”, 30)"
 
 #: gui/text/quotes.txt:51
 msgid "“Set a thief to catch a thief.” \\n— Callimachus (“Epigrams”, 44)"
@@ -1329,7 +1329,7 @@ msgid ""
 "“I am Cyrus, who won for the Persians their empire. Therefore do not "
 "begrudge me this bit of earth that covers my bones.” \\n— Cyrus the Great's "
 "epitaph (Plutarch, “Parallel Lives”, “Alexander”, sec. 69)"
-msgstr "“Eu sou Ciro, que ganhou para os Persas o seu império. Portanto, não me arrependa este pedaço de terra que cobre os meus ossos.” \\n— Epitáfio de Ciro, o Grande (Plutarco, “Vidas Paralelas”, “Alexandre”, secção 69)"
+msgstr "“Eu sou Ciro, que conquistou o império para os persas. Por isso, não me invejeis este pedaço de terra que cobre os meus ossos.” \\n— Epitáfio de Ciro, o Grande (Plutarco, “Vidas Paralelas”, “Alexandre”, secção 69)"
 
 #: gui/text/quotes.txt:59
 msgid ""
@@ -1385,7 +1385,7 @@ msgid ""
 "the sound, and that second roar was louder than the Macedonian war cry as "
 "five hundred thousand men shouted with one voice.” \\n— Diodorus Siculus "
 "about the Battle of Issus (“The Library of History”, XVII., sec. 33)"
-msgstr "“Os Macedónios levantaram primeiro um grito sobrenatural seguido pelos Persas respondendo, de modo a que toda a encosta que faz fronteira com o campo de batalha ecoou o som, e aquele segundo rugido foi mais alto do que o grito de guerra Macedónico, quinhentos mil homens gritaram com uma só voz.” \\n— Diodoro Sículo sobre a Batalha de Isso (“A Biblioteca da História”, XVI., secção 33)"
+msgstr "“Os macedónios levantaram primeiro um grito sobrenatural seguido pelos persas respondendo, de modo a que toda a encosta que faz fronteira com o campo de batalha ecoou o som, e aquele segundo rugido foi mais alto do que o grito de guerra macedónico, quinhentos mil homens gritaram com uma só voz.” \\n— Diodoro Sículo sobre a Batalha de Isso (“A Biblioteca da História”, XVI., secção 33)"
 
 #: gui/text/quotes.txt:67
 msgid ""
@@ -1495,7 +1495,7 @@ msgid ""
 "back; and, when they were put to flight, the archers were surrounded and cut"
 " to pieces.” \\n— Caesar about the Battle of Alesia (“De Bello Gallico”, "
 "VII. 80)"
-msgstr "“Depois de lutar quase do meio-dia ao pôr-do-sol, com a vitória duvidosa, os Alemães, de um lado carregaram no inimigo num corpo compacto, e os levaram de volta; e quando eles foram postos em fuga, os arqueiros foram cercados e cortados em pedaços.” \\n— César sobre a Batalha de Alésia (“De Bello Gallico”, VII. 80)"
+msgstr "“Depois de lutar desde o meio-dia até quase ao pôr do sol, com a vitória duvidosa, os alemães, de um lado carregaram no inimigo num corpo compacto, e os levaram de volta; e quando eles foram postos em fuga, os arqueiros foram cercados e cortados em pedaços.” \\n— César sobre a Batalha de Alésia (“De Bello Gallico”, VII. 80)"
 
 #: gui/text/quotes.txt:83
 msgid ""
@@ -1555,7 +1555,7 @@ msgid ""
 "an old man.” \\n— Hannibal's last words before his suicide, in exile with "
 "Flaminius pressuring the local ruler to hand him over (Livy, “History of "
 "Rome”, XXXIX. 51)"
-msgstr "“Vamos acabar com a ansiedade dos Romanos, que não podem esperar a morte de um velho.” \\n— As últimas palavras de Aníbal antes do seu suicídio, no exílio com Flaminius, pressionado pelo governante local para o entregar (Lívio, “História de Roma”, XXXIX. 51)"
+msgstr "“Vamos acabar com a ansiedade dos romanos, que não podem esperar a morte de um velho.” \\n— As últimas palavras de Aníbal antes do seu suicídio, no exílio com Flaminius, pressionado pelo governante local para o entregar (Lívio, “História de Roma”, XXXIX. 51)"
 
 #: gui/text/quotes.txt:91
 msgid ""
@@ -1563,7 +1563,7 @@ msgid ""
 "world as theirs and subject to their pleasure. With whom we are to be at "
 "war, with whom at peace, they think it right that they should determine.” "
 "\\n— Hannibal, addressing his troops (Livy, “History of Rome”, XXI. 44)"
-msgstr "“A mais inumana e arrogante das nações, eles \\[os Romanos] consideram o mundo como deles e sujeito ao seu bel prazer. Com quem estamos em guerra, com quem em paz, eles acham correto que sejam eles a determinarem.” \\n— Aníbal, dirigindo-se às suas tropas (Lívio, “História de Roma”, XXI. 44)"
+msgstr "“A mais inumana e arrogante das nações, eles \\[os romanos] consideram o mundo como deles e sujeito ao seu bel prazer. Com quem estamos em guerra, com quem em paz, eles acham correto que sejam eles a determinarem.” \\n— Aníbal, dirigindo-se às suas tropas (Lívio, “História de Roma”, XXI. 44)"
 
 #: gui/text/quotes.txt:92
 msgid ""
@@ -1613,7 +1613,7 @@ msgid ""
 "“The Lacedaemonians \\[Spartans] fought a memorable battle; they made it "
 "quite clear that they were the experts, and that they were fighting against "
 "amateurs.” \\n— Herodotus (“The Histories”, VII. 211)"
-msgstr "“Os Lacedemonianos \\[Espartanos] travaram uma batalha memorável, eles deixaram bem claro que eles eram os especialistas, e que eles estavam a lutar contra amadores.” \\n— Heródoto (“As Histórias”, VII. 211)"
+msgstr "“Os lacedemónios \\[espartanos] travaram uma batalha memorável. Deixaram bem claro que eram eles os especialistas e que estavam a lutar contra amadores.” \\n— Heródoto (“As Histórias”, VII. 211)"
 
 #: gui/text/quotes.txt:100
 msgid ""
@@ -1632,7 +1632,7 @@ msgid ""
 "Thebes] was the same: If he sent an army against the Persians, he would "
 "destroy a great empire.” \\n— Herodotus, later mentioning that the empire "
 "Croesus destroyed was his own (“The Histories”, I. 53)"
-msgstr "“O julgamento dado a Creso por cada um dos dois oráculos \\[Delfos e Tebas] era o mesmo: se ele enviou um exército contra os Persas, ele iria destruir um grande império.” \\n— Heródoto, mais tarde mencionando que o império Creso destruído era o seu próprio (“As Histórias”, I. 53)"
+msgstr "“O julgamento dado a Creso por cada um dos dois oráculos \\[Delfos e Tebas] era o mesmo: se ele enviou um exército contra os persas, ele iria destruir um grande império.” \\n— Heródoto, mais tarde mencionando que o império Creso destruído era o seu próprio (“As Histórias”, I. 53)"
 
 #: gui/text/quotes.txt:102
 msgid ""
@@ -1723,7 +1723,7 @@ msgid ""
 " Livy, describing the aftermath of the Battle of Cannae, where Hannibal "
 "inflicted the greatest defeat on the Romans in all their history (“History "
 "of Rome”, XXII. 51)"
-msgstr "“Alguns foram descobertos ali vivos, com coxas e tendões cortados, pondo a descoberto os pescoços e gargantas e pedindo que os conquistadores drenassem o sangue restante. Outros foram encontrados com as cabeças enterradas em furos escavados no chão. Aparentemente fizeram esses poços para eles mesmos.” \\n— Lívio, descrevendo as consequências da Batalha de Canas, onde Aníbal infligiu a maior derrota aos Romanos em toda sua história (“História de Roma”, XXII. 51)"
+msgstr "“Alguns foram descobertos ali vivos, com coxas e tendões cortados, pondo a descoberto os pescoços e gargantas e pedindo que os conquistadores drenassem o sangue restante. Outros foram encontrados com as cabeças enterradas em furos escavados no chão. Aparentemente fizeram esses poços para eles mesmos.” \\n— Lívio, descrevendo as consequências da Batalha de Canas, onde Aníbal infligiu a maior derrota aos romanos em toda sua história (“História de Roma”, XXII. 51)"
 
 #: gui/text/quotes.txt:115
 msgid ""
@@ -1732,7 +1732,7 @@ msgid ""
 "of dawn, and was cut down by his enemies.” \\n— Livy, describing the "
 "aftermath of the Battle of Cannae, where Hannibal inflicted the greatest "
 "defeat on the Romans in all their history (“History of Rome”, XXII. 51)"
-msgstr "“Havia milhares e milhares de Romanos \\[…]. Aqui e ali, no meio dos mortos, havia uma figura sangrenta, cujas feridas começaram a latejar com o arrepio do amanhecer e foram cortadas pelos seus inimigos.” \\n— Lívio, descrevendo as consequências da Batalha de Canas, onde Aníbal infligiu a maior derrota aos Romanos em toda sua história (“História de Roma”, XXII. 51)"
+msgstr "“Havia milhares e milhares de romanos \\[…]. Aqui e ali, no meio dos mortos, havia uma figura sangrenta, cujas feridas começaram a latejar com o arrepio do amanhecer e foram cortadas pelos seus inimigos.” \\n— Lívio, descrevendo as consequências da Batalha de Canas, onde Aníbal infligiu a maior derrota aos romanos em toda sua história (“História de Roma”, XXII. 51)"
 
 #: gui/text/quotes.txt:116
 msgid ""
@@ -1831,7 +1831,7 @@ msgid ""
 "and material advantages, they drove out the invaders and made our city what "
 "it is now.” \\n— Pericles (Thucydides, “History of the Peloponnesian War”, "
 "I. 144.3–4)"
-msgstr "“A maior glória é conquistada pelos maiores perigos. Quando os nossos pais enfrentaram os Persas, os seus recursos não podiam ser comparados aos nossos. De facto, eles desistiram mesmo do que tinham. Então, por sábios conselhos e ações ousadas, não com fortuna e vantagens materiais, eles expulsaram os invasores e fizeram da nossa cidade o que é agora.” \\n— Péricles (Tucídides, “História da Guerra do Peloponeso”, I. 144.3–4)"
+msgstr "“A maior glória é conquistada pelos maiores perigos. Quando os nossos pais enfrentaram os persas, os seus recursos não podiam ser comparados aos nossos. De facto, eles desistiram mesmo do que tinham. Então, por sábios conselhos e ações ousadas, não com fortuna e vantagens materiais, eles expulsaram os invasores e fizeram da nossa cidade o que é agora.” \\n— Péricles (Tucídides, “História da Guerra do Peloponeso”, I. 144.3–4)"
 
 #: gui/text/quotes.txt:132
 msgid ""
@@ -1956,7 +1956,7 @@ msgid ""
 "do not so much want men who will initiate attacks and open the battle, but "
 "men who will hold their ground when beaten and hard-pressed, and will be "
 "ready to die at their posts.” \\n— Polybius (“Histories”, VI. 24)"
-msgstr "“Eles \\[os Romanos] querem que os centuriões não sejam tão aventureiros e temerários, como líderes naturais, de um espírito constante e confiável. Eles não querem homens que irão iniciar ataques e abrir a batalha, mas homens que irão resistir quando forem espancados e pressionados, e estarão prontos para morrer nos seus postos.” \\n— Políbio (“Histórias”, VI. 24)"
+msgstr "“Eles \\[os romanos] querem que os centuriões não sejam tão aventureiros e temerários, como líderes naturais, de um espírito constante e confiável. Eles não querem homens que irão iniciar ataques e abrir a batalha, mas homens que irão resistir quando forem espancados e pressionados, e estarão prontos para morrer nos seus postos.” \\n— Políbio (“Histórias”, VI. 24)"
 
 #: gui/text/quotes.txt:148
 msgid ""
@@ -1984,7 +1984,7 @@ msgid ""
 "and there were only a very few who attempted to save themselves by flight.” "
 "\\n— Polybius on the Battle of Bagradas where a Roman army was annihilated "
 "during the First Punic War (“Histories”, I. 34)"
-msgstr "“A maioria dos Romanos foi pisada até a morte pelo enorme peso dos elefantes, os demais foram derrubados nas fileiras pela cavalaria numerosa: e havia apenas alguns que tentavam a salvação voando.” \\n— Políbio na Batalha de Bragadas onde um exército Romano foi aniquilado durante a Primeira Guerra Púnica (“Histórias”, I. 34)"
+msgstr "“A maioria dos romanos foi pisada até a morte pelo enorme peso dos elefantes, os demais foram derrubados nas fileiras pela cavalaria numerosa: e havia apenas alguns que tentavam a salvação voando.” \\n— Políbio na Batalha de Bragadas onde um exército romano foi aniquilado durante a Primeira Guerra Púnica (“Histórias”, I. 34)"
 
 #: gui/text/quotes.txt:151
 msgid ""
@@ -2012,7 +2012,7 @@ msgid ""
 "detachment, or in a single maniple, or even by himself.” \\n— Polybius, "
 "explaining how the Romans can defeat the Macedonian phalanx (“Histories”, "
 "XVIII. 32)"
-msgstr "“A ordem Romana, por outro lado, é flexível: pois todo Romano, uma vez armado e no campo, está igualmente bem equipado para cada lugar, tempo ou aparência do inimigo. Ele está, além do mais, pronto e não necessita de fazer nenhuma mudança, se ele é obrigado a lutar no corpo principal, ou num destacamento, ou num único manípulo, ou por si mesmo.” \\n— Políbio, explicando como os Romanos podem derrotar a falange Macedónia (“Histórias”, XVIII. 32)"
+msgstr "“A ordem Romana, por outro lado, é flexível: pois todo Romano, uma vez armado e no campo, está igualmente bem equipado para cada lugar, tempo ou aparência do inimigo. Ele está, além do mais, pronto e não necessita de fazer nenhuma mudança, se ele é obrigado a lutar no corpo principal, ou num destacamento, ou num único manípulo, ou por si mesmo.” \\n— Políbio, explicando como os romanos podem derrotar a falange Macedónia (“Histórias”, XVIII. 32)"
 
 #: gui/text/quotes.txt:154
 msgid ""
@@ -2101,7 +2101,7 @@ msgid ""
 "to live. Which is better God only knows.” Socrates, in his defense when "
 "trialled for corrupting the youth and not worshipping the proper gods (he "
 "later drank hemlock after the death sentence) \\n— Plato (“Apology”, 42a)"
-msgstr "“Chegou a hora da partida e seguimos os nossos caminhos - Eu para morrer, e tu para viver, o que é melhor só Deus sabe.” Sócrates, na sua defesa quando julgado por corromper a juventude e não adorar os deuses adequados (mais tarde ele bebeu cicuta após a sentença de morte) \\n— Platão (“Apologia de Sócrates”, 42a)"
+msgstr "“Chegou a hora da partida e seguimos os nossos caminhos – Eu para morrer e tu para viver. O que é melhor só Deus sabe.” Sócrates, na sua defesa quando julgado por corromper a juventude e não adorar os deuses adequados (mais tarde bebeu cicuta após a sentença de morte) \\n— Platão (“Apologia de Sócrates”, 42a)"
 
 #: gui/text/quotes.txt:166
 msgid ""
@@ -2195,7 +2195,7 @@ msgid ""
 " ever had perished, nothing was saved and few of so many ever returned home."
 " Thus ended the Sicilian expedition.” \\n— Thucydides (“History of the "
 "Peloponnesian War”, VII. 87.6–7)"
-msgstr "“Esta foi a maior ação que aconteceu em toda esta guerra, e todos os outros que ouvimos falar entre os Gregos, sendo para os vencedores mais glorioso e mais calamitoso para os vencidos. Porque eles foram totalmente e em todos os pontos derrotados, e os seus sofrimentos eram muitos, o exército e a frota e tudo o que tinham perecido, nada foi salvado e poucos de tantos voltaram para casa. Assim terminou a expedição Siciliana.” \\n— Tucídides (“História da Guerra do Peloponeso”, VII. 87.6–7)"
+msgstr "“Esta foi a maior ação que aconteceu em toda esta guerra, e todos os outros que ouvimos falar entre os gregos, sendo para os vencedores mais glorioso e mais calamitoso para os vencidos. Porque eles foram totalmente e em todos os pontos derrotados, e os seus sofrimentos eram muitos, o exército e a frota e tudo o que tinham perecido, nada foi salvado e poucos de tantos voltaram para casa. Assim terminou a expedição Siciliana.” \\n— Tucídides (“História da Guerra do Peloponeso”, VII. 87.6–7)"
 
 #: gui/text/quotes.txt:179
 msgid ""
@@ -2203,7 +2203,7 @@ msgid ""
 "strong do what they can and the weak suffer what they must.” \\n— "
 "Thucydides, describing Athenians addressing the defeated Melians who are "
 "unwilling to surrender (“History of the Peloponnesian War”, V. 89.1)"
-msgstr "“À medida que o mundo avança, a justiça é apenas uma questão entre iguais, enquanto os fortes fazem o que podem e os fracos sofrem o que precisam.” \\n— Tucídides, descrevendo os Atenienses dirigindo-se aos Melianos derrotados que não estão dispostos a render-se (“História da Guerra do Peloponeso”, V. 89.1)"
+msgstr "“Conforme o mundo, a justiça é apenas uma questão entre iguais, enquanto os fortes fazem o que podem e os fracos sofrem o que devem.” \\n— Tucídides, descrevendo os atenienses que se dirigem aos derrotados melianos que não estão dispostos a render-se (“História da Guerra do Peloponeso”, V. 89.1)"
 
 #: gui/text/quotes.txt:180
 msgid ""
@@ -2212,7 +2212,7 @@ msgid ""
 "darts to the closest man at hand.” \\n— Thucydides, describing the Spartan "
 "disaster at the Battle of Sphacteria (“History of the Peloponnesian War”, "
 "IV. 34.2)"
-msgstr "“Quando os lacedemónianos não puderam correr mais atrás deles, dos escaramuçadores \\[…] todos os acusaram imediatamente, lançando pedras, flechas e dardos ao homem mais próximo.” \\n— Tucídides, descrevendo o desastre espartano na Batalha de Esfactéria (“História da Guerra do Peloponeso”, IV. 34.2)"
+msgstr "“Quando os lacedemónios já não conseguiam correr atrás deles, dos escaramuçadores \\[…] atacaram-nos todos ao mesmo tempo, lançando pedras, flechas e dardos ao homem mais próximo.” \\n— Tucídides, descrevendo o desastre espartano na Batalha de Esfactéria (“História da Guerra do Peloponeso”, IV. 34.2)"
 
 #: gui/text/quotes.txt:181
 msgid ""
@@ -2238,7 +2238,7 @@ msgstr "“Os soldados lutam e morrem para apoiar os outros em riqueza e luxo e 
 msgid ""
 "“Do not trust the horse, Trojans! I fear the Greeks even when they bring "
 "gifts.” \\n— Virgil (“Aeneid”, II. 48–49)"
-msgstr "“Não confie no cavalo, Troianos! Temo os Gregos mesmo quando trazem presentes.” \\n— Virgílio (“Eneida”, II. 48–49)"
+msgstr "“Não confie no cavalo, troianos! Temo os gregos mesmo quando trazem presentes.” \\n— Virgílio (“Eneida”, II. 48–49)"
 
 #: gui/text/quotes.txt:184
 msgid "“Prepared for either alternative.” \\n— Virgil (“Aeneid”, II. 61)"
@@ -2271,7 +2271,7 @@ msgid ""
 "are you, friend? What is your land? And how old were you when the Medes "
 "\\[Persians] came?” \\n— Xenophanes, likely referring to a punitive "
 "expedition against Greek cities in Ionia (fragment 17)"
-msgstr "“Estas são as perguntas certas a fazer, no inverno em torno do fogo \\[…]: Quem és tu, amigo, qual é a tua terra? E quantos anos tinhas quando os Medos \\[Persas] vieram?” \\n— Xenófanes, provavelmente referindo-se a uma expedição punitiva contra cidades Gregas na Jónia (fragmento 17)"
+msgstr "“Estas são as perguntas certas a fazer, no inverno em torno do fogo \\[…]: Quem és tu, amigo, qual é a tua terra? E quantos anos tinhas quando os Medos \\[Persas] vieram?” \\n— Xenófanes, provavelmente referindo-se a uma expedição punitiva contra cidades gregas na Jónia (fragmento 17)"
 
 #: gui/text/quotes.txt:189
 msgid ""
@@ -2331,7 +2331,7 @@ msgid ""
 "plunder, fame, freedom, power – all these are prizes for the winners; the "
 "cowardly, of course, suffer the reverse.” \\n— Xenophon (“The Education of "
 "Cyrus”, 7.1.13)"
-msgstr "“Suponho que compreendem, homens, que perseguir, lidar com golpes e morte, pilhagem, fama, liberdade, poder - todos estes são prémios para os vencedores, os covardes, é claro, sofrem o contrário.” \\n— Xenofonte (“A Educação de Ciro”, 7.1.13)"
+msgstr "“Suponho que compreendem, homens, que a perseguição, os golpes e a morte, a pilhagem, a fama, a liberdade, o poder – tudo isto são prémios para os vencedores, os cobardes, evidentemente, sofrem o inverso.” \\n— Xenofonte (“A Educação de Ciro”, 7.1.13)"
 
 #: gui/text/quotes.txt:197
 msgid ""

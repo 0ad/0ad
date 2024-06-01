@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-05-17 07:18+0000\n"
-"PO-Revision-Date: 2024-05-17 07:18+0000\n"
+"POT-Creation-Date: 2024-05-31 07:19+0000\n"
+"PO-Revision-Date: 2024-05-31 07:19+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -135,7 +135,7 @@ msgid "Relic Count"
 msgstr "Muinaisjäännösten määrä"
 
 msgid "Hero Garrison"
-msgstr "Varuskunta sankareille"
+msgstr "Aquartelamento de heróis"
 
 msgid "Heroes can be garrisoned."
 msgstr "Героите могат да бъдат поставяни на гарнизон."
@@ -772,7 +772,7 @@ msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
 msgstr "%(label)s : %(garrisonSize)s %(extraSize)s "
 
 msgid "Garrison Size"
-msgstr "Tamaño do acuartelamento"
+msgstr "Tamanho do aquartelamento"
 
 msgctxt "nested garrison"
 msgid "+ "
@@ -895,7 +895,7 @@ msgstr "Стоимость:"
 
 #, python-format
 msgid "Requires %(technology)s"
-msgstr "Requer desenvolvimento de %(technology)s"
+msgstr "Necessita do desenvolvimento de %(technology)s"
 
 #, python-format
 msgid "%(label)s %(bonus)s"
@@ -2348,7 +2348,7 @@ msgstr "Przewijanie do przodu (przesunięcie w czasie)"
 
 msgctxt "hotkey metadata"
 msgid "Rewind time. Must have activated timewarp."
-msgstr "Rebobina o tempo. Tem de se ter ativada a opção \"Modo de alteração do tempo\"."
+msgstr "Rebobina o tempo. Tem de se ter ativada a opção \"Modo de viagem no tempo\"."
 
 msgctxt "hotkey metadata"
 msgid "Rewind (timewarp)"
@@ -3896,7 +3896,7 @@ msgid "Rank icon above status bar"
 msgstr "Εικονίδιο κατάταξης πάνω από την μπάρα κατάστασης."
 
 msgid "Show rank icons above status bars."
-msgstr "Mostrar ícones da graduação da unidade por cima das barras de estado."
+msgstr "Mostrar ícones da patente da unidade por cima das barras de estado."
 
 msgid "Experience status bar"
 msgstr "Stavový riadok so zobrazením skúseností"
@@ -4463,11 +4463,11 @@ msgstr "prenošenje podataka s terminala na računalo je uspjelo"
 
 #, python-format
 msgid "upload failed (%(errorCode)s)"
-msgstr "não foi possível fazer o carregamento (%(errorCode)s)"
+msgstr "s'ha produït un error en la pujada (%(errorCode)s)"
 
 #, python-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr "não foi possível fazer o carregamento (%(errorMessage)s)"
+msgstr "s'ha produït un error en la pujada (%(errorMessage)s)"
 
 msgid "Disable Feedback"
 msgstr "Απενεργοποίηση αποστολής πληροφοριών"
@@ -5268,7 +5268,7 @@ msgid "Can transport up to 40 units."
 msgstr "’S urrainn dha gu ruige 40 aonad a ghiùlan."
 
 msgid "Can be improved with greater health and garrison capacity."
-msgstr "Può essere migliorata con una maggiore salute e capacità di guarnigione."
+msgstr "Pode ser melhorado com mais pontos de vida e capacidade de aquartelamento."
 
 msgid "CITY WALLS"
 msgstr "MURALLES DE LA CIUTAT"
@@ -5388,7 +5388,7 @@ msgid "FORGE"
 msgstr "ΣΙΔΗΡΟΥΡΓΕΙΟ"
 
 msgid "Research structure for all factions."
-msgstr "Edifício de desenvolvimento de tecnologias para todas as civilizações."
+msgstr "Estrutura de desenvolvimento de tecnologias para todas as facões."
 
 msgid "Research weapon and armor upgrades for your units."
 msgstr "Desenvolve melhoramentos de armas e armaduras para todas as unidades."
@@ -5673,7 +5673,7 @@ msgstr ""
 "worden."
 
 msgid "Train Elite Healers and heal garrisoned units."
-msgstr "Permite reclutar sanadores de élite y curar unidades guarnecidas. "
+msgstr "Treina curandeiros de elite e cura unidades que estejam aquarteladas."
 
 msgid "SNAPPING"
 msgstr "KIINNITYS LINJAAN"
@@ -5759,7 +5759,7 @@ msgid "Its aura heals nearby units."
 msgstr "Cneasaíonn mothú an fhoirgneamh seo aonaid atá in aice láimhe."
 
 msgid "Garrison wounded units inside for quicker healing."
-msgstr "Guarnece o edifício com unidades feridas para que estas sejam curadas mais rapidamente."
+msgstr "Aseta haavoittuneet yksiköt miehittämään rakennusta nopeuttaaksesi niiden parantumista."
 
 msgid "TERRITORY DECAY"
 msgstr "Decaemento polo territorio"
@@ -5859,7 +5859,7 @@ msgstr ""
 "thoirt orra."
 
 msgid "Harvest from animals, berry bushes, fish, or fields."
-msgstr "Colha de animais, arbustos de bagas, peixes ou campos agrícolas."
+msgstr "Colheita de animais, arbustos de bagas, peixes ou campos agrícolas."
 
 msgctxt "firstWord"
 msgid "Food"

@@ -28,7 +28,7 @@ msgstr "Cor"
 #: gui/colormixer/colormixer.js:25
 msgid ""
 "Move the sliders to change the Red, Green and Blue components of the Color"
-msgstr "Move os deslizadores para alterar os componentes Vermelho, Verde e Azul da cor."
+msgstr "Move os deslizadores para alterar os componentes vermelho, verde e azul da cor"
 
 #: gui/colormixer/colormixer.js:90
 msgid "Red"
@@ -166,7 +166,7 @@ msgstr "Termo de Responsabilidade de 0 A.D. Empires Ascendant mod.io"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2023-07-27"
-msgstr "Data do Documento: 2023-07-27"
+msgstr "Data do documento: 2023-07-27"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
@@ -195,7 +195,7 @@ msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr "Ao usar o serviço, você entende que se aplicam os Termos de Utilização e a Política de Privacidade de mod.io's e que a Wildfire Games não é responsável por quaisquer danos resultantes deste serviço."
+msgstr "Ao usar o serviço, você compreende que se aplicam as Condições de Utilização e a Política de Privacidade de mod.io's e que a Wildfire Games não é responsável por quaisquer danos resultantes deste serviço."
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -209,7 +209,7 @@ msgstr "Não foi possível obter o ID do jogo.\n\n%(technicalDetails)s"
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr "Erro de Inicialização"
+msgstr "Erro de inicialização"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 msgid "Retry"
@@ -227,12 +227,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Não foi possível obter a Lista de Mods.\n\n%(technicalDetails)s"
+msgstr "Não foi possível obter a lista de mods.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr "Erro de Obtenção"
+msgstr "Erro de obtenção"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -246,7 +246,7 @@ msgstr "O descarregamento do ficheiro falhou.\n\n%(technicalDetails)s"
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr "Erro de Descarregamento"
+msgstr "Erro de descarregamento"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -260,7 +260,7 @@ msgstr "Erro de verificação do ficheiro.\n\n%(technicalDetails)s"
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr "Erro de Verificação"
+msgstr "Erro de verificação"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
@@ -268,12 +268,12 @@ msgstr "A inicializar a interface mod.io"
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr "A Inicializar"
+msgstr "A inicializar"
 
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
-msgstr "Mod Inválido: %(error)s"
+msgstr "Mod inválido: %(error)s"
 
 #: gui/modio/modio.js:246
 msgid "Fetching and updating list of available mods."
@@ -281,11 +281,11 @@ msgstr "A obter e atualizar a lista de mods disponíveis."
 
 #: gui/modio/modio.js:247
 msgid "Updating"
-msgstr "A Atualizar"
+msgstr "A atualizar"
 
 #: gui/modio/modio.js:249
 msgid "Cancel Update"
-msgstr "Cancelar Atualização"
+msgstr "Cancelar atualização"
 
 #: gui/modio/modio.js:265
 #, javascript-format
@@ -294,11 +294,11 @@ msgstr "A descarregar “%(modname)s”"
 
 #: gui/modio/modio.js:268
 msgid "Downloading"
-msgstr "A Descarregar"
+msgstr "A descarregar"
 
 #: gui/modio/modio.js:270
 msgid "Cancel Download"
-msgstr "Cancelar Descarregamento"
+msgstr "Cancelar descarregamento"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with
@@ -315,7 +315,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr "Tempo Decorrido: %(elapsed)s\nTempo Restante Estimado: %(remaining)s\nVelocidade Média: %(avgSpeed)s"
+msgstr "Tempo decorrido: %(elapsed)s\nTempo restante estimado: %(remaining)s\nVelocidade média: %(avgSpeed)s"
 
 #: gui/modio/modio.js:349
 msgid "∞"
@@ -335,11 +335,11 @@ msgstr "Mods mod.io"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
 msgid "Available Mods"
-msgstr "Mods Disponíveis"
+msgstr "Mods disponíveis"
 
 #: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
-msgstr "Filtre mods válidos"
+msgstr "Filtrar mods válidos"
 
 #: gui/modio/modio.xml:(caption):88
 msgid "Back"
@@ -347,7 +347,7 @@ msgstr "Voltar"
 
 #: gui/modio/modio.xml:(caption):93
 msgid "Refresh List"
-msgstr "Atualizar Lista"
+msgstr "Atualizar lista"
 
 #: gui/modio/modio.xml:(caption):98
 msgid "Download"
@@ -366,11 +366,11 @@ msgstr "Versão"
 #: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
 #: gui/modmod/modmod.xml:(heading):140
 msgid "Mod Label"
-msgstr "Etiqueta do Mod"
+msgstr "Etiqueta do mod"
 
 #: gui/modio/modio.xml:(heading):63
 msgid "File Size"
-msgstr "Tamanho do Ficheiro"
+msgstr "Tamanho do ficheiro"
 
 #: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
 #: gui/modmod/modmod.xml:(heading):143
@@ -386,7 +386,7 @@ msgstr "Filtro"
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "O 0 A.D. está feito para ser fácil de criar mods para ele. Os mods são distribuídos na forma de ficheiros .pyromod  que podem ser abertos como ficheiros .zip."
+msgstr "O 0 A.D. foi concebido para se criarem facilmente mods. Estes são distribuídos sob a forma de ficheiros .pyromod, que podem ser abertos como ficheiros .zip."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -411,11 +411,11 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "O serviço mod.io é desenvolvido pela DBolical, a empresa por detrás de IndieDB e ModDB. Esses sites web espalharam a palavra sobre o 0 A.D. e outros projetos independentes durante muito tempo! Hoje em dia, o mod.io permite listar e descarregar todos os mods que foram verificados pela equipa. Clica em \"Descarregar Mods\" para instalar e testar alguns!"
+msgstr "O serviço mod.io é desenvolvido pela DBolical, a empresa por detrás de IndieDB e ModDB. Esses sites web espalharam a palavra sobre o 0 A.D. e outros projetos independentes durante muito tempo! Hoje em dia, o mod.io permite listar e descarregar todos os mods que foram verificados pela equipa. Clica em \"Descarregar mods\" para instalar e testar alguns!"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr "Seletor de Mods Pyrogenesis"
+msgstr "Seletor de mods Pyrogenesis"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -423,7 +423,7 @@ msgstr "Fechar"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr "Guia de Modding"
+msgstr "Guia de modding"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
@@ -473,11 +473,11 @@ msgstr "Descrição"
 
 #: gui/modmod/modmod.xml:(caption):114
 msgid "Enabled Mods"
-msgstr "Mods Ativos"
+msgstr "Mods ativados"
 
 #: gui/modmod/modmod.xml:(caption):183
 msgid "Visit Website"
-msgstr "Visitar o Site"
+msgstr "Visitar o site"
 
 #: gui/modmod/modmod.xml:(caption):192
 msgid "Quit"
@@ -489,11 +489,11 @@ msgstr "Ajuda"
 
 #: gui/modmod/modmod.xml:(caption):207
 msgid "Download Mods"
-msgstr "Descarregar Mods"
+msgstr "Descarregar mods"
 
 #: gui/modmod/modmod.xml:(caption):212
 msgid "Save Configuration"
-msgstr "Guardar Configuração"
+msgstr "Guardar configuração"
 
 #: gui/modmod/modmod.xml:(caption):217
 msgid "Save and Restart"
@@ -527,7 +527,7 @@ msgstr "Alterar a ordem em que os mods são executados. Isto deve corresponder �
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
-msgstr "Termo de Responsabilidade"
+msgstr "Termo de responsabilidade"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
@@ -535,7 +535,7 @@ msgstr "Termos de mod.io"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr "Política de Privacidade de mod.io"
+msgstr "Política de privacidade de mod.io"
 
 #: gui/msgbox/msgbox.js:25 gui/timedconfirmation/timedconfirmation.js:46
 msgid "OK"
@@ -551,7 +551,7 @@ msgstr "Ver online"
 #: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr "Abrir %(url)s no navegador"
+msgstr "Abrir %(url)s no navegador."
 
 #: gui/termsdialog/termsdialog.xml:(caption):15
 msgid "Language"
@@ -559,7 +559,7 @@ msgstr "Idioma"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr "Declinar"
+msgstr "Recusar"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
