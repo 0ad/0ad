@@ -1,0 +1,37 @@
+{
+	"Description": {
+		"Title": "Late Spring",
+		"Description": "A blend of lingering snow and emerging grass, marking a quiet transition from winter to summer."
+	},
+	"Terrains": {
+		"mainTerrain": ["alpine_dirt_grass_50"],
+		"forestFloor": "alpine_forrestfloor_snow",
+		"cliff": ["alpine_cliff_a", "alpine_cliff_b", "alpine_cliff_c"],
+		"tier2Terrain": "alpine_grass_rocky",
+		"halfSnow": ["alpine_grass_snow_50", "alpine_dirt_snow"],
+		"snowLimited": ["alpine_snow_rocky"],
+		"dirt": "alpine_dirt",
+		"road": "new_alpine_citytile",
+		"roadWild": "new_alpine_citytile",
+		"water": "alpine_shore_rocks",
+		"shore": "alpine_shore_rocks_grass_50"
+	},
+	"Gaia": {
+		"tree1": "gaia/tree/pine",
+		"fruitBush": "gaia/fruit/berry_01",
+		"mainHuntableAnimal": "gaia/fauna_deer",
+		"secondaryHuntableAnimal": "gaia/fauna_rabbit",
+		"fish": "gaia/fish/generic",
+		"stoneLarge": "gaia/rock/alpine_large",
+		"stoneSmall": "gaia/rock/alpine_small",
+		"metalLarge": "gaia/ore/alpine_large"
+	},
+	"Decoratives": {
+		"grass": "actor|props/flora/grass_soft_small_tall.xml",
+		"grassShort": "actor|props/flora/grass_soft_large.xml",
+		"rockLarge": "actor|geology/stone_granite_med.xml",
+		"rockMedium": "actor|geology/stone_granite_med.xml",
+		"bushMedium": "actor|props/flora/bush_medit_me.xml",
+		"bushSmall": "actor|props/flora/bush_medit_sm.xml"
+	}
+}

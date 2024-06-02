@@ -1,90 +1,27 @@
+Engine.LoadLibrary("rmbiome");
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
-if (randBool())
+setBiome(g_MapSettings.Biome ?? "alpine/winter");
+const isLateSpringBiome = g_MapSettings.Biome !== "alpine/winter";
+
+setFogThickness(isLateSpringBiome ? 0.26 : 0.19);
+setFogFactor(isLateSpringBiome ? 0.4 : 0.35);
+
+setPPEffect("hdr");
+setPPSaturation(isLateSpringBiome ? 0.48 : 0.37);
+if (isLateSpringBiome)
 {
-	RandomMapLogger.prototype.printDirectly("Setting late spring biome.\n");
-
-	setFogThickness(0.26);
-	setFogFactor(0.4);
-
-	setPPEffect("hdr");
-	setPPSaturation(0.48);
 	setPPContrast(0.53);
 	setPPBloom(0.12);
-
-	var tPrimary = ["alpine_dirt_grass_50"];
-	var tForestFloor = "alpine_forrestfloor";
-	var tCliff = ["alpine_cliff_a", "alpine_cliff_b", "alpine_cliff_c"];
-	var tSecondary = "alpine_grass_rocky";
-	var tHalfSnow = ["alpine_grass_snow_50", "alpine_dirt_snow"];
-	var tSnowLimited = ["alpine_snow_rocky"];
-	var tDirt = "alpine_dirt";
-	var tRoad = "new_alpine_citytile";
-	var tRoadWild = "new_alpine_citytile";
-	var tShore = "alpine_shore_rocks_grass_50";
-	var tWater = "alpine_shore_rocks";
-
-	var oPine = "gaia/tree/pine";
-	var oBerryBush = "gaia/fruit/berry_01";
-	var oDeer = "gaia/fauna_deer";
-	var oFish = "gaia/fish/generic";
-	var oRabbit = "gaia/fauna_rabbit";
-	var oStoneLarge = "gaia/rock/alpine_large";
-	var oStoneSmall = "gaia/rock/alpine_small";
-	var oMetalLarge = "gaia/ore/alpine_large";
-
-	var aGrass = "actor|props/flora/grass_soft_small_tall.xml";
-	var aGrassShort = "actor|props/flora/grass_soft_large.xml";
-	var aRockLarge = "actor|geology/stone_granite_med.xml";
-	var aRockMedium = "actor|geology/stone_granite_med.xml";
-	var aBushMedium = "actor|props/flora/bush_medit_me.xml";
-	var aBushSmall = "actor|props/flora/bush_medit_sm.xml";
-}
-else
-{
-	RandomMapLogger.prototype.printDirectly("Setting winter spring biome.\n");
-
-	setFogFactor(0.35);
-	setFogThickness(0.19);
-	setPPSaturation(0.37);
-	setPPEffect("hdr");
-
-	var tPrimary = ["alpine_snow_a", "alpine_snow_b"];
-	var tForestFloor = "alpine_forrestfloor_snow";
-	var tCliff = ["alpine_cliff_snow"];
-	var tSecondary = "alpine_grass_snow_50";
-	var tHalfSnow = ["alpine_grass_snow_50", "alpine_dirt_snow"];
-	var tSnowLimited = ["alpine_snow_a", "alpine_snow_b"];
-	var tDirt = "alpine_dirt";
-	var tRoad = "new_alpine_citytile";
-	var tRoadWild = "new_alpine_citytile";
-	var tShore = "alpine_shore_rocks_icy";
-	var tWater = "alpine_shore_rocks";
-
-	var oPine = "gaia/tree/pine_w";
-	var oBerryBush = "gaia/fruit/berry_01";
-	var oDeer = "gaia/fauna_deer";
-	var oFish = "gaia/fish/generic";
-	var oRabbit = "gaia/fauna_rabbit";
-	var oStoneLarge = "gaia/rock/alpine_large";
-	var oStoneSmall = "gaia/rock/alpine_small";
-	var oMetalLarge = "gaia/ore/alpine_large";
-
-	var aGrass = "actor|props/flora/grass_soft_dry_small_tall.xml";
-	var aGrassShort = "actor|props/flora/grass_soft_dry_large.xml";
-	var aRockLarge = "actor|geology/stone_granite_med.xml";
-	var aRockMedium = "actor|geology/stone_granite_med.xml";
-	var aBushMedium = "actor|props/flora/bush_medit_me_dry.xml";
-	var aBushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
 }
 
-const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
+const pForest = [g_Terrains.forestFloor + TERRAIN_SEPARATOR + g_Gaia.tree1, g_Terrains.forestFloor];
 
 const heightSeaGround = -5;
 const heightLand = 3;
 
-const g_Map = new RandomMap(heightLand, tPrimary);
+const g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
 
 const numPlayers = getNumPlayers();
 const mapSize = g_Map.getSize();
@@ -104,31 +41,38 @@ placePlayerBases({
 	"PlayerTileClass": clPlayer,
 	"BaseResourceClass": clBaseResource,
 	"CityPatch": {
-		"outerTerrain": tRoadWild,
-		"innerTerrain": tRoad
+		"outerTerrain": g_Terrains.roadWild,
+		"innerTerrain": g_Terrains.road
 	},
 	"StartingAnimal": {
 	},
 	"Berries": {
-		"template": oBerryBush
+		"template": g_Gaia.fruitBush
 	},
 	"Mines": {
 		"types": [
-			{ "template": oMetalLarge },
-			{ "template": oStoneLarge }
+			{ "template": g_Gaia.metalLarge },
+			{ "template": g_Gaia.stoneLarge }
 		]
 	},
 	"Trees": {
-		"template": oPine,
+		"template": g_Gaia.tree1,
 		"count": scaleByMapSize(3, 12)
 	},
 	"Decoratives": {
-		"template": aGrassShort
+		"template": g_Decoratives.grassShort
 	}
 });
 Engine.SetProgress(20);
 
-createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 8), clHill, scaleByMapSize(10, 40) * numPlayers, Math.floor(scaleByMapSize(40, 60)), Math.floor(scaleByMapSize(4, 5)), Math.floor(scaleByMapSize(7, 15)), Math.floor(scaleByMapSize(5, 15)));
+createMountains(g_Terrains.cliff,
+	avoidClasses(clPlayer, 20, clHill, 8),
+	clHill,
+	scaleByMapSize(10, 40) * numPlayers,
+	Math.floor(scaleByMapSize(40, 60)),
+	Math.floor(scaleByMapSize(4, 5)),
+	Math.floor(scaleByMapSize(7, 15)),
+	Math.floor(scaleByMapSize(5, 15)));
 
 Engine.SetProgress(30);
 
@@ -136,7 +80,7 @@ g_Map.log("Creating lakes");
 createAreas(
 	new ChainPlacer(1, Math.floor(scaleByMapSize(4, 8)), Math.floor(scaleByMapSize(40, 180)), 0.7),
 	[
-		new LayeredPainter([tShore, tWater], [1]),
+		new LayeredPainter([g_Terrains.shore, g_Terrains.water], [1]),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 5),
 		new TileClassPainter(clWater)
 	],
@@ -144,65 +88,82 @@ createAreas(
 	scaleByMapSize(5, 16),
 	1);
 
-paintTerrainBasedOnHeight(3, Math.floor(scaleByMapSize(20, 40)), 0, tCliff);
-paintTerrainBasedOnHeight(Math.floor(scaleByMapSize(20, 40)), 100, 3, tSnowLimited);
+paintTerrainBasedOnHeight(3, Math.floor(scaleByMapSize(20, 40)), 0, g_Terrains.cliff);
+paintTerrainBasedOnHeight(Math.floor(scaleByMapSize(20, 40)), 100, 3, g_Terrains.snowLimited);
 
 createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
 const [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createForests(
- [tPrimary, tForestFloor, tForestFloor, pForest, pForest],
- avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 2),
- clForest,
- forestTrees);
+	[g_Terrains.mainTerrain, g_Terrains.forestFloor, g_Terrains.forestFloor, pForest, pForest],
+	avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 2),
+	clForest,
+	forestTrees);
 
 Engine.SetProgress(60);
 
 g_Map.log("Creating dirt patches");
 createLayeredPatches(
- [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
- [[tDirt,tHalfSnow], [tHalfSnow,tSnowLimited]],
- [2],
- avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
- scaleByMapSize(15, 45),
- clDirt);
+	[scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
+	[[g_Terrains.dirt, g_Terrains.halfSnow], [g_Terrains.halfSnow, g_Terrains.snowLimited]],
+	[2],
+	avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
+	scaleByMapSize(15, 45),
+	clDirt);
 
 g_Map.log("Creating grass patches");
 createPatches(
- [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
- tSecondary,
- avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
- scaleByMapSize(15, 45),
- clDirt);
+	[scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
+	g_Terrains.tier2Terrain,
+	avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
+	scaleByMapSize(15, 45),
+	clDirt);
 Engine.SetProgress(65);
 
 g_Map.log("Creating stone mines");
 createMines(
- [
-  [new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)],
-  [new SimpleObject(oStoneSmall, 2,5, 1,3)]
- ],
- avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
- clRock);
+	[
+		[
+			new SimpleObject(g_Gaia.stoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1),
+			new SimpleObject(g_Gaia.stoneSmall, 1, 1, 0, 4, 0, 2 * Math.PI, 4)
+		],
+		[
+			new SimpleObject(g_Gaia.stoneSmall, 2, 5, 1, 3)
+		]
+	],
+	avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
+	clRock);
 
 g_Map.log("Creating metal mines");
 createMines(
- [
-  [new SimpleObject(oMetalLarge, 1,1, 0,4)]
- ],
- avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
- clMetal
-);
+	[
+		[new SimpleObject(g_Gaia.metalLarge, 1, 1, 0, 4)]
+	],
+	avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
+	clMetal);
 
 Engine.SetProgress(70);
 
 createDecoration(
 	[
-		[new SimpleObject(aRockMedium, 1, 3, 0, 1)],
-		[new SimpleObject(aRockLarge, 1, 2, 0, 1), new SimpleObject(aRockMedium, 1, 3, 0, 2)],
-		[new SimpleObject(aGrassShort, 1, 2, 0, 1)],
-		[new SimpleObject(aGrass, 2, 4, 0, 1.8), new SimpleObject(aGrassShort, 3, 6, 1.2, 2.5)],
-		[new SimpleObject(aBushMedium, 1, 2, 0, 2), new SimpleObject(aBushSmall, 2, 4, 0, 2)]
+		[
+			new SimpleObject(g_Decoratives.rockMedium, 1, 3, 0, 1)
+		],
+		[
+			new SimpleObject(g_Decoratives.rockLarge, 1, 2, 0, 1),
+			new SimpleObject(g_Decoratives.rockMedium, 1, 3, 0, 2)
+		],
+		[
+			new SimpleObject(g_Decoratives.grassShort, 1, 2, 0, 1)
+		],
+		[
+			new SimpleObject(g_Decoratives.grass, 2, 4, 0, 1.8),
+			new SimpleObject(g_Decoratives.grassShort, 3, 6, 1.2, 2.5)
+		],
+		[
+			new SimpleObject(g_Decoratives.bushMedium, 1, 2, 0, 2),
+			new SimpleObject(g_Decoratives.bushSmall, 2, 4, 0, 2)
+		]
 	],
 	[
 		scaleByMapAreaAbsolute(16),
@@ -217,8 +178,8 @@ Engine.SetProgress(75);
 
 createFood(
 	[
-		[new SimpleObject(oDeer, 5, 7, 0, 4)],
-		[new SimpleObject(oRabbit, 2, 3, 0, 2)]
+		[new SimpleObject(g_Gaia.mainHuntableAnimal, 5, 7, 0, 4)],
+		[new SimpleObject(g_Gaia.secondaryHuntableAnimal, 2, 3, 0, 2)]
 	],
 	[
 		3 * numPlayers,
@@ -229,7 +190,7 @@ createFood(
 
 createFood(
 	[
-		[new SimpleObject(oBerryBush, 5, 7, 0, 4)]
+		[new SimpleObject(g_Gaia.fruitBush, 5, 7, 0, 4)]
 	],
 	[
 		randIntInclusive(1, 4) * numPlayers + 2
@@ -239,7 +200,7 @@ createFood(
 
 createFood(
 	[
-		[new SimpleObject(oFish, 2, 3, 0, 2)]
+		[new SimpleObject(g_Gaia.fish, 2, 3, 0, 2)]
 	],
 	[
 		15 * numPlayers
@@ -250,7 +211,7 @@ createFood(
 Engine.SetProgress(85);
 
 createStragglerTrees(
-	[oPine],
+	[g_Gaia.tree1],
 	avoidClasses(clWater, 5, clForest, 3, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6),
 	clForest,
 	stragglerTrees);
