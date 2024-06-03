@@ -1,0 +1,37 @@
+{
+	"Description": {
+		"Title": "Winter",
+		"Description": "Snow-capped trees loom through the mist. The ground is blanketed in a layer of snow."
+	},
+	"Terrains": {
+		"mainTerrain": ["alpine_snow_a", "alpine_snow_b"],
+		"forestFloor": "alpine_forrestfloor_snow",
+		"cliff": ["alpine_cliff_snow"],
+		"tier2Terrain": "alpine_grass_snow_50",
+		"halfSnow": ["alpine_grass_snow_50", "alpine_dirt_snow"],
+		"snowLimited": ["alpine_snow_a", "alpine_snow_b"],
+		"dirt": "alpine_dirt",
+		"road": "new_alpine_citytile",
+		"roadWild": "new_alpine_citytile",
+		"water": "alpine_shore_rocks",
+		"shore": "alpine_shore_rocks_icy"
+	},
+	"Gaia": {
+		"tree1": "gaia/tree/pine_w",
+		"fruitBush": "gaia/fruit/berry_01",
+		"mainHuntableAnimal": "gaia/fauna_deer",
+		"secondaryHuntableAnimal": "gaia/fauna_rabbit",
+		"fish": "gaia/fish/generic",
+		"stoneLarge": "gaia/rock/alpine_large",
+		"stoneSmall": "gaia/rock/alpine_small",
+		"metalLarge": "gaia/ore/alpine_large"
+	},
+	"Decoratives": {
+		"grass": "actor|props/flora/grass_soft_dry_small_tall.xml",
+		"grassShort": "actor|props/flora/grass_soft_dry_large.xml",
+		"rockLarge": "actor|geology/stone_granite_med.xml",
+		"rockMedium": "actor|geology/stone_granite_med.xml",
+		"bushMedium": "actor|props/flora/bush_medit_me_dry.xml",
+		"bushSmall": "actor|props/flora/bush_medit_sm_dry.xml"
+	}
+}
