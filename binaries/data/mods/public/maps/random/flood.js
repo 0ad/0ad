@@ -196,19 +196,19 @@ createObjectGroupsDeprecated(
 	10 * numPlayers,
 	60);
 
-var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(0.7));
+const [forestTreesMainIsland, stragglerTreesMainIsland] = getTreeCounts(...rBiomeTreeCount(0.7));
 createForests(
 	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
 	[avoidClasses(clPlayer, 25, clForest, 10, clBaseResource, 3, clMetal, 6, clRock, 6, clMountain, 2), stayClasses(clHill, 6)],
 	clForest,
-	forestTrees);
+	forestTreesMainIsland);
 
 const types = [oTree1, oTree2, oTree4, oTree3];
 createStragglerTrees(
 	types,
 	[avoidClasses(clBaseResource, 2, clMetal, 6, clRock, 6, clMountain, 2, clPlayer, 25), stayClasses(clHill, 6)],
 	clForest,
-	stragglerTrees);
+	stragglerTreesMainIsland);
 Engine.SetProgress(65);
 
 g_Map.log("Creating dirt patches");
@@ -256,7 +256,7 @@ createFood(
 
 Engine.SetProgress(85);
 
-var planetm = currentBiome() == "generic/india" ? 8 : 1;
+const planetm = currentBiome() == "generic/india" ? 8 : 1;
 createDecoration(
 	[
 		[new SimpleObject(aRockMedium, 1, 3, 0, 1)],
@@ -274,12 +274,12 @@ createDecoration(
 	],
 	avoidClasses(clForest, 2, clPlayer, 20, clMountain, 5, clFood, 1, clBaseResource, 2));
 
-var [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(0.1));
+const [forestTreesSurrounding, stragglerTreesSurrounding] = getTreeCounts(...rBiomeTreeCount(0.1));
 createForests(
 	[tMainTerrain, tForestFloor1, tForestFloor2, pForest1, pForest2],
 	avoidClasses(clPlayer, 30, clHill, 10, clFood, 5),
 	clForest,
-	forestTrees);
+	forestTreesSurrounding);
 
 g_Map.log("Creating small grass tufts");
 createObjectGroupsDeprecated(

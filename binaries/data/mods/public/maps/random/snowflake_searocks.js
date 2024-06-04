@@ -65,11 +65,11 @@ const islandBetweenPlayerAndCenterDist = 0.16;
 const islandBetweenPlayerAndCenterRadius = 0.81;
 const centralIslandRadius = 0.36;
 
-var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
+const [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
-var numIslands = 0;
-var isConnected = [];
-var islandPos = [];
+let numIslands = 0;
+const isConnected = [];
+const islandPos = [];
 
 function initIsConnected()
 {
@@ -99,10 +99,9 @@ function createIslandAtRadialLocation(playerID, islandID, playerIDOffset, distFr
 	createIsland(islandID, islandRadius, clLand);
 }
 
-function createSnowflakeSearockWithCenter(sizeID)
+function createSnowflakeSearockWithCenter([tertiaryIslandDist, tertiaryIslandRadius,
+	islandBetweenPlayersDist, islandBetweenPlayersRadius])
 {
-	const [tertiaryIslandDist, tertiaryIslandRadius, islandBetweenPlayersDist, islandBetweenPlayersRadius] = islandSizes[sizeID];
-
 	const islandID_center = 4 * numPlayers;
 	numIslands = islandID_center + 1;
 	initIsConnected();
@@ -199,19 +198,19 @@ else if (mapSize <= 192)
 else if (mapSize <= 256)
 {
 	if (numPlayers < 6)
-		createSnowflakeSearockWithCenter("medium");
+		createSnowflakeSearockWithCenter(islandSizes.medium);
 	else
 		createSnowflakeSearockWithoutCenter();
 }
 else if (mapSize <= 320)
 {
 	if (numPlayers < 8)
-		createSnowflakeSearockWithCenter("medium");
+		createSnowflakeSearockWithCenter(islandSizes.medium);
 	else
 		createSnowflakeSearockWithoutCenter();
 }
 else
-	createSnowflakeSearockWithCenter(numPlayers < 6 ? "large1" : "large2");
+	createSnowflakeSearockWithCenter(islandSizes["large" + (numPlayers < 6 ? "1" : "2")]);
 
 g_Map.log("Creating player islands");
 for (let i = 0; i < numPlayers; ++i)

@@ -85,8 +85,8 @@ const centralIslandPosition = new Array(numPlayers).fill(0).map((v, i) =>
 
 const areas = [];
 
-var nPlayer = 0;
-var playerPosition = [];
+let nPlayer = 0;
+const playerPosition = [];
 
 function createCycladicArchipelagoIsland(position, tileClass, radius, coralRadius)
 {
@@ -186,7 +186,7 @@ Engine.SetProgress(38);
 paintTileClassBasedOnHeight(-Infinity, 0, Elevation_ExcludeMin_ExcludeMax, clWater);
 
 g_Map.log("Creating forests");
-var forestTypes = [
+const forestTypes = [
 	[[tForestFloor, tGrass, pPalmForest], [tForestFloor, pPalmForest]],
 	[[tForestFloor, tGrass, pPineForest], [tForestFloor, pPineForest]],
 	[[tForestFloor, tGrass, pPoplarForest], [tForestFloor, pPoplarForest]],

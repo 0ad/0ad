@@ -236,10 +236,10 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 
 setBiome(g_MapSettings.Biome ?? "alpine/winter");
 
-var heightLand = 3;
-var heightOffsetBump = 2;
-var snowlineHeight = 29;
-var heightMountain = 30;
+const heightLand = 3;
+const heightOffsetBump = 2;
+const snowlineHeight = 29;
+const heightMountain = 30;
 
 const pForest = [g_Terrains.forestFloor + TERRAIN_SEPARATOR + g_Gaia.tree1, g_Terrains.forestFloor];
 
@@ -257,7 +257,7 @@ const clMetal = g_Map.createTileClass();
 const clFood = g_Map.createTileClass();
 const clBaseResource = g_Map.createTileClass();
 
-var [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
+const [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
 
 placePlayerBases({
 	"PlayerPlacement": [playerIDs, playerPosition],
@@ -341,7 +341,7 @@ const types = [
 	[[g_Terrains.forestFloor, g_Terrains.mainTerrain, pForest], [g_Terrains.forestFloor, pForest]]
 ];
 
-var size = forestTrees / (scaleByMapSize(2,8) * numPlayers);
+const size = forestTrees / (scaleByMapSize(2, 8) * numPlayers);
 
 const num = Math.floor(size / types.length);
 for (const type of types)
@@ -382,7 +382,7 @@ for (const size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize
 Engine.SetProgress(65);
 
 g_Map.log("Creating stone mines");
-var group = new SimpleGroup(
+let group = new SimpleGroup(
 	[
 		new SimpleObject(g_Gaia.stoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1),
 		new SimpleObject(g_Gaia.stoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)
@@ -473,7 +473,7 @@ createStragglerTrees(
 	stragglerTrees);
 
 g_Map.log("Creating small grass tufts");
-var planetm = 1;
+const planetm = 1;
 
 group = new SimpleGroup(
 	[new SimpleObject(g_Decoratives.grassShort, 1, 2, 0, 1, -Math.PI / 8, Math.PI / 8)]
