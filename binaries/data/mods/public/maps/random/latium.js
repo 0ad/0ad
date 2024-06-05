@@ -71,12 +71,12 @@ const clFood = g_Map.createTileClass();
 const clPlayer = g_Map.createTileClass();
 const clBaseResource = g_Map.createTileClass();
 
-var WATER_WIDTH = 0.1;
-var horizontal = randBool();
+const WATER_WIDTH = 0.1;
 
 g_Map.log("Creating players");
-var startAngle = randBool() ? 0 : Math.PI / 2;
-var playerPosition = playerPlacementLine(startAngle + Math.PI / 2, mapCenter, fractionToTiles(randFloat(0.42, 0.46)));
+const startAngle = randBool() ? 0 : Math.PI / 2;
+const playerPosition = playerPlacementLine(startAngle + Math.PI / 2, mapCenter,
+	fractionToTiles(randFloat(0.42, 0.46)));
 
 function distanceToPlayers(x, z)
 {
@@ -122,32 +122,36 @@ for (const x of [mapBounds.left, mapBounds.right])
 Engine.SetProgress(10);
 
 g_Map.log("Painting elevation");
-var noise0 = new Noise2D(scaleByMapSize(4, 16));
-var noise1 = new Noise2D(scaleByMapSize(8, 32));
-var noise2 = new Noise2D(scaleByMapSize(15, 60));
+const noise0 = new Noise2D(scaleByMapSize(4, 16));
+const noise1 = new Noise2D(scaleByMapSize(8, 32));
+const noise2 = new Noise2D(scaleByMapSize(15, 60));
 
-var noise2a = new Noise2D(scaleByMapSize(20, 80));
-var noise2b = new Noise2D(scaleByMapSize(35, 140));
+const noise2a = new Noise2D(scaleByMapSize(20, 80));
+const noise2b = new Noise2D(scaleByMapSize(35, 140));
 
-var noise3 = new Noise2D(scaleByMapSize(4, 16));
-var noise4 = new Noise2D(scaleByMapSize(6, 24));
-var noise5 = new Noise2D(scaleByMapSize(11, 44));
+const noise3 = new Noise2D(scaleByMapSize(4, 16));
+const noise4 = new Noise2D(scaleByMapSize(6, 24));
+const noise5 = new Noise2D(scaleByMapSize(11, 44));
 
-for (var ix = 0; ix <= mapSize; ix++)
-	for (var iz = 0; iz <= mapSize; iz++)
+for (let ix = 0; ix <= mapSize; ix++)
+	for (let iz = 0; iz <= mapSize; iz++)
 	{
 		const position = new Vector2D(ix, iz);
 
-		var x = ix / (mapSize + 1.0);
-		var z = iz / (mapSize + 1.0);
-		var pn = playerNearness(x, z);
+		const x = ix / (mapSize + 1.0);
+		const z = iz / (mapSize + 1.0);
+		const pn = playerNearness(x, z);
 
 		const c = startAngle ? z : x;
 		const distToWater = clWater.has(position) ? 0 : (0.5 - WATER_WIDTH - Math.abs(c - 0.5));
 		let h = distToWater ? heightHill * (1 - Math.abs(c - 0.5) / (0.5 - WATER_WIDTH)) : g_Map.getHeight(position);
 
 		// add some base noise
-		var baseNoise = 16*noise0.get(x,z) + 8*noise1.get(x,z) + 4*noise2.get(x,z) - (16+8+4)/2;
+		let baseNoise =
+			16 * noise0.get(x, z) +
+			8 * noise1.get(x, z) +
+			4 * noise2.get(x, z) -
+			(16 + 8 + 4) / 2;
 		if ( baseNoise < 0 )
 		{
 			baseNoise *= pn;
@@ -186,19 +190,19 @@ for (var ix = 0; ix <= mapSize; ix++)
 Engine.SetProgress(20);
 
 g_Map.log("Painting terrain");
-var noise6 = new Noise2D(scaleByMapSize(10, 40));
-var noise7 = new Noise2D(scaleByMapSize(20, 80));
-var noise8 = new Noise2D(scaleByMapSize(13, 52));
-var noise9 = new Noise2D(scaleByMapSize(26, 104));
-var noise10 = new Noise2D(scaleByMapSize(50, 200));
+const noise6 = new Noise2D(scaleByMapSize(10, 40));
+const noise7 = new Noise2D(scaleByMapSize(20, 80));
+const noise8 = new Noise2D(scaleByMapSize(13, 52));
+const noise9 = new Noise2D(scaleByMapSize(26, 104));
+const noise10 = new Noise2D(scaleByMapSize(50, 200));
 
-for (var ix = 0; ix < mapSize; ix++)
-	for (var iz = 0; iz < mapSize; iz++)
+for (let ix = 0; ix < mapSize; ix++)
+	for (let iz = 0; iz < mapSize; iz++)
 	{
 		const position = new Vector2D(ix, iz);
-		var x = ix / (mapSize + 1.0);
-		var z = iz / (mapSize + 1.0);
-		var pn = playerNearness(x, z);
+		const x = ix / (mapSize + 1.0);
+		const z = iz / (mapSize + 1.0);
+		const pn = playerNearness(x, z);
 
 		// Compute height difference
 		let minH = +Infinity;
@@ -209,14 +213,14 @@ for (var ix = 0; ix < mapSize; ix++)
 			minH = Math.min(minH, height);
 			maxH = Math.max(maxH, height);
 		}
-		var diffH = maxH - minH;
+		const diffH = maxH - minH;
 
 		// figure out if we're at the top of a cliff using min adjacent height
-		var minAdjHeight = minH;
+		let minAdjHeight = minH;
 		if (maxH > 15)
 		{
-			var maxNx = Math.min(ix + 2, mapSize);
-			var maxNz = Math.min(iz + 2, mapSize);
+			const maxNx = Math.min(ix + 2, mapSize);
+			const maxNz = Math.min(iz + 2, mapSize);
 			for (let nx = Math.max(ix - 1, 0); nx <= maxNx; ++nx)
 				for (let nz = Math.max(iz - 1, 0); nz <= maxNz; ++nz)
 					minAdjHeight = Math.min(minAdjHeight, g_Map.getHeight(new Vector2D(nx, nz)));
@@ -269,7 +273,7 @@ for (var ix = 0; ix < mapSize; ix++)
 		// forests
 		if (g_Map.getHeight(position) < 11 && diffH < 2 && minH > 1)
 		{
-			var forestNoise = (noise6.get(x,z) + 0.5*noise7.get(x,z)) / 1.5 * pn - 0.59;
+			const forestNoise = (noise6.get(x, z) + 0.5 * noise7.get(x, z)) / 1.5 * pn - 0.59;
 
 			// Thin out trees a bit
 			if (forestNoise > 0 && randBool())
@@ -298,7 +302,7 @@ for (var ix = 0; ix < mapSize; ix++)
 		// grass variations
 		if (t == tGrass)
 		{
-			var grassNoise = (noise8.get(x,z) + 0.6*noise9.get(x,z)) / 1.6;
+			const grassNoise = (noise8.get(x, z) + 0.6 * noise9.get(x, z)) / 1.6;
 			if (grassNoise < 0.3)
 				t = (diffH > 1.2) ? tDirtCliff : tDirt;
 			else if (grassNoise < 0.34)
@@ -357,7 +361,7 @@ placePlayerBases({
 Engine.SetProgress(40);
 
 g_Map.log("Creating bushes");
-var group = new SimpleGroup(
+let group = new SimpleGroup(
 	[new SimpleObject(aBushSmall, 0,2, 0,2), new SimpleObject(aBushSmallDry, 0,2, 0,2),
 	new SimpleObject(aBushMed, 0,1, 0,2), new SimpleObject(aBushMedDry, 0,1, 0,2)]
 );

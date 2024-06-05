@@ -200,7 +200,7 @@ Engine.SetProgress(75);
 
 // Roaming animals
 {
-	var placeRoaming = function(name, objs)
+	const placeRoaming = function(name, objs)
 	{
 		g_Map.log("Creating roaming " + name);
 		const group = new SimpleGroup(objs, true, clFood);
@@ -237,7 +237,7 @@ Engine.SetProgress(75);
 // Animals that hang around watering holes
 {
 	// TODO: these have a high retry factor because our mapgen constraint logic is bad.
-	var placeWateringHoleAnimals = function(name, objs, numberOfGroups)
+	const placeWateringHoleAnimals = function(name, objs, numberOfGroups)
 	{
 		g_Map.log("Creating " + name + " around watering holes");
 		const group = new SimpleGroup(objs, true, clFood);

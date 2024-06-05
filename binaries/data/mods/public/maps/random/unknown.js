@@ -72,9 +72,9 @@ const clBaseResource = g_Map.createTileClass();
 const clLand = g_Map.createTileClass();
 const clShallow = g_Map.createTileClass();
 
-var landElevationPainter = new SmoothElevationPainter(ELEVATION_SET, heightLand, 4);
+const landElevationPainter = new SmoothElevationPainter(ELEVATION_SET, heightLand, 4);
 
-var unknownMapFunctions = {
+const unknownMapFunctions = {
 	"land": [
 		"Continent",
 		"Isthmus",
@@ -99,11 +99,11 @@ var unknownMapFunctions = {
  * because nomad maps randomize the locations after the terrain generation.
  * The locations should only determined by the landscape functions to avoid placing bodies of water and resources into civic centers and the starting resources.
  */
-var playerIDs = sortAllPlayers();
-var playerPosition = [];
+let playerIDs = sortAllPlayers();
+let playerPosition = [];
 
-var g_StartingTreasures = false;
-var g_StartingWalls = true;
+let g_StartingTreasures = false;
+let g_StartingWalls = true;
 
 function createUnknownMap()
 {

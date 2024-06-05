@@ -302,32 +302,32 @@ for (let ix = 0; ix < mapSize; ix++)
 Engine.SetProgress(60);
 
 g_Map.log("Creating forests");
-var [forestTrees, stragglerTrees] = getTreeCounts(1300, 8000, 0.8);
-var [forestTreesJoin, forestTrees] = getTreeCounts(forestTrees, forestTrees, 0.25);
+const [protoPorestTrees, stragglerTrees] = getTreeCounts(1300, 8000, 0.8);
+const [forestTreesJoin, forestTrees] = getTreeCounts(protoPorestTrees, protoPorestTrees, 0.25);
 
-var num = forestTrees / scaleByMapSize(20, 70);
+const treeNum = forestTrees / scaleByMapSize(20, 70);
 createAreasInAreas(
-	new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
+	new ClumpPlacer(forestTrees / treeNum, 0.1, 0.1, Infinity),
 	[
 		new TerrainPainter(pForest),
 		new TileClassPainter(clForest)
 	],
 	avoidClasses(clPlayer, 5, clBaseResource, 4, clForest, 5, clHill, 4),
-	num,
+	treeNum,
 	100,
 	[explorableArea]
 );
 
-var num = forestTreesJoin / (scaleByMapSize(4, 6) * numPlayers);
+const joinNum = forestTreesJoin / (scaleByMapSize(4, 6) * numPlayers);
 createAreasInAreas(
-	new ClumpPlacer(forestTreesJoin / num, 0.1, 0.1, Infinity),
+	new ClumpPlacer(forestTreesJoin / joinNum, 0.1, 0.1, Infinity),
 	[
 		new TerrainPainter(pForest),
 		new TileClassPainter(clForest),
 		new TileClassPainter(clForestJoin)
 	],
 	[avoidClasses(clPlayer, 5, clBaseResource, 4, clForestJoin, 5, clHill, 4), borderClasses(clForest, 1, 4)],
-	num,
+	joinNum,
 	100,
 	[explorableArea]
 );
@@ -436,13 +436,13 @@ Engine.SetProgress(90);
 
 g_Map.log("Creating straggler trees");
 const types = [oOak, oOakLarge, oPine, oAleppoPine];
-var num = Math.floor(stragglerTrees / types.length);
+const stragglerNum = Math.floor(stragglerTrees / types.length);
 for (const type of types)
 	createObjectGroupsByAreasDeprecated(
 		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
 		0,
 		avoidClasses(clForest, 4, clHill, 5, clPlayer, 10, clBaseResource, 2, clMetal, 5, clRock, 5),
-		num, 20,
+		stragglerNum, 20,
 		[explorableArea]);
 
 Engine.SetProgress(95);
