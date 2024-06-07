@@ -228,11 +228,11 @@
 			{
 				"type": "dropdown",
 				"label": "Renderer backend",
-				"tooltip": "Choose the renderer's backend. REQUIRES GAME RESTART",
+				"tooltip": "Choose the renderer's backend. It's recommended to use Vulkan if supported. REQUIRES GAME RESTART",
 				"config": "rendererbackend",
 				"list": [
 					{ "value": "gl", "label": "OpenGL", "tooltip": "Default OpenGL backend with GLSL. REQUIRES GAME RESTART" },
-					{ "value": "glarb", "label": "OpenGL ARB", "tooltip": "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART" },
+					{ "value": "glarb", "label": "OpenGL ARB (Deprecated)", "tooltip": "Legacy OpenGL backend with ARB shaders. It's deprecated and it's going to be removed in future versions of the game. REQUIRES GAME RESTART" },
 					{ "value": "vulkan", "label": "Vulkan", "tooltip": "Modern API, requires up-to-date drivers. REQUIRES GAME RESTART" }
 				]
 			},
