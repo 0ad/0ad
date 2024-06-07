@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-05-24 07:08+0000\n"
+"POT-Creation-Date: 2024-06-03 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS, 2020-2022,2024\n"
 "Language-Team: Greek (http://app.transifex.com/wildfire-games/0ad/language/el/)\n"
@@ -859,6 +859,31 @@ msgstr "Ποταμοί ρέουν μεταξύ των παικτών και εν
 msgid "Rivers"
 msgstr "Ποτάμια"
 
+#: maps/random/rmbiome/alpine/late_spring.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"A blend of lingering snow and emerging grass, marking a quiet transition "
+"from winter to summer."
+msgstr ""
+
+#: maps/random/rmbiome/alpine/late_spring.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Late Spring"
+msgstr "Τέλη της Άνοιξης"
+
+#: maps/random/rmbiome/alpine/winter.jsonDescription.Description
+msgctxt "biome definition"
+msgid ""
+"Snow-capped trees loom through the mist. The ground is blanketed in a layer "
+"of snow."
+msgstr ""
+
+#: maps/random/rmbiome/alpine/winter.jsonDescription.Title
+#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
+msgctxt "biome definition"
+msgid "Winter"
+msgstr "Χειμώνας"
+
 #: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
 msgctxt "biome definition"
 msgid ""
@@ -1051,11 +1076,6 @@ msgid ""
 "Winter has set in, carpeting the land with its first snow, but the landscape"
 " is still dotted with colorful berry bushes."
 msgstr ""
-
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Winter"
-msgstr "Χειμώνας"
 
 #: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
 msgctxt "biome definition"
@@ -2569,17 +2589,17 @@ msgstr ""
 
 #: maps/skirmishes/arabian_oases_2p.xml:Name:39
 msgid "Arabian Oases (2 players)"
-msgstr ""
+msgstr "Όαση της Αραβίας ( 2 παίκτες)"
 
 #: maps/skirmishes/arabian_oases_2p.xml:PlayerData[0].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[1].Name:39
 msgid "Northeast Player"
-msgstr ""
+msgstr "Βορειοανατολικός Παίκτης"
 
 #: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[2].Name:39
 msgid "Southwest Player"
-msgstr ""
+msgstr "Νοτιοδυτικός Παίκτης"
 
 #: maps/skirmishes/atlas_valleys_8p.xml:Description:39
 msgid ""
@@ -2697,11 +2717,11 @@ msgstr "Ένας χάρτης τύπου \"μικρό νησί\" τοποθετ�
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2 players)"
-msgstr ""
+msgstr "Κυκλαδικό Αρχιπέλαγος (2 παίκτες)"
 
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
 msgid "Cycladic Archipelago (3 players)"
-msgstr ""
+msgstr "Κυκλαδικό Αρχιπέλαγος (3 παίκτες)"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""

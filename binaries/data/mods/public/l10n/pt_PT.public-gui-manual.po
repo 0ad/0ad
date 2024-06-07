@@ -48,7 +48,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “High-"
 "quality water effects” and “Shadows” options."
-msgstr "Podes alternar entre o modo de ecrã inteiro e o modo de janela premindo as teclas Alt + Enter. No modo de janela, podes alterar o tamanho desta. Se o jogo estiver muito lento, podes alterar algumas definições na janela de opções: experimenta desativar as opções de “Efeitos de água de alta qualidade” e “Sombras”."
+msgstr "Podes mudar entre o modo de ecrã inteiro e o modo de janela premindo as teclas Alt + Enter. No modo de janela, podes alterar o tamanho desta. Se o jogo estiver muito lento, podes alterar algumas configurações na janela de opções: experimenta desativar as opções de “Efeitos de água de alta qualidade” e “Sombras”."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -209,7 +209,7 @@ msgstr "  hotkey.fps.toggle – mostra ou oculta o número de fotogramas por seg
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr "  hotkey.profile.toggle – alterna o analisador de perfil em tempo real (circula pelas visualizações de informações)"
+msgstr "  hotkey.profile.toggle – mostra ou oculta o analisador de perfil em tempo real (circula pelas visualizações de informações)"
 
 #: gui/manual/intro.txt:48
 msgid ""
@@ -414,13 +414,13 @@ msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session
 msgid ""
 "  hotkey.session.highlightguarded with unit(s) selected – Highlight the "
 "unit(s)/structure(s) guarded by the selection"
-msgstr "  hotkey.session.highlightguarded com unidades selecionadas – destaca as estruturas ou unidades guardadas pela seleção"
+msgstr "  hotkey.session.highlightguarded com unidades selecionadas – destaca as estruturas ou unidades protegidas pela seleção"
 
 #: gui/manual/intro.txt:88
 msgid ""
 "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – "
 "Highlight the unit(s) guarding the selection"
-msgstr "  hotkey.session.highlightguarding com unidades / estruturas selecionadas – destaca as unidades ou construções que as unidades ou construções selecionadas estão a proteger"
+msgstr "  hotkey.session.highlightguarding com unidades / estruturas selecionadas – destaca as unidades que estão a proteger as unidades / estruturas selecionadas"
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -430,7 +430,7 @@ msgstr "  highlightguarding.showstatusbars – mostra todas as barras de estado 
 
 #: gui/manual/intro.txt:90
 msgid "  hotkey.summary – Toggle summary window"
-msgstr "  hotkey.summary – mostra ou esconde a janela de estatísticas"
+msgstr "  hotkey.summary – mostra ou oculta a janela de estatísticas"
 
 #: gui/manual/intro.txt:91
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
@@ -610,7 +610,7 @@ msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr "  hotkey.wireframe – alterna a visualização em linhas (pressionar mais uma vez para ver as linhas sobre os modelos com texturas; pressionar outra vez para ver apenas as linhas coloridas com as texturas; pressionar outra vez para voltar à visualização normal)"
+msgstr "  hotkey.wireframe – ativa ou desativa a visualização em linhas (pressionar mais uma vez para ver as linhas sobre os modelos com texturas; pressionar outra vez para ver apenas as linhas coloridas com as texturas; pressionar outra vez para voltar à visualização normal)"
 
 #: gui/manual/intro.txt:127
 msgid ""

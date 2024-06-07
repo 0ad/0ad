@@ -119,17 +119,17 @@ msgstr "Hauptmenü"
 msgid ""
 "The command '%(cmd)s' is not supported. Try %(help)s to get more information"
 " about the supported commands."
-msgstr "Der Befehl ‚%(cmd)s‘ wird nicht unterstützt. Verwende %(help)s, um mehr Informationen zu unterstützten Befehlen zu bekommen."
+msgstr "Der Befehl „%(cmd)s“ wird nicht unterstützt. Verwende „%(help)s“, um mehr Informationen zu unterstützten Befehlen zu bekommen."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr "Der ‚%(cmd)s‘-Befehl darf nur von Moderatoren eingesetzt werden."
+msgstr "Der Befehl „%(cmd)s“ darf nur von Moderatoren eingesetzt werden."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:67
 #, javascript-format
 msgid "The command '%(cmd)s' requires at least one argument."
-msgstr "Der Befehl ‚%(cmd)s‘ benötigt mindestens ein Argument."
+msgstr "Der Befehl „%(cmd)s“ benötigt mindestens ein Argument."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:88
 msgid "Set your state to 'Away'."
@@ -141,7 +141,7 @@ msgstr "Deinen Status auf „Online“ setzen."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:102
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "Einen bestimmten Benutzer aus der Lobby kicken. Syntax: „/kick Name Grund“"
+msgstr "Einen bestimmten Benutzer aus der Lobby werfen. Syntax: „/kick Name Grund“"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:114
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
@@ -168,7 +168,7 @@ msgstr "Eine Chatnachricht über dich selbst senden. Beispiel: „/me geht schwi
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:150
 msgid "/me"
-msgstr "/ich"
+msgstr "/me"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:154
 msgid ""
@@ -179,11 +179,11 @@ msgstr "Text als Chatnachricht senden (selbst, wenn er mit einem Schrägstrich b
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:157
 msgid "/say"
-msgstr "/sagen"
+msgstr "/say"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:161
 msgid "Clear all chat scrollback."
-msgstr "Leere das ganze Chatprotokoll."
+msgstr "Leere den gesamten Chatverlauf."
 
 #. Translation: Chat message issued using the ‘/me’ command.
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
@@ -323,7 +323,7 @@ msgstr "GEKICKT"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr "Du wurdest von der Lobby getrennt. Möchtest du die Verbindung wiederherstellen?"
+msgstr "Deine Verbindung zur Lobby wurde getrennt. Möchtest du die Verbindung wiederherstellen?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:55
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
@@ -367,11 +367,11 @@ msgstr "Endloses Spiel"
 msgid ""
 "You have some incompatible mods:\n"
 "%(details)s"
-msgstr "Du hast ungültige Mods:\n%(details)s"
+msgstr "Du hast inkompatible Mods:\n%(details)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
-msgstr "Diese Mod beeinträchtigt nicht die Mehrspieler-Kompatibilität"
+msgstr "Dieser Mod beeinträchtigt die Mehrspieler-Kompatibilität nicht."
 
 #: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
@@ -475,7 +475,7 @@ msgstr "< %(rating)s"
 
 #: gui/lobby/LobbyPage/KickStrings.js:39
 msgid "You have been kicked from the lobby!"
-msgstr "Du wurdest aus der Lobby gekickt!"
+msgstr "Du wurdest aus der Lobby geworfen!"
 
 #: gui/lobby/LobbyPage/KickStrings.js:40
 msgid "You have been banned from the lobby!"
@@ -484,7 +484,7 @@ msgstr "Du wurdest aus der Lobby verbannt!"
 #: gui/lobby/LobbyPage/KickStrings.js:43
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr "%(nick)s wurde aus der Lobby gekickt."
+msgstr "%(nick)s wurde aus der Lobby geworfen."
 
 #: gui/lobby/LobbyPage/KickStrings.js:44
 #, javascript-format
@@ -550,7 +550,7 @@ msgstr "Spieler"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:114
 msgid "Muted Player"
-msgstr "Stummer Spieler"
+msgstr "Stummgeschalteter Spieler"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:120
 msgctxt "Used for an undefined winning rate"
@@ -565,7 +565,7 @@ msgstr "%(percentage)s%%"
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):30
 msgid "Current Rank:"
-msgstr "Rang:"
+msgstr "Aktueller Rang:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):12
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):34
@@ -595,11 +595,11 @@ msgstr "Gewinnquote:"
 #: gui/lobby/ProfilePage/ProfilePage.js:86
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr "Spieler „%(nick)s“ nicht gefunden."
+msgstr "Spieler „%(nick)s“ wurde nicht gefunden."
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):16
 msgid "Enter playername:"
-msgstr "Spielername eingeben:"
+msgstr "Spielernamen eingeben:"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):22
 msgid "View Profile"
@@ -641,7 +641,7 @@ msgstr "Bitte gib dein Passwort erneut ein"
 
 #: gui/prelobby/common/credentials/credentials.js:36
 msgid "Passwords do not match"
-msgstr "Passwörter stimmen nicht überein"
+msgstr "Die Passwörter stimmen nicht überein"
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"
@@ -1267,7 +1267,7 @@ msgstr "Datenschutz-Bestimmungen"
 
 #: gui/prelobby/common/terms/termslobby.js:30
 msgid "Please read and accept the Privacy Policy."
-msgstr "Bitte lese und akzeptiere die Datenschutz-Bestimmungen."
+msgstr "Bitte lies und akzeptiere die Datenschutz-Bestimmungen."
 
 #: gui/prelobby/entrance/entrance.xml:(caption):20
 msgid "Create a new account"

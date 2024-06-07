@@ -6,12 +6,13 @@
 # Martin Schilliger
 # JeHathor
 # xtother90
+# Daniel Roschka
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2023-08-18 07:08+0000\n"
 "PO-Revision-Date: 2018-10-14 18:34+0000\n"
-"Last-Translator: xtother90, 2022\n"
+"Last-Translator: Daniel Roschka <dunedan@phoenitydawn.de>, 2024\n"
 "Language-Team: German (https://app.transifex.com/wildfire-games/teams/17418/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr ""
 
 #: gui/userreport/Terms_and_Conditions.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2023-08-17"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Dokumentendatum:[/font] 17.08.2023"
 
 #: gui/userreport/Terms_and_Conditions.txt:5
 msgid ""
@@ -36,6 +37,10 @@ msgid ""
 "Wildfire Games and community developers to improve the performance and "
 "compatibility of 0 A.D."
 msgstr ""
+"Der 0 A.D. UserReporter gibt dir als 0 A.D. Spieler die Möglichkeit, "
+"automatisch Hardware- und Software-Informationen hochzuladen. Mit diesen "
+"Daten hilfst du Wildfire Games und Entwicklern aus der Community, Leistung "
+"und Kompatibilität von 0 A.D zu verbessern."
 
 #: gui/userreport/Terms_and_Conditions.txt:7
 msgid "[font=\"sans-bold-14\"]Purpose of the UserReport:[/font]"
@@ -238,7 +243,7 @@ msgstr ""
 
 #: gui/userreport/Terms_and_Conditions.txt:40
 msgid "    The current configuration folder is %(configPath)s."
-msgstr "Der aktuelle Konfigurationsordner ist %(configPath)s."
+msgstr "Das aktuelle Konfigurationsverzeichnis ist %(configPath)s."
 
 #: gui/userreport/Terms_and_Conditions.txt:41
 msgid ""
@@ -248,11 +253,12 @@ msgstr ""
 
 #: gui/userreport/Terms_and_Conditions.txt:42
 msgid "    The data can be reviewed before the UserReporter is enabled."
-msgstr "Die Daten können geprüft werden, vor der Userreporter aktiviert wird."
+msgstr ""
+"Die Daten können vor der Aktivierung des UserReporters geprüft werden."
 
 #: gui/userreport/Terms_and_Conditions.txt:43
 msgid "    The current logfolder is %(logPath)s."
-msgstr "Der aktuelle Log-Ordner ist %(logPath)s."
+msgstr "Das aktuelle Log-Verzeichnis ist %(logPath)s."
 
 #: gui/userreport/Terms_and_Conditions.txt:44
 msgid ""
@@ -467,7 +473,7 @@ msgstr ""
 
 #: gui/userreport/Terms_and_Conditions.txt:71
 msgid "The minimum age to use the service is 13."
-msgstr "Das Mindestalter um den Dienst zu Nutzen beträgt 13 Jahre."
+msgstr "Das Mindestalter um den Dienst zu nutzen beträgt 13 Jahre."
 
 #: gui/userreport/Terms_and_Conditions.txt:72
 msgid ""

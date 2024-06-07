@@ -669,7 +669,7 @@ msgstr "Tempo restante de cessar-fogo: %(time)s."
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
 #: gui/session/minimap/MiniMapDiplomacyColorsButton.js:36
 msgid "Toggle Diplomacy Colors"
-msgstr "Alternar cores de diplomacia"
+msgstr "Mostrar / ocultar cores de diplomacia"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
@@ -1075,7 +1075,7 @@ msgstr "Alertar as cidadãs próximas para procurarem refúgio."
 
 #: gui/session/selection_panels.js:69
 msgid "Alert nearby Traders to seek refuge."
-msgstr "Alertar os comerciantes próximos para procurarem refúgio."
+msgstr "Alertar os mercadores próximos para procurarem refúgio."
 
 #: gui/session/selection_panels.js:71
 msgid "Alert nearby vulnerable units to seek refuge."
@@ -1091,7 +1091,7 @@ msgstr "Desalojar as cidadãs próximas."
 
 #: gui/session/selection_panels.js:79
 msgid "Unload nearby Traders."
-msgstr "Desalojar os comerciantes próximos."
+msgstr "Desalojar os mercadores próximos."
 
 #: gui/session/selection_panels.js:81
 msgid "Unload nearby vulnerable units."
@@ -1415,7 +1415,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: ver informações gerais da civilização / árvore de estrutura\nA última aberta será reaberta ao clicar."
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: ver informações gerais da civilização / árvore de estruturas\nA última aberta será reaberta ao clicar."
 
 #: gui/session/top_panel/CounterManager.js:100
 #, javascript-format
@@ -1565,9 +1565,9 @@ msgstr "Recursos:"
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] "Há %(numberTrading)s comerciante terrestre a comercializar"
-msgstr[1] "Há %(numberTrading)s comerciantes terrestres a comercializar"
-msgstr[2] "Há %(numberTrading)s comerciantes terrestres a comercializar"
+msgstr[0] "Há %(numberTrading)s mercador terrestre a comercializar"
+msgstr[1] "Há %(numberTrading)s mercadores terrestres a comercializar"
+msgstr[2] "Há %(numberTrading)s mercadores terrestres a comercializar"
 
 #: gui/session/trade/TraderStatusTextLand.js:25
 #, javascript-format
@@ -1581,7 +1581,7 @@ msgstr[2] "%(numberOfLandTraders)s inativos"
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] "%(numberOfLandTraders)s comerciante terrestre inativo"
+msgstr[0] "%(numberOfLandTraders)s mercador terrestre inativo"
 msgstr[1] "%(numberOfLandTraders)s comerciantes terrestres inativos"
 msgstr[2] "%(numberOfLandTraders)s comerciantes terrestres inativos"
 
@@ -1601,9 +1601,9 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] "Há %(numberGarrisoned)s comerciante terrestre aquartelado num barco mercante"
-msgstr[1] "Há %(numberGarrisoned)s comerciantes terrestres aquartelados num barco mercante"
-msgstr[2] "Há %(numberGarrisoned)s comerciantes terrestres aquartelados num barco mercante"
+msgstr[0] "Há %(numberGarrisoned)s mercador terrestre aquartelado num barco mercante"
+msgstr[1] "Há %(numberGarrisoned)s mercadores terrestres aquartelados num barco mercante"
+msgstr[2] "Há %(numberGarrisoned)s mercadores terrestres aquartelados num barco mercante"
 
 #: gui/session/trade/TraderStatusTextLand.js:65
 #, javascript-format
@@ -1649,7 +1649,7 @@ msgstr[2] "Há %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:80
 msgid "There are no land traders."
-msgstr "Não há comerciantes terrestres."
+msgstr "Não há mercadores terrestres."
 
 #: gui/session/trade/TraderStatusTextShip.js:14
 #, javascript-format
@@ -1721,7 +1721,7 @@ msgstr "Aquartelamento atual: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:1182
 msgid "Right-click to establish a default route for new traders."
-msgstr "Clica com o botão direito do rato para estabelecer uma rota pré-definida para os novos comerciantes."
+msgstr "Clica com o botão direito do rato para estabelecer uma rota pré-definida para os novos mercadores."
 
 #: gui/session/unit_actions.js:1186
 #, javascript-format
@@ -1788,11 +1788,11 @@ msgstr "Voltar a trabalhar"
 
 #: gui/session/unit_actions.js:1659
 msgid "Order the selected units to guard a structure or unit."
-msgstr "Ordena às unidades selecionadas que vigiem uma estrutura ou unidade."
+msgstr "Ordena às unidades selecionadas que protejam uma estrutura ou unidade."
 
 #: gui/session/unit_actions.js:1679
 msgid "Remove guard"
-msgstr "Cancelar a guarda"
+msgstr "Deixar de proteger"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
