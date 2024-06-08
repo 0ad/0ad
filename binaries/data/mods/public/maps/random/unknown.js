@@ -74,26 +74,6 @@ const clShallow = g_Map.createTileClass();
 
 const landElevationPainter = new SmoothElevationPainter(ELEVATION_SET, heightLand, 4);
 
-const unknownMapFunctions = {
-	"land": [
-		"Continent",
-		"Isthmus",
-		"CentralRiverLand",
-		"EdgeSeas",
-		"Gulf",
-		"Lakes",
-		"Passes",
-		"Lowlands",
-		"Mainland"
-	],
-	"naval": [
-		"CentralSea",
-		"CentralRiverNaval",
-		"Archipelago",
-		"RiversAndLake"
-	]
-};
-
 /**
  * The player IDs and locations shall only be determined by the landscape functions if it's not a nomad game,
  * because nomad maps randomize the locations after the terrain generation.
@@ -104,172 +84,6 @@ let playerPosition = [];
 
 let g_StartingTreasures = false;
 let g_StartingWalls = true;
-
-function createUnknownMap()
-{
-	const landscape = g_MapSettings.Landscape || pickRandom([...unknownMapFunctions.land, ...unknownMapFunctions.naval]);
-	global["unknown" + landscape]();
-
-	paintUnknownMapBasedOnHeight();
-
-	createUnknownPlayerBases();
-
-	createUnknownObjects();
-
-	placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2, clWater, 10));
-}
-
-/**
- * Chain of islands or many disconnected islands.
- */
-function unknownArchipelago()
-{
-	g_StartingWalls = "towers";
-	g_StartingTreasures = true;
-
-	const [pIDs, islandPosition] = playerPlacementCircle(fractionToTiles(0.35));
-	if (!isNomad())
-	{
-		[playerIDs, playerPosition] = [pIDs, islandPosition];
-		markPlayerArea("large");
-	}
-
-	g_Map.log("Creating islands");
-	const islandSize = diskArea(scaleByMapSize(17, 29));
-	for (let i = 0; i < numPlayers; ++i)
-		createArea(
-			new ClumpPlacer(islandSize, 0.8, 0.1, Infinity, islandPosition[i]),
-			landElevationPainter);
-
-	const type = isNomad() ? randIntInclusive(1, 2) : randIntInclusive(1, 3);
-	if (type == 1)
-	{
-		g_Map.log("Creating archipelago");
-		createAreas(
-			new ClumpPlacer(islandSize * randFloat(0.8, 1.2), 0.8, 0.1, Infinity),
-			[
-				landElevationPainter,
-				new TileClassPainter(clLand)
-			],
-			null,
-			scaleByMapSize(2, 5) * randIntInclusive(8, 14));
-
-		g_Map.log("Creating shore jaggedness with small puddles");
-		createAreas(
-			new ClumpPlacer(scaleByMapSize(15, 80), 0.2, 0.1, Infinity),
-			[
-				new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
-				new TileClassPainter(clLand)
-			],
-			borderClasses(clLand, 6, 3),
-			scaleByMapSize(12, 130) * 2,
-			150);
-	}
-	else if (type == 2)
-	{
-		g_Map.log("Creating islands");
-		createAreas(
-			new ClumpPlacer(islandSize * randFloat(0.6, 1.4), 0.8, 0.1, randFloat(0.0, 0.2)),
-			[
-				landElevationPainter,
-				new TileClassPainter(clLand)
-			],
-			avoidClasses(clLand, 3, clPlayerTerritory, 3),
-			scaleByMapSize(6, 10) * randIntInclusive(8, 14));
-
-		g_Map.log("Creating small islands");
-		createAreas(
-			new ClumpPlacer(islandSize * randFloat(0.3, 0.7), 0.8, 0.1, 0.07),
-			[
-				new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
-				new TileClassPainter(clLand)
-			],
-			avoidClasses(clLand, 3, clPlayerTerritory, 3),
-			scaleByMapSize(2, 6) * randIntInclusive(6, 15),
-			25);
-	}
-	else if (type == 3)
-	{
-		g_Map.log("Creating tight islands");
-		createAreas(
-			new ClumpPlacer(islandSize * randFloat(0.8, 1.2), 0.8, 0.1, Infinity),
-			[
-				landElevationPainter,
-				new TileClassPainter(clLand)
-			],
-			avoidClasses(clLand, randIntInclusive(8, 16), clPlayerTerritory, 3),
-			scaleByMapSize(2, 5) * randIntInclusive(8, 14));
-	}
-}
-
-/**
- * Disk shaped mainland with water on the edge.
- */
-function unknownContinent()
-{
-	const waterHeight = -5;
-
-	if (!isNomad())
-	{
-		g_Map.log("Ensuring player area");
-		[playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.25));
-		markPlayerArea("small");
-
-		for (let i = 0; i < numPlayers; ++i)
-			createArea(
-				new ChainPlacer(
-					2,
-					Math.floor(scaleByMapSize(5, 9)),
-					Math.floor(scaleByMapSize(5, 20)),
-					Infinity,
-					playerPosition[i],
-					0,
-					[Math.floor(scaleByMapSize(23, 50))]),
-				[
-					landElevationPainter,
-					new TileClassPainter(clLand)
-				]);
-	}
-
-	g_Map.log("Creating continent");
-	createArea(
-		new ClumpPlacer(diskArea(fractionToTiles(0.38)), 0.9, 0.09, Infinity, mapCenter),
-		[
-			landElevationPainter,
-			new TileClassPainter(clLand)
-		]);
-
-	if (randBool(1/3))
-	{
-		g_Map.log("Creating peninsula (i.e. half the map not being surrounded by water)");
-		const angle = randomAngle();
-		const peninsulaPosition1 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.25), 0).rotate(-angle));
-		createArea(
-			new ClumpPlacer(diskArea(fractionToTiles(0.38)), 0.9, 0.09, Infinity, peninsulaPosition1),
-			[
-				landElevationPainter,
-				new TileClassPainter(clLand)
-			]);
-
-		g_Map.log("Remembering to not paint shorelines into the peninsula");
-		const peninsulaPosition2 = Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.35), 0).rotate(-angle));
-		createArea(
-			new ClumpPlacer(diskArea(fractionToTiles(0.33)), 0.9, 0.01, Infinity, peninsulaPosition2),
-			new TileClassPainter(clPeninsulaSteam));
-	}
-
-	createShoreJaggedness(waterHeight, clLand, 7);
-}
-
-function unknownCentralSea()
-{
-	unknownCentralSeaOrIsthmus(false);
-}
-
-function unknownIsthmus()
-{
-	unknownCentralSeaOrIsthmus(true);
-}
 
 /**
  * Creates a huge central river, possibly connecting the riversides with a narrow piece of land.
@@ -331,16 +145,6 @@ function unknownCentralSeaOrIsthmus(isthmus)
 
 	createExtensionsOrIslands();
 	// Don't createShoreJaggedness since it doesn't fit artistically here
-}
-
-function unknownCentralRiverLand()
-{
-	unknownCentralRiver(true);
-}
-
-function unknownCentralRiverNaval()
-{
-	unknownCentralRiver(false);
 }
 
 /**
@@ -410,346 +214,500 @@ function unknownCentralRiver(shallows)
 			avoidClasses(clPlayerTerritory, 3));
 }
 
-/**
- * Creates a circular lake in the middle and possibly a river between each player ("pizza slices").
- */
-function unknownRiversAndLake()
-{
-	const waterHeight = -4;
-	createArea(
-		new MapBoundsPlacer(),
-		new ElevationPainter(heightLand));
+const unknownMapFunctions = {
+	// Chain of islands or many disconnected islands.
+	"Archipelago": () => {
+		g_StartingWalls = "towers";
+		g_StartingTreasures = true;
 
-	let startAngle;
-	if (!isNomad())
-	{
-		let playerAngle;
-		[playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
-		markPlayerArea("small");
-	}
+		const [pIDs, islandPosition] = playerPlacementCircle(fractionToTiles(0.35));
+		if (!isNomad())
+		{
+			[playerIDs, playerPosition] = [pIDs, islandPosition];
+			markPlayerArea("large");
+		}
 
-	const lake = randBool(3/4);
-	if (lake)
-	{
-		g_Map.log("Creating lake");
+		g_Map.log("Creating islands");
+		const islandSize = diskArea(scaleByMapSize(17, 29));
+		for (let i = 0; i < numPlayers; ++i)
+			createArea(
+				new ClumpPlacer(islandSize, 0.8, 0.1, Infinity, islandPosition[i]),
+				landElevationPainter);
+
+		switch (randIntInclusive(1, isNomad() ? 2 : 3))
+		{
+		case 1:
+			g_Map.log("Creating archipelago");
+			createAreas(
+				new ClumpPlacer(islandSize * randFloat(0.8, 1.2), 0.8, 0.1, Infinity),
+				[
+					landElevationPainter,
+					new TileClassPainter(clLand)
+				],
+				null,
+				scaleByMapSize(2, 5) * randIntInclusive(8, 14));
+
+			g_Map.log("Creating shore jaggedness with small puddles");
+			createAreas(
+				new ClumpPlacer(scaleByMapSize(15, 80), 0.2, 0.1, Infinity),
+				[
+					new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
+					new TileClassPainter(clLand)
+				],
+				borderClasses(clLand, 6, 3),
+				scaleByMapSize(12, 130) * 2,
+				150);
+			break;
+		case 2:
+			g_Map.log("Creating islands");
+			createAreas(
+				new ClumpPlacer(islandSize * randFloat(0.6, 1.4), 0.8, 0.1, randFloat(0.0, 0.2)),
+				[
+					landElevationPainter,
+					new TileClassPainter(clLand)
+				],
+				avoidClasses(clLand, 3, clPlayerTerritory, 3),
+				scaleByMapSize(6, 10) * randIntInclusive(8, 14));
+
+			g_Map.log("Creating small islands");
+			createAreas(
+				new ClumpPlacer(islandSize * randFloat(0.3, 0.7), 0.8, 0.1, 0.07),
+				[
+					new SmoothElevationPainter(ELEVATION_SET, heightLand, 6),
+					new TileClassPainter(clLand)
+				],
+				avoidClasses(clLand, 3, clPlayerTerritory, 3),
+				scaleByMapSize(2, 6) * randIntInclusive(6, 15),
+				25);
+			break;
+		default:
+			g_Map.log("Creating tight islands");
+			createAreas(
+				new ClumpPlacer(islandSize * randFloat(0.8, 1.2), 0.8, 0.1, Infinity),
+				[
+					landElevationPainter,
+					new TileClassPainter(clLand)
+				],
+				avoidClasses(clLand, randIntInclusive(8, 16), clPlayerTerritory, 3),
+				scaleByMapSize(2, 5) * randIntInclusive(8, 14));
+		}
+	},
+
+	// Disk shaped mainland with water on the edge.
+	"Continent": () => {
+		const waterHeight = -5;
+
+		if (!isNomad())
+		{
+			g_Map.log("Ensuring player area");
+			[playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.25));
+			markPlayerArea("small");
+
+			for (let i = 0; i < numPlayers; ++i)
+				createArea(
+					new ChainPlacer(
+						2,
+						Math.floor(scaleByMapSize(5, 9)),
+						Math.floor(scaleByMapSize(5, 20)),
+						Infinity,
+						playerPosition[i],
+						0,
+						[Math.floor(scaleByMapSize(23, 50))]),
+					[
+						landElevationPainter,
+						new TileClassPainter(clLand)
+					]);
+		}
+
+		g_Map.log("Creating continent");
 		createArea(
-			new ClumpPlacer(diskArea(fractionToTiles(0.17)), 0.7, 0.1, Infinity, mapCenter),
+			new ClumpPlacer(diskArea(fractionToTiles(0.38)), 0.9, 0.09, Infinity, mapCenter),
 			[
-				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
-				new TileClassPainter(clWater)
+				landElevationPainter,
+				new TileClassPainter(clLand)
 			]);
 
-		createShoreJaggedness(waterHeight, clWater, 3);
-	}
-
-	// TODO: On nomad because the resource imbalances per island are too drastic
-
-	{
-		g_Map.log("Creating small rivers separating players");
-		for (const river of distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0])
+		if (randBool(1/3))
 		{
+			g_Map.log("Creating peninsula (i.e. half the map not being surrounded by water)");
+			const angle = randomAngle();
+			const peninsulaPosition1 =
+				Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.25), 0).rotate(-angle));
 			createArea(
-				new PathPlacer(mapCenter, river, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
+				new ClumpPlacer(diskArea(fractionToTiles(0.38)), 0.9, 0.09, Infinity,
+					peninsulaPosition1),
+				[
+					landElevationPainter,
+					new TileClassPainter(clLand)
+				]);
+
+			g_Map.log("Remembering to not paint shorelines into the peninsula");
+			const peninsulaPosition2 =
+				Vector2D.add(mapCenter, new Vector2D(fractionToTiles(0.35), 0).rotate(-angle));
+			createArea(
+				new ClumpPlacer(diskArea(fractionToTiles(0.33)), 0.9, 0.01, Infinity,
+					peninsulaPosition2),
+				new TileClassPainter(clPeninsulaSteam));
+		}
+
+		createShoreJaggedness(waterHeight, clLand, 7);
+	},
+
+	"CentralSea": unknownCentralSeaOrIsthmus.bind(null, false),
+	"Isthmus": unknownCentralSeaOrIsthmus.bind(null, true),
+
+	"CentralRiverLand": unknownCentralRiver.bind(null, true),
+	"CentralRiverNaval": unknownCentralRiver.bind(null, false),
+
+	// Creates a circular lake in the middle and possibly a river between each player ("pizza slices").
+	"RiversAndLake": () => {
+		const waterHeight = -4;
+		createArea(
+			new MapBoundsPlacer(),
+			new ElevationPainter(heightLand));
+
+		let startAngle;
+		if (!isNomad())
+		{
+			let playerAngle;
+			[playerIDs, playerPosition, playerAngle, startAngle] =
+				playerPlacementCircle(fractionToTiles(0.35));
+			markPlayerArea("small");
+		}
+
+		const lake = randBool(3/4);
+		if (lake)
+		{
+			g_Map.log("Creating lake");
+			createArea(
+				new ClumpPlacer(diskArea(fractionToTiles(0.17)), 0.7, 0.1, Infinity, mapCenter),
+				[
+					new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
+					new TileClassPainter(clWater)
+				]);
+
+			createShoreJaggedness(waterHeight, clWater, 3);
+		}
+
+		// TODO: On nomad because the resource imbalances per island are too drastic
+
+		{
+			g_Map.log("Creating small rivers separating players");
+			for (const river of distributePointsOnCircle(numPlayers,
+				startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0])
+			{
+				createArea(
+					new PathPlacer(mapCenter, river, scaleByMapSize(14, 24), 0.4,
+						3 * scaleByMapSize(1, 3), 0.2, 0.05),
+					[
+						new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
+						new TileClassPainter(clWater)
+					],
+					avoidClasses(clPlayer, 5));
+
+				createArea(
+					new ClumpPlacer(diskArea(scaleByMapSize(4, 22)), 0.95, 0.6, Infinity, river),
+					[
+						new SmoothElevationPainter(ELEVATION_SET, waterHeight, 0),
+						new TileClassPainter(clWater)
+					],
+					avoidClasses(clPlayer, 5));
+			}
+
+			g_Map.log("Creating small lake");
+			createArea(
+				new ClumpPlacer(diskArea(fractionToTiles(0.04)), 0.7, 0.1, Infinity, mapCenter),
+				[
+					new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
+					new TileClassPainter(clWater)
+				]);
+		}
+
+		if (!isNomad && lake && randBool(2/3))
+		{
+			g_Map.log("Creating small central island");
+			createArea(
+				new ClumpPlacer(diskArea(fractionToTiles(0.05)), 0.7, 0.1, Infinity, mapCenter),
+				[
+					landElevationPainter,
+					new TileClassPainter(clWater)
+				]);
+		}
+	},
+
+	// Align players on a land strip with seas bordering on one or both sides that can hold islands.
+	"EdgeSeas": () => {
+		const waterHeight = -4;
+
+		createArea(
+			new MapBoundsPlacer(),
+			new ElevationPainter(heightLand));
+
+		const startAngle = randomAngle();
+		if (!isNomad())
+		{
+			playerIDs = sortAllPlayers();
+			playerPosition =
+				playerPlacementLine(startAngle + Math.PI / 2, mapCenter, fractionToTiles(0.2));
+			// Don't place the shoreline inside the CC, but possibly into the players territory
+			markPlayerArea("small");
+		}
+
+		for (const side of pickRandom([[0], [Math.PI], [0, Math.PI]]))
+			paintRiver({
+				"parallel": true,
+				"start": new Vector2D(mapBounds.left, mapBounds.top)
+					.rotateAround(side + startAngle, mapCenter),
+				"end": new Vector2D(mapBounds.left, mapBounds.bottom)
+					.rotateAround(side + startAngle, mapCenter),
+				"width": scaleByMapSize(80, randFloat(270, 320)),
+				"fadeDist": scaleByMapSize(2, 8),
+				"deviation": 0,
+				"heightRiverbed": waterHeight,
+				"heightLand": heightLand,
+				"meanderShort": 20,
+				"meanderLong": 0
+			});
+
+		createExtensionsOrIslands();
+		paintTileClassBasedOnHeight(0, heightCliff, 1, clLand);
+		createShoreJaggedness(waterHeight, clLand, 7, false);
+	},
+
+	// Land shaped like a concrescent moon around a central lake.
+	"Gulf": () => {
+		const waterHeight = -3;
+
+		createArea(
+			new MapBoundsPlacer(),
+			new ElevationPainter(heightLand));
+
+		const startAngle = randomAngle();
+		if (!isNomad())
+		{
+			g_Map.log("Determining player locations");
+
+			playerPosition = playerPlacementCustomAngle(
+				fractionToTiles(0.35),
+				mapCenter,
+				i => startAngle + 2/3 * Math.PI *
+					(-1 + (numPlayers == 1 ? 1 : 2 * i / (numPlayers - 1))))[0];
+
+			markPlayerArea("large");
+		}
+
+		for (const gulfPart of
+			[
+				[0.16, 0],
+				[0.2, 0.2],
+				[0.22, 0.49]
+			])
+		{
+			const [radius, distance] = gulfPart.map(fractionToTiles);
+			const position = Vector2D.sub(mapCenter,
+				new Vector2D(distance, 0).rotate(-startAngle)).round();
+			createArea(
+				new ClumpPlacer(diskArea(radius), 0.7, 0.05, Infinity, position),
 				[
 					new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
 					new TileClassPainter(clWater)
 				],
-				avoidClasses(clPlayer, 5));
+				avoidClasses(clPlayerTerritory, defaultPlayerBaseRadius()));
+		}
+	},
 
+	// Mainland style with some small random lakes.
+	"Lakes": () => {
+		const waterHeight = -5;
+
+		createArea(
+			new MapBoundsPlacer(),
+			new ElevationPainter(heightLand));
+
+		if (!isNomad())
+		{
+			[playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
+			markPlayerArea("large");
+		}
+
+		g_Map.log("Creating lakes");
+		createAreas(
+			new ClumpPlacer(scaleByMapSize(160, 700), 0.2, 0.1, Infinity),
+			[
+				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 5),
+				new TileClassPainter(clWater)
+			],
+			[
+				avoidClasses(clPlayerTerritory, 12),
+				randBool() ? avoidClasses(clWater, 8) : []
+			].flat(),
+			scaleByMapSize(5, 16));
+	},
+
+	// A large hill leaving players only a small passage to each of the the two neighboring players.
+	"Passes": () => {
+		const heightMountain = 24;
+		const waterHeight = -4;
+
+		createArea(
+			new MapBoundsPlacer(),
+			new ElevationPainter(heightLand));
+
+		let playerAngle;
+		let startAngle;
+		if (!isNomad())
+		{
+			[playerIDs, playerPosition, playerAngle, startAngle] =
+				playerPlacementCircle(fractionToTiles(0.35));
+			markPlayerArea("small");
+		}
+		else
+			startAngle = randomAngle();
+
+		g_Map.log("Creating a mountain range between neighboring players");
+		for (const mountain of distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers,
+			fractionToTiles(0.5), mapCenter)[0])
+		{
 			createArea(
-				new ClumpPlacer(diskArea(scaleByMapSize(4, 22)), 0.95, 0.6, Infinity, river),
+				new PathPlacer(mapCenter, mountain, scaleByMapSize(14, 24), 0.4,
+					3 * scaleByMapSize(1, 3), 0.2, 0.05),
 				[
-					new SmoothElevationPainter(ELEVATION_SET, waterHeight, 0),
+					// More smoothing than this often results in the mountainrange becoming
+					// passable to one player.
+					new SmoothElevationPainter(ELEVATION_SET, heightMountain, 1),
 					new TileClassPainter(clWater)
 				],
 				avoidClasses(clPlayer, 5));
+
+			// Small mountain at the map border between the players to ensure separation of players
+			createArea(
+				new ClumpPlacer(diskArea(scaleByMapSize(4, 22)), 0.95, 0.6, Infinity, mountain),
+				new SmoothElevationPainter(ELEVATION_SET, heightMountain, 0),
+				avoidClasses(clPlayer, 5));
 		}
 
-		g_Map.log("Creating small lake");
+		g_Map.log("Creating passages between neighboring players");
+		if (numPlayers > 1)
+		{
+			const getEndpoints = (() => {
+				if (numPlayers !== 2)
+					return i => [i, (i + 1) % numPlayers].map(index => playerPosition[index]);
+
+				const passes = distributePointsOnCircle(numPlayers * 3, startAngle,
+					fractionToTiles(0.35), mapCenter)[0];
+				return i => [1, 2].map(p => passes[3 * i + p]);
+			})();
+			for (let i = 0; i < numPlayers; ++i)
+			{
+				// For numPlayers > 2 use the playerPosition to not end up inside the mountains.
+				createArea(
+					new PathPlacer(
+						...getEndpoints(i),
+						scaleByMapSize(14, 24),
+						0.4,
+						3 * scaleByMapSize(1, 3),
+						0.2,
+						0.05),
+					new SmoothElevationPainter(ELEVATION_SET, heightLand, 2));
+			}
+		}
+
+		if (randBool(2/5))
+		{
+			g_Map.log("Create central lake");
+			createArea(
+				new ClumpPlacer(diskArea(fractionToTiles(0.1)), 0.7, 0.1, Infinity, mapCenter),
+				[
+					new SmoothElevationPainter(ELEVATION_SET, waterHeight, 3),
+					new TileClassPainter(clWater)
+				]);
+		}
+		else
+		{
+			g_Map.log("Fill area between the paths");
+			createArea(
+				new ClumpPlacer(diskArea(fractionToTiles(0.05)), 0.7, 0.1, Infinity, mapCenter),
+				[
+					new SmoothElevationPainter(ELEVATION_SET, heightMountain, 4),
+					new TileClassPainter(clWater)
+				]);
+		}
+	},
+
+	// Land enclosed by a hill that leaves small areas for civic centers and large central place.
+	"Lowlands": () => {
+		const heightMountain = 30;
+
+		g_Map.log("Creating mountain that is going to separate players");
 		createArea(
-			new ClumpPlacer(diskArea(fractionToTiles(0.04)), 0.7, 0.1, Infinity, mapCenter),
-			[
-				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
-				new TileClassPainter(clWater)
-			]);
-	}
+			new MapBoundsPlacer(),
+			new ElevationPainter(heightMountain));
 
-	if (!isNomad && lake && randBool(2/3))
-	{
-		g_Map.log("Creating small central island");
+		let playerAngle;
+		let startAngle;
+		if (!isNomad())
+		{
+			[playerIDs, playerPosition, playerAngle, startAngle] =
+				playerPlacementCircle(fractionToTiles(0.35));
+			markPlayerArea("small");
+		}
+		else
+			startAngle = randomAngle();
+
+		g_Map.log("Creating valleys enclosed by the mountain");
+		let valleys = numPlayers;
+		if (mapSize >= 128 && numPlayers <= 2 ||
+			mapSize >= 192 && numPlayers <= 3 ||
+			mapSize >= 320 && numPlayers <= 4 ||
+			mapSize >= 384 && numPlayers <= 5 ||
+			mapSize >= 448 && numPlayers <= 6)
+		{
+			valleys *= 2;
+		}
+
+		g_Map.log("Creating player valley");
+		for (const valley of distributePointsOnCircle(valleys, startAngle, fractionToTiles(0.35),
+			mapCenter)[0])
+		{
+			createArea(
+				new ClumpPlacer(diskArea(scaleByMapSize(18, 32)), 0.65, 0.1, Infinity, valley),
+				[
+					new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
+					new TileClassPainter(clLand)
+				]);
+
+			// Passage from player to center
+			createArea(
+				new PathPlacer(mapCenter, valley, scaleByMapSize(14, 24), 0.4,
+					3 * scaleByMapSize(1, 3), 0.2, 0.05),
+				[
+					landElevationPainter,
+					new TileClassPainter(clWater)
+				]);
+		}
+
+		g_Map.log("Creating the big central area");
 		createArea(
-			new ClumpPlacer(diskArea(fractionToTiles(0.05)), 0.7, 0.1, Infinity, mapCenter),
-			[
-				landElevationPainter,
-				new TileClassPainter(clWater)
-			]);
-	}
-}
-
-/**
- * Align players on a land strip with seas bordering on one or both sides that can hold islands.
- */
-function unknownEdgeSeas()
-{
-	const waterHeight = -4;
-
-	createArea(
-		new MapBoundsPlacer(),
-		new ElevationPainter(heightLand));
-
-	const startAngle = randomAngle();
-	if (!isNomad())
-	{
-		playerIDs = sortAllPlayers();
-		playerPosition = playerPlacementLine(startAngle + Math.PI / 2, mapCenter, fractionToTiles(0.2));
-		// Don't place the shoreline inside the CC, but possibly into the players territory
-		markPlayerArea("small");
-	}
-
-	for (const side of pickRandom([[0], [Math.PI], [0, Math.PI]]))
-		paintRiver({
-			"parallel": true,
-			"start": new Vector2D(mapBounds.left, mapBounds.top).rotateAround(side + startAngle, mapCenter),
-			"end": new Vector2D(mapBounds.left, mapBounds.bottom).rotateAround(side + startAngle, mapCenter),
-			"width": scaleByMapSize(80, randFloat(270, 320)),
-			"fadeDist": scaleByMapSize(2, 8),
-			"deviation": 0,
-			"heightRiverbed": waterHeight,
-			"heightLand": heightLand,
-			"meanderShort": 20,
-			"meanderLong": 0
-		});
-
-	createExtensionsOrIslands();
-	paintTileClassBasedOnHeight(0, heightCliff, 1, clLand);
-	createShoreJaggedness(waterHeight, clLand, 7, false);
-}
-
-/**
- * Land shaped like a concrescent moon around a central lake.
- */
-function unknownGulf()
-{
-	const waterHeight = -3;
-
-	createArea(
-		new MapBoundsPlacer(),
-		new ElevationPainter(heightLand));
-
-	const startAngle = randomAngle();
-	if (!isNomad())
-	{
-		g_Map.log("Determining player locations");
-
-		playerPosition = playerPlacementCustomAngle(
-			fractionToTiles(0.35),
-			mapCenter,
-			i => startAngle + 2/3 * Math.PI * (-1 + (numPlayers == 1 ? 1 : 2 * i / (numPlayers - 1))))[0];
-
-		markPlayerArea("large");
-	}
-
-	const gulfParts = [
-		{ "radius": fractionToTiles(0.16), "distance": fractionToTiles(0) },
-		{ "radius": fractionToTiles(0.2), "distance": fractionToTiles(0.2) },
-		{ "radius": fractionToTiles(0.22), "distance": fractionToTiles(0.49) }
-	];
-
-	for (const gulfPart of gulfParts)
-	{
-		const position = Vector2D.sub(mapCenter, new Vector2D(gulfPart.distance, 0).rotate(-startAngle)).round();
-		createArea(
-			new ClumpPlacer(diskArea(gulfPart.radius), 0.7, 0.05, Infinity, position),
-			[
-				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 4),
-				new TileClassPainter(clWater)
-			],
-			avoidClasses(clPlayerTerritory, defaultPlayerBaseRadius()));
-	}
-}
-
-/**
- * Mainland style with some small random lakes.
- */
-function unknownLakes()
-{
-	const waterHeight = -5;
-
-	createArea(
-		new MapBoundsPlacer(),
-		new ElevationPainter(heightLand));
-
-	if (!isNomad())
-	{
-		[playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
-		markPlayerArea("large");
-	}
-
-	g_Map.log("Creating lakes");
-	createAreas(
-		new ClumpPlacer(scaleByMapSize(160, 700), 0.2, 0.1, Infinity),
-		[
-			new SmoothElevationPainter(ELEVATION_SET, waterHeight, 5),
-			new TileClassPainter(clWater)
-		],
-		[avoidClasses(clPlayerTerritory, 12), randBool() ? avoidClasses(clWater, 8) : new NullConstraint()],
-		scaleByMapSize(5, 16));
-}
-
-/**
- * A large hill leaving players only a small passage to each of the the two neighboring players.
- */
-function unknownPasses()
-{
-	const heightMountain = 24;
-	const waterHeight = -4;
-
-	createArea(
-		new MapBoundsPlacer(),
-		new ElevationPainter(heightLand));
-
-	let playerAngle;
-	let startAngle;
-	if (!isNomad())
-	{
-		[playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
-		markPlayerArea("small");
-	}
-	else
-		startAngle = randomAngle();
-
-	g_Map.log("Creating a mountain range between neighboring players");
-	for (const mountain of distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.5), mapCenter)[0])
-	{
-		createArea(
-			new PathPlacer(mapCenter, mountain, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
-			[
-				// More smoothing than this often results in the mountainrange becoming passable to one player.
-				new SmoothElevationPainter(ELEVATION_SET, heightMountain, 1),
-				new TileClassPainter(clWater)
-			],
-			avoidClasses(clPlayer, 5));
-
-		// Small mountain at the map border between the players to ensure separation of players
-		createArea(
-			new ClumpPlacer(diskArea(scaleByMapSize(4, 22)), 0.95, 0.6, Infinity, mountain),
-			new SmoothElevationPainter(ELEVATION_SET, heightMountain, 0),
-			avoidClasses(clPlayer, 5));
-	}
-
-	g_Map.log("Creating passages between neighboring players");
-	const passes = numPlayers == 2 && distributePointsOnCircle(numPlayers * 3, startAngle, fractionToTiles(0.35), mapCenter)[0];
-	for (let i = 0; i < numPlayers && numPlayers > 1; ++i)
-	{
-		// For numPlayers > 2 use the playerPosition to not end up inside the mountains.
-		createArea(
-			new PathPlacer(
-				numPlayers == 2 ? passes[3 * i + 1] : playerPosition[i],
-				numPlayers == 2 ? passes[3 * i + 2] : playerPosition[(i + 1) % numPlayers],
-				scaleByMapSize(14, 24),
-				0.4,
-				3 * scaleByMapSize(1, 3),
-				0.2,
-				0.05),
-			new SmoothElevationPainter(ELEVATION_SET, heightLand, 2));
-	}
-
-	if (randBool(2/5))
-	{
-		g_Map.log("Create central lake");
-		createArea(
-			new ClumpPlacer(diskArea(fractionToTiles(0.1)), 0.7, 0.1, Infinity, mapCenter),
-			[
-				new SmoothElevationPainter(ELEVATION_SET, waterHeight, 3),
-				new TileClassPainter(clWater)
-			]);
-	}
-	else
-	{
-		g_Map.log("Fill area between the paths");
-		createArea(
-			new ClumpPlacer(diskArea(fractionToTiles(0.05)), 0.7, 0.1, Infinity, mapCenter),
-			[
-				new SmoothElevationPainter(ELEVATION_SET, heightMountain, 4),
-				new TileClassPainter(clWater)
-			]);
-	}
-}
-
-/**
- * Land enclosed by a hill that leaves small areas for civic centers and large central place.
- */
-function unknownLowlands()
-{
-	const heightMountain = 30;
-
-	g_Map.log("Creating mountain that is going to separate players");
-	createArea(
-		new MapBoundsPlacer(),
-		new ElevationPainter(heightMountain));
-
-	let playerAngle;
-	let startAngle;
-	if (!isNomad())
-	{
-		[playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
-		markPlayerArea("small");
-	}
-	else
-		startAngle = randomAngle();
-
-	g_Map.log("Creating valleys enclosed by the mountain");
-	let valleys = numPlayers;
-	if (mapSize >= 128 && numPlayers <= 2 ||
-	    mapSize >= 192 && numPlayers <= 3 ||
-	    mapSize >= 320 && numPlayers <= 4 ||
-	    mapSize >= 384 && numPlayers <= 5 ||
-	    mapSize >= 448 && numPlayers <= 6)
-		valleys *= 2;
-
-	g_Map.log("Creating player valley");
-	for (const valley of distributePointsOnCircle(valleys, startAngle, fractionToTiles(0.35), mapCenter)[0])
-	{
-		createArea(
-			new ClumpPlacer(diskArea(scaleByMapSize(18, 32)), 0.65, 0.1, Infinity, valley),
-			[
-				new SmoothElevationPainter(ELEVATION_SET, heightLand, 2),
-				new TileClassPainter(clLand)
-			]);
-
-		// Passage from player to center
-		createArea(
-			new PathPlacer(mapCenter, valley, scaleByMapSize(14, 24), 0.4, 3 * scaleByMapSize(1, 3), 0.2, 0.05),
+			new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.7, 0.1, Infinity, mapCenter),
 			[
 				landElevationPainter,
 				new TileClassPainter(clWater)
 			]);
+	},
+
+	// No water, no hills.
+	"Mainland": () => {
+		createArea(
+			new MapBoundsPlacer(),
+			new ElevationPainter(3));
+
+		if (!isNomad())
+		{
+			[playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
+			markPlayerArea("small");
+		}
 	}
-
-	g_Map.log("Creating the big central area");
-	createArea(
-		new ClumpPlacer(diskArea(fractionToTiles(0.18)), 0.7, 0.1, Infinity, mapCenter),
-		[
-			landElevationPainter,
-			new TileClassPainter(clWater)
-		]);
-}
-
-/**
- * No water, no hills.
- */
-function unknownMainland()
-{
-	createArea(
-		new MapBoundsPlacer(),
-		new ElevationPainter(3));
-
-	if (!isNomad())
-	{
-		[playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
-		markPlayerArea("small");
-	}
-}
+};
 
 function centralRiverCoordinates(angle)
 {
@@ -813,266 +771,291 @@ function createExtensionsOrIslands()
  */
 function markPlayerArea(size)
 {
-	for (let i = 0; i < numPlayers; ++i)
+	for (const position of playerPosition)
 	{
-		addCivicCenterAreaToClass(playerPosition[i], clPlayer);
+		addCivicCenterAreaToClass(position, clPlayer);
 
 		if (size == "large")
 			createArea(
-				new ClumpPlacer(diskArea(scaleByMapSize(17, 29) / 3), 0.6, 0.3, Infinity, playerPosition[i]),
+				new ClumpPlacer(diskArea(scaleByMapSize(17, 29) / 3), 0.6, 0.3, Infinity, position),
 				new TileClassPainter(clPlayerTerritory));
 	}
 }
 
-function paintUnknownMapBasedOnHeight()
-{
-	paintTerrainBasedOnHeight(heightCliff, 40, 1, tCliff);
-	paintTerrainBasedOnHeight(3, heightCliff, 1, tMainTerrain);
-	paintTerrainBasedOnHeight(1, 3, 1, tShore);
-	paintTerrainBasedOnHeight(-8, 1, 2, tWater);
+(g_MapSettings.Landscape ? unknownMapFunctions[g_MapSettings.Landscape] :
+	pickRandom(Object.values(unknownMapFunctions)))();
 
-	unPaintTileClassBasedOnHeight(0, heightCliff, 1, clWater);
-	unPaintTileClassBasedOnHeight(-6, 0, 1, clLand);
+paintTerrainBasedOnHeight(heightCliff, 40, 1, tCliff);
+paintTerrainBasedOnHeight(3, heightCliff, 1, tMainTerrain);
+paintTerrainBasedOnHeight(1, 3, 1, tShore);
+paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 
-	paintTileClassBasedOnHeight(-6, 0, 1, clWater);
-	paintTileClassBasedOnHeight(0, heightCliff, 1, clLand);
-	paintTileClassBasedOnHeight(heightCliff, 40, 1, clHill);
-}
+unPaintTileClassBasedOnHeight(0, heightCliff, 1, clWater);
+unPaintTileClassBasedOnHeight(-6, 0, 1, clLand);
 
-/**
- * Place resources and decoratives after the player territory was marked.
- */
-function createUnknownObjects()
-{
-	g_Map.log("Creating bumps");
+paintTileClassBasedOnHeight(-6, 0, 1, clWater);
+paintTileClassBasedOnHeight(0, heightCliff, 1, clLand);
+paintTileClassBasedOnHeight(heightCliff, 40, 1, clHill);
+
+placePlayerBases({
+	"PlayerPlacement": [playerIDs, playerPosition],
+	"BaseResourceClass": clBaseResource,
+	"Walls": g_StartingWalls,
+	"CityPatch": {
+		"outerTerrain": tRoadWild,
+		"innerTerrain": tRoad,
+		"painters": [
+			new TileClassPainter(clPlayer)
+		]
+	},
+	"StartingAnimal": {
+	},
+	"Berries": {
+		"template": oFruitBush
+	},
+	"Mines": {
+		"types": [
+			{ "template": oMetalLarge },
+			{ "template": oStoneLarge }
+		]
+	},
+	"Treasures": {
+		"types": [
+			{
+				"template": oWoodTreasure,
+				"count": g_StartingTreasures ? 14 : 0
+			}
+		]
+	},
+	"Trees": {
+		"template": oTree1
+	},
+	"Decoratives": {
+		"template": aGrassShort
+	}
+});
+
+// Place resources and decoratives after the player territory was marked.
+g_Map.log("Creating bumps");
+createAreas(
+	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
+	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
+	[avoidClasses(clWater, 2, clPlayer, 10), stayClasses(clLand, 3)],
+	randIntInclusive(0, scaleByMapSize(1, 2) * 200));
+
+g_Map.log("Creating hills");
+createAreas(
+	new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, Infinity),
+	[
+		new LayeredPainter([tCliff, tHill], [2]),
+		new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
+		new TileClassPainter(clHill)
+	],
+	[avoidClasses(clPlayer, 15, clHill, randIntInclusive(6, 18)), stayClasses(clLand, 0)],
+	randIntInclusive(0, scaleByMapSize(4, 8))*randIntInclusive(1, scaleByMapSize(4, 9))
+);
+Engine.SetProgress(30);
+
+g_Map.log("Creating forests");
+const [numForest, numStragglers] = getTreeCounts(...rBiomeTreeCount(1));
+let types = [
+	[[tForestFloor2, tMainTerrain, pForest1], [tForestFloor2, pForest1]],
+	[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
+];
+
+const size = numForest / (scaleByMapSize(2, 8) * numPlayers);
+let num = Math.floor(size / types.length);
+for (const type of types)
 	createAreas(
-		new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
-		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
-		[avoidClasses(clWater, 2, clPlayer, 10), stayClasses(clLand, 3)],
-		randIntInclusive(0, scaleByMapSize(1, 2) * 200));
-
-	g_Map.log("Creating hills");
-	createAreas(
-		new ClumpPlacer(scaleByMapSize(20, 150), 0.2, 0.1, Infinity),
+		new ClumpPlacer(numForest / num, 0.1, 0.1, Infinity),
 		[
-			new LayeredPainter([tCliff, tHill], [2]),
-			new SmoothElevationPainter(ELEVATION_SET, heightHill, 2),
-			new TileClassPainter(clHill)
+			new LayeredPainter(type, [2]),
+			new TileClassPainter(clForest)
 		],
-		[avoidClasses(clPlayer, 15, clHill, randIntInclusive(6, 18)), stayClasses(clLand, 0)],
-		randIntInclusive(0, scaleByMapSize(4, 8))*randIntInclusive(1, scaleByMapSize(4, 9))
-	);
-	Engine.SetProgress(30);
+		[
+			avoidClasses(clPlayer, 20, clForest, randIntInclusive(5, 15), clHill, 2),
+			stayClasses(clLand, 4)
+		],
+		num);
+Engine.SetProgress(50);
 
-	g_Map.log("Creating forests");
-	const [numForest, numStragglers] = getTreeCounts(...rBiomeTreeCount(1));
-	let types = [
-		[[tForestFloor2, tMainTerrain, pForest1], [tForestFloor2, pForest1]],
-		[[tForestFloor1, tMainTerrain, pForest2], [tForestFloor1, pForest2]]
-	];
+g_Map.log("Creating dirt patches");
+const patchCount = (currentBiome() == "generic/savanna" ? 3 : 1) * scaleByMapSize(15, 45);
+for (const patchSize of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
+	createAreas(
+		new ClumpPlacer(patchSize, 0.3, 0.06, 0.5),
+		[
+			new LayeredPainter(
+				[
+					[tMainTerrain, tTier1Terrain],
+					[tTier1Terrain, tTier2Terrain],
+					[tTier2Terrain, tTier3Terrain]
+				],
+				[1, 1]),
+			new TileClassPainter(clDirt)
+		],
+		[avoidClasses(clForest, 0, clHill, 2, clDirt, 5, clPlayer, 7), stayClasses(clLand, 4)],
+		patchCount);
 
-	const size = numForest / (scaleByMapSize(2, 8) * numPlayers);
-	let num = Math.floor(size / types.length);
-	for (const type of types)
-		createAreas(
-			new ClumpPlacer(numForest / num, 0.1, 0.1, Infinity),
-			[
-				new LayeredPainter(type, [2]),
-				new TileClassPainter(clForest)
-			],
-			[avoidClasses(clPlayer, 20, clForest, randIntInclusive(5, 15), clHill, 2), stayClasses(clLand, 4)],
-			num);
-	Engine.SetProgress(50);
+g_Map.log("Creating grass patches");
+for (const patchSize of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
+	createAreas(
+		new ClumpPlacer(patchSize, 0.3, 0.06, 0.5),
+		new TerrainPainter(tTier4Terrain),
+		[avoidClasses(clForest, 0, clHill, 2, clDirt, 5, clPlayer, 7), stayClasses(clLand, 4)],
+		patchCount);
 
-	g_Map.log("Creating dirt patches");
-	const patchCount = (currentBiome() == "generic/savanna" ? 3 : 1) * scaleByMapSize(15, 45);
-	for (const patchSize of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
-		createAreas(
-			new ClumpPlacer(patchSize, 0.3, 0.06, 0.5),
-			[
-				new LayeredPainter([[tMainTerrain, tTier1Terrain], [tTier1Terrain, tTier2Terrain], [tTier2Terrain, tTier3Terrain]], [1, 1]),
-				new TileClassPainter(clDirt)
-			],
-			[avoidClasses(clForest, 0, clHill, 2, clDirt, 5, clPlayer, 7), stayClasses(clLand, 4)],
-			patchCount);
+Engine.SetProgress(55);
 
-	g_Map.log("Creating grass patches");
-	for (const size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
-		createAreas(
-			new ClumpPlacer(size, 0.3, 0.06, 0.5),
-			new TerrainPainter(tTier4Terrain),
-			[avoidClasses(clForest, 0, clHill, 2, clDirt, 5, clPlayer, 7), stayClasses(clLand, 4)],
-			patchCount);
+g_Map.log("Creating stone mines");
+createObjectGroupsDeprecated(
+	new SimpleGroup(
+		[
+			new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1),
+			new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)
+		],
+		true,
+		clRock),
+	0,
+	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 2), stayClasses(clLand, 3)],
+	randIntInclusive(scaleByMapSize(2, 9), scaleByMapSize(9, 40)),
+	100);
 
-	Engine.SetProgress(55);
+g_Map.log("Creating small stone quarries");
+createObjectGroupsDeprecated(
+	new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3)], true, clRock),
+	0,
+	[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 2), stayClasses(clLand, 3)],
+	randIntInclusive(scaleByMapSize(2, 9), scaleByMapSize(9, 40)),
+	100);
 
-	g_Map.log("Creating stone mines");
+g_Map.log("Creating metal mines");
+createObjectGroupsDeprecated(
+	new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
+	0,
+	[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill, 2), stayClasses(clLand, 3)],
+	randIntInclusive(scaleByMapSize(2, 9), scaleByMapSize(9, 40)),
+	100);
+Engine.SetProgress(65);
+
+g_Map.log("Creating small decorative rocks");
+createObjectGroupsDeprecated(
+	new SimpleGroup([new SimpleObject(aRockMedium, 1, 3, 0, 1)], true),
+	0,
+	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 2), stayClasses(clLand, 3)],
+	scaleByMapSize(16, 262),
+	50);
+
+g_Map.log("Creating large decorative rocks");
+createObjectGroupsDeprecated(
+	new SimpleGroup(
+		[new SimpleObject(aRockLarge, 1, 2, 0, 1), new SimpleObject(aRockMedium, 1, 3, 0, 2)],
+		true),
+	0,
+	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 2), stayClasses(clLand, 3)],
+	scaleByMapSize(8, 131),
+	50);
+Engine.SetProgress(70);
+
+g_Map.log("Creating deer");
+createObjectGroupsDeprecated(
+	new SimpleGroup([new SimpleObject(oMainHuntableAnimal, 5, 7, 0, 4)], true, clFood),
+	0,
+	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 2, clFood, 20), stayClasses(clLand, 2)],
+	randIntInclusive(numPlayers + 3, 5 * numPlayers + 4),
+	50);
+
+g_Map.log("Creating berry bush");
+createObjectGroupsDeprecated(
+	new SimpleGroup([new SimpleObject(oFruitBush, 5, 7, 0, 4)], true, clFood),
+	0,
+	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 2, clFood, 20), stayClasses(clLand, 2)],
+	randIntInclusive(1, 4) * numPlayers + 2,
+	50);
+Engine.SetProgress(75);
+
+g_Map.log("Creating sheep");
+createObjectGroupsDeprecated(
+	new SimpleGroup([new SimpleObject(oSecondaryHuntableAnimal, 2, 3, 0, 2)], true, clFood),
+	0,
+	[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 2, clFood, 20), stayClasses(clLand, 2)],
+	randIntInclusive(numPlayers + 3, 5 * numPlayers + 4),
+	50);
+
+g_Map.log("Creating fish");
+createObjectGroupsDeprecated(
+	new SimpleGroup([new SimpleObject(oFish, 2, 3, 0, 2)], true, clFood),
+	0,
+	avoidClasses(clLand, 4, clForest, 0, clPlayer, 0, clHill, 2, clFood, 20),
+	randIntInclusive(15, 40) * numPlayers,
+	60);
+Engine.SetProgress(85);
+
+g_Map.log("Creating straggler trees");
+types = [g_Gaia.tree1, g_Gaia.tree2, g_Gaia.tree3, g_Gaia.tree4];
+
+num = Math.floor(numStragglers / types.length);
+for (const type of types)
 	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(oStoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1), new SimpleObject(oStoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)], true, clRock),
+		new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
 		0,
-		[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 2), stayClasses(clLand, 3)],
-		randIntInclusive(scaleByMapSize(2, 9), scaleByMapSize(9, 40)),
-		100);
+		[
+			avoidClasses(
+				clWater, 1,
+				clForest, 1,
+				clHill, 2,
+				clPlayer, 0,
+				clMetal, 6,
+				clRock, 6,
+				clBaseResource, 6),
+			stayClasses(clLand, 4)
+		],
+		num);
 
-	g_Map.log("Creating small stone quarries");
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3)], true, clRock),
-		0,
-		[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 2), stayClasses(clLand, 3)],
-		randIntInclusive(scaleByMapSize(2, 9), scaleByMapSize(9, 40)),
-		100);
+const planetm = currentBiome() == "generic/india" ? 8 : 1;
 
-	g_Map.log("Creating metal mines");
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal),
-		0,
-		[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill, 2), stayClasses(clLand, 3)],
-		randIntInclusive(scaleByMapSize(2, 9), scaleByMapSize(9, 40)),
-		100);
-	Engine.SetProgress(65);
+g_Map.log("Creating small grass tufts");
+createObjectGroupsDeprecated(
+	new SimpleGroup([new SimpleObject(aGrassShort, 1, 2, 0, 1, -Math.PI / 8, Math.PI / 8)]),
+	0,
+	[avoidClasses(clWater, 2, clHill, 2, clPlayer, 2, clDirt, 0), stayClasses(clLand, 3)],
+	planetm * scaleByMapSize(13, 200));
+Engine.SetProgress(90);
 
-	g_Map.log("Creating small decorative rocks");
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(aRockMedium, 1, 3, 0, 1)], true),
-		0,
-		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 2), stayClasses(clLand, 3)],
-		scaleByMapSize(16, 262),
-		50);
+g_Map.log("Creating large grass tufts");
+createObjectGroupsDeprecated(
+	new SimpleGroup(
+		[
+			new SimpleObject(aGrass, 2, 4, 0, 1.8, -Math.PI / 8, Math.PI / 8),
+			new SimpleObject(aGrassShort, 3, 6, 1.2, 2.5, -Math.PI / 8, Math.PI / 8)
+		]),
+	0,
+	[avoidClasses(clWater, 3, clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0), stayClasses(clLand, 3)],
+	planetm * scaleByMapSize(13, 200));
+Engine.SetProgress(95);
 
-	g_Map.log("Creating large decorative rocks");
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(aRockLarge, 1, 2, 0, 1), new SimpleObject(aRockMedium, 1, 3, 0, 2)], true),
-		0,
-		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 2), stayClasses(clLand, 3)],
-		scaleByMapSize(8, 131),
-		50);
-	Engine.SetProgress(70);
+g_Map.log("Creating shallow flora");
+createObjectGroupsDeprecated(
+	new SimpleGroup([new SimpleObject(aLillies, 1, 2, 0, 2), new SimpleObject(aReeds, 2, 4, 0, 2)]),
+	0,
+	stayClasses(clShallow, 1),
+	60 * scaleByMapSize(13, 200),
+	80);
 
-	g_Map.log("Creating deer");
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(oMainHuntableAnimal, 5, 7, 0, 4)], true, clFood),
-		0,
-		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 2, clFood, 20), stayClasses(clLand, 2)],
-		randIntInclusive(numPlayers + 3, 5 * numPlayers + 4),
-		50);
+g_Map.log("Creating bushes");
+createObjectGroupsDeprecated(
+	new SimpleGroup(
+		[new SimpleObject(aBushMedium, 1, 2, 0, 2), new SimpleObject(aBushSmall, 2, 4, 0, 2)]),
+	0,
+	[avoidClasses(clWater, 1, clHill, 2, clPlayer, 1, clDirt, 1), stayClasses(clLand, 3)],
+	planetm * scaleByMapSize(13, 200),
+	50);
 
-	g_Map.log("Creating berry bush");
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(oFruitBush, 5, 7, 0, 4)], true, clFood),
-		0,
-		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 2, clFood, 20), stayClasses(clLand, 2)],
-		randIntInclusive(1, 4) * numPlayers + 2,
-		50);
-	Engine.SetProgress(75);
+setSkySet(pickRandom(["cirrus", "cumulus", "sunny", "sunny 1", "mountainous", "stratus"]));
+setSunRotation(randomAngle());
+setSunElevation(Math.PI * randFloat(1/5, 1/3));
 
-	g_Map.log("Creating sheep");
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(oSecondaryHuntableAnimal, 2, 3, 0, 2)], true, clFood),
-		0,
-		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 8, clHill, 2, clFood, 20), stayClasses(clLand, 2)],
-		randIntInclusive(numPlayers + 3, 5 * numPlayers + 4),
-		50);
-
-	g_Map.log("Creating fish");
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(oFish, 2, 3, 0, 2)], true, clFood),
-		0,
-		avoidClasses(clLand, 4, clForest, 0, clPlayer, 0, clHill, 2, clFood, 20),
-		randIntInclusive(15, 40) * numPlayers,
-		60);
-	Engine.SetProgress(85);
-
-	g_Map.log("Creating straggler trees");
-	types = [g_Gaia.tree1, g_Gaia.tree2, g_Gaia.tree3, g_Gaia.tree4];
-
-	num = Math.floor(numStragglers / types.length);
-	for (const type of types)
-		createObjectGroupsDeprecated(
-			new SimpleGroup([new SimpleObject(type, 1, 1, 0, 3)], true, clForest),
-			0,
-			[avoidClasses(clWater, 1, clForest, 1, clHill, 2, clPlayer, 0, clMetal, 6, clRock, 6, clBaseResource, 6), stayClasses(clLand, 4)],
-			num);
-
-	const planetm = currentBiome() == "generic/india" ? 8 : 1;
-
-	g_Map.log("Creating small grass tufts");
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(aGrassShort, 1, 2, 0, 1, -Math.PI / 8, Math.PI / 8)]),
-		0,
-		[avoidClasses(clWater, 2, clHill, 2, clPlayer, 2, clDirt, 0), stayClasses(clLand, 3)],
-		planetm * scaleByMapSize(13, 200));
-	Engine.SetProgress(90);
-
-	g_Map.log("Creating large grass tufts");
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(aGrass, 2, 4, 0, 1.8, -Math.PI / 8, Math.PI / 8), new SimpleObject(aGrassShort, 3, 6, 1.2, 2.5, -Math.PI / 8, Math.PI / 8)]),
-		0,
-		[avoidClasses(clWater, 3, clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0), stayClasses(clLand, 3)],
-		planetm * scaleByMapSize(13, 200));
-	Engine.SetProgress(95);
-
-	g_Map.log("Creating shallow flora");
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(aLillies, 1, 2, 0, 2), new SimpleObject(aReeds, 2, 4, 0, 2)]),
-		0,
-		stayClasses(clShallow, 1),
-		60 * scaleByMapSize(13, 200),
-		80);
-
-	g_Map.log("Creating bushes");
-	createObjectGroupsDeprecated(
-		new SimpleGroup([new SimpleObject(aBushMedium, 1, 2, 0, 2), new SimpleObject(aBushSmall, 2, 4, 0, 2)]),
-		0,
-		[avoidClasses(clWater, 1, clHill, 2, clPlayer, 1, clDirt, 1), stayClasses(clLand, 3)],
-		planetm * scaleByMapSize(13, 200),
-		50);
-
-	setSkySet(pickRandom(["cirrus", "cumulus", "sunny", "sunny 1", "mountainous", "stratus"]));
-	setSunRotation(randomAngle());
-	setSunElevation(Math.PI * randFloat(1/5, 1/3));
-}
-
-function createUnknownPlayerBases()
-{
-	placePlayerBases({
-		"PlayerPlacement": [playerIDs, playerPosition],
-		"BaseResourceClass": clBaseResource,
-		"Walls": g_StartingWalls,
-		"CityPatch": {
-			"outerTerrain": tRoadWild,
-			"innerTerrain": tRoad,
-			"painters": [
-				new TileClassPainter(clPlayer)
-			]
-		},
-		"StartingAnimal": {
-		},
-		"Berries": {
-			"template": oFruitBush
-		},
-		"Mines": {
-			"types": [
-				{ "template": oMetalLarge },
-				{ "template": oStoneLarge }
-			]
-		},
-		"Treasures": {
-			"types": [
-				{
-					"template": oWoodTreasure,
-					"count": g_StartingTreasures ? 14 : 0
-				}
-			]
-		},
-		"Trees": {
-			"template": oTree1
-		},
-		"Decoratives": {
-			"template": aGrassShort
-		}
-	});
-}
-
-createUnknownMap();
+placePlayersNomad(clPlayer,
+	avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2, clWater, 10));
 
 g_Map.ExportMap();
