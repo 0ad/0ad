@@ -5,6 +5,7 @@
 # Translators:
 # Alexander Minges
 # Wuzzy
+# Daniel Roschka
 # xtother90
 # Latein Lebt
 # leper
@@ -16,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
-"Last-Translator: Raymond Vetter, 2014,2017\n"
+"Last-Translator: Daniel Roschka <dunedan@phoenitydawn.de>, 2024\n"
 "Language-Team: German (http://app.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +32,7 @@ msgstr "Farbe"
 #: gui/colormixer/colormixer.js:25
 msgid ""
 "Move the sliders to change the Red, Green and Blue components of the Color"
-msgstr "Bewege die jeweiligen Schieberegler, um die Rot-, Grün und Blauanteile der Farbe ändern."
+msgstr "Bewege die jeweiligen Schieberegler, um die Rot-, Grün- und Blauanteile der Farbe ändern."
 
 #: gui/colormixer/colormixer.js:90
 msgid "Red"
@@ -59,11 +60,11 @@ msgstr "Abbrechen"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr "%(url)s wird geöffnet\nim Standardbrowser. Bitte warten..."
+msgstr "%(url)s wird im Standardbrowser geöffnet.\nBitte warten..."
 
 #: gui/common/functions_msgbox.js:58
 msgid "Opening page"
-msgstr "Öffne Seite"
+msgstr "Öffne Webseite"
 
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
@@ -121,7 +122,7 @@ msgstr ", "
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
-msgstr "Erfordert: %(mods)s"
+msgstr "Benötigt: %(mods)s"
 
 #: gui/common/mod.js:41
 #, javascript-format
@@ -165,11 +166,11 @@ msgstr "Ok"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr "mod.io-Haftungsausschluss für 0 A.D. Empires Ascendant"
+msgstr "0 A.D. Empires Ascendant-Haftungsausschluss für mod.io"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2023-07-27"
-msgstr "Dokument-Datum: 2023-07-27"
+msgstr "Dokumenten-Datum: 27.07.2023"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
@@ -180,7 +181,7 @@ msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr "Dieser Dienst bietet einen einfachen Weg, um von Nutzern gemachte Mods herunterzuladen und zu installieren und wird von DBolical Pty Ltd, der Firma hinter IndieDB und ModDB, zur Verfügung gestellt."
+msgstr "Dieser Dienst bietet einen einfachen Weg, um von Nutzern erstellte Mods herunterzuladen und zu installieren und wird von DBolical Pty Ltd, der Firma hinter IndieDB und ModDB, zur Verfügung gestellt."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
@@ -191,14 +192,14 @@ msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr "Wildfire Games hat dafür gesorgt, dass diese Verbindung sicher ist und hat die Mods auf Sicherheitsrisiken geprüft, kann aber nicht garantieren, dass diese absolut keine Gefahr darstellen."
+msgstr "Wildfire Games hat dafür gesorgt, dass diese Verbindung sicher ist und hat die Mods auf Sicherheitsrisiken geprüft, kann aber nicht garantieren, dass diese keine Gefahr darstellen."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr "Indem du den Dienst nutzt, stimmst du zu, dass du die Nutzungsbedingungen und die Datenschutzerklärung von mod.io verstanden hast und dass Wildfire Games nicht für etwaige Schäden, die dieser Dienst verursacht, verantwortlich ist."
+msgstr "Indem du den Dienst nutzt, erklärst du dich mit den Nutzungsbedingungen und der Datenschutzerklärung von mod.io einverstanden und dass Wildfire Games nicht für etwaige Schäden, die dieser Dienst verursacht, verantwortlich ist."
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -207,7 +208,7 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Spiel-ID konnte nicht geholt werden.\n\n%(technicalDetails)s"
+msgstr "Spiel-ID konnte nicht abgerufen werden.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
@@ -230,7 +231,7 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Mod-Liste konnte nicht geholt werden.\n\n%(technicalDetails)s"
+msgstr "Liste der Mods konnte nicht geladen werden.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
@@ -267,11 +268,11 @@ msgstr "Verifikationsfehler"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr "Initialisiere „mod.io“-Interface."
+msgstr "Initialisiere das „mod.io“-Interface."
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr "Initialisieren"
+msgstr "Initialisiere"
 
 #: gui/modio/modio.js:223
 #, javascript-format
@@ -280,11 +281,11 @@ msgstr "Ungültiger Mod: %(error)s"
 
 #: gui/modio/modio.js:246
 msgid "Fetching and updating list of available mods."
-msgstr "Liste von verfügbaren Mods abholen und aktualisieren."
+msgstr "Aktualisiere die Liste von verfügbaren Mods."
 
 #: gui/modio/modio.js:247
 msgid "Updating"
-msgstr "Aktualisieren"
+msgstr "Aktualisiere"
 
 #: gui/modio/modio.js:249
 msgid "Cancel Update"
@@ -293,11 +294,11 @@ msgstr "Aktualisierung abbrechen"
 #: gui/modio/modio.js:265
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr "Herunterladen: „%(modname)s“"
+msgstr "Lade „%(modname)s“"
 
 #: gui/modio/modio.js:268
 msgid "Downloading"
-msgstr "Herunterladen"
+msgstr "Lade herunter"
 
 #: gui/modio/modio.js:270
 msgid "Cancel Download"
@@ -342,7 +343,7 @@ msgstr "Verfügbare Mods"
 
 #: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
-msgstr "Gültige Mods filtern"
+msgstr "nach gültigen Mods filtern"
 
 #: gui/modio/modio.xml:(caption):88
 msgid "Back"
@@ -354,7 +355,7 @@ msgstr "Liste aktualisieren"
 
 #: gui/modio/modio.xml:(caption):98
 msgid "Download"
-msgstr "Download"
+msgstr "Herunterladen"
 
 #: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
 #: gui/modmod/modmod.xml:(heading):131
@@ -369,7 +370,7 @@ msgstr "Version"
 #: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
 #: gui/modmod/modmod.xml:(heading):140
 msgid "Mod Label"
-msgstr "Mod Bezeichnung"
+msgstr "Mod-Beschreibung"
 
 #: gui/modio/modio.xml:(heading):63
 msgid "File Size"
@@ -399,13 +400,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "Um eine Mod zu installieren, öffnet man die Datei einfach mit 0 A.D. (entweder per Doppelklick auf die Datei und Auswahl, sie mit dem Spiel zu öffnen, oder man führt „pyrogenesis file.pyromod“ in einem Terminal aus). Die Mod wird dann in der Mod-Auswahl verfügbar sein. Man kann sie nach Belieben aktivieren und deaktivieren. Man kann die Mod bei Bedarf manuell über den Dateibrowser löschen (siehe https://trac.wildfiregames.com/wiki/GameDataPaths)."
+msgstr "Um einen Mod zu installieren, öffne die Datei einfach mit 0 A.D. (entweder per Doppelklick auf die Datei und Auswahl, sie mit dem Spiel zu öffnen, oder indem du „pyrogenesis file.pyromod“ in einem Terminal ausführst). Der Mod wird dann in der Mod-Auswahl verfügbar sein. Man kann ihn nach Belieben aktivieren und deaktivieren. Man kann den Mod bei Bedarf manuell über den Dateibrowser löschen (siehe https://trac.wildfiregames.com/wiki/GameDataPaths)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr "Für weitere Informationen über das Modding für dieses Spiel, siehe die Modding-Anleitung online (klick unten auf den „Modding-Anleitung“-Knopf)."
+msgstr "Für weitere Informationen über das Modding für dieses Spiel, siehe die Modding-Anleitung online (klicke unten auf den „Modding-Anleitung“-Knopf)."
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -414,11 +415,11 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "Der mod.io-Dienst wird von DBolical entwickelt, dem Unternehmen hinter IndieDB und ModDB. Diese Websites haben 0 A.D. und andere Indie-Projekte schon lange zu Verbreitung geholfen! Heute können wir mit mod.io alle Mods auflisten und herunterladen, die vom Team verifiziert wurden. Klicke auf „Mods herunterladen“, um sie auszuprobieren und einige zu installieren!"
+msgstr "Der mod.io-Dienst wird von DBolical entwickelt, dem Unternehmen hinter IndieDB und ModDB. Diese Webseiten haben 0 A.D. und anderen Indie-Projekten schon lange zu Verbreitung geholfen! Heute können wir mit mod.io alle Mods auflisten und herunterladen, die vom Team verifiziert wurden. Klicke auf „Mods herunterladen“, um sie auszuprobieren und einige zu installieren!"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr "Pyrogenesis-Modwähler"
+msgstr "Pyrogenesis-Mod-Auswahl"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -434,7 +435,7 @@ msgstr "mod.io besuchen"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr "Diese Mod existiert nicht"
+msgstr "Dieser Mod existiert nicht"
 
 #: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
@@ -448,7 +449,7 @@ msgstr "Abhängigkeiten nicht erfüllt"
 #: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
-msgstr "Deaktiviert"
+msgstr "Deaktivieren"
 
 #: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
@@ -456,7 +457,7 @@ msgstr "Kein Mod ausgewählt."
 
 #: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
-msgstr "Aktiviere die 0ad Mod"
+msgstr "Aktiviere zumindest den 0ad Mod"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -468,7 +469,7 @@ msgstr "Invertieren"
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Filter compatible"
-msgstr "Kompatible filtern"
+msgstr "nach kompatiblen Mods filtern"
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
@@ -476,7 +477,7 @@ msgstr "Beschreibung"
 
 #: gui/modmod/modmod.xml:(caption):114
 msgid "Enabled Mods"
-msgstr "Aktivierte Mods"
+msgstr "Aktive Mods"
 
 #: gui/modmod/modmod.xml:(caption):183
 msgid "Visit Website"
@@ -526,7 +527,7 @@ msgstr "Aktive Mods werden von oben nach unten geladen. Später geladene Mods k�
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr "Ändere die Reihenfolge, in welcher die Mods geladen werden. Dies muss zu den Abhängigkeiten der Mods passen."
+msgstr "Ändere die Reihenfolge, in welcher die Mods geladen werden. Diese muss zu den Abhängigkeiten der Mods passen."
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
@@ -542,7 +543,7 @@ msgstr "mod.io Datenschutzerklärung"
 
 #: gui/msgbox/msgbox.js:25 gui/timedconfirmation/timedconfirmation.js:46
 msgid "OK"
-msgstr "OK"
+msgstr "Ok"
 
 #. Translation: Label of a button that when pressed opens the Terms and
 #. Conditions in the

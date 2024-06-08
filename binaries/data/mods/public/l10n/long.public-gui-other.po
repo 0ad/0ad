@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-06-03 07:20+0000\n"
-"PO-Revision-Date: 2024-06-03 07:20+0000\n"
+"POT-Creation-Date: 2024-06-07 07:30+0000\n"
+"PO-Revision-Date: 2024-06-07 07:30+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1459,14 +1459,14 @@ msgstr "Faire pivoter vers le haut"
 msgctxt "hotkey metadata"
 msgid "Rotate camera counterclockwise around terrain - the effect depends on FPS."
 msgstr ""
-"Rotar la cámara en el sentido contrario a las agujas del reloj alrededor del terreno - "
-"el efecto depende de los FPS."
+"Roda a câmara no sentido inverso dos ponteiros do relógio ao redor do terreno - o "
+"efeito depende dos fotogramas por segundo."
 
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain - the effect depends on FPS."
 msgstr ""
-"Rotar la cámara en el sentido de las agujas del reloj alrededor del terreno - el efecto"
-" depende de los FPS."
+"Roda a câmara no sentido dos ponteiros do relógio ao redor do terreno - o efeito "
+"depende dos fotogramas por segundo."
 
 msgctxt "hotkey metadata"
 msgid "Decrease camera scroll speed."
@@ -1574,7 +1574,7 @@ msgstr "Потвърждение"
 
 msgctxt "hotkey metadata"
 msgid "Toggle the console."
-msgstr "Ativa / desativa a consola de comandos"
+msgstr "Ativa ou desativa a consola de comandos."
 
 msgctxt "hotkey metadata"
 msgid "Toggle Console"
@@ -1582,7 +1582,7 @@ msgstr "Afficher / masquer la Console"
 
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard."
-msgstr "Copiar para a área de transferência."
+msgstr "Copia para a área de transferência."
 
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard"
@@ -1640,7 +1640,7 @@ msgstr "Ativa ou desativa o analisador de perfil em tempo real."
 
 msgctxt "hotkey metadata"
 msgid "Toggle profiler"
-msgstr "Εμφάνιση/Απόκρυψη  δεδομένων προφίλ."
+msgstr "Ativar / desativar analisador de perfil"
 
 msgctxt "hotkey metadata"
 msgid "Toggle HTTP/GPU modes for new profiler."
@@ -1648,7 +1648,7 @@ msgstr "HTTP/GPU-tilojen ottaminen käyttöön tai poistaminen käytöstä uudes
 
 msgctxt "hotkey metadata"
 msgid "Toggle profiler2"
-msgstr "2. profilozó megjelenítése / elrejtése"
+msgstr "Ativar / desativar analisador de perfil2"
 
 msgctxt "hotkey metadata"
 msgid "Take PNG screenshot."
@@ -1726,7 +1726,7 @@ msgstr "Activer / désactiver l'affichage plein écran"
 
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode."
-msgstr "Mostra os vários modos de visualização dos modelos 3D em linhas."
+msgstr "Ativa ou desativa os vários modos de visualização dos modelos 3D em linhas."
 
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode"
@@ -1846,7 +1846,7 @@ msgstr "Apartar de la escolleiꞇha un typu d’unidá"
 
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr "Estableix el cursor a bengala mentre aquesta drecera de teclat estigui premuda."
+msgstr "Define o cursor para a ação de sinalizar enquanto esta tecla de atalho for premida."
 
 msgctxt "hotkey metadata"
 msgid "Flare (hold)"
@@ -1858,7 +1858,7 @@ msgstr "Imposta il cursore su Segnale. Non serve tener premuto il tasto scelta r
 
 msgctxt "hotkey metadata"
 msgid "Flare (toggle)"
-msgstr "Signal (afficher / masquer)"
+msgstr "Ativar / desativar sinalização"
 
 msgctxt "hotkey metadata"
 msgid "Modifier to put the desired trade resource to 100%."
@@ -2168,7 +2168,7 @@ msgstr "Afficher les informations sur la civilisation."
 
 msgctxt "hotkey metadata"
 msgid "Toggle civ info"
-msgstr "Basculer les informations de civilisation"
+msgstr "Mostrar / ocultar informação da civilização"
 
 msgctxt "hotkey metadata"
 msgid "Toggle “frames per second” counter."
@@ -2184,7 +2184,7 @@ msgstr "Mostrar a sala de espera para partidas de varios xogadores nunha xanela 
 
 msgctxt "hotkey metadata"
 msgid "Toggle MP lobby"
-msgstr "Többjátékos váró megjelenítése / elrejtése"
+msgstr "Mostrar / ocultar sala de espera multijogador"
 
 msgctxt "hotkey metadata"
 msgid "Toggle chat window and select the previous private chat partner."
@@ -2265,7 +2265,7 @@ msgstr "Toglaich an clàr-taice am broinn a’ gheama."
 
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu"
-msgstr "Játékmenü megjelenítése / elrejtése"
+msgstr "Mostrar / ocultar menu durante o jogo"
 
 msgctxt "hotkey metadata"
 msgid "Toggle in-game objectives page."
@@ -2362,7 +2362,7 @@ msgstr ""
 
 msgctxt "hotkey metadata"
 msgid "Toggle attack ranges"
-msgstr "Attiva/Disattiva i raggi di attacco"
+msgstr "Mostrar / ocultar alcance de ataque"
 
 msgctxt "hotkey metadata"
 msgid "Toggle display of aura range overlays of selected units and structures."
@@ -3116,7 +3116,7 @@ msgid "Background pause"
 msgstr "Szüneteltetés a háttérben"
 
 msgid "Pause single-player games when window loses focus."
-msgstr "Cuir geamannan aon-chluicheadair ’nan stad nuair a chailleas an uinneag am fòcas."
+msgstr "Pausa o jogo (exceto no modo multijogador) quando a janela do jogo não estiver ativa."
 
 msgid "Enable welcome screen"
 msgstr "Cuir an sgrìn fàilteachaidh an comas"
@@ -4118,7 +4118,7 @@ msgstr ""
 "εναλλαχτεί με το πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)."
 
 msgid "Change options regarding the in-game settings."
-msgstr "Αλλαγή επιλογών σχετικά με τις ρυθμίσεις εντός του παιχνιδιού."
+msgstr "Altera as opções que se referem às configurações durante um jogo."
 
 msgid "Default difficulty of the AI."
 msgstr "Ο προκαθορισμένος βαθμός δυσκολίας της Τεχνητής Νοημοσύνης."
