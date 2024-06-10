@@ -13,6 +13,7 @@
 # Candy_man
 # chaosville
 # cledge
+# Daniel Roschka
 # xtother90
 # Elias Keis
 # 0783ceb0abad32bf6a5d397ceffe5799
@@ -78,7 +79,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-10-16 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
-"Last-Translator: Latein Lebt, 2021-2023\n"
+"Last-Translator: Daniel Roschka, 2024\n"
 "Language-Team: German (http://app.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,7 +89,7 @@ msgstr ""
 
 #: gui/session/Cheats.js:78
 msgid "This cheat requires a numeric parameter."
-msgstr "Diese Cheat benötigt einen numerischen Parameter."
+msgstr "Dieser Cheat benötigt einen numerischen Parameter."
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
@@ -97,7 +98,7 @@ msgstr "Spielgeschwindigkeit wählen"
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr "Drücke%(hotkey)s, um dieses Menü umzuschalten."
+msgstr "Drücke %(hotkey)s, um dieses Menü umzuschalten."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -114,7 +115,7 @@ msgstr "Zusammenfassung"
 #: gui/session/MenuButtons.js:90
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr "Drücke%(hotkey)s, um den Zusammenfassungsbildschirm zu öffnen."
+msgstr "Drücke %(hotkey)s, um die Zusammenfassungsansicht zu öffnen."
 
 #: gui/session/MenuButtons.js:133
 msgid "Lobby"
@@ -125,7 +126,7 @@ msgstr "Lobby"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr "Drücke %(hotkey)s, um die Mehrspielerlobby zu öffnen, ohne das Spiel zu verlassen."
+msgstr "Drücke %(hotkey)s, um die Mehrspieler-Lobby zu öffnen, ohne das Spiel zu verlassen."
 
 #: gui/session/MenuButtons.js:161
 msgid "Options"
@@ -133,7 +134,7 @@ msgstr "Optionen"
 
 #: gui/session/MenuButtons.js:185
 msgid "Hotkeys"
-msgstr "Hotkeys"
+msgstr "Tastaturkürzel"
 
 #: gui/session/MenuButtons.js:220
 msgid "Resume"
@@ -160,11 +161,11 @@ msgstr "Verlassen"
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr "Verzögerung für den Livestream: %(delay)ss"
+msgstr "Verzögerung des Livestreams: %(delay)ss"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
-msgstr "Verbindung zum Server wurde authentifiziert."
+msgstr "Die Verbindung zum Server wurde authentifiziert."
 
 #: gui/session/NetworkStatusOverlay.js:39
 msgid "Connected to the server."
@@ -211,7 +212,7 @@ msgstr "Spiel pausiert"
 
 #: gui/session/PauseOverlay.xml:(caption):11
 msgid "Click to Resume Game"
-msgstr "Klicken zum Fortsetzen"
+msgstr "Klicke zum Fortsetzen"
 
 #: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:273
 #: gui/session/selection_details.js:291 gui/session/selection_panels.js:602
@@ -293,7 +294,7 @@ msgstr "Chatnachrichten"
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr "Spielerchat"
+msgstr "Spieler-Chat"
 
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
@@ -328,7 +329,7 @@ msgstr "Netzwerkbenachrichtigungen"
 #: gui/session/chat/ChatInput.js:36
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr "Gib die Nachricht zum Senden ein."
+msgstr "Gib die zu sendende Nachricht ein."
 
 #: gui/session/chat/ChatInput.js:42
 #, javascript-format
@@ -338,12 +339,12 @@ msgstr "Drücke %(hotkey)s um den öffentlichen Chat zu öffnen."
 #: gui/session/chat/ChatInput.js:45
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr "Drücke %(hotkey)s um Zuschauer Chat zu öffnen."
+msgstr "Drücke %(hotkey)s um Zuschauer-Chat zu öffnen."
 
 #: gui/session/chat/ChatInput.js:46
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Drücke %(hotkey)s um Verbündeten Chat zu öffnen."
+msgstr "Drücke %(hotkey)s um Verbündeten-Chat zu öffnen."
 
 #: gui/session/chat/ChatInput.js:48
 #, javascript-format
@@ -426,7 +427,7 @@ msgstr "%(icon)s Du wurdest von %(attacker)s angegriffen!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr "Klicken, um auf die angegriffene Einheit zu fokussieren."
+msgstr "Klicke, um auf die angegriffene Einheit zu fokussieren."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
@@ -436,17 +437,17 @@ msgstr "%(player)s tauschte %(amountGiven)s für %(amountGained)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr "Du bist jetzt verbündet mit %(player)s."
+msgstr "Du bist jetzt mit %(player)s verbündet."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:82
 #, javascript-format
 msgid "You are now at war with %(player)s."
-msgstr "Du befindest dich jetzt im Krieg mit %(player)s."
+msgstr "Du befindest dich jetzt mit %(player)s im Krieg."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:83
 #, javascript-format
 msgid "You are now neutral with %(player)s."
-msgstr "Du bist jetzt neutral gegenüber %(player)s."
+msgstr "Du stehst %(player)s jetzt neutral gegenüber."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
@@ -546,7 +547,7 @@ msgstr "Senden"
 #: gui/session/chat/chat_window.xml:(tooltip):29
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr "Filtere den Chat-Verlauf."
+msgstr "Filtere den Chatverlauf."
 
 #: gui/session/chat/chat_window.xml:(tooltip):55
 msgctxt "chat input"
@@ -579,7 +580,7 @@ msgstr "Wegfinder-Overlay"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:86
 msgid "Hierarchical pathfinder overlay"
-msgstr "Hierarchischer Wegfinder-Overlay"
+msgstr "Hierarchisches Wegfinder-Overlay"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:99
 msgid "Obstruction overlay"
@@ -619,7 +620,7 @@ msgstr "Ausgewählte Einheiten befördern"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:269
 msgid "Enable culling"
-msgstr "Schaltet Kamerabereich frei"
+msgstr "Schalte Kameraauswahl frei"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:287
 msgid "Lock cull camera"
@@ -631,7 +632,7 @@ msgstr "Kamerakegel anzeigen"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:323
 msgid "Display shadows frustum"
-msgstr "Schattenfrustum anzeigen"
+msgstr "Schattenkegel anzeigen"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:22
 msgid "Render Debug Mode Disabled"
@@ -808,7 +809,7 @@ msgstr "Ja"
 #: gui/session/message_box/OutOfSyncReplay.js:26
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "Desynchronisationsfehler im Zug Nr. %(turn)s."
+msgstr "Desynchronisationsfehler in Spielzug %(turn)s."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:19
 #, javascript-format
@@ -824,12 +825,12 @@ msgstr "Dein Spielzustand ist mit dem des Hosts identisch."
 #: gui/session/message_box/OutOfSyncNetwork.js:25
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr "Dein Spielzustand ist zu dem des Hosts verschieden."
+msgstr "Dein Spielzustand unterscheidet sich von dem des Hosts."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:31
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "Der Wiedereintritt in Mehrspielerspielen mit KI ist noch nicht unterstützt!"
+msgstr "Der Wiedereintritt in Mehrspielerpartien mit KI-Spielern wird noch nicht unterstützt!"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"
@@ -845,13 +846,13 @@ msgstr "Klicke im Hauptmenü auf „Bug melden“, um zu helfen, diesen Fehler z
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
-msgstr "Wiederholung nach %(filepath)s gespeichert"
+msgstr "Wiederholung wurde in %(filepath)s gespeichert"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:39
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
-msgstr "Aktuellen Zustand in %(filepath)s gespeichert"
+msgstr "Aktueller Zustand in %(filepath)s gespeichert"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:51
 #: gui/session/message_box/OutOfSyncReplay.js:23
@@ -895,7 +896,7 @@ msgstr "BESIEGT!"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:57
 msgid "Do you want to quit?"
-msgstr "Willst du das Spiel verlassen?"
+msgstr "Möchtest du das Spiel verlassen?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:33
 msgid ""
@@ -930,7 +931,7 @@ msgstr "Die Wiederholung ist zu Ende. Was möchtest du tun?"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
-msgstr "Sicher, dass du aufgeben möchtest?"
+msgstr "Bist du sicher, dass du aufgeben möchtest?"
 
 #: gui/session/messages.js:104
 msgid "You have won!"
@@ -942,7 +943,7 @@ msgstr "Du wurdest besiegt!"
 
 #: gui/session/messages.js:410
 msgid "Click to quit this tutorial."
-msgstr "Klicken, um diese Einführung zu beenden."
+msgstr "Klicke, um diese Einführung zu beenden."
 
 #: gui/session/message_box/QuitConfirmation.js:25
 #: gui/session/message_box/QuitConfirmationReplay.js:32
@@ -964,7 +965,7 @@ msgstr "Unbekannter Spieler"
 
 #: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
-msgstr "Ein Signal an deine Verbündeten senden"
+msgstr "Sende ein Signal an deine Verbündeten"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:43
 msgid ""
@@ -1003,7 +1004,7 @@ msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
 #: gui/session/selection_details.js:189
 msgid "Capture Points"
-msgstr "Einnehmpunkte"
+msgstr "Eroberungspunkte"
 
 #: gui/session/selection_details.js:202
 #, javascript-format
@@ -1116,31 +1117,31 @@ msgstr "Alarm schlagen!"
 
 #: gui/session/selection_panels.js:67
 msgid "Alert nearby Female Citizens to seek refuge."
-msgstr ""
+msgstr "Alarmiere nahe Bürgerinnen, nach Schutz zu suchen."
 
 #: gui/session/selection_panels.js:69
 msgid "Alert nearby Traders to seek refuge."
-msgstr ""
+msgstr "Alarmiere nahe Händler, nach Schutz zu suchen"
 
 #: gui/session/selection_panels.js:71
 msgid "Alert nearby vulnerable units to seek refuge."
-msgstr ""
+msgstr "Alamiere nahe Einheiten, nach Schutz zu suchen."
 
 #: gui/session/selection_panels.js:75
 msgid "End the alert."
-msgstr ""
+msgstr "Alarm beenden."
 
 #: gui/session/selection_panels.js:77
 msgid "Unload nearby Female Citizens."
-msgstr ""
+msgstr "Quartiere nahe Bürgerinnen aus."
 
 #: gui/session/selection_panels.js:79
 msgid "Unload nearby Traders."
-msgstr ""
+msgstr "Quartiere nahe Händler aus."
 
 #: gui/session/selection_panels.js:81
 msgid "Unload nearby vulnerable units."
-msgstr ""
+msgstr "Quartiere nahe verletzliche Einheiten aus."
 
 #: gui/session/selection_panels.js:291
 msgid "Default formation is disabled."
@@ -1148,15 +1149,15 @@ msgstr "Standardformation ist deaktiviert."
 
 #: gui/session/selection_panels.js:292
 msgid "Right-click to disable the default formation feature."
-msgstr "Rechtsklicken um die Standardformation aufzuheben."
+msgstr "Klicke mit rechts, um die Standardformation aufzuheben."
 
 #: gui/session/selection_panels.js:295
 msgid "This is the default formation, used for movement orders."
-msgstr "Das ist die Standardformation, die für Marschbefehle genutzt wird"
+msgstr "Dies ist die Standardformation, die für Marschbefehle genutzt wird"
 
 #: gui/session/selection_panels.js:296
 msgid "Right-click to set this as the default formation."
-msgstr "Rechtsklicken um dies als Standardformation zu setzen."
+msgstr "Klicke mit rechts, um dies als Standardformation zu setzen."
 
 #: gui/session/selection_panels.js:352
 #, javascript-format
@@ -1165,7 +1166,7 @@ msgstr "%(name)s ausquartieren"
 
 #: gui/session/selection_panels.js:353
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Klicke, um 1 Einheit auszuquartieren. Umschalt+Klick, um alle Einheiten dieses Typs auszuquartieren."
+msgstr "Klicke, um eine Einheit auszuquartieren. Umschalt+Klick, um alle Einheiten dieses Typs auszuquartieren."
 
 #: gui/session/selection_panels.js:355 gui/session/selection_panels.js:933
 #, javascript-format
@@ -1237,26 +1238,26 @@ msgstr "Während des Aufrüstens kann nicht ausgebildet werden."
 #: gui/session/selection_panels.js:1153
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr "Aktualisieren zu %(primaryName)s (%(secondaryName)s). %(tooltip)s"
+msgstr "Aufrüsten zu %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
 #: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr "Aktualisieren zu %(primaryName)s (%(secondaryName)s)."
+msgstr "Aufrüsten zu %(primaryName)s (%(secondaryName)s)."
 
 #: gui/session/selection_panels.js:1167
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr "Aktualisieren zu %(primaryName)s. %(tooltip)s"
+msgstr "Aufrüsten zu %(primaryName)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1172
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
-msgstr "Aktualisieren zu %(primaryName)s."
+msgstr "Aufrüsten zu %(primaryName)s."
 
 #: gui/session/selection_panels.js:1209
 msgid "Cancel Upgrading"
-msgstr "Aufrüstung Beenden"
+msgstr "Aufrüstung abbrechen"
 
 #: gui/session/selection_panels.js:1224
 msgid ""
@@ -1418,7 +1419,7 @@ msgstr "Gesundheit"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):41
 msgid "Capture points"
-msgstr "Einnehmpunkte"
+msgstr "Eroberungspunkte"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):84
 msgid "Attack and Resistance"
@@ -1440,7 +1441,7 @@ msgstr "Produktionswarteschlange"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "Klicke auf gruppierte Einheiten, um diese auszuwählen, doppelklicke auf gruppierte Einheiten, um auf diese zu fokussieren und rechtsklicke, um die Gruppe aufzulösen."
+msgstr "Klicke auf gruppierte Einheiten, um diese auszuwählen, doppelklicke auf gruppierte Einheiten, um auf diese zu fokussieren und klicke mit rechts, um die Gruppe aufzulösen."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVII: Agni"
@@ -1452,7 +1453,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Zivilisationsübersicht / Gebäudebaum anzeigen\nBeim Klicken wird das zuletzt geöffnete erneut geöffnet. "
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Zivilisationsübersicht / Gebäudebaum anzeigen\nBeim Klicken wird die zuletzt geöffnete Ansicht erneut geöffnet. "
 
 #: gui/session/top_panel/CounterManager.js:100
 #, javascript-format
@@ -1579,7 +1580,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Wähle durch Klicken den Warentyp aus, den du verändern möchtest, und nutze dann die Pfeile der anderen Typen um deren Anteil zu verändern. Du kannst auch %(hotkey)s während der Auswahl drücken und den Anteil auf 100%% zu setzen."
+msgstr "Wähle durch Klicken den Warentyp aus, den du verändern möchtest, und nutze dann die Pfeile der anderen Typen um deren Anteil zu verändern. Du kannst während der Auswahl auch %(hotkey)s drücken, um den Anteil auf 100 % zu setzen."
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1715,7 +1716,7 @@ msgstr "Bereit"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr "Dies ist der Ursprungsmarkt.\nRechtsklicken, um die Handelsroute zu stoppen."
+msgstr "Dies ist der Ursprungsmarkt.\nKlicke mit rechts, um die Handelsroute zu stoppen."
 
 #: gui/session/unit_actions.js:683
 msgid "Origin trade market."
@@ -1727,7 +1728,7 @@ msgstr "Zielmarkt."
 
 #: gui/session/unit_actions.js:700
 msgid "Right-click to set as origin trade market"
-msgstr "Rechtsklicken, um als Ursprungsmarkt zu wählen"
+msgstr "Klicke mit rechts, um als Ursprungsmarkt zu wählen"
 
 #: gui/session/unit_actions.js:707 gui/session/unit_actions.js:1191
 msgid "This market is too close to the origin market."
@@ -1735,7 +1736,7 @@ msgstr "Dieser Markt liegt zu nahe beim Ursprungsmarkt."
 
 #: gui/session/unit_actions.js:711
 msgid "Right-click to set as destination trade market."
-msgstr "Rechtsklicken, um als Zielmarkt zu wählen."
+msgstr "Klicke mit rechts, um als Zielmarkt zu wählen."
 
 #: gui/session/unit_actions.js:776 gui/session/unit_actions.js:1123
 #, javascript-format
@@ -1749,7 +1750,7 @@ msgstr "Einquartiert: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:1182
 msgid "Right-click to establish a default route for new traders."
-msgstr "Rechtsklicken, um eine Standardroute für neue Händler zu erstellen."
+msgstr "Klicke mit rechts, um eine Standardroute für neue Händler zu erstellen."
 
 #: gui/session/unit_actions.js:1186
 #, javascript-format
@@ -1803,11 +1804,11 @@ msgstr "Ausquartieren"
 
 #: gui/session/unit_actions.js:1580
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr "Ausgewählten Einheiten Befehl, ein Gebäude, ein Schiff oder eine Belagerungseinheit zu reparieren."
+msgstr "Ausgewählten Einheiten befehlen, ein Gebäude, ein Schiff oder eine Belagerungseinheit zu reparieren."
 
 #: gui/session/unit_actions.js:1601
 msgid "Focus on Rally Point."
-msgstr "Kamera auf Sammelpunkt"
+msgstr "Kamera auf Sammelpunkt fokussieren."
 
 #: gui/session/unit_actions.js:1638
 msgid "Back to Work"
@@ -1833,7 +1834,7 @@ msgstr "Patrouille"
 
 #: gui/session/unit_actions.js:1719
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr "Alle gegnerischen Einheiten unterwegs angreifen, aber keine Gebäude."
+msgstr "Alle gegnerischen Einheiten, aber keine Gebäude, unterwegs angreifen."
 
 #: gui/session/unit_actions.js:1747
 msgid "Press to allow allies to use this dropsite"
@@ -1849,7 +1850,7 @@ msgstr "Die Benutzung dieses Lagers ist untersagt"
 
 #: gui/session/unit_actions.js:1793
 msgid "Allies are allowed to use this dropsite."
-msgstr "Verbündete dürfen dieses Lager benützen."
+msgstr "Verbündete dürfen dieses Lager benutzen."
 
 #: gui/session/unit_actions.js:1794
 msgid "You are allowed to use this dropsite"
@@ -1870,7 +1871,7 @@ msgstr "Die Einheit muss getötet werden, bevor ihre Ressourcen gesammelt werden
 #: gui/session/unit_actions.js:1901
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "Du kannst dieses Objekt nicht zerstören, da du weniger als die Hälfte der Kontrollpunkte besitzt"
+msgstr "Du kannst dieses Objekt nicht zerstören, da du weniger als die Hälfte der Eroberungspunkte besitzt"
 
 #: gui/session/unit_actions.js:1904
 msgid "This entity is undeletable"

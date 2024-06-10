@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # Translators:
 # Wuzzy
+# Daniel Roschka
 # xtother90
 # eclipse
 # Maximilian Wagenbach
@@ -21,7 +22,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2013-06-22 12:54+0000\n"
-"Last-Translator: xtother90, 2018-2022\n"
+"Last-Translator: Daniel Roschka, 2024\n"
 "Language-Team: German (http://app.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,32 +33,32 @@ msgstr ""
 #: graphics/CameraController.cpp:659
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr "Scroll-Geschwindigkeit erhöht auf %.1f"
+msgstr "Scroll-Geschwindigkeit auf %.1f erhöht"
 
 #: graphics/CameraController.cpp:665
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr "Scroll-Geschwindigkeit verringert auf %.1f"
+msgstr "Scroll-Geschwindigkeit auf %.1f verringert"
 
 #: graphics/CameraController.cpp:672
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr "Dreh-Geschwindigkeit erhöht auf X=%.3f, Y=%.3f"
+msgstr "Dreh-Geschwindigkeit auf X=%.3f, Y=%.3f erhöht"
 
 #: graphics/CameraController.cpp:679
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr "Dreh-Geschwindigkeit verringert auf X=%.3f, Y=%.3f"
+msgstr "Dreh-Geschwindigkeit auf X=%.3f, Y=%.3f verringert"
 
 #: graphics/CameraController.cpp:685
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr "Zoom-Geschwindigkeit erhöht auf %.1f"
+msgstr "Zoom-Geschwindigkeit auf %.1f erhöht"
 
 #: graphics/CameraController.cpp:691
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr "Zoom-Geschwindigkeit verringert auf %.1f"
+msgstr "Zoom-Geschwindigkeit auf %.1f verringert"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -89,7 +90,7 @@ msgstr "Das Zertifikat ist noch nicht aktiv."
 
 #: lobby/XmppClient.cpp:1360
 msgid "The certificate has not been issued for the peer connected to."
-msgstr "Das Zertifikat ist nicht für den verbundenen Partner ausgestellt worden."
+msgstr "Das Zertifikat ist nicht für die Gegenstelle ausgestellt worden."
 
 #: lobby/XmppClient.cpp:1361
 msgid "The certificate signer is not a certificate authority."
@@ -146,11 +147,11 @@ msgstr "Datenstrom-Fehler"
 
 #: lobby/XmppClient.cpp:1432
 msgid "The incoming stream version is unsupported"
-msgstr "Die Version des eingehenden Daten-Stroms wird nicht unterstützt."
+msgstr "Die Version des eingehenden Datenstroms wird nicht unterstützt."
 
 #: lobby/XmppClient.cpp:1433
 msgid "The stream has been closed by the server"
-msgstr "Der Daten-Strom wurde vom Server geschlossen."
+msgstr "Der Datenstrom wurde vom Server geschlossen."
 
 #: lobby/XmppClient.cpp:1437
 msgid "An I/O error occurred"
@@ -166,7 +167,7 @@ msgstr "Der Hostname des Servers konnte nicht aufgelöst werden."
 
 #: lobby/XmppClient.cpp:1441
 msgid "This system is out of memory"
-msgstr "Dieses System hat keinen freien Speicher mehr zur Verfügung."
+msgstr "Dieses System hat keinen freien Arbeitsspeicher mehr zur Verfügung."
 
 #: lobby/XmppClient.cpp:1443
 msgid ""
@@ -192,7 +193,7 @@ msgstr "Es existiert keine aktive Verbindung."
 
 #: lobby/XmppClient.cpp:1469
 msgid "Your account has been successfully registered"
-msgstr "Dein Konto wurde erfolgreich eingerichtet."
+msgstr "Dein Konto wurde erfolgreich angelegt."
 
 #: lobby/XmppClient.cpp:1470
 msgid "Not all necessary information provided"
@@ -207,7 +208,7 @@ msgstr "Benutzername bereits in Verwendung"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "Die externe Datei mod.json für die gezippte Mod ‚%s‘ konnte nicht geschrieben werden. Die Mod sollte neu installiert werden."
+msgstr "Die externe Datei mod.json für den gezippten Mod ‚%s‘ konnte nicht geschrieben werden. Der Mod sollte neu installiert werden."
 
 #: ps/ModIo.cpp:264
 #, c-format
@@ -268,7 +269,7 @@ msgstr "Spiel gespeichert unter ‚%s‘"
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
-msgstr "custom build"
+msgstr "Custom Build"
 
 #: renderer/Renderer.cpp:565 renderer/Renderer.cpp:568
 #: renderer/Renderer.cpp:680 renderer/Renderer.cpp:683

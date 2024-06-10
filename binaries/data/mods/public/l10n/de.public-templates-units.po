@@ -5,6 +5,7 @@
 # Translators:
 # Wuzzy
 # BL4NKY
+# Daniel Roschka
 # xtother90
 # Elias Keis
 # Jakob Raidt
@@ -33,7 +34,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-05-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: BL4NKY, 2023\n"
+"Last-Translator: Daniel Roschka, 2024\n"
 "Language-Team: German (http://app.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +52,7 @@ msgstr "Katafalk"
 
 #: simulation/templates/template_unit_catafalque.xml:20
 msgid "A catafalque that holds the remains of a great leader."
-msgstr "Ein Katafalk, das die sterblichen Überreste eines großen Anführers enthält."
+msgstr "Ein Katafalk, dass die sterblichen Überreste eines großen Anführers enthält."
 
 #: simulation/templates/template_unit_cavalry.xml:5
 #: simulation/templates/template_unit_champion.xml:5
@@ -60,7 +61,7 @@ msgstr "Ein Katafalk, das die sterblichen Überreste eines großen Anführers en
 #: simulation/templates/units/han/support_minister.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Capture"
-msgstr "Einnehmen"
+msgstr "Erobern"
 
 #: simulation/templates/template_unit_cavalry.xml:12
 #: simulation/templates/template_unit_infantry.xml:12
@@ -207,7 +208,7 @@ msgstr "Konter: 2× gegen Kavallerie"
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:30
 msgid "Spearman"
-msgstr "Speerkämpfer"
+msgstr "Speerträger"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:5
@@ -370,7 +371,7 @@ msgstr "Berittener Gardestreitkolbenträger"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
 msgid "Champion Cavalry Spearman"
-msgstr "Berittener Gardespeerkämpfer"
+msgstr "Berittener Gardespeerträger"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:20
 msgid "Champion Cavalry Swordsman"
@@ -465,7 +466,7 @@ msgstr "Pikenier"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:26
 msgid "Champion Spearman"
-msgstr "Gardespeerkämpfer"
+msgstr "Gardespeerträger"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:20
 msgid "Champion Swordsman"
@@ -561,7 +562,7 @@ msgstr "Berittener Heldenstreitkolbenträger"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:23
 msgid "Hero Cavalry Spearman"
-msgstr "Berittener Heldenspeerkämpfer"
+msgstr "Berittener Heldenspeerträger"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
 msgid "Counters: 1.75× vs Cavalry."
@@ -613,7 +614,7 @@ msgstr "Pikenierheld"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:23
 msgid "Hero Spearman"
-msgstr "Heldenspeerkämpfer"
+msgstr "Heldenspeerträger"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:23
 msgid "Hero Swordsman"
@@ -658,15 +659,15 @@ msgstr "Schiff"
 
 #: simulation/templates/template_unit_ship_fire.xml:18
 msgid "Fire Ship"
-msgstr "Brander"
+msgstr "Brandschiff"
 
 #: simulation/templates/template_unit_ship_fire.xml:19
 msgid "Unrepairable. Gradually loses health after ignition."
-msgstr ""
+msgstr "Unreparierbar. Verliert nach dem entzünden nach und nach Gesundheit."
 
 #: simulation/templates/template_unit_ship_fire.xml:20
 msgid "Fireship"
-msgstr "Feuerschiff"
+msgstr "Brandschiff"
 
 #: simulation/templates/template_unit_ship_fire.xml:20
 msgid "Fire"
@@ -680,7 +681,7 @@ msgstr "Kriegsschiff"
 
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Ignite the Fire Ship to damage nearby enemy Ships."
-msgstr ""
+msgstr "Entzünde das Brandschiff um nahegelegene feindliche Schiffe zu beschädigen."
 
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -709,7 +710,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Improve sea "
 "trading at the Market."
-msgstr ""
+msgstr "Handle zwischen Häfen. Quartiere Händler für zusätzlichen Profit ein (+20 % für jeden Einquartierten). Sammle lohnende Wasserschätze. Verbessere den Seehandel mit dem Markt."
 
 #: simulation/templates/template_unit_ship_merchant.xml:21
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -725,7 +726,7 @@ msgstr "Händler"
 #: simulation/templates/template_unit_ship_warship.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Arrow"
-msgstr ""
+msgstr "Pfeil"
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:32
 msgid "Arrow Ship"
@@ -737,7 +738,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_ship_warship_arrow.xml:35
 msgid "Garrison units for transport across water. Countered by Siege Ships."
-msgstr ""
+msgstr "Quartiere Einheiten ein, um sie über Wasser zu transportieren. Wird durch Belagerungsschiffe gekontert."
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:6
 msgctxt "Name of an attack, usually the weapon."
@@ -746,7 +747,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:47
 msgid "Ramming Ship"
-msgstr ""
+msgstr "Rammschiff"
 
 #: simulation/templates/template_unit_ship_warship_ram.xml:48
 msgid ""
@@ -861,7 +862,7 @@ msgstr "Belagerungsturm"
 
 #: simulation/templates/template_unit_siege_tower.xml:64
 msgid "Garrison units for transport and to increase firepower."
-msgstr "Quartiere Einheiten für den Transport ein, und, um die Feuerkraft zu erhöhen."
+msgstr "Quartiere Einheiten für den Transport und um die Feuerkraft zu erhöhen ein."
 
 #: simulation/templates/template_unit_support_elephant.xml:17
 msgid "Worker Elephant"
@@ -896,7 +897,7 @@ msgstr "Handle mit Ressourcen zwischen deinen Märkten und denen deiner Verbünd
 
 #: simulation/templates/units/athen/catafalque.xml:9
 msgid "Athenian Catafalque"
-msgstr ""
+msgstr "Athenischer Katafalk"
 
 #: simulation/templates/units/athen/catafalque.xml:10
 msgid "Solon"
@@ -1191,7 +1192,7 @@ msgstr "Toxótēs Skythikós"
 #: simulation/templates/units/athen/hero_hippocrates.xml:12
 #: simulation/templates/units/athen/hero_hippocrates.xml:13
 msgid "Hippocrates"
-msgstr ""
+msgstr "Hippokrates"
 
 #: simulation/templates/units/athen/hero_iphicrates.xml:8
 msgid "Iphicrates"
@@ -1348,7 +1349,7 @@ msgstr "Émporos"
 
 #: simulation/templates/units/brit/catafalque.xml:9
 msgid "Briton Catafalque"
-msgstr ""
+msgstr "Britonisches Katafalk"
 
 #: simulation/templates/units/brit/catafalque.xml:10
 msgid "Cassiuellaunos"
@@ -1434,7 +1435,7 @@ msgstr "Talmoris"
 
 #: simulation/templates/units/brit/infantry_spearman_b.xml:6
 msgid "Celtic Spearman"
-msgstr "Keltischer Speerkämpfer"
+msgstr "Keltischer Speerträger"
 
 #: simulation/templates/units/brit/infantry_spearman_b.xml:7
 #: simulation/templates/units/gaul/infantry_spearman_b.xml:11
@@ -1448,7 +1449,7 @@ msgstr "Pontos"
 
 #: simulation/templates/units/brit/ship_fire.xml:5
 msgid "Briton Fire Ship"
-msgstr ""
+msgstr "Britonisches Brandschiff"
 
 #: simulation/templates/units/brit/ship_fishing.xml:9
 #: simulation/templates/units/gaul/ship_fishing.xml:9
@@ -1464,7 +1465,7 @@ msgstr "Nauson"
 #: simulation/templates/units/gaul/ship_scout.xml:9
 #: simulation/templates/units/iber/ship_scout.xml:9
 msgid "Skiff"
-msgstr ""
+msgstr "Skiff"
 
 #: simulation/templates/units/brit/siege_ram.xml:5
 #: simulation/templates/units/gaul/siege_ram.xml:5
@@ -1499,7 +1500,7 @@ msgstr "Agrocuna"
 
 #: simulation/templates/units/cart/catafalque.xml:8
 msgid "Carthaginian Catafalque"
-msgstr ""
+msgstr "Karthagisches Katafalk"
 
 #: simulation/templates/units/cart/catafalque.xml:9
 msgid "Hasdrubal (Quartermaster)"
@@ -1616,7 +1617,7 @@ msgstr "Qallāʿ Ibušimi"
 
 #: simulation/templates/units/cart/infantry_spearman_b.xml:14
 msgid "Libyan Spearman"
-msgstr "Libyscher Speerkämpfer"
+msgstr "Libyscher Speerträger"
 
 #: simulation/templates/units/cart/infantry_spearman_b.xml:15
 msgid "Sǝḫīr Ḥanīt"
@@ -1653,7 +1654,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
 "have +25% sea trading bonus."
-msgstr "Handle zwischen Häfen. Quartiere Händler ein für zusätzlichen Profit (+20 % für jeden Einquartierten). Sammle lohnende Wasserschätze. Karthager erhalten +25 % Seehandelsbonus."
+msgstr "Handle zwischen Häfen. Quartiere Händler für zusätzlichen Profit ein (+20 % für jeden Einquartierten). Sammle lohnende Wasserschätze. Karthager erhalten +25 % Seehandelsbonus."
 
 #: simulation/templates/units/cart/ship_scout.xml:9
 msgid "Du-Mašōt"
@@ -1686,7 +1687,7 @@ msgstr "Mekir"
 
 #: simulation/templates/units/gaul/catafalque.xml:9
 msgid "Gallic Catafalque"
-msgstr ""
+msgstr "Gallisches Katafalk"
 
 #: simulation/templates/units/gaul/catafalque.xml:10
 msgid "Ambiorix"
@@ -1744,11 +1745,11 @@ msgstr "Britomaros"
 
 #: simulation/templates/units/gaul/ship_fire.xml:5
 msgid "Gallic Fire Ship"
-msgstr ""
+msgstr "Gallisches Brandschiff"
 
 #: simulation/templates/units/han/catafalque.xml:9
 msgid "Han Catafalque"
-msgstr ""
+msgstr "Han-Katafalk"
 
 #: simulation/templates/units/han/catafalque.xml:10
 msgid "Emperor Wǔ (Liu Che)"
@@ -1760,7 +1761,7 @@ msgstr "Gōng Qíbīng"
 
 #: simulation/templates/units/han/cavalry_crossbowman_b.xml:6
 msgid "Han Cavalry Crossbowman"
-msgstr "Han-Kavallerie-Armbrustschütze"
+msgstr "Berittener-Han-Armbrustschütze"
 
 #: simulation/templates/units/han/cavalry_spearman_b.xml:6
 msgid "Máo Qíbīng"
@@ -1920,7 +1921,7 @@ msgstr "Shāngrén"
 
 #: simulation/templates/units/iber/catafalque.xml:9
 msgid "Iberian Catafalque"
-msgstr ""
+msgstr "Iberisches Katafalk"
 
 #: simulation/templates/units/iber/catafalque.xml:10
 msgid "Mandonius"
@@ -1977,7 +1978,7 @@ msgstr "Segler"
 
 #: simulation/templates/units/iber/ship_fire.xml:5
 msgid "Iberian Fire Ship"
-msgstr "Iberischer Brander"
+msgstr "Iberisches Brandschiff"
 
 #: simulation/templates/units/iber/ship_fishing.xml:9
 msgid "Arrantza Ontzi"
@@ -2013,7 +2014,7 @@ msgstr "Merkatari"
 
 #: simulation/templates/units/kush/catafalque.xml:9
 msgid "Kushite Catafalque"
-msgstr ""
+msgstr "Kuschitisches Katafalk"
 
 #: simulation/templates/units/kush/catafalque.xml:11
 msgid "Shanakdakheto"
@@ -2152,7 +2153,7 @@ msgstr "siȝwrd"
 
 #: simulation/templates/units/kush/infantry_spearman_b.xml:15
 msgid "Nubian Spearman"
-msgstr "Nubischer Speerkämpfer"
+msgstr "Nubischer Speerträger"
 
 #: simulation/templates/units/kush/infantry_spearman_b.xml:16
 msgid "iry-rdwy Nhsyw"
@@ -2216,7 +2217,7 @@ msgstr "rmt sbt"
 
 #: simulation/templates/units/mace/catafalque.xml:9
 msgid "Macedonian Catafalque"
-msgstr ""
+msgstr "Mazedonisches Katafalk"
 
 #: simulation/templates/units/mace/catafalque.xml:10
 msgid "Philip V"
@@ -2366,7 +2367,7 @@ msgstr "Makedonin"
 
 #: simulation/templates/units/maur/catafalque.xml:9
 msgid "Mauryan Catafalque"
-msgstr ""
+msgstr "Mauryanisches Katafalk"
 
 #: simulation/templates/units/maur/catafalque.xml:10
 #: simulation/templates/units/maur/hero_bindusara_infantry.xml:5
@@ -2477,7 +2478,7 @@ msgstr "Dhanurdhar"
 
 #: simulation/templates/units/maur/infantry_spearman_b.xml:12
 msgid "Bamboo Spearman"
-msgstr "Bambusspeerkämpfer"
+msgstr "Bambusspeerträger"
 
 #: simulation/templates/units/maur/infantry_spearman_b.xml:13
 msgid "Kauntika"
@@ -2584,7 +2585,7 @@ msgstr "Arštibara"
 
 #: simulation/templates/units/pers/catafalque.xml:8
 msgid "Persian Catafalque"
-msgstr ""
+msgstr "Persisches Katafalk"
 
 #: simulation/templates/units/pers/catafalque.xml:10
 msgid "Artaxšaçā"
@@ -2793,7 +2794,7 @@ msgstr "Tamkarum Arami"
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
-msgstr "Handle mit Ressourcen zwischen deinen eigenen Märkten und denen deiner Verbündeten. Perser haben einen Bonus in Höhe von +25 % für den Handel auf dem Landweg."
+msgstr "Handle mit Ressourcen zwischen deinen eigenen Märkten und denen deiner Verbündeten. Perser haben einen Bonus in Höhe von +25 % für den Handel auf dem Landweg."
 
 #: simulation/templates/units/pirates/ship_arrow.xml:8
 msgid "Rhodian Marauder"
@@ -2805,11 +2806,11 @@ msgstr ""
 
 #: simulation/templates/units/pirates/ship_merchant.xml:10
 msgid "Treasure Ship"
-msgstr ""
+msgstr "Schatzschiff"
 
 #: simulation/templates/units/pirates/ship_merchant.xml:11
 msgid "Destroy this ship to loot its large amount of treasure."
-msgstr ""
+msgstr "Zerstöre dieses Schiff, um an seinen großen Schatz zu gelangen."
 
 #: simulation/templates/units/pirates/ship_scout.xml:8
 msgid "Cilician Pirate Ship"
@@ -2830,7 +2831,7 @@ msgstr "Ein amerikanisches Kampfflugzeug aus dem Zweiten Weltkrieg."
 
 #: simulation/templates/units/ptol/catafalque.xml:8
 msgid "Ptolemaic Catafalque"
-msgstr ""
+msgstr "Ptolemäisches Katafalk"
 
 #: simulation/templates/units/ptol/catafalque.xml:9
 msgid "Ptolemy III Euergetes (Benefactor)"
@@ -2980,7 +2981,7 @@ msgstr "Ägypterin"
 
 #: simulation/templates/units/rome/catafalque.xml:9
 msgid "Roman Catafalque"
-msgstr ""
+msgstr "Römisches Katafalk"
 
 #: simulation/templates/units/rome/catafalque.xml:10
 msgid "Lūcius Iūnius Brūtus"
@@ -3029,7 +3030,7 @@ msgstr "Gladiator"
 
 #: simulation/templates/units/rome/champion_infantry_spear_gladiator.xml:20
 msgid "Gladiator Spearman"
-msgstr "Gladiatorenspeerkämüfer"
+msgstr "Gladiatoren-Speerträger"
 
 #: simulation/templates/units/rome/champion_infantry_spear_gladiator.xml:21
 msgid "Hoplomachus"
@@ -3037,7 +3038,7 @@ msgstr "Hoplomachus"
 
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:20
 msgid "Gladiator Swordsman"
-msgstr "Gladiatorenschwertkämpfer"
+msgstr "Gladiatoren-Schwertkämpfer"
 
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:21
 msgid "Murmillo"
@@ -3045,7 +3046,7 @@ msgstr "Murmillo"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman.xml:12
 msgid "Italic Heavy Infantry"
-msgstr "Italische schwere Infanterie"
+msgstr "Schwere Italische Infanterie"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman.xml:13
 msgid "Extrāōrdinārius"
@@ -3085,11 +3086,11 @@ msgstr "Prätorianer"
 msgid ""
 "Centurions may be promoted from elite melee citizen infantry, and train from"
 " the Fortress after Marian Reforms."
-msgstr ""
+msgstr "Centurios können von Elite-Nahkampf-Bürgersoldaten befördert und mit der Festung nach den marianischen Reformen ausgebildet werden."
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_centurion.xml:25
 msgid "Centurion"
-msgstr ""
+msgstr "Centurio"
 
 #: simulation/templates/units/rome/hero_marcellus.xml:10
 #: simulation/templates/units/rome/hero_marcellus_infantry.xml:10
@@ -3129,7 +3130,7 @@ msgstr "Vēles"
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:19
 msgid "Veteran Spearman"
-msgstr "Veteranen-Speerkämpfer"
+msgstr "Veteranen-Speerträger"
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:20
 msgid "Triārius"
@@ -3137,12 +3138,12 @@ msgstr "Triārius"
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:25
 msgid "Elite rank Spearmen can be promoted to champion Centurions."
-msgstr "Der Elite Rang des Speerträgers kann zum Champion Centurions befördert werden."
+msgstr "Speerträger mit Elite-Rang können zum Champion Centurios befördert werden."
 
 #: simulation/templates/units/rome/infantry_spearman_e.xml:9
 #: simulation/templates/units/rome/infantry_swordsman_e.xml:9
 msgid "Give this combat veteran the rank of Centurion."
-msgstr "Geben Sie diesem Kampfveteranen den Rang von Centurio."
+msgstr "Geben Sie diesem Kampfveteranen den Rang eines Centurios."
 
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:19
 msgid "Roman Swordsman"
@@ -3154,7 +3155,7 @@ msgstr "Hastātus"
 
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:22
 msgid "Elite rank Swordsmen can be promoted to champion Centurions."
-msgstr "Der Elite Rang des Schwertkämpfers kann zum Champion Centurions befördert werden."
+msgstr "Schwertkämpfer mit Elite-Rang können zum Champion Centurios befördert werden."
 
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:20
 msgid "Servus"
@@ -3233,7 +3234,7 @@ msgstr "Samnitischer Plänkler"
 #: simulation/templates/units/samnite_spearman.xml:4
 #: simulation/templates/units/samnite_spearman.xml:5
 msgid "Samnite Spearman"
-msgstr "Samnitischer Speerkämpfer"
+msgstr "Samnitischer Speerträger"
 
 #: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:13
 #: simulation/templates/units/samnite_swordsman.xml:4
@@ -3243,7 +3244,7 @@ msgstr "Samnitischer Schwertkämpfer"
 
 #: simulation/templates/units/sele/catafalque.xml:10
 msgid "Seleucid Catafalque"
-msgstr ""
+msgstr "Seleukidisches Katafalk"
 
 #: simulation/templates/units/sele/catafalque.xml:11
 msgid "Antiochus I Soter (Savior)"
@@ -3395,7 +3396,7 @@ msgstr "Syrerin"
 
 #: simulation/templates/units/spart/catafalque.xml:10
 msgid "Spartan Catafalque"
-msgstr ""
+msgstr "Spartanisches Katafalk"
 
 #: simulation/templates/units/spart/catafalque.xml:11
 msgid "Lycurgus"
@@ -3435,7 +3436,7 @@ msgstr "Spartiátēs"
 
 #: simulation/templates/units/spart/champion_infantry_spear_olympian.xml:15
 msgid "Spartan Olympic Hoplite"
-msgstr ""
+msgstr "Spartanischer Olympischer Holpit"
 
 #: simulation/templates/units/spart/champion_infantry_swordsman.xml:18
 msgid "Skiritai Commando"
@@ -3516,7 +3517,7 @@ msgstr "Hieroû Thebaíou Lókhou Hoplítai"
 
 #: simulation/templates/units/theb_sacred_band.xml:7
 msgid "Champion Spearman."
-msgstr "Gardespeerkämpfer."
+msgstr "Gardespeerträger."
 
 #: simulation/templates/units/theb_siege_fireraiser.xml:8
 msgid "Fire Raiser"

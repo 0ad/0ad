@@ -5,6 +5,7 @@
 # Translators:
 # Wuzzy
 # BL4NKY
+# Daniel Roschka
 # xtother90
 # Elias Keis
 # Fabian Gref
@@ -28,7 +29,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: BL4NKY, 2023\n"
+"Last-Translator: Daniel Roschka, 2024\n"
 "Language-Team: German (http://app.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,12 +50,12 @@ msgstr "Status anwenden"
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr "Reduziert die Einnehmpunkte eines Ziels."
+msgstr "Reduziert die Eroberungspunkte eines Ziels."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
 msgid "Capture"
-msgstr "Einnehmen"
+msgstr "Erobern"
 
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
@@ -91,7 +92,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr "Schaden durch scharfe Objekte, die schneiden oder hacken, z.B. mit einem Schwert oder einer Axt."
+msgstr "Schaden durch scharfe Objekte, die schneiden oder hacken, wie zum Beispiel mit einem Schwert oder einer Axt."
 
 #: simulation/data/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -701,7 +702,7 @@ msgstr "Ammon-Ra Widderstatue"
 
 #: simulation/templates/gaia/ruins/stone_statues_persian_lamassu.xml:8
 msgid "Lamassu Statue"
-msgstr ""
+msgstr "Lamassu-Statue"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statue"
@@ -717,7 +718,7 @@ msgstr "Zerstörtes Haus"
 
 #: simulation/templates/gaia/ruins/stone_structure_small.xml:10
 msgid "Ruined Structure"
-msgstr "Zerstörte Struktur"
+msgstr "Zerstörtes Gebäude"
 
 #: simulation/templates/gaia/ruins/stone_structure_tower.xml:10
 msgid "Ruined Tower"
@@ -783,15 +784,15 @@ msgstr "Ladung eines Schiffswracks"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:8
 msgid "The Argo"
-msgstr ""
+msgstr "Die Argo"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:9
 msgid "Mythological Treasure"
-msgstr ""
+msgstr "Mythischer Schatz"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:10
 msgid "The mythological ship of the hero Theseus and his Argonauts."
-msgstr ""
+msgstr "Das mythische Schiff des Helden Theseus und seiner Argonauten."
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"
@@ -940,7 +941,7 @@ msgstr "Mangrovenbaum"
 #: simulation/templates/gaia/tree/maple.xml:4
 #: simulation/templates/gaia/tree/maple_autumn.xml:4
 msgid "Maple"
-msgstr "Ahorn"
+msgstr "Ahornbaum"
 
 #: simulation/templates/gaia/tree/medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -970,7 +971,7 @@ msgstr "Große Eiche"
 
 #: simulation/templates/gaia/tree/olive.xml:7
 msgid "Olive"
-msgstr "Olive"
+msgstr "Olivenbaum"
 
 #: simulation/templates/gaia/tree/palm_areca.xml:4
 msgid "Areca Palm"
@@ -1044,7 +1045,7 @@ msgstr "Surenbaum"
 
 #: simulation/templates/gaia/tree/tropic_rainforest.xml:4
 msgid "Rainforest Tree"
-msgstr "Regenwald Baum"
+msgstr "Regenwaldbaum"
 
 #: simulation/templates/mixins/builder.xml:42
 msgid "Builder"
@@ -1056,11 +1057,11 @@ msgstr "Busch"
 
 #: simulation/templates/mixins/cataphract.xml:14
 msgid "Cataphract Cavalry"
-msgstr ""
+msgstr "Kataphraktkavallerie"
 
 #: simulation/templates/mixins/cataphract.xml:15
 msgid "Cataphract"
-msgstr ""
+msgstr "Kataphrakt"
 
 #: simulation/templates/mixins/chariot.xml:16
 msgid "Chariot"
@@ -1069,15 +1070,15 @@ msgstr "Streitwagen"
 #: simulation/templates/mixins/fireship.xml:15
 msgctxt "Name of an attack, usually the weapon."
 msgid "Flames"
-msgstr ""
+msgstr "Flammen"
 
 #: simulation/templates/mixins/fireship.xml:43
 msgid "Ignited"
-msgstr ""
+msgstr "Entzündet"
 
 #: simulation/templates/mixins/longsword.xml:22
 msgid "Longsword"
-msgstr ""
+msgstr "Langschwert"
 
 #: simulation/templates/mixins/mercenary.xml:13
 msgid "Mercenary"
@@ -1085,12 +1086,12 @@ msgstr "Söldner"
 
 #: simulation/templates/mixins/pirate.xml:29
 msgid "Pirate"
-msgstr ""
+msgstr "Pirat"
 
 #: simulation/templates/mixins/rotary_mill.xml:17
 #: simulation/templates/mixins/rotary_mill.xml:18
 msgid "Rotary Mill"
-msgstr ""
+msgstr "Drehmühle"
 
 #: simulation/templates/mixins/rotary_mill.xml:19
 msgid "RotaryMill"
@@ -1110,7 +1111,7 @@ msgstr "Schrein"
 
 #: simulation/templates/mixins/shrine.xml:18
 msgid "Train Elite Healers and heal garrisoned units."
-msgstr ""
+msgstr "Bilde Eliteheiler aus und heile einquartierte Einheiten."
 
 #: simulation/templates/mixins/trading_post.xml:8
 msgid "Trading Post"
@@ -1126,7 +1127,7 @@ msgstr "Hindernis für Bewegungen"
 #: simulation/templates/obstructors/movement_8x36.xml:11
 #: simulation/templates/obstructors/movement_8x8.xml:11
 msgid "Placement obstructor to prevent movement and construction."
-msgstr " Platzierung Hindernis, um Bewegung und Konstruktion zu verhindern."
+msgstr "Platzierungshindernis, um Bewegung und Konstruktion zu verhindern."
 
 #: simulation/templates/obstructors/placement.xml:10
 msgid "Obstructor"
@@ -1137,13 +1138,13 @@ msgstr "Hindernis"
 #: simulation/templates/obstructors/placement_8x36.xml:11
 #: simulation/templates/obstructors/placement_8x8.xml:11
 msgid "Placement obstructor to prevent construction but not movement"
-msgstr "Platzierungshindernis, um Bauten zu verhindern, aber keine Einheitenbewegungen."
+msgstr "Platzierungshindernis, um Bauten zu verhindern, aber Einheitenbewegungen nicht."
 
 #: simulation/templates/obstructors/placement_36x36.xml:9
 #: simulation/templates/obstructors/placement_8x36.xml:9
 #: simulation/templates/obstructors/placement_8x8.xml:9
 msgid "Placement Obstructor"
-msgstr "Platzierung Hindernis"
+msgstr "Platzierungshindernis"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -1168,7 +1169,7 @@ msgstr "Gegen Kavallerie"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:26
 msgid "Square formation of Melee Infantry to fight Cavalry."
-msgstr ""
+msgstr "Quadratische Formation für Nahkampfinfanterie beim Kampf gegen Kavallerie."
 
 #: simulation/templates/special/formations/battle_line.xml:13
 msgid "Battle Line"
@@ -1176,7 +1177,7 @@ msgstr "Gefechtslinie"
 
 #: simulation/templates/special/formations/battle_line.xml:15
 msgid "Common formation for frontal attacks."
-msgstr ""
+msgstr "Übliche Formation für frontale Angriffe."
 
 #: simulation/templates/special/formations/box.xml:5
 msgid "Requires at least 4 Soldiers or Siege engines."
@@ -1188,7 +1189,7 @@ msgstr "Kasten"
 
 #: simulation/templates/special/formations/box.xml:14
 msgid "Square formation to protect all sides."
-msgstr ""
+msgstr "Quadratische Formation, um alle Seiten zu schützen."
 
 #: simulation/templates/special/formations/column_closed.xml:10
 msgid "Forced March"
@@ -1196,7 +1197,7 @@ msgstr "Zwangsmarsch"
 
 #: simulation/templates/special/formations/column_closed.xml:12
 msgid "Closed column formation for risky movements."
-msgstr ""
+msgstr "Geschlossene Formation für riskante Bewegungen."
 
 #: simulation/templates/special/formations/column_open.xml:10
 msgid "Column Open"
@@ -1204,7 +1205,7 @@ msgstr "Offene Kolonnenformation"
 
 #: simulation/templates/special/formations/column_open.xml:12
 msgid "Dispersed formation for open field crossings."
-msgstr ""
+msgstr "Verstreute Formation zum überqueren offener Felder."
 
 #: simulation/templates/special/formations/flank.xml:5
 msgid "Requires at least 8 Soldiers or Siege engines."
@@ -1216,7 +1217,7 @@ msgstr "Flankenformation"
 
 #: simulation/templates/special/formations/flank.xml:13
 msgid "Formation to protect the sides or surprise attack the enemy flank."
-msgstr ""
+msgstr "Formation um die Seiten zu schützen oder Überraschungsangriffe auf die Flanken des Gegners durchzuführen."
 
 #: simulation/templates/special/formations/line_closed.xml:9
 msgid "Close Order"
@@ -1224,7 +1225,7 @@ msgstr "Geschlossene Schlachtordnung"
 
 #: simulation/templates/special/formations/line_closed.xml:11
 msgid "Flexible closed line formation."
-msgstr ""
+msgstr "Flexible, geschlossene Linienformation."
 
 #: simulation/templates/special/formations/line_open.xml:11
 msgid "Open Order"
@@ -1232,7 +1233,7 @@ msgstr "Geöffnete Schlachtordnung"
 
 #: simulation/templates/special/formations/line_open.xml:13
 msgid "Dispersed formation for open field combat."
-msgstr ""
+msgstr "Verstreute Formation zum Kampf auf offenen Feldern."
 
 #: simulation/templates/special/formations/null.xml:7
 msgid "None"
@@ -1248,7 +1249,7 @@ msgstr "Phalanx"
 
 #: simulation/templates/special/formations/phalanx.xml:25
 msgid "Compact formation of Infantry Hoplites creating a shield wall."
-msgstr ""
+msgstr "Kompakte Formation aus Infanterie-Hopliten, die eine Schildwand erzeugt."
 
 #: simulation/templates/special/formations/scatter.xml:8
 msgid "Scatter"
@@ -1257,35 +1258,35 @@ msgstr "Lose Formation"
 #: simulation/templates/special/formations/ships/column.xml:5
 #: simulation/templates/special/formations/ships/line_staggered.xml:5
 msgid "Requires at least 4 Ships."
-msgstr ""
+msgstr "Benötigt mindestens 4 Schiffe."
 
 #: simulation/templates/special/formations/ships/column.xml:14
 msgid "Maneuvering Column"
-msgstr ""
+msgstr "Manövrierende Kolonne"
 
 #: simulation/templates/special/formations/ships/column.xml:16
 msgid "A column formation for fleet maneuvers."
-msgstr ""
+msgstr "Eine Kolonnenformation für Flottenmanöver."
 
 #: simulation/templates/special/formations/ships/flank.xml:5
 msgid "Requires at least 8 Ships."
-msgstr ""
+msgstr "Benötigt mindestens 8 Schiffe."
 
 #: simulation/templates/special/formations/ships/flank.xml:14
 msgid "Flanking Formation"
-msgstr ""
+msgstr "Flankenformation"
 
 #: simulation/templates/special/formations/ships/flank.xml:16
 msgid "Formation to protect the sides or surprise attack the enemy flanks."
-msgstr ""
+msgstr "Formation um die Seiten zu schützen oder Überraschungsangriffe auf die Flanken des Gegners durchzuführen."
 
 #: simulation/templates/special/formations/ships/line_staggered.xml:17
 msgid "Fleet Battle Line"
-msgstr ""
+msgstr "Kampflinie der Flotte"
 
 #: simulation/templates/special/formations/ships/line_staggered.xml:19
 msgid "Common fleet formation for frontal attacks."
-msgstr ""
+msgstr "Übliche Flottenformation für frontale Angriffe."
 
 #: simulation/templates/special/formations/skirmish.xml:4
 msgid "Ranged Soldiers only, requires at least 2."
@@ -1297,7 +1298,7 @@ msgstr "Lockere Formation"
 
 #: simulation/templates/special/formations/skirmish.xml:16
 msgid "Dispersed formation for reconnaissance, ambushes or hit-and-run."
-msgstr ""
+msgstr "Verstreute Formation zur Aufklärung, für Überfälle oder zur Flucht."
 
 #: simulation/templates/special/formations/syntagma.xml:5
 msgid "Infantry Pikemen only, requires at least 16."
@@ -1309,7 +1310,7 @@ msgstr "Syntagma"
 
 #: simulation/templates/special/formations/syntagma.xml:31
 msgid "Compact formation of Infantry Pikemen creating a defensive wall."
-msgstr ""
+msgstr "Kompakte Formation von Pikenieren, die eine Verteidigungsmauer bilden."
 
 #: simulation/templates/special/formations/testudo.xml:70
 msgid "Testudo"
@@ -1317,7 +1318,7 @@ msgstr "Testudo"
 
 #: simulation/templates/special/formations/testudo.xml:72
 msgid "Compact formation of Melee Infantry creating a shield shell."
-msgstr ""
+msgstr "Kompakte Formation für Nahkampf-Infanterie, die einen Schildmantel bildet."
 
 #: simulation/templates/special/formations/wedge.xml:5
 msgid "Cavalry only, requires at least 6."
@@ -1329,7 +1330,7 @@ msgstr "Keil"
 
 #: simulation/templates/special/formations/wedge.xml:18
 msgid "Triangular Cavalry formation to break through enemy lines."
-msgstr ""
+msgstr "Dreieckige Kavallerie-Formation, um durch gegnerische Linien zu brechen."
 
 #: simulation/templates/special/spy.xml:16
 msgid "Spy"

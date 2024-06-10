@@ -6,6 +6,7 @@
 # Aldicek
 # Wuzzy
 # BL4NKY
+# Daniel Roschka
 # xtother90
 # duichwer
 # Elias Keis
@@ -35,7 +36,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-06-03 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: BL4NKY, 2023\n"
+"Last-Translator: Daniel Roschka, 2024\n"
 "Language-Team: German (http://app.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -381,7 +382,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n"
 "\n"
 "A great flood moves across the valley. At some point you have to evacuate your units and use ships to reach the mainland and the other players."
-msgstr ""
+msgstr "[color=\"red\"]WICHTIGER HINWEIS: KI-SPIELER FUNKTIONIEREN NICHT MIT STEIGENDEM WASSER[/color]\n\nEine große Flut kommt durch das Tal. An einem gewissen Punkt wirst du deine Einheiten evakuieren und Schiffe benutzen müssen, um das Festland und die anderen Spieler zu erreichen."
 
 #: maps/random/flood.jsonsettings.Name
 msgid "Flood"
@@ -389,35 +390,35 @@ msgstr "Flut"
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Description
 msgid "The water rises. The homeislands will become uninhabitable."
-msgstr ""
+msgstr "Das Wasser steigt. Die Heimatinseln werden unbewohnbar werden."
 
 #: maps/random/flood.jsonsettings.WaterLevels[0].Name
 msgid "Rising"
-msgstr ""
+msgstr "Steigend"
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Description
 msgid ""
 "The water doesn't rise. Ships and troops can battle in chest deep waters."
-msgstr ""
+msgstr "Das Wasser steigt nicht. Schiffe und Truppen können im brusttiefen Wasser kämpfen."
 
 #: maps/random/flood.jsonsettings.WaterLevels[1].Name
 msgid "Shallow"
-msgstr ""
+msgstr "Flach"
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Description
 msgid ""
 "The water doesn't rise. You have to use ships to travel to the mainland."
-msgstr ""
+msgstr "Das Wasser steigt nicht. Du musst Schiffe benutzen, um zum Festland zu reisen."
 
 #: maps/random/flood.jsonsettings.WaterLevels[2].Name
 msgid "Deep"
-msgstr ""
+msgstr "Tief"
 
 #: maps/random/flood_triggers.js:11
 msgid ""
 "The flood continues. Soon the waters will swallow the land. You should "
 "evacuate the units."
-msgstr ""
+msgstr "Die Flut dauert an. Bald wird das Wasser das Land verschlucken. Du solltest deine Einheiten evakuieren."
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -873,7 +874,7 @@ msgctxt "biome definition"
 msgid ""
 "A blend of lingering snow and emerging grass, marking a quiet transition "
 "from winter to summer."
-msgstr ""
+msgstr "Eine Mischung aus übrig gebliebenem Schnee und frischem Gras, die einen ruhigen Übergang von Winter zu Sommer markiert."
 
 #: maps/random/rmbiome/alpine/late_spring.jsonDescription.Title
 msgctxt "biome definition"
@@ -885,7 +886,7 @@ msgctxt "biome definition"
 msgid ""
 "Snow-capped trees loom through the mist. The ground is blanketed in a layer "
 "of snow."
-msgstr ""
+msgstr "Schneebedeckte Bäume tauchen schemenhaft im Dunst auf. Der Boden ist von einer Schneeschicht bedeckt."
 
 #: maps/random/rmbiome/alpine/winter.jsonDescription.Title
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
@@ -1361,11 +1362,11 @@ msgstr "Verwilderter See"
 
 #: maps/scenarios/Ship Combat Demo.xml:Description:39
 msgid "Ship Combat Demo."
-msgstr ""
+msgstr "Schiffskampf-Demo."
 
 #: maps/scenarios/Ship Combat Demo.xml:Name:39
 msgid "Ship Combat Demo"
-msgstr ""
+msgstr "Schiffskampf-Demo"
 
 #: maps/scenarios/_default.xml:Description:27
 #: maps/scenarios/temperate_map.xml:Description:26
@@ -2441,29 +2442,29 @@ msgstr "Wir sind Legion"
 msgid ""
 "%(_player_)s and their allies have captured all relics and will win in "
 "%(time)s."
-msgstr "%(_player_)s und seine Verbündeten haben alle Reliquien eingenommen und werden in %(time)s gewinnen."
+msgstr "%(_player_)s und seine Verbündeten haben alle Reliquien erobert und werden in %(time)s gewinnen."
 
 #: maps/scripts/CaptureTheRelic.js:145
 #, javascript-format
 msgid "%(_player_)s has captured all relics and will win in %(time)s."
-msgstr "%(_player_)s hat alle Reliquien eingenommen und wird in %(time)s gewinnen."
+msgstr "%(_player_)s hat alle Reliquien erobert und wird in %(time)s gewinnen."
 
 #: maps/scripts/CaptureTheRelic.js:156
 #, javascript-format
 msgid "You and your allies have captured all relics and will win in %(time)s."
-msgstr "Du und deine Verbündeten haben alle Reliquien eingenommen und werdet in %(time)s gewinnen."
+msgstr "Du und deine Verbündeten habt alle Reliquien erobert und ihr werdet in %(time)s gewinnen."
 
 #: maps/scripts/CaptureTheRelic.js:157
 #, javascript-format
 msgid "You have captured all relics and will win in %(time)s."
-msgstr "Du hast alle Reliquien eingenommen und wirst in %(time)s gewinnen."
+msgstr "Du hast alle Reliquien erobert und wirst in %(time)s gewinnen."
 
 #: maps/scripts/CaptureTheRelic.js:171
 #, javascript-format
 msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
 msgstr[0] "%(lastPlayer)s hat gewonnen (Nehme die Reliquie ein)"
-msgstr[1] "%(players)s und %(lastPlayer)s haben gewonnen (Nehme die Reliquie ein)."
+msgstr[1] "%(players)s und %(lastPlayer)s haben gewonnen (Reliquien erbeuten)."
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
@@ -2471,7 +2472,7 @@ msgid "%(lastPlayer)s has been defeated (Capture the Relic)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
 msgstr[0] "%(lastPlayer)s ist besiegt worden (Nehme die Reliquie ein)."
-msgstr[1] "%(players)s und %(lastPlayer)s sind besiegt worden (Nehme die Reliquie ein)."
+msgstr[1] "%(players)s und %(lastPlayer)s sind besiegt worden (Reliquien erbeuten)."
 
 #: maps/scripts/Conquest.js:5
 #, javascript-format
@@ -2726,11 +2727,11 @@ msgstr "Eine Karte vom Typ „kleine Insel“, im Ägäischen Meer gelegen."
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2 players)"
-msgstr ""
+msgstr "Kykladischer Archipel (2 Spieler)"
 
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
 msgid "Cycladic Archipelago (3 players)"
-msgstr ""
+msgstr "Kykladischer Archipel (3 Spieler)"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""
@@ -2782,7 +2783,7 @@ msgid ""
 "- Fayyum: crocodile shrine, nile dam\n"
 "- Eastern desert: mount Sinai, deep Wadi, Red Sea reefs\n"
 "- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
-msgstr ""
+msgstr "Kämpfe um die Überreste des antiken Ägyptens!\n\nDie Spieler starten mit voll ausgebauten Städten und kleinen Armeen, jede mit einzigartigen Vor- und Nachteilen. Gib acht, es gibt 7 mächtige Festungen und marodierende Banditen!\n\nEs ist das letzte Jahrhundert vor Christus. Ägypten ist innerlich zwischen hellenistischen (Alexandria, vertreten durch die Seleukiden) und traditionellen Kräften (Memphis, vertreten durch die Ptolemäer) zerrissen. Theben in den südlichen Gefilden des Nils wurde schon von Kusch erobert. Im nordwestlichen al-Dschabal al-Achdar, wo die mediterrane Stadt Kyrene liegt, bereiten die Römer ihre Invasion vor. Aus der östlichen Wüste at-Tih und vom Berg Sinai stoßen Feinde (vertreten durch die Perser) in Richtung der Oase Siwa vor. Charga (vertreten durch Karthago) im Südwesten versucht ebenfalls, sein Stück vom Kuchen zu sichern.\nOrte:\n- Alexandria: Bibliothek, Hafen\n- Memphis: Nekropole, Pyramiden, Schrein des Apis\n- Theben: Tempelbezirk, Tal der Könige\n- Kyrene: Mediterrane Macchien, Olivenhaine\n- Fayyum: Krokodilschrein, Nilstaudamm\n- Östliche Wüste: Berg Sinai, tiefe Wadi, Riffe im Roten Meer\n- Westliche Wüste: Oasen-Charga und Siwa, Qattara-Senke\n"
 
 #: maps/skirmishes/egypt_3pv3p.xml:Name:39
 msgid "Egypt (3v3)"
@@ -2938,11 +2939,11 @@ msgid ""
 "This is the Ithmus at Corinth in Greece. The land is rich in raw resources and treasure, and the seas on either side of the isthmus are stocked with fish. Mercenary Camps can be found as well as large Metal Mine deposits.\n"
 "\n"
 "Watch out for pirate ships and brigands, though, as war-torn Greece is not without its share of dangers. And the enemy, marshalling their forces across the isthmus on the opposing landmass, will be looking for opportunities to invade your lands and take the strategic Corinthian Isthmus for themselves!"
-msgstr ""
+msgstr "isth·mus\n/ˈis(TH)məs/\nSubstantiv\nEin schmaler Streifen Land mit Meeren auf beiden Seiten, der eine Verbindung zwischen zwei größeren Bereichen von Land bildet.\n\nDas ist der Isthmus von Korinth in Griechenland. Das Land ist reich an Rohstoffen und Schätzen und die Meere auf beiden Seiten des Isthmus sind voll mit Fischen. Söldnerlager befinden sich hier genauso wie große Metallvorkommen.\n\nNimm dich vor Piratenschiffen und Räubern in acht, denn das kriegsgebeutelte Griechenland ist nicht ohne Gefahren. Und der Feind, der seine Truppen auf der anderen Seite des Isthmus aufmarschieren lässt, wird nach Gelegenheiten suchen, dein Land zu überfallen und die Kontrolle über den strategisch wichtigen Isthmus von Korinth zu übernehmen."
 
 #: maps/skirmishes/isthmus_of_corinth_2p.xml:Name:39
 msgid "Isthmus of Corinth (2)"
-msgstr ""
+msgstr "Isthmus von Corinth (2)"
 
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
@@ -2984,7 +2985,7 @@ msgid ""
 "Two of India's greatest empires, the Maurya Empire and Gupta Empire, originated in Magadha, a region in Northern India near the sacred River Ganges.\n"
 "\n"
 "This map was designed as a 1v1 map suitable for rated and tournament play."
-msgstr "Zwei von Indiens größten Imperien, das Maurya- und das Gupta-Reich, stammten aus Magadha, einer Region im nördlichen Indien nahe dem heiligen Fluss Ganges.\n\nDiese Karte wurde als 1v1-Karte entworfen, geeignet für gewertete Spiele und Tourniere."
+msgstr "Zwei von Indiens größten Imperien, das Maurya- und das Gupta-Reich, stammten aus Magadha, einer Region im nördlichen Indien nahe dem heiligen Fluss Ganges.\n\nDiese Karte wurde als 1vs1-Karte entworfen, und eignet sich für gewertete Spiele und Turniere."
 
 #: maps/skirmishes/magadha_2p.xml:Name:39
 msgid "Magadha (2)"
@@ -3164,7 +3165,7 @@ msgid ""
 "Iberian players do not get full circuit walls, but 5 strategically placed wall towers.\n"
 "\n"
 "WARNING: This map uses a lot of floral actors on account of being a rainforest. Expect a drop in framerate, this is taxing on most mid range computers."
-msgstr "Die vielfältigen Regenwälder, die im Sahyadri Gebirgszug an der Westküste von Indien eingebettet sind. Holz ist selbstverständlich im Überfluss vorhanden.\n\nIberische Spieler bekommen keinen Ringwall, sondern 5 strategisch platzierte Mauergeschütze.\n\nACHTUNG: Da sie einen Regenwald darstellt, benützt diese Karte sehr viele Pflanzengrafiken. Erwarte einen Abfall der Bildrate – dies ist für die meisten Mittelklassecomputer anspruchsvoll."
+msgstr "Die vielfältigen Regenwälder, die im Sahyadri Gebirgszug an der Westküste von Indien eingebettet sind. Holz ist selbstverständlich im Überfluss vorhanden.\n\nIberische Spieler bekommen keinen Ringwall, sondern 5 strategisch platzierte Mauergeschütze.\n\nACHTUNG: Da sie einen Regenwald darstellt, benutzt diese Karte sehr viele Pflanzengrafiken. Erwarte einen Abfall der Bildrate, da dies für die meisten Mittelklasse-Computer anspruchsvoll ist."
 
 #: maps/skirmishes/sahyadri_buttes_5p.xml:Name:39
 msgid "Sahyadri Buttes (5)"
@@ -3183,7 +3184,7 @@ msgid ""
 "The steppes of central Asia. A wide open grassland with few trees (about 90%"
 " fewer trees than on a temperate or Aegean map). Animal life is plentiful "
 "though, so take advantage of the hunting available. "
-msgstr "Die Steppe Zentralasiens. Eine weites, offenes Grasland mit wenigen Bäumen (ca. 90 % weniger Bäume als auf einer gemäßigten oder ägäischen Karte). Tiere gibt es allerdings reichlich, nütze also die verfügbaren jagdbaren Tiere zu deinem Vorteil."
+msgstr "Die Steppe Zentralasiens. Ein weites, offenes Grasland mit wenigen Bäumen (ca. 90 % weniger Bäume als auf einer gemäßigten oder ägäischen Karte). Tiere gibt es allerdings reichlich, nutze also die verfügbaren jagdbaren Tiere zu deinem Vorteil."
 
 #: maps/skirmishes/scythia_4p.xml:Name:39
 msgid "Scythian Steppes (4)"
@@ -3201,7 +3202,7 @@ msgstr "Sizilien (2)"
 msgid ""
 "The large Mediterranean island of Sicily is open for conquest.\n"
 "[color=\"orange\"]Tip: docks are useful dropsite when you have no territory yet.[/color]"
-msgstr "Die große Mittelmeerinsel Sizilien wartet auf Eroberung.\n[color=\"orange\"]Tipp: Häfen sind auch als Lager benützbar wenn noch kein Territorium kontrolliert wird.[/color]"
+msgstr "Die große Mittelmeerinsel Sizilien wartet auf Eroberung.\n[color=\"orange\"]Tipp: Häfen sind auch als Lager benutzbar wenn noch kein Territorium kontrolliert wird.[/color]"
 
 #: maps/skirmishes/sicilia_nomad_2p.xml:Name:34
 msgid "Sicilia Nomad (2)"
@@ -3217,11 +3218,11 @@ msgstr "Gefechtsdemo (2)"
 
 #: maps/skirmishes/sporades_islands_2p.xml:Description:39
 msgid "An islands map designed for intense naval combat."
-msgstr ""
+msgstr "Eine Inselkarte konzipiert für intensive Seegefechte."
 
 #: maps/skirmishes/sporades_islands_2p.xml:Name:39
 msgid "Sporades Islands (2 player)"
-msgstr ""
+msgstr "Sporadische Inseln (2 Spieler)"
 
 #: maps/skirmishes/syria_2p.xml:Description:39
 msgid ""
@@ -3328,11 +3329,11 @@ msgid ""
 "As with all Savanna maps, huntable animals foragable plants are abundant, but there are no farmlands on the entire map, so farming is difficult.\n"
 "\n"
 "Wood is scattered, but comes in high-yield Baobab trees. The watering holes give life to clusters of trees and life to dangerous fauna, such as crocodiles and elephants."
-msgstr ""
+msgstr "Eine kleine Savannen-Karte mit vier Wasserlöchern.\n\nWie bei allen Savannen-Karten sind jagdbare Tiere und Früchte im Überfluss vorhanden, aber es auf der gesamten Karte kein Ackerland, was Landwirtschaft schwierig macht.\n\nHolz ist verstreut vorhanden, aber kommt in Form von ertragreichen Baobab-Bäumen vor. Die Wasserlöcher bieten Lebensraum für Gruppen von Bäumen und gefährlichen Tieren, wie Krokodilen und Elefanten."
 
 #: maps/skirmishes/watering_holes_4p.xml:Name:39
 msgid "Watering Holes (4 players)"
-msgstr ""
+msgstr "Wasserlöcher (4 Spieler)"
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:Description:39
 msgid ""

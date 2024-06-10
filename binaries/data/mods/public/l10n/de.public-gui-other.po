@@ -7,6 +7,7 @@
 # Wuzzy
 # Benny
 # BL4NKY
+# Daniel Roschka
 # xtother90
 # 9b1afd800f2c3857a0efc186538fe589_4ecff18
 # Maximilian Wagenbach
@@ -51,7 +52,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-19 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: BL4NKY, 2023\n"
+"Last-Translator: Daniel Roschka, 2024\n"
 "Language-Team: German (http://app.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,7 +74,7 @@ msgstr "%(userDesc)s - %(templateName)s"
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr "Unbenutzter Hotkey:%(hotkeyName)s"
+msgstr "Unbenutztes Tastaturkürzel:%(hotkeyName)s"
 
 #: gui/common/color.js:196
 #, javascript-format
@@ -230,7 +231,7 @@ msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] "Relikt einnehmen (%(min)s Minute)"
-msgstr[1] "Reliquien erobern (%(min)s Minuten)"
+msgstr[1] "Reliquie erobern (%(min)s Minuten)"
 
 #: gui/common/gamedescription.js:232
 msgid "Relic Count"
@@ -304,7 +305,7 @@ msgstr "In der ersten Minute bleiben die anderen Spieler neutral."
 #, javascript-format
 msgid "For the first %(min)s minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
+msgstr[0] "In der ersten Minute bleiben die anderen Spieler neutral."
 msgstr[1] "In den ersten %(min)s Minuten bleiben andere Spieler neutral."
 
 #: gui/common/gamedescription.js:288
@@ -353,7 +354,7 @@ msgstr "Verwaltungssitze"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr "Spieler beginnen mit nur wenigen Einheiten und müssen einen geeigneten Ort finden, um ihre Stadt zu bauen."
+msgstr "Spieler beginnen mit wenigen Einheiten und müssen einen geeigneten Ort finden, um ihre Stadt zu bauen."
 
 #: gui/common/gamedescription.js:344
 msgid "Players start with a Civic Center."
@@ -493,7 +494,7 @@ msgstr "Der Host hat das Spiel beendet."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr "Fehlerhafte Netzwerkprotokollversion."
+msgstr "Falsche Netzwerkprotokollversion."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
@@ -505,7 +506,7 @@ msgstr "Das Spiel hat bereits begonnen, Zuschauer sind nicht erlaubt."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr "Du wurdest ausgeschlossen."
+msgstr "Du wurdest rausgeworfen."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
@@ -545,7 +546,7 @@ msgstr "Konnte keinen freien Port für den enet STUN Client finden."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr "Konnte keinen STUN Endpunkt finden."
+msgstr "Konnte den STUN-Endpunkt nicht finden."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -566,7 +567,7 @@ msgstr "Verbindung getrennt"
 
 #: gui/common/network.js:109
 msgid "Only the host can kick clients!"
-msgstr "Nur der Host kann Clients kicken!"
+msgstr "Nur der Host kann Teilnehmer rauswerfen!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
@@ -647,7 +648,7 @@ msgstr "Scharmützel"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr "Eine Karte mit einer vordefinierten Landschaft und Anzahl Spieler. Wähle die anderen Spieleinstellungen nach Belieben aus."
+msgstr "Eine Karte mit einer vordefinierten Landschaft und Anzahl von Spielern. Wähle die anderen Spieleinstellungen nach Belieben aus."
 
 #: gui/common/settings.js:183
 msgctxt "map"
@@ -658,7 +659,7 @@ msgstr "Zufällig"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr "Erzeuge eine einzigartige Karte mit einer anderen Rohstoffverteilung. Die Anzahl der Spieler und Teams kann frei gewählt werden."
+msgstr "Erzeuge eine einzigartige Karte, die jedes Mal eine  andere Rohstoffverteilung hat. Die Anzahl der Spieler und Teams kann frei gewählt werden."
 
 #: gui/common/settings.js:192
 msgctxt "map"
@@ -715,22 +716,22 @@ msgstr "Unbekannte Siegbedingung"
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab right."
-msgstr "Nach unten scrollen oder verwende %(hotkey)s, um einen Tab nach rechts zu gehen"
+msgstr "Scrolle nach unten oder verwende %(hotkey)s, um ein Tab nach rechts zu gehen"
 
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab left."
-msgstr "Nach oben scrollen oder verwende %(hotkey)s, um einen Tab nach links zu gehen"
+msgstr "Scrolle nach oben oder verwende %(hotkey)s, um ein Tab nach links zu gehen"
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab down."
-msgstr "Nach unten scrollen oder verwende %(hotkey)s, um einen Tab nach unten zu gehen"
+msgstr "Scrolle nach unten oder verwende %(hotkey)s, um ein Tab nach unten zu gehen"
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab up."
-msgstr "Nach oben scrollen oder verwende %(hotkey)s, um einen Tab nach oben zu gehen"
+msgstr "Scrolle nach oben oder verwende %(hotkey)s, um ein Tab nach oben zu gehen"
 
 #: gui/common/tooltips.js:64
 #, javascript-format
@@ -772,7 +773,7 @@ msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:185
 msgid "Capture points:"
-msgstr "Einnehmpunkte:"
+msgstr "Eroberungspunkte:"
 
 #: gui/common/tooltips.js:196
 #, javascript-format
@@ -806,12 +807,12 @@ msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:249
 msgid "Capture:"
-msgstr "Einnahme:"
+msgstr "Eroberung:"
 
 #: gui/common/tooltips.js:253 gui/common/tooltips.js:393
 msgctxt "damage type"
 msgid "Capture"
-msgstr "Einnehmen"
+msgstr "Erobern"
 
 #: gui/common/tooltips.js:268
 msgid "Status Effects:"
@@ -846,7 +847,7 @@ msgstr "Blockt: %(blockPercentage)s%%, Dauer verkürzt: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:311
 msgid "Garrison to fire arrows"
-msgstr "Einquartieren, um Pfeile zu schießen"
+msgstr "Einquartieren, um Pfeile zu verschießen"
 
 #: gui/common/tooltips.js:314 gui/common/tooltips.js:1070
 msgid "Interval:"
@@ -1031,7 +1032,7 @@ msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:559
 msgid "Garrison Limit"
-msgstr "Einquartierungsbegrenzung"
+msgstr "Einquartierungslimit"
 
 #: gui/common/tooltips.js:566
 #, javascript-format
@@ -1054,7 +1055,7 @@ msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:584
 msgid "Garrison Size"
-msgstr "Garnisonsgröße"
+msgstr "Einquartierungsgröße"
 
 #: gui/common/tooltips.js:587
 msgctxt "nested garrison"
@@ -1103,8 +1104,8 @@ msgstr "Verbleibende Reparaturzeit:"
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] "Füge noch einen Arbeiter hinzu, um die Reparaturen um %(second)s Sekunde zu beschleunigen."
-msgstr[1] "Füge noch einen Arbeiter hinzu, um die Reparaturen um %(second)s Sekunden zu beschleunigen."
+msgstr[0] "Füge einen weiteren Arbeiter hinzu, um die Reparaturen um %(second)s Sekunde zu beschleunigen."
+msgstr[1] "Füge einen weiteren Arbeiter hinzu, um die Reparaturen um %(second)s Sekunden zu beschleunigen."
 
 #: gui/common/tooltips.js:664
 #, javascript-format
@@ -1115,7 +1116,7 @@ msgstr[1] "Füge einen Arbeiter hinzu, um den Bau in %(second)s Sekunden zu voll
 
 #: gui/common/tooltips.js:676
 msgid "Number of builders:"
-msgstr "Anzahl von Bauarbeiter:"
+msgstr "Anzahl von Bauarbeitern:"
 
 #: gui/common/tooltips.js:682
 msgid "Remaining build time:"
@@ -1126,8 +1127,8 @@ msgstr "Verbleibende Bauzeit:"
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] "Füge noch einen Arbeiter hinzu, um den Bau um %(second)s Sekunde zu beschleunigen."
-msgstr[1] "Füge noch einen Arbeiter hinzu, um den Bau um %(second)s Sekunden zu beschleunigen."
+msgstr[0] "Füge einen weiteren Arbeiter hinzu, um den Bau um %(second)s Sekunde zu beschleunigen."
+msgstr[1] "Füge einen weiteren Arbeiter hinzu, um den Bau um %(second)s Sekunden zu beschleunigen."
 
 #: gui/common/tooltips.js:698
 #, javascript-format
@@ -1334,14 +1335,14 @@ msgstr "Lager für:"
 #. element will open the Template Details GUI page.
 #: gui/common/tooltips.js:1225
 msgid "Right-click to view more information."
-msgstr "Rechtsklicken, um mehr Informationen anzuzeigen."
+msgstr "Klicke mit rechts, um mehr Informationen anzuzeigen."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
 #: gui/common/tooltips.js:1231
 msgid "Click to view more information."
-msgstr "Klicken, um mehr Informationen anzuzeigen,"
+msgstr "Klicke, um mehr Informationen anzuzeigen."
 
 #: gui/common/tooltips.js:1240
 msgctxt "One letter abbreviation for million"
@@ -1360,7 +1361,7 @@ msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "0 A.D. Credits"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
@@ -1384,7 +1385,7 @@ msgstr "Sound-Manager"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr "Hauptkomponist"
+msgstr "Leitender Komponist"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
@@ -1448,7 +1449,7 @@ msgstr "Didgeridoo"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
 msgid "Djembe"
-msgstr "Djembe"
+msgstr "Djembé"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
 msgid "Dulcimer"
@@ -1544,7 +1545,7 @@ msgstr "Programmierungs-Manager"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr "Besonderes Dankeschön an"
+msgstr "Besonderer Dank an"
 
 #: gui/credits/texts/programming.jsonTitle
 msgid "Programming"
@@ -1552,11 +1553,11 @@ msgstr "Programmierung"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
-msgstr "Zum Andenken an"
+msgstr "Zum Gedenken an"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "0 A.D. Gründer"
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
@@ -1572,7 +1573,7 @@ msgstr "Besonderes Dankeschön an:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "Und danke an die gesamte Gemeinschaft, dafür, dass sie 0 A.D. möglich gemacht hat."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -1593,11 +1594,11 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "Obwohl sie für einen erfahrenen Spieler relativ einfach ist, ist die Standard-KI für neue Spieler, die die grundlegenden Mechanismen des Spiels erst meistern müssen, ziemlich herausfordernd. Beginnern wird geraten, zu Anfang gegen einen niedrigeren Schwierigkeitsgrad (Sandkasten oder sehr einfach) zu spielen. Der KI-Schwierigkeitsgrad kann geändert werden, indem man auf das Zahnrad-Symbol neben dem Spieler im Spielerauswahlfenster klickt."
+msgstr "Obwohl sie für einen erfahrenen Spieler relativ einfach ist, ist die Standard-KI für neue Spieler, die die grundlegenden Mechanismen des Spiels erst meistern müssen, ziemlich herausfordernd. Anfängern wird geraten, zu Anfang gegen einen niedrigeren Schwierigkeitsgrad (Sandkasten oder sehr einfach) zu spielen. Der KI-Schwierigkeitsgrad kann geändert werden, indem man auf das Zahnrad-Symbol neben dem Spieler im Spielerauswahlfenster klickt."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
-msgstr "Weitere Hotkeys"
+msgstr "Weitere Tastaturkürzel"
 
 #: gui/hotkeys/HotkeyPicker.js:56
 #, javascript-format
@@ -1610,7 +1611,7 @@ msgstr "(halten um zu erfassen)"
 
 #: gui/hotkeys/HotkeyPicker.js:73 gui/hotkeys/HotkeyPicker.js:104
 msgid "Enter new Hotkey, hold to register."
-msgstr "Gib einen neuen Hotkey ein, halten zum Erfassen."
+msgstr "Gib ein neues Tastaturkürzel ein, halte zum Erfassen."
 
 #: gui/hotkeys/HotkeyPicker.js:106
 msgctxt "Unassigned hotkey"
@@ -1623,17 +1624,17 @@ msgstr "Kann in Konflikt treten mit:"
 
 #: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
-msgstr "Alle Hotkeys"
+msgstr "Alle Tastaturkürzel"
 
 #: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
-msgstr "Alle verfügbaren Hotkeys."
+msgstr "Alle verfügbaren Tastaturkürzel."
 
 #: gui/hotkeys/HotkeysPage.js:156
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr "Setze alle Hotkeys auf die Standardwerte zurück?\nWARNUNG: Dies kann nicht rückgängig gemacht werden."
+msgstr "Setze alle Tastaturkürzel auf die Standardwerte zurück?\nWARNUNG: Dies kann nicht rückgängig gemacht werden."
 
 #: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:281
 #: gui/pregame/MainMenuItems.js:305
@@ -1659,17 +1660,17 @@ msgstr "Zurücksetzen"
 
 #: gui/hotkeys/hotkeys.xml:(caption):72
 msgid "Hotkey"
-msgstr "Hotkey"
+msgstr "Tastaturkürzel"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
-msgstr "Hotkey-Beschreibung"
+msgstr "Beschreibung des Tastaturkürzels"
 
 #: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr "Klicke auf eine Zuordnung, um sie zu ändern.\\n Du kannst bis zu 4 verschiedene Hotkeys haben."
+msgstr "Klicke auf eine Zuordnung, um sie zu ändern.\\n Du kannst bis zu vier verschiedene Tastaturkürzel setzen."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
@@ -1701,24 +1702,24 @@ msgstr "Nicht gespeicherte Änderungen werden verloren gehen"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr "Klicke, um den Hotkey zu setzen"
+msgstr "Klicke, um das Tastaturkürzel zu setzen"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
-msgstr "Klicke, um den Hotkey zu entfernen"
+msgstr "Klicke, um das Tastaturkürzel zu entfernen"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
-msgstr "Änder die Hotkeys und schließe"
+msgstr "Ändere die Tastaturkürzel und schließe"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
-msgstr "Die Hotkeys werden nicht verändert"
+msgstr "Die Tastaturkürzel werden nicht verändert"
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.desc
 msgctxt "hotkey metadata"
 msgid "Camera-related hotkeys."
-msgstr "Kamera-Hotkeys."
+msgstr "Kamera-Tastaturkürzel."
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.name
 msgctxt "hotkey metadata"
@@ -2051,7 +2052,7 @@ msgstr "Auszoomen (Schritt für Schritt)"
 #: gui/hotkeys/spec/engine.jsoncategories.general.desc
 msgctxt "hotkey metadata"
 msgid "General hotkeys."
-msgstr "Allgemeine Hotkeys."
+msgstr "Allgemeine Tastaturkürzel."
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.name
 msgctxt "hotkey metadata"
@@ -2123,7 +2124,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Custom hotkey to trigger exit-to-desktop. The native hotkeys (Alt+F4 / Cmd+Q"
 " / etc.) are always active."
-msgstr "Eigener Hotkey, um Schließen-zum-Desktop auszulösen. Die Hotkeys des Systems (Alt+F4 / Cmd+Q / etc.) funktionieren immer."
+msgstr "Eigenes Tastaturkürzel, um Schließen-zum-Desktop auszulösen. Die Tastaturkürzel des Systems (Alt+F4 / Cmd+Q / etc.) funktionieren immer."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
@@ -2283,7 +2284,7 @@ msgstr "Drahtgittermodelle umschalten"
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys active in the game setup screen."
-msgstr "Aktive Hotkeys im Spielerstellungsbildschirm."
+msgstr "Aktive Tastaturkürzel im Spielerstellungsbildschirm."
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.name
 msgctxt "hotkey metadata"
@@ -2303,7 +2304,7 @@ msgstr "Kartenbrowser öffnen"
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
 msgid "In-game hotkeys."
-msgstr "Hotkeys im Spiel."
+msgstr "Tastaturkürzel im Spiel."
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.name
 msgctxt "hotkey metadata"
@@ -2313,7 +2314,7 @@ msgstr "Im Spiel"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attack instead of another action (e.g. capture)."
-msgstr "Zusatztaste, um anstatt anderer Aktionen (z.B. einnehmen) anzugreifen."
+msgstr "Zusatztaste, um anstatt anderer Aktionen (z.B. erobern) anzugreifen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.name
 msgctxt "hotkey metadata"
@@ -2385,7 +2386,7 @@ msgstr "Zu den Waffen rufen"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.capture.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to capture instead of another action (e.g. attack)."
-msgstr "Modifikator zum Erfassen anstelle einer anderen Aktion (z. B. Angriff)."
+msgstr "Modifikator zum erobern anstelle einer anderen Aktion (z. B. Angriff)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.capture.name
 msgctxt "hotkey metadata"
@@ -2406,7 +2407,7 @@ msgstr "Einheitentyp abwählen"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr "Setze den Mauszeiger zum Signal, während dieser Hotkey gedrückt wird."
+msgstr "Setze den Mauszeiger zum Signal, während dieses Tastaturkürzel gedrückt wird."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
@@ -2416,7 +2417,7 @@ msgstr "Signal (halten)"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr "Den Mauszeiger zum Signal setzen. Der Hotkey kann losgelassen werden."
+msgstr "Den Mauszeiger zum Signal setzen. Das Tastaturkürzel kann losgelassen werden."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
@@ -2426,12 +2427,12 @@ msgstr "Signal (umschalten)"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to put the desired trade resource to 100%."
-msgstr "Zusatztaste, um die erwünschte Handelsressource auf 100 % zu setzen."
+msgstr "Zusatztaste, um die erwünschte Handelsressource auf 100 % zu setzen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr "Handel auf 10 % setzen"
+msgstr "Handel auf 100 % setzen"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
@@ -2758,7 +2759,7 @@ msgstr "Einheitentyp ausladen"
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys for the in-game user interface."
-msgstr "Hotkeys für die Benutzeroberfläche im Spiel."
+msgstr "Tastaturkürzel für die Benutzeroberfläche im Spiel."
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.name
 msgctxt "hotkey metadata"
@@ -2808,7 +2809,7 @@ msgstr "FPS-Zähler umschalten"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Zeige die Mehrspielerlobby in einem Dialogfenster."
+msgstr "Zeige die Mehrspieler-Lobby in einem Dialogfenster."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
@@ -3094,7 +3095,7 @@ msgstr "Spielzeit-Overlay umschalten"
 #: gui/hotkeys/spec/selection.jsoncategories.selection.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys relating to modifying unit selection."
-msgstr "Hotkeys, um die Einheitenauswahl zu modifizieren."
+msgstr "Tastaturkürzel, um die Einheitenauswahl zu modifizieren."
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.name
 msgctxt "hotkey metadata"
@@ -3582,15 +3583,15 @@ msgstr "Laden"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Dieser Speicherstand benötigt Version %(requiredVersion)s von 0 A.D., während du aktuell Version %(currentVersion)s verwendest."
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Dieser Speicherstand benötigt eine ältere Version von 0 A.D."
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
-msgstr "Dieser Spielstand benötigt eine andere Folge von Mods."
+msgstr "Dieser Spielstand benötigt eine andere Reihenfolge der Mods."
 
 #: gui/loadgame/SavegameLoader.js:55
 msgid "Do you still want to proceed?"
@@ -3788,7 +3789,7 @@ msgstr "Neue Karten"
 
 #: gui/maps/MapFilters.js:110
 msgid "Maps that are brand new in this release of the game."
-msgstr "Karten, die brandneu in diesem Release des Spiels sind."
+msgstr "Karten, die in dieser Version des Spiels brandneu sind."
 
 #: gui/maps/MapFilters.js:115
 msgid "Best for MP"
@@ -3883,7 +3884,7 @@ msgstr "Erhöhe die Kartenvorschaugröße."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr "Verkleinere die Kartenvorschaugröße."
+msgstr "Verringere die Kartenvorschaugröße."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
@@ -3897,7 +3898,7 @@ msgstr "Seite: %(currentPage)s/%(maxPage)s"
 
 #: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
-msgstr "Eine Karte zufällig auswählen."
+msgstr "Zufällig eine Karte auswählen."
 
 #: gui/options/options.js:109
 #, javascript-format
@@ -3946,7 +3947,7 @@ msgstr "Einige Einstellungen sind ungültig! Bist du sicher, dass du sie speiche
 
 #: gui/options/options.js:454
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr "Du hast nicht gespeicherte Änderungen, willst du dieses Fenster schließen?"
+msgstr "Du hast nicht gespeicherte Änderungen. Willst du dieses Fenster schließen?"
 
 #: gui/options/options.json[0].label
 msgid "General"
@@ -3984,7 +3985,7 @@ msgstr "Begrüßungsfenster aktivieren"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr "Wird dies deaktiviert, erscheint der Willkommensbildschirm trotzdem noch ein Mal, nämlich immer, wenn eine neue Version verfügbar ist. Du kannst ihn aber immer vom Hauptmenü aus öffnen."
+msgstr "Wird du dies deaktivierst, erscheint der Willkommensbildschirm trotzdem noch ein Mal, wenn eine neue Version verfügbar ist. Du kannst ihn aber immer vom Hauptmenü aus öffnen."
 
 #: gui/options/options.json[0].options[4].label
 msgid "FPS overlay"
@@ -4020,11 +4021,11 @@ msgstr "Immer die verbleibende Dauer des Waffenstillstands anzeigen."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Chat timestamp"
-msgstr "Chat Zeitstempel"
+msgstr "Chat-Zeitstempel"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr "Zeit anzeigen, wenn eine Chatnachricht geschickt wurde."
+msgstr "Zeit anzeigen, zu der eine Chatnachricht geschickt wurde."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
@@ -4076,7 +4077,7 @@ msgstr "Fenstermodus"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "Starte 0 A.D. in einem Fenster."
 
 #: gui/options/options.json[1].options[10].label
 msgid "FPS throttling in games"
@@ -4095,11 +4096,11 @@ msgstr "Skalierung der grafischen Benutzeroberfläche"
 
 #: gui/options/options.json[1].options[11].list[6].label
 msgid "225%"
-msgstr "225 %"
+msgstr "225 %"
 
 #: gui/options/options.json[1].options[11].list[7].label
 msgid "250%"
-msgstr "250 %"
+msgstr "250 %"
 
 #: gui/options/options.json[1].options[12].label
 msgid "Mouse drag"
@@ -4150,88 +4151,88 @@ msgstr "Screen-Space-Nachbearbeitungsfilter benutzen (HDR, Bloom, DOF, etc.)"
 
 #: gui/options/options.json[1].options[3].label
 msgid "Resolution scale"
-msgstr ""
+msgstr "Auflösungsskalierung"
 
 #: gui/options/options.json[1].options[3].list[0].label
 msgid "50%"
-msgstr ""
+msgstr "50 %"
 
 #: gui/options/options.json[1].options[11].list[0].label
 #: gui/options/options.json[1].options[3].list[1].label
 msgid "75%"
-msgstr "75 %"
+msgstr "75 %"
 
 #: gui/options/options.json[1].options[3].list[2].label
 msgid "87.5%"
-msgstr ""
+msgstr "87.5 %"
 
 #: gui/options/options.json[1].options[11].list[1].label
 #: gui/options/options.json[1].options[3].list[3].label
 msgid "100%"
-msgstr "100 %"
+msgstr "100 %"
 
 #: gui/options/options.json[1].options[11].list[2].label
 #: gui/options/options.json[1].options[3].list[4].label
 msgid "125%"
-msgstr "125 %"
+msgstr "125 %"
 
 #: gui/options/options.json[1].options[11].list[3].label
 #: gui/options/options.json[1].options[3].list[5].label
 msgid "150%"
-msgstr "150 %"
+msgstr "150 %"
 
 #: gui/options/options.json[1].options[11].list[4].label
 #: gui/options/options.json[1].options[3].list[6].label
 msgid "175%"
-msgstr "175 %"
+msgstr "175 %"
 
 #: gui/options/options.json[1].options[11].list[5].label
 #: gui/options/options.json[1].options[3].list[7].label
 msgid "200%"
-msgstr "200 %"
+msgstr "200 %"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid ""
 "A smaller scale makes rendering faster but produces a more blurry picture, a"
 " large scale makes rendering slower but produces a better picture."
-msgstr ""
+msgstr "Eine niedrigere Auflösung beschleunigt das Rendering, erzeugt aber ein verschwommeneres Bild. Eine höhere Auflösung verlangsamt das Rendering, resultiert aber in einem besseren Bild."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Upscale technique"
-msgstr ""
+msgstr "Hochskalierungsverfahren"
 
 #: gui/options/options.json[1].options[4].list[0].label
 msgid "FidelityFX Super Resolution 1.0"
-msgstr ""
+msgstr "FidelityFX Super Resolution 1.0"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid ""
 "Advanced upscale technique. For better results, use FSR with antialiasing "
 "enabled. Using it with the OpenGL backend may have some issues, consider "
 "using Vulkan backend instead."
-msgstr ""
+msgstr "Erweitertes Hochskalierungsverfahren. Nutze FSR mit aktiviertem Antialiasing für bessere Ergebnisse. Bei der Nutzung mit dem OpenGL-Backend kann es dabei zu Problemen kommen, erwäge in diesem Fall stattdessen das Vulkan-Backend zu nutzen."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "Bilinear"
-msgstr ""
+msgstr "Bilinear"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid ""
 "Bilinear upscale technique. Produces a slightly blurry picture depending on "
 "the scale."
-msgstr ""
+msgstr "Bilineares hochskalieren. Erzeugt abhängig von der Skalierung ein leicht unscharfes Bild."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "Pixelated"
-msgstr ""
+msgstr "Verpixelt"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid "Simplest upscale technique. Used mostly for stylized effect."
-msgstr ""
+msgstr "Simples hochskalieren. Dies wird für den am meisten stilisierten Effekt benutzt."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Technique defines performance and quality of upscaling process."
-msgstr ""
+msgstr "Das Verfahren beeinflusst die Leistung und die Qualität der Skalierung."
 
 #: gui/options/options.json[1].options[5].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][9].label
@@ -4311,7 +4312,7 @@ msgstr "Vulkan"
 
 #: gui/options/options.json[2].options[0].list[2].tooltip
 msgid "Modern API, requires up-to-date drivers. REQUIRES GAME RESTART"
-msgstr "Neue API, benötigt aktuelle Treiber. SPIELNEUSTART NOTWENDIG"
+msgstr "Moderne API, benötigt aktuelle Treiber. ERFORDERT NEUSTART DES SPIELS"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
@@ -4339,7 +4340,7 @@ msgstr "FXAA"
 
 #: gui/options/options.json[2].options[3].list[1].tooltip
 msgid "Fast, but simple antialiasing."
-msgstr "Schnelle aber einfache Kantenglättung."
+msgstr "Schnelle, aber einfache Kantenglättung."
 
 #: gui/options/options.json[2].options[3].list[2].label
 msgid "MSAA (2×)"
@@ -4349,7 +4350,7 @@ msgstr "MSAA (2×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr "Langsame, aber hochwertige Kantenglättung, benützt zwei Samples pro Pixel. Unterstützt ab GL3.3+."
+msgstr "Langsame, aber hochwertige Kantenglättung, benutzt zwei Samples pro Pixel. Unterstützt ab OpenGL 3.3."
 
 #: gui/options/options.json[2].options[3].list[3].label
 msgid "MSAA (4×)"
@@ -4359,7 +4360,7 @@ msgstr "MSAA (4×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr "Langsame, aber hochwertige Kantenglättung, benützt vier Samples pro Pixel. Unterstützt ab GL3.3+."
+msgstr "Langsame, aber hochwertige Kantenglättung, benutzt vier Samples pro Pixel. Unterstützt ab OpenGL 3.3."
 
 #: gui/options/options.json[2].options[3].list[4].label
 msgid "MSAA (8×)"
@@ -4369,7 +4370,7 @@ msgstr "MSAA (8×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr "Langsame, aber hochwertige Kantenglättung, benützt acht Samples pro Pixel. Unterstützt ab GL3.3+."
+msgstr "Langsame, aber hochwertige Kantenglättung, benutzt acht Samples pro Pixel. Unterstützt ab OpenGL 3.3."
 
 #: gui/options/options.json[2].options[3].list[5].label
 msgid "MSAA (16×)"
@@ -4379,7 +4380,7 @@ msgstr "MSAA (16×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr "Langsame, aber hochwertige Kantenglättung, benützt sechzehn Samples pro Pixel. Unterstützt ab GL3.3+."
+msgstr "Langsame, aber hochwertige Kantenglättung, benutzt sechzehn Samples pro Pixel. Unterstützt ab OpenGL 3.3."
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -4489,7 +4490,7 @@ msgstr "Deaktiviert Schatten jenseits einer gewissen Distanz von der Kamera."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].label
 msgid "Cover whole map"
-msgstr "Gesamte Karte bedecken"
+msgstr "Gesamte Karte abdecken"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].tooltip
 msgid ""
@@ -4539,7 +4540,7 @@ msgstr "Echte Wassertiefe"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr "Verwende die Wassertiefe zur Bildberechnung."
+msgstr "Verwende die tatsächliche Wassertiefe zur Bildberechnung."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].label
 msgid "Texture quality"
@@ -4604,7 +4605,7 @@ msgstr "16x"
 msgid ""
 "Makes textures look better, especially terrain. If the anisotropic filter "
 "value is unsupported it will be set to the max supported value."
-msgstr "Lässt Texturen besser aussehen, insbesondere das Gelände. Wenn der anisotrope Filterwert nicht unterstützt wird, wird er auf den maximal unterstützten Wert gesetzt."
+msgstr "Lässt Texturen, insbesondere das Gelände, besser aussehen. Wenn der anisotrope Filterwert nicht unterstützt wird, wird er auf den maximal unterstützten Wert gesetzt."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].tooltip
 msgid ""
@@ -4777,7 +4778,7 @@ msgstr "Freunde"
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr "Spieler, die einem Spiel beitreten, werden nur zugewiesen, wenn sie ein Buddy des Hosts sind und es einen freien Platz gibt."
+msgstr "Spieler, die einem Spiel beitreten, werden nur zugewiesen, wenn sie ein Freund des Hosts sind und es einen freien Platz gibt."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
@@ -4795,20 +4796,20 @@ msgstr "Netzwerk / Lobby"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].label
 msgid "TLS encryption"
-msgstr "TLS Verschlüsselung"
+msgstr "TLS-Verschlüsselung"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr "Beschützt Login und Daten, die mit dem Server getauscht werden, mittels TLS Verschlüsselung"
+msgstr "Beschützt Login und Daten, die mit dem Lobby-Server ausgetauscht werden, mittels TLS-Verschlüsselung"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].label
 msgid "Chat backlog"
-msgstr "Chat-Backlog"
+msgstr "Chathistorie"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
-msgstr "Anzahl der letzten Meldungen beim Eintritt in die Lobby."
+msgstr "Anzahl der vorherigen Nachrichten, die beim betreten der Lobby geladen werden sollen."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].label
 msgid "Game rating column"
@@ -4848,7 +4849,7 @@ msgstr "Verhindert, dass weitere Zuschauer beitreten, wenn das Limit erreicht is
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].label
 msgid "Max lag for observers"
-msgstr "Maximum-Lag für Beobachter"
+msgstr "Maximales Lag für Beobachter"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].tooltip
 msgid ""
@@ -4858,7 +4859,7 @@ msgstr "Das Spiel als Host pausieren, wenn Beobachter mehr als diese Anzahl von 
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].label
 msgid "(Observer) Speed up when lagging."
-msgstr "(Beobachter) bei Lag beschleunigen."
+msgstr "(Beobachter) Bei Lag beschleunigen."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].tooltip
 msgid ""
@@ -4882,7 +4883,7 @@ msgstr "Gesundheit von verletzten Einheiten"
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr "Der Verwundete-Einheiten-Hotkey betrachtet die ausgewählten Einheiten als verwundet, wenn ihre Gesundheit unter diesen Prozentsatz fällt."
+msgstr "Das Verwundete-Einheiten-Tastaturkürzel betrachtet die ausgewählten Einheiten als verwundet, wenn ihre Gesundheit unter diesen Prozentsatz fällt."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].label
 msgid "Aura range visualization"
@@ -4892,7 +4893,7 @@ msgstr "Visualisierung der Aurareichweite"
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr "Zeigt die Reichweite von Auren für ausgewählte Einheiten und Gebäude an (kann auch während des Spiels mit dem Hotkey umgeschaltet werden)."
+msgstr "Zeigt die Reichweite von Auren für ausgewählte Einheiten und Gebäude an (kann auch während des Spiels mit dem Tastaturkürzel umgeschaltet werden)."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].label
 msgid "Heal range visualization"
@@ -4902,7 +4903,7 @@ msgstr "Visualisierung der Heilreichweite"
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
-msgstr "Zeige die Reichweite der ausgewählten Einheiten (kann auch während des Spiels mit einem Hotkey umgeschaltet werden)"
+msgstr "Zeige die Reichweite der ausgewählten Einheiten (kann auch während des Spiels mit einem Tastaturkürzel umgeschaltet werden)."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].label
 msgid "Rank icon above status bar"
@@ -4988,7 +4989,7 @@ msgstr "Gruppen-Ausbildungsgröße"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr "Standardmäßige Anzahl der Einheiten pro Gruppe."
+msgstr "Standardmäßige Anzahl an Einheiten pro Gruppe."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].label
 msgid "Snap to edges"
@@ -4996,22 +4997,22 @@ msgstr "An Rändern ausrichten"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr "Schnelltaste um Auto-Ausrichtung einzuschalten"
+msgstr "Tastaturkürzel um Auto-Ausrichtung einzuschalten"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr "Neues Gebäude werden a nahegelegenen Gebäuden ausgerichtet, während die Schnelltaste gedrückt wird."
+msgstr "Neue Gebäude werden an nahegelegenen Gebäuden ausgerichtet, während das Tastaturkürzel gedrückt wird."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr "Schnelltaste um Auto-Ausrichtung abzuschalten"
+msgstr "Tastaturkürzel um Auto-Ausrichtung abzuschalten"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr "Neue Gebäude werden an nahegelegenen Gebäude ausgerichtet, außer Schnelltaste wird gedrückt."
+msgstr "Neue Gebäude werden an nahegelegenen Gebäude ausgerichtet, außer das Tastaturkürzel wird gedrückt."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].tooltip
 msgid "This option allows to align new structures with nearby structures."
@@ -5163,7 +5164,7 @@ msgstr "Visualisierung der Angriffsreichweite"
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
-msgstr "Zeigt die Reichweite von ausgewählten Defensivgebäuden an (kann auch während des Spiels mit dem Hotkey umgeschaltet werden)."
+msgstr "Zeigt die Reichweite von ausgewählten Defensivgebäuden an (kann auch während des Spiels mit dem Tastaturkürzel umgeschaltet werden)."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5261,7 +5262,7 @@ msgstr "Handbuch"
 
 #: gui/pregame/MainMenuItems.js:8
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Öffne das 0 A.D. Spielhandbuch."
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
@@ -5281,38 +5282,38 @@ msgstr "Gebäudebaum"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "Öffne den Gebäudebaum der in 0 A.D. enthaltenen Zivilisationen."
 
 #: gui/pregame/MainMenuItems.js:48
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
-msgstr "Zivilisations-Übersicht"
+msgstr "Zivilisationsübersicht"
 
 #: gui/pregame/MainMenuItems.js:49
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "Lerne die in 0 A.D. enthaltenen Zivilisationen kennen."
 
 #: gui/pregame/MainMenuItems.js:60
 msgid "Catafalque Overview"
-msgstr "Katafalk-Übersicht"
+msgstr "Katafalkübersicht"
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "Vergleiche die Boni der Katafalke in 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Map Overview"
-msgstr "Karten-Übersicht"
+msgstr "Kartenübersicht"
 
 #: gui/pregame/MainMenuItems.js:68
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "Schau dir die verschiedenen in 0 A.D. enthaltenen Karten an."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:132
 msgid "Continue Campaign"
-msgstr "Setze Kampagne fort"
+msgstr "Kampagne fortsetzen"
 
 #: gui/pregame/MainMenuItems.js:77 gui/pregame/MainMenuItems.js:133
 #: gui/pregame/MainMenuItems.js:149 gui/pregame/MainMenuItems.js:156
@@ -5353,7 +5354,7 @@ msgstr "Kampagne laden"
 
 #: gui/pregame/MainMenuItems.js:165 gui/pregame/MainMenuItems.js:215
 msgid "Replays"
-msgstr "Wiederholung"
+msgstr "Wiederholungen"
 
 #: gui/pregame/MainMenuItems.js:166 gui/pregame/MainMenuItems.js:216
 msgid "Playback previous games."
@@ -5365,7 +5366,7 @@ msgstr "Mehrspieler"
 
 #: gui/pregame/MainMenuItems.js:181
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr "Gegen einen oder mehrere menschliche Spieler in einem Mehrspielerspiel kämpfen."
+msgstr "Kämpfe gegen einen oder mehrere menschliche Spieler in einem Mehrspielerspiel."
 
 #. Translation: Join a game by specifying the host's IP address.
 #: gui/pregame/MainMenuItems.js:185
@@ -5378,15 +5379,15 @@ msgstr "Einem bestehenden Mehrspielerspiel beitreten."
 
 #: gui/pregame/MainMenuItems.js:194
 msgid "Host Game"
-msgstr "Spiel hosten"
+msgstr "Spiel erstellen"
 
 #: gui/pregame/MainMenuItems.js:195
 msgid "Host a multiplayer game."
-msgstr "Hoste ein Mehrspielerspiel."
+msgstr "Erstelle ein Mehrspielerspiel."
 
 #: gui/pregame/MainMenuItems.js:203
 msgid "Game Lobby"
-msgstr "Mehrspielerlobby"
+msgstr "Mehrspieler-Lobby"
 
 #: gui/pregame/MainMenuItems.js:205
 #, javascript-format
@@ -5397,7 +5398,7 @@ msgstr "%(hotkey)s: Die Mehrspieler-Lobby starten, um öffentlich sichtbare Spie
 
 #: gui/pregame/MainMenuItems.js:206
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr "Mehrspielerlobby starten. \\[DISABLED BY BUILD]"
+msgstr "Mehrspieler-Lobby starten. \\[DISABLED BY BUILD]"
 
 #: gui/pregame/MainMenuItems.js:230
 msgid "Settings"
@@ -5447,7 +5448,7 @@ msgstr "Begrüßungsfenster"
 
 #: gui/pregame/MainMenuItems.js:266
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr "Das Begrüßungsfenster wieder anzeigen. Praktisch, falls es unabsichtlich versteckt wurde."
+msgstr "Das Begrüßungsfenster wieder anzeigen. Praktisch, falls du es unabsichtlich ausgeblendet hast."
 
 #: gui/pregame/MainMenuItems.js:274
 msgid "Scenario Editor"
@@ -5457,17 +5458,17 @@ msgstr "Karteneditor"
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "Karteneditor „Atlas“ in einem neuen Fenster öffnen. Praktischer ist es, den Editor beim Starten des Spiels mit dem Kommandozeilenargument „-editor“ aufzurufen."
+msgstr "Öffne den Karteneditor „Atlas“ in einem neuen Fenster. Praktischer ist es, den Editor beim Starten des Spiels mit dem Kommandozeilenargument „-editor“ aufzurufen."
 
 #: gui/pregame/MainMenuItems.js:280
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "Bist du sicher, dass du 0 A.D. beenden und stattdessen den Karteneditor öffnen möchtest?"
 
 #: gui/pregame/MainMenuItems.js:287
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr "Der Szenario-Editor ist nicht verfügbar oder kann nicht geladen werden. Siehe Spiel-Log für zusätzliche Informationen."
+msgstr "Der Karteneditor ist nicht verfügbar oder kann nicht geladen werden. Siehe Spiel-Log für zusätzliche Informationen."
 
 #: gui/pregame/MainMenuItems.js:288 gui/replaymenu/replay_actions.js:126
 msgid "Error"
@@ -5479,7 +5480,7 @@ msgstr "Credits"
 
 #: gui/pregame/MainMenuItems.js:293
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Die 0 A.D. Credits anzeigen."
 
 #: gui/pregame/MainMenuItems.js:299
 msgid "Exit"
@@ -5491,7 +5492,7 @@ msgstr "Spiel beenden."
 
 #: gui/pregame/MainMenuItems.js:304
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr ""
+msgstr "Bist du sicher, dass du 0 A.D. beenden möchtest?"
 
 #: gui/pregame/ProjectInformation.js:6
 msgid "WILDFIRE GAMES"
@@ -5525,7 +5526,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr ""
+msgstr "Klicke, um den 0 A.D. IRC-Chat in deinem Browser zu öffnen (#0ad auf webchat.quakenet.org). Dieser wird von Freiwilligen betrieben, die alle möglichen Aufgaben übernehmen. Es kann also eine Weile dauern bis deine Frage beantwortet wird. Alternativ kannst du das Forum benutzen (siehe die Webseite)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5533,7 +5534,7 @@ msgstr "Bug melden"
 
 #: gui/pregame/ProjectInformation.js:42
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Klicke, um die 0 A.D. Trac-Instanz zu besuchen, um einen Bug, Absturz oder Fehler zu melden."
 
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
@@ -5546,11 +5547,11 @@ msgstr "Anklicken, um die Seite zu den häufig gestellten Fragen in deinem Brows
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
-msgstr "Das Spiel Übersetzen"
+msgstr "Das Spiel übersetzen"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Klicke, um die Übersetzungsseite von 0 A.D. in deinem Browser zu öffnen."
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
@@ -5558,7 +5559,7 @@ msgstr "Spenden"
 
 #: gui/pregame/ProjectInformation.js:66
 msgid "Help with the project expenses by donating."
-msgstr "Hilf durch eine Spende bei den Unkosten des Projekts."
+msgstr "Hilf durch eine Spende die Kosten des Projekts zu tragen."
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
@@ -5567,7 +5568,7 @@ msgstr "Bedingungen"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
-msgstr "Bitte lies und akzeptiere die Nutzungsbedingungen der UserReporters"
+msgstr "Bitte lies und akzeptiere die Nutzungsbedingungen des UserReporters."
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
@@ -5608,7 +5609,7 @@ msgstr "Feedback an"
 
 #: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr ""
+msgstr "Vielen Dank für die Hilfe beim verbessern von 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
@@ -5625,7 +5626,7 @@ msgstr "unbekannt"
 
 #: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
-msgstr ""
+msgstr "Hilf mit, 0 A.D. zu verbessern!"
 
 #: gui/pregame/userreport/userreport.js:87
 msgid ""
@@ -5921,12 +5922,12 @@ msgstr "Nicht bewertete Spiele"
 #: gui/replaymenu/replay_menu.js:196
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr "Filtere Wiederholung durch Tippen nach einem oder mehrerer, teilweiser oder kompletter Spielernamen."
+msgstr "Filtere Wiederholungen durch Eingabe von einem oder mehreren, teilweisen oder kompletten Spielernamen."
 
 #: gui/replaymenu/replay_menu.js:200
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr "Lösche die gewählte Wiederholung mit %(hotkey)s"
+msgstr "Lösche die ausgewählte Wiederholung mit %(hotkey)s."
 
 #: gui/replaymenu/replay_menu.js:285
 #, javascript-format
@@ -6005,7 +6006,7 @@ msgstr "Erstellt den Cache vollständig neu. Möglicherweise recht langsam!"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"] Vielen Dank für die Installation von 0 A.D. Empires Ascendant!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -6021,19 +6022,19 @@ msgstr "[imgleft=\"constructionIcon\"]Dieses Spiel ist noch in Entwicklung. Du k
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr "[imgleft=\"iconLag\"]Das Spiel kann Performance-Probleme verursachen, vor allem mit großen Karten und einer großen Anzahl von Einheiten."
+msgstr "[imgleft=\"iconLag\"]Das Spiel kann, vor allem mit großen Karten und einer großen Anzahl von Einheiten, Performanceprobleme verursachen."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]0 A.D. ist Freie Software: Du kannst dich an seiner Entwicklung beteiligen."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "If you want to help with art, sound, gameplay or programming, make sure to "
 "join our official forum."
-msgstr "Falls du mit bei Design, Ton, Spielmechanik oder Programmierung mithelfen möchtest, dann beteilige dich doch in unserem offiziellen Forum."
+msgstr "Falls du mit bei Design, Ton, Spielmechanik oder Programmierung mithelfen möchtest, dann beteilige dich in unserem offiziellen Forum."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -6391,7 +6392,7 @@ msgstr "%(mapName)s - %(mapType)s"
 #: gui/summary/summary.js:544
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr "%(hotkey)s: Die Mehrspielerlobby in einem Dialogfenster umschalten."
+msgstr "%(hotkey)s: Die Mehrspieler-Lobby in einem Dialogfenster umschalten."
 
 #: gui/summary/summary.js:556
 #, javascript-format
@@ -6452,7 +6453,7 @@ msgstr "Kann in neutralem und feindlichem Territorium gebaut werden. Eignet sich
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct rams and train citizen soldiers."
-msgstr "Erbaut Rammböcke und bildet Bürgersoldaten aus."
+msgstr "Baue Rammböcke und bilde Bürgersoldaten aus."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
@@ -6601,7 +6602,7 @@ msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "The main warship for the Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Das Hauptkriegsschiff der Britonen, Gallier und Iberer."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Can transport up to 40 units."
@@ -6609,7 +6610,7 @@ msgstr "Kann bis zu 40 Einheiten transportieren."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can be improved with greater health and garrison capacity."
-msgstr ""
+msgstr "Kann für höhere Gesundheit und Einquartierungskapazität verbessert werden."
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
@@ -6659,7 +6660,7 @@ msgstr "STANDARDFORMATION"
 msgid ""
 "Right-click an icon to set the default formation: units that are ordered to "
 "walk or patrol will automatically use it."
-msgstr "Rechts klicke auf ein Symbol, um die Standardformation festzulegen: Einheiten mit Befehl zum Gehen oder Patrouillieren benützen sie automatisch."
+msgstr "Klicke mit rechts auf ein Symbol, um die Standardformation festzulegen: Einheiten mit Befehl zum Gehen oder Patrouillieren benutzen sie automatisch."
 
 #: gui/text/tips/default_formation.txt:3
 msgid "Can be de-activated by choosing “no formation” as the default."
@@ -6692,7 +6693,7 @@ msgstr "Du kannst mehr Infanterie einquartieren, um die Zahl der Pfeile, die sie
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
-msgstr "ELEFANTEN STALL"
+msgstr "ELEFANTENSTALL"
 
 #: gui/text/tips/elephant_stable.txt:2
 msgid ""
@@ -6719,7 +6720,7 @@ msgstr "FISCHEN"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
-msgstr "Fische auf den Meeren um einen reichen Fang einzuholen."
+msgstr "Fische auf den Meeren, um einen reichen Fang einzuholen."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
@@ -6845,27 +6846,27 @@ msgstr "Achtung: Jeder Held kann nur ein einmal pro Spiel ausgebildet werden!"
 
 #: gui/text/tips/iber_fireship.txt:1
 msgid "FIRESHIPS"
-msgstr ""
+msgstr "BRANDSCHIFFE"
 
 #: gui/text/tips/iber_fireship.txt:2
 msgid "Available to the Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Verfügbar für Britonen, Gallier und Iberer."
 
 #: gui/text/tips/iber_fireship.txt:3
 msgid ""
 "Construct them, move them near enemy ships, then ignite them to set them "
 "ablaze."
-msgstr ""
+msgstr "Baue sie, bewege sie anschließend in die Nähe von feindlichen Schiffen und zünde sie dann an, um sie lodern zu lassen."
 
 #: gui/text/tips/iber_fireship.txt:4
 msgid ""
 "They cause Fire damage to nearby enemy ships and themselves start to lose "
 "health."
-msgstr ""
+msgstr "Sie verursachen Feuerschaden bei nahegelegenen, feindlichen Schiffen und verlieren selbst dabei Gesundheit."
 
 #: gui/text/tips/iber_fireship.txt:5
 msgid "Very good against Siege Ships."
-msgstr ""
+msgstr "Sehr gut gegen Belagerungsschiffe."
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
@@ -6897,7 +6898,7 @@ msgstr "PYRAMIDEN VON MEROE"
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
-msgstr "Spezielle Struktur, die den Kuschiten zur Verfügung steht."
+msgstr "Spezielle Gebäude, die den Kuschiten zur Verfügung steht."
 
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
@@ -6950,11 +6951,11 @@ msgstr "Spezialtechnologie der Perser."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr "Gebäude +25 % Gesundheit."
+msgstr "Gebäude +25 % Gesundheit."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
-msgstr "Bauzeit in der Folge +20 % länger."
+msgstr "Bauzeit in der Folge +20 % länger."
 
 #: gui/text/tips/persian_architecture.txt:5
 msgid ""
@@ -6981,13 +6982,13 @@ msgstr "Verfügbar für: Kuschiten, Makedonier, Ptolemäer und Seleukiden."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "SIEGE WARSHIP"
-msgstr ""
+msgstr "BELAGERUNGSKAMPSCHIFF"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, Seleucids, and Han Chinese."
-msgstr ""
+msgstr "Das schwerste Standardkriegsschiff. Verfügbar für: Karthager, Ptolemäer, Römer, Seleukiden und Han-Chinesen."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid ""
@@ -6999,23 +7000,23 @@ msgstr ""
 msgid ""
 "Countered by melee ships, such as Ramming Ships and Fire Ships, and other "
 "Siege Ships."
-msgstr ""
+msgstr "Gekontert durch Nahkampfschiffe, wie zum Beispiel Rammschiffe, Bandschiffe oder Belagerungsschiffe."
 
 #: gui/text/tips/ramming_ships.txt:1
 msgid "RAMMING SHIPS"
-msgstr ""
+msgstr "RAMMSCHIFFE"
 
 #: gui/text/tips/ramming_ships.txt:2
 msgid "A strong and fast melee ship available to Mediterranean civilizations."
-msgstr ""
+msgstr "Ein starkes und schnelles Nahkampfschiff, dass mediterranen Zivilisationen zur Verfügung steht."
 
 #: gui/text/tips/ramming_ships.txt:3
 msgid "Transport up to 30 troops swiftly across the water."
-msgstr ""
+msgstr "Transportiere bis zu 30 Einheiten schnell über das Wasser."
 
 #: gui/text/tips/ramming_ships.txt:4
 msgid "Good against Siege Ships due to speed and strong ramming attack. "
-msgstr ""
+msgstr "Gut gegen Belagerungsschiffe, dank ihrer Geschwindigkeit und ihres starken Rammangriffs."
 
 #: gui/text/tips/ramming_ships.txt:5
 msgid "Countered by Arrow Ships and Defense Towers. "
@@ -7059,7 +7060,7 @@ msgstr "Holz ist eher selten, besteht aber aus ertragreichen Baobab-Bäumen."
 
 #: gui/text/tips/shrine.txt:1
 msgid "SHRINES"
-msgstr ""
+msgstr "SCHREINE"
 
 #: gui/text/tips/shrine.txt:2
 msgid "Capturable map objects. Cannot be built or destroyed."
@@ -7067,7 +7068,7 @@ msgstr ""
 
 #: gui/text/tips/shrine.txt:3
 msgid "Train Elite Healers and heal garrisoned units."
-msgstr ""
+msgstr "Bilde Eliteheiler aus und heile einquartierte Einheiten."
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
@@ -7077,7 +7078,7 @@ msgstr "AUSRICHTEN"
 msgid ""
 "Structures can be aligned by keeping the snap hotkey pressed during "
 "placement."
-msgstr "Gebäude können ausgerichtet werden, wenn der Ausrichten-Hotkey bei der Platzierung gehalten wird."
+msgstr "Gebäude können ausgerichtet werden, wenn das Ausrichten-Tastaturkürzel bei der Platzierung gehalten wird."
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
@@ -7087,7 +7088,7 @@ msgstr "Das Ausrichten von Gebäuden ermöglicht es, Platz für zukünftige Baut
 msgid ""
 "Tightly packed groups of structures can also be used for obstructing raiding"
 " enemies."
-msgstr "Dicht gepackte Gruppen von Gebäuden können auch benützt werden, um plündernde Feinde zu behindern."
+msgstr "Dicht gepackte Gruppen von Gebäuden können auch benutzt werden, um plündernde Feinde zu behindern."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -7127,7 +7128,7 @@ msgstr "Ein ordentlicher Hieb-Angriff macht sie zu guten Fronttruppen."
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr "Man kontert sie mit Fernkampfeinheiten und Schwertkämpfer, unterstütze also deine Speerträger mit Schleuderern oder Kavallerie."
+msgstr "Sie können mit Fernkampfeinheiten und Schwertkämpfer gekontert werden, also unterstütze deine Speerträger mit Schleuderern oder Kavallerie."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -7219,15 +7220,15 @@ msgstr ""
 
 #: gui/text/tips/triremes.txt:2
 msgid "The basic Warship for most factions."
-msgstr ""
+msgstr "Das grundlegende Kriegsschiff für die meisten Zivilisationen."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Transport up to 30 troops across the water."
-msgstr ""
+msgstr "Transportiere bis zu 30 Einheiten über das Wasser."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Good against melee Warships, such as Ramming Ships and Fire Ships."
-msgstr ""
+msgstr "Gut gegen Nahkampfschiffe, wie zum Beispiel Rammschiffe und Brandschiffe."
 
 #: gui/text/tips/triremes.txt:5
 msgid "Countered by Siege Ships and other Arrow Ships. "

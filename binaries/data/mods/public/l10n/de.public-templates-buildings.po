@@ -5,6 +5,7 @@
 # Translators:
 # Wuzzy
 # BL4NKY
+# Daniel Roschka
 # d00eb365ebaf2be82942fe248b3f88f3
 # xtother90
 # 0783ceb0abad32bf6a5d397ceffe5799
@@ -50,7 +51,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: Moritz Ewert, 2023\n"
+"Last-Translator: Daniel Roschka, 2024\n"
 "Language-Team: German (http://app.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -361,7 +362,7 @@ msgstr "Dunon"
 #: simulation/templates/structures/ptol/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
 msgid "Train Heroes. Garrison Soldiers for additional arrows."
-msgstr "Helden ausbilden. Quartiere Soldaten für zusätzliche Pfeile ein."
+msgstr "Bilde Helden aus. Quartiere Soldaten für zusätzliche Pfeile ein."
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
@@ -717,7 +718,7 @@ msgid ""
 "Enable training of heroes, reduce the batch training times and greatly "
 "increase the health, capture resistance and garrison capacity of this "
 "specific Civic Center."
-msgstr "Schaltet die Heldenausbildung frei, reduziert die Gruppenausbildungszeiten und erhöht deutlich die Gesundheit, den Einnahmewiderstand und die Einquartiertungskapazität dieses Verwaltungssitzes."
+msgstr "Schaltet die Ausbildung von Helden frei, reduziert die Gruppen-Ausbildungszeiten und erhöht die Gesundheit, den Eroberungswiderstand und die Einquartiertungskapazität dieses Verwaltungssitzes  deutlich."
 
 #: simulation/templates/structures/han/civil_centre_court.xml:17
 msgid "Imperial Court"
@@ -743,7 +744,7 @@ msgstr "Fángyù Tǎ"
 msgid ""
 "This tower has greater range, greater attack, greater health, and is twice "
 "as difficult to capture."
-msgstr "Dieser Turm hat eine größere Reichweite, stärkeren Angriff, mehr Gesundheit und ist doppelt so schwierig einzunehmen."
+msgstr "Dieser Turm hat eine größere Reichweite, stärkeren Angriff, mehr Gesundheit und ist doppelt so schwierig zu erobern."
 
 #: simulation/templates/structures/han/defense_tower_great.xml:31
 msgid "Great Tower"
@@ -1232,7 +1233,7 @@ msgstr "Harmya"
 
 #: simulation/templates/structures/maur/palace.xml:30
 msgid "Train Heroes and their Poison Maiden Guards. Territory root."
-msgstr "Trainiere Helden und ihre Poison Maiden Guards. Gebietswurzel."
+msgstr "Bilde Helden und ihre Poison-Maiden-Wachen aus. Gebietswurzel."
 
 #: simulation/templates/structures/maur/pillar_ashoka.xml:32
 msgid "Edict Pillar of Ashoka"
@@ -1309,7 +1310,7 @@ msgstr "Stratopedeia Misthophorōn"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr "Nimm dieses Gebäude ein, um Söldner aus dem hellenistischen Ägypten auszubilden."
+msgstr "Erobere dieses Gebäude, um Söldner aus dem hellenistischen Ägypten auszubilden."
 
 #: simulation/templates/structures/kush/farmstead.xml:9
 #: simulation/templates/structures/mill_desert.xml:8
@@ -1377,7 +1378,7 @@ msgstr "Angewinkelter Pfahl"
 
 #: simulation/templates/structures/palisades_spikes_small.xml:17
 msgid "Small Spikes"
-msgstr "Kleine Pfähle"
+msgstr "Kurze Pfähle"
 
 #: simulation/templates/structures/palisades_spikes_tall.xml:17
 msgid "Tall Spikes"
@@ -1480,7 +1481,7 @@ msgstr "Asiyah"
 
 #: simulation/templates/structures/pers/tachara.xml:29
 msgid "Winter Palace"
-msgstr ""
+msgstr "Winterpalast"
 
 #: simulation/templates/structures/pers/tachara.xml:30
 msgid "Taçara"
@@ -1488,7 +1489,7 @@ msgstr "Taçara"
 
 #: simulation/templates/structures/pers/tachara.xml:31
 msgid "Train Heroes and make use of the “Satrapy Tribute” feature."
-msgstr ""
+msgstr "Bilde Helden aus und nutze „Tribut der Satrapie“."
 
 #: simulation/templates/structures/pers/tachara.xml:76
 msgid "Receive free Food tribute to your treasury from your subject peoples."
@@ -1531,7 +1532,7 @@ msgstr "Hängende Gärten der Semiramis"
 
 #: simulation/templates/structures/pirates/dock.xml:8
 msgid "Pirate Port"
-msgstr ""
+msgstr "Seeräuberhafen"
 
 #: simulation/templates/structures/ptol/elephant_stable.xml:5
 #: simulation/templates/structures/sele/elephant_stable.xml:5
@@ -1570,15 +1571,15 @@ msgstr "Klērouchia"
 
 #: simulation/templates/structures/ptol/temple_2.xml:24
 msgid "Temple of Isis"
-msgstr ""
+msgstr "Tempel der Isis"
 
 #: simulation/templates/structures/ptol/temple_2.xml:26
 msgid "Train Heroes and Healers. Research special technologies."
-msgstr ""
+msgstr "Bilde Helden und Heiler aus. Erforsche Spezialtechnologien."
 
 #: simulation/templates/structures/ptol/temple_2.xml:28
 msgid "TempleOfIsis"
-msgstr ""
+msgstr "TempleDerIsis"
 
 #: simulation/templates/structures/ptol/tower_artillery.xml:9
 msgid "mktr-n-ḏw"
@@ -1616,7 +1617,7 @@ msgstr "Castra"
 msgid ""
 "Build in neutral or enemy territory. Train Advanced Melee Infantry and "
 "Marian Legionaries. Construct Rams. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Erbaubar in neutralem oder feindlichem Gebiet. Erlaubt Ausbildung von erweiterter Nahkampfinfanterie und marianischen Legionären, sowie den Bau von Rammböcken. Quartiere Soldaten für zusätzliche Pfeile ein."
 
 #: simulation/templates/structures/rome/army_camp.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:75
@@ -1625,7 +1626,7 @@ msgstr "Armeelager"
 
 #: simulation/templates/structures/rome/arsenal.xml:5
 msgid "Ballistārium"
-msgstr "Ballistārium"
+msgstr "Balliste"
 
 #: simulation/templates/structures/rome/barracks.xml:12
 msgid "Castrum"
@@ -1829,7 +1830,7 @@ msgstr "Aedēs Sanitatem"
 
 #: simulation/templates/structures/shrine_persian.xml:9
 msgid "Fire Temple"
-msgstr ""
+msgstr "Feuertempel"
 
 #: simulation/templates/structures/spart/gerousia.xml:22
 msgid "Spartan Senate"
@@ -2130,7 +2131,7 @@ msgstr "Wachturm"
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
-msgstr "Quartiere Infanterie für mehr Pfeile ein. Braucht die Mörderlöchertechnologie, um seine unmittelbare Umgebung zu schützen."
+msgstr "Quartiere Infanterie für mehr Pfeile ein. Benötigt die „Mörderlöcher“-Technologie, um seine unmittelbare Umgebung zu schützen."
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:35
 msgid "SentryTower"
@@ -2314,17 +2315,17 @@ msgstr "Festung"
 
 #: simulation/templates/template_structure_military_fortress.xml:67
 msgid "Garrison Soldiers for additional arrows."
-msgstr "Soldaten einquartieren für zusätzliche Pfeile"
+msgstr "Quartieren Soldaten für zusätzliche Pfeile ein."
 
 #: simulation/templates/template_structure_military_kennel.xml:28
 #: simulation/templates/template_structure_military_kennel.xml:29
 #: simulation/templates/template_structure_military_kennel.xml:30
 msgid "Kennel"
-msgstr ""
+msgstr "Hundehütte"
 
 #: simulation/templates/template_structure_military_kennel.xml:38
 msgid "Train War Dogs."
-msgstr ""
+msgstr "Bilde Kriegshunde aus."
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
@@ -2363,7 +2364,7 @@ msgstr "Pferch"
 #: simulation/templates/template_structure_resource_corral.xml:28
 msgid ""
 "Raise Domestic Animals for food. Garrison animals to gain a trickle of food."
-msgstr "Züchte Vieh für Lebensmittel. Quartiere Tiere für ein Rinnsal an Nahrung ein."
+msgstr "Züchte Vieh für Lebensmittel. Quartiere Tiere für einen stetigen Zufluss an Nahrung ein."
 
 #: simulation/templates/template_structure_resource_field.xml:18
 #: simulation/templates/template_structure_resource_field.xml:20
