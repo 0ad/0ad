@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -191,9 +191,10 @@ bool CMiniMapTexture::CellIconKeyEqual::operator()(
 }
 
 CMiniMapTexture::CMiniMapTexture(Renderer::Backend::IDevice* device, CSimulation2& simulation)
-	: m_Simulation(simulation), m_IndexArray(false),
-	m_VertexArray(Renderer::Backend::IBuffer::Type::VERTEX, true),
-	m_InstanceVertexArray(Renderer::Backend::IBuffer::Type::VERTEX, false)
+	: m_Simulation(simulation), m_IndexArray(Renderer::Backend::IBuffer::Usage::TRANSFER_DST),
+	m_VertexArray(Renderer::Backend::IBuffer::Type::VERTEX,
+		Renderer::Backend::IBuffer::Usage::DYNAMIC | Renderer::Backend::IBuffer::Usage::TRANSFER_DST),
+	m_InstanceVertexArray(Renderer::Backend::IBuffer::Type::VERTEX, Renderer::Backend::IBuffer::Usage::TRANSFER_DST)
 {
 	// Register Relax NG validator.
 	CXeromyces::AddValidator(g_VFS, "pathfinder", "simulation/data/pathfinder.rng");

@@ -79,7 +79,7 @@ public:
 		SDepthStencilAttachment* depthStencilAttachment) override;
 
 	std::unique_ptr<IBuffer> CreateBuffer(
-		const char* name, const IBuffer::Type type, const uint32_t size, const bool dynamic) override;
+		const char* name, const IBuffer::Type type, const uint32_t size, const uint32_t usage) override;
 
 	std::unique_ptr<IShaderProgram> CreateShaderProgram(
 		const CStr& name, const CShaderDefines& defines) override;

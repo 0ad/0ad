@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -112,14 +112,14 @@ void CVertexBufferManager::Handle::Reset()
 CVertexBufferManager::Handle CVertexBufferManager::AllocateChunk(
 	const size_t vertexSize, const size_t numberOfVertices,
 	const Renderer::Backend::IBuffer::Type type,
-	const bool dynamic, void* backingStore, Group group)
+	const uint32_t usage, void* backingStore, Group group)
 {
 	ENSURE(vertexSize > 0);
 	ENSURE(numberOfVertices > 0);
 
 	CVertexBuffer::VBChunk* result = nullptr;
 
-	if (CVertexBuffer::UseStreaming(dynamic))
+	if (CVertexBuffer::UseStreaming(usage))
 		ENSURE(backingStore != NULL);
 
 	// TODO, RC - run some sanity checks on allocation request
@@ -130,7 +130,7 @@ CVertexBufferManager::Handle CVertexBufferManager::AllocateChunk(
 	debug_printf("\n============================\n# allocate vsize=%zu nverts=%zu\n\n", vertexSize, numVertices);
 	for (const std::unique_ptr<CVertexBuffer>& buffer : buffers)
 	{
-		if (buffer->CompatibleVertexType(vertexSize, type, dynamic))
+		if (buffer->CompatibleVertexType(vertexSize, type, usage))
 		{
 			debug_printf("%p\n", buffer.get());
 			buffer->DumpStatus();
@@ -142,7 +142,7 @@ CVertexBufferManager::Handle CVertexBufferManager::AllocateChunk(
 	// satisfy the allocation
 	for (const std::unique_ptr<CVertexBuffer>& buffer : buffers)
 	{
-		result = buffer->Allocate(vertexSize, numberOfVertices, type, dynamic, backingStore);
+		result = buffer->Allocate(vertexSize, numberOfVertices, type, usage, backingStore);
 		if (result)
 			return Handle(result);
 	}
@@ -150,15 +150,15 @@ CVertexBufferManager::Handle CVertexBufferManager::AllocateChunk(
 	char bufferName[64] = {0};
 	snprintf(
 		bufferName, std::size(bufferName), "%s (%s, %zu%s)",
-		GetBufferTypeName(type), GetGroupName(group), vertexSize, (dynamic ? ", dynamic" : ""));
+		GetBufferTypeName(type), GetGroupName(group), vertexSize, ((usage & Renderer::Backend::IBuffer::Usage::DYNAMIC) ? ", dynamic" : ""));
 
 	// got this far; need to allocate a new buffer
 	buffers.emplace_back(
 		group == Group::DEFAULT
-			? std::make_unique<CVertexBuffer>(m_Device, bufferName, vertexSize, type, dynamic)
+			? std::make_unique<CVertexBuffer>(m_Device, bufferName, vertexSize, type, usage)
 			// Reduces the buffer size for not so frequent buffers.
-			: std::make_unique<CVertexBuffer>(m_Device, bufferName, vertexSize, type, dynamic, 1024 * 1024));
-	result = buffers.back()->Allocate(vertexSize, numberOfVertices, type, dynamic, backingStore);
+			: std::make_unique<CVertexBuffer>(m_Device, bufferName, vertexSize, type, usage, 1024 * 1024));
+	result = buffers.back()->Allocate(vertexSize, numberOfVertices, type, usage, backingStore);
 
 	if (!result)
 	{

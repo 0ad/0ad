@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -331,7 +331,8 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 		m_BoundingBox += vertex.m_Position;
 
 	m_VB = g_Renderer.GetVertexBufferManager().AllocateChunk(
-		sizeof(SVertex), vertices.size(), Renderer::Backend::IBuffer::Type::VERTEX, false);
+		sizeof(SVertex), vertices.size(), Renderer::Backend::IBuffer::Type::VERTEX,
+		Renderer::Backend::IBuffer::Usage::TRANSFER_DST);
 	// Allocation might fail (e.g. due to too many vertices).
 	if (m_VB)
 	{
@@ -342,7 +343,8 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 			indices[k] += static_cast<u16>(m_VB->m_Index);
 
 		m_VBIndices = g_Renderer.GetVertexBufferManager().AllocateChunk(
-			sizeof(u16), indices.size(), Renderer::Backend::IBuffer::Type::INDEX, false);
+			sizeof(u16), indices.size(), Renderer::Backend::IBuffer::Type::INDEX,
+			Renderer::Backend::IBuffer::Usage::TRANSFER_DST);
 		if (m_VBIndices)
 			m_VBIndices->m_Owner->UpdateChunkVertices(m_VBIndices.Get(), &indices[0]);
 	}

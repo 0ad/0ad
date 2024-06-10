@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,13 +32,13 @@ namespace Dummy
 
 // static
 std::unique_ptr<IBuffer> CBuffer::Create(
-	CDevice* device, const Type type, const uint32_t size, const bool dynamic)
+	CDevice* device, const Type type, const uint32_t size, const uint32_t usage)
 {
 	std::unique_ptr<CBuffer> buffer(new CBuffer());
 	buffer->m_Device = device;
 	buffer->m_Type = type;
 	buffer->m_Size = size;
-	buffer->m_Dynamic = dynamic;
+	buffer->m_Usage = usage;
 	return buffer;
 }
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@ public:
 
 	Type GetType() const override { return m_Type; }
 	uint32_t GetSize() const override { return m_Size; }
-	bool IsDynamic() const override { return m_Dynamic; }
+	uint32_t GetUsage() const override { return m_Usage; }
 
 	GLuint GetHandle() { return m_Handle; }
 
@@ -53,14 +53,14 @@ private:
 
 	static std::unique_ptr<CBuffer> Create(
 		CDevice* device, const char* name,
-		const Type type, const uint32_t size, const bool dynamic);
+		const Type type, const uint32_t size, const uint32_t usage);
 
 	CBuffer();
 
 	CDevice* m_Device = nullptr;
 	Type m_Type = Type::VERTEX;
 	uint32_t m_Size = 0;
-	bool m_Dynamic = false;
+	uint32_t m_Usage = 0;
 
 	GLuint m_Handle = 0;
 };

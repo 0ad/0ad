@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,8 +32,9 @@
 CParticleEmitter::CParticleEmitter(const CParticleEmitterTypePtr& type) :
 	m_Type(type), m_Active(true), m_NextParticleIdx(0), m_EmissionRoundingError(0.f),
 	m_LastUpdateTime(type->m_Manager.GetCurrentTime()),
-	m_IndexArray(false),
-	m_VertexArray(Renderer::Backend::IBuffer::Type::VERTEX, true),
+	m_IndexArray(Renderer::Backend::IBuffer::Usage::TRANSFER_DST),
+	m_VertexArray(Renderer::Backend::IBuffer::Type::VERTEX,
+		Renderer::Backend::IBuffer::Usage::DYNAMIC | Renderer::Backend::IBuffer::Usage::TRANSFER_DST),
 	m_LastFrameNumber(-1)
 {
 	// If we should start with particles fully emitted, pretend that we
