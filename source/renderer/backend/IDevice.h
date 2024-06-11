@@ -122,7 +122,7 @@ public:
 		SDepthStencilAttachment* depthStencilAttachment) = 0;
 
 	virtual std::unique_ptr<IBuffer> CreateBuffer(
-		const char* name, const IBuffer::Type type, const uint32_t size, const bool dynamic) = 0;
+		const char* name, const IBuffer::Type type, const uint32_t size, const uint32_t usage) = 0;
 
 	virtual std::unique_ptr<IShaderProgram> CreateShaderProgram(
 		const CStr& name, const CShaderDefines& defines) = 0;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -58,7 +58,8 @@ struct IModelDef : public CModelDefRPrivate
 
 
 IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateTangents)
-	: m_IndexArray(false), m_Array(Renderer::Backend::IBuffer::Type::VERTEX, false)
+	: m_IndexArray(Renderer::Backend::IBuffer::Usage::TRANSFER_DST),
+	m_Array(Renderer::Backend::IBuffer::Type::VERTEX, Renderer::Backend::IBuffer::Usage::TRANSFER_DST)
 {
 	size_t numVertices = mdef->GetNumVertices();
 

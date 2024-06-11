@@ -356,7 +356,7 @@ uint32_t CRingCommandContext::AcquireFreeSpace(
 			std::max(m_StagingBuffer ? m_StagingBuffer->GetSize() * 2 : INITIAL_STAGING_BUFFER_CAPACITY, minimumRequiredCapacity),
 			m_MaxStagingBufferCapacity);
 		m_StagingBuffer = m_Device->CreateCBuffer(
-			"UploadRingBuffer", IBuffer::Type::UPLOAD, newCapacity, false);
+			"UploadRingBuffer", IBuffer::Type::UPLOAD, newCapacity, IBuffer::Usage::TRANSFER_SRC);
 		ENSURE(m_StagingBuffer);
 		m_StagingBufferFirst = 0;
 		m_StagingBufferCurrentFirst = 0;

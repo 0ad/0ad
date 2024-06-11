@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@ public:
 
 	Type GetType() const override { return m_Type; }
 	uint32_t GetSize() const override { return m_Size; }
-	bool IsDynamic() const override { return m_Dynamic; }
+	uint32_t GetUsage() const override { return m_Usage; }
 
 	VkBuffer GetVkBuffer() { return m_Buffer; }
 
@@ -58,7 +58,7 @@ private:
 
 	static std::unique_ptr<CBuffer> Create(
 		CDevice* device, const char* name, const Type type, const uint32_t size,
-		const bool dynamic);
+		const uint32_t usage);
 
 	CBuffer();
 
@@ -66,7 +66,7 @@ private:
 
 	Type m_Type = Type::VERTEX;
 	uint32_t m_Size = 0;
-	bool m_Dynamic = false;
+	uint32_t m_Usage = 0;
 
 	VkBuffer m_Buffer = VK_NULL_HANDLE;
 	VmaAllocation m_Allocation = VK_NULL_HANDLE;

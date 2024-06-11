@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -422,7 +422,8 @@ void CPatchRData::BuildBlends()
 
 		m_VBBlends = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(SBlendVertex), blendVertices.size(),
-			Renderer::Backend::IBuffer::Type::VERTEX, false,
+			Renderer::Backend::IBuffer::Type::VERTEX,
+			Renderer::Backend::IBuffer::Usage::TRANSFER_DST,
 			nullptr, CVertexBufferManager::Group::TERRAIN);
 		m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends.Get(), &blendVertices[0]);
 
@@ -432,7 +433,8 @@ void CPatchRData::BuildBlends()
 
 		m_VBBlendIndices = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(u16), blendIndices.size(),
-			Renderer::Backend::IBuffer::Type::INDEX, false,
+			Renderer::Backend::IBuffer::Type::INDEX,
+			Renderer::Backend::IBuffer::Usage::TRANSFER_DST,
 			nullptr, CVertexBufferManager::Group::TERRAIN);
 		m_VBBlendIndices->m_Owner->UpdateChunkVertices(m_VBBlendIndices.Get(), &blendIndices[0]);
 	}
@@ -636,7 +638,8 @@ void CPatchRData::BuildIndices()
 	// Construct vertex buffer
 	m_VBBaseIndices = g_Renderer.GetVertexBufferManager().AllocateChunk(
 		sizeof(u16), indices.size(),
-		Renderer::Backend::IBuffer::Type::INDEX, false, nullptr, CVertexBufferManager::Group::TERRAIN);
+		Renderer::Backend::IBuffer::Type::INDEX,
+		Renderer::Backend::IBuffer::Usage::TRANSFER_DST, nullptr, CVertexBufferManager::Group::TERRAIN);
 	m_VBBaseIndices->m_Owner->UpdateChunkVertices(m_VBBaseIndices.Get(), &indices[0]);
 }
 
@@ -682,7 +685,8 @@ void CPatchRData::BuildVertices()
 	{
 		m_VBBase = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(SBaseVertex), vsize * vsize,
-			Renderer::Backend::IBuffer::Type::VERTEX, false,
+			Renderer::Backend::IBuffer::Type::VERTEX,
+			Renderer::Backend::IBuffer::Usage::TRANSFER_DST,
 			nullptr, CVertexBufferManager::Group::TERRAIN);
 	}
 
@@ -776,7 +780,8 @@ void CPatchRData::BuildSides()
 	{
 		m_VBSides = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(SSideVertex), sideVertices.size(),
-			Renderer::Backend::IBuffer::Type::VERTEX, false,
+			Renderer::Backend::IBuffer::Type::VERTEX,
+			Renderer::Backend::IBuffer::Usage::TRANSFER_DST,
 			nullptr, CVertexBufferManager::Group::DEFAULT);
 	}
 	m_VBSides->m_Owner->UpdateChunkVertices(m_VBSides.Get(), &sideVertices[0]);
@@ -1538,13 +1543,15 @@ void CPatchRData::BuildWater()
 	{
 		m_VBWater = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(SWaterVertex), water_vertex_data.size(),
-			Renderer::Backend::IBuffer::Type::VERTEX, false,
+			Renderer::Backend::IBuffer::Type::VERTEX,
+			Renderer::Backend::IBuffer::Usage::TRANSFER_DST,
 			nullptr, CVertexBufferManager::Group::WATER);
 		m_VBWater->m_Owner->UpdateChunkVertices(m_VBWater.Get(), &water_vertex_data[0]);
 
 		m_VBWaterIndices = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(u16), water_indices.size(),
-			Renderer::Backend::IBuffer::Type::INDEX, false,
+			Renderer::Backend::IBuffer::Type::INDEX,
+			Renderer::Backend::IBuffer::Usage::TRANSFER_DST,
 			nullptr, CVertexBufferManager::Group::WATER);
 		m_VBWaterIndices->m_Owner->UpdateChunkVertices(m_VBWaterIndices.Get(), &water_indices[0]);
 	}
@@ -1553,14 +1560,16 @@ void CPatchRData::BuildWater()
 	{
 		m_VBWaterShore = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(SWaterVertex), water_vertex_data_shore.size(),
-			Renderer::Backend::IBuffer::Type::VERTEX, false,
+			Renderer::Backend::IBuffer::Type::VERTEX,
+			Renderer::Backend::IBuffer::Usage::TRANSFER_DST,
 			nullptr, CVertexBufferManager::Group::WATER);
 		m_VBWaterShore->m_Owner->UpdateChunkVertices(m_VBWaterShore.Get(), &water_vertex_data_shore[0]);
 
 		// Construct indices buffer
 		m_VBWaterIndicesShore = g_Renderer.GetVertexBufferManager().AllocateChunk(
 			sizeof(u16), water_indices_shore.size(),
-			Renderer::Backend::IBuffer::Type::INDEX, false,
+			Renderer::Backend::IBuffer::Type::INDEX,
+			Renderer::Backend::IBuffer::Usage::TRANSFER_DST,
 			nullptr, CVertexBufferManager::Group::WATER);
 		m_VBWaterIndicesShore->m_Owner->UpdateChunkVertices(m_VBWaterIndicesShore.Get(), &water_indices_shore[0]);
 	}

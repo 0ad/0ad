@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -66,8 +66,8 @@ uint32_t GetAttributeSize(const Renderer::Backend::Format format)
 } // anonymous namespace
 
 VertexArray::VertexArray(
-	const Renderer::Backend::IBuffer::Type type, const bool dynamic)
-	: m_Type(type), m_Dynamic(dynamic)
+	const Renderer::Backend::IBuffer::Type type, const uint32_t usage)
+	: m_Type(type), m_Usage(usage)
 {
 	m_NumberOfVertices = 0;
 
@@ -271,7 +271,7 @@ void VertexArray::Upload()
 	if (!m_VB)
 	{
 		m_VB = g_Renderer.GetVertexBufferManager().AllocateChunk(
-			m_Stride, m_NumberOfVertices, m_Type, m_Dynamic, m_BackingStore);
+			m_Stride, m_NumberOfVertices, m_Type, m_Usage, m_BackingStore);
 	}
 
 	if (!m_VB)
@@ -293,14 +293,14 @@ void VertexArray::UploadIfNeeded(
 void VertexArray::FreeBackingStore()
 {
 	// In streaming modes, the backing store must be retained
-	ENSURE(!CVertexBuffer::UseStreaming(m_Dynamic));
+	ENSURE(!CVertexBuffer::UseStreaming(m_Usage));
 
 	rtl_FreeAligned(m_BackingStore);
 	m_BackingStore = 0;
 }
 
-VertexIndexArray::VertexIndexArray(const bool dynamic) :
-	VertexArray(Renderer::Backend::IBuffer::Type::INDEX, dynamic)
+VertexIndexArray::VertexIndexArray(const uint32_t usage) :
+	VertexArray(Renderer::Backend::IBuffer::Type::INDEX, usage)
 {
 	m_Attr.format = Renderer::Backend::Format::R16_UINT;
 	AddAttribute(&m_Attr);

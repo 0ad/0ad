@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -213,8 +213,9 @@ struct OverlayRendererInternals
 const float OverlayRenderer::OVERLAY_VOFFSET = 0.2f;
 
 OverlayRendererInternals::OverlayRendererInternals()
-	: quadVertices(Renderer::Backend::IBuffer::Type::VERTEX, true),
-	quadIndices(false)
+	: quadVertices(Renderer::Backend::IBuffer::Type::VERTEX,
+		Renderer::Backend::IBuffer::Usage::DYNAMIC | Renderer::Backend::IBuffer::Usage::TRANSFER_DST),
+	quadIndices(Renderer::Backend::IBuffer::Usage::TRANSFER_DST)
 {
 	quadAttributePos.format = Renderer::Backend::Format::R32G32B32_SFLOAT;
 	quadVertices.AddAttribute(&quadAttributePos);

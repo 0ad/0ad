@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -649,7 +649,8 @@ void WaterManager::CreateWaveMeshes()
 	// Generic indexes, max-length
 	m_ShoreWavesVBIndices = g_Renderer.GetVertexBufferManager().AllocateChunk(
 		sizeof(u16), water_indices.size(),
-		Renderer::Backend::IBuffer::Type::INDEX, false,
+		Renderer::Backend::IBuffer::Type::INDEX,
+		Renderer::Backend::IBuffer::Usage::TRANSFER_DST,
 		nullptr, CVertexBufferManager::Group::WATER);
 	m_ShoreWavesVBIndices->m_Owner->UpdateChunkVertices(m_ShoreWavesVBIndices.Get(), &water_indices[0]);
 
@@ -878,7 +879,8 @@ void WaterManager::CreateWaveMeshes()
 
 			shoreWave->m_VBVertices = g_Renderer.GetVertexBufferManager().AllocateChunk(
 				sizeof(SWavesVertex), vertices.size(),
-				Renderer::Backend::IBuffer::Type::VERTEX, false,
+				Renderer::Backend::IBuffer::Type::VERTEX,
+				Renderer::Backend::IBuffer::Usage::TRANSFER_DST,
 				nullptr, CVertexBufferManager::Group::WATER);
 			shoreWave->m_VBVertices->m_Owner->UpdateChunkVertices(shoreWave->m_VBVertices.Get(), &vertices[0]);
 

@@ -13,6 +13,7 @@
 # Candy_man
 # chaosville
 # cledge
+# Daniel Roschka
 # xtother90
 # Dominik
 # 0783ceb0abad32bf6a5d397ceffe5799
@@ -70,7 +71,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-01 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:48+0000\n"
-"Last-Translator: xtother90, 2017-2022\n"
+"Last-Translator: Daniel Roschka, 2024\n"
 "Language-Team: German (http://app.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,11 +85,11 @@ msgstr "KI-Konfiguration"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
 msgid "OK"
-msgstr "OK"
+msgstr "Ok"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:30
 msgid "AI will be disabled for this player."
-msgstr "KI ist für diesen Spieler deaktiviert."
+msgstr "KI wird für diesen Spieler deaktiviert."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:29
 msgid "AI Behavior"
@@ -179,7 +180,7 @@ msgstr "Wähle eine Farbe."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:47
 msgid "Select player's team."
-msgstr "Team des Spielers wählen."
+msgstr "Wähle das Team des Spielers."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:50
 msgctxt "team"
@@ -208,7 +209,7 @@ msgstr "Team"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:36
 msgid "Browse Maps"
-msgstr "Karten durchsehen"
+msgstr "Karten durchsuchen"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:39
 #, javascript-format
@@ -243,7 +244,7 @@ msgstr "Erkundete Karte"
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:30
 msgid "Toggle explored map (see initial map)."
-msgstr "Entdeckte Karte umschalten (zeigt ursprüngliche Karte)."
+msgstr "Erkundete Karte umschalten (zeigt ursprüngliche Karte)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:26
 msgid "Last Man Standing"
@@ -253,7 +254,7 @@ msgstr "Letzter Überlebender"
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "Wähle, ob der letzte verbleibende Spieler, oder die letzte verbleibende Gruppe von Verbündeten gewinnt."
+msgstr "Wähle, ob der letzte verbleibende Spieler oder die letzte verbleibende Gruppe von Verbündeten gewinnt."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:30
 msgid "Teams Locked"
@@ -271,7 +272,7 @@ msgstr "Nomade"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "Im Nomaden-Modus starten die Spieler mit nur wenigen Einheiten und müssen einen geeigneten Ort finden, um ihre Stadt zu bauen. Waffenstillstand wird empfohlen."
+msgstr "Im Nomaden-Modus starten die Spieler mit wenigen Einheiten und müssen einen geeigneten Ort finden, um ihre Stadt zu bauen. Waffenstillstand wird empfohlen."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:27
 msgid "Rated Game"
@@ -327,7 +328,7 @@ msgstr "Weltbevölkerung"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr "Falls aktiviert wird das Bevölkerungslimit gleichmäßig über alle lebenden Spieler verteilt."
+msgstr "Falls aktiviert, wird das Bevölkerungslimit gleichmäßig auf alle lebenden Spieler verteilt."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
@@ -344,7 +345,7 @@ msgstr "Zufällig"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:66
 msgid "Pick a biome at random."
-msgstr "Wähle ein Biom zufällig."
+msgstr "Wähle ein zufälliges Biom."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:57
 msgid "Daytime"
@@ -417,7 +418,7 @@ msgstr "Zufällig"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:153
 msgid "Pick any of the given maps at random."
-msgstr "Wähle eine zufällige Karte aus."
+msgstr "Wähle zufällig eine der angegebenen Karten."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:39
 msgid "Map Size"
@@ -437,11 +438,11 @@ msgstr "Kartentyp wählen."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:33
 msgid "Number of Players"
-msgstr "Spielerzahl"
+msgstr "Spieleranzahl"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:36
 msgid "Select number of players."
-msgstr "Spielerzahl wählen."
+msgstr "Anzahl an Spielern wählen."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:52
 msgid "Population Cap"
@@ -487,7 +488,7 @@ msgstr "Team-Platzierung"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:56
 msgid "Select one of the starting position patterns of this map."
-msgstr "Wähle eine von den Startpositionsverteilungen auf dieser Karte."
+msgstr "Wähle eine der Anordnungen für die Startpositionen auf dieser Karte."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:60
 msgctxt "team placement"
@@ -509,11 +510,11 @@ msgstr "Wähle die Schwierigkeit dieses Szenarios."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WaterLevel.js:43
 msgid "Water level"
-msgstr ""
+msgstr "Wasserstand"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WaterLevel.js:46
 msgid "Select the water level of this map."
-msgstr ""
+msgstr "Wähle den Wasserstand auf dieser Karte."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:47
 msgid "World Population Cap"
@@ -553,7 +554,7 @@ msgstr[1] "%(minutes)s Minuten"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:38
 msgid "Relic Count"
-msgstr "Reliquienzahl"
+msgstr "Reliquienanzahl"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:41
 #, javascript-format
@@ -567,7 +568,7 @@ msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr "Anzahl der Reliquien auf der Karte. Der Reliquien-Sieg ist am wahrscheinlichsten mit nur einer oder zwei Reliquien. Bei größeren Anzahlen ist es wichtig, die Reliquien zu erobern, um Aura-Boni zu erhalten."
+msgstr "Gesamtanzahl von Reliquien auf der Karte. Am wahrscheinlichsten ist ein Sieg durch Reliquien, bei einer oder zwei Reliquien. Bei größerer Anzahl ist es wichtig die Reliquien zu erobern, um Aura-Boni zu erhalten."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:38
 msgid "Relic Duration"
@@ -614,7 +615,7 @@ msgstr "Wunderdauer"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:41
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr "Minuten, bis der Spieler den Wundersieg erringt"
+msgstr "Anzahl an Minuten, bei denen der Spieler den Wundersieg erringt"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -633,11 +634,11 @@ msgstr "Zurück zum Hauptmenü."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Zivilisationsübersicht / Gebäudebaum ansehen\nBeim Klicken wird das zuletzt geöffnete erneut geöffnet."
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Zivilisationsübersicht / Gebäudebaum ansehen\nBei Klick wird die zuletzt geöffnete Ansicht erneut geöffnet."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Zeige die Mehrspielerlobby in einem Dialogfenster."
+msgstr "Zeige die Mehrspieler-Lobby in einem Dialogfenster."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:79
 msgid "I'm ready"
@@ -645,7 +646,7 @@ msgstr "Ich bin bereit"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:80
 msgid "Stay ready"
-msgstr "Halte dich bereit"
+msgstr "Ich bleibe bereit"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:81
 msgid "I'm not ready!"
@@ -653,11 +654,11 @@ msgstr "Ich bin nicht bereit!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:85
 msgid "State that you are ready to play."
-msgstr "Gib an, dass du bereit bist, zu spielen."
+msgstr "Gib an, dass du bereit bist zu spielen."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:86
 msgid "Stay ready even when the game settings change."
-msgstr "Halte dich bereit, auch wenn die Spieleinstellungen sich ändern"
+msgstr "Gib an, dass du bereit bleibst, auch wenn sich die Spieleinstellungen ändern."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:87
 msgid "State that you are not ready to play."
@@ -666,11 +667,11 @@ msgstr "Gib an, dass du nicht bereit bist, zu spielen."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:29
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr "Alle ausgewählten Zivilisationen auf Standard zurücksetzen (zufällig)."
+msgstr "Setze alle ausgewählten Zivilisationen auf Standardwert zurück (Zufällig)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:29
 msgid "Reset all teams to the default."
-msgstr "Alle Teams zur Standardeinstellung zurücksetzen."
+msgstr "Setze alle Teams zur Standardeinstellung zurück."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:65
 msgid "Start Game!"
@@ -684,12 +685,12 @@ msgstr "Starte ein neues Spiel mit den aktuellen Einstellungen."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr "Starte ein neues Spiel mit den derzeitigen Einstellungen (deaktiviert, bis alle Spieler bereit sind)"
+msgstr "Starte ein neues Spiel mit den aktuellen Einstellungen (deaktiviert, bis alle Spieler bereit sind)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr "Drücke %(hotkey)s, um die Autovervollständigung für Spielernamen oder Einstellungen anzuwenden."
+msgstr "Drücke %(hotkey)s, um die Autovervollständigung für Spielernamen oder Einstellungen zu verwenden."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
@@ -773,7 +774,7 @@ msgstr "Bewertetes Spiel."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:74
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr "%(name)s Einstellungs-Tab umschalten"
+msgstr "Klicke, um das %(name)s-Einstellungs-Tab zu öffnen/schließen."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
@@ -785,7 +786,7 @@ msgstr "Klicke, um die Liste der verfügbaren Karten zu sehen."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):10
 msgid "Show this message in the future."
-msgstr "Zeige zukünftig diese Nachricht."
+msgstr "Zeige diese Nachricht auch in Zukunft."
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
 msgid "Loading"
@@ -802,7 +803,7 @@ msgstr "Spieleinstellungen"
 #: gui/gamesetup_mp/gamesetup_mp.js:59
 #, javascript-format
 msgid "%(name)s's game"
-msgstr "%(name)s's Spiel"
+msgstr "%(name)ss Spiel"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:123
 msgid "Please enter a valid server name."
@@ -811,7 +812,7 @@ msgstr "Bitte gib einen gültigen Servernamen ein."
 #: gui/gamesetup_mp/gamesetup_mp.js:131
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr "Die Server Portnummer muss zwischen %(min)s und %(max)s liegen."
+msgstr "Die Portnummer für den Server muss zwischen %(min)s und %(max)s liegen."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:150
 msgid "Connecting to server..."
@@ -833,7 +834,7 @@ msgstr "Du wurdest gebannt."
 msgid ""
 "Failed to get local IP of the server (it was assumed to be on the same "
 "network)."
-msgstr "Lokale IP des Servers konnte nicht geladen werden (es wurde angenommen, dass er im selben Netzwerk ist)."
+msgstr "Die lokale IP-Adresse des Servers konnte nicht gefunden werden (es wurde angenommen, dass er im selben Netzwerk ist)."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
@@ -868,7 +869,7 @@ msgstr "Spielname bereits in Verwendung."
 #: gui/gamesetup_mp/gamesetup_mp.js:376
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr "Kann Spiel nicht hosten: %(message)s."
+msgstr "Kann Spiel nicht erstellen: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:377 gui/gamesetup_mp/gamesetup_mp.js:406
 #: gui/gamesetup_mp/gamesetup_mp.js:436 gui/gamesetup_mp/gamesetup_mp.js:451
@@ -883,7 +884,7 @@ msgstr "Kann Spiel nicht beitreten: %(message)s."
 #: gui/gamesetup_mp/gamesetup_mp.js:465
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr "%(playername)s's Spiel"
+msgstr "%(playername)ss Spiel"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
@@ -946,7 +947,7 @@ msgstr "Leerlassen, um den Standardport zu benutzen."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr "Freilassen, um es nicht zu verlangen."
+msgstr "Freilassen, um keins zu verlangen."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
@@ -960,7 +961,7 @@ msgstr "%(percentage)s%%"
 #: gui/loading/TipDisplay.js:62
 #, javascript-format
 msgid "• %(tiptext)s"
-msgstr "%(tiptext)s"
+msgstr "• %(tiptext)s"
 
 #: gui/loading/TitleDisplay.js:15
 #, javascript-format

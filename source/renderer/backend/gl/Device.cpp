@@ -904,9 +904,9 @@ std::unique_ptr<IFramebuffer> CDevice::CreateFramebuffer(
 }
 
 std::unique_ptr<IBuffer> CDevice::CreateBuffer(
-	const char* name, const IBuffer::Type type, const uint32_t size, const bool dynamic)
+	const char* name, const IBuffer::Type type, const uint32_t size, const uint32_t usage)
 {
-	return CBuffer::Create(this, name, type, size, dynamic);
+	return CBuffer::Create(this, name, type, size, usage);
 }
 
 std::unique_ptr<IShaderProgram> CDevice::CreateShaderProgram(

@@ -242,9 +242,9 @@ void CDeviceCommandContext::CUploadRing::ResizeIfNeeded(
 	m_Capacity = std::max(m_Capacity * 2, round_up_to_pow2(dataSize));
 
 	m_Buffer = m_Device->CreateCBuffer(
-		"UploadRingBuffer", m_Type, m_Capacity, true);
+		"UploadRingBuffer", m_Type, m_Capacity, IBuffer::Usage::DYNAMIC | IBuffer::Usage::TRANSFER_DST);
 	m_StagingBuffer = m_Device->CreateCBuffer(
-		"UploadRingStagingBuffer", IBuffer::Type::UPLOAD, NUMBER_OF_FRAMES_IN_FLIGHT * m_Capacity, true);
+		"UploadRingStagingBuffer", IBuffer::Type::UPLOAD, NUMBER_OF_FRAMES_IN_FLIGHT * m_Capacity, IBuffer::Usage::DYNAMIC | IBuffer::Usage::TRANSFER_SRC);
 	ENSURE(m_Buffer && m_StagingBuffer);
 	m_StagingBufferMappedData = static_cast<std::byte*>(m_StagingBuffer->GetMappedData());
 	ENSURE(m_StagingBufferMappedData);

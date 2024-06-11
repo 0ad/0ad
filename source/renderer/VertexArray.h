@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -160,7 +160,7 @@ public:
 
 public:
 	VertexArray(
-		const Renderer::Backend::IBuffer::Type type, const bool dynamic);
+		const Renderer::Backend::IBuffer::Type type, const uint32_t usage);
 	~VertexArray();
 
 	// Set the number of vertices stored in the array
@@ -203,7 +203,7 @@ private:
 	}
 
 	Renderer::Backend::IBuffer::Type m_Type;
-	bool m_Dynamic;
+	uint32_t m_Usage = 0;
 	size_t m_NumberOfVertices;
 	std::vector<Attribute*> m_Attributes;
 
@@ -219,7 +219,7 @@ private:
 class VertexIndexArray : public VertexArray
 {
 public:
-	VertexIndexArray(const bool dynamic);
+	VertexIndexArray(const uint32_t usage);
 
 	/// Gets the iterator over the (only) attribute in this array, i.e. a u16.
 	VertexArrayIterator<u16> GetIterator() const;

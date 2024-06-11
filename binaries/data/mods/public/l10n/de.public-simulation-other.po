@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # Wuzzy
+# Daniel Roschka
 # xtother90
 # Fabian Gref
 # Florian Graefe
@@ -31,7 +32,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Rotstein, 2023\n"
+"Last-Translator: Daniel Roschka, 2024\n"
 "Language-Team: German (http://app.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +45,7 @@ msgstr ""
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr "Ich starte einen massiven militärischen Feldzug gegen %(_player_)s, auf geht's, begleite mich."
+msgstr "Ich starte einen massiven militärischen Feldzug gegen %(_player_)s. Komm, schließ dich mir an."
 
 #: simulation/ai/petra/chatHelper.js:4
 #, javascript-format
@@ -58,7 +59,7 @@ msgstr "Ich hab eine riesige Armee aufgebaut, um %(_player_)s zu vernichten. Hil
 msgid ""
 "I am launching an unprecedented attack against %(_player_)s. Bring your "
 "armies and we may soon win this war."
-msgstr ""
+msgstr "Ich starte einen noch nie dagewesenen Angriff auf %(_player_)s. Komm mit deinen Armeen dazu und wir werden diesen Krieg bald gewinnen."
 
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
@@ -73,7 +74,7 @@ msgstr "Ich habe gerade eine Armee gegen %(_player_)s entsandt."
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I am sending an army against %(_player_)s."
-msgstr ""
+msgstr "Ich schicke eine Armee, um %(_player_)s anzugreifen."
 
 #: simulation/ai/petra/chatHelper.js:16
 #, javascript-format
@@ -90,21 +91,21 @@ msgstr "Meine Angriffsvorbereitungen gegen %(_player_)s sind fast beendet."
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr "Es tut mir leid, aber ich habe im Moment nicht genug Soldaten; aber mein nächstes Ziel wird %(_player_)s sein."
+msgstr "Es tut mir leid, aber ich habe im Moment nicht genug Soldaten; aber mein nächster Angriff wird %(_player_)s gelten."
 
 #: simulation/ai/petra/chatHelper.js:21
 #, javascript-format
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr "Es tut mir leid, aber meine Truppen sind noch nicht stark genug. Dennoch werde ich als nächstes %(_player_)s angreifen."
+msgstr "Es tut mir leid, aber meine Truppen sind noch nicht stark genug. Als nächstes werde ich jedoch %(_player_)s angreifen."
 
 #: simulation/ai/petra/chatHelper.js:24
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, I am planning to "
 "attack %(_player_2)s first."
-msgstr "Ich kann dir zurzeit nicht gegen %(_player_)s helfen, da ich zuerst einen Angriff gegen %(_player_2)s geplant habe."
+msgstr "Ich kann dir zurzeit nicht gegen %(_player_)s helfen, da ich zuerst einen Angriff auf %(_player_2)s geplant habe."
 
 #: simulation/ai/petra/chatHelper.js:29
 #, javascript-format
@@ -114,7 +115,7 @@ msgstr "Hier ist ein Geschenk für dich %(_player_)s. Gebrauche es weise."
 #: simulation/ai/petra/chatHelper.js:30
 #, javascript-format
 msgid "I see you are in a bad situation, %(_player_)s. I hope this helps."
-msgstr "Ich sehe, du bist in einer schlimmen Situation, %(_player_)s. Ich hoffe dies hilft dir."
+msgstr "Ich sehe, dass du in einer schlimmen Situation, %(_player_)s bist. Ich hoffe dies hilft dir."
 
 #: simulation/ai/petra/chatHelper.js:31
 #, javascript-format
@@ -139,7 +140,7 @@ msgstr "Ich würde unsere gemeinsamen Kriegsanstrengungen intensivieren, wenn du
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr "Falls du etwas %(resource)s für mich übrig hast, kann ich meine Armee stärken."
+msgstr "Falls du etwas %(resource)s für mich übrig hast, wäre ich in der Lage damit meine Armee stärken."
 
 #: simulation/ai/petra/chatHelper.js:41
 #, javascript-format
@@ -178,12 +179,12 @@ msgstr "Ich kann dein Bündnisangebot nicht annehmen, %(_player_)s."
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid "I must decline your offer of alliance, %(_player_)s."
-msgstr ""
+msgstr "Ich muss dein Allianzangebot ablehnen, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:62
 #, javascript-format
 msgid "An alliance with you is not in my best interest, %(_player_)s."
-msgstr ""
+msgstr "Eine Allianz mit dir ist nicht in meinem besten Interesse, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:65
 #, javascript-format
@@ -197,12 +198,12 @@ msgstr "Ich werde mich nicht mit dir verbünden, %(_player_)s, aber ich werde ei
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
-msgstr "Ich lehne deine Bündnisanfrage ab, %(_player_)s, aber wir können neutral werden."
+msgstr "Ich lehne deine Bündnisanfrage ab, %(_player_)s, aber wir können neutral zueinander werden."
 
 #: simulation/ai/petra/chatHelper.js:67
 #, javascript-format
 msgid "%(_player_)s, only a neutrality agreement is conceivable to me."
-msgstr "%(_player_)s, nur ein Neutralitätspakt wäre vorstellbar für mich."
+msgstr "%(_player_)s, nur ein Neutralitätspakt wäre für mich vorstellbar."
 
 #: simulation/ai/petra/chatHelper.js:70
 #, javascript-format
@@ -242,7 +243,7 @@ msgstr "%(_player_)s, ich werde dein Bündnisangebot akzeptieren. Wir beide werd
 #: simulation/ai/petra/chatHelper.js:78
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
-msgstr "Ein Bündnis zwischen uns ist eine gute Idee, %(_player_)s!"
+msgstr "Ein Bündnis zwischen uns ist eine gute Idee, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:79
 #, javascript-format
@@ -258,7 +259,7 @@ msgstr "Wir haben einen gemeinsamen Nenner gefunden, %(_player_)s. Ich stimme de
 #: simulation/ai/petra/chatHelper.js:81
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
-msgstr "%(_player_)s und ich sind jetzt Verbündete."
+msgstr "%(_player_)s, sieh uns ab sofort als Verbündete an."
 
 #: simulation/ai/petra/chatHelper.js:84
 #, javascript-format
@@ -272,7 +273,7 @@ msgstr "Ich werde mich mit dir verbünden, %(_player_)s, aber nur, wenn du mir e
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr "%(_player_)s, du musst mir einen Tribut von %(_amount_)s %(_resource_)s zukommen lassen, wenn ich dein Bündnisangebot annehmen soll."
+msgstr "%(_player_)s, du musst mir einen Tribut von %(_amount_)s %(_resource_)s zukommen lassen, bevor ich dein Bündnisangebot annehme."
 
 #: simulation/ai/petra/chatHelper.js:86
 #, javascript-format
@@ -408,11 +409,11 @@ msgstr "Meine Truppen haben bei der Verteidigung meines Reiches versagt. Bitte b
 msgid ""
 "My humble armies feel weak and tired. My civilization depends on our "
 "alliance, please send help!"
-msgstr ""
+msgstr "Meine bescheidenen Armeen sind schwach und müde. Meine Zivilisation hängt von unserer Allianz ab. Bitte schicke Hilfe!"
 
 #: simulation/ai/petra/chatHelper.js:143
 msgid "I need your help. Please do not let my armies fall!"
-msgstr ""
+msgstr "Ich brauche deine Hilfe. Bitte lass meine Armeen nicht im Stich!"
 
 #: simulation/ai/petra/chatHelper.js:146
 msgid ""
@@ -424,14 +425,14 @@ msgstr "Mein Reich erlangt die alte Stärke. Es ist an der Zeit die gemeinsame R
 msgid ""
 "My civilization raised from the ashes. Now my armies feel stronger and eager"
 " to fight for our alliance."
-msgstr ""
+msgstr "Meine Zivilisation ist aus der Asche wiederauferstanden. Meine Armeen sind nun stärker und versessen darauf für unsere Allianz zu kämpfen."
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra ist der Standardbot für 0 A.D. Bitte melde Probleme an Wildfire Games (über den Link im Hauptmenü).\n\nDie Sammelrate für Ressourcen und die Handelsgewinne der KI hängen vom Schwierigkeitsgrad ab (Sandkasten −58 %, Sehr Leicht −44 %, Leicht −25 %, Mittel ±0 %, Schwer +25 %, Sehr Schwer +56 %). Auf den einfachsten Stufen sind außerdem Forschungs-, Ausbildungs- und Baugeschwindigkeit der KI reduziert. Auf Sandkasten-Niveau wird sie weder expandieren, noch angreifen."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -657,7 +658,7 @@ msgstr "Schildkröte (0,1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20×)"
-msgstr "Schnell Vorwärts (20×)"
+msgstr "Schneller Vorlauf (20×)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25×)"
@@ -689,11 +690,11 @@ msgstr "Verrückt (2×)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5×)"
-msgstr "Schnell Vorwärts (5×)"
+msgstr "Schneller Vorlauf (5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10×)"
-msgstr "Schnell Vorwärts (10×)"
+msgstr "Schneller Vorlauf (10×)"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
@@ -711,7 +712,7 @@ msgstr "Klein"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "Kleine Karten eignen sich für 1v1 Spiele, da Spieler den Gegner schnell erreichen können und trotzdem etwas Platz zum Expandieren haben."
+msgstr "Kleine Karten eignen sich für 1vs1-Spiele, da Spieler den Gegner schnell erreichen können und trotzdem etwas Platz zum expandieren haben."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
@@ -826,7 +827,7 @@ msgstr "Sehr leicht"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr ""
+msgstr "Wähle diesen Schwierigkeitsgrad, wenn du gerade dabei bist 0 A.D. zu entdecken."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -834,7 +835,7 @@ msgstr "Leicht"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
-msgstr "Wähle diese Schwierigkeit, wenn du nicht überrannt werden möchtest."
+msgstr "Wähle diesen Schwierigkeitsgrad, wenn du nicht überrannt werden möchtest."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
@@ -844,7 +845,7 @@ msgstr "Mittel"
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr ""
+msgstr "Wähle diesen Schwierigkeitsgrad, wenn du bereits gute Erfahrung mit 0 A.D. hast."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
@@ -852,7 +853,7 @@ msgstr "Schwer"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
 msgid "Choose this difficulty if you want to be really challenged."
-msgstr "Wähle diese Schwierigkeit, wenn du wirklich gefordert werden möchtest."
+msgstr "Wähle diesen Schwierigkeitsgrad, wenn du wirklich gefordert werden möchtest."
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
@@ -860,7 +861,7 @@ msgstr "Sehr Schwer"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
-msgstr "Wähle diese Schwierigkeit, wenn es dir nichts ausmacht, überrannt zu werden."
+msgstr "Wähle diesen Schwierigkeitsgrad, wenn es dir nichts ausmacht, überrannt zu werden."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
 msgid ""

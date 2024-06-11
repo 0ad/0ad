@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,9 +39,20 @@ public:
 		UNIFORM,
 	};
 
+	// Using a struct instead of a enum allows using the same syntax while
+	// avoiding adding operator overrides and additional checks on casts.
+	struct Usage
+	{
+		static constexpr uint32_t DYNAMIC = 1u << 0u;
+		static constexpr uint32_t TRANSFER_SRC = 1u << 1u;
+		static constexpr uint32_t TRANSFER_DST = 1u << 2u;
+	};
+
 	virtual Type GetType() const = 0;
 	virtual uint32_t GetSize() const = 0;
-	virtual bool IsDynamic() const = 0;
+	virtual uint32_t GetUsage() const = 0;
+
+	bool IsDynamic() const { return GetUsage() & IBuffer::Usage::DYNAMIC; }
 };
 
 } // namespace Backend

@@ -5,6 +5,7 @@
 # Translators:
 # Wuzzy
 # BL4NKY
+# Daniel Roschka
 # xtother90
 # duichwer
 # Elias Keis
@@ -35,7 +36,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-04-19 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: BL4NKY, 2023\n"
+"Last-Translator: Daniel Roschka, 2024\n"
 "Language-Team: German (http://app.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,7 +116,7 @@ msgstr "Freigeschaltet in der Großstadtphase."
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Hoplites +25% health, but +5% training time."
-msgstr ""
+msgstr "Gardehopliten +25 % Gesundheit, aber +5 % Ausbildungszeit."
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
@@ -172,7 +173,7 @@ msgstr "Freigeschaltet in der Stadtphase."
 
 #: simulation/data/technologies/archer_attack_spread.jsontooltip
 msgid "Archers −20% ranged attack spread."
-msgstr "Bogenschützen −20 % Streuung."
+msgstr "Bogenschützen −20 % Streuung."
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -210,7 +211,7 @@ msgstr "Monumentale Architektur"
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "Zivile Gebäude +20 % Bauzeit, +20 % Gesundheit und +20 % Einnehmpunkte."
+msgstr "Zivile Gebäude +20 % Bauzeit, +20 % Gesundheit und +20 % Eroberungpunkte."
 
 #: simulation/data/technologies/architecture_pers.jsondescription
 msgid ""
@@ -226,26 +227,26 @@ msgstr ""
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr "Gebäude +25 % Gesundheit und Einnehmpunkte, aber auch +20 % Bauzeit."
+msgstr "Gebäude +25 % Gesundheit und Eroberungpunkte, aber auch +20 % Bauzeit."
 
 #: simulation/data/technologies/arsenal_philon.jsondescription
 msgid ""
 "The arsenal was mainly used as a warehouse for materials and instruments for"
 " the equipment of warships."
-msgstr ""
+msgstr "Das Flottenarsenal wurde primär als Lagerhaus für Materialien und Ausrüstung von Kriegsschiffen verwendet."
 
 #: simulation/data/technologies/arsenal_philon.jsongenericName
 msgid "Arsenal of Philon"
-msgstr ""
+msgstr "Skeuothek des Philon"
 
 #: simulation/data/technologies/arsenal_philon.jsonrequirementsTooltip
 #: simulation/data/technologies/juggernauts.jsonrequirementsTooltip
 msgid "Unlocked in City Phase. Requires “Shipwrights.”"
-msgstr ""
+msgstr "Freigeschaltet in der Großstadtphase. Benötigt „Schiffsbaumeister“."
 
 #: simulation/data/technologies/arsenal_philon.jsontooltip
 msgid "Warships +1 health/second self-repair rate."
-msgstr ""
+msgstr "Kriegsschiffe +1 Gesundheit/Sekunde Reparaturrate."
 
 #: simulation/data/technologies/art_of_war.jsondescription
 msgid ""
@@ -264,7 +265,7 @@ msgstr "Sūnzǐ Bīng Fǎ"
 
 #: simulation/data/technologies/art_of_war.jsontooltip
 msgid "All Citizen-Soldiers −20% required promotion experience."
-msgstr "Alle Bürgersoldaten –20 % Erfahrung für eine Beförderung"
+msgstr "Alle Bürgersoldaten −20 % Erfahrungspunkte für eine Beförderung."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -286,7 +287,7 @@ msgstr "Dynamis"
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
-msgstr "Soldaten, Belagerungswaffen und Schiffe +25 % Angriffsschaden."
+msgstr "Soldaten, Belagerungswaffen und Schiffe +25 % Angriffsschaden."
 
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
@@ -301,7 +302,7 @@ msgstr "Wehrpflicht"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Decreases batch training time of units trained in Barracks."
-msgstr ""
+msgstr "Verringert die Gruppen-Ausbildungszeit für Einheiten, die in Kasernen ausgebildet werden"
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -313,7 +314,7 @@ msgstr "Pferdezucht"
 
 #: simulation/data/technologies/cavalry_health.jsontooltip
 msgid "Cavalry +10% health."
-msgstr "Kavallerie +10 % Gesundheit."
+msgstr "Kavallerie +10 % Gesundheit."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsondescription
 msgid "Train your horses to move faster."
@@ -325,21 +326,21 @@ msgstr "Pferderennen"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
-msgstr "Kavallerie +10 % Laufgeschwindigkeit."
+msgstr "Kavallerie +10 % Laufgeschwindigkeit."
 
 #: simulation/data/technologies/civbonuses/brit_woad_warriors.jsondescription
 msgid ""
 "Britons paint their bodies with Woad, which produces a blue color and gives "
 "them a fiercesome appearance in battle."
-msgstr ""
+msgstr "Britonnen bemalen ihre Körper mit Färberwaid, welcher eine blaue Farbe produziert und Ihnen in der Schlacht ein erbittertes Aussehen gibt."
 
 #: simulation/data/technologies/civbonuses/brit_woad_warriors.jsongenericName
 msgid "Woad Warriors"
-msgstr ""
+msgstr "Berserker"
 
 #: simulation/data/technologies/civbonuses/brit_woad_warriors.jsontooltip
 msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
-msgstr ""
+msgstr "+5 % Bewegungsgeschwindigkeit für alle Infanterie-Einheiten und +1 Beuteaufnahme"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
@@ -354,7 +355,7 @@ msgstr "Dreifache Mauer"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "City Walls +100% build time, +100% stone cost, and +200% health."
-msgstr "Stadtmauern +100 % Bauzeit, 100 % Steinkosten und 200 % Gesundheit."
+msgstr "Stadtmauern +100 % Bauzeit, +100 % Steinkosten und +200 % Gesundheit."
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsondescription
 msgid "Celtic structures were mostly made of wood with rubble foundations."
@@ -366,7 +367,7 @@ msgstr "Holzkonstruktion"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
-msgstr "Gebäude −20 % Bauzeit, −20 % Gesundheit und −20 % Einnehmpunkte."
+msgstr "Gebäude −20 % Bauzeit, −20 % Gesundheit und −20 % Eroberungpunkte."
 
 #: simulation/data/technologies/civbonuses/delian_league.jsondescription
 msgid ""
@@ -382,7 +383,7 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/delian_league.jsontooltip
 msgid "Ships −25% construction time."
-msgstr ""
+msgstr "Schiffe −25 % Bauzeit."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -396,7 +397,7 @@ msgstr "Überlegene Kavallerie"
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsontooltip
 msgid "Cavalry +10% melee attack damage."
-msgstr "Kavallerie +10 % Nahkampfschaden."
+msgstr "Kavallerie +10 % Nahkampfschaden."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
@@ -408,7 +409,7 @@ msgstr "Hellenische Architektur"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr "Gebäude +10 % Gesundheit und +10 % Einnehmpunkte."
+msgstr "Gebäude +10 % Gesundheit und +10 % Eroberungpunkte."
 
 #: simulation/data/technologies/civbonuses/han_population.jsondescription
 msgid ""
@@ -424,7 +425,7 @@ msgstr "Verbündete Staaten"
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "+10% maximum population limit."
-msgstr "+10 % maximales Bevölkerungslimit."
+msgstr "+10 % maximales Bevölkerungslimit."
 
 #: simulation/data/technologies/civbonuses/han_walls.jsondescription
 msgid ""
@@ -438,7 +439,7 @@ msgstr "Chinesische Mauer"
 
 #: simulation/data/technologies/civbonuses/han_walls.jsontooltip
 msgid "City Walls +50% health."
-msgstr "Stadtmauern +50 % Gesundheit"
+msgstr "Stadtmauern +50 % Gesundheit"
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsondescription
 msgid "The Macedonian economy relied greatly on their vast natural resources."
@@ -450,7 +451,7 @@ msgstr "Ressourcenreiche Wirtschaft"
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsontooltip
 msgid "Storehouse technologies −100% research time."
-msgstr "Lagerhaus-Technologien −100 % Forschungszeit."
+msgstr "Lagerhaus-Technologien −100 % Forschungszeit."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -466,7 +467,7 @@ msgstr "Elefantentradition"
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
 msgid "Elephants −30% training time."
-msgstr "Elefanten −30 % Ausbildungszeit."
+msgstr "Elefanten −30 % Ausbildungszeit."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsondescription
 msgid ""
@@ -498,7 +499,7 @@ msgstr "Holzwälle"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "City Walls −20% build time and −20% health."
-msgstr "Stadtmauern −20 % Bauzeit und −20 % Gesundheit."
+msgstr "Stadtmauern −20 % Bauzeit und −20 % Gesundheit."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -530,11 +531,11 @@ msgstr "Sonnengetrocknete Lehmziegel"
 msgid ""
 "Houses and Economic Structures −40% wood cost, health, and capture points as"
 " well as +50% build time."
-msgstr "Häuser und Wirtschaftsgebäude -40% Holzkosten, Gesundheit und Eroberungspunkte sowie +50% Bauzeit."
+msgstr "Häuser und Wirtschaftsgebäude −40 % Holzkosten, Gesundheit und Eroberungspunkte, sowie +50 % Bauzeit."
 
 #: simulation/data/technologies/civbonuses/rome_siege.jsondescription
 msgid "Soldiers were well Trained to Operate Siege Engines."
-msgstr ""
+msgstr "Soldaten waren gut ausgebildet, um Belagerungswaffen zu bedienen."
 
 #: simulation/data/technologies/civbonuses/rome_siege.jsongenericName
 msgid "Legionary Engineers"
@@ -543,7 +544,7 @@ msgstr "Legionsingenieure"
 #: simulation/data/technologies/civbonuses/rome_siege.jsontooltip
 msgid ""
 "Siege Catapults and Onagers 10% faster fire rate and +20% movement speed."
-msgstr ""
+msgstr "Belagerungskatapulte und Onager  10 % höhere Feuerrate und +20 % Bewegungsgeschwindigkeit."
 
 #: simulation/data/technologies/civbonuses/sele_farms.jsondescription
 msgid ""
@@ -557,7 +558,7 @@ msgstr "Fruchtbarer Halbmond"
 
 #: simulation/data/technologies/civbonuses/sele_farms.jsontooltip
 msgid "Farms −25% wood cost and −75% build time."
-msgstr "Bauernhöfe -25% Holzkosten und -75% Bauzeit."
+msgstr "Bauernhöfe −25 % Holzkosten und −75 % Bauzeit."
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
 msgid "Improved Construction"
@@ -570,7 +571,7 @@ msgstr "Gōngchéng"
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
 msgid "All structures −10% build time and −10% cost."
-msgstr "Alle Gebäude –10 % Bauzeit und –10 % Kosten."
+msgstr "Alle Gebäude –10 % Bauzeit und –10 % Kosten."
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
 msgid "Robust Architecture"
@@ -578,7 +579,7 @@ msgstr "Robuste Architektur"
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
 msgid "All structures +20% health."
-msgstr "Alle Gebäude +20 % Gesundheit."
+msgstr "Alle Gebäude +20 % Gesundheit."
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
 msgid "Efficient Bureaucracy"
@@ -591,7 +592,7 @@ msgstr "Guānliáo"
 
 #: simulation/data/technologies/civil_service_01.jsontooltip
 msgid "Ministers −50% train time."
-msgstr "Minister –50 % Ausbildungszeit."
+msgstr "Minister −50 % Ausbildungszeit."
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
 msgid "Intensive Training"
@@ -599,7 +600,7 @@ msgstr "Intensive Ausbildung"
 
 #: simulation/data/technologies/civil_service_02.jsontooltip
 msgid "Ministers +50% health."
-msgstr "Minister +50 % Gesundheit."
+msgstr "Minister +50 % Gesundheit."
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -621,15 +622,15 @@ msgstr ""
 msgid ""
 "Sacrificial rituals were quite common in ancient times, whether to satisfy "
 "the gods, calm natural disasters, or even improve harvests."
-msgstr ""
+msgstr "Opferrituale waren in der Antike üblich, um Götter zu zufriedenzustellen, Naturkatastrophen abzuwehren oder um eine bessere Ernte zu bitten."
 
 #: simulation/data/technologies/cost_healer.jsongenericName
 msgid "Sacrificial Ritual"
-msgstr ""
+msgstr "Opferritual"
 
 #: simulation/data/technologies/cost_healer.jsontooltip
 msgid "Healers –40% training time, and the metal cost is removed."
-msgstr ""
+msgstr "Heiler −40 % Ausbildungszeit und keine Metallkosten mehr"
 
 #: simulation/data/technologies/crossbow_training.jsondescription
 msgid "The Han had a penchant for using massed crossbowmen in battle."
@@ -641,7 +642,7 @@ msgstr "Armbrust-Ausbildung"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
 msgid "Crossbow Infantry −20% train time."
-msgstr "Armbrust Infanterie -20% Ausbildungsdauer."
+msgstr "Armbrust-Infanterie −20 % Ausbildungsdauer."
 
 #: simulation/data/technologies/dock_efficiency.jsondescription
 #: simulation/data/technologies/ship_cost_time.jsondescription
@@ -652,7 +653,7 @@ msgstr "Stelle geschickte Schiffsbaumeister mit spezialisiertem Werkzeug ein, um
 
 #: simulation/data/technologies/dock_efficiency.jsongenericName
 msgid "Shipwrights"
-msgstr ""
+msgstr "Schiffsbaumeister"
 
 #: simulation/data/technologies/dock_efficiency.jsonspecificName.athen
 #: simulation/data/technologies/dock_efficiency.jsonspecificName.mace
@@ -670,7 +671,7 @@ msgstr ""
 msgid ""
 "Docks work 20% faster (Ships −20% build time; Technologies −20% research "
 "time) and are built 20% faster."
-msgstr ""
+msgstr "Häfen arbeiten 20 % schneller (Schiffe −20 % Bauzeit; Technologien −20 % Forschungszeit) und werden 20 % schneller gebaut."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -702,15 +703,15 @@ msgstr ""
 
 #: simulation/data/technologies/exploration.jsongenericName
 msgid "Exploration"
-msgstr ""
+msgstr "Erkundung"
 
 #: simulation/data/technologies/exploration.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase. Requires “Lookouts.”"
-msgstr ""
+msgstr "Freigeschaltet in der Dorfphase. Benötigt „Ausgucke“."
 
 #: simulation/data/technologies/exploration.jsontooltip
 msgid "Traders and Ships +20% vision range."
-msgstr ""
+msgstr "Händler und Schiffe +20 % Sichtweite."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
 msgid "Salting allows to preserve fish longer."
@@ -718,11 +719,11 @@ msgstr "Durch Einsalzen sind Fische länger haltbar."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsongenericName
 msgid "Salt Curing"
-msgstr ""
+msgstr "Salzpökeln"
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase. Requires “Fishing Nets.”"
-msgstr ""
+msgstr "Freigeschaltet in der Dorfphase. Benötigt „Fischernetze“."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsontooltip
 msgid "Fishing Boats +20 food capacity."
@@ -730,15 +731,15 @@ msgstr "Fischerboote +20 Nahrungskapazität."
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsondescription
 msgid "Use nets to improve the productivity of fishing boats."
-msgstr "Netze benützen, um die Produktivität von Fischerbooten zu verbessern."
+msgstr "Benutze Netze, um die Produktivität von Fischerbooten zu verbessern."
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsongenericName
 msgid "Fishing Nets"
-msgstr ""
+msgstr "Fischernetze"
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsontooltip
 msgid "Fishing Boats +30% fish gather rate. Unlocks “Salt Curing.”"
-msgstr ""
+msgstr "Fischerboote +30 % Sammelrate. Schaltet „Salzpökelei“ frei."
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
@@ -750,7 +751,7 @@ msgstr "Wohnverhältnisse"
 
 #: simulation/data/technologies/garrison_heal.jsontooltip
 msgid "Structures +1 garrison heal rate."
-msgstr "Gebäude +1 einquartierte Heilrate"
+msgstr "Gebäude +1 Heilrate für einquartierte Einheiten"
 
 #: simulation/data/technologies/gather_ahimsa.jsondescription
 msgid ""
@@ -765,7 +766,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_ahimsa.jsontooltip
 msgid "Units +100% fruit gather rate, but -80% meat and fish gather."
-msgstr ""
+msgstr "Einheiten bekommen +100 % Sammelrate für Früchte, aber −80 % Sammelrate für Fleisch und Fisch."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock to slaughter for meat."
@@ -777,7 +778,7 @@ msgstr "Viehzucht"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
 msgid "Domestic Animals −25% breeding time."
-msgstr "Nutztiere −25 % Zuchtzeit."
+msgstr "Nutztiere −25 % Zuchtzeit."
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
@@ -829,7 +830,7 @@ msgstr "Kettenpumpe"
 #: simulation/data/technologies/gather_farming_training_ptol.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
 msgid "Workers +20% grain gather rate."
-msgstr "Arbeiter +20 % Sammelrate für Getreide."
+msgstr "Arbeiter +20 % Sammelrate für Getreide."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 #: simulation/data/technologies/gather_farming_fertilizer_ptol.jsondescription
@@ -853,7 +854,7 @@ msgstr "Erntemaschine"
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 msgid "Workers +10% grain gather rate."
-msgstr "Arbeiter +10 % Sammelrate für Getreide."
+msgstr "Arbeiter +10 % Sammelrate für Getreide."
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -905,7 +906,7 @@ msgstr "Eisenäxte"
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +25% wood gather rate."
-msgstr "Arbeiter +25 % Sammelrate für Holz."
+msgstr "Arbeiter +25 % Sammelrate für Holz."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Axe Heads"
@@ -933,7 +934,7 @@ msgstr "Heilōtes"
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +25% stone gather rate."
-msgstr "Arbeiter +25 % Sammelrate für Stein."
+msgstr "Arbeiter +25 % Sammelrate für Stein."
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
@@ -963,7 +964,7 @@ msgstr "Bergbauschächte"
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +25% metal gather rate."
-msgstr "Arbeiter +25 % Sammelrate für Metall."
+msgstr "Arbeiter +25 % Sammelrate für Metall."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -1025,7 +1026,7 @@ msgstr "Korbflechterei"
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 #: simulation/data/technologies/gather_wicker_baskets_maur.jsontooltip
 msgid "Workers +50% fruit gather rate."
-msgstr "Arbeiter +50 % Sammelrate für Früchte."
+msgstr "Arbeiter +50 % Sammelrate für Früchte."
 
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
@@ -1077,7 +1078,7 @@ msgstr "Sphagia"
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
-msgstr "Heiler −20 % Heilungszeit."
+msgstr "Heiler −20 % Heilungszeit."
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
@@ -1104,7 +1105,7 @@ msgstr "Der Webstuhl"
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +100% health."
-msgstr "Bürgerinnen +100 % Gesundheit."
+msgstr "Bürgerinnen +100 % Gesundheit."
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Organic units will slowly regenerate health over time when idle."
@@ -1131,7 +1132,7 @@ msgstr "Hellenistische Metropole"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsontooltip
 msgid "Civic Centers +100% health and capture points, double default arrows."
-msgstr "Verwaltungssitze +100 % Gesundheit und Einnehmpunkte sowie doppelt so viele Pfeile."
+msgstr "Verwaltungssitze +100 % Gesundheit und Eroberungspunkte, sowie doppelt so viele Pfeile."
 
 #: simulation/data/technologies/helot_economy.jsondescription
 msgid ""
@@ -1161,7 +1162,7 @@ msgstr "Hopliten-Tradition"
 #: simulation/data/technologies/hoplite_tradition.jsontooltip
 msgid ""
 "Hoplites −25% training time, −50% promotion experience, and +10% health."
-msgstr ""
+msgstr "Hopliten −25 % Ausbildungszeit, −50 % Erfahrungspunkte für eine Beförderung und +10 % Gesundheit."
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -1175,13 +1176,13 @@ msgstr "Unsterbliche"
 
 #: simulation/data/technologies/immortals.jsontooltip
 msgid "Immortals −50% training time."
-msgstr "Unsterbliche −50 % Ausbildungszeit."
+msgstr "Unsterbliche −50 % Ausbildungszeit."
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
 "Athenian gymnasium, docks and triremes can train Marines (Epibates "
 "Athenaikos)."
-msgstr ""
+msgstr "Athenische Gymnasien, Docks und Trieren können Marinesoldaten (Epibates Athenaikos) ausbilden."
 
 #: simulation/data/technologies/iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -1190,7 +1191,7 @@ msgstr "Reformen des Iphikrates"
 #: simulation/data/technologies/iphicratean_reforms.jsontooltip
 msgid ""
 "Athenian Docks and Triremes can train Marines and Cretan Mercenary Archers."
-msgstr ""
+msgstr "Athenische Docks und Trieren können Marinesoldaten und Kretische Söldnerbogenschützen ausbilden."
 
 #: simulation/data/technologies/juggernauts.jsongenericName
 msgid "Juggernauts"
@@ -1202,7 +1203,7 @@ msgstr "Tessarakonterēs"
 
 #: simulation/data/technologies/juggernauts.jsontooltip
 msgid "Siege Ships +50% health, +25% more projectiles, but −25% speed."
-msgstr ""
+msgstr "Belagerungsschiffe +50 % Gesundheit, +25 % mehr Projektile, aber −25 % Geschwindigkeit."
 
 #: simulation/data/technologies/krypteia.jsondescription
 msgid ""
@@ -1256,7 +1257,7 @@ msgstr "Nisioi"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
-msgstr "Berittene Gardespeerkämpfer +20 % Gesundheit, aber auch +10 % Ausbildungszeit."
+msgstr "Berittene Gardespeerträger +20 % Gesundheit, aber auch +10 % Ausbildungszeit."
 
 #: simulation/data/technologies/ostracism.jsondescription
 msgid ""
@@ -1270,7 +1271,7 @@ msgstr ""
 
 #: simulation/data/technologies/ostracism.jsontooltip
 msgid "Citizen soldiers +5% health, but Heroes −40% health."
-msgstr ""
+msgstr "Bürgersoldaten +5 % Gesundheit, aber Helden −40 % Gesundheit."
 
 #: simulation/data/technologies/outpost_vision.jsondescription
 msgid "Increases outpost vision."
@@ -1302,7 +1303,7 @@ msgstr "Öffentlicher Dienst"
 
 #: simulation/data/technologies/pair_unlock_cult_ptol.jsongenericName
 msgid "Cult"
-msgstr ""
+msgstr "Kult"
 
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""
@@ -1316,7 +1317,7 @@ msgstr "Parade von Daphne"
 
 #: simulation/data/technologies/parade_of_daphne.jsontooltip
 msgid "Champions −20% training time."
-msgstr "Gardisten −20 % Ausbildungszeit."
+msgstr "Gardisten −20 % Ausbildungszeit."
 
 #: simulation/data/technologies/pharaonic_cult.jsondescription
 msgid ""
@@ -1332,13 +1333,13 @@ msgstr ""
 
 #: simulation/data/technologies/pharaonic_cult.jsontooltip
 msgid "Heroes +2 health/second self-regen rate."
-msgstr ""
+msgstr "Helden +2 Gesundheit/Sekunde Regenerierungsrate."
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
-msgstr "Dummy-Technologie zur Verwendung in Vorlagenanforderungen - ersetzt durch phase_city_generic oder phase_city_ {civ}."
+msgstr "Dummy-Technologie zur Verwendung in Vorlagenanforderungen - ersetzt durch phase_city_generic oder phase_city_{civ}."
 
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
@@ -1373,7 +1374,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
-msgstr "Vorrücken zu Großstadtphase, wodurch weitere Entitäten freigeschaltet werden und Technologien. Verwaltungssitze +25% des Territorium und nimmt Einfluss im Umkreis. Strukturen nehmen +1 der Punkte ein Wiederherstellungsrate für die Garnisonseinheiten. Arbeiter +10% Metallsammelrate."
+msgstr "Vorrücken zu Großstadtphase, wodurch weitere Entitäten und Technologien freigeschaltet werden. Verwaltungssitze +25 % auf ihren Territoriumseinflussradius. Gebäude +1  Eroberungspunkte Wiederherstellungsrate für Garnisonseinheiten. Arbeiter +10 % Metallsammelrate."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1390,7 +1391,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units."
-msgstr "Vorrücken zu Großstadtphase, wodurch weitere Entitäten freigeschaltet werden und Technologien. Verwaltungssitze +25% des Territorium und nimmt Einfluss im Umkreis ein. Strukturen nehmen +1 der Punkte ein Wiederherstellungsrate für die Garnisonseinheiten."
+msgstr "Vorrücken zu Großstadtphase, wodurch weitere Entitäten und Technologien freigeschaltet werden. Verwaltungssitze +25 % auf ihren Territoriumseinflussradius. Gebäude +1  Eroberungspunkte Wiederherstellungsrate für  Garnisonseinheiten."
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
@@ -1405,13 +1406,13 @@ msgid ""
 "Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Decrease batch training time of "
 "units trained in Stables."
-msgstr ""
+msgstr "Vorrücken zu Großstadtphase, wodurch weitere Entitäten und Technologien freigeschaltet werden. Verwaltungssitze +25 % auf ihren Territoriumseinflussradius. Gebäude +1  Eroberungspunkte Wiederherstellungsrate für Garnisonseinheiten. Verkürzte Ausbildungszeit von Gruppen von Einheiten in Ställen."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr "Dummy-Technologie zur Verwendung in Vorlagenanforderungen - ersetzt durch phase_town_generic oder phase_town_ {civ}."
+msgstr "Dummy-Technologie zur Verwendung in Vorlagenanforderungen - ersetzt durch phase_town_generic oder phase_town_{civ}."
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1446,7 +1447,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
-msgstr "Gehen Sie in die Stadtphase über, in der weitere Einheiten und Technologien freigeschaltet werden. Verwaltungssitze +25 % Einflussradius auf das Territorium. Strukturen +0,5 Eroberungspunkte Wiederherstellungsrate für Garnisonseinheiten. Arbeiter +10 % Metallsammelrate."
+msgstr "Gehen Sie in die Stadtphase über, in der weitere Einheiten und Technologien freigeschaltet werden. Verwaltungssitze +25 % Einflussradius auf das Territorium. Gebäude +0,5 Eroberungspunkte Wiederherstellungsrate für Garnisonseinheiten. Arbeiter +10 % Metallsammelrate."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1462,7 +1463,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units."
-msgstr "Gehen Sie in die Stadtphase über, in der weitere Einheiten und Technologien freigeschaltet werden. Verwaltungssitze +25 % Einflussradius auf das Territorium. Strukturen +0,5 Wiederherstellungsrate für Garnisonseinheiten."
+msgstr "Gehen Sie in die Stadtphase über, in der weitere Einheiten und Technologien freigeschaltet werden. Verwaltungssitze +25 % Einflussradius auf das Territorium. Gebäude +0,5 Eroberungspnkte Wiederherstellungsrate für Garnisonseinheiten."
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
@@ -1477,7 +1478,7 @@ msgid ""
 "Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Decrease batch training time of "
 "units trained in Stables."
-msgstr ""
+msgstr "Gehen Sie in die Stadtphase über, in der weitere Einheiten und Technologien freigeschaltet werden. Verwaltungssitze +25 % Einflussradius auf das Territorium. Gebäude +0,5 Eroberungspunkte Wiederherstellungsrate für Garnisonseinheiten. Verkürzte Ausbildungszeit von mehreren Einheiten in Ställen."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1501,7 +1502,7 @@ msgstr ""
 
 #: simulation/data/technologies/pheidian_workshop.jsontooltip
 msgid "Temples and Wonder −50% stone cost and build time."
-msgstr ""
+msgstr "Tempel und Wunder −50 % Steinkosten und Bauzeit."
 
 #: simulation/data/technologies/poison_arrows.jsongenericName
 msgid "Poison Arrows"
@@ -1509,7 +1510,7 @@ msgstr "Giftpfeile"
 
 #: simulation/data/technologies/poison_arrows.jsontooltip
 msgid "Ranged Soldiers +20% attack damage."
-msgstr "Fernkämpfer +20 % Angriffsschaden."
+msgstr "Fernkämpfer +20 % Angriffsschaden."
 
 #: simulation/data/technologies/poison_blades.jsongenericName
 msgid "Poison Blades"
@@ -1517,7 +1518,7 @@ msgstr "Vergiftete Klingen"
 
 #: simulation/data/technologies/poison_blades.jsontooltip
 msgid "Melee Soldiers +20% attack damage."
-msgstr "Nahkampsoldaten +20 % Angriffsschaden."
+msgstr "Nahkampfsoldaten +20 % Angriffsschaden."
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -1548,7 +1549,7 @@ msgstr "Peristylium"
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population bonus."
-msgstr "Häuser +20 % Bevölkerungsbonus."
+msgstr "Häuser +20 % Bevölkerungsbonus."
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
@@ -1581,34 +1582,34 @@ msgid ""
 " were a series of military reforms in the last century BC attributed to "
 "Gaius Marius involving the abolition of citzen cavalry, equipment changes, "
 "and standardization of the heavy infantry unit: the Legionary."
-msgstr ""
+msgstr "Die Marianische Heeresreform war eine Reihe von militärischen Reformen im letzten Jahrhundert vor Christus die Gaius Marius zugeschrieben werden. Sie beinhalteten die Abschaffung von Bürgerkavallerie, Änderungen in der Ausrüstung und die Standardisierung schwerer Infanterieeinheiten: den Legionären."
 
 #: simulation/data/technologies/roman_reforms.jsongenericName
 msgid "Marian Reforms"
-msgstr ""
+msgstr "Marianische Heeresreform"
 
 #: simulation/data/technologies/roman_reforms.jsontooltip
 msgid ""
 "Convert Infantry to Marian Legionaries, Cavalry to Auxiliary Cavalry, unlock"
 " Onagers and Centurions, but lose access to Spear Cavalry and Italic Heavy "
 "Infantry."
-msgstr ""
+msgstr "Wandle Infanterie in Marianische Legionäre und Kavallerie in Hilfskavallerie um, schalte Onager und Centurios frei, aber verliere dafür Zugriff auf Speer-Kavallerie und schwere italische Infanterie."
 
 #: simulation/data/technologies/roman_roads.jsondescription
 msgid "All roads lead to Rome."
-msgstr ""
+msgstr "Alle Straßen führen nach Rom."
 
 #: simulation/data/technologies/roman_roads.jsongenericName
 msgid "Roman Roads"
-msgstr ""
+msgstr "Römische Straßen"
 
 #: simulation/data/technologies/roman_roads.jsonspecificName.rome
 msgid "Viae Romanum"
-msgstr ""
+msgstr "Viae Romanum"
 
 #: simulation/data/technologies/roman_roads.jsontooltip
 msgid "All Land Units +5% movement speed."
-msgstr ""
+msgstr "Alle Landeinheiten +5 % Bewegungsgeschwindigkeit."
 
 #: simulation/data/technologies/serapis_cult.jsondescription
 msgid ""
@@ -1628,15 +1629,15 @@ msgstr ""
 
 #: simulation/data/technologies/serapis_cult.jsontooltip
 msgid "+2.0 metal trickle per second."
-msgstr ""
+msgstr "+2.0 Zufluss an Metall pro Sekunde."
 
 #: simulation/data/technologies/ship_capture_resistance.jsondescription
 msgid "Marines were a vital part of ship defense and offense."
-msgstr ""
+msgstr "Marinesoldaten waren ein lebenswichtiger Teil der Defensive und Offensive eines Schiffs."
 
 #: simulation/data/technologies/ship_capture_resistance.jsongenericName
 msgid "Marines"
-msgstr ""
+msgstr "Marinesoldaten"
 
 #: simulation/data/technologies/ship_capture_resistance.jsonspecificName.athen
 #: simulation/data/technologies/ship_capture_resistance.jsonspecificName.cart
@@ -1646,11 +1647,11 @@ msgstr ""
 #: simulation/data/technologies/ship_capture_resistance.jsonspecificName.sele
 #: simulation/data/technologies/ship_capture_resistance.jsonspecificName.spart
 msgid "Epibatai"
-msgstr ""
+msgstr "Epibatai"
 
 #: simulation/data/technologies/ship_capture_resistance.jsontooltip
 msgid "All Warships +40% capture resistance."
-msgstr ""
+msgstr "+40 % Eroberungswiderstand für alle Kriegsschiffe."
 
 #: simulation/data/technologies/ship_cost_time.jsongenericName
 msgid "Naval Architects"
@@ -1658,7 +1659,7 @@ msgstr "Schiffskonstrukteure"
 
 #: simulation/data/technologies/ship_cost_time.jsontooltip
 msgid "Ships −20% construction time."
-msgstr "Schiffe −20 % Bauzeit."
+msgstr "Schiffe −20 % Bauzeit."
 
 #: simulation/data/technologies/ship_health.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -1670,7 +1671,7 @@ msgstr "Verstärkter Schiffsrumpf"
 
 #: simulation/data/technologies/ship_health.jsontooltip
 msgid "Ships +25% health, but −10% speed."
-msgstr ""
+msgstr "Schiffe +25 % Gesundheit, aber −10 % Geschwindigkeit."
 
 #: simulation/data/technologies/ship_movement_speed.jsondescription
 msgid ""
@@ -1684,17 +1685,17 @@ msgstr "Erfahrene Mannschaften"
 
 #: simulation/data/technologies/ship_movement_speed.jsontooltip
 msgid "Ships +10% movement speed."
-msgstr "Schiffe +10 % Bewegungsgeschwindigkeit."
+msgstr "Schiffe +10 % Bewegungsgeschwindigkeit."
 
 #: simulation/data/technologies/ship_vision.jsondescription
 msgid ""
 "Lookouts aboard ship were important for sighting land, spotting navigational"
 " hazards, and directing fire in battle."
-msgstr ""
+msgstr "Ausgucke an Bord von Schiffen waren wichtig um Land zu sichten, Gefahren für die Navigation zu erkennen und um im Kampf die Richtung des Feuers zu lenken."
 
 #: simulation/data/technologies/ship_vision.jsongenericName
 msgid "Lookouts"
-msgstr ""
+msgstr "Ausgucke"
 
 #: simulation/data/technologies/ship_vision.jsonspecificName.athen
 #: simulation/data/technologies/ship_vision.jsonspecificName.mace
@@ -1720,7 +1721,7 @@ msgstr "Fortschrittlichere Belagerungswaffen"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
-msgstr "Belagerungswaffen +25 % Angriffsschaden."
+msgstr "Belagerungswaffen +25 % Schmetterschaden."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy."
@@ -1732,7 +1733,7 @@ msgstr "Bolzengenauigkeit"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt Shooters −20% ranged attack spread."
-msgstr "Bolzengeschütze −20 % Streuung."
+msgstr "Bolzengeschütze −20 % Streuung."
 
 #: simulation/data/technologies/siege_cost_time.jsondescription
 msgid "The science or craft of laying or carrying out sieges."
@@ -1744,7 +1745,7 @@ msgstr "Belagerungskunst"
 
 #: simulation/data/technologies/siege_cost_time.jsontooltip
 msgid "Siege Engines −20% construction time."
-msgstr "Belagerungswaffen −20 % Bauzeit."
+msgstr "Belagerungswaffen −20 % Bauzeit."
 
 #: simulation/data/technologies/siege_health.jsondescription
 msgid ""
@@ -1757,7 +1758,7 @@ msgstr "Panzerung"
 
 #: simulation/data/technologies/siege_health.jsontooltip
 msgid "Battering Rams and Siege Towers +25% health."
-msgstr "Rammböcke und Belagerungstürme +25 % Gesundheit."
+msgstr "Rammböcke und Belagerungstürme +25 % Gesundheit."
 
 #: simulation/data/technologies/siege_pack_unpack.jsondescription
 msgid "Military engineers are responsible for improvements in siege engines."
@@ -1769,7 +1770,7 @@ msgstr "Militärische Pioniere"
 
 #: simulation/data/technologies/siege_pack_unpack.jsontooltip
 msgid "Siege Engines –40% pack and unpack time."
-msgstr "Belagerungswaffen -40 % Packzeit."
+msgstr "Belagerungswaffen −40 % Packzeit."
 
 #: simulation/data/technologies/silk_road.jsongenericName
 msgid "Silk Road"
@@ -1777,7 +1778,7 @@ msgstr "Seidenstraße"
 
 #: simulation/data/technologies/silk_road.jsontooltip
 msgid "Traders +20% international trade bonus."
-msgstr "Händler +20 % internationaler Handelsbonus."
+msgstr "Händler +20 % internationaler Handelsbonus."
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1821,11 +1822,11 @@ msgstr "Pugio"
 #: simulation/data/technologies/soldier_attack_melee_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsontooltip
 msgid "Soldiers +15% melee attack damage."
-msgstr "Soldaten +15 % Nahkampfschaden."
+msgstr "Soldaten +15 % Nahkampfschaden."
 
 #: simulation/data/technologies/soldier_attack_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
-msgstr "Die Verwendung von Eisen anstatt Bronze gab den Waffen mehr Durschschlagskraft."
+msgstr "Die Verwendung von Eisen anstatt Bronze gab den Waffen mehr Durchschlagskraft."
 
 #: simulation/data/technologies/soldier_attack_melee_02.jsongenericName
 msgid "Iron Weapons"
@@ -1843,7 +1844,7 @@ msgstr "Karbonisation"
 
 #: simulation/data/technologies/soldier_attack_melee_03.jsontooltip
 msgid "Soldiers +20% melee attack damage."
-msgstr "Soldaten +20 % Nahkampfschaden."
+msgstr "Soldaten +20 % Nahkampfschaden."
 
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsondescription
 msgid ""
@@ -1866,7 +1867,7 @@ msgstr "Wootz"
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsontooltip
 msgid ""
 "Soldiers +20% melee attack damage. Swordsmen get an additional +20% bonus."
-msgstr "Soldaten +20 % Nahkampfschaden. Schwertkämpfer bekommen zusätzlich +20 % Bonus."
+msgstr "Soldaten +20 % Nahkampfschaden. Schwertkämpfer bekommen zusätzlich +20 % Bonus."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
 msgid ""
@@ -1881,7 +1882,7 @@ msgstr "Verbesserte Befiederung"
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
 msgid "Soldiers +15% ranged attack damage."
-msgstr "Soldaten +15 % Fernkampfschaden."
+msgstr "Soldaten +15 % Fernkampfschaden."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
 msgid "Projectile points made of iron enable missiles to penetrate deeper."
@@ -1901,11 +1902,11 @@ msgstr "Dreiseitige Pfeilspitzen"
 
 #: simulation/data/technologies/soldier_attack_ranged_03.jsontooltip
 msgid "Soldiers +20% ranged attack damage."
-msgstr "Soldaten +20 % Fernkampfschaden."
+msgstr "Soldaten +20 % Fernkampfschaden."
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
-msgstr "Fernkämpfer +25 % Erfahrung für die Beförderung."
+msgstr "Fernkämpfer +25 % Erfahrungspunkte für eine Beförderung."
 
 #: simulation/data/technologies/soldier_resistance_hack_01.jsondescription
 msgid "Body armor made from quilted wool, linen, cotton, or leather."
@@ -2001,7 +2002,7 @@ msgstr "Spionageabwehr"
 
 #: simulation/data/technologies/spy_counter.jsontooltip
 msgid "Make your units 50% more expensive to bribe."
-msgstr "Macht die Bestechung deiner Einheiten um 50 % teurer."
+msgstr "Macht die Bestechung deiner Einheiten um 50 % teurer."
 
 #: simulation/data/technologies/stable_batch_training.jsondescription
 msgid ""
@@ -2011,7 +2012,7 @@ msgstr ""
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Decrease batch training time of units trained in Stables."
-msgstr ""
+msgstr "Reduziere die Gruppen-Trainingszeit für Einheiten die in Ställen ausgebildet werden."
 
 #: simulation/data/technologies/subterranean_aqueducts.jsondescription
 msgid ""
@@ -2043,7 +2044,7 @@ msgstr "Zinnen"
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
-msgstr "Wach- und Steintürme +40 % mehr Pfeile pro einquartiertem Soldaten."
+msgstr "Wach- und Steintürme +40 % mehr Pfeile pro einquartiertem Soldaten."
 
 #: simulation/data/technologies/tower_health.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
@@ -2055,7 +2056,7 @@ msgstr "Stabile Fundamente"
 
 #: simulation/data/technologies/tower_health.jsontooltip
 msgid "Towers +25% health."
-msgstr "Türme +25 % Gesundheit."
+msgstr "Türme +25 % Gesundheit."
 
 #: simulation/data/technologies/tower_murderholes.jsondescription
 msgid "Murder holes allow hitting enemies at the foot of the tower."
@@ -2119,7 +2120,7 @@ msgstr "Handelsvertrag"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "Traders +10% trade profit between allies."
-msgstr "Händler +10 % Profit zwischen Verbündeten."
+msgstr "Händler +10 % Profit zwischen Verbündeten."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
@@ -2133,7 +2134,7 @@ msgstr "Handwerk"
 #: simulation/data/technologies/trade_gain_01.jsontooltip
 #: simulation/data/technologies/trade_gain_02.jsontooltip
 msgid "Traders +15% trade gain."
-msgstr "Händler +15 % Handelsertrag."
+msgstr "Händler +15 % Handelsertrag."
 
 #: simulation/data/technologies/trade_gain_02.jsongenericName
 msgid "Advanced Handicraft"
@@ -2149,7 +2150,7 @@ msgstr "Handelskarawane"
 
 #: simulation/data/technologies/trader_health.jsontooltip
 msgid "Land Traders +50% health."
-msgstr "Landhändler +50 % Gesundheit."
+msgstr "Landhändler +50 % Gesundheit."
 
 #: simulation/data/technologies/traditional_army_sele.jsondescription
 msgid "The Macedonian-style core of the Seleucid army."
@@ -2176,7 +2177,7 @@ msgstr ""
 
 #: simulation/data/technologies/tyrtean_paeans.jsontooltip
 msgid "Champion Hoplites +10% movement speed."
-msgstr ""
+msgstr "Gardehopliten +10 % Bewegungsgeschwindigkeit."
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
@@ -2184,7 +2185,7 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr "Fortgeschrittene und Eliteeinheiten +20 % Ausbildungszeit, +25 % Gesundheit, +0,7 Einnehmrate, +20 % Beute und −30 % Sammelrate; Heiler +5 Heilstärke und +3 Heilreichweite; Nahkampfeinheiten +1 Widerstand und +20 % Schaden; Fernkampfeinheiten -20 % Streuung."
+msgstr "Fortgeschrittene und Eliteeinheiten +20 % Ausbildungszeit, +25 % Gesundheit, +0,7 Eroberungsrate, +20 % Beute und −30 % Sammelrate; Heiler +5 Heilstärke und +3 Heilreichweite; Nahkampfeinheiten +1 Widerstand und +20 % Schaden; Fernkampfeinheiten −20 % Streuung."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
@@ -2192,7 +2193,7 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr "Eliteeinheiten +20 % Ausbildungszeit, +25 % Gesundheit, +0,8 Einnehmrate, +20 % Beute und −30 % Sammelrate; Heiler +5 Heilstärke und +3 Heilreichweite; Nahkampfeinheiten +1 Widerstand und +20 % Schaden; Fernkampfeinheiten -20 % Streuung."
+msgstr "Eliteeinheiten +20 % Ausbildungszeit, +25 % Gesundheit, +0,8 Eroberungsrate, +20 % Beute und −30 % Sammelrate; Heiler +5 Heilstärke und +3 Heilreichweite; Nahkampfeinheiten +1 Widerstand und +20 % Schaden; Fernkampfeinheiten −20 % Streuung."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsondescription
 #: simulation/data/technologies/unlock_champion_chariots.jsondescription
@@ -2360,11 +2361,11 @@ msgstr ""
 
 #: simulation/data/technologies/warship_fireship_attack.jsonrequirementsTooltip
 msgid "Unlocked in City Phase. Requires “Naval Construction.”"
-msgstr ""
+msgstr "Freigeschaltet in Großstadtphase. Benötigt „Schiffsbau“."
 
 #: simulation/data/technologies/warship_fireship_attack.jsontooltip
 msgid "Fire Ships +25% health and +25% attack damage."
-msgstr ""
+msgstr "Brandschiffe +25 % Gesundheit und +25 % Angriffsschaden."
 
 #: simulation/data/technologies/warship_health.jsondescription
 msgid "The hypozomata brace the structure of a ship."
@@ -2372,11 +2373,11 @@ msgstr ""
 
 #: simulation/data/technologies/warship_health.jsongenericName
 msgid "Undergirding Cables"
-msgstr ""
+msgstr "Tragseile"
 
 #: simulation/data/technologies/warship_health.jsonrequirementsTooltip
 msgid "Unlocked in City Phase. Requires “Ship Cladding.”"
-msgstr ""
+msgstr "Freigeschaltet in der Großstadtphase. Benötigt „Schiffspanzerung“."
 
 #: simulation/data/technologies/warship_health.jsonspecificName.athen
 #: simulation/data/technologies/warship_health.jsonspecificName.cart
@@ -2386,7 +2387,7 @@ msgstr ""
 #: simulation/data/technologies/warship_health.jsonspecificName.sele
 #: simulation/data/technologies/warship_health.jsonspecificName.spart
 msgid "Hypozomata"
-msgstr ""
+msgstr "Hypozomata"
 
 #: simulation/data/technologies/warship_health.jsontooltip
 msgid "Arrow Ships and Ramming Ships +25% health."
@@ -2394,15 +2395,15 @@ msgstr ""
 
 #: simulation/data/technologies/warship_ramming_attack.jsondescription
 msgid "A bronze beak at the prow of the ship, used for ramming enemy ships."
-msgstr ""
+msgstr "Ein bronzener Schnabel am Bug des Schiffes, der benutzt wird, um feindliche Schiffe zu rammen."
 
 #: simulation/data/technologies/warship_ramming_attack.jsongenericName
 msgid "Bronze Ram"
-msgstr ""
+msgstr "Bronzener Rammbock"
 
 #: simulation/data/technologies/warship_ramming_attack.jsonrequirementsTooltip
 msgid "Unlocked in City Phase. Requires “Flanking Maneuvers.”"
-msgstr ""
+msgstr "Freigeschaltet in der Großstadtphase. Benötigt „Flankenmanöver“."
 
 #: simulation/data/technologies/warship_ramming_attack.jsonspecificName.athen
 #: simulation/data/technologies/warship_ramming_attack.jsonspecificName.cart
@@ -2412,22 +2413,22 @@ msgstr ""
 #: simulation/data/technologies/warship_ramming_attack.jsonspecificName.sele
 #: simulation/data/technologies/warship_ramming_attack.jsonspecificName.spart
 msgid "Embolon"
-msgstr ""
+msgstr "Rammsporn"
 
 #: simulation/data/technologies/warship_ramming_attack.jsontooltip
 msgid "Ramming Ships +30% attack damage."
-msgstr ""
+msgstr "Rammschiffe +30 % Angriffsschaden."
 
 #: simulation/data/technologies/warship_ramming_speed.jsondescription
 msgid ""
 "The flanking maneuver was attempted in order to position the ship for a "
 "successful ram. To pull this off in the chaos of a sea battle, a ship's crew"
 " needed to be highly trained and well-motivated."
-msgstr ""
+msgstr "Mit dem Flankenmanöver wurde versucht das Schiff für ein erfolgreiches rammen zu positionieren. Um dies in der Hitze des Gefechts tun zu können, benötigte es eine gut ausgebildete und hochmotivierte Mannschaft."
 
 #: simulation/data/technologies/warship_ramming_speed.jsongenericName
 msgid "Flanking Maneuvers"
-msgstr ""
+msgstr "Flankenmanöver"
 
 #: simulation/data/technologies/warship_ramming_speed.jsonspecificName.athen
 #: simulation/data/technologies/warship_ramming_speed.jsonspecificName.cart
@@ -2437,42 +2438,42 @@ msgstr ""
 #: simulation/data/technologies/warship_ramming_speed.jsonspecificName.sele
 #: simulation/data/technologies/warship_ramming_speed.jsonspecificName.spart
 msgid "Periplous"
-msgstr ""
+msgstr "Periplus"
 
 #: simulation/data/technologies/warship_ramming_speed.jsontooltip
 msgid "Ramming Ships +25% speed and acceleration. Unlocks “Bronze Rams.”"
-msgstr ""
+msgstr "Rammschiffe +25 % Geschwindigkeit und Beschleunigung. Schaltet “Bronzener Rammbock” frei."
 
 #: simulation/data/technologies/warship_ranged_attack.jsondescription
 msgid ""
 "Flaming munitions were very useful against wooden targets such as ships."
-msgstr ""
+msgstr "Brennende Munition ist sehr hilfreich gegen hölzerne Ziele, wie zum Beispiel Schiffe."
 
 #: simulation/data/technologies/warship_ranged_attack.jsongenericName
 msgid "Flaming Projectiles"
-msgstr ""
+msgstr "Flammende Projektile"
 
 #: simulation/data/technologies/warship_ranged_attack.jsonrequirementsTooltip
 msgid "Unlocked in City Phase. Requires “Naval Ballistae.”"
-msgstr ""
+msgstr "Freigeschaltet in der Großstadtphase. Benötigt „Schiffsballisten“."
 
 #: simulation/data/technologies/warship_ranged_attack.jsontooltip
 msgid "Ranged Warships +10% attack damage."
-msgstr ""
+msgstr "Fernkampfschiffe +10 % Angriffsschaden."
 
 #: simulation/data/technologies/warship_resistance.jsondescription
 msgid "Armor for the flanks of a warship."
-msgstr ""
+msgstr "Panzerung für die Seiten eines Kampfschiffes."
 
 #: simulation/data/technologies/warship_resistance.jsongenericName
 msgid "Ship Cladding"
-msgstr ""
+msgstr "Schiffspanzerung"
 
 #: simulation/data/technologies/warship_resistance.jsontooltip
 msgid ""
 "Warships +1 pierce and crush armor. Unlocks “Undergirding Cables” for some "
 "civilizations."
-msgstr ""
+msgstr "Kampfschiffe +1 Stich- und Schmetterwiderstand. Schaltet „Tragseile“ für einige Zivilisationen frei."
 
 #: simulation/data/technologies/warship_siege_attack.jsondescription
 msgid "Mounting stronger catapults onto ships helped give added firepower."
@@ -2480,7 +2481,7 @@ msgstr ""
 
 #: simulation/data/technologies/warship_siege_attack.jsongenericName
 msgid "Naval Ballistae"
-msgstr ""
+msgstr "Schiffsballisten"
 
 #: simulation/data/technologies/warship_siege_attack.jsontooltip
 msgid "Siege Ships +20% attack range and vision range."
@@ -2506,4 +2507,4 @@ msgstr "Peristasis"
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr "Aktiviert die „Glorreiche Expansion“-Aura: Bevölkerungslimit +20 % pro Wunder in deinem Besitz."
+msgstr "Aktiviert die „Glorreiche Expansion“-Aura: Bevölkerungslimit +20 % pro Wunder in deinem Besitz."

@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,8 +59,9 @@ struct ShaderModelDef : public CModelDefRPrivate
 
 
 ShaderModelDef::ShaderModelDef(const CModelDefPtr& mdef)
-	: m_IndexArray(false),
-	m_Array(Renderer::Backend::IBuffer::Type::VERTEX, false)
+	: m_IndexArray(Renderer::Backend::IBuffer::Usage::TRANSFER_DST),
+	m_Array(Renderer::Backend::IBuffer::Type::VERTEX,
+		Renderer::Backend::IBuffer::Usage::TRANSFER_DST)
 {
 	size_t numVertices = mdef->GetNumVertices();
 
@@ -127,7 +128,8 @@ struct ShaderModel : public CModelRData
 
 	ShaderModel(const void* key)
 		: CModelRData(key),
-		m_Array(Renderer::Backend::IBuffer::Type::VERTEX, true)
+		m_Array(Renderer::Backend::IBuffer::Type::VERTEX,
+			Renderer::Backend::IBuffer::Usage::DYNAMIC | Renderer::Backend::IBuffer::Usage::TRANSFER_DST)
 	{}
 };
 

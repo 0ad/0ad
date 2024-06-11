@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,18 +38,18 @@ namespace GL
 // static
 std::unique_ptr<CBuffer> CBuffer::Create(
 	CDevice* device, const char* name,
-	const Type type, const uint32_t size, const bool dynamic)
+	const Type type, const uint32_t size, const uint32_t usage)
 {
 	ENSURE(type == Type::VERTEX || type == Type::INDEX);
 	std::unique_ptr<CBuffer> buffer(new CBuffer());
 	buffer->m_Device = device;
 	buffer->m_Type = type;
 	buffer->m_Size = size;
-	buffer->m_Dynamic = dynamic;
+	buffer->m_Usage = usage;
 	glGenBuffersARB(1, &buffer->m_Handle);
 	const GLenum target = type == Type::INDEX ? GL_ELEMENT_ARRAY_BUFFER : GL_ARRAY_BUFFER;
 	glBindBufferARB(target, buffer->m_Handle);
-	glBufferDataARB(target, size, nullptr, dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
+	glBufferDataARB(target, size, nullptr, (usage & IBuffer::Usage::DYNAMIC) ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
 #if !CONFIG2_GLES
 	if (buffer->m_Device->GetCapabilities().debugLabels)
 	{

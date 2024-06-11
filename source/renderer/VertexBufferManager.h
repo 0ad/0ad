@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -93,7 +93,7 @@ public:
 	Handle AllocateChunk(
 		const size_t vertexSize, const size_t numberOfVertices,
 		const Renderer::Backend::IBuffer::Type type,
-		const bool dynamic, void* backingStore = nullptr, Group group = Group::DEFAULT);
+		const uint32_t usage, void* backingStore = nullptr, Group group = Group::DEFAULT);
 
 	/// Returns the given @p chunk to its owning buffer
 	void Release(CVertexBuffer::VBChunk* chunk);
