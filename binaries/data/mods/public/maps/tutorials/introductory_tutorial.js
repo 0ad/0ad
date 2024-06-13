@@ -1,6 +1,6 @@
 Trigger.prototype.tutorialGoals = [
 	{
-		"instructions": markForTranslation("Welcome to the 0 A.D. tutorial."),
+		"instructions": markForTranslation("Welcome to the 0\xa0A.D. tutorial."),
 	},
 	{
 		"instructions": markForTranslation("Left-click on a Female Citizen and then right-click on a berry bush to make that Female Citizen gather food. Female Citizens gather vegetables faster than other units."),
