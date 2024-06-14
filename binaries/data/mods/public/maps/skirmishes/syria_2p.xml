@@ -3,14 +3,14 @@
 <Scenario version="7">
 	<Environment>
 		<SkySet>cloudless</SkySet>
-		<SunColor r="0.956863" g="0.92549" b="0.807843"/>
+		<SunColor r="0.956863" g="0.921569" b="0.803922"/>
 		<SunElevation angle="0.510983"/>
 		<SunRotation angle="-1.15355"/>
 		<AmbientColor r="0.329412" g="0.419608" b="0.501961"/>
 		<Fog>
-			<FogFactor>0.00235352</FogFactor>
+			<FogFactor>0.00297852</FogFactor>
 			<FogThickness>0.00195313</FogThickness>
-			<FogColor r="0.909804" g="0.87451" b="0.776471"/>
+			<FogColor r="0.945098" g="0.901961" b="0.788235"/>
 		</Fog>
 		<Water>
 			<WaterBody>
@@ -25,14 +25,14 @@
 		</Water>
 		<Postproc>
 			<Brightness>0</Brightness>
-			<Contrast>1</Contrast>
+			<Contrast>1.04395</Contrast>
 			<Saturation>0.943359</Saturation>
-			<Bloom>0.2</Bloom>
+			<Bloom>0.140234</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="687.198" y="113.021" z="145.694"/>
+		<Position x="625.631" y="125.752" z="701.581"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -43,6 +43,7 @@
   "Keywords": [],
   "Name": "Coele-Syria (2)",
   "PlayerData": [
+    null,
     {},
     {}
   ],
@@ -9213,7 +9214,7 @@
 		<Entity uid="1628">
 			<Template>gaia/tree/dead</Template>
 			<Player>0</Player>
-			<Position x="277.66086" z="311.52454"/>
+			<Position x="279.8277" z="307.35727"/>
 			<Orientation y="0.5474"/>
 			<Actor seed="41636"/>
 		</Entity>
@@ -9745,7 +9746,7 @@
 		</Entity>
 		<Entity uid="1709">
 			<Template>actor|particle/blowing_sand.xml</Template>
-			<Position x="1021.97309" z="199.3311"/>
+			<Position x="1022.67115" z="198.92985"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="56154"/>
 		</Entity>
@@ -11215,7 +11216,7 @@
 		</Entity>
 		<Entity uid="1961">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
-			<Position x="1059.99659" z="212.84711"/>
+			<Position x="1035.31128" z="204.82685"/>
 			<Orientation y="-2.59179"/>
 			<Actor seed="55150"/>
 		</Entity>
@@ -13201,7 +13202,7 @@
 		</Entity>
 		<Entity uid="2293">
 			<Template>actor|props/flora/bush_dry_a.xml</Template>
-			<Position x="1065.83887" z="202.41935"/>
+			<Position x="1047.31556" z="202.56037"/>
 			<Orientation y="-0.28847"/>
 			<Actor seed="15936"/>
 		</Entity>
@@ -15307,7 +15308,7 @@
 		</Entity>
 		<Entity uid="2644">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="1073.42823" z="219.29084"/>
+			<Position x="1036.92835" z="225.56022"/>
 			<Orientation y="-2.35418"/>
 			<Actor seed="9156"/>
 		</Entity>
@@ -15415,7 +15416,7 @@
 		</Entity>
 		<Entity uid="2662">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="1082.4004" z="220.92884"/>
+			<Position x="1038.78638" z="210.64039"/>
 			<Orientation y="0.46721"/>
 			<Actor seed="43492"/>
 		</Entity>
@@ -15433,13 +15434,13 @@
 		</Entity>
 		<Entity uid="2665">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="1063.86841" z="192.63518"/>
+			<Position x="1044.73536" z="206.6078"/>
 			<Orientation y="2.49407"/>
 			<Actor seed="47934"/>
 		</Entity>
 		<Entity uid="2666">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
-			<Position x="1057.34571" z="224.83616"/>
+			<Position x="1031.1371" z="220.86951"/>
 			<Orientation y="1.00414"/>
 			<Actor seed="16286"/>
 		</Entity>
@@ -22462,7 +22463,7 @@
 		</Entity>
 		<Entity uid="3912">
 			<Template>actor|geology/stone_desert_med.xml</Template>
-			<Position x="1055.39087" z="214.82119"/>
+			<Position x="1049.4972" z="206.06635"/>
 			<Orientation y="1.96065"/>
 			<Actor seed="41430"/>
 		</Entity>
@@ -22949,42 +22950,42 @@
 		<Entity uid="3992">
 			<Template>gaia/treasure/wood</Template>
 			<Player>0</Player>
-			<Position x="294.67246" z="479.15561"/>
+			<Position x="259.96943" z="427.16602"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="62874"/>
 		</Entity>
 		<Entity uid="3993">
 			<Template>gaia/treasure/wood</Template>
 			<Player>0</Player>
-			<Position x="298.7469" z="483.64551"/>
+			<Position x="264.04386" z="431.65592"/>
 			<Orientation y="-2.23498"/>
 			<Actor seed="10748"/>
 		</Entity>
 		<Entity uid="3994">
 			<Template>gaia/treasure/wood</Template>
 			<Player>0</Player>
-			<Position x="299.58814" z="478.03934"/>
+			<Position x="264.88511" z="426.04975"/>
 			<Orientation y="3.2803"/>
 			<Actor seed="59586"/>
 		</Entity>
 		<Entity uid="3995">
 			<Template>gaia/treasure/wood</Template>
 			<Player>0</Player>
-			<Position x="1103.97645" z="504.41587"/>
+			<Position x="1143.81263" z="525.7558"/>
 			<Orientation y="-1.93084"/>
 			<Actor seed="18686"/>
 		</Entity>
 		<Entity uid="3996">
 			<Template>gaia/treasure/wood</Template>
 			<Player>0</Player>
-			<Position x="1100.6183" z="499.06156"/>
+			<Position x="1140.45447" z="520.4015"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="49540"/>
 		</Entity>
 		<Entity uid="3997">
 			<Template>gaia/treasure/wood</Template>
 			<Player>0</Player>
-			<Position x="1105.59803" z="499.63636"/>
+			<Position x="1145.94654" z="520.28998"/>
 			<Orientation y="-3.00495"/>
 			<Actor seed="49072"/>
 		</Entity>
@@ -23237,42 +23238,42 @@
 		<Entity uid="4047">
 			<Template>gaia/treasure/food_bin</Template>
 			<Player>0</Player>
-			<Position x="1002.08271" z="487.93702"/>
+			<Position x="961.89313" z="438.69141"/>
 			<Orientation y="0.5584"/>
 			<Actor seed="21258"/>
 		</Entity>
 		<Entity uid="4048">
 			<Template>gaia/treasure/food_bin</Template>
 			<Player>0</Player>
-			<Position x="1005.72632" z="486.01658"/>
+			<Position x="965.53675" z="436.77097"/>
 			<Orientation y="-2.99582"/>
 			<Actor seed="2056"/>
 		</Entity>
 		<Entity uid="4049">
 			<Template>gaia/treasure/food_bin</Template>
 			<Player>0</Player>
-			<Position x="1003.75623" z="483.51157"/>
+			<Position x="963.56666" z="434.26597"/>
 			<Orientation y="2.0044"/>
 			<Actor seed="42"/>
 		</Entity>
 		<Entity uid="4052">
 			<Template>gaia/treasure/food_bin</Template>
 			<Player>0</Player>
-			<Position x="355.15818" z="500.71097"/>
+			<Position x="420.07474" z="491.46146"/>
 			<Orientation y="-3.00751"/>
 			<Actor seed="3548"/>
 		</Entity>
 		<Entity uid="4054">
 			<Template>gaia/treasure/food_bin</Template>
 			<Player>0</Player>
-			<Position x="351.84919" z="505.58909"/>
+			<Position x="416.76575" z="496.33957"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="39580"/>
 		</Entity>
 		<Entity uid="4055">
 			<Template>gaia/treasure/food_bin</Template>
 			<Player>0</Player>
-			<Position x="354.4805" z="506.512"/>
+			<Position x="419.39707" z="497.26249"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="60088"/>
 		</Entity>
@@ -31469,6 +31470,76 @@
 			<Position x="947.55884" z="1095.3108"/>
 			<Orientation y="-2.17148"/>
 			<Actor seed="22662"/>
+		</Entity>
+		<Entity uid="5289">
+			<Template>structures/shrine_greek_02</Template>
+			<Player>0</Player>
+			<Position x="670.32618" z="857.68879"/>
+			<Orientation y="3.02958"/>
+			<Actor seed="27615"/>
+		</Entity>
+		<Entity uid="5291">
+			<Template>structures/shrine_greek_01</Template>
+			<Player>0</Player>
+			<Position x="689.90052" z="118.19254"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5356"/>
+		</Entity>
+		<Entity uid="5292">
+			<Template>structures/shrine_persian</Template>
+			<Player>0</Player>
+			<Position x="294.43342" z="312.03336"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="33034"/>
+		</Entity>
+		<Entity uid="5293">
+			<Template>structures/shrine_persian</Template>
+			<Player>0</Player>
+			<Position x="1043.60962" z="796.05561"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="33323"/>
+		</Entity>
+		<Entity uid="5294">
+			<Template>gaia/ruins/stone_structure_house</Template>
+			<Player>0</Player>
+			<Position x="88.86762" z="852.10553"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="22911"/>
+		</Entity>
+		<Entity uid="5295">
+			<Template>gaia/ruins/stone_structure_house</Template>
+			<Player>0</Player>
+			<Position x="102.26783" z="861.77601"/>
+			<Orientation y="2.7033"/>
+			<Actor seed="53506"/>
+		</Entity>
+		<Entity uid="5296">
+			<Template>gaia/ruins/stone_structure_house</Template>
+			<Player>0</Player>
+			<Position x="105.72272" z="841.7226"/>
+			<Orientation y="2.03397"/>
+			<Actor seed="42936"/>
+		</Entity>
+		<Entity uid="5297">
+			<Template>gaia/ruins/stone_structure_house</Template>
+			<Player>0</Player>
+			<Position x="1029.35291" z="219.70554"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3467"/>
+		</Entity>
+		<Entity uid="5298">
+			<Template>gaia/ruins/stone_structure_house</Template>
+			<Player>0</Player>
+			<Position x="1040.047" z="206.22297"/>
+			<Orientation y="-2.2818"/>
+			<Actor seed="17304"/>
+		</Entity>
+		<Entity uid="5299">
+			<Template>gaia/ruins/stone_structure_house</Template>
+			<Player>0</Player>
+			<Position x="1039.87171" z="236.34705"/>
+			<Orientation y="-0.81414"/>
+			<Actor seed="3407"/>
 		</Entity>
 	</Entities>
 	<Paths/>

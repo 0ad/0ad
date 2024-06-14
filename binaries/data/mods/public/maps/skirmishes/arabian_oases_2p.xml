@@ -32,19 +32,23 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="332.95" y="146.163" z="-46.4231"/>
+		<Position x="700.607" y="91.093" z="696.397"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "AISeed": 0,
+  "AllyView": false,
   "CircularMap": true,
   "Description": "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n\nThis represents the Arabian Desert, South of Mesopotamia.",
-  "Keywords": [],
+  "Keywords": [
+    "new"
+  ],
   "LockTeams": false,
   "Name": "Arabian Oases (2 players)",
   "PlayerData": [
+    "",
     {
       "Name": "Northeast Player",
       "StartingCamera": {

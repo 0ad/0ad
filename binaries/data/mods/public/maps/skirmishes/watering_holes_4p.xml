@@ -32,7 +32,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="819.102" y="256.918" z="137.085"/>
+		<Position x="452.805" y="312.606" z="707.716"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -7658,7 +7658,7 @@
 		</Entity>
 		<Entity uid="1176">
 			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
-			<Position x="540.50422" z="553.88044"/>
+			<Position x="541.54053" z="554.53193"/>
 			<Orientation y="0.58841"/>
 			<Actor seed="58892"/>
 		</Entity>
@@ -7682,7 +7682,7 @@
 		</Entity>
 		<Entity uid="1180">
 			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
-			<Position x="490.84955" z="502.1962"/>
+			<Position x="488.51694" z="497.98008"/>
 			<Orientation y="-2.29477"/>
 			<Actor seed="28946"/>
 		</Entity>
@@ -8004,7 +8004,7 @@
 		<Entity uid="1245">
 			<Template>gaia/tree/cretan_date_palm_patch</Template>
 			<Player>0</Player>
-			<Position x="152.72474" z="189.0702"/>
+			<Position x="152.46384" z="189.44916"/>
 			<Orientation y="-0.7416"/>
 			<Actor seed="5216"/>
 		</Entity>
@@ -12426,6 +12426,105 @@
 			<Position x="259.81379" z="727.72358"/>
 			<Orientation y="-2.0351"/>
 			<Actor seed="11611"/>
+		</Entity>
+		<Entity uid="1995">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="560.12482" z="486.51737"/>
+			<Orientation y="-3.8549"/>
+			<Actor seed="58892"/>
+		</Entity>
+		<Entity uid="1996">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="569.14985" z="537.05176"/>
+			<Orientation y="-7.237"/>
+			<Actor seed="17750"/>
+		</Entity>
+		<Entity uid="1997">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="534.76844" z="476.95105"/>
+			<Orientation y="-3.70896"/>
+			<Actor seed="43228"/>
+		</Entity>
+		<Entity uid="1998">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="506.03492" z="497.82905"/>
+			<Orientation y="-3.53353"/>
+			<Actor seed="51568"/>
+		</Entity>
+		<Entity uid="1999">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="491.64579" z="528.59107"/>
+			<Orientation y="-2.08709"/>
+			<Actor seed="42252"/>
+		</Entity>
+		<Entity uid="2000">
+			<Template>actor|props/flora/grass_savanna_field_tall.xml</Template>
+			<Position x="523.50165" z="548.12574"/>
+			<Orientation y="-6.73807"/>
+			<Actor seed="28946"/>
+		</Entity>
+		<Entity uid="2001">
+			<Template>gaia/treasure/stone_pile_red</Template>
+			<Player>0</Player>
+			<Position x="524.54133" z="515.96839"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="22230"/>
+		</Entity>
+		<Entity uid="2002">
+			<Template>gaia/treasure/metal_weapons_small</Template>
+			<Player>0</Player>
+			<Position x="72.47109" z="556.58558"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42329"/>
+		</Entity>
+		<Entity uid="2003">
+			<Template>gaia/treasure/metal_weapons_small</Template>
+			<Player>0</Player>
+			<Position x="75.89597" z="557.42811"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1012"/>
+		</Entity>
+		<Entity uid="2004">
+			<Template>gaia/treasure/metal_weapons_small</Template>
+			<Player>0</Player>
+			<Position x="966.81562" z="528.7353"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48982"/>
+		</Entity>
+		<Entity uid="2005">
+			<Template>gaia/treasure/metal_weapons_small</Template>
+			<Player>0</Player>
+			<Position x="972.61976" z="530.47785"/>
+			<Orientation y="2.28731"/>
+			<Actor seed="29978"/>
+		</Entity>
+		<Entity uid="2006">
+			<Template>gaia/treasure/metal_weapons_small</Template>
+			<Player>0</Player>
+			<Position x="493.17865" z="40.77845"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="10626"/>
+		</Entity>
+		<Entity uid="2007">
+			<Template>gaia/treasure/metal_weapons_small</Template>
+			<Player>0</Player>
+			<Position x="496.59375" z="39.0765"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="36278"/>
+		</Entity>
+		<Entity uid="2008">
+			<Template>gaia/treasure/metal_weapons_small</Template>
+			<Player>0</Player>
+			<Position x="512.38099" z="990.38105"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="23074"/>
+		</Entity>
+		<Entity uid="2009">
+			<Template>gaia/treasure/metal_weapons_small</Template>
+			<Player>0</Player>
+			<Position x="514.91944" z="996.16248"/>
+			<Orientation y="-3.16506"/>
+			<Actor seed="6968"/>
 		</Entity>
 	</Entities>
 	<Paths/>
