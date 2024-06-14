@@ -65,7 +65,7 @@ std::tuple<VkBufferUsageFlags, VkMemoryPropertyFlags, VmaMemoryUsage> MakeCreati
 	case IBuffer::Type::UPLOAD:
 		ENSURE(usage & IBuffer::Usage::TRANSFER_SRC);
 		return {
-			0,
+			commonFlags,
 			VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
 			VMA_MEMORY_USAGE_AUTO};
 	case IBuffer::Type::UNIFORM:
@@ -91,6 +91,8 @@ std::unique_ptr<CBuffer> CBuffer::Create(
 	buffer->m_Usage = usage;
 
 	const auto [usageFlags, memoryProperties, memoryUsage] = MakeCreationFlags(type, usage);
+	// According to the Vulkan spec usage must not be 0.
+	ENSURE(usageFlags != 0);
 
 	VkBufferCreateInfo bufferCreateInfo{};
 	bufferCreateInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
