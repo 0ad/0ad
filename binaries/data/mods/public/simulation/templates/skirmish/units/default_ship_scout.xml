@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship_warship_arrow">
+  <Identity>
+    <Civ>skirm</Civ>
+    <Icon>units/athen/ship_scout.png</Icon>
+  </Identity>
+  <SkirmishReplacer>
+    <general>units/{civ}/ship_scout</general>
+  </SkirmishReplacer>
+  <VisualActor>
+    <Actor>structures/athenians/pentekonter_scout.xml</Actor>
+  </VisualActor>
+</Entity>
