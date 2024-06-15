@@ -69,8 +69,8 @@ You may change hotkeys in [font="sans-bold-14"]Options > Hotkeys[font="sans-14"]
     • With hotkey.session.noconfirmation – Immediately delete currently selected unit(s)/structure(s), without asking for confirmation
   hotkey.selection.add – Modifier – add to selection (works with clicking and hotkeys, e.g. the idle hotkeys)
   hotkey.selection.remove – Modifier – remove from selection (works with clicking and hotkeys, e.g. the idle hotkeys)
-  hotkey.selection.offscreen – Modifier – add all units, including offscreen units, to selection.
-  hotkey.selection.cancel – Unselect all units, cancel building placement.
+  hotkey.selection.offscreen – Modifier – add all units, including offscreen units, to selection
+  hotkey.selection.cancel – Unselect all units, cancel building placement
   hotkey.selection.idlebuilder – Select idle builder
   hotkey.selection.idlewarrior – Select idle fighter
   hotkey.selection.idleworker – Select idle worker (including citizen-soldiers)
@@ -101,7 +101,7 @@ You may change hotkeys in [font="sans-bold-14"]Options > Hotkeys[font="sans-14"]
   hotkey.session.repair + Right Click on structure – Repair
   hotkey.session.patrol + Right Click – Patrol
   hotkey.session.queue + Right Click – Queue the move/build/gather/etc. order
-  hotkey.session.pushorderfront + Right Click – Modifier to push any order in front of the order queue.
+  hotkey.session.pushorderfront + Right Click – Modifier to push any order in front of the order queue
   hotkey.session.orderone + Right Click – Order one unit from the current selection to move/build/gather/etc. and unselect it. Used to quickly dispatch units with specific tasks
   hotkey.session.batchtrain + Left Click when training units – Add units in batches (the batch size is 5 by default and can be changed in the options)
   hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit to selection

@@ -1,6 +1,6 @@
 {
 	"genericName": "City Phase",
-	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase.\nThe 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\nIn mathematical terms: The training time of one batch gets divided by `batchSize^0.1`.",
+	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase.\nThe 'Times of War' bonus decreases the batch training time in Stables. Large batches will benefit more than small batches.\nIn mathematical terms: The training time of one batch gets divided by `batchSize^0.1`.",
 	"cost": {
 		"stone": 750,
 		"metal": 750
