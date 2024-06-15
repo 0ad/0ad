@@ -32,7 +32,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="317.536" y="103.327" z="306.518"/>
+		<Position x="913.161" y="180.762" z="460.659"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -3557,13 +3557,6 @@
 			<Position x="840.87934" z="404.60346"/>
 			<Orientation y="5.32528"/>
 			<Actor seed="51675"/>
-		</Entity>
-		<Entity uid="543">
-			<Template>structures/shrine_greek_01</Template>
-			<Player>0</Player>
-			<Position x="355.71131" z="315.13593"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="30951"/>
 		</Entity>
 		<Entity uid="544">
 			<Template>structures/shrine_greek_02</Template>
@@ -10564,21 +10557,21 @@
 		<Entity uid="1667">
 			<Template>gaia/tree/medit_fan_palm</Template>
 			<Player>0</Player>
-			<Position x="863.43873" z="858.81482"/>
+			<Position x="857.1424" z="849.56476"/>
 			<Orientation y="-2.4038"/>
 			<Actor seed="24946"/>
 		</Entity>
 		<Entity uid="1668">
 			<Template>gaia/tree/medit_fan_palm</Template>
 			<Player>0</Player>
-			<Position x="854.65644" z="852.27271"/>
+			<Position x="863.70838" z="884.58295"/>
 			<Orientation y="-2.46706"/>
 			<Actor seed="49302"/>
 		</Entity>
 		<Entity uid="1669">
 			<Template>gaia/tree/medit_fan_palm</Template>
 			<Player>0</Player>
-			<Position x="846.01081" z="847.61652"/>
+			<Position x="842.89722" z="844.30866"/>
 			<Orientation y="-2.08405"/>
 			<Actor seed="49302"/>
 		</Entity>
@@ -10599,15 +10592,15 @@
 		<Entity uid="1672">
 			<Template>gaia/tree/medit_fan_palm</Template>
 			<Player>0</Player>
-			<Position x="845.96497" z="835.43537"/>
+			<Position x="850.25452" z="834.65302"/>
 			<Orientation y="1.78373"/>
 			<Actor seed="10750"/>
 		</Entity>
 		<Entity uid="1673">
 			<Template>gaia/tree/medit_fan_palm</Template>
 			<Player>0</Player>
-			<Position x="854.58747" z="833.52228"/>
-			<Orientation y="1.60434"/>
+			<Position x="858.19507" z="832.48414"/>
+			<Orientation y="-3.38915"/>
 			<Actor seed="10750"/>
 		</Entity>
 		<Entity uid="1674">
@@ -10620,14 +10613,14 @@
 		<Entity uid="1675">
 			<Template>gaia/tree/medit_fan_palm</Template>
 			<Player>0</Player>
-			<Position x="873.56116" z="840.136"/>
+			<Position x="877.0506" z="838.2256"/>
 			<Orientation y="0.12575"/>
 			<Actor seed="10750"/>
 		</Entity>
 		<Entity uid="1676">
 			<Template>gaia/tree/medit_fan_palm</Template>
 			<Player>0</Player>
-			<Position x="862.38691" z="842.11414"/>
+			<Position x="867.28577" z="851.12885"/>
 			<Orientation y="-2.33541"/>
 			<Actor seed="10750"/>
 		</Entity>
@@ -11117,7 +11110,7 @@
 		<Entity uid="1770">
 			<Template>gaia/tree/bush_mediterranean</Template>
 			<Player>0</Player>
-			<Position x="877.76941" z="832.54456"/>
+			<Position x="876.32685" z="830.75391"/>
 			<Orientation y="-4.99866"/>
 			<Actor seed="5641"/>
 		</Entity>
@@ -12825,7 +12818,7 @@
 		<Entity uid="2014">
 			<Template>gaia/tree/bush_mediterranean_dry</Template>
 			<Player>0</Player>
-			<Position x="887.75611" z="875.95759"/>
+			<Position x="886.2657" z="874.97876"/>
 			<Orientation y="-9.92815"/>
 			<Actor seed="57466"/>
 		</Entity>
@@ -13119,15 +13112,15 @@
 		<Entity uid="2056">
 			<Template>units/pirates/ship_arrow</Template>
 			<Player>0</Player>
-			<Position x="276.67551" z="252.15296"/>
+			<Position x="288.08875" z="241.3819"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="22100"/>
 		</Entity>
 		<Entity uid="2057">
 			<Template>units/pirates/ship_scout</Template>
 			<Player>0</Player>
-			<Position x="319.9033" z="191.23731"/>
-			<Orientation y="0.12937"/>
+			<Position x="319.28318" z="209.8219"/>
+			<Orientation y="-2.85087"/>
 			<Actor seed="37010"/>
 		</Entity>
 		<Entity uid="2058">
@@ -13568,14 +13561,14 @@
 		<Entity uid="2131">
 			<Template>gaia/tree/date_palm</Template>
 			<Player>0</Player>
-			<Position x="861.58161" z="831.5229"/>
+			<Position x="862.54218" z="841.19819"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="65351"/>
 		</Entity>
 		<Entity uid="2132">
 			<Template>gaia/tree/date_palm</Template>
 			<Player>0</Player>
-			<Position x="854.8069" z="840.15552"/>
+			<Position x="851.56904" z="843.16834"/>
 			<Orientation y="-0.08204"/>
 			<Actor seed="38914"/>
 		</Entity>
@@ -13902,7 +13895,7 @@
 		<Entity uid="2259">
 			<Template>gaia/fish/tuna</Template>
 			<Player>0</Player>
-			<Position x="503.63578" z="653.75776"/>
+			<Position x="504.48264" z="651.76294"/>
 			<Orientation y="0.68941"/>
 			<Actor seed="42111"/>
 		</Entity>
@@ -15708,8 +15701,8 @@
 		<Entity uid="2563">
 			<Template>structures/spart/sentry_tower</Template>
 			<Player>0</Player>
-			<Position x="825.85676" z="835.56238"/>
-			<Orientation y="-2.65658"/>
+			<Position x="447.54941" z="421.59314"/>
+			<Orientation y="-2.46422"/>
 			<Actor seed="18731"/>
 		</Entity>
 		<Entity uid="2569">
@@ -16537,6 +16530,41 @@
 			<Position x="318.93522" z="380.21308"/>
 			<Orientation y="-0.96048"/>
 			<Actor seed="25749"/>
+		</Entity>
+		<Entity uid="2690">
+			<Template>skirmish/units/default_ship_scout</Template>
+			<Player>1</Player>
+			<Position x="493.064" z="690.92829"/>
+			<Orientation y="2.09241"/>
+			<Actor seed="17755"/>
+		</Entity>
+		<Entity uid="2691">
+			<Template>skirmish/units/default_ship_scout</Template>
+			<Player>2</Player>
+			<Position x="788.55207" z="579.88788"/>
+			<Orientation y="-1.21213"/>
+			<Actor seed="22294"/>
+		</Entity>
+		<Entity uid="2692">
+			<Template>units/pirates/ship_merchant</Template>
+			<Player>0</Player>
+			<Position x="176.80405" z="263.49628"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="65113"/>
+		</Entity>
+		<Entity uid="2693">
+			<Template>units/pirates/ship_merchant</Template>
+			<Player>0</Player>
+			<Position x="1122.08924" z="987.38715"/>
+			<Orientation y="-0.74126"/>
+			<Actor seed="2045"/>
+		</Entity>
+		<Entity uid="2696">
+			<Template>structures/athen/civil_centre</Template>
+			<Player>0</Player>
+			<Position x="843.82154" z="873.10163"/>
+			<Orientation y="-3.24114"/>
+			<Actor seed="48411"/>
 		</Entity>
 	</Entities>
 	<Paths/>
