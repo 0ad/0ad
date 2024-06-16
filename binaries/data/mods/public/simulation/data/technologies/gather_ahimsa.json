@@ -13,7 +13,7 @@
 	},
 	"icon": "cornucopia.png",
 	"researchTime": 40,
-	"tooltip": "Units +100% fruit gather rate, but -80% meat and fish gather.",
+	"tooltip": "Units +100% fruit gather rate, but −80% meat and fish gather.",
 	"modifications": [
 		{ "value": "ResourceGatherer/Rates/food.fruit", "multiply": 2.0 },
 		{ "value": "ResourceGatherer/Rates/food.fish", "multiply": 0.2 },
