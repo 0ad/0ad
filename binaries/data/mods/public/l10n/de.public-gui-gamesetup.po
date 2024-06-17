@@ -328,7 +328,7 @@ msgstr "Weltbevölkerung"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr "Falls aktiviert, wird das Bevölkerungslimit gleichmäßig auf alle lebenden Spieler verteilt."
+msgstr "Falls aktiviert, wird das Bevölkerungslimit gleichmäßig auf alle lebenden Spieler aufgeteilt."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
@@ -667,11 +667,11 @@ msgstr "Gib an, dass du nicht bereit bist, zu spielen."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:29
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr "Setze alle ausgewählten Zivilisationen auf Standardwert zurück (Zufällig)."
+msgstr "Setze alle ausgewählten Zivilisationen auf den Standardwert („Zufällig“) zurück."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:29
 msgid "Reset all teams to the default."
-msgstr "Setze alle Teams zur Standardeinstellung zurück."
+msgstr "Setze alle Teams auf ihren Standardwert zurück."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:65
 msgid "Start Game!"
@@ -869,7 +869,7 @@ msgstr "Spielname bereits in Verwendung."
 #: gui/gamesetup_mp/gamesetup_mp.js:376
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr "Kann Spiel nicht erstellen: %(message)s."
+msgstr "Kann Spiel nicht hosten: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:377 gui/gamesetup_mp/gamesetup_mp.js:406
 #: gui/gamesetup_mp/gamesetup_mp.js:436 gui/gamesetup_mp/gamesetup_mp.js:451
