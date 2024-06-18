@@ -385,7 +385,7 @@ msgstr "%(_player_)s, ich würde gerne einen Neutralitätspakt zwischen unseren 
 msgid ""
 "%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
 "pact. I will become neutral with you if you do the same."
-msgstr "%(_player_)s, es würde uns beiden nützen, wenn wir uns auf einen Neutralitätspakt einigen könnten. Ich werde mich dir gegenüber neutral verhalten, wenn du das Gleiche tust."
+msgstr "%(_player_)s, es würde uns beiden nutzen, wenn wir uns auf einen Neutralitätspakt einigen könnten. Ich werde mich dir gegenüber neutral verhalten, wenn du das Gleiche tust."
 
 #: simulation/ai/petra/chatHelper.js:133
 #, javascript-format
@@ -419,7 +419,7 @@ msgstr "Ich brauche deine Hilfe. Bitte lass meine Armeen nicht im Stich!"
 msgid ""
 "My empire regained its old strength, now it is time to seek revenge "
 "together!"
-msgstr "Mein Reich erlangt die alte Stärke. Es ist an der Zeit die gemeinsame Rache zu suchen."
+msgstr "Mein Reich erlangt die alte Stärke. Es ist an der Zeit gemeinsam Rache zu suchen."
 
 #: simulation/ai/petra/chatHelper.js:147
 msgid ""
@@ -536,7 +536,7 @@ msgid ""
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
 msgstr[0] "%(name)s ist zu weit entfernt von einem %(category)s; muss höchstens in %(distance)s Meter Entfernung sein"
-msgstr[1] "%(name)s ist zu weit entfernt von einem %(category)s; muss höchstens in %(distance)s Metern Entfernung sein"
+msgstr[1] "%(name)s ist zu weit entfernt von einem %(category)s; darf höchstens in %(distance)s Metern Entfernung sein"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
@@ -712,7 +712,7 @@ msgstr "Klein"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "Kleine Karten eignen sich für 1vs1-Spiele, da Spieler den Gegner schnell erreichen können und trotzdem etwas Platz zum expandieren haben."
+msgstr "Kleine Karten eignen sich für für Duelle zwischen zwei Spielern, da die Spieler den Gegner schnell erreichen können und trotzdem etwas Platz zum expandieren haben."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
@@ -722,7 +722,7 @@ msgstr "Normal"
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
-msgstr "Diese Kartengröße bietet viel Platz für zwei Spieler, aber es passen auch acht Spieler."
+msgstr "Diese Kartengröße bietet viel Platz für zwei Spieler, aber es passen auch acht Spieler darauf."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""
@@ -749,7 +749,7 @@ msgstr "Sehr Groß"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr "Sehr große Karten werden nicht empfohlen, da man sehr lange braucht, um den Feind zu erreichen und die Spielleistung reduziert sein kann."
+msgstr "Sehr große Karten werden nicht empfohlen, da es sehr lange dauert, um den Feind zu erreichen und sich die Kartengröße negativ auf die Spielleistung auswirken kann."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
@@ -885,7 +885,7 @@ msgstr "Eroberung"
 
 #: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Description
 msgid "Defeat opponents by destroying all their fully built civic centers."
-msgstr "Besiege den Gegner, indem du all seine Verwaltungssitze zerstörst."
+msgstr "Besiege Gegner, indem du all ihre Verwaltungssitze zerstörst."
 
 #: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Title
 msgid "Conquest Civic Centers"
@@ -962,7 +962,7 @@ msgstr "Kann nicht aufgerüstet werden, weil Abstandsanforderungen nicht erfüll
 #: simulation/helpers/Commands.js:803
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr "Angriff gegen %(_player_)s erbeten."
+msgstr "Angriff auf %(_player_)s erbeten."
 
 #: simulation/helpers/Commands.js:842
 msgid "There are no bribable units"

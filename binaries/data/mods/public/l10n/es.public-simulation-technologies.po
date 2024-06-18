@@ -298,7 +298,7 @@ msgstr "Soldados, máquinas de asedio y barcos (Daño +25%)."
 msgid ""
 "Decreases training time of infantry if they are trained in batches or companies. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Disminuye el tiempo de adiestramiento de la infantería cuando esta se recluta en grupos o compañías. Cuanto más grande es el grupo, menor es el tiempo por unidad.\nEn términos matemáticos, el tiempo de adiestramiento de un grupo, es el resultado de dividir el tamaño del grupo por 'tamaño^0.1'."
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -1403,7 +1403,7 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase.\n"
 "The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Avanza de una bulliciosa ciudad a una verdadera metrópolis, llena de las maravillas de la tecnología moderna. Esta es la fase urbana persa.\nLa bonificación 'Tiempos de Guerra' reduce el tiempo de adiestramiento de los establos cuando se reclutan grandes compañías.\nEn términos matemáticos, el tiempo de adiestramiento de un grupo, es el resultado de dividir el tamaño del grupo por 'tamaño^0.1'."
 
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
@@ -1475,7 +1475,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. This is the Persian town phase.\n"
 "The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Avanza de un pequeño asentamiento a una bulliciosa población, lista para expandirse rápidamente. Esta es la fase intermedia persa.\nLa bonificación 'Tiempos de Guerra' reduce el tiempo de adiestramiento de los establos cuando se reclutan grandes compañías.\nEn términos matemáticos, el tiempo de adiestramiento de un grupo, es el resultado de dividir el tamaño del grupo por 'tamaño^0.1'."
 
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
@@ -2013,7 +2013,7 @@ msgstr "Haz que tus tropas sean un 50% más difíciles de sobornar."
 msgid ""
 "Decreases training time of cavalry if they are trained in batches or squadrons. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Disminuye el tiempo de adiestramiento de la caballería cuando esta se recluta en grupos o compañías. Cuanto más grande es el grupo, menor es el tiempo por unidad.\nEn términos matemáticos, el tiempo de adiestramiento de un grupo, es el resultado de dividir el tamaño del grupo por 'tamaño^0.1'."
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Decrease batch training time of units trained in Stables."
