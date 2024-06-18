@@ -234,279 +234,294 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 	}
 };
 
-setBiome(g_MapSettings.Biome ?? "alpine/winter");
+{
+	setBiome(g_MapSettings.Biome ?? "alpine/winter");
 
-const heightLand = 3;
-const heightOffsetBump = 2;
-const snowlineHeight = 29;
-const heightMountain = 30;
+	const heightLand = 3;
+	const heightOffsetBump = 2;
+	const snowlineHeight = 29;
+	const heightMountain = 30;
 
-const pForest = [g_Terrains.forestFloor + TERRAIN_SEPARATOR + g_Gaia.tree1, g_Terrains.forestFloor];
+	const pForest = [g_Terrains.forestFloor + TERRAIN_SEPARATOR + g_Gaia.tree1, g_Terrains.forestFloor];
 
-const g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
+	globalThis.g_Map = new RandomMap(heightLand, g_Terrains.mainTerrain);
 
-const numPlayers = getNumPlayers();
-const mapCenter = g_Map.getCenter();
+	const numPlayers = getNumPlayers();
+	const mapCenter = g_Map.getCenter();
 
-const clPlayer = g_Map.createTileClass();
-const clHill = g_Map.createTileClass();
-const clForest = g_Map.createTileClass();
-const clDirt = g_Map.createTileClass();
-const clRock = g_Map.createTileClass();
-const clMetal = g_Map.createTileClass();
-const clFood = g_Map.createTileClass();
-const clBaseResource = g_Map.createTileClass();
+	const clPlayer = g_Map.createTileClass();
+	const clHill = g_Map.createTileClass();
+	const clForest = g_Map.createTileClass();
+	const clDirt = g_Map.createTileClass();
+	const clRock = g_Map.createTileClass();
+	const clMetal = g_Map.createTileClass();
+	const clFood = g_Map.createTileClass();
+	const clBaseResource = g_Map.createTileClass();
 
-const [playerIDs, playerPosition, playerAngle, startAngle] = playerPlacementCircle(fractionToTiles(0.35));
+	const [playerIDs, playerPosition, playerAngle, startAngle] =
+		playerPlacementCircle(fractionToTiles(0.35));
 
-placePlayerBases({
-	"PlayerPlacement": [playerIDs, playerPosition],
-	"PlayerTileClass": clPlayer,
-	"BaseResourceClass": clBaseResource,
-	"CityPatch": {
-		"outerTerrain": g_Terrains.roadWild,
-		"innerTerrain": g_Terrains.road
-	},
-	"StartingAnimal": {
-	},
-	"Berries": {
-		"template": g_Gaia.fruitBush
-	},
-	"Mines": {
-		"types": [
-			{ "template": g_Gaia.metalLarge },
-			{ "template": g_Gaia.stoneLarge }
+	placePlayerBases({
+		"PlayerPlacement": [playerIDs, playerPosition],
+		"PlayerTileClass": clPlayer,
+		"BaseResourceClass": clBaseResource,
+		"CityPatch": {
+			"outerTerrain": g_Terrains.roadWild,
+			"innerTerrain": g_Terrains.road
+		},
+		"StartingAnimal": {
+		},
+		"Berries": {
+			"template": g_Gaia.fruitBush
+		},
+		"Mines": {
+			"types": [
+				{ "template": g_Gaia.metalLarge },
+				{ "template": g_Gaia.stoneLarge }
+			]
+		},
+		"Trees": {
+			"template": g_Gaia.tree1
+		},
+		"Decoratives": {
+			"template": g_Decoratives.grassShort
+		}
+	});
+	Engine.SetProgress(20);
+
+	new MountainRangeBuilder({
+		"numPlayers": numPlayers,
+		"pathplacer": new PathPlacer(
+			undefined,
+			undefined,
+			undefined,
+			0.4,
+			scaleByMapSize(3, 12),
+			0.1,
+			0.1,
+			0.1),
+		"painters": [
+			new LayeredPainter([g_Terrains.cliff, g_Terrains.mainTerrain], [3]),
+			new SmoothElevationPainter(ELEVATION_SET, heightMountain, 2),
+			new TileClassPainter(clHill)
+		],
+		"constraint": avoidClasses(clPlayer, 20),
+		"passageWidth": scaleByMapSize(10, 15),
+		"mountainWidth": scaleByMapSize(9, 15),
+		"maxDegree": 3,
+		"points": [
+			// Four points near each player
+			...distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers,
+				fractionToTiles(0.49), mapCenter)[0],
+			...distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers * 1.4,
+				fractionToTiles(0.34), mapCenter)[0],
+			...distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers * 0.6,
+				fractionToTiles(0.34), mapCenter)[0],
+			...distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers,
+				fractionToTiles(0.18), mapCenter)[0],
+			mapCenter
 		]
-	},
-	"Trees": {
-		"template": g_Gaia.tree1
-	},
-	"Decoratives": {
-		"template": g_Decoratives.grassShort
-	}
-});
-Engine.SetProgress(20);
+	}).CreateMountainRanges(g_Map);
 
-new MountainRangeBuilder({
-	"numPlayers": numPlayers,
-	"pathplacer": new PathPlacer(undefined, undefined, undefined, 0.4, scaleByMapSize(3, 12), 0.1, 0.1, 0.1),
-	"painters":[
-		new LayeredPainter([g_Terrains.cliff, g_Terrains.mainTerrain], [3]),
-		new SmoothElevationPainter(ELEVATION_SET, heightMountain, 2),
-		new TileClassPainter(clHill)
-	],
-	"constraint": avoidClasses(clPlayer, 20),
-	"passageWidth": scaleByMapSize(10, 15),
-	"mountainWidth": scaleByMapSize(9, 15),
-	"maxDegree": 3,
-	"points": [
-		// Four points near each player
-		...distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.49), mapCenter)[0],
-		...distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers * 1.4, fractionToTiles(0.34), mapCenter)[0],
-		...distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers * 0.6, fractionToTiles(0.34), mapCenter)[0],
-		...distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers, fractionToTiles(0.18), mapCenter)[0],
-		mapCenter
-	]
-}).CreateMountainRanges(g_Map);
+	Engine.SetProgress(35);
 
-Engine.SetProgress(35);
+	paintTerrainBasedOnHeight(heightLand + 0.1, snowlineHeight, 0, g_Terrains.cliff);
+	paintTerrainBasedOnHeight(snowlineHeight, heightMountain, 3, g_Terrains.snowLimited);
 
-paintTerrainBasedOnHeight(heightLand + 0.1, snowlineHeight, 0, g_Terrains.cliff);
-paintTerrainBasedOnHeight(snowlineHeight, heightMountain, 3, g_Terrains.snowLimited);
-
-g_Map.log("Creating bumps");
-createAreas(
-	new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
-	new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
-	avoidClasses(clPlayer, 10),
-	scaleByMapSize(100, 200));
-Engine.SetProgress(40);
-
-g_Map.log("Creating hills");
-createAreas(
-	new ClumpPlacer(scaleByMapSize(40, 150), 0.2, 0.1, Infinity),
-	[
-		new LayeredPainter([g_Terrains.cliff, g_Terrains.snowLimited], [2]),
-		new SmoothElevationPainter(ELEVATION_SET, heightMountain, 2),
-		new TileClassPainter(clHill)
-	],
-	avoidClasses(clPlayer, 20, clHill, 14),
-	scaleByMapSize(10, 80) * numPlayers
-);
-Engine.SetProgress(50);
-
-g_Map.log("Creating forests");
-const [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
-const types = [
-	[[g_Terrains.forestFloor, g_Terrains.mainTerrain, pForest], [g_Terrains.forestFloor, pForest]]
-];
-
-const size = forestTrees / (scaleByMapSize(2, 8) * numPlayers);
-
-const num = Math.floor(size / types.length);
-for (const type of types)
+	g_Map.log("Creating bumps");
 	createAreas(
-		new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
+		new ClumpPlacer(scaleByMapSize(20, 50), 0.3, 0.06, Infinity),
+		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
+		avoidClasses(clPlayer, 10),
+		scaleByMapSize(100, 200));
+	Engine.SetProgress(40);
+
+	g_Map.log("Creating hills");
+	createAreas(
+		new ClumpPlacer(scaleByMapSize(40, 150), 0.2, 0.1, Infinity),
 		[
-			new LayeredPainter(type, [2]),
-			new TileClassPainter(clForest)
+			new LayeredPainter([g_Terrains.cliff, g_Terrains.snowLimited], [2]),
+			new SmoothElevationPainter(ELEVATION_SET, heightMountain, 2),
+			new TileClassPainter(clHill)
 		],
-		avoidClasses(clPlayer, 12, clForest, 10, clHill, 0),
-		num);
-Engine.SetProgress(60);
+		avoidClasses(clPlayer, 20, clHill, 14),
+		scaleByMapSize(10, 80) * numPlayers
+	);
+	Engine.SetProgress(50);
 
-g_Map.log("Creating dirt patches");
-for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
-	createAreas(
-		new ClumpPlacer(size, 0.3, 0.06, 0.5),
+	g_Map.log("Creating forests");
+	const [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
+	const types = [
+		[[g_Terrains.forestFloor, g_Terrains.mainTerrain, pForest], [g_Terrains.forestFloor, pForest]]
+	];
+
+	const size = forestTrees / (scaleByMapSize(2, 8) * numPlayers);
+
+	const num = Math.floor(size / types.length);
+	for (const type of types)
+		createAreas(
+			new ClumpPlacer(forestTrees / num, 0.1, 0.1, Infinity),
+			[
+				new LayeredPainter(type, [2]),
+				new TileClassPainter(clForest)
+			],
+			avoidClasses(clPlayer, 12, clForest, 10, clHill, 0),
+			num);
+	Engine.SetProgress(60);
+
+	g_Map.log("Creating dirt patches");
+	for (const patchSize of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
+		createAreas(
+			new ClumpPlacer(patchSize, 0.3, 0.06, 0.5),
+			[
+				new LayeredPainter(
+					[
+						[g_Terrains.dirt, g_Terrains.halfSnow],
+						[g_Terrains.halfSnow, g_Terrains.snowLimited]
+					],
+					[2]),
+				new TileClassPainter(clDirt)
+			],
+			avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
+			scaleByMapSize(15, 45));
+
+	g_Map.log("Creating grass patches");
+	for (const patchSize of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
+		createAreas(
+			new ClumpPlacer(patchSize, 0.3, 0.06, 0.5),
+			new TerrainPainter(g_Terrains.tier2Terrain),
+			avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
+			scaleByMapSize(15, 45));
+
+	Engine.SetProgress(65);
+
+	g_Map.log("Creating stone mines");
+	let group = new SimpleGroup(
 		[
-			new LayeredPainter(
-				[
-					[g_Terrains.dirt, g_Terrains.halfSnow],
-					[g_Terrains.halfSnow, g_Terrains.snowLimited]
-				],
-				[2]),
-			new TileClassPainter(clDirt)
+			new SimpleObject(g_Gaia.stoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1),
+			new SimpleObject(g_Gaia.stoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)
 		],
-		avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
-		scaleByMapSize(15, 45));
+		true,
+		clRock);
+	createObjectGroupsDeprecated(group, 0,
+		avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
+		scaleByMapSize(4, 16), 100
+	);
 
-g_Map.log("Creating grass patches");
-for (const size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
-	createAreas(
-		new ClumpPlacer(size, 0.3, 0.06, 0.5),
-		new TerrainPainter(g_Terrains.tier2Terrain),
-		avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
-		scaleByMapSize(15, 45));
+	g_Map.log("Creating small stone mines");
+	group = new SimpleGroup([new SimpleObject(g_Gaia.stoneSmall, 2, 5, 1, 3)], true, clRock);
+	createObjectGroupsDeprecated(group, 0,
+		avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
+		scaleByMapSize(4, 16), 100
+	);
 
-Engine.SetProgress(65);
+	g_Map.log("Creating metal mines");
+	group = new SimpleGroup([new SimpleObject(g_Gaia.metalLarge, 1, 1, 0, 4)], true, clMetal);
+	createObjectGroupsDeprecated(group, 0,
+		avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
+		scaleByMapSize(4, 16), 100
+	);
+	Engine.SetProgress(70);
 
-g_Map.log("Creating stone mines");
-let group = new SimpleGroup(
-	[
-		new SimpleObject(g_Gaia.stoneSmall, 0, 2, 0, 4, 0, 2 * Math.PI, 1),
-		new SimpleObject(g_Gaia.stoneLarge, 1, 1, 0, 4, 0, 2 * Math.PI, 4)
-	],
-	true,
-	clRock);
-createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
-	scaleByMapSize(4,16), 100
-);
+	g_Map.log("Creating small decorative rocks");
+	group = new SimpleGroup(
+		[new SimpleObject(g_Decoratives.rockMedium, 1, 3, 0, 1)],
+		true
+	);
+	createObjectGroupsDeprecated(
+		group, 0,
+		avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
+		scaleByMapSize(16, 262), 50
+	);
 
-g_Map.log("Creating small stone mines");
-group = new SimpleGroup([new SimpleObject(g_Gaia.stoneSmall, 2, 5, 1, 3)], true, clRock);
-createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clForest, 1, clPlayer, 20, clRock, 10, clHill, 1),
-	scaleByMapSize(4,16), 100
-);
+	g_Map.log("Creating large decorative rocks");
+	group = new SimpleGroup(
+		[
+			new SimpleObject(g_Decoratives.rockLarge, 1, 2, 0, 1),
+			new SimpleObject(g_Decoratives.rockMedium, 1, 3, 0, 2)
+		],
+		true
+	);
+	createObjectGroupsDeprecated(
+		group, 0,
+		avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
+		scaleByMapSize(8, 131), 50
+	);
+	Engine.SetProgress(75);
 
-g_Map.log("Creating metal mines");
-group = new SimpleGroup([new SimpleObject(g_Gaia.metalLarge, 1, 1, 0, 4)], true, clMetal);
-createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
-	scaleByMapSize(4,16), 100
-);
-Engine.SetProgress(70);
+	g_Map.log("Creating deer");
+	group = new SimpleGroup(
+		[new SimpleObject(g_Gaia.mainHuntableAnimal, 5, 7, 0, 4)],
+		true, clFood
+	);
+	createObjectGroupsDeprecated(group, 0,
+		avoidClasses(clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
+		3 * numPlayers, 50
+	);
 
-g_Map.log("Creating small decorative rocks");
-group = new SimpleGroup(
-	[new SimpleObject(g_Decoratives.rockMedium, 1, 3, 0, 1)],
-	true
-);
-createObjectGroupsDeprecated(
-	group, 0,
-	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
-	scaleByMapSize(16, 262), 50
-);
+	g_Map.log("Creating berry bush");
+	group = new SimpleGroup(
+		[new SimpleObject(g_Gaia.fruitBush, 5, 7, 0, 4)],
+		true, clFood
+	);
+	createObjectGroupsDeprecated(group, 0,
+		avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
+		randIntInclusive(1, 4) * numPlayers + 2, 50
+	);
 
-g_Map.log("Creating large decorative rocks");
-group = new SimpleGroup(
-	[
-		new SimpleObject(g_Decoratives.rockLarge, 1, 2, 0, 1),
-		new SimpleObject(g_Decoratives.rockMedium, 1, 3, 0, 2)
-	],
-	true
-);
-createObjectGroupsDeprecated(
-	group, 0,
-	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
-	scaleByMapSize(8, 131), 50
-);
-Engine.SetProgress(75);
+	g_Map.log("Creating rabbit");
+	group = new SimpleGroup(
+		[new SimpleObject(g_Gaia.secondaryHuntableAnimal, 2, 3, 0, 2)],
+		true, clFood
+	);
+	createObjectGroupsDeprecated(group, 0,
+		avoidClasses(clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
+		3 * numPlayers, 50
+	);
+	Engine.SetProgress(85);
 
-g_Map.log("Creating deer");
-group = new SimpleGroup(
-	[new SimpleObject(g_Gaia.mainHuntableAnimal, 5, 7, 0, 4)],
-	true, clFood
-);
-createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
-	3 * numPlayers, 50
-);
+	createStragglerTrees(
+		[g_Gaia.tree1],
+		avoidClasses(clForest, 1, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6),
+		clForest,
+		stragglerTrees);
 
-g_Map.log("Creating berry bush");
-group = new SimpleGroup(
-	[new SimpleObject(g_Gaia.fruitBush, 5, 7, 0, 4)],
-	true, clFood
-);
-createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
-	randIntInclusive(1, 4) * numPlayers + 2, 50
-);
+	g_Map.log("Creating small grass tufts");
+	const planetm = 1;
 
-g_Map.log("Creating rabbit");
-group = new SimpleGroup(
-	[new SimpleObject(g_Gaia.secondaryHuntableAnimal, 2, 3, 0, 2)],
-	true, clFood
-);
-createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
-	3 * numPlayers, 50
-);
-Engine.SetProgress(85);
+	group = new SimpleGroup(
+		[new SimpleObject(g_Decoratives.grassShort, 1, 2, 0, 1, -Math.PI / 8, Math.PI / 8)]
+	);
+	createObjectGroupsDeprecated(group, 0,
+		avoidClasses(clHill, 2, clPlayer, 2, clDirt, 0),
+		planetm * scaleByMapSize(13, 200)
+	);
+	Engine.SetProgress(90);
 
-createStragglerTrees(
-	[g_Gaia.tree1],
-	avoidClasses(clForest, 1, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6),
-	clForest,
-	stragglerTrees);
+	g_Map.log("Creating large grass tufts");
+	group = new SimpleGroup([
+		new SimpleObject(g_Decoratives.grass, 2, 4, 0, 1.8, -Math.PI / 8, Math.PI / 8),
+		new SimpleObject(g_Decoratives.grassShort, 3, 6, 1.2, 2.5, -Math.PI / 8, Math.PI / 8)]);
+	createObjectGroupsDeprecated(group, 0,
+		avoidClasses(clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0),
+		planetm * scaleByMapSize(13, 200)
+	);
+	Engine.SetProgress(95);
 
-g_Map.log("Creating small grass tufts");
-const planetm = 1;
+	g_Map.log("Creating bushes");
+	group = new SimpleGroup([
+		new SimpleObject(g_Decoratives.bushMedium, 1, 2, 0, 2),
+		new SimpleObject(g_Decoratives.bushSmall, 2, 4, 0, 2)]);
+	createObjectGroupsDeprecated(group, 0,
+		avoidClasses(clHill, 1, clPlayer, 1, clDirt, 1),
+		planetm * scaleByMapSize(13, 200), 50
+	);
 
-group = new SimpleGroup(
-	[new SimpleObject(g_Decoratives.grassShort, 1, 2, 0, 1, -Math.PI / 8, Math.PI / 8)]
-);
-createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clHill, 2, clPlayer, 2, clDirt, 0),
-	planetm * scaleByMapSize(13, 200)
-);
-Engine.SetProgress(90);
+	placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
-g_Map.log("Creating large grass tufts");
-group = new SimpleGroup([
-	new SimpleObject(g_Decoratives.grass, 2, 4, 0, 1.8, -Math.PI / 8, Math.PI / 8),
-	new SimpleObject(g_Decoratives.grassShort, 3, 6, 1.2, 2.5, -Math.PI / 8, Math.PI / 8)]);
-createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0),
-	planetm * scaleByMapSize(13, 200)
-);
-Engine.SetProgress(95);
+	setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
+	setSunRotation(randomAngle());
+	setSunElevation(Math.PI * randFloat(1/5, 1/3));
 
-g_Map.log("Creating bushes");
-group = new SimpleGroup([
-	new SimpleObject(g_Decoratives.bushMedium, 1, 2, 0, 2),
-	new SimpleObject(g_Decoratives.bushSmall, 2, 4, 0, 2)]);
-createObjectGroupsDeprecated(group, 0,
-	avoidClasses(clHill, 1, clPlayer, 1, clDirt, 1),
-	planetm * scaleByMapSize(13, 200), 50
-);
-
-placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
-
-setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
-setSunRotation(randomAngle());
-setSunElevation(Math.PI * randFloat(1/5, 1/3));
-
-g_Map.ExportMap();
+	g_Map.ExportMap();
+}
