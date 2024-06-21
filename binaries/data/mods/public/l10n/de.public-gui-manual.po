@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2024-06-17 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Daniel Roschka, 2024\n"
 "Language-Team: German (http://app.transifex.com/wildfire-games/0ad/language/de/)\n"
@@ -57,7 +57,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “High-"
 "quality water effects” and “Shadows” options."
-msgstr "Du kannst mit Alt + Eingabe zwischen Vollbild- und Fenstermodus wechseln. Im Fenstermodus kannst du die Größe des Fensters ändern. Wenn das Spiel zu langsam läuft, kannst du ein paar Einstellungen im Konfigurationsmenü ändern: Versuche zuerst, die Optionen „Hochwertige Wassereffekte“ und „Schatten“ zu deaktivieren."
+msgstr "Mit Alt + Eingabe kannst du zwischen Vollbild- und Fenstermodus wechseln. Im Fenstermodus kannst du die Größe des Fensters ändern. Wenn das Spiel zu langsam läuft, kannst du ein paar Einstellungen im Konfigurationsmenü ändern: Versuche zuerst, die Optionen „Hochwertige Wassereffekte“ und „Schatten“ zu deaktivieren."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -69,7 +69,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr "Die Steuerung und das Gameplay sollten Spielern von traditionellen Echtzeitstrategie(RTS)-Spielen vertraut sein. Es fehlen noch viele Funktionen und manche Werte sind schlecht ausbalanciert – bis es gut läuft, musst du wahrscheinlich auf eine Beta-Version warten."
+msgstr "Die Steuerung und der Spielablauf sollten Spielern von traditionellen Echtzeitstrategiespielen vertraut sein. Es fehlen aktuell noch viele Funktionen und manche Werte sind schlecht ausbalanciert – bis es gut läuft, musst du wahrscheinlich auf eine Beta-Version warten."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
@@ -121,7 +121,7 @@ msgstr "• [font=\"sans-bold-14\"]Einzelspieler[font=\"sans-14\"] – Spiele im
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Mehrspieler[font=\"sans-14\"] – Spiele gegen andere Spieler übers Internet."
+msgstr "• [font=\"sans-bold-14\"]Mehrspieler[font=\"sans-14\"] – Spiele gegen andere Spieler über das Internet."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -129,7 +129,7 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "Um ein Mehrspielerspiel zu erstellen, muss ein Spieler die „Spiel erstellen“-Option auswählen. Es wird der UDP-Port 20595 verwendet, d.h. die Firewall/NAT/etc. muss so konfiguriert werden, dass dieser für die Mitspieler erreichbar ist. Andere Spieler können dann „Spiel beitreten“ auswählen und die IP-Adresse des Hosts eingeben."
+msgstr "Um ein Mehrspielerspiel zu erstellen, muss ein Spieler die „Spiel erstellen“-Option auswählen. Es wird der UDP-Port 20595 verwendet, das heißt die Firewall/NAT/etc. muss so konfiguriert werden, dass dieser für die Mitspieler erreichbar ist. Andere Spieler können dann „Spiel beitreten“ auswählen und die IP-Adresse des Hosts eingeben."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -147,19 +147,19 @@ msgstr "Wähle zunächst, welchen Kartentyp du spielen möchtest:"
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr "• [font=\"sans-bold-14\"]Zufallskarte[font=\"sans-14\"] – Automatisch erstellte Karte"
+msgstr "• [font=\"sans-bold-14\"]Zufallskarte[font=\"sans-14\"] – eine Karte, die automatisch durch ein Skript erstellt wurde"
 
 #: gui/manual/intro.txt:30
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr "• [font=\"sans-bold-14\"]Szenarienkarte[font=\"sans-14\"] – Eine designte Karte mit vorgegebenen Zivilisationen"
+msgstr "• [font=\"sans-bold-14\"]Szenarienkarte[font=\"sans-14\"] – Eine von Kartendesignern erstellte Karte mit vorgegebenen Zivilisationen"
 
 #: gui/manual/intro.txt:31
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr "• [font=\"sans-bold-14\"]Scharmützel[font=\"sans-14\"] – Eine designte Karte mit wählbaren Zivilisationen"
+msgstr "• [font=\"sans-bold-14\"]Scharmützel[font=\"sans-14\"] – Eine von Kartendesignern erstellte Karte mit wählbaren Zivilisationen"
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -168,7 +168,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr "Ferner können die Karten weiter gefiltert werden. Die Standardkarten sind grundsätzlich spielbare Karten. Seekarten sind Karten, in denen nicht alle Gegner über Landwege erreicht werden können und Demokarten sind Karten, die für Testzwecke benutzt werden (meist zum Spielen ungeeignet). Der Filter „Alle Karten“ zeigt alle Karten auf einmal in einer Liste an."
+msgstr "Ferner können die Karten weiter gefiltert werden. Die Standardkarten sind grundsätzlich spielbare Karten. Seekarten sind Karten, bei denen nicht alle Gegner über Landwege erreicht werden können und Demokarten sind Karten, die für Testzwecke benutzt werden (meist zum Spielen ungeeignet). Der Filter „Alle Karten“ zeigt alle Karten auf einmal in einer Liste an."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -177,7 +177,7 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr "Ändere zum Schluss die Einstellungen. Für Zufallskarten beinhaltet das die Spieler Anzahl, die Kartengröße etc. für Szenarios kann man nur auswählen, wer welchen Spieler kontrolliert (das entscheidet wo man auf der Karte beginnt etc.). Optionen sind entweder ein menschlicher Spieler, eine KI oder überhaupt kein Spieler (der Gegner ist einfach inaktiv)."
+msgstr "Ändere zum Schluss die Einstellungen. Für Zufallskarten beinhaltet das die Spieler Anzahl, die Kartengröße etc.. Für Szenarios kannst du lediglich auswählen, wer welchen Spieler kontrolliert (das entscheidet wo man auf der Karte beginnt etc.). Optionen sind entweder ein menschlicher Spieler, eine KI oder überhaupt kein Spieler (der Gegner ist einfach inaktiv)."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
@@ -340,12 +340,12 @@ msgstr "  hotkey.selection.remove – hotkey.selection.add – Modifikator – v
 #: gui/manual/intro.txt:72
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
-" units, to selection."
+" units, to selection"
 msgstr "  hotkey.selection.offscreen – Modifikator – alle Einheiten der Auswahl hinzufügen, auch die, die gerade nicht im Bild sind."
 
 #: gui/manual/intro.txt:73
 msgid ""
-"  hotkey.selection.cancel – Unselect all units, cancel building placement."
+"  hotkey.selection.cancel – Unselect all units, cancel building placement"
 msgstr "  hotkey.selection.cancel – Alle Einheiten abwählen, Gebäudeplatzierung abbrechen."
 
 #: gui/manual/intro.txt:74
@@ -496,7 +496,7 @@ msgstr "  hotkey.session.queue + Rechtsklick – Den Bewegungs-/Bau-/Sammel-/etc
 #: gui/manual/intro.txt:104
 msgid ""
 "  hotkey.session.pushorderfront + Right Click – Modifier to push any order "
-"in front of the order queue."
+"in front of the order queue"
 msgstr "hotkey.session.pushorderfront + Rechts-Klick – Modifikator zum Voranstellen eines jeglichen Auftrags in der Reihe der Aufträge"
 
 #: gui/manual/intro.txt:105

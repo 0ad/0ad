@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-06-03 07:08+0000\n"
+"POT-Creation-Date: 2024-06-17 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: lecalam, 2022-2024\n"
 "Language-Team: Portuguese (Portugal) (http://app.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
@@ -131,18 +131,18 @@ msgstr "Cordilheira do Atlas"
 
 #: maps/random/bahrain.jsonsettings.Description
 msgid ""
-"Bahrain, centre of the Dilmun civilization which fell in 800BC, was in turn "
-"controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
+"Bahrain, centre of the Dilmun civilization which fell in 800 BC, was in turn"
+" controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
 "peoples. An island strategically placed in the Sinus Persicus (Persian Gulf)"
 " and also centre of pearl trading due to its magnificent pearl fisheries, "
 "Bahrain is never left unoccupied for long. But now, with the previous "
 "occupants gone, the land prepares for war. Will you be the next Ruler of "
 "Bahrain?"
-msgstr "Bahrein, centro da civilização Dilmun, que caiu em 800 a.C., foi então controlada por sumérios, assírios, babilónios, persas e outros povos. Uma ilha estrategicamente posicionada no Sinus Persicus (Golfo Persa) e também centro do comércio de pérolas graças à sua magnífica pesca de pérolas, o Bahrein nunca permaneceu desocupado por muito tempo. Mas agora, com o fim dos últimos ocupantes, a região prepara-se para a guerra. Serás tu o próximo Senhor de Bahrein?"
+msgstr "O Barém, centro da civilização Dilmum, que sucumbiu em 800 a.C., foi por sua vez controlado pelos sumérios, assírios, babilónios, persas e outros povos posteriores. Uma ilha estrategicamente situada no Sinus Persicus (Golfo Pérsico) e também centro do comércio de pérolas devido à sua magnífica pesca de pérolas, o Barém nunca fica desocupado durante muito tempo. Mas agora, com o desaparecimento dos anteriores ocupantes, o país prepara-se para a guerra. Serás tu o próximo governante do Barém?"
 
 #: maps/random/bahrain.jsonsettings.Name
 msgid "Bahrain"
-msgstr "Bahrain"
+msgstr "Barém"
 
 #: maps/random/belgian_uplands.jsonsettings.Description
 msgid ""
@@ -232,7 +232,7 @@ msgid ""
 "Each player starts on an island surrounded by water.\n"
 "\n"
 "The Cyclades is an island group in the Aegean Sea, south-east of the mainland of Greece. They are one of the island groups which constitute the Aegean archipelago. The name refers to the islands around  the sacred island of Delos. The Cyclades comprise about 220 islands. The islands are peaks of a submerged mountainous terrain, with the exception of two volcanic islands, Milos and Santorini. The climate is generally dry and mild, but with the exception of Naxos the soil is not very fertile."
-msgstr "Cada jogador começa numa ilha rodeada de água.\n\nO arquipélago das Cíclades localiza-se no Mar Egeu, a sudeste da Grécia continental, constituído pela ilha sagrada de Delos e pelas ilhas que a rodeiam. Estas ilhas são os picos de uma cadeia montanhosa submersa, com exceção de Milos e Santorini, que são duas ilhas vulcânicas. O seu clima é geralmente seco e ameno mas, à exceção de Naxos, o seu solo não é especialmente fértil."
+msgstr "As Cíclades são um grupo de ilhas no Mar Egeu, a sudeste da Grécia continental. São um dos grupos de ilhas que constituem o arquipélago do Egeu. O nome refere-se às ilhas que rodeiam a ilha sagrada de Delos. As Cíclades compreendem cerca de 220 ilhas. As ilhas são picos de um terreno montanhoso submerso, com exceção de duas ilhas vulcânicas, Milos e Santorini. O clima é geralmente seco e ameno, mas, com exceção de Naxos, o solo não é muito fértil."
 
 #: maps/random/cycladic_archipelago.jsonsettings.Name
 msgid "Cycladic Archipelago"
@@ -1332,7 +1332,7 @@ msgstr "Terras vulcânicas"
 msgid ""
 "A demonstration of wall placement methods/code in random maps. Giant map "
 "size is recommended!"
-msgstr "Uma demonstração de métodos/código de posicionamento de muralhas em mapas aleatórios. É recomendável um mapa de tamanho gigante!"
+msgstr "Uma demonstração dos métodos / código de colocação das fundações de muralhas em mapas aleatórios. Recomenda-se um mapa de tamanho gigante!"
 
 #: maps/random/wall_demo.jsonsettings.Name
 msgid "Wall Demo"
@@ -2593,12 +2593,12 @@ msgstr "Um velho favorito. Um mapa de deserto plano e aberto é atravessado no c
 msgid "Arabian Oases (2 players)"
 msgstr "Oásis árabes (2 jogadores)"
 
-#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[0].Name:39
+#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[1].Name:39
 msgid "Northeast Player"
 msgstr "Jogador a nordeste"
 
-#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[2].Name:39
 msgid "Southwest Player"
 msgstr "Jogador a sudoeste"
@@ -3306,9 +3306,8 @@ msgid "Vesuvius (6)"
 msgstr "Vesúvio (6)"
 
 #: maps/skirmishes/via_augusta_4p.xml:Description:39
-msgid ""
-"All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BCE."
-msgstr "Todos os Caminhos Levam a Roma. Via Júlia Augusta, uma estrada Romana construída em 13 a.C."
+msgid "All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BC."
+msgstr "Todas as estradas levam a Roma. Via Julia Augusta, uma estrada romana construída em 13 a.C."
 
 #: maps/skirmishes/via_augusta_4p.xml:Name:39
 msgid "Via Augusta (4)"
