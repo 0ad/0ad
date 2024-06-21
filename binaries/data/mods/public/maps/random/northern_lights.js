@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tSnowA = ["polar_snow_b"];
 	const tSnowB = "polar_ice_snow";
@@ -78,7 +79,7 @@ Engine.LoadLibrary("rmgen-common");
 		}
 		// No decoratives
 	});
-	Engine.SetProgress(15);
+	yield 15;
 
 	paintRiver({
 		"parallel": true,
@@ -138,7 +139,7 @@ Engine.LoadLibrary("rmgen-common");
 	paintTerrainBasedOnHeight(1, 2.8, 1, tShoreBlend);
 	paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
-	Engine.SetProgress(45);
+	yield 45;
 
 	g_Map.log("Creating hills");
 	createAreas(
@@ -180,7 +181,7 @@ Engine.LoadLibrary("rmgen-common");
 		[avoidClasses(clRock, 6), stayClasses(clWater, 4)],
 		scaleByMapSize(4, 16),
 		100);
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating dirt patches");
 	for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -237,7 +238,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
 		scaleByMapSize(8, 32), 100
 	);
-	Engine.SetProgress(80);
+	yield 80;
 
 	createStragglerTrees(
 		[oPine],
@@ -255,7 +256,7 @@ Engine.LoadLibrary("rmgen-common");
 		3 * numPlayers, 50
 	);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating sheep");
 	group = new SimpleGroup(
@@ -302,5 +303,5 @@ Engine.LoadLibrary("rmgen-common");
 	setPPEffect("hdr");
 
 	setSkySet("fog");
-	g_Map.ExportMap();
+	return g_Map;
 }

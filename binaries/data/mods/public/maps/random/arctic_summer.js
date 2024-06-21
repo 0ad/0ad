@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	setFogThickness(0.46);
 	setFogFactor(0.5);
@@ -97,7 +98,7 @@ Engine.LoadLibrary("rmgen-common");
 		}
 		// No decoratives
 	});
-	Engine.SetProgress(20);
+	yield 20;
 
 	createHills(
 		[tPrimary, tCliff, tHill],
@@ -109,7 +110,7 @@ Engine.LoadLibrary("rmgen-common");
 		clHill,
 		scaleByMapSize(1, 240));
 
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating lakes");
 	createAreas(
@@ -126,7 +127,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clPlayer, 15),
 		scaleByMapSize(1, 20));
 
-	Engine.SetProgress(45);
+	yield 45;
 
 	createBumps(avoidClasses(clPlayer, 6, clWater, 2), scaleByMapSize(30, 300), 1, 8, 4, 0, 3);
 
@@ -143,7 +144,7 @@ Engine.LoadLibrary("rmgen-common");
 			clWater, 2),
 		clForest,
 		forestTrees);
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -184,7 +185,7 @@ Engine.LoadLibrary("rmgen-common");
 			clPlayer, 12),
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating stone mines");
 	createMines(
@@ -216,7 +217,7 @@ Engine.LoadLibrary("rmgen-common");
 			clRock, 5,
 			clHill, 1),
 		clMetal);
-	Engine.SetProgress(70);
+	yield 70;
 
 	createDecoration(
 		[
@@ -237,7 +238,7 @@ Engine.LoadLibrary("rmgen-common");
 			clForest, 0,
 			clPlayer, 0,
 			clHill, 0));
-	Engine.SetProgress(75);
+	yield 75;
 
 	createFood(
 		[
@@ -301,7 +302,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		clFood);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oBush, oBush2],
@@ -335,5 +336,5 @@ Engine.LoadLibrary("rmgen-common");
 	setWaterWaviness(1);
 	setWaterType("clap");
 
-	g_Map.ExportMap();
+	return g_Map;
 }

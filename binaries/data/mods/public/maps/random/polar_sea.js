@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap(mapSettings)
 {
 	const tPrimary = ["alpine_snow_01"];
 	const tSecondary = "alpine_snow_02";
@@ -84,7 +85,7 @@ Engine.LoadLibrary("rmgen-common");
 			"types": treasures
 		},
 	});
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating central lake");
 	createArea(
@@ -103,7 +104,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		avoidClasses(clPlayer, 20));
 
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating small lakes");
 	createAreas(
@@ -116,17 +117,17 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clPlayer, 20),
 		scaleByMapSize(10, 16),
 		1);
-	Engine.SetProgress(50);
+	yield 50;
 
 	createBumps(avoidClasses(clWater, 2, clPlayer, 20));
-	Engine.SetProgress(60);
+	yield 60;
 
 	createHills(
 		[tSecondary, tSecondary, tSecondary],
 		avoidClasses(clPlayer, 20, clHill, 35),
 		clHill,
 		scaleByMapSize(20, 240));
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating glacier patches");
 	createPatches(
@@ -135,7 +136,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 3, clDirt, 5, clPlayer, 12),
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating stone mines");
 	createMines(
@@ -156,7 +157,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		avoidClasses(clWater, 3, clPlayer, 20, clMetal, 18, clRock, 5, clHill, 2),
 		clMetal);
-	Engine.SetProgress(75);
+	yield 75;
 
 	createDecoration(
 		[
@@ -182,7 +183,7 @@ Engine.LoadLibrary("rmgen-common");
 			scaleByMapAreaAbsolute(8)
 		],
 		[stayClasses(clWater, 4), avoidClasses(clHill, 2)]);
-	Engine.SetProgress(80);
+	yield 80;
 
 	createFood(
 		[
@@ -221,7 +222,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		[avoidClasses(clFood, 12, clHill, 5), stayClasses(clWater, 6)],
 		clFood);
-	Engine.SetProgress(85);
+	yield 85;
 
 	// Create trigger points where wolves spawn
 	createObjectGroupsDeprecated(
@@ -230,9 +231,9 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 2, clMetal, 4, clRock, 4, clPlayer, 15, clHill, 2, clArcticWolf, 20),
 		1000,
 		100);
-	Engine.SetProgress(95);
+	yield 95;
 
-	if (g_MapSettings.Daytime !== undefined ? g_MapSettings.Daytime == "dawn" : randBool(1/3))
+	if (mapSettings.Daytime !== undefined ? mapSettings.Daytime == "dawn" : randBool(1/3))
 	{
 		setSkySet("sunset 1");
 		setSunColor(0.8, 0.7, 0.6);
@@ -276,5 +277,5 @@ Engine.LoadLibrary("rmgen-common");
 	setPPSaturation(0.45);
 	setPPBloom(0.4);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

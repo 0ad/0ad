@@ -3,6 +3,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 Engine.LoadLibrary("heightmap");
 
+function* GenerateMap()
 {
 	const tGrove = "temp_grass_plants";
 	const tPath = "road_rome_a";
@@ -267,7 +268,7 @@ Engine.LoadLibrary("heightmap");
 
 	rescaleHeightmap(heightRange.min, heightRange.max);
 
-	Engine.SetProgress(25);
+	yield 25;
 
 	const heighLimits = [
 		// 0 Deep water
@@ -531,7 +532,7 @@ Engine.LoadLibrary("heightmap");
 
 	const [playerIDs, playerPosition] = groupPlayersCycle(
 		getStartLocationsByHeightmap({ "min": heighLimits[4], "max": heighLimits[5] }, 1000, 30));
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Smoothing player locations");
 	for (const position of playerPosition)
@@ -557,7 +558,7 @@ Engine.LoadLibrary("heightmap");
 		new SmoothingPainter(5, 1, 1),
 		new NearTileClassConstraint(clPath, 5));
 
-	Engine.SetProgress(45);
+	yield 45;
 
 	g_Map.log("Determining resource locations");
 	const avoidPoints = playerPosition.map(pos => pos.clone());
@@ -569,7 +570,7 @@ Engine.LoadLibrary("heightmap");
 		},
 		avoidPoints,
 		clPath);
-	Engine.SetProgress(55);
+	yield 55;
 
 	/**
 	 * Divide tiles in areas by height and avoid paths
@@ -610,7 +611,7 @@ Engine.LoadLibrary("heightmap");
 				g_Map.placeEntityPassable(pickRandom(selectedBiome.entity), 0,
 					randomPositionOnTile(point), randomAngle());
 		}
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Placing players");
 	if (isNomad())
@@ -640,5 +641,5 @@ Engine.LoadLibrary("heightmap");
 			placeCamp(pos);
 	}
 
-	g_Map.ExportMap();
+	return g_Map;
 }

@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	setSelectedBiome();
 
@@ -226,7 +227,7 @@ Engine.LoadLibrary("rmbiome");
 			"template": aGrassShort
 		}
 	});
-	Engine.SetProgress(20);
+	yield 20;
 
 	paintTerrainBasedOnHeight(3.1, 29, 0, tCliff);
 	paintTileClassBasedOnHeight(3.1, 32, 0, clHill2);
@@ -247,7 +248,7 @@ Engine.LoadLibrary("rmbiome");
 		clForest,
 		forestTrees);
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -299,7 +300,7 @@ Engine.LoadLibrary("rmbiome");
 		clMetal
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	let planetm = 1;
 
@@ -334,7 +335,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(200, 800), 50
 	);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	createFood(
 		[
@@ -364,7 +365,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		clFood);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oTree1, oTree2, oTree4, oTree3],
@@ -391,5 +392,5 @@ Engine.LoadLibrary("rmbiome");
 			avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clHill2, 4, clFood, 2)
 		]);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	setSelectedBiome();
 
@@ -120,7 +121,7 @@ Engine.LoadLibrary("rmbiome");
 			"template": aGrassShort
 		}
 	});
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating central island");
 	createArea(
@@ -231,7 +232,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		clForest,
 		stragglerTreesMainIsland);
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating dirt patches");
 	const numb = currentBiome() == "generic/savanna" ? 3 : 1;
@@ -275,7 +276,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		clFood);
 
-	Engine.SetProgress(75);
+	yield 75;
 
 	createFood(
 		[
@@ -288,7 +289,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		clFood);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	const planetm = currentBiome() == "generic/india" ? 8 : 1;
 	createDecoration(
@@ -331,5 +332,5 @@ Engine.LoadLibrary("rmbiome");
 	setSkySet(pickRandom(["cloudless", "cumulus", "overcast"]));
 	setWaterMurkiness(0.4);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

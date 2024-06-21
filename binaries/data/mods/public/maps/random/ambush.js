@@ -3,6 +3,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap(mapSettings)
 {
 	setSelectedBiome();
 
@@ -17,9 +18,9 @@ Engine.LoadLibrary("rmbiome");
 		new MapBoundsPlacer(),
 		new TileClassPainter(g_TileClasses.land));
 
-	Engine.SetProgress(10);
+	yield 10;
 
-	const pattern = g_MapSettings.TeamPlacement ||
+	const pattern = mapSettings.TeamPlacement ||
 		pickRandom(["line", "radial", "randomGroup", "stronghold"]);
 	const [playerIDs, playerPosition] =
 		createBases(
@@ -34,7 +35,7 @@ Engine.LoadLibrary("rmbiome");
 	if (!isNomad())
 		markPlayerAvoidanceArea(playerPosition, defaultPlayerBaseRadius());
 
-	Engine.SetProgress(20);
+	yield 20;
 
 	addElements([
 		{
@@ -57,7 +58,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["tons"]
 		}
 	]);
-	Engine.SetProgress(30);
+	yield 30;
 
 	if (!isNomad())
 		createBluffsPassages(playerPosition);
@@ -93,7 +94,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["normal"]
 		}
 	]);
-	Engine.SetProgress(50);
+	yield 50;
 
 	addElements(shuffleArray([
 		{
@@ -165,7 +166,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["normal"]
 		}
 	]));
-	Engine.SetProgress(70);
+	yield 70;
 
 	addElements(shuffleArray([
 		{
@@ -218,7 +219,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["many"]
 		}
 	]));
-	Engine.SetProgress(90);
+	yield 90;
 
 	if (isNomad())
 	{
@@ -242,5 +243,5 @@ Engine.LoadLibrary("rmbiome");
 			]);
 	}
 
-	g_Map.ExportMap();
+	return g_Map;
 }

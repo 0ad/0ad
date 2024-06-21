@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tGrass = ["medit_grass_field", "medit_grass_field_b", "temp_grass_c"];
 	const tLushGrass = ["medit_grass_field", "medit_grass_field_a"];
@@ -219,7 +220,7 @@ Engine.LoadLibrary("rmgen-common");
 			}
 		}
 	}
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Determining player locations");
 	const playerIDs = sortAllPlayers();
@@ -267,7 +268,7 @@ Engine.LoadLibrary("rmgen-common");
 		}
 		// Sufficient starting trees around, no decoratives
 	});
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating bumps");
 	createAreas(
@@ -361,7 +362,7 @@ Engine.LoadLibrary("rmgen-common");
 		return undefined;
 	}
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating mines");
 	for (const mine of [eMetalMine, eStoneMine])
@@ -426,7 +427,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(350, 2500),
 		100);
 
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Creating small decorative rocks");
 	createObjectGroupsDeprecated(
@@ -500,7 +501,7 @@ Engine.LoadLibrary("rmgen-common");
 			scaleByMapSize(100, 600),
 			50);
 
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Creating animals");
 	createObjectGroupsDeprecated(
@@ -524,7 +525,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(50, 150),
 		100);
 
-	Engine.SetProgress(95);
+	yield 95;
 
 	placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clBaseResource, 4, clCliffs, 4));
 
@@ -541,5 +542,5 @@ Engine.LoadLibrary("rmgen-common");
 	setWaterWaviness(2.0);
 	setWaterType("ocean");
 
-	g_Map.ExportMap();
+	return g_Map;
 }

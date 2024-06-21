@@ -2,8 +2,9 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap(mapSettings)
 {
-	if (g_MapSettings.Biome)
+	if (mapSettings.Biome)
 		setSelectedBiome();
 	else
 		// TODO: Replace ugly default for atlas by a dropdown
@@ -90,7 +91,7 @@ Engine.LoadLibrary("rmbiome");
 		}
 		// No decoratives
 	});
-	Engine.SetProgress(10);
+	yield 10;
 
 	g_Map.log("Creating rock patches");
 	createAreas(
@@ -101,7 +102,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		avoidClasses(clPatch, 2, clPlayer, 0),
 		scaleByMapSize(5, 20));
-	Engine.SetProgress(15);
+	yield 15;
 
 	g_Map.log("Creating secondary rock patches");
 	createAreas(
@@ -112,7 +113,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		avoidClasses(clPatch, 2, clPlayer, 4),
 		scaleByMapSize(15, 50));
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Creating dirt patches");
 	createAreas(
@@ -127,7 +128,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		avoidClasses(clPatch, 2, clPlayer, 4),
 		scaleByMapSize(15, 50));
-	Engine.SetProgress(25);
+	yield 25;
 
 	g_Map.log("Creating centeral plateau");
 	createArea(
@@ -145,7 +146,7 @@ Engine.LoadLibrary("rmbiome");
 			new TileClassPainter(clCP)
 		],
 		avoidClasses(clPlayer, 18));
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating hills");
 	for (let i = 0; i < scaleByMapSize(20, 80); ++i)
@@ -160,7 +161,7 @@ Engine.LoadLibrary("rmbiome");
 			tCliff,
 			clHill,
 			14);
-	Engine.SetProgress(35);
+	yield 35;
 
 	g_Map.log("Creating forests");
 	const [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
@@ -187,7 +188,7 @@ Engine.LoadLibrary("rmbiome");
 				clHill, 1,
 				clCP, 1),
 			num);
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating stone mines");
 	createObjectGroupsDeprecated(
@@ -265,7 +266,7 @@ Engine.LoadLibrary("rmbiome");
 		5 * scaleByMapSize(5, 30), 50
 	);
 
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating small decorative rocks");
 	group = new SimpleGroup(
@@ -278,7 +279,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(16, 262), 50
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating bushes");
 	group = new SimpleGroup(
@@ -291,7 +292,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(8, 131), 50
 	);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating goat");
 	group = new SimpleGroup(
@@ -333,7 +334,7 @@ Engine.LoadLibrary("rmbiome");
 		3 * numPlayers, 50
 	);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	createStragglerTrees(
 		[oOak],
@@ -350,5 +351,5 @@ Engine.LoadLibrary("rmbiome");
 
 	placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
-	g_Map.ExportMap();
+	return g_Map;
 }

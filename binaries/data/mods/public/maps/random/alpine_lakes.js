@@ -2,9 +2,10 @@ Engine.LoadLibrary("rmbiome");
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap(mapSettings)
 {
-	setBiome(g_MapSettings.Biome ?? "alpine/winter");
-	const isLateSpringBiome = g_MapSettings.Biome !== "alpine/winter";
+	setBiome(mapSettings.Biome ?? "alpine/winter");
+	const isLateSpringBiome = mapSettings.Biome !== "alpine/winter";
 
 	setFogThickness(isLateSpringBiome ? 0.26 : 0.19);
 	setFogFactor(isLateSpringBiome ? 0.4 : 0.35);
@@ -64,7 +65,7 @@ Engine.LoadLibrary("rmgen-common");
 			"template": g_Decoratives.grassShort
 		}
 	});
-	Engine.SetProgress(20);
+	yield 20;
 
 	createMountains(g_Terrains.cliff,
 		avoidClasses(clPlayer, 20, clHill, 8),
@@ -75,7 +76,7 @@ Engine.LoadLibrary("rmgen-common");
 		Math.floor(scaleByMapSize(7, 15)),
 		Math.floor(scaleByMapSize(5, 15)));
 
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating lakes");
 	createAreas(
@@ -101,7 +102,7 @@ Engine.LoadLibrary("rmgen-common");
 		clForest,
 		forestTrees);
 
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -119,7 +120,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating stone mines");
 	createMines(
@@ -143,7 +144,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 3, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
 		clMetal);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	createDecoration(
 		[
@@ -175,7 +176,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0));
 
-	Engine.SetProgress(75);
+	yield 75;
 
 	createFood(
 		[
@@ -209,7 +210,7 @@ Engine.LoadLibrary("rmgen-common");
 		[avoidClasses(clFood, 20), stayClasses(clWater, 6)],
 		clFood);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[g_Gaia.tree1],
@@ -237,5 +238,5 @@ Engine.LoadLibrary("rmgen-common");
 	setWaterWaviness(3.0);
 	setWaterType("clap");
 
-	g_Map.ExportMap();
+	return g_Map;
 }

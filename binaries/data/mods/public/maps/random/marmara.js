@@ -20,6 +20,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap(mapSettings)
 {
 	setBiome("generic/aegean");
 
@@ -55,7 +56,7 @@ Engine.LoadLibrary("rmbiome");
 	g_Decoratives.bushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
 	g_Decoratives.reeds = "actor|props/flora/reeds_pond_lush_a.xml";
 
-	const heightScale = num => num * g_MapSettings.Size / 320;
+	const heightScale = num => num * mapSettings.Size / 320;
 
 	const heightSeaGround = heightScale(scaleByMapSize(-6, -4));
 	const heightWaterLevel = heightScale(0);
@@ -67,7 +68,7 @@ Engine.LoadLibrary("rmbiome");
 	initTileClasses(["shoreline"]);
 
 	g_Map.LoadHeightmapImage("marmara.png", 0, 10);
-	Engine.SetProgress(15);
+	yield 15;
 
 	g_Map.log("Lowering sea ground");
 	createArea(
@@ -75,27 +76,27 @@ Engine.LoadLibrary("rmbiome");
 		// Keep water impassable on all mapsizes
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, scaleByMapSize(1, 3)),
 		new HeightConstraint(-Infinity, heightWaterLevel));
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Smoothing heightmap");
 	createArea(
 		new MapBoundsPlacer(),
 		new SmoothingPainter(1, scaleByMapSize(0.1, 0.2), 1));
-	Engine.SetProgress(25);
+	yield 25;
 
 	g_Map.log("Marking water");
 	createArea(
 		new MapBoundsPlacer(),
 		new TileClassPainter(g_TileClasses.water),
 		new HeightConstraint(-Infinity, heightWaterLevel));
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Marking land");
 	createArea(
 		new MapBoundsPlacer(),
 		new TileClassPainter(g_TileClasses.land),
 		avoidClasses(g_TileClasses.water, 0));
-	Engine.SetProgress(35);
+	yield 35;
 
 	g_Map.log("Painting shoreline");
 	createArea(
@@ -105,7 +106,7 @@ Engine.LoadLibrary("rmbiome");
 			new TileClassPainter(g_TileClasses.shoreline)
 		],
 		new HeightConstraint(-Infinity, heightShoreline));
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Painting cliffs");
 	createArea(
@@ -118,7 +119,7 @@ Engine.LoadLibrary("rmbiome");
 			avoidClasses(g_TileClasses.water, 2),
 			new SlopeConstraint(2, Infinity)
 		]);
-	Engine.SetProgress(45);
+	yield 45;
 
 	if (!isNomad())
 	{
@@ -139,7 +140,7 @@ Engine.LoadLibrary("rmbiome");
 					position),
 				new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 6));
 	}
-	Engine.SetProgress(50);
+	yield 50;
 
 	addElements([
 		{
@@ -172,7 +173,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["many"]
 		}
 	]);
-	Engine.SetProgress(60);
+	yield 60;
 
 	addElements(shuffleArray([
 		{
@@ -244,7 +245,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["many"]
 		}
 	]));
-	Engine.SetProgress(70);
+	yield 70;
 
 	addElements(shuffleArray([
 		{
@@ -310,7 +311,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["tons"]
 		}
 	]));
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Adding reeds");
 	createObjectGroups(
@@ -329,7 +330,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		scaleByMapSize(50, 400),
 		2);
-	Engine.SetProgress(85);
+	yield 85;
 
 	placePlayersNomad(
 		g_Map.createTileClass(),
@@ -370,5 +371,5 @@ Engine.LoadLibrary("rmbiome");
 	setPPSaturation(0.42);
 	setPPBloom(0.23);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tGrass = "savanna_grass_a";
 	const tForestFloor = "savanna_forestfloor_a";
@@ -94,7 +95,7 @@ Engine.LoadLibrary("rmgen-common");
 			"template": aGrassShort
 		}
 	});
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Creating rivers");
 	const riverStart = distributePointsOnCircle(numPlayers, startAngle + Math.PI / numPlayers,
@@ -198,7 +199,7 @@ Engine.LoadLibrary("rmgen-common");
 			avoidClasses(clPlayer, 20, clForest, 10, clHill, 0, clWater, 2),
 			num
 		);
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating dirt patches");
 	for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -224,7 +225,7 @@ Engine.LoadLibrary("rmgen-common");
 			new TerrainPainter(tGrassPatch),
 			avoidClasses(clWater, 3, clForest, 0, clHill, 0, clPlayer, 20),
 			scaleByMapSize(15, 45));
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating stone mines");
 	let group = new SimpleGroup(
@@ -251,7 +252,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(4, 16), 100
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating small decorative rocks");
 	group = new SimpleGroup(
@@ -275,7 +276,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(8, 131), 50
 	);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating wildebeest");
 	group = new SimpleGroup(
@@ -287,7 +288,7 @@ Engine.LoadLibrary("rmgen-common");
 		3 * numPlayers, 50
 	);
 
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Creating gazelle");
 	group = new SimpleGroup(
@@ -349,7 +350,7 @@ Engine.LoadLibrary("rmgen-common");
 		randIntInclusive(1, 4) * numPlayers + 2, 50
 	);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oBaobab, oBaobab, oBaobab, oFig],
@@ -367,7 +368,7 @@ Engine.LoadLibrary("rmgen-common");
 		planetm * scaleByMapSize(13, 200)
 	);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating large grass tufts");
 	group = new SimpleGroup(
@@ -381,7 +382,7 @@ Engine.LoadLibrary("rmgen-common");
 		planetm * scaleByMapSize(13, 200)
 	);
 
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating bushes");
 	group = new SimpleGroup(
@@ -407,5 +408,5 @@ Engine.LoadLibrary("rmgen-common");
 	setWaterWaviness(0.5);
 	setWaterType("clap");
 
-	g_Map.ExportMap();
+	return g_Map;
 }

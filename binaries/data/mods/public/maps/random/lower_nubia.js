@@ -32,6 +32,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap(mapSettings)
 {
 	TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -79,7 +80,7 @@ Engine.LoadLibrary("rmgen-common");
 		"props/flora/grass_soft_dry_small_tall"
 	].map(actorTemplate);
 
-	const heightScale = num => num * g_MapSettings.Size / 320;
+	const heightScale = num => num * mapSettings.Size / 320;
 
 	const heightSeaGround = heightScale(-3);
 	const heightWaterLevel = heightScale(0);
@@ -111,7 +112,7 @@ Engine.LoadLibrary("rmgen-common");
 	const heightmapWaterThreshold =
 		convertHeightmap1Dto2D(Engine.LoadHeightmapImage(
 			"maps/random/lower_nubia_water_threshold.png"));
-	Engine.SetProgress(3);
+	yield 3;
 
 	g_Map.log("Composing heightmap");
 	const heightmapCombined = [];
@@ -126,13 +127,13 @@ Engine.LoadLibrary("rmgen-common");
 			heightmapCombined[x][y] = heightmapLandThreshold[x][y] ||
 				heightmapWaterThreshold[x][y] ? heightmapLand[x][y] : minHeight;
 	}
-	Engine.SetProgress(6);
+	yield 6;
 
 	g_Map.log("Applying heightmap");
 	createArea(
 		new MapBoundsPlacer(),
 		new HeightmapPainter(heightmapCombined, minHeight, maxHeight));
-	Engine.SetProgress(9);
+	yield 9;
 
 	g_Map.log("Lowering sea ground");
 	createArea(
@@ -142,7 +143,7 @@ Engine.LoadLibrary("rmgen-common");
 			new TileClassPainter(clWater)
 		],
 		new HeightConstraint(-Infinity, heightSeaGround));
-	Engine.SetProgress(15);
+	yield 15;
 
 	g_Map.log("Creating Nile passages");
 	const riverAngle = Math.PI * 3 / 4;
@@ -169,41 +170,41 @@ Engine.LoadLibrary("rmgen-common");
 				avoidClasses(clPassage, scaleByMapSize(15, 25))
 			]);
 	}
-	Engine.SetProgress(18);
+	yield 18;
 
 	g_Map.log("Smoothing heightmap");
 	createArea(
 		new MapBoundsPlacer(),
 		new SmoothingPainter(1, scaleByMapSize(0.5, 1), 1));
-	Engine.SetProgress(22);
+	yield 22;
 
 	g_Map.log("Marking water");
 	createArea(
 		new MapBoundsPlacer(),
 		new TileClassPainter(clWater),
 		new HeightConstraint(-Infinity, heightSeaGround));
-	Engine.SetProgress(28);
+	yield 28;
 
 	g_Map.log("Marking cliffs");
 	createArea(
 		new MapBoundsPlacer(),
 		new TileClassPainter(clCliff),
 		new SlopeConstraint(2, Infinity));
-	Engine.SetProgress(32);
+	yield 32;
 
 	g_Map.log("Painting water and shoreline");
 	createArea(
 		new MapBoundsPlacer(),
 		new TerrainPainter(tWater),
 		new HeightConstraint(-Infinity, heightWaterLevel));
-	Engine.SetProgress(35);
+	yield 35;
 
 	g_Map.log("Painting plateau");
 	createArea(
 		new MapBoundsPlacer(),
 		new TerrainPainter(tPlateau),
 		new HeightConstraint(heightPlateau2, Infinity));
-	Engine.SetProgress(38);
+	yield 38;
 
 	let playerIDs = [];
 	let playerPosition = [];
@@ -220,7 +221,7 @@ Engine.LoadLibrary("rmgen-common");
 					position),
 				new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 6));
 	}
-	Engine.SetProgress(43);
+	yield 43;
 
 	placePlayerBases({
 		"PlayerPlacement": [playerIDs, playerPosition],
@@ -268,7 +269,7 @@ Engine.LoadLibrary("rmgen-common");
 			"template": pickRandom(aBushes)
 		}
 	});
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Painting lower cliffs");
 	createArea(
@@ -278,7 +279,7 @@ Engine.LoadLibrary("rmgen-common");
 			new SlopeConstraint(2, Infinity),
 			new NearTileClassConstraint(clWater, 2)
 		]);
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Painting upper cliffs");
 	createArea(
@@ -288,7 +289,7 @@ Engine.LoadLibrary("rmgen-common");
 			avoidClasses(clWater, 2),
 			new SlopeConstraint(2, Infinity)
 		]);
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating stone mines");
 	createMines(
@@ -302,7 +303,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 4, clCliff, 4, clPlayer, 20, clRock, 10),
 		clRock,
 		scaleByMapSize(10, 30));
-	Engine.SetProgress(63);
+	yield 63;
 
 	g_Map.log("Creating metal mines");
 	createMines(
@@ -316,7 +317,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 4, clCliff, 4, clPlayer, 20, clMetal, 10, clRock, 5),
 		clMetal,
 		scaleByMapSize(10, 30));
-	Engine.SetProgress(67);
+	yield 67;
 
 	g_Map.log("Creating pyramid");
 	createObjectGroups(
@@ -328,7 +329,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		1,
 		500);
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating trees near the Nile");
 	createObjectGroups(
@@ -349,7 +350,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		scaleByMapSize(100, 1000),
 		200);
-	Engine.SetProgress(73);
+	yield 73;
 
 	const avoidCollisions = avoidClasses(
 		clPlayer, 12,
@@ -374,7 +375,7 @@ Engine.LoadLibrary("rmgen-common");
 			[avoidCollisions, avoidClasses(clWater, 10, clForest, 4)],
 			scaleByMapSize(10, 180),
 			10);
-	Engine.SetProgress(77);
+	yield 77;
 
 	g_Map.log("Creating gazelles");
 	createObjectGroups(
@@ -383,7 +384,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidCollisions,
 		scaleByMapSize(2, 10),
 		50);
-	Engine.SetProgress(80);
+	yield 80;
 
 	if (!isNomad())
 	{
@@ -399,7 +400,7 @@ Engine.LoadLibrary("rmgen-common");
 			scaleByMapSize(2, 10),
 			50);
 	}
-	Engine.SetProgress(83);
+	yield 83;
 
 	g_Map.log("Creating elephants");
 	createObjectGroups(
@@ -412,7 +413,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidCollisions,
 		scaleByMapSize(2, 10),
 		50);
-	Engine.SetProgress(86);
+	yield 86;
 
 	placePlayersNomad(clPlayer,
 		avoidClasses(
@@ -423,12 +424,12 @@ Engine.LoadLibrary("rmgen-common");
 			clFood, 2,
 			clCliff, 2,
 			clPyramid, 6));
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating hawk");
 	for (let i = 0; i < scaleByMapSize(0, 2); ++i)
 		g_Map.placeEntityAnywhere(oHawk, 0, mapCenter, randomAngle());
-	Engine.SetProgress(91);
+	yield 91;
 
 	createDecoration(
 		aBushes.map(bush => [new SimpleObject(bush, 0, 3, 2, 4)]),
@@ -438,13 +439,13 @@ Engine.LoadLibrary("rmgen-common");
 			new HeightConstraint(heightWaterLevel, Infinity),
 			avoidClasses(clForest, 0)
 		]);
-	Engine.SetProgress(92);
+	yield 92;
 
 	createDecoration(
 		[[new SimpleObject(aRock, 0, 4, 2, 4)]],
 		[[scaleByMapSize(100, 600)]],
 		avoidClasses(clWater, 0));
-	Engine.SetProgress(95);
+	yield 95;
 
 	setWindAngle(-0.43);
 	setWaterTint(0.161, 0.286, 0.353);
@@ -468,5 +469,5 @@ Engine.LoadLibrary("rmgen-common");
 	setPPSaturation(0.42);
 	setPPBloom(0.23);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

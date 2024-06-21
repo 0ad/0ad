@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	setSelectedBiome();
 
@@ -101,7 +102,7 @@ Engine.LoadLibrary("rmbiome");
 			findLocationInDirectionBasedOnHeight(playerPosition[i], mapCenter, -3, 2.6, 3);
 		g_Map.placeEntityPassable(oDock, playerIDs[i], dockLocation, playerAngle[i] + Math.PI);
 	}
-	Engine.SetProgress(10);
+	yield 10;
 
 	placePlayerBases({
 		"PlayerPlacement": [playerIDs, playerPosition],
@@ -136,7 +137,7 @@ Engine.LoadLibrary("rmbiome");
 			"template": aGrassShort
 		}
 	});
-	Engine.SetProgress(15);
+	yield 15;
 
 	g_Map.log("Create the continent body");
 	const continentPosition =
@@ -149,7 +150,7 @@ Engine.LoadLibrary("rmbiome");
 			new TileClassPainter(clLand)
 		],
 		avoidClasses(clIsland, 8));
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Creating shore jaggedness");
 	createAreas(
@@ -168,7 +169,7 @@ Engine.LoadLibrary("rmbiome");
 
 	paintTerrainBasedOnHeight(1, 3, 0, tShore);
 	paintTerrainBasedOnHeight(-8, 1, 2, tWater);
-	Engine.SetProgress(25);
+	yield 25;
 
 	g_Map.log("Creating bumps");
 	createAreas(
@@ -177,7 +178,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clIsland, 10), stayClasses(clLand, 3)],
 		scaleByMapSize(100, 200)
 	);
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating hills");
 	createAreas(
@@ -190,7 +191,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clIsland, 10, clHill, 15), stayClasses(clLand, 7)],
 		scaleByMapSize(1, 4) * numPlayers
 	);
-	Engine.SetProgress(34);
+	yield 34;
 
 	g_Map.log("Creating forests");
 	const [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
@@ -212,7 +213,7 @@ Engine.LoadLibrary("rmbiome");
 			],
 			[avoidClasses(clPlayer, 6, clForest, 10, clHill, 0), stayClasses(clLand, 7)],
 			num);
-	Engine.SetProgress(38);
+	yield 38;
 
 	g_Map.log("Creating dirt patches");
 	for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -238,7 +239,7 @@ Engine.LoadLibrary("rmbiome");
 			],
 			scaleByMapSize(15, 45));
 
-	Engine.SetProgress(42);
+	yield 42;
 
 	g_Map.log("Creating grass patches");
 	for (const size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
@@ -247,7 +248,7 @@ Engine.LoadLibrary("rmbiome");
 			new TerrainPainter(tTier4Terrain),
 			[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clIsland, 0), stayClasses(clLand, 7)],
 			scaleByMapSize(15, 45));
-	Engine.SetProgress(46);
+	yield 46;
 
 	g_Map.log("Creating stone mines");
 	let group = new SimpleGroup(
@@ -259,7 +260,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1), stayClasses(clLand, 7)],
 		scaleByMapSize(4, 16), 100
 	);
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating small stone quarries");
 	group = new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3)], true, clRock);
@@ -267,7 +268,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clForest, 1, clPlayer, 10, clRock, 10, clHill, 1), stayClasses(clLand, 7)],
 		scaleByMapSize(4, 16), 100
 	);
-	Engine.SetProgress(54);
+	yield 54;
 
 	g_Map.log("Creating metal mines");
 	group = new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal);
@@ -278,7 +279,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		scaleByMapSize(4, 16), 100
 	);
-	Engine.SetProgress(58);
+	yield 58;
 
 	g_Map.log("Creating small decorative rocks");
 	group = new SimpleGroup(
@@ -290,7 +291,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 6)],
 		scaleByMapSize(16, 262), 50
 	);
-	Engine.SetProgress(62);
+	yield 62;
 
 	g_Map.log("Creating large decorative rocks");
 	group = new SimpleGroup(
@@ -302,7 +303,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 6)],
 		scaleByMapSize(8, 131), 50
 	);
-	Engine.SetProgress(66);
+	yield 66;
 
 	g_Map.log("Creating deer");
 	group = new SimpleGroup(
@@ -313,7 +314,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clForest, 0, clPlayer, 10, clHill, 1, clFood, 20), stayClasses(clLand, 7)],
 		3 * numPlayers, 50
 	);
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating sheep");
 	group = new SimpleGroup(
@@ -324,7 +325,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clForest, 0, clPlayer, 10, clHill, 1, clFood, 20), stayClasses(clLand, 7)],
 		3 * numPlayers, 50
 	);
-	Engine.SetProgress(74);
+	yield 74;
 
 	g_Map.log("Creating fruit bush");
 	group = new SimpleGroup(
@@ -335,7 +336,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clForest, 0, clPlayer, 8, clHill, 1, clFood, 20), stayClasses(clLand, 7)],
 		randIntInclusive(1, 4) * numPlayers + 2, 50
 	);
-	Engine.SetProgress(78);
+	yield 78;
 
 	g_Map.log("Creating fish");
 	createObjectGroupsDeprecated(
@@ -344,7 +345,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clLand, 2, clPlayer, 2, clHill, 0, clFood, 20),
 		25 * numPlayers, 60
 	);
-	Engine.SetProgress(82);
+	yield 82;
 
 	createStragglerTrees(
 		[oTree1, oTree2, oTree4, oTree3],
@@ -355,7 +356,7 @@ Engine.LoadLibrary("rmbiome");
 		clForest,
 		stragglerTrees);
 
-	Engine.SetProgress(86);
+	yield 86;
 
 	const planetm = currentBiome() == "generic/india" ? 8 : 1;
 
@@ -367,7 +368,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clHill, 2, clPlayer, 2, clDirt, 0), stayClasses(clLand, 6)],
 		planetm * scaleByMapSize(13, 200)
 	);
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating large grass tufts");
 	group = new SimpleGroup(
@@ -380,7 +381,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0), stayClasses(clLand, 6)],
 		planetm * scaleByMapSize(13, 200)
 	);
-	Engine.SetProgress(94);
+	yield 94;
 
 	g_Map.log("Creating bushes");
 	group = new SimpleGroup(
@@ -390,7 +391,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clHill, 1, clPlayer, 1, clDirt, 1), stayClasses(clLand, 6)],
 		planetm * scaleByMapSize(13, 200), 50
 	);
-	Engine.SetProgress(98);
+	yield 98;
 
 	setSkySet(pickRandom(["cirrus", "cumulus", "sunny"]));
 	setSunRotation(randomAngle());
@@ -403,5 +404,5 @@ Engine.LoadLibrary("rmbiome");
 			avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2)
 		]);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

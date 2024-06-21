@@ -3,6 +3,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap(mapSettings)
 {
 	setSelectedBiome();
 
@@ -18,12 +19,12 @@ Engine.LoadLibrary("rmbiome");
 		new MapBoundsPlacer(),
 		new TileClassPainter(g_TileClasses.land));
 
-	Engine.SetProgress(20);
+	yield 20;
 
 	if (!isNomad())
 	{
 		// Note: `|| pickRandom(...)` is needed for atlas.
-		const pattern = g_MapSettings.TeamPlacement ||
+		const pattern = mapSettings.TeamPlacement ||
 			pickRandom(["line", "radial", "randomGroup", "stronghold"]);
 		createBases(
 			...playerPlacementByPattern(
@@ -34,7 +35,7 @@ Engine.LoadLibrary("rmbiome");
 				undefined),
 			g_PlayerbaseTypes[pattern].walls);
 	}
-	Engine.SetProgress(40);
+	yield 40;
 
 	const features = [
 		{
@@ -135,7 +136,7 @@ Engine.LoadLibrary("rmbiome");
 		});
 
 	addElements(shuffleArray(features));
-	Engine.SetProgress(50);
+	yield 50;
 
 	addElements([
 		{
@@ -168,7 +169,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["normal"]
 		}
 	]);
-	Engine.SetProgress(60);
+	yield 60;
 
 	addElements(shuffleArray([
 		{
@@ -223,7 +224,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["few", "normal", "many", "tons"]
 		}
 	]));
-	Engine.SetProgress(70);
+	yield 70;
 
 	addElements(shuffleArray([
 		{
@@ -278,7 +279,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": g_AllAmounts
 		}
 	]));
-	Engine.SetProgress(90);
+	yield 90;
 
 	placePlayersNomad(
 		g_TileClasses.player,
@@ -292,5 +293,5 @@ Engine.LoadLibrary("rmbiome");
 			g_TileClasses.plateau, 4,
 			g_TileClasses.animals, 2));
 
-	g_Map.ExportMap();
+	return g_Map;
 }

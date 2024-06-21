@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -183,7 +184,7 @@ Engine.LoadLibrary("rmbiome");
 		clForest,
 		forestTrees
 	);
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -203,7 +204,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(15, 45),
 		clDirt
 	);
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating stone mines");
 	createMines(
@@ -227,7 +228,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		clMetal
 	);
-	Engine.SetProgress(65);
+	yield 65;
 
 	const planetm = currentBiome() == "generic/india" ? 8 : 1;
 	createDecoration(
@@ -246,7 +247,7 @@ Engine.LoadLibrary("rmbiome");
 			planetm * scaleByMapAreaAbsolute(13)
 		],
 		[avoidClasses(clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 5)]);
-	Engine.SetProgress(70);
+	yield 70;
 
 	createFood(
 		[
@@ -260,7 +261,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clForest, 0, clPlayer, 1, clHill, 1, clFood, 20), stayClasses(clLand, 3)],
 		clFood);
 
-	Engine.SetProgress(75);
+	yield 75;
 
 	createFood(
 		[
@@ -272,7 +273,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clForest, 0, clPlayer, 1, clHill, 1, clFood, 10), stayClasses(clLand, 3)],
 		clFood);
 
-	Engine.SetProgress(80);
+	yield 80;
 
 	createFood(
 		[
@@ -284,7 +285,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clLand, 3, clPlayer, 2, clFood, 20),
 		clFood);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oTree1, oTree2, oTree4, oTree3],
@@ -304,5 +305,5 @@ Engine.LoadLibrary("rmbiome");
 	setWaterWaviness(4.0);
 	setWaterType("ocean");
 
-	g_Map.ExportMap();
+	return g_Map;
 }

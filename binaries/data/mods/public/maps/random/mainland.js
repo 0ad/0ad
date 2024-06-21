@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	setSelectedBiome();
 
@@ -88,7 +89,7 @@ Engine.LoadLibrary("rmbiome");
 		}
 		// No decoratives
 	});
-	Engine.SetProgress(20);
+	yield 20;
 
 	createBumps(avoidClasses(clPlayer, 20));
 
@@ -106,7 +107,7 @@ Engine.LoadLibrary("rmbiome");
 		clForest,
 		forestTrees);
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -124,7 +125,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating metal mines");
 	createBalancedMetalMines(
@@ -142,7 +143,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clForest, 1, clPlayer, scaleByMapSize(20, 35), clHill, 1, clMetal, 10)
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	let planetm = 1;
 
@@ -166,7 +167,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		avoidClasses(clForest, 0, clPlayer, 10, clHill, 0));
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	createFood(
 		[
@@ -180,7 +181,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clMetal, 4, clRock, 4, clFood, 20),
 		clFood);
 
-	Engine.SetProgress(75);
+	yield 75;
 
 	createFood(
 		[
@@ -192,7 +193,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clForest, 0, clPlayer, 20, clHill, 1, clMetal, 4, clRock, 4, clFood, 10),
 		clFood);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oTree1, oTree2, oTree4, oTree3],
@@ -202,5 +203,5 @@ Engine.LoadLibrary("rmbiome");
 
 	placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
-	g_Map.ExportMap();
+	return g_Map;
 }

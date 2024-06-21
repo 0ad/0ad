@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tPrimary = ["medit_rocks_grass", "medit_rocks_grass", "medit_rocks_grass",
 		"medit_rocks_grass", "medit_rocks_grass_shrubs", "medit_rocks_shrubs"];
@@ -86,13 +87,13 @@ Engine.LoadLibrary("rmgen-common");
 			"template": aGrassShort
 		}
 	});
-	Engine.SetProgress(10);
+	yield 10;
 
 	createBumps(avoidClasses(clPlayer, 9));
 
 	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 8), clHill, scaleByMapSize(20, 120));
 
-	Engine.SetProgress(25);
+	yield 25;
 
 	const [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 	createForests(
@@ -101,7 +102,7 @@ Engine.LoadLibrary("rmgen-common");
 		clForest,
 		forestTrees);
 
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -121,7 +122,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(15, 45),
 		clDirt);
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating stone mines");
 	createMines(
@@ -144,7 +145,7 @@ Engine.LoadLibrary("rmgen-common");
 		clMetal
 	);
 
-	Engine.SetProgress(60);
+	yield 60;
 
 	createDecoration(
 		[
@@ -163,7 +164,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		avoidClasses(clForest, 0, clPlayer, 0, clHill, 0));
 
-	Engine.SetProgress(75);
+	yield 75;
 
 	createFood(
 		[
@@ -207,7 +208,7 @@ Engine.LoadLibrary("rmgen-common");
 		3 * numPlayers, 50
 	);
 
-	Engine.SetProgress(80);
+	yield 80;
 
 	createStragglerTrees(
 		[oCarob, oAleppoPine],
@@ -231,5 +232,5 @@ Engine.LoadLibrary("rmgen-common");
 	setPPSaturation(0.56);
 	setPPBloom(0.1);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

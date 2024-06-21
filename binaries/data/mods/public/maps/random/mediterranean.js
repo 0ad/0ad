@@ -21,6 +21,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap(mapSettings)
 {
 	TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -28,7 +29,7 @@ Engine.LoadLibrary("rmbiome");
 	const tSnowedRocks = ["alpine_cliff_b", "alpine_cliff_snow"];
 	setBiome("generic/aegean");
 
-	const heightScale = num => num * g_MapSettings.Size / 320;
+	const heightScale = num => num * mapSettings.Size / 320;
 
 	const heightSeaGround = heightScale(-6);
 	const heightWaterLevel = heightScale(0);
@@ -41,7 +42,7 @@ Engine.LoadLibrary("rmbiome");
 	const mapBounds = g_Map.getBounds();
 
 	g_Map.LoadHeightmapImage("mediterranean.png", 0, 40);
-	Engine.SetProgress(15);
+	yield 15;
 
 	initTileClasses([
 		"autumn",
@@ -105,27 +106,27 @@ Engine.LoadLibrary("rmbiome");
 		new MapBoundsPlacer(),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 2),
 		new HeightConstraint(-Infinity, heightWaterLevel));
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Smoothing heightmap");
 	createArea(
 		new MapBoundsPlacer(),
 		new SmoothingPainter(1, scaleByMapSize(0.3, 0.8), 1));
-	Engine.SetProgress(25);
+	yield 25;
 
 	g_Map.log("Marking water");
 	createArea(
 		new MapBoundsPlacer(),
 		new TileClassPainter(g_TileClasses.water),
 		new HeightConstraint(-Infinity, heightWaterLevel));
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Marking land");
 	createArea(
 		new DiskPlacer(fractionToTiles(0.5), mapCenter),
 		new TileClassPainter(g_TileClasses.land),
 		avoidClasses(g_TileClasses.water, 0));
-	Engine.SetProgress(35);
+	yield 35;
 
 	g_Map.log("Marking climate zones");
 	for (const zone of climateZones)
@@ -144,7 +145,7 @@ Engine.LoadLibrary("rmbiome");
 				zone.constraint
 			]);
 	}
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Fuzzing biome borders");
 	for (const zone of climateZones)
@@ -171,7 +172,7 @@ Engine.LoadLibrary("rmbiome");
 			scaleByMapSize(20, 60),
 			g_TileClasses.dirt);
 	}
-	Engine.SetProgress(45);
+	yield 45;
 
 	if (!isNomad())
 	{
@@ -198,7 +199,7 @@ Engine.LoadLibrary("rmbiome");
 			createBase(playerIDs[i], playerPosition[i], mapSize >= 384);
 		}
 	}
-	Engine.SetProgress(50);
+	yield 50;
 
 	for (const zone of climateZones)
 	{
@@ -388,7 +389,7 @@ Engine.LoadLibrary("rmbiome");
 			}
 		]);
 	}
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Painting water");
 	createArea(
@@ -408,7 +409,7 @@ Engine.LoadLibrary("rmbiome");
 				g_TileClasses.player, 6)
 		]);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Placing fish");
 	g_Gaia.fish = "gaia/fish/generic";
@@ -424,7 +425,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["many"]
 		}
 	]);
-	Engine.SetProgress(85);
+	yield 85;
 
 	g_Map.log("Placing whale");
 	g_Gaia.fish = "gaia/fauna_whale_fin";
@@ -442,7 +443,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["scarce"]
 		}
 	]);
-	Engine.SetProgress(95);
+	yield 95;
 
 	placePlayersNomad(
 		g_Map.createTileClass(),
@@ -480,5 +481,5 @@ Engine.LoadLibrary("rmbiome");
 	setPPSaturation(0.42);
 	setPPBloom(0.23);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

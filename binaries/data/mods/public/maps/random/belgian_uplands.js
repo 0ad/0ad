@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("heightmap");
 
+function* GenerateMap()
 {
 	const tPrimary = ["temp_grass", "temp_grass_b", "temp_grass_c", "temp_grass_d",
 		"temp_grass_long_b", "temp_grass_clovers_2", "temp_grass_mossy", "temp_grass_plants"];
@@ -194,7 +195,7 @@ Engine.LoadLibrary("heightmap");
 		}
 	];
 
-	Engine.SetProgress(5);
+	yield 5;
 
 	const lowerHeightLimit = terrainTypes[3].upperHeightLimit;
 	const upperHeightLimit = terrainTypes[6].upperHeightLimit;
@@ -232,7 +233,7 @@ Engine.LoadLibrary("heightmap");
 		}
 	})();
 
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Painting terrain by height and add props");
 	// 1 means as determined in the loop, less for large maps as set below
@@ -252,7 +253,7 @@ Engine.LoadLibrary("heightmap");
 				g_Map.placeEntityAnywhere(template[1], 0, position, randomAngle());
 		}
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	if (isNomad())
 		placePlayersNomad(g_Map.createTileClass(),
@@ -290,5 +291,5 @@ Engine.LoadLibrary("heightmap");
 		});
 	}
 
-	g_Map.ExportMap();
+	return g_Map;
 }

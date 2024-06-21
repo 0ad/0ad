@@ -1,8 +1,9 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap(mapSettings)
 {
-	const day = g_MapSettings.Daytime !== undefined ? g_MapSettings.Daytime == "day" : randBool(2/3);
+	const day = mapSettings.Daytime !== undefined ? mapSettings.Daytime == "day" : randBool(2/3);
 
 	// Spawn ships away from the shoreline, but patrol close to the shoreline
 	const triggerPointShipSpawn = "trigger/trigger_point_A";
@@ -779,7 +780,7 @@ Engine.LoadLibrary("rmgen-common");
 			clPath, 1),
 		clFood);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	createStragglerTrees(
 		treeTypes,
@@ -802,7 +803,7 @@ Engine.LoadLibrary("rmgen-common");
 		clForest,
 		stragglerTrees * 7);
 
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating animals on islands");
 	createFood(
@@ -822,7 +823,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		clFood);
 
-	Engine.SetProgress(98);
+	yield 98;
 
 	g_Map.log("Creating treasures");
 	createObjectGroupsByAreas(
@@ -1041,5 +1042,5 @@ Engine.LoadLibrary("rmgen-common");
 	setWaterMurkiness(0.97);
 	setWaterHeight(21);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

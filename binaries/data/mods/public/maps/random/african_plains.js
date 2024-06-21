@@ -2,8 +2,9 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap(mapSettings)
 {
-	if (g_MapSettings.Biome)
+	if (mapSettings.Biome)
 		setSelectedBiome();
 	else
 		setBiome("generic/savanna");
@@ -108,7 +109,7 @@ Engine.LoadLibrary("rmbiome");
 		}
 		// No decoratives
 	});
-	Engine.SetProgress(20);
+	yield 20;
 
 	// The specificity of this map is a bunch of watering holes & hills making
 	// it somewhat cluttered.
@@ -118,7 +119,7 @@ Engine.LoadLibrary("rmbiome");
 		g_Map.log("Creating hills");
 		createHills([tDirt2, tCliff, tGrassShrubs], avoidClasses(clPlayer, 30, clHill, 15), clHill,
 			nbHills);
-		Engine.SetProgress(30);
+		yield 30;
 
 		g_Map.log("Creating water holes");
 		createAreas(
@@ -134,7 +135,7 @@ Engine.LoadLibrary("rmbiome");
 			avoidClasses(clPlayer, 22, clWater, 8, clHill, 2),
 			nbWateringHoles);
 
-		Engine.SetProgress(45);
+		yield 45;
 
 		paintTerrainBasedOnHeight(heightCliff, Infinity, 0, tCliff);
 	}
@@ -148,7 +149,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clPlayer, 20, clForest, 15, clHill, 0, clWater, 2),
 		clForest,
 		scaleByMapSize(200, 1000));
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -158,7 +159,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating shrubs");
 	createPatches(
@@ -167,7 +168,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating grass patches");
 	createPatches(
@@ -176,7 +177,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating metal mines");
 	createBalancedMetalMines(
@@ -194,7 +195,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clWater, 4, clForest, 1, clPlayer, scaleByMapSize(20, 35), clHill, 1, clMetal, 10)
 	);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	createDecoration(
 		[
@@ -206,7 +207,7 @@ Engine.LoadLibrary("rmbiome");
 			scaleByMapAreaAbsolute(8)
 		],
 		avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0));
-	Engine.SetProgress(75);
+	yield 75;
 
 	// Roaming animals
 	{
@@ -307,7 +308,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		[avoidClasses(clFood, 20), stayClasses(clWater, 6)],
 		clFood);
-	Engine.SetProgress(85);
+	yield 85;
 
 
 	g_Map.log("Creating straggler baobabs");
@@ -333,5 +334,5 @@ Engine.LoadLibrary("rmbiome");
 	setSkySet("sunny");
 	setWaterType("clap");
 
-	g_Map.ExportMap();
+	return g_Map;
 }

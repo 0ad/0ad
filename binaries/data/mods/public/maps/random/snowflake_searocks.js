@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -254,7 +255,7 @@ Engine.LoadLibrary("rmbiome");
 		new MapBoundsPlacer(),
 		new TerrainPainter(tCliff),
 		new SlopeConstraint(2, Infinity));
-	Engine.SetProgress(30);
+	yield 30;
 
 	placePlayerBases({
 		"PlayerPlacement": [playerIDs, playerPosition],
@@ -289,7 +290,7 @@ Engine.LoadLibrary("rmbiome");
 			"template": aGrassShort
 		}
 	});
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating forests");
 	const [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
@@ -310,7 +311,7 @@ Engine.LoadLibrary("rmbiome");
 			],
 			[avoidClasses(clPlayer, 6, clForest, 10), stayClasses(clLand, 4)],
 			num);
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating stone mines");
 	let group = new SimpleGroup(
@@ -337,7 +338,7 @@ Engine.LoadLibrary("rmbiome");
 		5*scaleByMapSize(4, 16), 100
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 	g_Map.log("Creating dirt patches");
 	for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
 		createAreas(
@@ -385,7 +386,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(8, 131), 50
 	);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating deer");
 	group = new SimpleGroup(
@@ -397,7 +398,7 @@ Engine.LoadLibrary("rmbiome");
 		3 * numPlayers, 50
 	);
 
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Creating sheep");
 	group = new SimpleGroup(
@@ -418,7 +419,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clForest, 0, clPlayer, 10, clFood, 20), stayClasses(clLand, 4)],
 		3 * numPlayers, 50
 	);
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oTree1, oTree2, oTree4, oTree3],
@@ -439,7 +440,7 @@ Engine.LoadLibrary("rmbiome");
 		planetm * scaleByMapSize(13, 200)
 	);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating large grass tufts");
 	group = new SimpleGroup(
@@ -452,7 +453,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clPlayer, 2, clDirt, 1, clForest, 0), stayClasses(clLand, 4)],
 		planetm * scaleByMapSize(13, 200)
 	);
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating bushes");
 	group = new SimpleGroup(
@@ -474,5 +475,5 @@ Engine.LoadLibrary("rmbiome");
 	setSunRotation(randomAngle());
 	setSunElevation(Math.PI * randFloat(1/5, 1/3));
 
-	g_Map.ExportMap();
+	return g_Map;
 }

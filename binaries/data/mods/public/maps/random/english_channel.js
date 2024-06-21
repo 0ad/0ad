@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tPrimary = "temp_grass_long";
 	const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
@@ -91,7 +92,7 @@ Engine.LoadLibrary("rmgen-common");
 			"template": aGrassShort
 		}
 	});
-	Engine.SetProgress(10);
+	yield 10;
 
 	paintRiver({
 		"parallel": false,
@@ -112,7 +113,7 @@ Engine.LoadLibrary("rmgen-common");
 		}
 	});
 
-	Engine.SetProgress(20);
+	yield 20;
 
 	createTributaryRivers(
 		startAngle,
@@ -128,14 +129,14 @@ Engine.LoadLibrary("rmgen-common");
 	paintTerrainBasedOnHeight(-5, 1, 1, tWater);
 	paintTerrainBasedOnHeight(1, heightLand, 1, tShore);
 	paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
-	Engine.SetProgress(25);
+	yield 25;
 
 	createBumps(avoidClasses(clWater, 5, clPlayer, 20));
-	Engine.SetProgress(30);
+	yield 30;
 
 	createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 20, clHill, 15, clWater, 5), clHill,
 		scaleByMapSize(1, 4) * numPlayers);
-	Engine.SetProgress(50);
+	yield 50;
 
 	const [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 	createForests(
@@ -143,7 +144,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clPlayer, 20, clForest, 17, clHill, 0, clWater, 6),
 		clForest,
 		forestTrees);
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -162,7 +163,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6),
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Creating stone mines");
 	createMines(
@@ -184,7 +185,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 2, clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 2),
 		clMetal
 	);
-	Engine.SetProgress(85);
+	yield 85;
 
 	createDecoration(
 		[
@@ -270,5 +271,5 @@ Engine.LoadLibrary("rmgen-common");
 	placePlayersNomad(clPlayer,
 		avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
-	g_Map.ExportMap();
+	return g_Map;
 }

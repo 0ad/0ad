@@ -3,6 +3,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 Engine.LoadLibrary("heightmap");
 
+function* GenerateMap()
 {
 	globalThis.g_Map = new RandomMap(0, "whiteness");
 
@@ -508,7 +509,7 @@ Engine.LoadLibrary("heightmap");
 	g_Map.log("Rescaling map");
 	rescaleHeightmap(heightRange.min, heightRange.max);
 
-	Engine.SetProgress(25);
+	yield 25;
 
 	/**
 	 * Prepare terrain texture placement
@@ -549,7 +550,7 @@ Engine.LoadLibrary("heightmap");
 			new ClumpPlacer(diskArea(20), 0.8, 0.8, Infinity, position),
 			new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 20));
 
-	Engine.SetProgress(30);
+	yield 30;
 
 	/**
 	 * Calculate tile centered height map after start position smoothing but
@@ -621,7 +622,7 @@ Engine.LoadLibrary("heightmap");
 			if (entity)
 				g_Map.placeEntityPassable(entity, 0, randomPositionOnTile(point), randomAngle());
 		}
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Placing resources");
 	const avoidPoints = playerPosition.map(pos => pos.clone());
@@ -630,7 +631,7 @@ Engine.LoadLibrary("heightmap");
 	const resourceSpots = getPointsByHeight(resourceSpotHeightRange, avoidPoints).map(point =>
 		new Vector2D(point.x, point.y));
 
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Placing players");
 	if (isNomad())
@@ -687,5 +688,5 @@ Engine.LoadLibrary("heightmap");
 					radius / 3));
 	}
 
-	g_Map.ExportMap();
+	return g_Map;
 }

@@ -204,7 +204,7 @@ MountainRangeBuilder.prototype.PaintCurrentEdge = function()
 /**
  * This is the only function meant to be publicly accessible.
  */
-MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
+MountainRangeBuilder.prototype.CreateMountainRanges = function*(map)
 {
 	map.log("Creating mountainrange with " + this.possibleEdges.length + " possible edges");
 
@@ -212,7 +212,7 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 
 	while (this.possibleEdges.length)
 	{
-		Engine.SetProgress(35 - 15 * this.possibleEdges.length / max);
+		yield 35 - 15 * this.possibleEdges.length / max;
 
 		this.index = randIntExclusive(0, this.possibleEdges.length);
 		this.UpdateCurrentEdge();
@@ -234,8 +234,9 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 	}
 };
 
+function* GenerateMap(mapSettings)
 {
-	setBiome(g_MapSettings.Biome ?? "alpine/winter");
+	setBiome(mapSettings.Biome ?? "alpine/winter");
 
 	const heightLand = 3;
 	const heightOffsetBump = 2;
@@ -287,9 +288,9 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 			"template": g_Decoratives.grassShort
 		}
 	});
-	Engine.SetProgress(20);
+	yield 20;
 
-	new MountainRangeBuilder({
+	yield* new MountainRangeBuilder({
 		"numPlayers": numPlayers,
 		"pathplacer": new PathPlacer(
 			undefined,
@@ -323,7 +324,7 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 		]
 	}).CreateMountainRanges(g_Map);
 
-	Engine.SetProgress(35);
+	yield 35;
 
 	paintTerrainBasedOnHeight(heightLand + 0.1, snowlineHeight, 0, g_Terrains.cliff);
 	paintTerrainBasedOnHeight(snowlineHeight, heightMountain, 3, g_Terrains.snowLimited);
@@ -334,7 +335,7 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 2),
 		avoidClasses(clPlayer, 10),
 		scaleByMapSize(100, 200));
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating hills");
 	createAreas(
@@ -347,7 +348,7 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 		avoidClasses(clPlayer, 20, clHill, 14),
 		scaleByMapSize(10, 80) * numPlayers
 	);
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating forests");
 	const [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
@@ -367,7 +368,7 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 			],
 			avoidClasses(clPlayer, 12, clForest, 10, clHill, 0),
 			num);
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating dirt patches");
 	for (const patchSize of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -393,7 +394,7 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 			avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
 			scaleByMapSize(15, 45));
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating stone mines");
 	let group = new SimpleGroup(
@@ -421,7 +422,7 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 		avoidClasses(clForest, 1, clPlayer, 20, clMetal, 10, clRock, 5, clHill, 1),
 		scaleByMapSize(4, 16), 100
 	);
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating small decorative rocks");
 	group = new SimpleGroup(
@@ -447,7 +448,7 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 		avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
 		scaleByMapSize(8, 131), 50
 	);
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Creating deer");
 	group = new SimpleGroup(
@@ -478,7 +479,7 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 		avoidClasses(clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
 		3 * numPlayers, 50
 	);
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[g_Gaia.tree1],
@@ -496,7 +497,7 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 		avoidClasses(clHill, 2, clPlayer, 2, clDirt, 0),
 		planetm * scaleByMapSize(13, 200)
 	);
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating large grass tufts");
 	group = new SimpleGroup([
@@ -506,7 +507,7 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 		avoidClasses(clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0),
 		planetm * scaleByMapSize(13, 200)
 	);
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating bushes");
 	group = new SimpleGroup([
@@ -523,5 +524,5 @@ MountainRangeBuilder.prototype.CreateMountainRanges = function(map)
 	setSunRotation(randomAngle());
 	setSunElevation(Math.PI * randFloat(1/5, 1/3));
 
-	g_Map.ExportMap();
+	return g_Map;
 }

@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tPrimary = "temp_grass_long";
 	const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
@@ -103,7 +104,7 @@ Engine.LoadLibrary("rmgen-common");
 			"template": aGrassShort
 		}
 	});
-	Engine.SetProgress(20);
+	yield 20;
 
 	const riverPositions = [
 		new Vector2D(mapBounds.left + 1, mapCenter.y),
@@ -116,7 +117,7 @@ Engine.LoadLibrary("rmgen-common");
 			scaleByMapSize(0.5, 2), 0.1, 0.01),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
 		avoidClasses(clPlayer, 4));
-	Engine.SetProgress(25);
+	yield 25;
 
 	g_Map.log("Creating small puddles at the map border to ensure players being separated");
 	for (const riverPosition of riverPositions)
@@ -124,7 +125,7 @@ Engine.LoadLibrary("rmgen-common");
 			new ClumpPlacer(diskArea(scaleByMapSize(5, 10)), 0.95, 0.6, Infinity, riverPosition),
 			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 2),
 			avoidClasses(clPlayer, 8));
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating the shallows of the main river");
 	for (let i = 0; i <= randIntInclusive(3, scaleByMapSize(4, 6)); ++i)
@@ -142,7 +143,7 @@ Engine.LoadLibrary("rmgen-common");
 			"tileClass": clShallow
 		});
 	}
-	Engine.SetProgress(35);
+	yield 35;
 
 	createTributaryRivers(
 		startAngle,
@@ -155,13 +156,13 @@ Engine.LoadLibrary("rmgen-common");
 		clShallow,
 		avoidClasses(clPlayer, 3, clBaseResource, 4));
 
-	Engine.SetProgress(40);
+	yield 40;
 
 	paintTerrainBasedOnHeight(-5, 1, 1, tWater);
 	paintTerrainBasedOnHeight(1, 2, 1, pForestR);
 	paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating bumps");
 	createAreas(
@@ -170,7 +171,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 2, clPlayer, 15),
 		scaleByMapSize(100, 200)
 	);
-	Engine.SetProgress(55);
+	yield 55;
 
 	const [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.7);
 	createForests(
@@ -178,7 +179,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clPlayer, 15, clWater, 3, clForest, 16, clHill, 1),
 		clForest,
 		forestTrees);
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating dirt patches");
 	for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -200,7 +201,7 @@ Engine.LoadLibrary("rmgen-common");
 			avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 6),
 			scaleByMapSize(15, 45)
 		);
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Creating stone mines");
 	let group = new SimpleGroup(
@@ -227,7 +228,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(4, 16), 100
 	);
 
-	Engine.SetProgress(86);
+	yield 86;
 
 	g_Map.log("Creating small decorative rocks");
 	group = new SimpleGroup(
@@ -336,5 +337,5 @@ Engine.LoadLibrary("rmgen-common");
 	setWaterType("lake");
 	setWaterMurkiness(0.80);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

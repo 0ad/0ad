@@ -3,6 +3,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	const g_InitialMineDistance = 14;
 	const g_InitialTrees = 50;
@@ -207,7 +208,7 @@ Engine.LoadLibrary("rmbiome");
 		}
 	}
 
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating big islands");
 	createAreas(
@@ -245,7 +246,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(6, 55),
 		1);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Smoothing heightmap");
 	createArea(
@@ -256,7 +257,7 @@ Engine.LoadLibrary("rmbiome");
 	unPaintTileClassBasedOnHeight(-10, 10, 3, clLand);
 	paintTileClassBasedOnHeight(0, 5, 3, clLand);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	createBumps(avoidClasses(clPlayer, 20));
 
@@ -451,7 +452,7 @@ Engine.LoadLibrary("rmbiome");
 		planetm * scaleByMapSize(13, 200)
 	);
 
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating large grass tufts");
 	group = new SimpleGroup(
@@ -478,7 +479,7 @@ Engine.LoadLibrary("rmbiome");
 	setSunElevation(randFloat(1/5, 1/3) * Math.PI);
 	setWaterWaviness(2);
 
-	Engine.SetProgress(100);
+	yield 100;
 
-	g_Map.ExportMap();
+	return g_Map;
 }

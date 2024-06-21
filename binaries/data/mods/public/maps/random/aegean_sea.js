@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -113,7 +114,7 @@ Engine.LoadLibrary("rmgen-common");
 			"template": aBush1
 		}
 	});
-	Engine.SetProgress(30);
+	yield 30;
 
 	paintRiver({
 		"parallel": false,
@@ -132,7 +133,7 @@ Engine.LoadLibrary("rmgen-common");
 
 	paintTerrainBasedOnHeight(-Infinity, heightShore, Elevation_ExcludeMin_ExcludeMax, tShoreLower);
 	paintTerrainBasedOnHeight(heightShore, heightLand, Elevation_ExcludeMin_ExcludeMax, tShoreUpper);
-	Engine.SetProgress(40);
+	yield 40;
 
 	createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
@@ -143,7 +144,7 @@ Engine.LoadLibrary("rmgen-common");
 		clForest,
 		forestTrees);
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	if (randBool())
 		createHills([tGrass, tCliff, tHill],
@@ -165,7 +166,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(15, 45),
 		clDirt);
 
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -176,7 +177,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(15, 45),
 		clDirt);
 
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating undersea bumps");
 	createAreas(
@@ -245,7 +246,7 @@ Engine.LoadLibrary("rmgen-common");
 		clMetal
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	createDecoration(
 		[
@@ -265,7 +266,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		avoidClasses(clWater, 2, clForest, 0, clPlayer, 0, clHill, 1));
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	createFood(
 		[
@@ -301,7 +302,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
 		clFood);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	const types = [oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress];
 	createStragglerTrees(
@@ -342,5 +343,5 @@ Engine.LoadLibrary("rmgen-common");
 	setPPSaturation(0.51);
 	setPPBloom(0.12);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

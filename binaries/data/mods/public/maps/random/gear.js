@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -229,7 +230,7 @@ Engine.LoadLibrary("rmbiome");
 		clForest,
 		forestTrees);
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -247,7 +248,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating stone mines");
 	createMines(
@@ -278,7 +279,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(400, 2000),
 		100);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	let planetm = 1;
 
@@ -302,7 +303,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0));
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	createFood(
 		[
@@ -335,5 +336,5 @@ Engine.LoadLibrary("rmbiome");
 	placePlayersNomad(clPlayer,
 		avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
-	g_Map.ExportMap();
+	return g_Map;
 }

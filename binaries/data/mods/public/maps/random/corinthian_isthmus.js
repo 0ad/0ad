@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	setSelectedBiome();
 
@@ -180,7 +181,7 @@ Engine.LoadLibrary("rmbiome");
 			"template": aBush1
 		}
 	});
-	Engine.SetProgress(40);
+	yield 40;
 
 	createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
@@ -191,7 +192,7 @@ Engine.LoadLibrary("rmbiome");
 		clForest,
 		forestTrees);
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	if (randBool())
 		createHills([tGrass, tCliff, tHill],
@@ -213,7 +214,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(15, 45),
 		clDirt);
 
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -224,7 +225,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(15, 45),
 		clDirt);
 
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating stone mines in the middle");
 	createObjectGroups(
@@ -253,7 +254,7 @@ Engine.LoadLibrary("rmbiome");
 		0.9 // less available area -> slightly less metal
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	createDecoration(
 		[
@@ -280,7 +281,7 @@ Engine.LoadLibrary("rmbiome");
 			clRock, 6,
 			clMetal, 6));
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	createFood(
 		[
@@ -333,7 +334,7 @@ Engine.LoadLibrary("rmbiome");
 			clMetal, 6),
 		clFood);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	createStragglerTrees(
 		[oDatePalm, oSDatePalm, oCarob, oFanPalm, oPoplar, oCypress],
@@ -377,5 +378,5 @@ Engine.LoadLibrary("rmbiome");
 	setWaterType("ocean");
 	setWaterMurkiness(0.49);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

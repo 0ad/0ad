@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	setBiome("generic/temperate");
 
@@ -82,7 +83,7 @@ Engine.LoadLibrary("rmbiome");
 			new LayeredPainter([tCliff, tGrass], [3]),
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3)
 		]);
-	Engine.SetProgress(5);
+	yield 5;
 
 	g_Map.log("Finding hills");
 	const noise0 = new Noise2D(20);
@@ -130,7 +131,7 @@ Engine.LoadLibrary("rmbiome");
 		return 1;
 	}
 
-	Engine.SetProgress(10);
+	yield 10;
 
 	placePlayerBases({
 		"PlayerPlacement": [playerIDs, playerPosition],
@@ -170,7 +171,7 @@ Engine.LoadLibrary("rmbiome");
 			new ClumpPlacer(250, 0.95, 0.3, 0.1, playerPosition[i]),
 			new TileClassPainter(clPlayer));
 
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating hills");
 	for (const size of
@@ -262,7 +263,7 @@ Engine.LoadLibrary("rmbiome");
 		}
 	}
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	for (let ix = 0; ix < mapSize; ix++)
 		for (let iz = 0; iz < mapSize; iz++)
@@ -289,7 +290,7 @@ Engine.LoadLibrary("rmbiome");
 
 	new TileClassPainter(clExplorable).paint(explorableArea);
 
-	Engine.SetProgress(55);
+	yield 55;
 
 	// Add some general noise - after placing height dependant trees
 	for (let ix = 0; ix < mapSize; ix++)
@@ -306,7 +307,7 @@ Engine.LoadLibrary("rmbiome");
 		}
 	}
 
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating forests");
 	const [protoPorestTrees, stragglerTrees] = getTreeCounts(1300, 8000, 0.8);
@@ -342,7 +343,7 @@ Engine.LoadLibrary("rmbiome");
 		[explorableArea]
 	);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating grass patches");
 	for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -360,7 +361,7 @@ Engine.LoadLibrary("rmbiome");
 			avoidClasses(clForest, 1, clHill, 2, clPlayer, 5),
 			scaleByMapSize(4, 12));
 
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Creating metal mines");
 	createBalancedMetalMines(
@@ -385,7 +386,7 @@ Engine.LoadLibrary("rmbiome");
 		]
 	);
 
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Creating wildlife");
 	let group = new SimpleGroup(
@@ -418,7 +419,7 @@ Engine.LoadLibrary("rmbiome");
 		[explorableArea]
 	);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	g_Map.log("Creating berry bush");
 	group = new SimpleGroup(
@@ -448,7 +449,7 @@ Engine.LoadLibrary("rmbiome");
 		[explorableArea]
 	);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating straggler trees");
 	const types = [oOak, oOakLarge, oPine, oAleppoPine];
@@ -467,7 +468,7 @@ Engine.LoadLibrary("rmbiome");
 			stragglerNum, 20,
 			[explorableArea]);
 
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating grass tufts");
 	group = new SimpleGroup(
@@ -481,5 +482,5 @@ Engine.LoadLibrary("rmbiome");
 
 	placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
-	g_Map.ExportMap();
+	return g_Map;
 }

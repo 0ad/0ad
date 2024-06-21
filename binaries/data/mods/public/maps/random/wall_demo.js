@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	globalThis.g_Map = new RandomMap(0, "grass1");
 
@@ -406,5 +407,5 @@ Engine.LoadLibrary("rmgen-common");
 			placeLinearWall(start, end, ['tower', 'medium'], wallStyleList[styleIndex], playerID);
 		}
 
-	g_Map.ExportMap();
+	return g_Map;
 }

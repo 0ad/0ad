@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -231,7 +232,7 @@ Engine.LoadLibrary("rmgen-common");
 			"template": aGrassShort
 		}
 	});
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating the pyreneans");
 	const mountainVec = new Vector2D(mountainLength, 0).rotate(-startAngle);
@@ -239,7 +240,7 @@ Engine.LoadLibrary("rmgen-common");
 	const mountainDirection = mountainVec.clone().normalize();
 	createPyreneans();
 	paintTileClassBasedOnHeight(heightPyreneans, Infinity, Elevation_ExcludeMin_ExcludeMax, clPyrenneans);
-	Engine.SetProgress(40);
+	yield 40;
 
 	/**
 	 * Generates the mountain peak noise.
@@ -310,7 +311,7 @@ Engine.LoadLibrary("rmgen-common");
 				"tileClass": clPass
 			});
 		}
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Smoothing the pyreneans");
 	createArea(
@@ -332,7 +333,7 @@ Engine.LoadLibrary("rmgen-common");
 		new MapBoundsPlacer(),
 		new SmoothingPainter(5, 0.9, 1),
 		new NearTileClassConstraint(clWater, 5));
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating hills");
 	createAreas(
@@ -359,7 +360,7 @@ Engine.LoadLibrary("rmgen-common");
 			],
 			avoidClasses(clPlayer, 20, clPyrenneans, 0, clForest, 7, clWater, 2),
 			num);
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating lone trees");
 	num = scaleByMapSize(80, 400);
@@ -435,7 +436,7 @@ Engine.LoadLibrary("rmgen-common");
 			avoidClasses(clWater, 3, clForest, 0, clPyrenneans, 5, clHill, 0, clDirt, 5, clPlayer, 6),
 			scaleByMapSize(15, 45));
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	// making more in dirt areas so as to appear different
 	g_Map.log("Creating small grass tufts");
@@ -455,7 +456,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 3, clHill, 2, clPlayer, 5, clDirt, 1, clForest, 0, clPyrenneans, 2),
 		scaleByMapSize(13, 200));
 	createObjectGroupsDeprecated(group, 0, stayClasses(clDirt, 1), scaleByMapSize(13, 200), 10);
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Creating bushes");
 	group = new SimpleGroup(
@@ -466,7 +467,7 @@ Engine.LoadLibrary("rmgen-common");
 	createObjectGroupsDeprecated(group, 0,
 		avoidClasses(clWater, 2, clPlayer, 1, clPyrenneans, 1), scaleByMapSize(13, 200), 50);
 
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Creating metal mines");
 	createBalancedMetalMines(
@@ -489,7 +490,7 @@ Engine.LoadLibrary("rmgen-common");
 			clMetal, 10)
 	);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	g_Map.log("Creating small decorative rocks");
 	group = new SimpleGroup([new SimpleObject(aRockMedium, 1, 3, 0, 1)], true);
@@ -505,7 +506,7 @@ Engine.LoadLibrary("rmgen-common");
 	createObjectGroupsDeprecated(group, 0, avoidClasses(clWater, 0, clForest, 0, clPlayer, 0),
 		scaleByMapSize(8, 131), 50);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating deer");
 	group = new SimpleGroup([new SimpleObject(oDeer, 5, 7, 0, 4)], true, clFood);
@@ -546,5 +547,5 @@ Engine.LoadLibrary("rmgen-common");
 	setWaterMurkiness(0.83);
 	setWaterHeight(heightWaterLevel);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

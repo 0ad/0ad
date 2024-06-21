@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tPrimary = "desert_sand_dunes_100";
 	const tCity = "desert_city_tile";
@@ -107,7 +108,7 @@ Engine.LoadLibrary("rmgen-common");
 			"template": aBush1
 		}
 	});
-	Engine.SetProgress(30);
+	yield 30;
 
 	const riverTextures = [
 		{
@@ -178,7 +179,7 @@ Engine.LoadLibrary("rmgen-common");
 				}
 		}
 	});
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating bumps");
 	createAreas(
@@ -230,7 +231,7 @@ Engine.LoadLibrary("rmgen-common");
 		num,
 		50);
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating grass patches");
 	for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -255,7 +256,7 @@ Engine.LoadLibrary("rmgen-common");
 				clShore, 1,
 				clPond, 1),
 			scaleByMapSize(15, 45));
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating dirt patches");
 	for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -277,7 +278,7 @@ Engine.LoadLibrary("rmgen-common");
 				clPond, 1),
 			scaleByMapSize(15, 45));
 
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating stone mines");
 	let group = new SimpleGroup(
@@ -338,7 +339,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(6, 20), 100
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating small decorative rocks");
 	group = new SimpleGroup(
@@ -366,7 +367,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 1, clPlayer, 0, clPond, 1),
 		scaleByMapSize(20, 180), 50
 	);
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating gazelles");
 	group = new SimpleGroup([new SimpleObject(oGazelle, 5, 7, 0, 4)], true, clFood);
@@ -423,7 +424,7 @@ Engine.LoadLibrary("rmgen-common");
 		3 * scaleByMapSize(5, 20), 50
 	);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	createStragglerTrees(
 		[oDatePalm, oSDatePalm],
@@ -502,5 +503,5 @@ Engine.LoadLibrary("rmgen-common");
 	setWaterWaviness(3.0);
 	setWaterType("lake");
 
-	g_Map.ExportMap();
+	return g_Map;
 }

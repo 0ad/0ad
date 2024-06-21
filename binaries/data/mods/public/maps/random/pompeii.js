@@ -21,6 +21,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap(mapSettings)
 {
 	setBiome("generic/aegean");
 
@@ -78,7 +79,7 @@ Engine.LoadLibrary("rmbiome");
 		"actor|props/special/eyecandy/vase_rome_a.xml"
 	];
 
-	const heightScale = num => num * g_MapSettings.Size / 320;
+	const heightScale = num => num * mapSettings.Size / 320;
 
 	const heightSeaGround = heightScale(-30);
 	const heightDockMin = heightScale(-6);
@@ -95,34 +96,34 @@ Engine.LoadLibrary("rmbiome");
 	initTileClasses(["decorative", "lava", "dock"]);
 
 	g_Map.LoadHeightmapImage("pompeii.png", 0, heightMountains);
-	Engine.SetProgress(15);
+	yield 15;
 
 	g_Map.log("Lowering sea ground");
 	createArea(
 		new MapBoundsPlacer(),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 2),
 		new HeightConstraint(-Infinity, heightWaterLevel));
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Smoothing heightmap");
 	createArea(
 		new MapBoundsPlacer(),
 		new SmoothingPainter(1, 0.8, 1));
-	Engine.SetProgress(25);
+	yield 25;
 
 	g_Map.log("Marking water");
 	createArea(
 		new MapBoundsPlacer(),
 		new TileClassPainter(g_TileClasses.water),
 		new HeightConstraint(-Infinity, heightWaterLevel));
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Marking land");
 	createArea(
 		new MapBoundsPlacer(),
 		new TileClassPainter(g_TileClasses.land),
 		avoidClasses(g_TileClasses.water, 0));
-	Engine.SetProgress(35);
+	yield 35;
 
 	g_Map.log("Painting cliffs");
 	createArea(
@@ -135,7 +136,7 @@ Engine.LoadLibrary("rmbiome");
 			avoidClasses(g_TileClasses.water, 2),
 			new SlopeConstraint(2, Infinity)
 		]);
-	Engine.SetProgress(45);
+	yield 45;
 
 	g_Map.log("Painting lava");
 	const areaVesuv = createArea(
@@ -148,7 +149,7 @@ Engine.LoadLibrary("rmbiome");
 			new TileClassPainter(g_TileClasses.lava)
 		],
 		new HeightConstraint(heightLavaVesuv, Infinity));
-	Engine.SetProgress(46);
+	yield 46;
 
 	g_Map.log("Adding smoke");
 	createObjectGroupsByAreas(
@@ -163,7 +164,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(4, 12),
 		20,
 		[areaVesuv]);
-	Engine.SetProgress(48);
+	yield 48;
 
 	if (!isNomad())
 	{
@@ -184,7 +185,7 @@ Engine.LoadLibrary("rmbiome");
 					position),
 				new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position), 6));
 	}
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Placing docks");
 	const dockTypes = [
@@ -208,7 +209,7 @@ Engine.LoadLibrary("rmbiome");
 			],
 			0,
 			50);
-	Engine.SetProgress(55);
+	yield 55;
 
 	addElements([
 		{
@@ -239,7 +240,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["normal"]
 		}
 	]);
-	Engine.SetProgress(60);
+	yield 60;
 
 	addElements(shuffleArray([
 		{
@@ -290,7 +291,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["many"]
 		}
 	]));
-	Engine.SetProgress(65);
+	yield 65;
 
 	addElements(shuffleArray([
 		{
@@ -337,7 +338,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["tons"]
 		}
 	]));
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Adding gatherable stone statues");
 	createObjectGroups(
@@ -357,7 +358,7 @@ Engine.LoadLibrary("rmbiome");
 		),
 		5 * scaleByMapSize(1, 4),
 		50);
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Adding stone ruins");
 	createObjectGroups(
@@ -380,7 +381,7 @@ Engine.LoadLibrary("rmbiome");
 		),
 		scaleByMapSize(1, 4),
 		20);
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Adding shipwrecks");
 	createObjectGroups(
@@ -395,7 +396,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		scaleByMapSize(1, 5),
 		20);
-	Engine.SetProgress(85);
+	yield 85;
 
 	g_Map.log("Adding more statues");
 	createObjectGroups(
@@ -412,7 +413,7 @@ Engine.LoadLibrary("rmbiome");
 		),
 		scaleByMapSize(3, 15),
 		30);
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Adding skeletons");
 	createObjectGroups(
@@ -431,7 +432,7 @@ Engine.LoadLibrary("rmbiome");
 		),
 		scaleByMapSize(1, 5),
 		50);
-	Engine.SetProgress(95);
+	yield 95;
 
 	placePlayersNomad(
 		g_Map.createTileClass(),
@@ -468,5 +469,5 @@ Engine.LoadLibrary("rmbiome");
 	setPPSaturation(0.42);
 	setPPBloom(0.23);
 
-	g_Map.ExportMap();
+	return g_Map;
 }
