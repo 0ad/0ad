@@ -7,6 +7,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("heightmap");
 
+function* GenerateMap(mapSettings)
 {
 	TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -72,7 +73,7 @@ Engine.LoadLibrary("heightmap");
 	const oPyramidSmall = "structures/kush/pyramid_small";
 	const oWonderPtol = "structures/ptol/wonder";
 	const oFortress = "structures/kush/fortress";
-	const oTower = g_MapSettings.Size >= 256 && getDifficulty() >= 3 ? "structures/kush/defense_tower" :
+	const oTower = mapSettings.Size >= 256 && getDifficulty() >= 3 ? "structures/kush/defense_tower" :
 		"structures/kush/sentry_tower";
 	const oHouse = "structures/kush/house";
 	const oMarket = "structures/kush/market";
@@ -144,7 +145,7 @@ Engine.LoadLibrary("heightmap");
 		...oPalms.map(tree => tForestFloorFertile + TERRAIN_SEPARATOR + tree),
 		tForestFloorFertile];
 
-	const heightScale = num => num * g_MapSettings.Size / 320;
+	const heightScale = num => num * mapSettings.Size / 320;
 
 	const minHeightSource = 3;
 	const maxHeightSource = 800;
@@ -343,7 +344,7 @@ Engine.LoadLibrary("heightmap");
 		"overlap": 0.05
 	};
 
-	Engine.SetProgress(10);
+	yield 10;
 
 	g_Map.log("Loading hill heightmap");
 	createArea(
@@ -420,7 +421,7 @@ Engine.LoadLibrary("heightmap");
 		"meanderShort": 40,
 		"meanderLong": 0
 	});
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Computing player locations");
 	const playerIDs = sortAllPlayers();
@@ -562,7 +563,7 @@ Engine.LoadLibrary("heightmap");
 		previousPassageY = y;
 		areasPassages.push(area);
 	}
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Marking hill");
 	createArea(
@@ -597,7 +598,7 @@ Engine.LoadLibrary("heightmap");
 			new SlopeConstraint(-Infinity, 2)
 		]);
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	for (let i = 0; i < numPlayers; ++i)
 	{
@@ -679,7 +680,7 @@ Engine.LoadLibrary("heightmap");
 		50,
 		[areaPyramids]);
 
-	Engine.SetProgress(60);
+	yield 60;
 
 	// The city is a circle segment of this maximum size
 	g_Map.log("Computing city grid");
@@ -740,7 +741,7 @@ Engine.LoadLibrary("heightmap");
 						8, 0, 0, Infinity),
 					new TileClassPainter(clPath)));
 		}
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Placing kushite temples");
 	const entitiesTemples = [];
@@ -1007,7 +1008,7 @@ Engine.LoadLibrary("heightmap");
 					new NearTileClassConstraint(clPath, pathWidth + 1)
 				]);
 	}
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Finding road starting points");
 	const roadStartLocations = shuffleArray(
@@ -1098,7 +1099,7 @@ Engine.LoadLibrary("heightmap");
 			20,
 			[areaRoadPalms]);
 	}
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Marking city bush area");
 	const areaCityBushes =
@@ -1194,7 +1195,7 @@ Engine.LoadLibrary("heightmap");
 		4,
 		0,
 		3);
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Setting up common constraints and areas");
 	const nearWater = new NearTileClassConstraint(clWater, 3);
@@ -1389,7 +1390,7 @@ Engine.LoadLibrary("heightmap");
 			50,
 			[areaFertileLand]);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	g_Map.log("Marking irrigation canal tree area");
 	const areaIrrigationCanalTrees = createArea(
@@ -1535,7 +1536,7 @@ Engine.LoadLibrary("heightmap");
 		scaleByMapSize(20, 120),
 		50);
 
-	Engine.SetProgress(95);
+	yield 95;
 
 	avoidCollisions = new StaticConstraint(avoidCollisions);
 
@@ -1611,5 +1612,5 @@ Engine.LoadLibrary("heightmap");
 	setPPSaturation(0.42);
 	setPPBloom(0.23);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

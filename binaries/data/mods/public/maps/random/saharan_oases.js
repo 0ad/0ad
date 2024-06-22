@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tPrimary = "desert_sand_dunes_100";
 	const tCity = "desert_city_tile";
@@ -86,7 +87,7 @@ Engine.LoadLibrary("rmgen-common");
 			"template": aBush1
 		}
 	});
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating oases");
 	const oasisRadius = fractionToTiles(scaleByMapSize(0.19, 0.22));
@@ -103,7 +104,7 @@ Engine.LoadLibrary("rmgen-common");
 				new TileClassPainter(clWater)
 			]);
 	}
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating grass patches");
 	for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -118,7 +119,7 @@ Engine.LoadLibrary("rmgen-common");
 			],
 			avoidClasses(clForest, 0, clPlayer, 0, clWater, 1, clDirt, 5),
 			scaleByMapSize(15, 45));
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating dirt patches");
 	for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -133,7 +134,7 @@ Engine.LoadLibrary("rmgen-common");
 			],
 			avoidClasses(clForest, 0, clDirt, 5, clPlayer, 0, clWater, 1),
 			scaleByMapSize(15, 45));
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating stone mines");
 	let group = new SimpleGroup(
@@ -253,5 +254,5 @@ Engine.LoadLibrary("rmgen-common");
 	setWaterType("clap");
 	setWaterMurkiness(0.5);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("heightmap");
 
+function* GenerateMap()
 {
 	setSkySet("fog");
 	setFogFactor(0.35);
@@ -306,7 +307,7 @@ Engine.LoadLibrary("heightmap");
 				false);
 	}
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Painting textures");
 	const betweenShallowAndShore = (heighLimits[3] + heighLimits[2]) / 2;
@@ -321,7 +322,7 @@ Engine.LoadLibrary("heightmap");
 		new LayeredPainter([tWaterBorder, tWater], [2]));
 
 	paintTileClassBasedOnHeight(heightRange.min, heighLimits[2], 1, clWater);
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Painting paths");
 	const pathBlending = numPlayers <= 4;
@@ -340,7 +341,7 @@ Engine.LoadLibrary("heightmap");
 				],
 				avoidClasses(clPath, 0, clOpen, 0, clWater, 4, clBaseResource, 4));
 		}
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Creating decoration");
 	createDecoration(
@@ -360,7 +361,7 @@ Engine.LoadLibrary("heightmap");
 		],
 		avoidClasses(clForest, 1, clPlayer, 0, clPath, 3, clWater, 3));
 
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Growing fish");
 	createFood(
@@ -373,7 +374,7 @@ Engine.LoadLibrary("heightmap");
 		[avoidClasses(clFood, 5), stayClasses(clWater, 4)],
 		clFood);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	g_Map.log("Planting reeds");
 	const types = [aReeds];
@@ -385,7 +386,7 @@ Engine.LoadLibrary("heightmap");
 			scaleByMapSize(1, 2) * 1000,
 			1000);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Planting trees");
 	for (let x = 0; x < mapSize; x++)
@@ -426,7 +427,7 @@ Engine.LoadLibrary("heightmap");
 
 	placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clFood, 2, clMetal, 4, clRock, 4));
 
-	Engine.SetProgress(100);
+	yield 100;
 
-	g_Map.ExportMap();
+	return g_Map;
 }

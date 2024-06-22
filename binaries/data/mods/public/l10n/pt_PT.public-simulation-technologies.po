@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-04-19 07:08+0000\n"
+"POT-Creation-Date: 2024-06-17 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: lecalam, 2022-2024\n"
 "Language-Team: Portuguese (Portugal) (http://app.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
@@ -436,7 +436,7 @@ msgstr "Economia rica em recursos"
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsontooltip
 msgid "Storehouse technologies −100% research time."
-msgstr "Tecnologias de armazém −100% tempo de pesquisa."
+msgstr "Tecnologias de armazém −100% tempo de desenvolvimento."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -750,8 +750,8 @@ msgid "Ahimsa"
 msgstr "Ainsa"
 
 #: simulation/data/technologies/gather_ahimsa.jsontooltip
-msgid "Units +100% fruit gather rate, but -80% meat and fish gather."
-msgstr "Unidades +100% velocidade de recolha de frutos, mas −80% recolha de carne e peixe."
+msgid "Units +100% fruit gather rate, but −80% meat and fish gather."
+msgstr "Unidades +100% velocidade de recolha de fruta, mas −80% recolha de carne e peixe."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock to slaughter for meat."
@@ -1381,9 +1381,9 @@ msgstr "Avança para a fase de cidade, que desbloqueia mais entidades e tecnolog
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase.\n"
-"The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
+"The 'Times of War' bonus decreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr "Avança de uma cidade movimentada para uma verdadeira metrópole, cheia das maravilhas da tecnologia moderna. Esta é a fase da cidade persa.\nO bónus 'Tempo de guerra' diminui o tempo de treino dos lotes nos estábulos. Os lotes grandes beneficiam mais do que os lotes pequenos.\nEm termos matemáticos: O tempo de treino de um lote é dividido por `tamanho do lote^0,1`."
+msgstr "Avança de uma vila movimentada para uma verdadeira metrópole, cheia das maravilhas da tecnologia moderna. Esta é a fase de cidade persa.\nO bónus 'Tempos de guerra' diminui o tempo de treino dos lotes nos estábulos. Os lotes grandes beneficiam mais do que os lotes pequenos.\nEm termos matemáticos: o tempo de treino de um lote é dividido por `tamanho do lote^0,1`. "
 
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
@@ -1455,7 +1455,7 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. This is the Persian town phase.\n"
 "The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr "Avança de uma pequena aldeia para uma cidade movimentada, pronta a expandir-se rapidamente. Esta é a fase da cidade persa.\nO bónus 'Tempo de guerra' diminui o tempo de treino dos lotes nos estábulos. Os lotes grandes beneficiam mais do que os lotes pequenos.\nEm termos matemáticos: O tempo de treino de um lote é dividido por `tamanho do lote^0,1`."
+msgstr "Avança de uma pequena aldeia para uma vila movimentada, pronta a expandir-se rapidamente. Esta é a fase de vila persa.\nO bónus 'Tempos de guerra' diminui o tempo de treino dos lotes nos estábulos. Os lotes grandes beneficiam mais do que os lotes pequenos.\nEm termos matemáticos: o tempo de treino de um lote é dividido por `tamanho do lote^0,1`."
 
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""

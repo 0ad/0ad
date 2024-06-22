@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tGrass = [
 		"tropic_grass_c",
@@ -101,7 +102,7 @@ Engine.LoadLibrary("rmgen-common");
 		}
 		// No decoratives
 	});
-	Engine.SetProgress(15);
+	yield 15;
 
 	paintRiver({
 		"parallel": true,
@@ -153,7 +154,7 @@ Engine.LoadLibrary("rmgen-common");
 	paintTerrainBasedOnHeight(0, 1, 1, tShore);
 	paintTileClassBasedOnHeight(-6, 0.5, 1, clWater);
 
-	Engine.SetProgress(45);
+	yield 45;
 
 	g_Map.log("Creating hills");
 	createAreasInAreas(
@@ -190,7 +191,7 @@ Engine.LoadLibrary("rmgen-common");
 			avoidClasses(clPlayer, 20, clForest, 10, clHill, 0, clWater, 8),
 			num);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating grass patches");
 	for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -269,7 +270,7 @@ Engine.LoadLibrary("rmgen-common");
 		8 * scaleByMapSize(13, 200)
 	);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating large grass tufts");
 	group = new SimpleGroup(
@@ -283,7 +284,7 @@ Engine.LoadLibrary("rmgen-common");
 		8 * scaleByMapSize(13, 200)
 	);
 
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating bushes");
 	group = new SimpleGroup(
@@ -294,7 +295,7 @@ Engine.LoadLibrary("rmgen-common");
 		8 * scaleByMapSize(13, 200), 50
 	);
 
-	Engine.SetProgress(96);
+	yield 96;
 
 	createStragglerTrees(
 		[oTree, oPalm],
@@ -312,7 +313,7 @@ Engine.LoadLibrary("rmgen-common");
 		3 * numPlayers, 50
 	);
 
-	Engine.SetProgress(97);
+	yield 97;
 
 	g_Map.log("Creating berry bush");
 	group = new SimpleGroup(
@@ -365,5 +366,5 @@ Engine.LoadLibrary("rmgen-common");
 	setPPBloom(0.6);
 
 	setSkySet("cirrus");
-	g_Map.ExportMap();
+	return g_Map;
 }

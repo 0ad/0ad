@@ -18,6 +18,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap(mapSettings)
 {
 	TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -151,7 +152,7 @@ Engine.LoadLibrary("rmgen-common");
 	const heightSeaGround = -6;
 	const heightWaterLevel = 0;
 	const heightShore = 0.5;
-	const heightOffsetPath = -g_MapSettings.Size / 80;
+	const heightOffsetPath = -mapSettings.Size / 80;
 	const minHeight = -1;
 	const maxHeight = 2;
 
@@ -185,7 +186,7 @@ Engine.LoadLibrary("rmgen-common");
 		clTemple, 11, clCliff, 0, clStatue, 2, clSoldier, 3, clTower, 2, clTreasure, 1);
 
 	g_Map.LoadHeightmapImage("elephantine.png", minHeight, maxHeight);
-	Engine.SetProgress(3);
+	yield 3;
 
 	g_Map.log("Lowering sea ground");
 	createArea(
@@ -195,13 +196,13 @@ Engine.LoadLibrary("rmgen-common");
 			new TileClassPainter(clWater)
 		],
 		new HeightConstraint(-Infinity, heightWaterLevel));
-	Engine.SetProgress(6);
+	yield 6;
 
 	g_Map.log("Smoothing heightmap");
 	createArea(
 		new MapBoundsPlacer(),
 		new SmoothingPainter(1, scaleByMapSize(0.1, 0.5), 1));
-	Engine.SetProgress(10);
+	yield 10;
 
 	g_Map.log("Marking islands");
 	const areaIsland = createArea(
@@ -217,21 +218,21 @@ Engine.LoadLibrary("rmgen-common");
 			Infinity),
 		new TileClassPainter(clIsland),
 		avoidClasses(clPlayer, 0, clWater, 0));
-	Engine.SetProgress(13);
+	yield 13;
 
 	g_Map.log("Painting islands");
 	createArea(
 		new MapBoundsPlacer(),
 		new TerrainPainter(tGrass),
 		stayClasses(clIsland, 0));
-	Engine.SetProgress(16);
+	yield 16;
 
 	g_Map.log("Painting water and shoreline");
 	createArea(
 		new MapBoundsPlacer(),
 		new TerrainPainter(tWater),
 		new HeightConstraint(-Infinity, heightShore));
-	Engine.SetProgress(19);
+	yield 19;
 
 	placePlayerBases({
 		"PlayerPlacement": playerPlacementRiver(riverAngle, fractionToTiles(0.62)),
@@ -262,7 +263,7 @@ Engine.LoadLibrary("rmgen-common");
 			"template": pickRandom(aBushesDesert)
 		}
 	});
-	Engine.SetProgress(22);
+	yield 22;
 
 	g_Map.log("Creating temple");
 	const groupTemple = createObjectGroupsByAreas(
@@ -273,7 +274,7 @@ Engine.LoadLibrary("rmgen-common");
 		1,
 		200,
 		[areaIsland]);
-	Engine.SetProgress(34);
+	yield 34;
 
 	g_Map.log("Creating pyramid");
 	const groupPyramid = createObjectGroupsByAreas(
@@ -288,7 +289,7 @@ Engine.LoadLibrary("rmgen-common");
 		1,
 		200,
 		[areaIsland]);
-	Engine.SetProgress(37);
+	yield 37;
 
 	g_Map.log("Painting city patches");
 	const cityCenters = [
@@ -303,7 +304,7 @@ Engine.LoadLibrary("rmgen-common");
 			new DiskPlacer(cityCenter.radius, cityCenter.pos),
 			new LayeredPainter([tRoadWildIsland, tRoadIsland], [2]),
 			stayClasses(clIsland, 2)));
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Painting city path");
 	if (cityCenters.length == 2)
@@ -314,11 +315,11 @@ Engine.LoadLibrary("rmgen-common");
 				new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetPath, 4),
 				new TileClassPainter(clPath)
 			]);
-	Engine.SetProgress(42);
+	yield 42;
 
 	createBumps(avoidClasses(clPlayer, 10, clWater, 2, clTemple, 10, clPath, 1), scaleByMapSize(10, 500),
 		1, 8, 4, 0.2, 3);
-	Engine.SetProgress(43);
+	yield 43;
 
 	g_Map.log("Marking cliffs");
 	createArea(
@@ -328,7 +329,7 @@ Engine.LoadLibrary("rmgen-common");
 			avoidClasses(clWater, 2),
 			new SlopeConstraint(2, Infinity)
 		]);
-	Engine.SetProgress(44);
+	yield 44;
 
 	g_Map.log("Creating stone mines");
 	createMines(
@@ -342,7 +343,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 4, clCliff, 4, clPlayer, 20, clRock, 10, clPath, 1),
 		clRock,
 		scaleByMapSize(6, 24));
-	Engine.SetProgress(45);
+	yield 45;
 
 	g_Map.log("Creating metal mines");
 	createMines(
@@ -356,7 +357,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 4, clCliff, 4, clPlayer, 20, clMetal, 10, clRock, 5, clPath, 1),
 		clMetal,
 		scaleByMapSize(6, 24));
-	Engine.SetProgress(46);
+	yield 46;
 
 	g_Map.log("Creating kushite towers");
 	createObjectGroups(
@@ -370,7 +371,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		scaleByMapSize(4, 12),
 		200);
-	Engine.SetProgress(49);
+	yield 49;
 
 	const [forestTrees, stragglerTrees] = getTreeCounts(400, 3000, 0.7);
 	createForests(
@@ -378,7 +379,7 @@ Engine.LoadLibrary("rmgen-common");
 		[avoidCollisions, avoidClasses(clIsland, 0, clPlayer, 20, clForest, 18, clWater, 2)],
 		clForest,
 		forestTrees / 2);
-	Engine.SetProgress(52);
+	yield 52;
 
 	createForests(
 		[
@@ -391,7 +392,7 @@ Engine.LoadLibrary("rmgen-common");
 		[stayClasses(clIsland, 0), avoidClasses(clForest, 15, clWater, 2), avoidCollisions],
 		clForest,
 		forestTrees / 2);
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating dirt patches");
 	createPatches(
@@ -400,7 +401,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 0, clIsland, 0, clForest, 0, clDirt, 5, clPlayer, 12),
 		scaleByMapSize(5, 30),
 		clDirt);
-	Engine.SetProgress(58);
+	yield 58;
 
 	g_Map.log("Creating statues");
 	createObjectGroupsByAreas(
@@ -414,7 +415,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(2, 10),
 		400,
 		[areaIsland]);
-	Engine.SetProgress(61);
+	yield 61;
 
 	g_Map.log("Creating treasure");
 	createObjectGroupsByAreas(
@@ -424,7 +425,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(4, 10),
 		100,
 		areaCityPatch);
-	Engine.SetProgress(62);
+	yield 62;
 
 	g_Map.log("Creating hero");
 	createObjectGroups(
@@ -437,7 +438,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		1,
 		500);
-	Engine.SetProgress(64);
+	yield 64;
 
 	g_Map.log("Creating soldiers");
 	createObjectGroups(
@@ -453,7 +454,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		scaleByMapSize(12, 60),
 		200);
-	Engine.SetProgress(67);
+	yield 67;
 
 	g_Map.log("Creating berries");
 	createObjectGroups(
@@ -462,7 +463,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidCollisions,
 		scaleByMapSize(4, 12),
 		250);
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating rhinos");
 	createObjectGroups(
@@ -471,7 +472,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidCollisions,
 		scaleByMapSize(2, 10),
 		50);
-	Engine.SetProgress(73);
+	yield 73;
 
 	g_Map.log("Creating warthog");
 	createObjectGroups(
@@ -480,7 +481,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidCollisions,
 		scaleByMapSize(2, 10),
 		50);
-	Engine.SetProgress(77);
+	yield 77;
 
 	g_Map.log("Creating gazelles");
 	createObjectGroups(
@@ -489,7 +490,7 @@ Engine.LoadLibrary("rmgen-common");
 		[avoidClasses(clIsland, 1), avoidCollisions],
 		scaleByMapSize(2, 10),
 		50);
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Creating giraffes");
 	createObjectGroups(
@@ -502,7 +503,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidCollisions,
 		scaleByMapSize(2, 10),
 		50);
-	Engine.SetProgress(83);
+	yield 83;
 
 	if (!isNomad())
 	{
@@ -517,7 +518,7 @@ Engine.LoadLibrary("rmgen-common");
 			avoidCollisions,
 			scaleByMapSize(2, 10),
 			50);
-		Engine.SetProgress(87);
+		yield 87;
 	}
 
 	g_Map.log("Creating elephants");
@@ -531,7 +532,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidCollisions,
 		scaleByMapSize(2, 10),
 		50);
-	Engine.SetProgress(88);
+	yield 88;
 
 	g_Map.log("Creating crocodiles");
 	createObjectGroups(
@@ -543,12 +544,12 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		scaleByMapSize(2, 10),
 		50);
-	Engine.SetProgress(89);
+	yield 89;
 
 	g_Map.log("Creating hawk");
 	for (let i = 0; i < scaleByMapSize(0, 2); ++i)
 		g_Map.placeEntityAnywhere(oHawk, 0, mapCenter, randomAngle());
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating fish");
 	createObjectGroups(
@@ -557,41 +558,41 @@ Engine.LoadLibrary("rmgen-common");
 		[stayClasses(clWater, 8), avoidClasses(clFood, 16)],
 		scaleByMapSize(15, 80),
 		50);
-	Engine.SetProgress(91);
+	yield 91;
 
 	createStragglerTrees(
 		[oAcacia],
 		avoidCollisions,
 		clForest,
 		stragglerTrees);
-	Engine.SetProgress(93);
+	yield 93;
 
 	placePlayersNomad(clPlayer, [avoidCollisions, avoidClasses(clIsland, 0)]);
-	Engine.SetProgress(95);
+	yield 95;
 
 	createDecoration(
 		aBushesDesert.map(bush => [new SimpleObject(bush, 0, 3, 2, 4)]),
 		aBushesDesert.map(bush => scaleByMapSize(20, 150) * randIntInclusive(1, 3)),
 		[avoidClasses(clIsland, 0), avoidCollisions]);
-	Engine.SetProgress(96);
+	yield 96;
 
 	createDecoration(
 		aBushesIslands.map(bush => [new SimpleObject(bush, 0, 4, 2, 4)]),
 		aBushesIslands.map(bush => scaleByMapSize(20, 150) * randIntInclusive(1, 3)),
 		[stayClasses(clIsland, 0), avoidCollisions]);
-	Engine.SetProgress(97);
+	yield 97;
 
 	createDecoration(
 		[[new SimpleObject(aRock, 0, 4, 2, 4)]],
 		[[scaleByMapSize(80, 500)]],
 		[avoidClasses(clIsland, 0), avoidCollisions]);
-	Engine.SetProgress(98);
+	yield 98;
 
 	createDecoration(
 		aBushesShoreline.map(bush => [new SimpleObject(bush, 0, 3, 2, 4)]),
 		aBushesShoreline.map(bush => scaleByMapSize(200, 1000)),
 		[new HeightConstraint(heightWaterLevel, heightShore), avoidCollisions]);
-	Engine.SetProgress(99);
+	yield 99;
 
 	g_Environment = {
 		"SkySet": "cloudless",
@@ -648,5 +649,5 @@ Engine.LoadLibrary("rmgen-common");
 		}
 	};
 
-	g_Map.ExportMap();
+	return g_Map;
 }

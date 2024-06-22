@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const templateStone = "gaia/rock/temperate_small";
 	const templateStoneMine = "gaia/rock/temperate_large";
@@ -119,7 +120,7 @@ Engine.LoadLibrary("rmgen-common");
 			Vector2D.add(mapCenter, new Vector2D(randFloat(minPlayerRadius, maxPlayerRadius), 0)
 				.rotate(-playerAngle[i]).round());
 	}
-	Engine.SetProgress(10);
+	yield 10;
 
 	placePlayerBases({
 		"PlayerPlacement": [playerIDs, playerPosition],
@@ -158,7 +159,7 @@ Engine.LoadLibrary("rmgen-common");
 			"count": 2
 		}
 	});
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Painting paths");
 	const pathBlending = numPlayers <= 4;
@@ -178,7 +179,7 @@ Engine.LoadLibrary("rmgen-common");
 				],
 				avoidClasses(clBaseResource, 4));
 		}
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Placing expansion resources");
 	for (let i = 0; i < numPlayers; ++i)
@@ -204,7 +205,7 @@ Engine.LoadLibrary("rmgen-common");
 					new TileClassPainter(clHill)
 				]);
 		}
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Placing temple");
 	g_Map.placeEntityPassable(templateTemple, 0, mapCenter, randomAngle());
@@ -255,9 +256,9 @@ Engine.LoadLibrary("rmgen-common");
 			const hVarHills = 5 * (1 + Math.sin(x / 10) * Math.sin(z / 10));
 			g_Map.setHeight(position, g_Map.getHeight(position) + hVarMiddleHill + hVarHills + 1);
 		}
-	Engine.SetProgress(95);
+	yield 95;
 
 	placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clBaseResource, 4, clHill, 4));
 
-	g_Map.ExportMap();
+	return g_Map;
 }

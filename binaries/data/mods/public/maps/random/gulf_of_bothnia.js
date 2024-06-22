@@ -2,10 +2,11 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap(mapSettings)
 {
 	TILE_CENTERED_HEIGHT_MAP = true;
 
-	if (g_MapSettings.Biome)
+	if (mapSettings.Biome)
 		setSelectedBiome();
 	else
 		// TODO: Replace ugly default for atlas by a dropdown
@@ -113,7 +114,7 @@ Engine.LoadLibrary("rmbiome");
 			"template": aRockMedium
 		}
 	});
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Creating the gulf");
 	const gulfLakePositions = [
@@ -196,7 +197,7 @@ Engine.LoadLibrary("rmbiome");
 		clForest,
 		forestTrees);
 
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -214,7 +215,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clLake, 6, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating metal mines");
 	createBalancedMetalMines(
@@ -233,7 +234,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clLake, 2, clForest, 0, clPlayer, scaleByMapSize(15, 25), clHill, 1, clMetal, 10),
 		0.9
 	);
-	Engine.SetProgress(70);
+	yield 70;
 
 	createDecoration(
 		[
@@ -251,7 +252,7 @@ Engine.LoadLibrary("rmbiome");
 			scaleByMapSize(bushCount.min, bushCount.max)
 		],
 		avoidClasses(clLake, 0, clForest, 0, clPlayer, 5, clHill, 0, clBaseResource, 5));
-	Engine.SetProgress(75);
+	yield 75;
 
 	createFood(
 		[
@@ -284,7 +285,7 @@ Engine.LoadLibrary("rmbiome");
 			clFood);
 	}
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oTree3],
@@ -296,5 +297,5 @@ Engine.LoadLibrary("rmbiome");
 	placePlayersNomad(clPlayer,
 		avoidClasses(clLake, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
-	g_Map.ExportMap();
+	return g_Map;
 }

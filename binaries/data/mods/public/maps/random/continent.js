@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	setSelectedBiome();
 
@@ -103,7 +104,7 @@ Engine.LoadLibrary("rmbiome");
 				new TileClassPainter(clLand)
 			]);
 
-	Engine.SetProgress(20);
+	yield 20;
 
 	paintTerrainBasedOnHeight(3, 4, 3, tMainTerrain);
 	paintTerrainBasedOnHeight(1, 3, 0, tShore);
@@ -136,7 +137,7 @@ Engine.LoadLibrary("rmbiome");
 			"template": aGrassShort
 		}
 	});
-	Engine.SetProgress(30);
+	yield 30;
 
 	createBumps([avoidClasses(clPlayer, 10), stayClasses(clLand, 5)]);
 
@@ -158,7 +159,7 @@ Engine.LoadLibrary("rmbiome");
 		clForest,
 		forestTrees);
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -176,7 +177,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12), stayClasses(clLand, 5)],
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating metal mines");
 	createBalancedMetalMines(
@@ -200,7 +201,7 @@ Engine.LoadLibrary("rmbiome");
 		]
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	// create decoration
 	let planetm = 1;
@@ -225,7 +226,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		[avoidClasses(clForest, 0, clPlayer, 0, clHill, 0), stayClasses(clLand, 5)]);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	createFood(
 		[
@@ -259,7 +260,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clLand, 2, clFood, 20),
 		clFood);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oTree1, oTree2, oTree4, oTree3],
@@ -280,5 +281,5 @@ Engine.LoadLibrary("rmbiome");
 	setWaterWaviness(1.0);
 	setWaterType("ocean");
 
-	g_Map.ExportMap();
+	return g_Map;
 }

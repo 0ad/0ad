@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tPrimary = "savanna_grass_a";
 	const tGrass2 = "savanna_grass_b";
@@ -78,7 +79,7 @@ Engine.LoadLibrary("rmgen-common");
 		}
 		// No decoratives
 	});
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Creating big patches");
 	const patches = [tGrass2, tGrass3];
@@ -113,7 +114,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		avoidClasses(clPlayer, 24),
 		scaleByMapSize(1, 3));
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating stone mines");
 	for (let i = 0; i < scaleByMapSize(12, 30); ++i)
@@ -133,7 +134,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(2, 8), 100
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating small decorative rocks");
 	group = new SimpleGroup(
@@ -146,7 +147,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(200, 1200), 1
 	);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating gazelle");
 	group = new SimpleGroup(
@@ -208,7 +209,7 @@ Engine.LoadLibrary("rmgen-common");
 		randIntInclusive(1, 4) * numPlayers + 2, 50
 	);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oBaobab],
@@ -244,5 +245,5 @@ Engine.LoadLibrary("rmgen-common");
 	setPPContrast(0.57031);
 	setPPBloom(0.34);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

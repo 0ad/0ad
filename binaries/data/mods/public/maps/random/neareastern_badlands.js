@@ -2,8 +2,9 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap(mapSettings)
 {
-	if (g_MapSettings.Biome)
+	if (mapSettings.Biome)
 		setSelectedBiome();
 	else
 		setBiome("generic/sahara");
@@ -117,7 +118,7 @@ Engine.LoadLibrary("rmbiome");
 		}
 		// No decoratives
 	});
-	Engine.SetProgress(10);
+	yield 10;
 
 	g_Map.log("Creating dune patches");
 	createAreas(
@@ -128,7 +129,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		avoidClasses(clPatch, 2, clPlayer, 0),
 		scaleByMapSize(5, 20));
-	Engine.SetProgress(15);
+	yield 15;
 
 	g_Map.log("Creating sand patches");
 	createAreas(
@@ -139,7 +140,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		avoidClasses(clPatch, 2, clPlayer, 0),
 		scaleByMapSize(15, 50));
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Creating dirt patches");
 	createAreas(
@@ -150,7 +151,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		avoidClasses(clPatch, 2, clPlayer, 0),
 		scaleByMapSize(15, 50));
-	Engine.SetProgress(25);
+	yield 25;
 
 	g_Map.log("Creating oasis");
 	createArea(
@@ -169,7 +170,7 @@ Engine.LoadLibrary("rmbiome");
 			new TileClassPainter(clOasis)
 		]);
 
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating oasis wildlife");
 	let num = Math.round(Math.PI * oasisRadius / 8);
@@ -217,7 +218,7 @@ Engine.LoadLibrary("rmbiome");
 		createObjectGroup(
 			new SimpleGroup([new SimpleObject(oFish, 1, 1, 0, 1)], true, clFood, fishPosition), 0);
 	}
-	Engine.SetProgress(35);
+	yield 35;
 
 	g_Map.log("Creating level 1 hills");
 	let hillAreas = createAreas(
@@ -230,7 +231,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clOasis, 3, clPlayer, 0, clHill1, 10),
 		scaleByMapSize(10, 20), 100
 	);
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating small level 1 hills");
 	hillAreas = hillAreas.concat(
@@ -245,7 +246,7 @@ Engine.LoadLibrary("rmbiome");
 			scaleByMapSize(15, 25),
 			100));
 
-	Engine.SetProgress(45);
+	yield 45;
 
 	g_Map.log("Creating decorative rocks");
 	createObjectGroupsByAreasDeprecated(
@@ -257,7 +258,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(40, 200), 50,
 		hillAreas);
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating level 2 hills");
 	createAreasInAreas(
@@ -271,7 +272,7 @@ Engine.LoadLibrary("rmbiome");
 		50,
 		hillAreas);
 
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating level 3 hills");
 	createAreas(
@@ -284,7 +285,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(15, 25),
 		50
 	);
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating bumps");
 	createAreas(
@@ -294,7 +295,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(100, 200)
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating forests");
 	const [forestTrees, stragglerTrees] = getTreeCounts(500, 2500, 0.5);
@@ -309,7 +310,7 @@ Engine.LoadLibrary("rmbiome");
 		num,
 		50);
 
-	Engine.SetProgress(70);
+	yield 70;
 	g_Map.log("Creating metal mines");
 	createBalancedMetalMines(
 		oMetalSmall,
@@ -325,7 +326,7 @@ Engine.LoadLibrary("rmbiome");
 		clRock,
 		avoidClasses(clOasis, 2, clForest, 0, clPlayer, scaleByMapSize(15, 25), clHill1, 1, clMetal, 10)
 	);
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Creating gazelles");
 	let group = new SimpleGroup([new SimpleObject(oGazelle, 5, 7, 0, 4)], true, clFood);
@@ -347,14 +348,14 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clOasis, 1, clForest, 0, clPlayer, 5, clHill1, 1, clFood, 10),
 		scaleByMapSize(5, 20), 50
 	);
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oDatePalm, oSDatePalm],
 		avoidClasses(clOasis, 1, clForest, 0, clHill1, 1, clPlayer, 4, clMetal, 6, clRock, 6),
 		clForest,
 		stragglerTrees);
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating bushes");
 	group = new SimpleGroup([new RandomObject(aBushes, 2, 3, 0, 2)]);
@@ -377,5 +378,5 @@ Engine.LoadLibrary("rmbiome");
 	setWaterType("clap");
 	setWaterHeight(20);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

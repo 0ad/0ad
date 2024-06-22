@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	setSelectedBiome();
 
@@ -74,7 +75,7 @@ Engine.LoadLibrary("rmbiome");
 			new SmoothElevationPainter(ELEVATION_SET, heightLand, 3),
 			new TileClassPainter(clLand)
 		]);
-	Engine.SetProgress(10);
+	yield 10;
 
 	const [playerIDs, playerPosition, playerAngle, startAngle] =
 		playerPlacementCircle(fractionToTiles(0.3));
@@ -125,12 +126,12 @@ Engine.LoadLibrary("rmbiome");
 		clPlayer.add(attacker[i]);
 		clPlayer.add(halfway[i]);
 	}
-	Engine.SetProgress(20);
+	yield 20;
 
 	paintTerrainBasedOnHeight(heightLand + 0.12, heightHill - 1, Elevation_IncludeMin_ExcludeMax, tCliff);
 	paintTileClassBasedOnHeight(heightLand + 0.12, heightHill - 1, Elevation_IncludeMin_ExcludeMax,
 		clHill);
-	Engine.SetProgress(30);
+	yield 30;
 
 	const landConstraint = new StaticConstraint(stayClasses(clLand, 5));
 
@@ -141,10 +142,10 @@ Engine.LoadLibrary("rmbiome");
 			[avoidClasses(clPlayer, 5, clHill, 5), landConstraint],
 			scaleByMapSize(40, 140),
 			100);
-	Engine.SetProgress(35);
+	yield 35;
 
 	createBumps(landConstraint);
-	Engine.SetProgress(40);
+	yield 40;
 
 	const hillConstraint = new AndConstraint(
 		[
@@ -161,7 +162,7 @@ Engine.LoadLibrary("rmbiome");
 			[hillConstraint, landConstraint],
 			clHill,
 			scaleByMapSize(10, 60) * numPlayers);
-	Engine.SetProgress(45);
+	yield 45;
 
 	createHills(
 		[tCliff, tCliff, tHill],
@@ -173,7 +174,7 @@ Engine.LoadLibrary("rmbiome");
 		undefined,
 		undefined,
 		55);
-	Engine.SetProgress(50);
+	yield 50;
 
 	const [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 	createForests(
@@ -186,7 +187,7 @@ Engine.LoadLibrary("rmbiome");
 		clForest,
 		forestTrees);
 
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -196,7 +197,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12, clWomen, 5), landConstraint],
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating grass patches");
 	createPatches(
@@ -205,7 +206,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12, clWomen, 5), landConstraint],
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(80);
+	yield 80;
 
 	let planetm = 1;
 	if (currentBiome() == "generic/india")
@@ -227,7 +228,7 @@ Engine.LoadLibrary("rmbiome");
 			planetm * scaleByMapAreaAbsolute(13)
 		],
 		[avoidClasses(clForest, 0, clPlayer, 0, clHill, 0), landConstraint]);
-	Engine.SetProgress(90);
+	yield 90;
 
 	createStragglerTrees(
 		[oTree1, oTree2, oTree4, oTree3],
@@ -235,7 +236,7 @@ Engine.LoadLibrary("rmbiome");
 		clForest,
 		stragglerTrees);
 
-	Engine.SetProgress(95);
+	yield 95;
 
-	g_Map.ExportMap();
+	return g_Map;
 }

@@ -20,6 +20,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap(mapSettings)
 {
 	TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -54,7 +55,7 @@ Engine.LoadLibrary("rmbiome");
 	g_Decoratives.bushSmall = "actor|props/flora/bush_medit_sm_dry.xml";
 	g_Decoratives.dust = "actor|particle/dust_storm_reddish.xml";
 
-	const heightScale = num => num * g_MapSettings.Size / 320;
+	const heightScale = num => num * mapSettings.Size / 320;
 
 	const heightSeaGround = heightScale(-4);
 	const heightReedsMin = heightScale(-2);
@@ -69,34 +70,34 @@ Engine.LoadLibrary("rmbiome");
 	initTileClasses(["shoreline"]);
 
 	g_Map.LoadHeightmapImage("red_sea.png", 0, 25);
-	Engine.SetProgress(15);
+	yield 15;
 
 	g_Map.log("Lowering sea ground");
 	createArea(
 		new MapBoundsPlacer(),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 2),
 		new HeightConstraint(-Infinity, heightWaterLevel));
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Smoothing heightmap");
 	createArea(
 		new MapBoundsPlacer(),
 		new SmoothingPainter(1, scaleByMapSize(0.1, 0.5), 1));
-	Engine.SetProgress(25);
+	yield 25;
 
 	g_Map.log("Marking water");
 	createArea(
 		new MapBoundsPlacer(),
 		new TileClassPainter(g_TileClasses.water),
 		new HeightConstraint(-Infinity, heightWaterLevel));
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Marking land");
 	createArea(
 		new DiskPlacer(fractionToTiles(0.5), mapCenter),
 		new TileClassPainter(g_TileClasses.land),
 		avoidClasses(g_TileClasses.water, 0));
-	Engine.SetProgress(35);
+	yield 35;
 
 	g_Map.log("Painting shoreline");
 	createArea(
@@ -106,7 +107,7 @@ Engine.LoadLibrary("rmbiome");
 			new TileClassPainter(g_TileClasses.shoreline)
 		],
 		new HeightConstraint(-Infinity, heightShoreline));
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Painting cliffs");
 	createArea(
@@ -119,7 +120,7 @@ Engine.LoadLibrary("rmbiome");
 			avoidClasses(g_TileClasses.water, 2),
 			new SlopeConstraint(2, Infinity)
 		]);
-	Engine.SetProgress(45);
+	yield 45;
 
 	if (!isNomad())
 	{
@@ -188,7 +189,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["few"]
 		}
 	]));
-	Engine.SetProgress(60);
+	yield 60;
 
 	// Ensure initial forests
 	addElements([{
@@ -206,7 +207,7 @@ Engine.LoadLibrary("rmbiome");
 		"mixes": ["similar"],
 		"amounts": ["tons"]
 	}]);
-	Engine.SetProgress(65);
+	yield 65;
 
 	addElements(shuffleArray([
 		{
@@ -266,7 +267,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["many"]
 		}
 	]));
-	Engine.SetProgress(70);
+	yield 70;
 
 	addElements([
 		{
@@ -296,7 +297,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["many"]
 		}
 	]);
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Painting dirt patches");
 	const dirtPatches = [
@@ -326,7 +327,7 @@ Engine.LoadLibrary("rmbiome");
 			dirtPatch.count,
 			g_TileClasses.dirt,
 			0.5);
-	Engine.SetProgress(85);
+	yield 85;
 
 	g_Map.log("Adding reeds");
 	createObjectGroups(
@@ -341,7 +342,7 @@ Engine.LoadLibrary("rmbiome");
 		new HeightConstraint(heightReedsMin, heightReedsMax),
 		scaleByMapSize(10, 25),
 		5);
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Adding dust");
 	createObjectGroups(
@@ -353,7 +354,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		scaleByMapSize(10, 50),
 		20);
-	Engine.SetProgress(95);
+	yield 95;
 
 	placePlayersNomad(
 		g_Map.createTileClass(),
@@ -390,5 +391,5 @@ Engine.LoadLibrary("rmbiome");
 	setPPSaturation(0.42);
 	setPPBloom(0.23);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

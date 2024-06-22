@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	setSelectedBiome();
 
@@ -163,7 +164,7 @@ Engine.LoadLibrary("rmbiome");
 			}
 		});
 	}
-	Engine.SetProgress(40);
+	yield 40;
 
 	createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 
@@ -181,7 +182,7 @@ Engine.LoadLibrary("rmbiome");
 		clForest,
 		forestTrees);
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -199,7 +200,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clWater, 3, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating metal mines");
 	createBalancedMetalMines(
@@ -217,7 +218,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clWater, 3, clForest, 1, clPlayer, scaleByMapSize(20, 35), clHill, 1, clMetal, 10)
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	let planetm = 1;
 
@@ -252,7 +253,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		stayClasses(clShallow, 0));
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	createFood(
 		[
@@ -286,7 +287,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clFood, 20), stayClasses(clWater, 6)],
 		clFood);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oTree1, oTree2, oTree4, oTree3],
@@ -300,5 +301,5 @@ Engine.LoadLibrary("rmbiome");
 	setWaterWaviness(3.0);
 	setWaterType("lake");
 
-	g_Map.ExportMap();
+	return g_Map;
 }

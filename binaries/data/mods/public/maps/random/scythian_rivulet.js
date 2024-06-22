@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tMainTerrain = "alpine_snow_a";
 	const tTier1Terrain = "snow rough";
@@ -95,10 +96,10 @@ Engine.LoadLibrary("rmgen-common");
 		"meanderShort": 40,
 		"meanderLong": 20
 	});
-	Engine.SetProgress(10);
+	yield 10;
 
 	paintTileClassBasedOnHeight(-Infinity, heightShoreUpper, Elevation_ExcludeMin_ExcludeMax, clRiver);
-	Engine.SetProgress(15);
+	yield 15;
 
 	createTributaryRivers(
 		startAngle + Math.PI / 2,
@@ -111,7 +112,7 @@ Engine.LoadLibrary("rmgen-common");
 		undefined,
 		avoidClasses(clPlayer, 4));
 
-	Engine.SetProgress(25);
+	yield 25;
 
 	placePlayerBases({
 		"PlayerPlacement": [playerIDs, playerPosition],
@@ -151,7 +152,7 @@ Engine.LoadLibrary("rmgen-common");
 			"maxDist": 12
 		}
 	});
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating pools");
 	createAreas(
@@ -160,7 +161,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clPlayer, 20),
 		scaleByMapSize(6, 20));
 
-	Engine.SetProgress(40);
+	yield 40;
 
 	createBumps(avoidClasses(clPlayer, 2));
 
@@ -190,7 +191,7 @@ Engine.LoadLibrary("rmgen-common");
 		tShore);
 	paintTerrainBasedOnHeight(heightSnowline, Infinity, Elevation_ExcludeMin_ExcludeMax, tMainTerrain);
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -214,7 +215,7 @@ Engine.LoadLibrary("rmgen-common");
 		clForest,
 		stragglerTrees);
 
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating stone mines");
 	// Allow mines on the bumps at the river
@@ -237,7 +238,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clForest, 4, clWater, 1, clPlayer, 20, clMetal, 15, clRock, 5, clHill, 1),
 		clMetal);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	createDecoration(
 		[
@@ -256,7 +257,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		avoidClasses(clWater, 2, clForest, 0, clPlayer, 20, clHill, 1));
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	createFood(
 		[
@@ -275,7 +276,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		avoidClasses(clWater, 3, clPlayer, 20, clHill, 1, clFood, 10));
 
-	Engine.SetProgress(75);
+	yield 75;
 
 	createFood(
 		[
@@ -342,5 +343,5 @@ Engine.LoadLibrary("rmgen-common");
 	setPPSaturation(0.42);
 	setPPBloom(0.6);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

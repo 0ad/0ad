@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tGrass1 = "savanna_grass_a";
 	const tDirt1 = "savanna_dirt_a";
@@ -75,7 +76,7 @@ Engine.LoadLibrary("rmgen-common");
 		}
 		// No decoratives
 	});
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Creating bumps");
 	createAreas(
@@ -116,7 +117,7 @@ Engine.LoadLibrary("rmgen-common");
 	paintTerrainBasedOnHeight(1, 2.4, 0, tShore);
 	paintTerrainBasedOnHeight(-8, 1, 2, tWater);
 	paintTileClassBasedOnHeight(-6, 0, 1, clWater);
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating stone mines");
 	for (let i = 0; i < scaleByMapSize(12, 30); ++i)
@@ -137,7 +138,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clPlayer, 20, clMetal, 10, clRock, 8, clWater, 4),
 		scaleByMapSize(2, 12), 100
 	);
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating small decorative rocks");
 	createObjectGroupsDeprecated(
@@ -149,7 +150,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clPlayer, 7, clWater, 1),
 		scaleByMapSize(200, 1200), 1
 	);
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating boar");
 	createObjectGroupsDeprecated(
@@ -228,7 +229,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 3, clPlayer, 20, clFood, 12, clRock, 4, clMetal, 4),
 		randIntInclusive(1, 4) * numPlayers + 2, 50
 	);
-	Engine.SetProgress(85);
+	yield 85;
 
 	g_Map.log("Creating trees");
 	createObjectGroupsDeprecated(
@@ -270,5 +271,5 @@ Engine.LoadLibrary("rmgen-common");
 	setPPContrast(0.57031);
 	setPPBloom(0.34);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

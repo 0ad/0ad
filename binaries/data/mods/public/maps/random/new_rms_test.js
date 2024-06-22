@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	globalThis.g_Map = new RandomMap(0, "grass1_spring");
 
@@ -10,5 +11,5 @@ Engine.LoadLibrary("rmgen-common");
 
 	placePlayersNomad(g_Map.createTileClass());
 
-	g_Map.ExportMap();
+	return g_Map;
 }

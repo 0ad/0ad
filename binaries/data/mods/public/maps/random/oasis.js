@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tSand = [
 		"desert_sand_dunes_100",
@@ -138,7 +139,7 @@ Engine.LoadLibrary("rmgen-common");
 		createObjectGroup(new SimpleGroup([new SimpleObject(aReedsA, 1, 3, 0, 0)], true, undefined,
 			reedsPosition), 0);
 	}
-	Engine.SetProgress(20);
+	yield 20;
 
 	placePlayerBases({
 		"PlayerPlacement": [playerIDs, playerPosition],
@@ -169,7 +170,7 @@ Engine.LoadLibrary("rmgen-common");
 		// Starting trees were set above
 		// No decoratives
 	});
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating central oasis");
 	createArea(
@@ -182,7 +183,7 @@ Engine.LoadLibrary("rmgen-common");
 			new TileClassPainter(clOasis)
 		]);
 
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating bumps");
 	createAreas(
@@ -208,7 +209,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clPlayer, 10, clBaseResource, 6, clOasis, 4, clForest, 4),
 		scaleByMapSize(15, 50));
 
-	Engine.SetProgress(50);
+	yield 50;
 
 	if (mapSize > 150 && randBool())
 	{
@@ -267,7 +268,7 @@ Engine.LoadLibrary("rmgen-common");
 			clHill, 1),
 		scaleByMapSize(6, 25), 100
 	);
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating small decorative rocks");
 	group = new SimpleGroup([new SimpleObject(aRock, 2, 4, 0, 2)], true, undefined);
@@ -280,7 +281,7 @@ Engine.LoadLibrary("rmgen-common");
 			clFood, 20),
 		30, scaleByMapSize(10, 50));
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating camels");
 	group = new SimpleGroup(
@@ -291,7 +292,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clOasis, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
 		1 * numPlayers, 50
 	);
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Creating gazelles");
 	group = new SimpleGroup(
@@ -302,7 +303,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clOasis, 3, clForest, 0, clPlayer, 10, clHill, 1, clFood, 20),
 		1 * numPlayers, 50
 	);
-	Engine.SetProgress(85);
+	yield 85;
 
 	g_Map.log("Creating oasis animals");
 	for (let i = 0; i < scaleByMapSize(5, 30); ++i)
@@ -324,7 +325,7 @@ Engine.LoadLibrary("rmgen-common");
 				animalPos),
 			0);
 	}
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating bushes");
 	group = new SimpleGroup(
@@ -396,5 +397,5 @@ Engine.LoadLibrary("rmgen-common");
 	setWaterMurkiness(0.5);
 	setAmbientColor(0.501961, 0.501961, 0.501961);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

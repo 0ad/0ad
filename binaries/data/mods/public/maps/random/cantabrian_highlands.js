@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	setSelectedBiome();
 
@@ -133,7 +134,7 @@ Engine.LoadLibrary("rmbiome");
 			"template": aGrassShort
 		}
 	});
-	Engine.SetProgress(10);
+	yield 10;
 
 	g_Map.log("Creating lakes");
 	const numLakes = Math.round(scaleByMapSize(1, 4) * numPlayers);
@@ -147,7 +148,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clPlayer, 2, clWater, 20),
 		numLakes
 	);
-	Engine.SetProgress(15);
+	yield 15;
 
 	g_Map.log("Creating reeds");
 	const group = new SimpleGroup(
@@ -158,7 +159,7 @@ Engine.LoadLibrary("rmbiome");
 		numLakes, 100,
 		waterAreas
 	);
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Creating fish");
 	createObjectGroupsByAreas(
@@ -172,14 +173,14 @@ Engine.LoadLibrary("rmbiome");
 		50,
 		waterAreas
 	);
-	Engine.SetProgress(25);
+	yield 25;
 
 	createBumps(avoidClasses(clWater, 2, clPlayer, 0));
-	Engine.SetProgress(30);
+	yield 30;
 
 	createHills([tCliff, tCliff, tHill], avoidClasses(clPlayer, 2, clWater, 5, clHill, 15), clHill,
 		scaleByMapSize(1, 4) * numPlayers);
-	Engine.SetProgress(35);
+	yield 35;
 
 	const [forestTrees, stragglerTrees] = getTreeCounts(...rBiomeTreeCount(1));
 	createDefaultForests(
@@ -187,7 +188,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clPlayer, 1, clWater, 3, clForest, 17, clHill, 1),
 		clForest,
 		forestTrees);
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -197,7 +198,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0),
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(45);
+	yield 45;
 
 	g_Map.log("Creating grass patches");
 	createLayeredPatches(
@@ -207,7 +208,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0),
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating metal mines");
 	createBalancedMetalMines(
@@ -225,7 +226,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clWater, 0, clForest, 0, clPlayer, scaleByMapSize(15, 25), clHill, 1, clMetal, 10)
 	);
 
-	Engine.SetProgress(60);
+	yield 60;
 
 	createDecoration(
 		[
@@ -243,7 +244,7 @@ Engine.LoadLibrary("rmbiome");
 			scaleByMapAreaAbsolute(13)
 		],
 		avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0));
-	Engine.SetProgress(70);
+	yield 70;
 
 	createFood(
 		[
@@ -256,7 +257,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		avoidClasses(clWater, 0, clForest, 0, clPlayer, 1, clHill, 1, clFood, 20),
 		clFood);
-	Engine.SetProgress(80);
+	yield 80;
 
 	createFood(
 		[
@@ -267,14 +268,14 @@ Engine.LoadLibrary("rmbiome");
 		],
 		avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
 		clFood);
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oOak, oOakLarge, oPine, oApple],
 		avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 1, clMetal, 6, clRock, 6),
 		clForest,
 		stragglerTrees);
-	Engine.SetProgress(90);
+	yield 90;
 
 	placePlayersNomad(clPlayer,
 		avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
@@ -290,5 +291,5 @@ Engine.LoadLibrary("rmbiome");
 	setFogThickness(0.25);
 	setFogFactor(0.4);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

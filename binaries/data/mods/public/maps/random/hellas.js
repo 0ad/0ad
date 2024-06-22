@@ -18,6 +18,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap(mapSettings)
 {
 	TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -45,7 +46,7 @@ Engine.LoadLibrary("rmgen-common");
 	const heightmapHellas = convertHeightmap1Dto2D(Engine.LoadHeightmapImage("maps/random/hellas.png"));
 	const biomes = Engine.ReadJSONFile("maps/random/hellas_biomes.json");
 
-	const heightScale = num => num * g_MapSettings.Size / 320;
+	const heightScale = num => num * mapSettings.Size / 320;
 
 	const heightSeaGround = heightScale(-6);
 	const heightReedsMin = heightScale(-2);
@@ -145,7 +146,7 @@ Engine.LoadLibrary("rmgen-common");
 			createArea(
 				new DiskPlacer(fractionToTiles(0.5) - MAP_BORDER_WIDTH, mapCenter),
 				new SmoothingPainter(1, 0.5, 1));
-			Engine.SetProgress(25);
+			yield 25;
 
 			clCliffs = g_Map.createTileClass();
 
@@ -188,7 +189,7 @@ Engine.LoadLibrary("rmgen-common");
 
 		g_Map.log("Too few player locations, starting over");
 	}
-	Engine.SetProgress(35);
+	yield 35;
 
 	if (!isNomad())
 	{
@@ -199,7 +200,7 @@ Engine.LoadLibrary("rmgen-common");
 				new ClumpPlacer(diskArea(playerRadius), 0.95, 0.6, Infinity, position),
 				new SmoothElevationPainter(ELEVATION_SET, g_Map.getHeight(position),
 					playerRadius / 2));
-		Engine.SetProgress(38);
+		yield 38;
 	}
 
 	g_Map.log("Painting lowlands");
@@ -207,14 +208,14 @@ Engine.LoadLibrary("rmgen-common");
 		new MapBoundsPlacer(),
 		new TerrainPainter(biomes.lowlands.terrains.main),
 		constraintLowlands);
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Painting highlands");
 	createArea(
 		new MapBoundsPlacer(),
 		new TerrainPainter(biomes.highlands.terrains.main),
 		constraintHighlands);
-	Engine.SetProgress(45);
+	yield 45;
 
 	g_Map.log("Painting mountains");
 	createArea(
@@ -224,14 +225,14 @@ Engine.LoadLibrary("rmgen-common");
 			avoidClasses(clWater, 2),
 			constraintMountains
 		]);
-	Engine.SetProgress(48);
+	yield 48;
 
 	g_Map.log("Painting water and shoreline");
 	createArea(
 		new MapBoundsPlacer(),
 		new TerrainPainter(biomes.water.terrains.main),
 		new HeightConstraint(-Infinity, heightShoreline));
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Painting cliffs");
 	createArea(
@@ -241,7 +242,7 @@ Engine.LoadLibrary("rmgen-common");
 			avoidClasses(clWater, 2),
 			new SlopeConstraint(2, Infinity)
 		]);
-	Engine.SetProgress(55);
+	yield 55;
 
 	for (let i = 0; i < numPlayers; ++i)
 	{
@@ -287,7 +288,7 @@ Engine.LoadLibrary("rmgen-common");
 			// No decoratives
 		});
 	}
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Placing docks");
 	placeDocks(
@@ -301,7 +302,7 @@ Engine.LoadLibrary("rmgen-common");
 		[avoidClasses(clDock, 50), new StaticConstraint(avoidClasses(clPlayer, 30, clCliffs, 8))],
 		0,
 		50);
-	Engine.SetProgress(65);
+	yield 65;
 
 	const [forestTrees, stragglerTrees] = getTreeCounts(600, 4000, 0.7);
 	const biomeTreeRatioHighlands = 0.4;
@@ -321,7 +322,7 @@ Engine.LoadLibrary("rmgen-common");
 			clForest,
 			forestTrees * (biome == "highlands" ? biomeTreeRatioHighlands :
 				1 - biomeTreeRatioHighlands));
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating stone mines");
 	const minesStone = [
@@ -335,7 +336,7 @@ Engine.LoadLibrary("rmgen-common");
 			[avoidClasses(clForest, 1, clPlayer, 20, clRock, 18, clCliffs, 2, clWater, 2, clDock, 6)],
 			scaleByMapSize(2, 12),
 			50);
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Creating metal mines");
 	const minesMetal = [
@@ -356,7 +357,7 @@ Engine.LoadLibrary("rmgen-common");
 				clDock, 6)],
 			scaleByMapSize(2, 12),
 			50);
-	Engine.SetProgress(80);
+	yield 80;
 
 	for (const biome of ["lowlands", "highlands"])
 		createStragglerTrees(
@@ -376,7 +377,7 @@ Engine.LoadLibrary("rmgen-common");
 			clForest,
 			stragglerTrees * (biome == "highlands" ? biomeTreeRatioHighlands * 4 :
 				1 - biomeTreeRatioHighlands));
-	Engine.SetProgress(85);
+	yield 85;
 
 	createFood(
 		[
@@ -402,7 +403,7 @@ Engine.LoadLibrary("rmgen-common");
 			constraintHighlands
 		],
 		clFood);
-	Engine.SetProgress(90);
+	yield 90;
 
 	createFood(
 		[
@@ -428,7 +429,7 @@ Engine.LoadLibrary("rmgen-common");
 			constraintLowlands
 		],
 		clFood);
-	Engine.SetProgress(93);
+	yield 93;
 
 	createFood(
 		[
@@ -461,7 +462,7 @@ Engine.LoadLibrary("rmgen-common");
 		[stayClasses(clWater, 8), avoidClasses(clFood, 8, clDock, 6)],
 		scaleByMapSize(15, 50),
 		100);
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating grass patches");
 	for (const biome of ["lowlands", "highlands"])
@@ -475,7 +476,7 @@ Engine.LoadLibrary("rmgen-common");
 				],
 				scaleByMapSize(15, 45) / biomes[biome].terrains.patches.length,
 				clDirt);
-	Engine.SetProgress(96);
+	yield 96;
 
 	for (const biome of ["lowlands", "highlands"])
 	{
@@ -515,7 +516,7 @@ Engine.LoadLibrary("rmgen-common");
 				avoidClasses(clWater, 4, clPlayer, 15, clForest, 1, clRock, 4, clMetal, 4),
 			]);
 	}
-	Engine.SetProgress(98);
+	yield 98;
 
 	g_Map.log("Creating temple");
 	createObjectGroups(
@@ -611,7 +612,7 @@ Engine.LoadLibrary("rmgen-common");
 
 	placePlayersNomad(clPlayer,
 		avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clFood, 2, clCliffs, 2, clWater, 15));
-	Engine.SetProgress(99);
+	yield 99;
 
 	setSkySet("sunny");
 	setSunColor(0.988166, 0.929297, 0.693819);
@@ -628,5 +629,5 @@ Engine.LoadLibrary("rmgen-common");
 	setPPContrast(0.62);
 	setPPBloom(0.12);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

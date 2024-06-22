@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tOceanRockDeep = "medit_sea_coral_deep";
 	const tOceanCoral = "medit_sea_coral_plants";
@@ -168,7 +169,7 @@ Engine.LoadLibrary("rmgen-common");
 		}
 		// No decoratives
 	});
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Creating bumps");
 	createAreasInAreas(
@@ -178,7 +179,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(25, 75), 15,
 		areas);
 
-	Engine.SetProgress(34);
+	yield 34;
 
 	g_Map.log("Creating hills");
 	createAreasInAreas(
@@ -192,7 +193,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(5, 30), 15,
 		areas);
 
-	Engine.SetProgress(38);
+	yield 38;
 
 	paintTileClassBasedOnHeight(-Infinity, 0, Elevation_ExcludeMin_ExcludeMax, clWater);
 
@@ -215,7 +216,7 @@ Engine.LoadLibrary("rmgen-common");
 			scaleByMapSize(10, 64),
 			20,
 			areas);
-	Engine.SetProgress(42);
+	yield 42;
 
 	g_Map.log("Creating stone mines");
 	let group = new SimpleGroup(
@@ -227,7 +228,7 @@ Engine.LoadLibrary("rmgen-common");
 		[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clRock, 6)],
 		scaleByMapSize(4, 16), 200, areas
 	);
-	Engine.SetProgress(46);
+	yield 46;
 
 	g_Map.log("Creating small stone mines");
 	group = new SimpleGroup([new SimpleObject(oStoneSmall, 2, 5, 1, 3)], true, clRock);
@@ -235,7 +236,7 @@ Engine.LoadLibrary("rmgen-common");
 		[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clRock, 6)],
 		scaleByMapSize(4, 16), 200, areas
 	);
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating metal mines");
 	group = new SimpleGroup([new SimpleObject(oMetalLarge, 1, 1, 0, 4)], true, clMetal);
@@ -243,7 +244,7 @@ Engine.LoadLibrary("rmgen-common");
 		[avoidClasses(clWater, 1, clForest, 1, clHill, 1, clPlayer, 5, clMetal, 6, clRock, 6)],
 		scaleByMapSize(4, 16), 200, areas
 	);
-	Engine.SetProgress(54);
+	yield 54;
 
 	g_Map.log("Creating shrub patches");
 	for (const size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
@@ -257,7 +258,7 @@ Engine.LoadLibrary("rmgen-common");
 			scaleByMapSize(4, 16),
 			20,
 			areas);
-	Engine.SetProgress(58);
+	yield 58;
 
 	g_Map.log("Creating grass patches");
 	for (const size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
@@ -271,7 +272,7 @@ Engine.LoadLibrary("rmgen-common");
 			scaleByMapSize(4, 16),
 			20,
 			areas);
-	Engine.SetProgress(62);
+	yield 62;
 
 	g_Map.log("Creating straggler trees");
 	for (const tree of [oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine])
@@ -289,7 +290,7 @@ Engine.LoadLibrary("rmgen-common");
 				clHill, 1),
 			scaleByMapSize(2, 38), 50, areas
 		);
-	Engine.SetProgress(66);
+	yield 66;
 
 	g_Map.log("Create straggler cypresses");
 	group = new SimpleGroup(
@@ -308,7 +309,7 @@ Engine.LoadLibrary("rmgen-common");
 			clHill, 1),
 		scaleByMapSize(5, 75), 50, areas
 	);
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Create straggler date palms");
 	group = new SimpleGroup(
@@ -327,7 +328,7 @@ Engine.LoadLibrary("rmgen-common");
 			clHill, 1),
 		scaleByMapSize(5, 75), 50, areas
 	);
-	Engine.SetProgress(74);
+	yield 74;
 
 	g_Map.log("Creating rocks");
 	group = new SimpleGroup(
@@ -341,7 +342,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 0, clCity, 0),
 		scaleByMapSize(30, 180), 50
 	);
-	Engine.SetProgress(78);
+	yield 78;
 
 	g_Map.log("Creating deer");
 	group = new SimpleGroup(
@@ -352,7 +353,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 5, clForest, 1, clHill, 1, clCity, 10, clMetal, 6, clRock, 4, clFood, 8),
 		3 * numPlayers, 50
 	);
-	Engine.SetProgress(82);
+	yield 82;
 
 	g_Map.log("Creating berry bushes");
 	group = new SimpleGroup([new SimpleObject(oBerryBush, 5, 7, 0, 3)], true, clFood);
@@ -360,7 +361,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 2, clForest, 1, clHill, 1, clCity, 10, clMetal, 6, clRock, 4, clFood, 8),
 		1.5 * numPlayers, 100
 	);
-	Engine.SetProgress(86);
+	yield 86;
 
 	g_Map.log("Creating Fish");
 	group = new SimpleGroup([new SimpleObject(oFish, 1, 1, 0, 3)], true, clFood);
@@ -368,7 +369,7 @@ Engine.LoadLibrary("rmgen-common");
 		[stayClasses(clWater, 1), avoidClasses(clFood, 8)],
 		scaleByMapSize(40, 200), 100
 	);
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating Whales");
 	group = new SimpleGroup([new SimpleObject(oWhale, 1, 1, 0, 3)], true, clFood);
@@ -376,7 +377,7 @@ Engine.LoadLibrary("rmgen-common");
 		[stayClasses(clWater, 1), avoidClasses(clFood, 8, clPlayer, 4, clIsland, 4)],
 		scaleByMapSize(10, 40), 100
 	);
-	Engine.SetProgress(94);
+	yield 94;
 
 	g_Map.log("Creating shipwrecks");
 	group = new SimpleGroup([new SimpleObject(oShipwreck, 1, 1, 0, 3)], true, clFood);
@@ -384,7 +385,7 @@ Engine.LoadLibrary("rmgen-common");
 		[stayClasses(clWater, 1), avoidClasses(clFood, 8)],
 		scaleByMapSize(6, 16), 100
 	);
-	Engine.SetProgress(98);
+	yield 98;
 
 	g_Map.log("Creating shipwreck debris");
 	group = new SimpleGroup([new SimpleObject(oShipDebris, 1, 2, 0, 4)], true, clFood);
@@ -392,7 +393,7 @@ Engine.LoadLibrary("rmgen-common");
 		[stayClasses(clWater, 1), avoidClasses(clFood, 8)],
 		scaleByMapSize(10, 20), 100
 	);
-	Engine.SetProgress(99);
+	yield 99;
 
 	placePlayersNomad(clPlayer,
 		avoidClasses(
@@ -411,5 +412,5 @@ Engine.LoadLibrary("rmgen-common");
 	setWaterWaviness(3.0);
 	setWaterType("ocean");
 
-	g_Map.ExportMap();
+	return g_Map;
 }

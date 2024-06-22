@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tMainDirt = ["desert_dirt_rocks_1", "desert_dirt_cracks"];
 	const tForestFloor1 = "forestfloor_dirty";
@@ -76,7 +77,7 @@ Engine.LoadLibrary("rmgen-common");
 				new TileClassPainter(clGrass)
 			]);
 	}
-	Engine.SetProgress(10);
+	yield 10;
 
 	placePlayerBases({
 		"PlayerPlacement": [playerIDs, playerPosition],
@@ -106,7 +107,7 @@ Engine.LoadLibrary("rmgen-common");
 		}
 		// No decoratives
 	});
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Creating bumps");
 	createAreas(
@@ -126,7 +127,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clPlayer, 3, clGrass, 1, clHill, 10),
 		scaleByMapSize(1, 3) * numPlayers * 3);
 
-	Engine.SetProgress(25);
+	yield 25;
 
 	g_Map.log("Creating forests");
 	const [forestTrees, stragglerTrees] = getTreeCounts(400, 2000, 0.7);
@@ -150,7 +151,7 @@ Engine.LoadLibrary("rmgen-common");
 			avoidClasses(clPlayer, 1, clGrass, 1, clForest, 10, clHill, 1),
 			num);
 
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating dirt patches");
 	for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -159,7 +160,7 @@ Engine.LoadLibrary("rmgen-common");
 			new LayeredPainter([tSecondaryDirt, tDirt], [1]),
 			avoidClasses(clHill, 0, clForest, 0, clPlayer, 8, clGrass, 1),
 			scaleByMapSize(50, 90));
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating big patches");
 	for (const size of [scaleByMapSize(6, 30), scaleByMapSize(10, 50), scaleByMapSize(16, 70)])
@@ -168,7 +169,7 @@ Engine.LoadLibrary("rmgen-common");
 			new LayeredPainter([tSecondaryDirt, tDirt], [1]),
 			avoidClasses(clHill, 0, clForest, 0, clPlayer, 8, clGrass, 1),
 			scaleByMapSize(30, 90));
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating stone mines");
 	createObjectGroupsDeprecated(
@@ -224,7 +225,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clForest, 0, clPlayer, 0, clHill, 0),
 		scaleByMapSize(50, 500), 50
 	);
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Creating gazelle");
 	group = new SimpleGroup(
@@ -255,7 +256,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clForest, 0, clPlayer, 1, clHill, 1, clFood, 20, clGrass, 2),
 		3 * numPlayers, 50
 	);
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oPalm, oTamarix, oPine],
@@ -291,5 +292,5 @@ Engine.LoadLibrary("rmgen-common");
 	setPPSaturation(0.42);
 	setPPBloom(0.6);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

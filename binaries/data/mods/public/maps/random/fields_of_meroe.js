@@ -2,8 +2,9 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap(mapSettings)
 {
-	if (g_MapSettings.Biome)
+	if (mapSettings.Biome)
 		setSelectedBiome();
 	else
 		setBiome("fields_of_meroe/dry");
@@ -136,7 +137,7 @@ Engine.LoadLibrary("rmbiome");
 				}
 		}
 	});
-	Engine.SetProgress(10);
+	yield 10;
 
 	g_Map.log("Creating cataracts");
 	for (const x of [fractionToTiles(randFloat(0.15, 0.25)), fractionToTiles(randFloat(0.75, 0.85))])
@@ -208,7 +209,7 @@ Engine.LoadLibrary("rmbiome");
 			"count": 3
 		}
 	});
-	Engine.SetProgress(15);
+	yield 15;
 
 	g_Map.log("Getting random coordinates for Kushite settlements");
 	const kushiteTownPositions = [];
@@ -247,7 +248,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clPlayer, 20, clForest, 5, clKushiteVillages, 30, clRiver, 10),
 		scaleByMapSize(1, 7),
 		200);
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Creating bumps");
 	createAreas(
@@ -266,7 +267,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clPlayer, 3, clRiver, 20, clDunes, 10, clKushiteVillages, 10),
 		scaleByMapSize(1, 3) * numPlayers * 3);
 
-	Engine.SetProgress(25);
+	yield 25;
 
 	const [forestTrees, stragglerTrees] = getTreeCounts(400, 2000, 0.7);
 	createForests(
@@ -274,7 +275,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clPlayer, 20, clForest, 20, clDunes, 2, clRiver, 20, clKushiteVillages, 10),
 		clForest,
 		forestTrees);
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating dirt patches");
 	for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -291,7 +292,7 @@ Engine.LoadLibrary("rmbiome");
 			new TerrainPainter(tFarmland),
 			avoidClasses(clDunes, 3, clForest, 3, clPlayer, 5, clKushiteVillages, 5, clRiver, 10),
 			scaleByMapSize(1, 10));
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating stone mines");
 	createObjectGroups(
@@ -362,7 +363,7 @@ Engine.LoadLibrary("rmbiome");
 			clForest, 4),
 		scaleByMapSize(2, 8),
 		50);
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating gazelle");
 	createObjectGroups(
@@ -424,7 +425,7 @@ Engine.LoadLibrary("rmbiome");
 		[stayClasses(clRiver, 4), avoidClasses(clFood, 16, clCataract, 10)],
 		scaleByMapSize(15, 80),
 		50);
-	Engine.SetProgress(80);
+	yield 80;
 
 	createStragglerTrees(
 		[oBaobab, oAcacia],
@@ -460,7 +461,7 @@ Engine.LoadLibrary("rmbiome");
 		clForest,
 		stragglerTrees * 10);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating reeds on the shore");
 	createObjectGroups(
@@ -506,7 +507,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clForest, 0, clPlayer, 0, clDunes, 0, clRiver, 15, clMetal, 4, clRock, 4),
 		scaleByMapSize(50, 500),
 		50);
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating rain drops");
 	if (aRain)
@@ -515,7 +516,7 @@ Engine.LoadLibrary("rmbiome");
 			0,
 			avoidClasses(clRain, 5),
 			scaleByMapSize(60, 200));
-	Engine.SetProgress(98);
+	yield 98;
 
 	placePlayersNomad(clPlayer,
 		avoidClasses(
@@ -542,5 +543,5 @@ Engine.LoadLibrary("rmbiome");
 	setPPSaturation(0.42);
 	setPPBloom(0.6);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

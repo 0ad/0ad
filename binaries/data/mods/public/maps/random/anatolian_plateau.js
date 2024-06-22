@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tPrimary = ["steppe_grass_a", "steppe_grass_c", "steppe_grass_d"];
 	const tGrass = ["steppe_grass_a", "steppe_grass_b", "steppe_grass_c", "steppe_grass_d"];
@@ -79,7 +80,7 @@ Engine.LoadLibrary("rmgen-common");
 		}
 	});
 
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Creating bumps");
 	createAreas(
@@ -102,7 +103,7 @@ Engine.LoadLibrary("rmgen-common");
 			],
 			avoidClasses(clPlayer, 13, clForest, 20, clHill, 1),
 			num);
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating grass patches");
 	createLayeredPatches(
@@ -122,7 +123,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(50, 90),
 		clDirt);
 
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating big patches");
 	createLayeredPatches(
@@ -133,7 +134,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(30, 90),
 		clDirt);
 
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating stone mines");
 	let group = new SimpleGroup(
@@ -162,7 +163,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(2, 8), 100
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating small decorative rocks");
 	group = new SimpleGroup(
@@ -186,7 +187,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(8, 131), 50
 	);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating rabbits");
 	group = new SimpleGroup(
@@ -208,7 +209,7 @@ Engine.LoadLibrary("rmgen-common");
 		randIntInclusive(1, 4) * numPlayers + 2, 50
 	);
 
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Creating sheep");
 	group = new SimpleGroup(
@@ -220,7 +221,7 @@ Engine.LoadLibrary("rmgen-common");
 		3 * numPlayers, 50
 	);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oBush, oPoplar],
@@ -240,7 +241,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(13, 200)
 	);
 
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating bushes");
 	group = new SimpleGroup(
@@ -261,5 +262,5 @@ Engine.LoadLibrary("rmgen-common");
 	setPPContrast(0.62);
 	setPPBloom(0.2);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

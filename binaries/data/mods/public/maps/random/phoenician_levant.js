@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tCity = "medit_city_pavement";
 	const tCityPlaza = "medit_city_pavement";
@@ -110,7 +111,7 @@ Engine.LoadLibrary("rmgen-common");
 			"template": aBush1
 		}
 	});
-	Engine.SetProgress(30);
+	yield 30;
 
 	paintRiver({
 		"parallel": true,
@@ -124,7 +125,7 @@ Engine.LoadLibrary("rmgen-common");
 		"meanderShort": 20,
 		"meanderLong": 0
 	});
-	Engine.SetProgress(40);
+	yield 40;
 
 	paintTileClassBasedOnHeight(-Infinity, heightLand, Elevation_ExcludeMin_ExcludeMax, clWater);
 	paintTerrainBasedOnHeight(-Infinity, heightShore, Elevation_ExcludeMin_ExcludeMax, tWater);
@@ -161,7 +162,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clPlayer, 20, clForest, 10, clWater, 1, clHill, 1, clBaseResource, 3),
 		num,
 		50);
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating grass patches");
 	for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -175,7 +176,7 @@ Engine.LoadLibrary("rmgen-common");
 			],
 			avoidClasses(clForest, 0, clGrass, 5, clPlayer, 10, clWater, 4, clDirt, 5, clHill, 1),
 			scaleByMapSize(15, 45));
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating dirt patches");
 	for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -189,7 +190,7 @@ Engine.LoadLibrary("rmgen-common");
 			],
 			avoidClasses(clForest, 0, clDirt, 5, clPlayer, 10, clWater, 4, clGrass, 5, clHill, 1),
 			scaleByMapSize(15, 45));
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating cyprus");
 	createAreas(
@@ -249,7 +250,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(4, 16), 100
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating small decorative rocks");
 	group = new SimpleGroup(
@@ -277,7 +278,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 3, clPlayer, 0, clHill, 1),
 		scaleByMapSize(40, 360), 50
 	);
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating fish");
 	group = new SimpleGroup([new SimpleObject(oFish, 1, 3, 2, 6)], true, clFood);
@@ -316,7 +317,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 3, clForest, 0, clPlayer, 15, clHill, 1, clFood, 7),
 		randIntInclusive(1, 4) * numPlayers + 2, 50
 	);
-	Engine.SetProgress(90);
+	yield 90;
 
 	const stragglerTreeConfig = [
 		[1, avoidClasses(clForest, 0, clWater, 4, clPlayer, 8, clMetal, 6, clHill, 1)],
@@ -355,5 +356,5 @@ Engine.LoadLibrary("rmgen-common");
 	placePlayersNomad(clPlayer,
 		avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
-	g_Map.ExportMap();
+	return g_Map;
 }

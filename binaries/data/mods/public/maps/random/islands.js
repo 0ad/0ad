@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -212,7 +213,7 @@ Engine.LoadLibrary("rmbiome");
 				num);
 	}
 
-	Engine.SetProgress(50);
+	yield 50;
 	g_Map.log("Creating dirt patches");
 	const numberOfPatches = scaleByMapSize(15, 45) * (currentBiome() == "generic/savanna" ? 3 : 1);
 	for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -238,7 +239,7 @@ Engine.LoadLibrary("rmbiome");
 			[avoidClasses(clForest, 0, clHill, 0, clDirt, 5, clPlayer, 0), stayClasses(clLand, 6)],
 			numberOfPatches);
 
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating stone mines");
 	let group = new SimpleGroup(
@@ -268,7 +269,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(4, 16), 100
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating small decorative rocks");
 	group = new SimpleGroup(
@@ -292,7 +293,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(8, 131), 50
 	);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating deer");
 	group = new SimpleGroup(
@@ -304,7 +305,7 @@ Engine.LoadLibrary("rmbiome");
 		3 * numPlayers, 50
 	);
 
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Creating sheep");
 	group = new SimpleGroup(
@@ -336,7 +337,7 @@ Engine.LoadLibrary("rmbiome");
 		25 * numPlayers, 60
 	);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oTree1, oTree2, oTree4, oTree3],
@@ -360,7 +361,7 @@ Engine.LoadLibrary("rmbiome");
 		planetm * scaleByMapSize(13, 200)
 	);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating large grass tufts");
 	group = new SimpleGroup(
@@ -374,7 +375,7 @@ Engine.LoadLibrary("rmbiome");
 		planetm * scaleByMapSize(13, 200)
 	);
 
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating bushes");
 	group = new SimpleGroup(
@@ -396,5 +397,5 @@ Engine.LoadLibrary("rmbiome");
 	setSunElevation(randFloat(1/5, 1/3) * Math.PI);
 	setWaterWaviness(2);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

@@ -3,6 +3,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	setSelectedBiome();
 
@@ -24,7 +25,7 @@ Engine.LoadLibrary("rmbiome");
 		new MapBoundsPlacer(),
 		new TileClassPainter(g_TileClasses.land));
 
-	Engine.SetProgress(10);
+	yield 10;
 
 	createBases(
 		...playerPlacementByPattern(
@@ -34,10 +35,10 @@ Engine.LoadLibrary("rmbiome");
 			startAngle,
 			undefined),
 		true);
-	Engine.SetProgress(20);
+	yield 20;
 
 	createSunkenTerrain();
-	Engine.SetProgress(30);
+	yield 30;
 
 	addElements([
 		{
@@ -133,7 +134,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["scarce"]
 		}
 	]);
-	Engine.SetProgress(40);
+	yield 40;
 
 	addElements(shuffleArray([
 		{
@@ -233,7 +234,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["tons"]
 		}
 	]));
-	Engine.SetProgress(60);
+	yield 60;
 
 	addElements(shuffleArray([
 		{
@@ -348,7 +349,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["tons"]
 		}
 	]));
-	Engine.SetProgress(75);
+	yield 75;
 
 	addElements([
 		{
@@ -366,7 +367,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["tons"]
 		}
 	]);
-	Engine.SetProgress(80);
+	yield 80;
 
 	addElements([
 		{
@@ -384,7 +385,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["scarce"]
 		}
 	]);
-	Engine.SetProgress(85);
+	yield 85;
 
 	addElements([
 		{
@@ -401,7 +402,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["tons"]
 		}
 	]);
-	Engine.SetProgress(90);
+	yield 90;
 
 	addElements([
 		{
@@ -418,7 +419,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["scarce"]
 		}
 	]);
-	Engine.SetProgress(95);
+	yield 95;
 
 	placePlayersNomad(
 		g_TileClasses.player,
@@ -431,7 +432,7 @@ Engine.LoadLibrary("rmbiome");
 				g_TileClasses.animals, 2)
 		]);
 
-	g_Map.ExportMap();
+	return g_Map;
 
 	function createSunkenTerrain()
 	{

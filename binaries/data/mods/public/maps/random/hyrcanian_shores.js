@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	setSelectedBiome();
 
@@ -102,7 +103,7 @@ Engine.LoadLibrary("rmbiome");
 			"template": aGrassShort
 		}
 	});
-	Engine.SetProgress(10);
+	yield 10;
 
 	paintRiver({
 		"parallel": true,
@@ -123,7 +124,7 @@ Engine.LoadLibrary("rmbiome");
 			createTerrain(height < heightShore1 ? tWater : tShore).place(position);
 		}
 	});
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Marking highlands area");
 	createArea(
@@ -145,7 +146,7 @@ Engine.LoadLibrary("rmbiome");
 			[stayClasses(clWater, 2), avoidClasses(clFood, 3)],
 			numPlayers,
 			50);
-	Engine.SetProgress(25);
+	yield 25;
 
 	g_Map.log("Creating bumps");
 	createAreas(
@@ -154,7 +155,7 @@ Engine.LoadLibrary("rmbiome");
 		stayClasses(clHighlands, 1),
 		scaleByMapSize(300, 600));
 
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating hills");
 	createAreas(
@@ -167,7 +168,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clPlayer, 20, clWater, 5, clHill, 15, clHighlands, 5),
 		scaleByMapSize(1, 4) * numPlayers);
 
-	Engine.SetProgress(35);
+	yield 35;
 
 	g_Map.log("Creating mainland forests");
 	const [forestTrees, stragglerTrees] = getTreeCounts(1000, 3500, 0.85);
@@ -193,7 +194,7 @@ Engine.LoadLibrary("rmbiome");
 					clBaseResource, 3,
 					clHighlands, 2),
 				numberOfForests);
-		Engine.SetProgress(45);
+		yield 45;
 	}
 
 	g_Map.log("Creating highland forests");
@@ -223,7 +224,7 @@ Engine.LoadLibrary("rmbiome");
 				30);
 	}
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating dirt patches");
 	for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -236,7 +237,7 @@ Engine.LoadLibrary("rmbiome");
 			],
 			avoidClasses(clWater, 1, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 4),
 			scaleByMapSize(15, 45));
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Creating grass patches");
 	for (const size of [scaleByMapSize(2, 32), scaleByMapSize(3, 48), scaleByMapSize(5, 80)])
@@ -252,7 +253,7 @@ Engine.LoadLibrary("rmbiome");
 				clBaseResource, 6),
 			scaleByMapSize(15, 45));
 
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Creating stone mines");
 	let group = new SimpleGroup(
@@ -279,7 +280,7 @@ Engine.LoadLibrary("rmbiome");
 		scaleByMapSize(5, 20), 100
 	);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	g_Map.log("Creating small decorative rocks");
 	group = new SimpleGroup(
@@ -291,7 +292,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 0),
 		scaleByMapSize(16, 262), 50
 	);
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating large decorative rocks");
 	group = new SimpleGroup(
@@ -370,7 +371,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clWater, 3, clHill, 2, clPlayer, 2, clDirt, 1, clForest, 0),
 		scaleByMapSize(13, 200)
 	);
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating bushes");
 	group = new SimpleGroup(
@@ -387,5 +388,5 @@ Engine.LoadLibrary("rmbiome");
 	setWaterWaviness(2.0);
 	setWaterType("ocean");
 
-	g_Map.ExportMap();
+	return g_Map;
 }

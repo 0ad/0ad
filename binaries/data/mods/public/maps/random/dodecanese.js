@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -123,7 +124,7 @@ Engine.LoadLibrary("rmgen-common");
 				new SmoothElevationPainter(ELEVATION_SET, heightLand, 4),
 				new TileClassPainter(clIsland)
 			].concat(isNomad() ? [] : [new TileClassPainter(clPlayerIsland)]));
-	Engine.SetProgress(10);
+	yield 10;
 
 	g_Map.log("Creating islands");
 	createAreas(
@@ -135,7 +136,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		avoidClasses(clIsland, 6),
 		scaleByMapSize(25, 80));
-	Engine.SetProgress(20);
+	yield 20;
 
 	// Notice that the Constraints become much shorter when avoiding water
 	// rather than staying on islands
@@ -144,7 +145,7 @@ Engine.LoadLibrary("rmgen-common");
 		new MapBoundsPlacer(),
 		new TileClassPainter(clWater),
 		new HeightConstraint(-Infinity, heightShoreLower));
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating undersea bumps");
 	createAreas(
@@ -152,7 +153,7 @@ Engine.LoadLibrary("rmgen-common");
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaBump, 3),
 		avoidClasses(clIsland, 2),
 		scaleByMapSize(10, 50));
-	Engine.SetProgress(35);
+	yield 35;
 
 	g_Map.log("Creating volcano");
 	const areasVolcano = createAreas(
@@ -170,7 +171,7 @@ Engine.LoadLibrary("rmgen-common");
 		200);
 
 	createBumps(avoidClasses(clWater, 0, clPlayer, 10, clVolcano, 0));
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating large bumps");
 	createAreas(
@@ -178,7 +179,7 @@ Engine.LoadLibrary("rmgen-common");
 		new SmoothElevationPainter(ELEVATION_MODIFY, heightOffsetBump, 3),
 		avoidClasses(clWater, 2, clVolcano, 0, clPlayer, 10),
 		scaleByMapSize(20, 200));
-	Engine.SetProgress(45);
+	yield 45;
 
 	g_Map.log("Creating hills");
 	createAreas(
@@ -190,7 +191,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		avoidClasses(clWater, 1, clPlayer, 12, clVolcano, 0, clHill, 15),
 		scaleByMapSize(4, 13));
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Painting corals");
 	paintTerrainBasedOnHeight(-Infinity, heightCoralsLower, Elevation_IncludeMin_ExcludeMax, tWater);
@@ -212,7 +213,7 @@ Engine.LoadLibrary("rmgen-common");
 		new HeightPlacer(Elevation_IncludeMin_ExcludeMax, heightShoreUpper, heightLand),
 		new TerrainPainter(tShoreUpper),
 		avoidClasses(clVolcano, 0));
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating dirt patches");
 	createLayeredPatches(
@@ -222,7 +223,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 4, clVolcano, 2, clForest, 1, clDirt, 2, clGrass, 2, clHill, 1),
 		scaleByMapSize(15, 45),
 		clDirt);
-	Engine.SetProgress(65);
+	yield 65;
 
 	placePlayerBases({
 		"PlayerPlacement": [playerIDs, playerPosition],
@@ -250,7 +251,7 @@ Engine.LoadLibrary("rmgen-common");
 			"template": aBush1
 		}
 	});
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating stone mines");
 	createMines(
@@ -271,7 +272,7 @@ Engine.LoadLibrary("rmgen-common");
 			clRock, 4),
 		clRock,
 		scaleByMapSize(4, 16));
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Creating metal mines");
 	createMines(
@@ -289,7 +290,7 @@ Engine.LoadLibrary("rmgen-common");
 			clRock, 4),
 		clMetal,
 		scaleByMapSize(4, 16));
-	Engine.SetProgress(80);
+	yield 80;
 
 	placePlayersNomad(clPlayer,
 		avoidClasses(clWater, 12, clVolcano, 4, clMetal, 4, clRock, 4, clHill, 4));
@@ -308,7 +309,7 @@ Engine.LoadLibrary("rmgen-common");
 		clForest,
 		forestTrees,
 		200);
-	Engine.SetProgress(85);
+	yield 85;
 
 	createFood(
 		[
@@ -335,7 +336,7 @@ Engine.LoadLibrary("rmgen-common");
 			clRock, 4),
 		clFood);
 
-	Engine.SetProgress(87);
+	yield 87;
 
 	createFood(
 		[
@@ -480,7 +481,7 @@ Engine.LoadLibrary("rmgen-common");
 			20,
 			areasVolcano);
 	}
-	Engine.SetProgress(90);
+	yield 90;
 
 	setSkySet("cumulus");
 	setSunColor(0.87, 0.78, 0.49);
@@ -498,5 +499,5 @@ Engine.LoadLibrary("rmgen-common");
 	setPPSaturation(0.51);
 	setPPBloom(0.12);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

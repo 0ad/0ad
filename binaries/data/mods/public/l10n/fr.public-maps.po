@@ -46,7 +46,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-06-03 07:08+0000\n"
+"POT-Creation-Date: 2024-06-17 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Etienne Malandain <malandain.etienne@gmail.com>, 2023\n"
 "Language-Team: French (http://app.transifex.com/wildfire-games/0ad/language/fr/)\n"
@@ -157,14 +157,14 @@ msgstr "Massif de l'Atlas"
 
 #: maps/random/bahrain.jsonsettings.Description
 msgid ""
-"Bahrain, centre of the Dilmun civilization which fell in 800BC, was in turn "
-"controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
+"Bahrain, centre of the Dilmun civilization which fell in 800 BC, was in turn"
+" controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
 "peoples. An island strategically placed in the Sinus Persicus (Persian Gulf)"
 " and also centre of pearl trading due to its magnificent pearl fisheries, "
 "Bahrain is never left unoccupied for long. But now, with the previous "
 "occupants gone, the land prepares for war. Will you be the next Ruler of "
 "Bahrain?"
-msgstr "Bahreïn, centre de la civilisation Dilmun qui tomba en 800 avant JC, fût tour à tour contrôlé par les Sumériens, les Assyriens, Les Babyloniens, les Perses et d'autres peuplades ensuite. Île stratégiquement placée dans le Sinus Persicus (golfe Persique) mais aussi centre du commerce des perles grâce à ses florissantes pêcherie de perles, Bahreïn n'a jamais été inoccupée très longtemps. Mais maintenant que les précédents occupants ont fui, le pays se prépare pour la guerre. Serez-vous le prochain dirigeant de Bahreïn ?"
+msgstr ""
 
 #: maps/random/bahrain.jsonsettings.Name
 msgid "Bahrain"
@@ -2619,12 +2619,12 @@ msgstr "Un grand classique. Une carte désertique, par ailleurs ouverte et plate
 msgid "Arabian Oases (2 players)"
 msgstr "Oasis d'Arabie (2 joueurs)"
 
-#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[0].Name:39
+#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[1].Name:39
 msgid "Northeast Player"
 msgstr "Joueur du Nord-Est"
 
-#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[2].Name:39
 msgid "Southwest Player"
 msgstr "Joueur du Sud-Ouest"
@@ -3332,9 +3332,8 @@ msgid "Vesuvius (6)"
 msgstr "Vésuve (6)"
 
 #: maps/skirmishes/via_augusta_4p.xml:Description:39
-msgid ""
-"All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BCE."
-msgstr "Toutes les routes mènent à Rome. La voie Julia Augusta une voie romaine construite en l’an 13 avant JC."
+msgid "All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BC."
+msgstr ""
 
 #: maps/skirmishes/via_augusta_4p.xml:Name:39
 msgid "Via Augusta (4)"

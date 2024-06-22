@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tGrass = [
 		"tropic_grass_c",
@@ -126,7 +127,7 @@ Engine.LoadLibrary("rmgen-common");
 				]);
 		}
 	}
-	Engine.SetProgress(20);
+	yield 20;
 
 	const playerPosition = playerPlacementLine(startAngle, mapCenter,
 		fractionToTiles(1 - stripWidthsLeft[2][0] - stripWidthsLeft[2][1]));
@@ -174,7 +175,7 @@ Engine.LoadLibrary("rmgen-common");
 		}
 		// No decoratives
 	});
-	Engine.SetProgress(35);
+	yield 35;
 
 	const areaWater = createArea(
 		new HeightPlacer(Elevation_IncludeMin_ExcludeMax, -Infinity, heightWaterLevel),
@@ -191,7 +192,7 @@ Engine.LoadLibrary("rmgen-common");
 		new HeightPlacer(Elevation_IncludeMin_ExcludeMax, heightShore, heightShoreBlend),
 		new TerrainPainter(tShoreBlend));
 
-	Engine.SetProgress(40);
+	yield 40;
 
 	if (!isNomad())
 	{
@@ -239,7 +240,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(1, 5));
 
 	createBumps(avoidClasses(clPlayer, 8, clWater, 2), scaleByMapSize(20, 150), 2, 8, 4, 1, 4);
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating forests");
 	const [forestTrees, stragglerTrees] = getTreeCounts(1000, 4000, 0.7);
@@ -283,7 +284,7 @@ Engine.LoadLibrary("rmgen-common");
 		clForest,
 		stragglerTrees);
 
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating grass patches");
 	for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -413,7 +414,7 @@ Engine.LoadLibrary("rmgen-common");
 			clBaseResource, 4,
 			clDirt, 0),
 		scaleByMapSize(100, 500));
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating large grass tufts");
 	createObjectGroups(
@@ -431,7 +432,7 @@ Engine.LoadLibrary("rmgen-common");
 			clDirt, 1,
 			clForest, 0),
 		scaleByMapSize(100, 500));
-	Engine.SetProgress(85);
+	yield 85;
 
 	g_Map.log("Creating bushes");
 	createObjectGroups(
@@ -492,7 +493,7 @@ Engine.LoadLibrary("rmgen-common");
 			clFood, 20),
 		2 * numPlayers,
 		20);
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating berry bush");
 	createObjectGroups(
@@ -540,5 +541,5 @@ Engine.LoadLibrary("rmgen-common");
 	setPPBloom(0.6);
 
 	setSkySet("stratus");
-	g_Map.ExportMap();
+	return g_Map;
 }

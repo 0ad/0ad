@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-06-03 07:08+0000\n"
+"POT-Creation-Date: 2024-06-17 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: *Sociologist Abedi*, 2021\n"
 "Language-Team: Persian (http://app.transifex.com/wildfire-games/0ad/language/fa/)\n"
@@ -125,14 +125,14 @@ msgstr "کوه های اطلس"
 
 #: maps/random/bahrain.jsonsettings.Description
 msgid ""
-"Bahrain, centre of the Dilmun civilization which fell in 800BC, was in turn "
-"controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
+"Bahrain, centre of the Dilmun civilization which fell in 800 BC, was in turn"
+" controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
 "peoples. An island strategically placed in the Sinus Persicus (Persian Gulf)"
 " and also centre of pearl trading due to its magnificent pearl fisheries, "
 "Bahrain is never left unoccupied for long. But now, with the previous "
 "occupants gone, the land prepares for war. Will you be the next Ruler of "
 "Bahrain?"
-msgstr "بحرین، مرکز تمدن دیلمون در 800 سال قبل از میلاد سقوط کرد، و بعد از آن توسط  سومری ها، آشوری ها، بابلی ها، ایرانیان و دیگر مردم کنترل می شد. یک جزیره استراتژیک در ( خلیج فارس ) و همچینین به خاطر صید مروارید بی نظیر آن مرکز تجارت قرار گرفت، بحرین نیز هیچ وقت به حالت اولیه خود برنگشت.\nاما در حال حاضر، این سرزمین با ساکنین گذشته خود برای جنگ آماده میشود. آیا شما حاکم بعدی بحرین خواهید بود؟"
+msgstr ""
 
 #: maps/random/bahrain.jsonsettings.Name
 msgid "Bahrain"
@@ -2581,12 +2581,12 @@ msgstr ""
 msgid "Arabian Oases (2 players)"
 msgstr ""
 
-#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[0].Name:39
+#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[1].Name:39
 msgid "Northeast Player"
 msgstr ""
 
-#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[2].Name:39
 msgid "Southwest Player"
 msgstr ""
@@ -3294,9 +3294,8 @@ msgid "Vesuvius (6)"
 msgstr ""
 
 #: maps/skirmishes/via_augusta_4p.xml:Description:39
-msgid ""
-"All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BCE."
-msgstr "All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BCE."
+msgid "All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BC."
+msgstr ""
 
 #: maps/skirmishes/via_augusta_4p.xml:Name:39
 msgid "Via Augusta (4)"

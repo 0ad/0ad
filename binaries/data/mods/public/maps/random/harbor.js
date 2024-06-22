@@ -3,6 +3,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	setSelectedBiome();
 
@@ -20,7 +21,7 @@ Engine.LoadLibrary("rmbiome");
 		new MapBoundsPlacer(),
 		new TileClassPainter(g_TileClasses.land));
 
-	Engine.SetProgress(10);
+	yield 10;
 
 	const mapSize = g_Map.getSize();
 	const mapCenter = g_Map.getCenter();
@@ -35,19 +36,19 @@ Engine.LoadLibrary("rmbiome");
 				startAngle,
 				undefined),
 			true);
-	Engine.SetProgress(20);
+	yield 20;
 
 	addCenterLake();
-	Engine.SetProgress(30);
+	yield 30;
 
 	if (mapSize >= 192)
 	{
 		addHarbors();
-		Engine.SetProgress(40);
+		yield 40;
 	}
 
 	addSpines();
-	Engine.SetProgress(50);
+	yield 50;
 
 	addElements([
 		{
@@ -130,7 +131,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": g_AllAmounts
 		}
 	]));
-	Engine.SetProgress(60);
+	yield 60;
 
 	addElements(shuffleArray([
 		{
@@ -189,7 +190,7 @@ Engine.LoadLibrary("rmbiome");
 		}
 	]));
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	addElements(shuffleArray([
 		{
@@ -248,7 +249,7 @@ Engine.LoadLibrary("rmbiome");
 		}
 	]));
 
-	Engine.SetProgress(80);
+	yield 80;
 
 	addElements([
 		{
@@ -284,7 +285,7 @@ Engine.LoadLibrary("rmbiome");
 		}
 	]);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	placePlayersNomad(
 		g_TileClasses.player,
@@ -299,7 +300,7 @@ Engine.LoadLibrary("rmbiome");
 			g_TileClasses.mountain, 4,
 			g_TileClasses.animals, 2));
 
-	g_Map.ExportMap();
+	return g_Map;
 
 	function addCenterLake()
 	{

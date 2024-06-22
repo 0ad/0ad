@@ -2,6 +2,7 @@ Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap(mapSettings)
 {
 	TILE_CENTERED_HEIGHT_MAP = true;
 
@@ -830,7 +831,7 @@ Engine.LoadLibrary("rmbiome");
 		}
 	}
 
-	(g_MapSettings.Landscape ? unknownMapFunctions[g_MapSettings.Landscape] :
+	(mapSettings.Landscape ? unknownMapFunctions[mapSettings.Landscape] :
 		pickRandom(Object.values(unknownMapFunctions)))();
 
 	paintTerrainBasedOnHeight(heightCliff, 40, 1, tCliff);
@@ -902,7 +903,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clPlayer, 15, clHill, randIntInclusive(6, 18)), stayClasses(clLand, 0)],
 		randIntInclusive(0, scaleByMapSize(4, 8))*randIntInclusive(1, scaleByMapSize(4, 9))
 	);
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating forests");
 	const [numForest, numStragglers] = getTreeCounts(...rBiomeTreeCount(1));
@@ -925,7 +926,7 @@ Engine.LoadLibrary("rmbiome");
 				stayClasses(clLand, 4)
 			],
 			num);
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating dirt patches");
 	const patchCount = (currentBiome() == "generic/savanna" ? 3 : 1) * scaleByMapSize(15, 45);
@@ -953,7 +954,7 @@ Engine.LoadLibrary("rmbiome");
 			[avoidClasses(clForest, 0, clHill, 2, clDirt, 5, clPlayer, 7), stayClasses(clLand, 4)],
 			patchCount);
 
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating stone mines");
 	createObjectGroupsDeprecated(
@@ -984,7 +985,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clForest, 1, clPlayer, 10, clMetal, 10, clRock, 5, clHill, 2), stayClasses(clLand, 3)],
 		randIntInclusive(scaleByMapSize(2, 9), scaleByMapSize(9, 40)),
 		100);
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating small decorative rocks");
 	createObjectGroupsDeprecated(
@@ -1003,7 +1004,7 @@ Engine.LoadLibrary("rmbiome");
 		[avoidClasses(clWater, 0, clForest, 0, clPlayer, 0, clHill, 2), stayClasses(clLand, 3)],
 		scaleByMapSize(8, 131),
 		50);
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating deer");
 	createObjectGroupsDeprecated(
@@ -1026,7 +1027,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		randIntInclusive(1, 4) * numPlayers + 2,
 		50);
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Creating sheep");
 	createObjectGroupsDeprecated(
@@ -1046,7 +1047,7 @@ Engine.LoadLibrary("rmbiome");
 		avoidClasses(clLand, 4, clForest, 0, clPlayer, 0, clHill, 2, clFood, 20),
 		randIntInclusive(15, 40) * numPlayers,
 		60);
-	Engine.SetProgress(85);
+	yield 85;
 
 	g_Map.log("Creating straggler trees");
 	types = [g_Gaia.tree1, g_Gaia.tree2, g_Gaia.tree3, g_Gaia.tree4];
@@ -1077,7 +1078,7 @@ Engine.LoadLibrary("rmbiome");
 		0,
 		[avoidClasses(clWater, 2, clHill, 2, clPlayer, 2, clDirt, 0), stayClasses(clLand, 3)],
 		planetm * scaleByMapSize(13, 200));
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating large grass tufts");
 	createObjectGroupsDeprecated(
@@ -1092,7 +1093,7 @@ Engine.LoadLibrary("rmbiome");
 			stayClasses(clLand, 3)
 		],
 		planetm * scaleByMapSize(13, 200));
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating shallow flora");
 	createObjectGroupsDeprecated(
@@ -1118,5 +1119,5 @@ Engine.LoadLibrary("rmbiome");
 	placePlayersNomad(clPlayer,
 		avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2, clWater, 10));
 
-	g_Map.ExportMap();
+	return g_Map;
 }

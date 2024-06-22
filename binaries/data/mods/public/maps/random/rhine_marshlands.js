@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tGrass = ["temp_grass", "temp_grass", "temp_grass_d"];
 	const tForestFloor = "temp_plants_bog";
@@ -80,7 +81,7 @@ Engine.LoadLibrary("rmgen-common");
 			"template": aGrassShort
 		}
 	});
-	Engine.SetProgress(15);
+	yield 15;
 
 	g_Map.log("Creating bumps");
 	createAreas(
@@ -114,7 +115,7 @@ Engine.LoadLibrary("rmgen-common");
 		0,
 		stayClasses(clWater, 1),
 		scaleByMapSize(400, 2000), 100);
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating bumps");
 	createAreas(
@@ -141,7 +142,7 @@ Engine.LoadLibrary("rmgen-common");
 			],
 			avoidClasses(clPlayer, 20, clWater, 0, clForest, 10),
 			num);
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating mud patches");
 	for (const size of [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)])
@@ -179,7 +180,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(4, 16), 100
 	);
 
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating small decorative rocks");
 	group = new SimpleGroup(
@@ -192,7 +193,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(16, 262), 50
 	);
 
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Creating large decorative rocks");
 	group = new SimpleGroup(
@@ -205,7 +206,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(8, 131), 50
 	);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating deer");
 	group = new SimpleGroup(
@@ -227,7 +228,7 @@ Engine.LoadLibrary("rmgen-common");
 		3 * numPlayers, 50
 	);
 
-	Engine.SetProgress(75);
+	yield 75;
 
 	g_Map.log("Creating rabbit");
 	group = new SimpleGroup(
@@ -259,7 +260,7 @@ Engine.LoadLibrary("rmgen-common");
 		randIntInclusive(1, 4) * numPlayers + 2, 50
 	);
 
-	Engine.SetProgress(80);
+	yield 80;
 
 	createStragglerTrees(
 		[oOak, oBeech],
@@ -267,7 +268,7 @@ Engine.LoadLibrary("rmgen-common");
 		clForest,
 		stragglerTrees);
 
-	Engine.SetProgress(85);
+	yield 85;
 
 	g_Map.log("Creating small grass tufts");
 	createObjectGroupsDeprecated(
@@ -276,7 +277,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 2, clPlayer, 13, clDirt, 0),
 		scaleByMapSize(13, 200));
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating large grass tufts");
 	createObjectGroupsDeprecated(
@@ -289,7 +290,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 3, clPlayer, 13, clDirt, 1, clForest, 0),
 		scaleByMapSize(13, 200));
 
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating bushes");
 	createObjectGroupsDeprecated(
@@ -321,5 +322,5 @@ Engine.LoadLibrary("rmgen-common");
 	setPPSaturation(0.44);
 	setPPBloom(0.3);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

@@ -21,6 +21,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap()
 {
 	setBiome("generic/savanna");
 
@@ -43,7 +44,7 @@ Engine.LoadLibrary("rmbiome");
 	g_Decoratives.bushMedium = "actor|props/flora/bush_desert_dry_a.xml";
 	g_Decoratives.bushSmall = "actor|props/flora/bush_dry_a.xml";
 
-	const heightScale = num => num * g_MapSettings.Size / 320;
+	const heightScale = num => num * mapSettings.Size / 320;
 
 	const heightHighlands = heightScale(45);
 	const heightEden = heightScale(60);
@@ -90,26 +91,26 @@ Engine.LoadLibrary("rmbiome");
 	initTileClasses(["eden", "highlands"]);
 
 	g_Map.LoadHeightmapImage("ngorongoro.png", 0, heightMax);
-	Engine.SetProgress(15);
+	yield 15;
 
 	g_Map.log("Smoothing heightmap");
 	createArea(
 		new MapBoundsPlacer(),
 		new SmoothingPainter(1, scaleByMapSize(0.1, 0.5), 1));
-	Engine.SetProgress(25);
+	yield 25;
 
 	g_Map.log("Marking land");
 	createArea(
 		new MapBoundsPlacer(),
 		new TileClassPainter(g_TileClasses.land));
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Marking eden");
 	createArea(
 		new DiskPlacer(fractionToTiles(0.14), mapCenter),
 		new TileClassPainter(g_TileClasses.eden),
 		new HeightConstraint(-Infinity, heightEden));
-	Engine.SetProgress(45);
+	yield 45;
 
 	g_Map.log("Marking highlands");
 	createArea(
@@ -119,7 +120,7 @@ Engine.LoadLibrary("rmbiome");
 			new HeightConstraint(heightHighlands, Infinity),
 			avoidClasses(g_TileClasses.eden, 0)
 		]);
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Painting cliffs");
 	createArea(
@@ -129,7 +130,7 @@ Engine.LoadLibrary("rmbiome");
 			new TileClassPainter(g_TileClasses.mountain),
 		],
 		new SlopeConstraint(2, Infinity));
-	Engine.SetProgress(55);
+	yield 55;
 
 	if (!isNomad())
 	{
@@ -288,7 +289,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["many"]
 		}
 	]));
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Render highlands");
 	setBiomeHighlands();
@@ -399,7 +400,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["many"]
 		}
 	]));
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Render eden");
 	setBiomeEden();
@@ -541,7 +542,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["scarce"]
 		}
 	]));
-	Engine.SetProgress(80);
+	yield 80;
 
 	placePlayersNomad(
 		g_Map.createTileClass(),
@@ -571,5 +572,5 @@ Engine.LoadLibrary("rmbiome");
 	setPPSaturation(0.42);
 	setPPBloom(0.23);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

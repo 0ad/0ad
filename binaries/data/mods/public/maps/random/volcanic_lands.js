@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tGrass = ["cliff volcanic light", "ocean_rock_a", "ocean_rock_b"];
 	const tGrassA = "cliff volcanic light";
@@ -60,10 +61,10 @@ Engine.LoadLibrary("rmgen-common");
 			"count": scaleByMapSize(12, 30)
 		}
 	});
-	Engine.SetProgress(15);
+	yield 15;
 
 	createVolcano(mapCenter, clHill, tCliff, [tLava1, tLava2, tLava3], true, ELEVATION_SET);
-	Engine.SetProgress(45);
+	yield 45;
 
 	g_Map.log("Creating hills");
 	createAreas(
@@ -95,7 +96,7 @@ Engine.LoadLibrary("rmgen-common");
 			avoidClasses(clPlayer, 12, clForest, 10, clHill, 0, clBaseResource, 6),
 			num);
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating dirt patches");
 	for (const size of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -154,7 +155,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(4, 16), 100
 	);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating small decorative rocks");
 	group = new SimpleGroup(
@@ -178,7 +179,7 @@ Engine.LoadLibrary("rmgen-common");
 		scaleByMapSize(8, 131), 50
 	);
 
-	Engine.SetProgress(95);
+	yield 95;
 
 	createStragglerTrees(
 		[oTree],
@@ -188,5 +189,5 @@ Engine.LoadLibrary("rmgen-common");
 
 	placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clHill, 4));
 
-	g_Map.ExportMap();
+	return g_Map;
 }

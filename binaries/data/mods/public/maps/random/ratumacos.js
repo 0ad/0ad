@@ -21,6 +21,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap(mapSettings)
 {
 	setBiome("generic/alpine");
 
@@ -50,7 +51,7 @@ Engine.LoadLibrary("rmbiome");
 	g_Decoratives.reeds = "actor|props/flora/reeds_pond_lush_a.xml";
 	g_Decoratives.lillies = "actor|props/flora/water_lillies.xml";
 
-	const heightScale = num => num * g_MapSettings.Size / 320;
+	const heightScale = num => num * mapSettings.Size / 320;
 
 	const heightReedsMin = heightScale(-2);
 	const heightShallow = heightScale(-1);
@@ -67,13 +68,13 @@ Engine.LoadLibrary("rmbiome");
 	initTileClasses(["shoreline", "shallows"]);
 
 	g_Map.LoadHeightmapImage("ratumacos.png", -3, 20);
-	Engine.SetProgress(15);
+	yield 15;
 
 	g_Map.log("Smoothing heightmap");
 	createArea(
 		new MapBoundsPlacer(),
 		new SmoothingPainter(1, 0.1, 1));
-	Engine.SetProgress(25);
+	yield 25;
 
 	g_Map.log("Creating shallows");
 	for (let i = 0; i < scaleByMapSize(5, 12); ++i)
@@ -101,14 +102,14 @@ Engine.LoadLibrary("rmbiome");
 			new TileClassPainter(g_TileClasses.water)
 		],
 		new HeightConstraint(-Infinity, heightWaterLevel));
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Marking land");
 	createArea(
 		new MapBoundsPlacer(),
 		new TileClassPainter(g_TileClasses.land),
 		avoidClasses(g_TileClasses.water, 0));
-	Engine.SetProgress(35);
+	yield 35;
 
 	g_Map.log("Painting shoreline");
 	createArea(
@@ -118,7 +119,7 @@ Engine.LoadLibrary("rmbiome");
 			new TileClassPainter(g_TileClasses.shoreline)
 		],
 		new HeightConstraint(heightWaterLevel, heightShoreline));
-	Engine.SetProgress(40);
+	yield 40;
 
 	placePlayerBases({
 		"PlayerPlacement": playerPlacementRiver(riverAngle, fractionToTiles(0.6)),
@@ -315,7 +316,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["tons"]
 		}
 	]));
-	Engine.SetProgress(80);
+	yield 80;
 
 	createDecoration(
 		[
@@ -328,7 +329,7 @@ Engine.LoadLibrary("rmbiome");
 		],
 		new HeightConstraint(heightReedsMin, heightShoreline)
 	);
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Placing fish");
 	addElements([
@@ -343,7 +344,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["few"]
 		}
 	]);
-	Engine.SetProgress(95);
+	yield 95;
 
 	placePlayersNomad(
 		g_Map.createTileClass(),
@@ -379,5 +380,5 @@ Engine.LoadLibrary("rmbiome");
 	setPPSaturation(0.42);
 	setPPBloom(0.23);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

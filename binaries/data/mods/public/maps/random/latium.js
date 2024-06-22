@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tOceanDepths = "medit_sea_depths";
 	const tOceanRockDeep = "medit_sea_coral_deep";
@@ -125,7 +126,7 @@ Engine.LoadLibrary("rmgen-common");
 				clWater.add(position);
 			}
 		});
-	Engine.SetProgress(10);
+	yield 10;
 
 	g_Map.log("Painting elevation");
 	const noise0 = new Noise2D(scaleByMapSize(4, 16));
@@ -194,7 +195,7 @@ Engine.LoadLibrary("rmgen-common");
 			}
 			g_Map.setHeight(position, h);
 		}
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Painting terrain");
 	const noise6 = new Noise2D(scaleByMapSize(10, 40));
@@ -333,7 +334,7 @@ Engine.LoadLibrary("rmgen-common");
 			createTerrain(t).place(position);
 		}
 
-	Engine.SetProgress(30);
+	yield 30;
 
 	placePlayerBases({
 		"PlayerPlacement": [primeSortAllPlayers(), playerPosition],
@@ -369,7 +370,7 @@ Engine.LoadLibrary("rmgen-common");
 		}
 		// No decoratives
 	});
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating bushes");
 	let group = new SimpleGroup(
@@ -384,7 +385,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 4, clCliff, 2),
 		scaleByMapSize(9, 146), 50
 	);
-	Engine.SetProgress(45);
+	yield 45;
 
 	g_Map.log("Creating rocks");
 	group = new SimpleGroup(
@@ -398,7 +399,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 2, clCliff, 1),
 		scaleByMapSize(9, 146), 50
 	);
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating large stone mines");
 	group = new SimpleGroup(
@@ -423,7 +424,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clForest, 4, clWater, 1, clPlayer, 40, clMetal, 50, clCliff, 3),
 		scaleByMapSize(4, 16), 100
 	);
-	Engine.SetProgress(60);
+	yield 60;
 
 	createStragglerTrees(
 		[oCarob, oBeech, oLombardyPoplar, oLombardyPoplar, oPine],
@@ -431,7 +432,7 @@ Engine.LoadLibrary("rmgen-common");
 		clForest,
 		scaleByMapSize(10, 190));
 
-	Engine.SetProgress(70);
+	yield 70;
 
 	g_Map.log("Creating straggler cypresses");
 	group = new SimpleGroup(
@@ -442,7 +443,7 @@ Engine.LoadLibrary("rmgen-common");
 		avoidClasses(clWater, 5, clCliff, 4, clForest, 2, clPlayer, 15, clMetal, 6, clRock, 6),
 		scaleByMapSize(5, 75), 50
 	);
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Creating sheep");
 	group = new SimpleGroup([new SimpleObject(oSheep, 2, 4, 0, 2)], true, clFood);
@@ -457,7 +458,7 @@ Engine.LoadLibrary("rmgen-common");
 			clFood, 8),
 		3 * numPlayers, 50
 	);
-	Engine.SetProgress(85);
+	yield 85;
 
 	g_Map.log("Creating fish");
 	createObjectGroups(
@@ -470,7 +471,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		scaleByMapSize(8, 32));
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating deer");
 	group = new SimpleGroup(
@@ -488,7 +489,7 @@ Engine.LoadLibrary("rmgen-common");
 			clFood, 8),
 		3 * numPlayers, 50
 	);
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating berry bushes");
 	group = new SimpleGroup([new SimpleObject(oBerryBush, 5, 7, 0, 3)], true, clFood);
@@ -514,5 +515,5 @@ Engine.LoadLibrary("rmgen-common");
 	setWaterType("ocean");
 	setWaterMurkiness(0.8);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

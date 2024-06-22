@@ -21,6 +21,7 @@ Engine.LoadLibrary("rmgen-common");
 Engine.LoadLibrary("rmgen2");
 Engine.LoadLibrary("rmbiome");
 
+function* GenerateMap(mapSettings)
 {
 	setBiome("generic/sahara");
 	setLandBiome();
@@ -71,7 +72,7 @@ Engine.LoadLibrary("rmbiome");
 	g_Decoratives.bushMedium = "actor|props/flora/bush_desert_dry_a.xml";
 	g_Decoratives.bushSmall = "actor|props/flora/bush_medit_la_dry";
 
-	const heightScale = num => num * g_MapSettings.Size / 320;
+	const heightScale = num => num * mapSettings.Size / 320;
 
 	const heightSeaGround = heightScale(-6);
 	const heightWaterLevel = heightScale(0);
@@ -83,7 +84,7 @@ Engine.LoadLibrary("rmbiome");
 	const numPlayers = getNumPlayers();
 
 	g_Map.LoadHeightmapImage("bahrain.png", 0, 15);
-	Engine.SetProgress(15);
+	yield 15;
 
 	initTileClasses(["island", "shoreline"]);
 
@@ -92,27 +93,27 @@ Engine.LoadLibrary("rmbiome");
 		new MapBoundsPlacer(),
 		new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 2),
 		new HeightConstraint(-Infinity, heightWaterLevel));
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Smoothing heightmap");
 	createArea(
 		new MapBoundsPlacer(),
 		new SmoothingPainter(1, scaleByMapSize(0.1, 0.5), 1));
-	Engine.SetProgress(25);
+	yield 25;
 
 	g_Map.log("Marking water");
 	createArea(
 		new MapBoundsPlacer(),
 		new TileClassPainter(g_TileClasses.water),
 		new HeightConstraint(-Infinity, heightWaterLevel));
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Marking land");
 	createArea(
 		new MapBoundsPlacer(),
 		new TileClassPainter(g_TileClasses.land),
 		avoidClasses(g_TileClasses.water, 0));
-	Engine.SetProgress(35);
+	yield 35;
 
 	g_Map.log("Marking island");
 	const areaIsland = createArea(
@@ -121,7 +122,7 @@ Engine.LoadLibrary("rmbiome");
 			new Vector2D(fractionToTiles(0.6), mapCenter.y), Infinity),
 		new TileClassPainter(g_TileClasses.island),
 		avoidClasses(g_TileClasses.water, 0));
-	Engine.SetProgress(37);
+	yield 37;
 
 	g_Map.log("Painting shoreline");
 	createArea(
@@ -131,7 +132,7 @@ Engine.LoadLibrary("rmbiome");
 			new TileClassPainter(g_TileClasses.shoreline)
 		],
 		new HeightConstraint(-Infinity, heightShoreline));
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Painting cliffs");
 	createArea(
@@ -144,7 +145,7 @@ Engine.LoadLibrary("rmbiome");
 			avoidClasses(g_TileClasses.water, 2),
 			new SlopeConstraint(2, Infinity)
 		]);
-	Engine.SetProgress(45);
+	yield 45;
 
 	if (!isNomad())
 	{
@@ -322,7 +323,7 @@ Engine.LoadLibrary("rmbiome");
 			"amounts": ["normal"]
 		}
 	]));
-	Engine.SetProgress(65);
+	yield 65;
 
 	g_Map.log("Painting island");
 	setIslandBiome();
@@ -405,7 +406,7 @@ Engine.LoadLibrary("rmbiome");
 		}
 	]));
 
-	Engine.SetProgress(80);
+	yield 80;
 
 	g_Map.log("Adding more decoratives");
 	createObjectGroups(
@@ -424,7 +425,7 @@ Engine.LoadLibrary("rmbiome");
 			g_TileClasses.forest, 2),
 		2 * scaleByMapSize(1, 4),
 		20);
-	Engine.SetProgress(85);
+	yield 85;
 
 	g_Map.log("Creating treasures");
 	for (const treasure of [g_Gaia.woodTreasure, g_Gaia.foodTreasure])
@@ -437,7 +438,7 @@ Engine.LoadLibrary("rmbiome");
 				g_TileClasses.forest, 2),
 			randIntInclusive(1, numPlayers),
 			20);
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating shipwrecks");
 	createObjectGroups(
@@ -446,7 +447,7 @@ Engine.LoadLibrary("rmbiome");
 		stayClasses(g_TileClasses.water, 2),
 		randIntInclusive(0, 1),
 		20);
-	Engine.SetProgress(95);
+	yield 95;
 
 	placePlayersNomad(
 		g_Map.createTileClass(),
@@ -487,5 +488,5 @@ Engine.LoadLibrary("rmbiome");
 	setPPSaturation(0.42);
 	setPPBloom(0.23);
 
-	g_Map.ExportMap();
+	return g_Map;
 }

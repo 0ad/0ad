@@ -1,6 +1,7 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
+function* GenerateMap()
 {
 	const tHillDark = "cliff volcanic light";
 	const tHillMedium1 = "ocean_rock_a";
@@ -109,7 +110,7 @@ Engine.LoadLibrary("rmgen-common");
 				]);
 		}
 
-	Engine.SetProgress(8);
+	yield 8;
 
 	placePlayerBases({
 		"PlayerPlacement": [playerIDs, playerPosition],
@@ -136,10 +137,10 @@ Engine.LoadLibrary("rmgen-common");
 		}
 		// No decoratives
 	});
-	Engine.SetProgress(15);
+	yield 15;
 
 	createVolcano(mapCenter, clHill, tHillVeryDark, undefined, false, ELEVATION_SET);
-	Engine.SetProgress(20);
+	yield 20;
 
 	g_Map.log("Creating lakes");
 	createAreas(
@@ -151,12 +152,12 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		avoidClasses(clPlayer, 0, clHill, 2, clWater, 12),
 		Math.round(scaleByMapSize(6, 12)));
-	Engine.SetProgress(25);
+	yield 25;
 
 	createBumps(avoidClasses(clPlayer, 0, clHill, 0), scaleByMapSize(50, 300), 1, 10, 3, 0,
 		scaleByMapSize(4, 10));
 	paintTileClassBasedOnHeight(10, 100, 0, clBumps);
-	Engine.SetProgress(30);
+	yield 30;
 
 	g_Map.log("Creating hills");
 	createAreas(
@@ -168,7 +169,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		avoidClasses(clPlayer, 0, clHill, 15, clWater, 2, clBaseResource, 2),
 		scaleByMapSize(2, 8) * numPlayers);
-	Engine.SetProgress(35);
+	yield 35;
 
 	g_Map.log("Creating forests");
 	const [forestTrees, stragglerTrees] = getTreeCounts(1200, 3000, 0.7);
@@ -191,7 +192,7 @@ Engine.LoadLibrary("rmgen-common");
 				clHill, 0,
 				clWater, 2),
 			num);
-	Engine.SetProgress(40);
+	yield 40;
 
 	g_Map.log("Creating hill patches");
 	for (const patchSize of [scaleByMapSize(3, 48), scaleByMapSize(5, 84), scaleByMapSize(8, 128)])
@@ -216,7 +217,7 @@ Engine.LoadLibrary("rmgen-common");
 					clPlayer, 0),
 				scaleByMapSize(20, 80));
 		}
-	Engine.SetProgress(45);
+	yield 45;
 
 	g_Map.log("Creating grass patches");
 	createLayeredPatches(
@@ -232,7 +233,7 @@ Engine.LoadLibrary("rmgen-common");
 			clPlayer, 0),
 		scaleByMapSize(3, 8),
 		clDirt);
-	Engine.SetProgress(50);
+	yield 50;
 
 	g_Map.log("Creating stone mines");
 	createObjectGroupsDeprecated(
@@ -255,7 +256,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		100,
 		100);
-	Engine.SetProgress(55);
+	yield 55;
 
 	g_Map.log("Creating small stone quarries");
 	createObjectGroupsDeprecated(
@@ -272,7 +273,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		100,
 		100);
-	Engine.SetProgress(60);
+	yield 60;
 
 	g_Map.log("Creating metal mines");
 	createObjectGroupsDeprecated(
@@ -290,7 +291,7 @@ Engine.LoadLibrary("rmgen-common");
 		],
 		100,
 		100);
-	Engine.SetProgress(65);
+	yield 65;
 
 	if (!isNomad())
 	{
@@ -311,7 +312,7 @@ Engine.LoadLibrary("rmgen-common");
 			500,
 			1);
 	}
-	Engine.SetProgress(67);
+	yield 67;
 
 	createDecoration(
 		[
@@ -340,7 +341,7 @@ Engine.LoadLibrary("rmgen-common");
 				clPlayer, 0,
 				clHill, 0)
 		]);
-	Engine.SetProgress(70);
+	yield 70;
 
 	createDecoration(
 		[
@@ -362,7 +363,7 @@ Engine.LoadLibrary("rmgen-common");
 			clPlayer, 0,
 			clHill, 0
 		));
-	Engine.SetProgress(75);
+	yield 75;
 
 	createFood(
 		[
@@ -382,7 +383,7 @@ Engine.LoadLibrary("rmgen-common");
 				clFood, 20)
 		],
 		clFood);
-	Engine.SetProgress(78);
+	yield 78;
 
 	createFood(
 		[
@@ -402,7 +403,7 @@ Engine.LoadLibrary("rmgen-common");
 			stayClasses(clForest, 2)
 		],
 		clFood);
-	Engine.SetProgress(81);
+	yield 81;
 
 	createFood(
 		[
@@ -416,7 +417,7 @@ Engine.LoadLibrary("rmgen-common");
 			avoidClasses(clWater, 1, clForest, 0, clPlayer, 0, clHill, 1, clFood, 10)
 		],
 		clFood);
-	Engine.SetProgress(85);
+	yield 85;
 
 	createStragglerTrees(
 		[oTree, oTree2, oTree3, oTree4, oBush],
@@ -433,7 +434,7 @@ Engine.LoadLibrary("rmgen-common");
 		clForest,
 		stragglerTrees);
 
-	Engine.SetProgress(90);
+	yield 90;
 
 	g_Map.log("Creating straggler bushes");
 	createObjectGroupsDeprecated(
@@ -453,7 +454,7 @@ Engine.LoadLibrary("rmgen-common");
 				clRock, 4)
 		],
 		stragglerTrees);
-	Engine.SetProgress(95);
+	yield 95;
 
 	g_Map.log("Creating rain drops");
 	createObjectGroupsDeprecated(
@@ -464,7 +465,7 @@ Engine.LoadLibrary("rmgen-common");
 		0,
 		avoidClasses(clRain, 5),
 		scaleByMapSize(80, 250));
-	Engine.SetProgress(98);
+	yield 98;
 
 	placePlayersNomad(clPlayer,
 		avoidClasses(clWater, 4, clHill, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
@@ -478,5 +479,5 @@ Engine.LoadLibrary("rmgen-common");
 
 	setPPEffect("hdr");
 
-	g_Map.ExportMap();
+	return g_Map;
 }

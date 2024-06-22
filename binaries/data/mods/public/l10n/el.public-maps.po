@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-06-03 07:08+0000\n"
+"POT-Creation-Date: 2024-06-17 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS, 2020-2022,2024\n"
 "Language-Team: Greek (http://app.transifex.com/wildfire-games/0ad/language/el/)\n"
@@ -135,14 +135,14 @@ msgstr "Όρη Άτλαντα"
 
 #: maps/random/bahrain.jsonsettings.Description
 msgid ""
-"Bahrain, centre of the Dilmun civilization which fell in 800BC, was in turn "
-"controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
+"Bahrain, centre of the Dilmun civilization which fell in 800 BC, was in turn"
+" controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
 "peoples. An island strategically placed in the Sinus Persicus (Persian Gulf)"
 " and also centre of pearl trading due to its magnificent pearl fisheries, "
 "Bahrain is never left unoccupied for long. But now, with the previous "
 "occupants gone, the land prepares for war. Will you be the next Ruler of "
 "Bahrain?"
-msgstr "Το Μπαχρέιν, το κέντρο του πολιτισμού Ντιλμούν που έπεσε το 800 π.Χ., κατακτήθηκε κατά σειρά από τους Σουμέριους, του Ασσύριους, τους Βαβυλώνιους, τους Πέρσες και άλλους λαούς αργότερα. Ένα νησί στρατηγικά τοποθετημένο στο κόλπο Πέρσικους (Περσικός Κόλπος), αλλά ήταν και το κέντρο συναλλαγών των μαργαριταριών που οφείλεται στην μαγευτική αλιεία μαργαριταριών του, το Μπαχρέιν ποτέ δεν έμεινε ακατοίκητο για μεγάλο χρονικό διάστημα. Αλλά τώρα, δίχως τους προηγούμενους κατακτητές, η χώρα προετοιμάζεται για πόλεμο. Θα είστε ο επόμενος κυβερνήτης του Μπαχρέιν;"
+msgstr ""
 
 #: maps/random/bahrain.jsonsettings.Name
 msgid "Bahrain"
@@ -2591,12 +2591,12 @@ msgstr ""
 msgid "Arabian Oases (2 players)"
 msgstr "Όαση της Αραβίας ( 2 παίκτες)"
 
-#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[0].Name:39
+#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[1].Name:39
 msgid "Northeast Player"
 msgstr "Βορειοανατολικός Παίκτης"
 
-#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[2].Name:39
 msgid "Southwest Player"
 msgstr "Νοτιοδυτικός Παίκτης"
@@ -3304,9 +3304,8 @@ msgid "Vesuvius (6)"
 msgstr "Βεζούβιος"
 
 #: maps/skirmishes/via_augusta_4p.xml:Description:39
-msgid ""
-"All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BCE."
-msgstr "Όλοι οι δρόμοι οδηγούν στην Ρώμη. Μέσω της Αυγουστιανής οδού,  ένας ρωμαϊκός δρόμος που χτίστηκε το 13 π.Χ."
+msgid "All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BC."
+msgstr ""
 
 #: maps/skirmishes/via_augusta_4p.xml:Name:39
 msgid "Via Augusta (4)"
