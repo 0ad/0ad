@@ -13,13 +13,13 @@
 		</object>
 
 		<object name="leaderboardBox" style="ModernList" type="olist" size="19 19 100%-19 100%-62">
-			<column id="rank" color="255 255 255" width="15%">
+			<column id="rank" textcolor="255 255 255" width="15%">
 				<translatableAttribute id="heading">Rank</translatableAttribute>
 			</column>
-			<column id="name" color="255 255 255" width="55%">
+			<column id="name" textcolor="255 255 255" width="55%">
 				<translatableAttribute id="heading">Name</translatableAttribute>
 			</column>
-			<column id="rating" color="255 255 255" width="30%">
+			<column id="rating" textcolor="255 255 255" width="30%">
 				<translatableAttribute id="heading">Rating</translatableAttribute>
 			</column>
 		</object>

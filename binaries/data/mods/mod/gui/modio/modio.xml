@@ -50,19 +50,19 @@
 
 				<!-- List headers -->
 				<!-- Keep in sync with mod property names -->
-				<column id="name_id" color="255 255 255" width="20%">
+				<column id="name_id" textcolor="255 255 255" width="20%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
 				</column>
-				<column id="version" color="255 255 255" width="15%">
+				<column id="version" textcolor="255 255 255" width="15%">
 					<translatableAttribute id="heading">Version</translatableAttribute>
 				</column>
-				<column id="name" color="255 255 255" width="20%">
+				<column id="name" textcolor="255 255 255" width="20%">
 					<translatableAttribute id="heading">Mod Label</translatableAttribute>
 				</column>
-				<column id="filesize" color="255 255 255" width="20%">
+				<column id="filesize" textcolor="255 255 255" width="20%">
 					<translatableAttribute id="heading">File Size</translatableAttribute>
 				</column>
-				<column id="dependencies" color="255 255 255" width="25%">
+				<column id="dependencies" textcolor="255 255 255" width="25%">
 					<translatableAttribute id="heading">Dependencies</translatableAttribute>
 				</column>
 			</object>
