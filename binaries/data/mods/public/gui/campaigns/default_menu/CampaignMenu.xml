@@ -23,11 +23,11 @@
 				font="sans-stroke-16"
 				>
 			<!-- Columns -->
-			<column id="name" color="172 172 212" width="80%">
+			<column id="name" textcolor="172 172 212" width="80%">
 				<translatableAttribute id="heading" context="campaignLevelList">Scenario Name</translatableAttribute>
 			</column>
 
-			<column id="status" color="192 192 192" width="20%">
+			<column id="status" textcolor="192 192 192" width="20%">
 				<translatableAttribute id="heading" context="campaignLevelList">Status</translatableAttribute>
 			</column>
 			</object>

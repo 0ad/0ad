@@ -35,11 +35,11 @@
 				type="olist"
 				auto_scroll="true"
 			>
-			<column id="name" color="255 255 255" width="60%">
+			<column id="name" textcolor="255 255 255" width="60%">
 				<translatableAttribute id="heading" context="hotkey list">Name</translatableAttribute>
 			</column>
 
-			<column id="mapping" color="255 255 255" width="40%">
+			<column id="mapping" textcolor="255 255 255" width="40%">
 				<translatableAttribute id="heading" context="hotkey list">Mapping</translatableAttribute>
 			</column>
 		</object>

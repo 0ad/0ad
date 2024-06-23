@@ -67,27 +67,27 @@
 				<action on="MouseLeftDoubleClickItem">startReplay();</action>
 
 				<!-- Columns -->
-				<column id="months" color="172 172 212" width="12%">
+				<column id="months" textcolor="172 172 212" width="12%">
 					<translatableAttribute id="heading" context="replay">Date / Time</translatableAttribute>
 				</column>
 
-				<column id="players" color="192 192 192" width="44%">
+				<column id="players" textcolor="192 192 192" width="44%">
 					<translatableAttribute id="heading" context="replay">Players</translatableAttribute>
 				</column>
 
-				<column id="mapName" color="192 192 192" width="14%">
+				<column id="mapName" textcolor="192 192 192" width="14%">
 					<translatableAttribute id="heading" context="replay">Map Name</translatableAttribute>
 				</column>
 
-				<column id="mapSize" color="192 192 192" width="10%">
+				<column id="mapSize" textcolor="192 192 192" width="10%">
 					<translatableAttribute id="heading" context="replay">Size</translatableAttribute>
 				</column>
 
-				<column id="popCapacity" color="192 192 192" width="10%">
+				<column id="popCapacity" textcolor="192 192 192" width="10%">
 					<translatableAttribute id="heading" context="replay">Population</translatableAttribute>
 				</column>
 
-				<column id="duration" color="192 192 192" width="10%">
+				<column id="duration" textcolor="192 192 192" width="10%">
 					<translatableAttribute id="heading" context="replay">Duration</translatableAttribute>
 				</column>
 

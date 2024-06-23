@@ -23,19 +23,19 @@
 				type="olist"
 				auto_scroll="true"
 			>
-				<column id="date" color="255 255 255" width="25%">
+				<column id="date" textcolor="255 255 255" width="25%">
 					<translatableAttribute id="heading" context="replay">Date / Time</translatableAttribute>
 				</column>
 
-				<column id="mapType" color="255 255 255" width="15%">
+				<column id="mapType" textcolor="255 255 255" width="15%">
 					<translatableAttribute id="heading" context="replay">Map Type</translatableAttribute>
 				</column>
 
-				<column id="mapName" color="255 255 255" width="35%">
+				<column id="mapName" textcolor="255 255 255" width="35%">
 					<translatableAttribute id="heading" context="replay">Map Name</translatableAttribute>
 				</column>
 
-				<column id="description" color="255 255 255" width="25%">
+				<column id="description" textcolor="255 255 255" width="25%">
 					<translatableAttribute id="heading" context="replay">Description</translatableAttribute>
 				</column>
 			</object>
