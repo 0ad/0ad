@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@
 
 namespace RL
 {
-Interface::Interface(const char* server_address) : m_GameMessage({GameMessageType::None})
+Interface::Interface(const char* server_address)
 {
 	LOGMESSAGERENDER("Starting RL interface HTTP server");
 
@@ -49,8 +49,13 @@ Interface::Interface(const char* server_address) : m_GameMessage({GameMessageTyp
 		"num_threads", "1",
 		nullptr
 	};
-	mg_context* mgContext = mg_start(MgCallback, this, options);
-	ENSURE(mgContext);
+	m_Context = mg_start(MgCallback, this, options);
+	ENSURE(m_Context);
+}
+
+Interface::~Interface()
+{
+	mg_stop(m_Context);
 }
 
 // Interactions with the game engine (g_Game) must be done in the main
