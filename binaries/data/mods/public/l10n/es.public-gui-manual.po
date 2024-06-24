@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-06-17 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2023\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2024\n"
 "Language-Team: Spanish (http://app.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +53,7 @@ msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "¡Gracias por instalar 0 A.D.! Esta página resume brevemente las características del juego disponibles en esta versión alfa, todavía en desarrollo."
+msgstr "¡Gracias por instalar 0 A.D.! Esta página resume las características disponibles en esta versión alfa del juego, todavía en desarrollo."
 
 #: gui/manual/intro.txt:4
 msgid "[font=\"sans-bold-16\"]Graphics settings[font=\"sans-14\"]"
@@ -349,12 +349,12 @@ msgstr "  hotkey.selection.remove – Modificador – quita de la selección (fu
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection"
-msgstr ""
+msgstr "  hotkey.selection.offscreen – Modificador – Añade todas las unidades a la selección, incluyendo las que están fuera de la pantalla"
 
 #: gui/manual/intro.txt:73
 msgid ""
 "  hotkey.selection.cancel – Unselect all units, cancel building placement"
-msgstr ""
+msgstr "  hotkey.selection.cancel – Desmarcar todas las unidades o cancelar la ubicación de la construcción"
 
 #: gui/manual/intro.txt:74
 msgid "  hotkey.selection.idlebuilder – Select idle builder"
@@ -505,7 +505,7 @@ msgstr "  hotkey.session.queue + Clic derecho – Encadena acciones ir/construir
 msgid ""
 "  hotkey.session.pushorderfront + Right Click – Modifier to push any order "
 "in front of the order queue"
-msgstr ""
+msgstr "  hotkey.session.pushorderfront + clic derecho – Modificador para situar una orden al principio de la cola"
 
 #: gui/manual/intro.txt:105
 msgid ""
@@ -560,7 +560,7 @@ msgstr "  hotkey.selection.woundedonly + Clic izquierdo y arrastrar sobre las un
 msgid ""
 "  hotkey.selection.singleselection – Modifier to select units individually, "
 "opposed to per formation."
-msgstr "  hotkey.selection.singleselection – Modificador para seleccionar unidades individualmente, fuera de la formación."
+msgstr "  hotkey.selection.singleselection – Modificador para seleccionar unidades individualmente, fuera de la formación"
 
 #: gui/manual/intro.txt:114
 msgid ""
