@@ -140,7 +140,7 @@ RandomMap.prototype.getSize = function()
 
 RandomMap.prototype.getArea = function(size = this.size)
 {
-	return this.isCircularMap ? diskArea(size / 2) : size * size;
+	return this.isCircularMap() ? diskArea(size / 2) : size * size;
 };
 
 /**

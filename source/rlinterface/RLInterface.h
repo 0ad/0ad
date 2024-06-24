@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -84,6 +84,7 @@ class Interface
 	NONCOPYABLE(Interface);
 public:
 	Interface(const char* server_address);
+	~Interface();
 
 	/**
 	 * Non-blocking call to process any pending messages from the RL client.
@@ -149,7 +150,7 @@ private:
 	std::string GetGameState() const;
 
 private:
-	GameMessage m_GameMessage;
+	GameMessage m_GameMessage{GameMessageType::None};
 	ScenarioConfig m_ScenarioConfig;
 	std::string m_ReturnValue;
 	bool m_NeedsGameState = false;
@@ -158,6 +159,8 @@ private:
 	std::mutex m_MsgLock;
 	std::condition_variable m_MsgApplied;
 	std::string m_Code;
+
+	mg_context* m_Context;
 };
 
 }

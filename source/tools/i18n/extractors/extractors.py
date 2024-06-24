@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2022 Wildfire Games.
+# Copyright (C) 2024 Wildfire Games.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
@@ -110,7 +110,7 @@ class javascript(Extractor):
 
     def extractJavascriptFromFile(self, fileObject):
 
-        from extractors.jslexer import tokenize, unquote_string
+        from babel.messages.jslexer import tokenize, unquote_string
         funcname = message_lineno = None
         messages = []
         last_argument = None
@@ -121,7 +121,7 @@ class javascript(Extractor):
         comment_tags = self.options.get('commentTags', [])
         keywords = self.options.get('keywords', {}).keys()
 
-        for token in tokenize(fileObject.read()):
+        for token in tokenize(fileObject.read(), dotted=False):
             if token.type == 'operator' and \
                 (token.value == '(' or (call_stack != -1 and \
                 (token.value == '[' or token.value == '{'))):
