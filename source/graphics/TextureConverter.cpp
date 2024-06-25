@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -311,16 +311,7 @@ CTextureConverter::CTextureConverter(PIVFS vfs, bool highQuality) :
 #endif // CONFIG2_NVTT
 }
 
-CTextureConverter::~CTextureConverter()
-{
-#if CONFIG2_NVTT
-	while (!m_ResultQueue.empty())
-	{
-		m_ResultQueue.front().CancelOrWait();
-		m_ResultQueue.pop();
-	}
-#endif // CONFIG2_NVTT
-}
+CTextureConverter::~CTextureConverter() = default;
 
 bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath& src, const VfsPath& dest, const Settings& settings)
 {

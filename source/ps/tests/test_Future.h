@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,22 +27,11 @@ class TestFuture : public CxxTest::TestSuite
 public:
 	void test_future_basic()
 	{
-		int counter = 0;
-		{
-			Future<void> noret;
-			std::function<void()> task = noret.Wrap([&counter]() mutable { counter++; });
-			task();
-			TS_ASSERT_EQUALS(counter, 1);
-		}
-
-		{
-			Future<void> noret;
-			{
-				std::function<void()> task = noret.Wrap([&counter]() mutable { counter++; });
-				// Auto-cancels the task.
-			}
-		}
-		TS_ASSERT_EQUALS(counter, 1);
+		bool executed{false};
+		Future<void> noret;
+		auto task = noret.Wrap([&]{ executed = true; });
+		task();
+		TS_ASSERT(executed);
 	}
 
 	void test_future_return()
