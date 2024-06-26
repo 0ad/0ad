@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,8 +44,7 @@ template<typename T>
 using ResultHolder = std::conditional_t<std::is_void_v<T>, std::nullopt_t, std::optional<T>>;
 
 /**
- * The shared state between futures and packaged state.
- * Holds all relevant data.
+ * Responsible for syncronization between the task and the receiving thread.
  */
 template<typename ResultType>
 class Receiver : public ResultHolder<ResultType>
@@ -57,12 +56,7 @@ public:
 	{}
 	~Receiver()
 	{
-		// For safety, wait on started task completion, but not on pending ones (auto-cancelled).
-		if (!Cancel())
-		{
-			Wait();
-			Cancel();
-		}
+		ENSURE(IsDoneOrCanceled());
 	}
 
 	Receiver(const Receiver&) = delete;
@@ -123,6 +117,9 @@ public:
 	std::condition_variable m_ConditionVariable;
 };
 
+/**
+ * The shared state between futures and packaged state.
+ */
 template<typename Callback>
 struct SharedState
 {
@@ -145,7 +142,7 @@ struct SharedState
  *
  * Future is _not_ thread-safe. Call it from a single thread or ensure synchronization externally.
  *
- * The destructor is never blocking. The promise may still be running on destruction.
+ * The callback never runs after the @p Future is destroyed.
  * TODO:
  *  - Handle exceptions.
  */
@@ -162,11 +159,19 @@ public:
 	Future() = default;
 	Future(const Future& o) = delete;
 	Future(Future&&) = default;
-	Future& operator=(Future&&) = default;
-	~Future() = default;
+	Future& operator=(Future&& other)
+	{
+		CancelOrWait();
+		m_Receiver = std::move(other.m_Receiver);
+		return *this;
+	}
+	~Future()
+	{
+		CancelOrWait();
+	}
 
 	/**
-	 * Make the future wait for the result of @a func.
+	 * Make the future wait for the result of @a callback.
 	 */
 	template<typename Callback>
 	PackagedTask<Callback> Wrap(Callback&& callback);
@@ -293,6 +298,7 @@ PackagedTask<Callback> Future<ResultType>::Wrap(Callback&& callback)
 {
 	static_assert(std::is_same_v<std::invoke_result_t<Callback>, ResultType>,
 		"The return type of the wrapped function is not the same as the type the Future expects.");
+	CancelOrWait();
 	auto temp = std::make_shared<FutureSharedStateDetail::SharedState<Callback>>(std::move(callback));
 	m_Receiver = {temp, &temp->receiver};
 	return PackagedTask<Callback>(std::move(temp));
