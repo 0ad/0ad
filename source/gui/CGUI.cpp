@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -95,7 +95,7 @@ void CollectVisibleObjectsRecursively(const std::vector<IGUIObject*>& objects, C
 
 } // anonynous namespace
 
-CGUI::CGUI(const std::shared_ptr<ScriptContext>& context)
+CGUI::CGUI(ScriptContext& context)
 	: m_BaseObject(std::make_unique<CGUIDummyObject>(*this)),
 	  m_FocusedObject(nullptr),
 	  m_InternalNameNumber(0),

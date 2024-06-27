@@ -678,9 +678,12 @@ static void RunGameOrAtlas(const PS::span<const char* const> argv)
 			g_Mods.UpdateAvailableMods(modInterface);
 		}
 
+		std::optional<ScriptInterface> guiScriptInterface;
+
 		if (isVisual)
 		{
-			InitGraphics(args, 0, installedMods);
+			guiScriptInterface.emplace("Engine", "gui", *g_ScriptContext);
+			InitGraphics(args, 0, installedMods, *g_ScriptContext, *guiScriptInterface);
 			MainControllerInit();
 		}
 		else if (!InitNonVisual(args))
@@ -709,6 +712,7 @@ static void RunGameOrAtlas(const PS::span<const char* const> argv)
 		modsToInstall.clear();
 
 		ShutdownNetworkAndUI();
+		guiScriptInterface.reset();
 		ShutdownConfigAndSubsequent();
 		MainControllerShutdown();
 		flags &= ~INIT_MODS;

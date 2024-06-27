@@ -24,6 +24,8 @@
 
 class CmdLineArgs;
 class Paths;
+class ScriptContext;
+class ScriptInterface;
 
 /**
  * initialize global modules that are be needed before Init.
@@ -73,7 +75,8 @@ extern void InitInput();
 /**
  * `ShutdownNetworkAndUI` has to be called later.
  */
-extern void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& installedMods = std::vector<CStr>());
+void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& installedMods,
+	ScriptContext& scriptContext, ScriptInterface& scriptInterface);
 
 /**
  * `ShutdownNetworkAndUI` has to be called later.

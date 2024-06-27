@@ -612,7 +612,8 @@ bool Init(const CmdLineArgs& args, int flags)
 	return true;
 }
 
-void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& installedMods)
+void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& installedMods,
+	ScriptContext& scriptContext, ScriptInterface& scriptInterface)
 {
 	const bool setup_vmode = (flags & INIT_HAVE_VMODE) == 0;
 
@@ -636,7 +637,7 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 	if(g_DisableAudio)
 		ISoundManager::SetEnabled(false);
 
-	g_GUI = new CGUIManager();
+	g_GUI = new CGUIManager{scriptContext, scriptInterface};
 
 	CStr8 renderPath = "default";
 	CFG_GET_VAL("renderpath", renderPath);
@@ -668,17 +669,13 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 		if (!AutostartVisualReplay(args.Get("replay-visual")) && !Autostart(args))
 		{
 			const bool setup_gui = ((flags & INIT_NO_GUI) == 0);
-			// We only want to display the splash screen at startup
-			std::shared_ptr<ScriptInterface> scriptInterface = g_GUI->GetScriptInterface();
-			ScriptRequest rq(scriptInterface);
+
+			ScriptRequest rq{g_GUI->GetScriptInterface()};
 			JS::RootedValue data(rq.cx);
-			if (g_GUI)
-			{
-				Script::CreateObject(rq, &data, "isStartup", true);
-				if (!installedMods.empty())
-					Script::SetProperty(rq, data, "installedMods", installedMods);
-			}
-			InitPs(setup_gui, installedMods.empty() ? L"page_pregame.xml" : L"page_modmod.xml", g_GUI->GetScriptInterface().get(), data);
+			Script::CreateObject(rq, &data, "isStartup", true);
+			if (!installedMods.empty())
+				Script::SetProperty(rq, data, "installedMods", installedMods);
+			InitPs(setup_gui, installedMods.empty() ? L"page_pregame.xml" : L"page_modmod.xml", &g_GUI->GetScriptInterface(), data);
 		}
 	}
 	catch (PSERROR_Game_World_MapLoadFailed& e)
@@ -858,7 +855,7 @@ bool Autostart(const CmdLineArgs& args)
 	{
 		JSI_GUIManager::RegisterScriptFunctions(rq);
 		// TODO: this loads pregame, which is hardcoded to exist by various code paths. That ought be changed.
-		InitPs(false, L"page_pregame.xml", g_GUI->GetScriptInterface().get(), JS::UndefinedHandleValue);
+		InitPs(false, L"page_pregame.xml", &g_GUI->GetScriptInterface(), JS::UndefinedHandleValue);
 	}
 
 	JSI_Game::RegisterScriptFunctions(rq);

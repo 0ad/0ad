@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,14 +44,14 @@ class CGUIManager
 {
 	NONCOPYABLE(CGUIManager);
 public:
-	CGUIManager();
+	CGUIManager(ScriptContext& scriptContext, ScriptInterface& scriptInterface);
 	~CGUIManager();
 
-	std::shared_ptr<ScriptInterface> GetScriptInterface()
+	ScriptInterface& GetScriptInterface()
 	{
 		return m_ScriptInterface;
 	}
-	std::shared_ptr<ScriptContext> GetContext() { return m_ScriptContext; }
+	ScriptContext& GetContext() { return m_ScriptContext; }
 	std::shared_ptr<CGUI> GetActiveGUI() { return top(); }
 
 	/**
@@ -143,7 +143,7 @@ private:
 		/**
 		 * Create the CGUI with it's own ScriptInterface. Deletes the previous CGUI if it existed.
 		 */
-		void LoadPage(std::shared_ptr<ScriptContext> scriptContext);
+		void LoadPage(ScriptContext& scriptContext);
 
 		/**
 		 * Sets the callback handler when a new page is opened that will be performed when the page is closed.
@@ -169,8 +169,8 @@ private:
 
 	std::shared_ptr<CGUI> top() const;
 
-	std::shared_ptr<ScriptContext> m_ScriptContext;
-	std::shared_ptr<ScriptInterface> m_ScriptInterface;
+	ScriptContext& m_ScriptContext;
+	ScriptInterface& m_ScriptInterface;
 
 	/**
 	 * The page stack must not move pointers on push/pop, or pushing a page in a page's init method

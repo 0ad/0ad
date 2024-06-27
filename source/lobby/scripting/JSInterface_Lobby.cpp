@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -56,7 +56,7 @@ void StartXmppClient(const ScriptRequest& rq, const std::wstring& username, cons
 
 	g_XmppClient =
 		IXmppClient::create(
-			g_GUI->GetScriptInterface().get(),
+			&g_GUI->GetScriptInterface(),
 			utf8_from_wstring(username),
 			utf8_from_wstring(password),
 			utf8_from_wstring(room),
@@ -76,7 +76,7 @@ void StartRegisterXmppClient(const ScriptRequest& rq, const std::wstring& userna
 
 	g_XmppClient =
 		IXmppClient::create(
-			g_GUI->GetScriptInterface().get(),
+			&g_GUI->GetScriptInterface(),
 			utf8_from_wstring(username),
 			utf8_from_wstring(password),
 			std::string(),
