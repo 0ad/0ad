@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2023 Wildfire Games.
+# Copyright (C) 2024 Wildfire Games.
 # This file is part of 0 A.D.
 #
 # 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,9 +31,8 @@ import sys, os, glob, re, fileinput
 from i18n_helper import l10nFolderName, transifexClientFolder, projectRootDirectory
 
 def main():
-    # Prepare some regexes.
-    translatorMatch = re.compile("(# [^,<]*)(?: <.*>)?(?:, [0-9,-]{4,9})")
-    lastTranslatorMatch = re.compile("(\"Last-Translator: [^,<]*)(?: <.*>)?( ?\\\\n\")")
+    translatorMatch = re.compile(r"^(#\s+[^,<]*)\s+<.*>(.*)")
+    lastTranslatorMatch = re.compile(r"^(\"Last-Translator:[^,<]*)\s+<.*>(.*)")
 
     for root, folders, _ in os.walk(projectRootDirectory):
         for folder in folders:
@@ -53,11 +52,11 @@ def main():
                                     if m.group(1) in usernames:
                                         line = ""
                                     else:
-                                        line = m.group(1) + "\n"
+                                        line = m.group(1) + m.group(2) + "\n"
                                         usernames.append(m.group(1))
                                 m2 = lastTranslatorMatch.match(line)
                                 if m2:
-                                    line = m2.group(1) + "\\n\"\n"
+                                    line = re.sub(lastTranslatorMatch, r"\1\2", line)
                             elif line.strip() == "# Translators:":
                                 reached = True
                             sys.stdout.write(line)
