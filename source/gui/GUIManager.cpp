@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 
 #include "gui/CGUI.h"
 #include "lib/timer.h"
+#include "lobby/IXmppClient.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/GameSetup/Config.h"
@@ -67,12 +68,12 @@ static Status ReloadChangedFileCB(void* param, const VfsPath& path)
 	return static_cast<CGUIManager*>(param)->ReloadChangedFile(path);
 }
 
-CGUIManager::CGUIManager()
+CGUIManager::CGUIManager(ScriptContext& scriptContext, ScriptInterface& scriptInterface) :
+	m_ScriptContext{scriptContext},
+	m_ScriptInterface{scriptInterface}
 {
-	m_ScriptContext = g_ScriptContext;
-	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIManager", m_ScriptContext));
-	m_ScriptInterface->SetCallbackData(this);
-	m_ScriptInterface->LoadGlobalScripts();
+	m_ScriptInterface.SetCallbackData(this);
+	m_ScriptInterface.LoadGlobalScripts();
 
 	if (!CXeromyces::AddValidator(g_VFS, "gui_page", "gui/gui_page.rng"))
 		LOGERROR("CGUIManager: failed to load GUI page grammar file 'gui/gui_page.rng'");
@@ -119,7 +120,7 @@ void CGUIManager::PushPage(const CStrW& pageName, Script::StructuredClone initDa
 	// Store the callback handler in the current GUI page before opening the new one
 	if (!m_PageStack.empty() && !callbackFunction.isUndefined())
 	{
-		m_PageStack.back().SetCallbackFunction(*m_ScriptInterface, callbackFunction);
+		m_PageStack.back().SetCallbackFunction(m_ScriptInterface, callbackFunction);
 
 		// Make sure we unfocus anything on the current page.
 		m_PageStack.back().gui->SendFocusMessage(GUIM_LOST_FOCUS);
@@ -154,7 +155,7 @@ CGUIManager::SGUIPage::SGUIPage(const CStrW& pageName, const Script::StructuredC
 {
 }
 
-void CGUIManager::SGUIPage::LoadPage(std::shared_ptr<ScriptContext> scriptContext)
+void CGUIManager::SGUIPage::LoadPage(ScriptContext& scriptContext)
 {
 	// If we're hotloading then try to grab some data from the previous page
 	Script::StructuredClone hotloadData;
@@ -380,7 +381,7 @@ void CGUIManager::TickObjects()
 
 	// We share the script context with everything else that runs in the same thread.
 	// This call makes sure we trigger GC regularly even if the simulation is not running.
-	m_ScriptInterface->GetContext().MaybeIncrementalGC(1.0f);
+	m_ScriptContext.MaybeIncrementalGC(1.0f);
 
 	// Save an immutable copy so iterators aren't invalidated by tick handlers
 	PageStackType pageStack = m_PageStack;

@@ -42,6 +42,7 @@
 #include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 #include "renderer/SceneRenderer.h"
+#include "scriptinterface/ScriptInterface.h"
 
 #include <optional>
 
@@ -65,6 +66,8 @@ const int g_InitFlags = INIT_HAVE_VMODE | INIT_NO_GUI;
 
 // This isn't used directly. When it's emplaced and when it's reset it does mutate `g_Logger`.
 std::optional<FileLogger> g_FileLogger;
+
+std::optional<ScriptInterface> g_ScriptInterface;
 }
 
 MESSAGEHANDLER(Init)
@@ -131,7 +134,8 @@ MESSAGEHANDLER(InitGraphics)
 
 	g_VideoMode.GetBackendDevice()->OnWindowResize(g_xres, g_yres);
 
-	InitGraphics(g_AtlasGameLoop->args, g_InitFlags, {});
+	g_ScriptInterface.emplace("Engine", "GUIManager", *g_ScriptContext);
+	InitGraphics(g_AtlasGameLoop->args, g_InitFlags, {}, *g_ScriptContext, *g_ScriptInterface);
 }
 
 
@@ -147,6 +151,7 @@ MESSAGEHANDLER(Shutdown)
 	g_AtlasGameLoop->view = AtlasView::GetView_None();
 
 	ShutdownNetworkAndUI();
+	g_ScriptInterface.reset();
 	ShutdownConfigAndSubsequent();
 	g_FileLogger.reset();
 }

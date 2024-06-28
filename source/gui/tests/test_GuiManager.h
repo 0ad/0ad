@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,10 +32,12 @@
 #include "scriptinterface/Object.h"
 
 #include <memory>
+#include <optional>
 
 class TestGuiManager : public CxxTest::TestSuite
 {
 	std::unique_ptr<CConfigDB> configDB;
+	std::optional<ScriptInterface> scriptInterface;
 public:
 
 	void setUp()
@@ -48,12 +50,14 @@ public:
 
 		CXeromyces::Startup();
 
-		g_GUI = new CGUIManager();
+		scriptInterface.emplace("Engine", "GUIManager", *g_ScriptContext);
+		g_GUI = new CGUIManager{*g_ScriptContext, *scriptInterface};
 	}
 
 	void tearDown()
 	{
 		delete g_GUI;
+		scriptInterface.reset();
 		CXeromyces::Terminate();
 		configDB.reset();
 		g_VFS.reset();
@@ -63,8 +67,7 @@ public:
 	void test_EventObject()
 	{
 		// Load up a test page.
-		const ScriptInterface& scriptInterface = *(g_GUI->GetScriptInterface());
-		ScriptRequest rq(scriptInterface);
+		ScriptRequest rq{g_GUI->GetScriptInterface()};
 		JS::RootedValue val(rq.cx);
 		Script::CreateObject(rq, &val);
 
@@ -127,8 +130,7 @@ public:
 		LoadHotkeys(*configDB);
 
 		// Load up a test page.
-		const ScriptInterface& scriptInterface = *(g_GUI->GetScriptInterface());
-		ScriptRequest rq(scriptInterface);
+		ScriptRequest rq{g_GUI->GetScriptInterface()};
 		JS::RootedValue val(rq.cx);
 		Script::CreateObject(rq, &val);
 
@@ -202,8 +204,7 @@ public:
 	void test_PageRegainedFocusEvent()
 	{
 		// Load up a test page.
-		const ScriptInterface& scriptInterface = *(g_GUI->GetScriptInterface());
-		ScriptRequest rq(scriptInterface);
+		ScriptRequest rq{g_GUI->GetScriptInterface()};
 		JS::RootedValue val(rq.cx);
 		Script::CreateObject(rq, &val);
 

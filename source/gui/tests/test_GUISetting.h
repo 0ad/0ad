@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,7 +83,7 @@ public:
 
 	void test_movability()
 	{
-		CGUI gui(g_ScriptContext);
+		CGUI gui{*g_ScriptContext};
 		TestGUIObject object(gui);
 
 		static_assert(std::is_move_constructible_v<CGUISimpleSetting<CStr>>);
