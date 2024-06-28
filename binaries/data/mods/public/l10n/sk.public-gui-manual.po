@@ -3,21 +3,21 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# LeviTaule
-# Marek Berčík
-# 2001c3bfc7421750b343e20d6f8feae5_62d342a
-# Martin Plávala
-# Miroslav Kadlec
-# Patrik Špaňo
-# Peto (wt-ts)
-# c1d3d4413723242329060e6153cf18b8_282267d
-# Zuzana Miadoková
+# LeviTaule, 2017
+# Marek Berčík, 2021
+# 2001c3bfc7421750b343e20d6f8feae5_62d342a, 2015
+# Martin Plávala, 2014-2015
+# Miroslav Kadlec, 2018
+# Patrik Špaňo, 2024
+# Peto (wt-ts), 2016
+# c1d3d4413723242329060e6153cf18b8_282267d, 2017,2021
+# Zuzana Miadoková, 2019,2021-2022,2024
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-06-17 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Patrik Špaňo <pa4k.xyon@gmail.com>, 2024\n"
+"Last-Translator: Patrik Špaňo, 2024\n"
 "Language-Team: Slovak (http://app.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,7 +46,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “High-"
 "quality water effects” and “Shadows” options."
-msgstr ""
+msgstr "Medzi zobrazením na celú obrazovku a režimom v okne môžete prepínať stlačením Alt + Enter. V režime v okne môžete meniť veľkosť okna. Ak hra beží príliš pomaly, môžete zmeniť niektoré nastavenia v okne možností: skúste vypnúť “Vysokokvalitné efekty vody” a “Tiene”."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -157,7 +157,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "Mapy sa dajú ďalej filtrovať. Predvolené mapy sú vo všeobecnosti hrateľné mapy. Námorné mapy sú mapy, na ktorých nie je možné dosiahnuť všetkých protivníkov po súši, a demo mapy sú mapy používané na testovacie účely (vo všeobecnosti nie sú použiteľné na hranie). Filter \"Všetky mapy\" zobrazuje všetky mapy spolu v jednom zozname."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -166,7 +166,7 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "Na záver zmeňte nastavenia. V prípade náhodných máp to zahŕňa počet hráčov, veľkosť mapy atď. Pri scenároch môžete vybrať len to, kto ovláda ktorého hráča (určuje, kde na mape začnete atď.). Na výber je buď ľudský hráč, umelá inteligencia alebo žiadny hráč (súper bude len nečinný)."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
@@ -207,26 +207,26 @@ msgstr " hotkey.fps.toggle – Zobraziť vrstvu snímok za sekundu (FPS)"
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr ""
+msgstr "  hotkey.profile.toggle – Prepínanie profilovania v reálnom čase (prepína sa cez zobrazovania informácií)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  hotkey.profile.save – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "  hotkey.profile.save – Uloží dáta súčasného profilu do “logs/profile.txt”"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "  hotkey.screenshot – Take screenshot (in .png format, location is displayed"
 " in the top left of the GUI after the file has been saved, and can also be "
 "seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  hotkey.screenshot – Zhotovenie snímky obrazovky (vo formáte .png, po uložení súboru sa umiestnenie zobrazí v ľavom hornom rohu grafického rozhrania a je možné ho zistiť aj v konzole/logoch, ak ho tu prehliadnete)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "  hotkey.bigscreenshot – Take huge screenshot (6400×4800 pixels, in .bmp "
 "format, location is displayed in the top left of the GUI after the file has "
 "been saved, and can also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "  hotkey.bigscreenshot – Zhotovenie veľkej snímky obrazovky (6400 × 4800 pixelov, vo formáte .bmp, po uložení súboru sa umiestnenie zobrazí v ľavom hornom rohu grafického rozhrania a je možné ho zistiť aj v konzole/logoch, ak ho tu prehliadnete)"
 
 #: gui/manual/intro.txt:51
 msgid "  hotkey.tab.next – Switch to the next tab"
@@ -244,120 +244,120 @@ msgstr "[font=\"sans-bold-14\"]V hre[font=\"sans-14\"]"
 msgid ""
 "  Double Left Click \\[on unit] – Select all of your units of the same kind "
 "on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "  Dvojklik ľavým tlačidlom myši \\[na jednotku] – Vyberie všetky jednotky rovnakého druhu na obrazovke (aj keď sú rôznych hodností)"
 
 #: gui/manual/intro.txt:56
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr ""
+msgstr "  Trojklik ľavým tlačidlom myši \\[na jednotku] – Vyberie všetky jednotky rovnakého druhu a rovnakej hodnosti na obrazovke"
 
 #: gui/manual/intro.txt:57
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "  Alt + Dvojklik ľavým tlačidlom myši \\[na jednotku] – Vyberie všetky jednotky rovnakého druhu na celej mape (aj keď majú rôzne hodnosti)"
 
 #: gui/manual/intro.txt:58
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr ""
+msgstr "  Alt + Trojklik ľavým tlačidlom myši \\[na jednotku] – Vyberie všetky jednotky rovnakého druhu a hodnosti na celej mape"
 
 #: gui/manual/intro.txt:59
 msgid "  hotkey.quicksave – Quicksave"
-msgstr ""
+msgstr "  hotkey.quicksave – Rýchle uloženie"
 
 #: gui/manual/intro.txt:60
 msgid "  hotkey.quickload – Quickload"
-msgstr ""
+msgstr "  hotkey.quickload – Rýchle načítanie"
 
 #: gui/manual/intro.txt:61
 msgid "  hotkey.session.gui.menu.toggle – Toggle menu"
-msgstr ""
+msgstr "  hotkey.session.gui.menu.toggle – Prepnutie ponuky"
 
 #: gui/manual/intro.txt:62
 msgid "  hotkey.timeelapsedcounter.toggle – Toggle time elapsed counter"
-msgstr ""
+msgstr "  hotkey.timeelapsedcounter.toggle – Prepínanie počítadla uplynulého času"
 
 #: gui/manual/intro.txt:63
 msgid "  hotkey.cancel – Close all dialogs (chat, menu)"
-msgstr ""
+msgstr "  hotkey.cancel – Zavrieť všetky dialógy (chat, menu)"
 
 #: gui/manual/intro.txt:64
 msgid "  hotkey.confirm – Open chat or send message"
-msgstr ""
+msgstr "  hotkey.confirm – Otvoriť chat alebo odoslať správu"
 
 #: gui/manual/intro.txt:65
 msgid "  hotkey.teamchat – Send team chat"
-msgstr ""
+msgstr "  hotkey.teamchat – Odoslať tímový chat"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  hotkey.privatechat – Chat with the previously selected private chat "
 "partner"
-msgstr ""
+msgstr "  hotkey.privatechat – Chatovať s predtým vybraným partnerom v súkromnom chate"
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
-msgstr ""
+msgstr "  hotkey.pause – Pozastaviť alebo obnoviť hru"
 
 #: gui/manual/intro.txt:68
 msgid ""
 "  hotkey.session.kill – Delete currently selected unit(s)/structure(s), ask "
 "for confirmation"
-msgstr ""
+msgstr "  hotkey.session.kill – Odstránenie aktuálne vybraných jednotiek/budov, s výzvou na potvrdenie"
 
 #: gui/manual/intro.txt:69
 msgid ""
 "    • With hotkey.session.noconfirmation – Immediately delete currently "
 "selected unit(s)/structure(s), without asking for confirmation"
-msgstr ""
+msgstr "    • S hotkey.session.noconfirmation – Okamžité odstránenie aktuálne vybraných jednotiek/budov bez žiadosti o potvrdenie"
 
 #: gui/manual/intro.txt:70
 msgid ""
 "  hotkey.selection.add – Modifier – add to selection (works with clicking "
 "and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr "  hotkey.selection.add – Modifikátor – pridanie do výberu (funguje s kliknutím a klávesovými skratkami, napr. nečinnými klávesovými skratkami"
 
 #: gui/manual/intro.txt:71
 msgid ""
 "  hotkey.selection.remove – Modifier – remove from selection (works with "
 "clicking and hotkeys, e.g. the idle hotkeys)"
-msgstr ""
+msgstr "  hotkey.selection.remove – Modifikátor – odstránenie z výberu (funguje s kliknutím a klávesovými skratkami, napr. nečinnými klávesovými skratkami)"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection"
-msgstr ""
+msgstr "  hotkey.selection.offscreen – Modifikátor – pridanie všetkých jednotiek vrátane jednotiek mimo obrazovky do výberu"
 
 #: gui/manual/intro.txt:73
 msgid ""
 "  hotkey.selection.cancel – Unselect all units, cancel building placement"
-msgstr ""
+msgstr "  hotkey.selection.cancel – Zrušenie výberu všetkých jednotiek, zrušenie umiestnenia budovy"
 
 #: gui/manual/intro.txt:74
 msgid "  hotkey.selection.idlebuilder – Select idle builder"
-msgstr ""
+msgstr "  hotkey.selection.idlebuilder – Výber nečinného staviteľa"
 
 #: gui/manual/intro.txt:75
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
-msgstr ""
+msgstr "  hotkey.selection.idlewarrior – Výber nečinného bojovníka"
 
 #: gui/manual/intro.txt:76
 msgid ""
 "  hotkey.selection.idleworker – Select idle worker (including citizen-"
 "soldiers)"
-msgstr ""
+msgstr "  hotkey.selection.idleworker – Výber nečinného pracovníka (vrátane občianskych vojakov)"
 
 #: gui/manual/intro.txt:77
 msgid "  hotkey.selection.idleunit – Select idle unit"
-msgstr ""
+msgstr "  hotkey.selection.idleunit – Výber nečinnej jednotky"
 
 #: gui/manual/intro.txt:78
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
-msgstr ""
+msgstr "  hotkey.session.stop – Zastavenie (pozastavenie) aktuálne vybraných jednotiek"
 
 #: gui/manual/intro.txt:79
 msgid "  hotkey.session.backtowork – The unit will go back to work"
@@ -428,7 +428,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:90
 msgid "  hotkey.summary – Toggle summary window"
-msgstr ""
+msgstr "  hotkey.summary – Prepnutie okna súhrnu"
 
 #: gui/manual/intro.txt:91
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
@@ -499,7 +499,7 @@ msgstr ""
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr "  hotkey.session.batchtrain + Ľavé tlačidlo myši pri trénovaní jednotiek - Pridávanie jednotiek v skupinách (predvolená veľkosť skupiny je 5 a možno ju zmeniť v možnostiach)"
 
 #: gui/manual/intro.txt:107
 msgid ""
@@ -595,7 +595,7 @@ msgstr "[font=\"sans-bold-14\"]Vrstvy prekrytia[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:124
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
-msgstr ""
+msgstr "  hotkey.session.gui.toggle – Prepínanie užívateľského rozhrania"
 
 #: gui/manual/intro.txt:125
 msgid ""
