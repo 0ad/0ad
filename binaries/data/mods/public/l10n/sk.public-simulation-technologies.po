@@ -3,27 +3,28 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# LeviTaule
-# Marek Berčík
-# Mário Bulejko
-# Michal Ján Mária Polovka
-# Miroslav Kadlec
-# MiroslavR
-# Ondrej K.
-# Patrik Špaňo
-# SuroX
-# Peto (wt-ts)
-# Roman 'Kaktuxista' Benji
-# Rudolf Tisoň
-# c1d3d4413723242329060e6153cf18b8_282267d
-# Tom Hanax
-# Zuzana Miadoková
+# LeviTaule, 2018
+# Marek Berčík, 2021
+# Mário Bulejko, 2015
+# Michal Ján Mária Polovka, 2016
+# Miroslav Kadlec, 2018
+# MiroslavR, 2014
+# Ondrej K., 2021
+# Patrik Špaňo, 2024
+# SuroX, 2014,2016
+# Peto (wt-ts), 2016
+# Roman 'Kaktuxista' Benji, 2014
+# Rudolf Tisoň, 2022
+# Rudolf Tisoň, 2021
+# c1d3d4413723242329060e6153cf18b8_282267d, 2017-2021
+# Tom Hanax, 2019
+# Zuzana Miadoková, 2019,2021-2024
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-06-17 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Patrik Špaňo <pa4k.xyon@gmail.com>, 2024\n"
+"Last-Translator: Patrik Špaňo, 2024\n"
 "Language-Team: Slovak (http://app.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -229,7 +230,7 @@ msgstr ""
 #: simulation/data/technologies/arsenal_philon.jsonrequirementsTooltip
 #: simulation/data/technologies/juggernauts.jsonrequirementsTooltip
 msgid "Unlocked in City Phase. Requires “Shipwrights.”"
-msgstr ""
+msgstr "Odomkne sa vo fáze Mesta. Vyžaduje \"Lodiarov\"."
 
 #: simulation/data/technologies/arsenal_philon.jsontooltip
 msgid "Warships +1 health/second self-repair rate."
@@ -280,7 +281,7 @@ msgstr "Vojaci, obliehacie stroje a lode +25% útočné poškodenie."
 msgid ""
 "Decreases training time of infantry if they are trained in batches or companies. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Skracuje čas výcviku pechoty, ak sa cvičí v skupinách alebo rotách. Veľké skupiny budú mať väčší úžitok ako malé skupiny.\nZ matematického hľadiska: Čas výcviku jednej skupiny sa vydelí  `batchSize^0.1`."
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -289,7 +290,7 @@ msgstr "Branná povinnosť"
 
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Decreases batch training time of units trained in Barracks."
-msgstr ""
+msgstr "Znižuje čas skupinového výcviku jednotiek cvičených v Kasárňach."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -640,7 +641,7 @@ msgstr "Využite skúsených staviteľov lodí so špecializovanými nástrojmi 
 
 #: simulation/data/technologies/dock_efficiency.jsongenericName
 msgid "Shipwrights"
-msgstr ""
+msgstr "Lodiari"
 
 #: simulation/data/technologies/dock_efficiency.jsonspecificName.athen
 #: simulation/data/technologies/dock_efficiency.jsonspecificName.mace
@@ -722,7 +723,7 @@ msgstr "Použi siete na zlepšenie produktivity rybárskych lodí. "
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsongenericName
 msgid "Fishing Nets"
-msgstr ""
+msgstr "Rybárske siete"
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsontooltip
 msgid "Fishing Boats +30% fish gather rate. Unlocks “Salt Curing.”"
@@ -1361,7 +1362,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
-msgstr ""
+msgstr "Postúpte do fázy Mesta, ktorá odomyká ďalšie subjekty a technológie. Občianske Centrá +25% dosah teritoriálneho vplyvu. Budovy +1 k miere regenerácie obsadzovacích bodov pre posádkové jednotky. Pracovníci +10% k rýchlosti získavania kovov."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1378,14 +1379,14 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units."
-msgstr ""
+msgstr "Postúpte do fázy Mesta, ktorá odomyká ďalšie subjekty a technológie. Občianske Centrá +25% dosah teritoriálneho vplyvu. Budovy +1 k miere regenerácie obsadzovacích bodov pre posádkové jednotky."
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase.\n"
 "The 'Times of War' bonus decreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Z rušného mestečka sa stáva skutočná metropola plná zázrakov modernej technológie. Toto je fáza perzského mesta.\nBonus 'Obdobie Vojny' znižuje čas skupinového výcviku v Stajniach. Veľké skupiny budú mať väčší úžitok ako malé skupiny.\nV matematickom vyjadrení: Čas tréningu jednej skupiny sa vydelí číslom `batchSize^0.1`."
 
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
@@ -1393,7 +1394,7 @@ msgid ""
 "Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Decrease batch training time of "
 "units trained in Stables."
-msgstr ""
+msgstr "Postúpte do fázy Mesta, ktorá odomyká ďalšie subjekty a technológie. Občianske Centrá +25% dosah teritoriálneho vplyvu. Budovy +1 k miere regenerácie obsadzovacích bodov pre posádkové jednotky. Zníženie času skupinového výcviku jednotiek trénovaných v Stajniach."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1434,7 +1435,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
-msgstr ""
+msgstr "Postúpte do fázy Mestečka, ktorá odomyká ďalšie subjekty a technológie. Občianske centrá +25% dosah teritoriálneho vplyvu. Budovy +0.5 k miere regenerácie obsadzovacích bodov pre posádkové jednotky. Pracovníci +10% k rýchlosti získavania kovov."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1450,14 +1451,14 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units."
-msgstr ""
+msgstr "Postúpte do fázy Mestečka, ktorá odomyká ďalšie subjekty a technológie. Občianske centrá +25% dosah teritoriálneho vplyvu. Budovy +0.5 k miere regenerácie obsadzovacích bodov pre posádkové jednotky."
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. This is the Persian town phase.\n"
 "The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
-msgstr ""
+msgstr "Z malej dediny sa stáva rušné mestečko, ktoré je pripravené rýchlo expandovať. Toto je fáza perzského mestečka.\nBonus  'Obdobie Vojny' znižuje čas skupinového výcviku v Stajniach. Veľké skupiny budú mať väčší úžitok ako malé skupiny.\nV matematickom vyjadrení: Čas tréningu jednej skupiny sa vydelí číslom `batchSize^0.1`."
 
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
@@ -1465,7 +1466,7 @@ msgid ""
 "Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Decrease batch training time of "
 "units trained in Stables."
-msgstr ""
+msgstr "Postúpte do fázy Mestečka, ktorá odomyká ďalšie subjekty a technológie.  Občianske centrá +25% dosah teritoriálneho vplyvu. Budovy +0.5 k miere regenerácie obsadzovacích bodov pre posádkové jednotky. Zníženie času skupinového výcviku jednotiek trénovaných v Stajniach."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1638,7 +1639,7 @@ msgstr "Epibatai"
 
 #: simulation/data/technologies/ship_capture_resistance.jsontooltip
 msgid "All Warships +40% capture resistance."
-msgstr ""
+msgstr "Všetky bojové lode +40% k odolnosti voči zajatiu."
 
 #: simulation/data/technologies/ship_cost_time.jsongenericName
 msgid "Naval Architects"
@@ -1658,7 +1659,7 @@ msgstr "Zosilnený trup"
 
 #: simulation/data/technologies/ship_health.jsontooltip
 msgid "Ships +25% health, but −10% speed."
-msgstr ""
+msgstr "Zdravie lodí +25 %, ale -10% k rýchlosti."
 
 #: simulation/data/technologies/ship_movement_speed.jsondescription
 msgid ""
@@ -1999,7 +2000,7 @@ msgstr ""
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Decrease batch training time of units trained in Stables."
-msgstr ""
+msgstr "Zníženie času skupinového tréningu jednotiek trénovaných v Stajniach."
 
 #: simulation/data/technologies/subterranean_aqueducts.jsondescription
 msgid ""
@@ -2348,7 +2349,7 @@ msgstr "Horiaca smola"
 
 #: simulation/data/technologies/warship_fireship_attack.jsonrequirementsTooltip
 msgid "Unlocked in City Phase. Requires “Naval Construction.”"
-msgstr ""
+msgstr "Odomkne sa vo fáze Mesta. Vyžaduje “Námornú Výstavbu.”"
 
 #: simulation/data/technologies/warship_fireship_attack.jsontooltip
 msgid "Fire Ships +25% health and +25% attack damage."
@@ -2364,7 +2365,7 @@ msgstr ""
 
 #: simulation/data/technologies/warship_health.jsonrequirementsTooltip
 msgid "Unlocked in City Phase. Requires “Ship Cladding.”"
-msgstr ""
+msgstr "Odomkne sa vo fáze Mesta. Vyžaduje “Opláštenie Lode.”"
 
 #: simulation/data/technologies/warship_health.jsonspecificName.athen
 #: simulation/data/technologies/warship_health.jsonspecificName.cart
@@ -2390,7 +2391,7 @@ msgstr "Bronzový taran"
 
 #: simulation/data/technologies/warship_ramming_attack.jsonrequirementsTooltip
 msgid "Unlocked in City Phase. Requires “Flanking Maneuvers.”"
-msgstr ""
+msgstr "Odomkne sa vo fáze Mesta. Vyžaduje “Flankovacie Manévre.”"
 
 #: simulation/data/technologies/warship_ramming_attack.jsonspecificName.athen
 #: simulation/data/technologies/warship_ramming_attack.jsonspecificName.cart
@@ -2442,7 +2443,7 @@ msgstr "Ohnivé projektily"
 
 #: simulation/data/technologies/warship_ranged_attack.jsonrequirementsTooltip
 msgid "Unlocked in City Phase. Requires “Naval Ballistae.”"
-msgstr ""
+msgstr "Odomkne sa vo fáze Mesta. Vyžaduje “Námornú Balistiku.”"
 
 #: simulation/data/technologies/warship_ranged_attack.jsontooltip
 msgid "Ranged Warships +10% attack damage."

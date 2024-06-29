@@ -3,30 +3,31 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# kecer
-# FrewCen
-# LeviTaule
-# Marek Berčík
-# 2001c3bfc7421750b343e20d6f8feae5_62d342a
-# Mário Bulejko
-# Martin Plávala
-# Miroslav Kadlec
-# MiroslavR
-# Miroslav Remák
-# Ondrej K.
-# Peto (wt-ts)
-# Roman 'Kaktuxista' Benji
-# Rudolf Tisoň
-# c1d3d4413723242329060e6153cf18b8_282267d
-# Stanislav Kubiš
-# Tom Hanax
-# Zuzana Miadoková
+# kecer, 2016
+# FrewCen, 2014
+# LeviTaule, 2017
+# Marek Berčík, 2021
+# 2001c3bfc7421750b343e20d6f8feae5_62d342a, 2015
+# Mário Bulejko, 2015
+# Martin Plávala, 2014
+# Miroslav Kadlec, 2018
+# MiroslavR, 2014
+# Miroslav Remák, 2014
+# Ondrej K., 2021
+# Patrik Špaňo, 2024
+# Peto (wt-ts), 2016
+# Roman 'Kaktuxista' Benji, 2014
+# Rudolf Tisoň, 2022
+# c1d3d4413723242329060e6153cf18b8_282267d, 2018,2021
+# Stanislav Kubiš, 2021
+# Tom Hanax, 2021
+# Zuzana Miadoková, 2019,2021-2024
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-06-17 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: Zuzana Miadoková, 2019,2021-2024\n"
+"Last-Translator: Patrik Špaňo, 2024\n"
 "Language-Team: Slovak (http://app.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2545,20 +2546,20 @@ msgstr "Vlastníš Div sveta a vyhráš za %(time)s."
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(lastPlayer)s získal výhru (divom sveta)."
+msgstr[1] "%(players)s a %(lastPlayer)s získali výhru (divom sveta)."
+msgstr[2] "%(players)s a %(lastPlayer)s získali výhru (divom sveta)."
+msgstr[3] "%(players)s a %(lastPlayer)s získali výhru (divom sveta)."
 
 #: maps/scripts/WonderVictory.js:143
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
-msgstr[0] "%(lastPlayer)s bol porazený (výhra Divom sveta)."
-msgstr[1] "%(players)s a %(lastPlayer)s boli porazení (výhra Divom sveta)."
-msgstr[2] "%(players)s a %(lastPlayer)s boli porazení (výhra Divom sveta)."
-msgstr[3] "%(players)s a %(lastPlayer)s boli porazení (výhra Divom sveta)."
+msgstr[0] "%(lastPlayer)s bol porazený (Divom sveta)."
+msgstr[1] "%(players)s a %(lastPlayer)s boli porazení (Divom sveta)."
+msgstr[2] "%(players)s a %(lastPlayer)s boli porazení (Divom sveta)."
+msgstr[3] "%(players)s a %(lastPlayer)s boli porazení (Divom sveta)."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:39
 msgid ""
@@ -2729,11 +2730,11 @@ msgstr "Mapa na štýl „ostrovčekov“ zasadená do oblasti Egejského mora."
 
 #: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2 players)"
-msgstr ""
+msgstr "Kykladské súostrovie (2 hráči)"
 
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
 msgid "Cycladic Archipelago (3 players)"
-msgstr ""
+msgstr "Kykladské súostrovie (3 hráči)"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""
@@ -2945,7 +2946,7 @@ msgstr ""
 
 #: maps/skirmishes/isthmus_of_corinth_2p.xml:Name:39
 msgid "Isthmus of Corinth (2)"
-msgstr ""
+msgstr "Korintská úžina (2)"
 
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
@@ -3224,7 +3225,7 @@ msgstr ""
 
 #: maps/skirmishes/sporades_islands_2p.xml:Name:39
 msgid "Sporades Islands (2 player)"
-msgstr ""
+msgstr "Sporadické ostrovy (pre 2 hráčov)"
 
 #: maps/skirmishes/syria_2p.xml:Description:39
 msgid ""
