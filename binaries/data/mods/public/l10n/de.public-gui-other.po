@@ -427,7 +427,7 @@ msgstr "Cheats"
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr "Wenn der Sieger dieser Runde feststeht, wird die Lobbypunktzahl angepasst."
+msgstr "Wenn der Sieger eines Spiels feststeht, wird die Lobbypunktzahl angepasst."
 
 #: gui/common/gamedescription.js:415 gui/common/gamedescription.js:420
 msgid "Rated game"
@@ -492,7 +492,7 @@ msgstr "Schlechte Verbindung zu %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr "Dies wird oft durch das nicht weiterleiten des UDP Ports 20595 auf der Host Seite, durch eine Firewall oder ein Antivirus Programm verursacht."
+msgstr "Dies wird häufig durch ein fehlendes weiterleiten von UDP Port 20595 auf der Host-Seite, durch eine Firewall oder ein Antivirus-Programm verursacht."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
