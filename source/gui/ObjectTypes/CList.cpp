@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -368,7 +368,9 @@ void CList::DrawList(CCanvas2D& canvas, const int& selected, const CGUISpriteIns
 				cliparea.left = GetScrollBar(0).GetOuterRect().right;
 		}
 
-		DrawText(canvas, i, textColor, rect.TopLeft() - CVector2D(0.f, scroll - m_ItemsYPositions[i]), cliparea);
+		const CGUIColor& finalTextColor = (drawSelected && static_cast<size_t>(selected) == i && *m_TextColorSelected) ? m_TextColorSelected : textColor;
+
+		DrawText(canvas, i, finalTextColor, rect.TopLeft() - CVector2D(0.f, scroll - m_ItemsYPositions[i]), cliparea);
 	}
 
 	// Draw scrollbars on top of the content
