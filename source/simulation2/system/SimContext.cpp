@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,8 +23,9 @@
 
 #include "ps/Game.h"
 
-CSimContext::CSimContext() :
-	m_ComponentManager(NULL), m_UnitManager(NULL), m_Terrain(NULL)
+CSimContext::CSimContext(CTerrain* terrain /*= nullptr*/, CUnitManager* unitManager /*= nullptr*/) :
+	m_UnitManager{unitManager},
+	m_Terrain{terrain}
 {
 }
 

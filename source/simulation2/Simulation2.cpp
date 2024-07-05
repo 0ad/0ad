@@ -54,12 +54,11 @@ class CSimulation2Impl
 {
 public:
 	CSimulation2Impl(CUnitManager* unitManager, ScriptContext& cx, CTerrain* terrain) :
+		m_SimContext{terrain, unitManager},
 		m_ComponentManager{m_SimContext, cx},
 		m_MapSettings{cx.GetGeneralJSContext()},
 		m_InitAttributes{cx.GetGeneralJSContext()}
 	{
-		m_SimContext.m_UnitManager = unitManager;
-		m_SimContext.m_Terrain = terrain;
 		m_ComponentManager.LoadComponentTypes();
 
 		RegisterFileReloadFunc(ReloadChangedFileCB, this);
@@ -406,8 +405,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 
 		m_SecondaryTerrain = std::make_unique<CTerrain>();
 
-		m_SecondaryContext = std::make_unique<CSimContext>();
-		m_SecondaryContext->m_Terrain = m_SecondaryTerrain.get();
+		m_SecondaryContext = std::make_unique<CSimContext>(m_SecondaryTerrain.get());
 
 		m_SecondaryComponentManager = std::make_unique<CComponentManager>(*m_SecondaryContext, scriptInterface.GetContext());
 		m_SecondaryComponentManager->LoadComponentTypes();

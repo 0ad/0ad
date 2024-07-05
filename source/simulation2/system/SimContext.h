@@ -1,4 +1,4 @@
-/* Copyright (C) 2016 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ class ScriptInterface;
 class CSimContext
 {
 public:
-	CSimContext();
+	CSimContext(CTerrain* terrain = nullptr, CUnitManager* unitManager = nullptr);
 	~CSimContext();
 
 	CComponentManager& GetComponentManager() const;
@@ -55,13 +55,11 @@ public:
 	int GetCurrentDisplayedPlayer() const;
 
 private:
-	CComponentManager* m_ComponentManager;
+	CComponentManager* m_ComponentManager{nullptr};
 	CUnitManager* m_UnitManager;
 	CTerrain* m_Terrain;
 
 	CEntityHandle m_SystemEntity;
-
-	friend class CSimulation2Impl;
 };
 
 #endif // INCLUDED_SIMCONTEXT
