@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -58,16 +58,15 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 
 	CLogger* logger;
-	std::stringstream* mainlog;
-	std::stringstream* interestinglog;
+	std::stringstream mainlog;
+	std::stringstream interestinglog;
 	std::vector<std::string> lines;
 
 	void setUp()
 	{
-		mainlog = new std::stringstream();
-		interestinglog = new std::stringstream();
-
-		logger = new CLogger(mainlog, interestinglog, true, false);
+		mainlog.str({});
+		interestinglog.str({});
+		logger = new CLogger(mainlog, interestinglog, false);
 
 		lines.clear();
 	}
@@ -82,7 +81,7 @@ public:
 	{
 		const std::string header_end = "</h2>\n";
 
-		std::string s = mainlog->str();
+		std::string s = mainlog.str();
 		size_t start = s.find(header_end);
 		TS_ASSERT_DIFFERS(start, s.npos);
 		s.erase(0, start + header_end.length());

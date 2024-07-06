@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 
 #include <deque>
 #include <fmt/printf.h>
+#include <fstream>
 #include <mutex>
 #include <string>
 #include <sstream>
@@ -56,12 +57,7 @@ public:
 		Warning
 	};
 
-	// Default constructor - outputs to normal log files
-	CLogger();
-
-	// Special constructor (mostly for testing) - outputs to provided streams.
-	// Can take ownership of streams and delete them in the destructor.
-	CLogger(std::ostream* mainLog, std::ostream* interestingLog, bool takeOwnership, bool useDebugPrintf);
+	CLogger(std::ostream& mainLog, std::ostream& interestingLog, const bool useDebugPrintf);
 
 	~CLogger();
 
@@ -83,18 +79,17 @@ private:
 	void CleanupRenderQueue();
 
 	// the output streams
-	std::ostream* m_MainLog;
-	std::ostream* m_InterestingLog;
-	bool m_OwnsStreams;
+	std::ostream& m_MainLog;
+	std::ostream& m_InterestingLog;
 
 	// whether errors should be reported via debug_printf (default)
 	// or suppressed (for tests that intentionally trigger errors)
 	bool m_UseDebugPrintf;
 
 	// vars to hold message counts
-	int m_NumberOfMessages;
-	int m_NumberOfErrors;
-	int m_NumberOfWarnings;
+	int m_NumberOfMessages{0};
+	int m_NumberOfErrors{0};
+	int m_NumberOfWarnings{0};
 
 	// Used for Render()
 	struct RenderedMessage
@@ -104,7 +99,10 @@ private:
 		std::string message;
 	};
 	std::deque<RenderedMessage> m_RenderMessages;
-	double m_RenderLastEraseTime;
+
+	// The logger might be constructed too early to allow us to call timer_Time(),
+	// so we'll fill in the initial value later
+	double m_RenderLastEraseTime{-1.0};
 
 	// Lock for all state modified by logging commands
 	std::mutex m_Mutex;
@@ -116,9 +114,7 @@ private:
 class CLogger::ScopedReplacement
 {
 public:
-	ScopedReplacement();
-	ScopedReplacement(std::ostream* mainLog, std::ostream* interestingLog, const bool takeOwnership,
-		const bool useDebugPrintf);
+	ScopedReplacement(std::ostream& mainLog, std::ostream& interestingLog, const bool useDebugPrintf);
 
 	ScopedReplacement(const ScopedReplacement&) = delete;
 	ScopedReplacement& operator=(const ScopedReplacement&) = delete;
@@ -136,7 +132,11 @@ private:
  */
 class FileLogger
 {
+public:
+	FileLogger();
 private:
+	std::ofstream m_MainLog;
+	std::ofstream m_InterestingLog;
 	CLogger::ScopedReplacement m_ScopedReplacement;
 };
 
