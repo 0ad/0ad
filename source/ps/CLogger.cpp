@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,7 +50,7 @@ struct BlackHoleStreamBuf : public std::streambuf
 {
 } blackHoleStreamBuf;
 std::ostream blackHoleStream(&blackHoleStreamBuf);
-CLogger nullLogger(&blackHoleStream, &blackHoleStream, false, true);
+CLogger nullLogger{blackHoleStream, blackHoleStream, true};
 
 CLogger* g_Logger = &nullLogger;
 
@@ -68,44 +68,13 @@ const char* html_header0 =
 
 const char* html_header1 = "</h2>\n";
 
-CLogger::CLogger()
+CLogger::CLogger(std::ostream& mainLog, std::ostream& interestingLog, const bool useDebugPrintf) :
+	m_MainLog{mainLog},
+	m_InterestingLog{interestingLog},
+	m_UseDebugPrintf{useDebugPrintf}
 {
-	OsPath mainlogPath(psLogDir() / (L"mainlog" + g_UniqueLogPostfix + L".html"));
-	m_MainLog = new std::ofstream(OsString(mainlogPath).c_str(), std::ofstream::out | std::ofstream::trunc);
-	debug_printf("FILES| Main log written to '%s'\n", mainlogPath.string8().c_str());
-
-	OsPath interestinglogPath(psLogDir() / (L"interestinglog" + g_UniqueLogPostfix + L".html"));
-	m_InterestingLog = new std::ofstream(OsString(interestinglogPath).c_str(), std::ofstream::out | std::ofstream::trunc);
-	debug_printf("FILES| Interesting log written to '%s'\n", interestinglogPath.string8().c_str());
-
-	m_OwnsStreams = true;
-	m_UseDebugPrintf = true;
-
-	Init();
-}
-
-CLogger::CLogger(std::ostream* mainLog, std::ostream* interestingLog, bool takeOwnership, bool useDebugPrintf)
-{
-	m_MainLog = mainLog;
-	m_InterestingLog = interestingLog;
-	m_OwnsStreams = takeOwnership;
-	m_UseDebugPrintf = useDebugPrintf;
-
-	Init();
-}
-
-void CLogger::Init()
-{
-	m_RenderLastEraseTime = -1.0;
-	// this is called too early to allow us to call timer_Time(),
-	// so we'll fill in the initial value later
-
-	m_NumberOfMessages = 0;
-	m_NumberOfErrors = 0;
-	m_NumberOfWarnings = 0;
-
-	*m_MainLog << html_header0 << engine_version << ") Main log" << html_header1;
-	*m_InterestingLog << html_header0 << engine_version << ") Main log (warnings and errors only)" << html_header1;
+	m_MainLog << html_header0 << engine_version << ") Main log" << html_header1;
+	m_InterestingLog << html_header0 << engine_version << ") Main log (warnings and errors only)" << html_header1;
 }
 
 CLogger::~CLogger()
@@ -122,17 +91,11 @@ CLogger::~CLogger()
 
 	//Write closing text
 
-	*m_MainLog << "<p>Engine exited successfully on " << currentDate;
-	*m_MainLog << " at " << currentTime << buffer << "</p>\n";
+	m_MainLog << "<p>Engine exited successfully on " << currentDate;
+	m_MainLog << " at " << currentTime << buffer << "</p>\n";
 
-	*m_InterestingLog << "<p>Engine exited successfully on " << currentDate;
-	*m_InterestingLog << " at " << currentTime << buffer << "</p>\n";
-
-	if (m_OwnsStreams)
-	{
-		SAFE_DELETE(m_InterestingLog);
-		SAFE_DELETE(m_MainLog);
-	}
+	m_InterestingLog << "<p>Engine exited successfully on " << currentDate;
+	m_InterestingLog << " at " << currentTime << buffer << "</p>\n";
 }
 
 static std::string ToHTML(const char* message)
@@ -153,8 +116,8 @@ void CLogger::WriteMessage(const char* message, bool doRender = false)
 //	if (m_UseDebugPrintf)
 //		debug_printf("MESSAGE: %s\n", message);
 
-	*m_MainLog << "<p>" << cmessage << "</p>\n";
-	m_MainLog->flush();
+	m_MainLog << "<p>" << cmessage << "</p>\n";
+	m_MainLog.flush();
 
 	if (doRender)
 	{
@@ -175,11 +138,11 @@ void CLogger::WriteError(const char* message)
 		debug_printf("ERROR: %.16000s\n", message);
 
 	if (g_Console) g_Console->InsertMessage(std::string("ERROR: ") + message);
-	*m_InterestingLog << "<p class=\"error\">ERROR: " << cmessage << "</p>\n";
-	m_InterestingLog->flush();
+	m_InterestingLog << "<p class=\"error\">ERROR: " << cmessage << "</p>\n";
+	m_InterestingLog.flush();
 
-	*m_MainLog << "<p class=\"error\">ERROR: " << cmessage << "</p>\n";
-	m_MainLog->flush();
+	m_MainLog << "<p class=\"error\">ERROR: " << cmessage << "</p>\n";
+	m_MainLog.flush();
 
 	PushRenderMessage(Error, message);
 }
@@ -195,11 +158,11 @@ void CLogger::WriteWarning(const char* message)
 		debug_printf("WARNING: %s\n", message);
 
 	if (g_Console) g_Console->InsertMessage(std::string("WARNING: ") + message);
-	*m_InterestingLog << "<p class=\"warning\">WARNING: " << cmessage << "</p>\n";
-	m_InterestingLog->flush();
+	m_InterestingLog << "<p class=\"warning\">WARNING: " << cmessage << "</p>\n";
+	m_InterestingLog.flush();
 
-	*m_MainLog << "<p class=\"warning\">WARNING: " << cmessage << "</p>\n";
-	m_MainLog->flush();
+	m_MainLog << "<p class=\"warning\">WARNING: " << cmessage << "</p>\n";
+	m_MainLog.flush();
 
 	PushRenderMessage(Warning, message);
 }
@@ -311,13 +274,9 @@ void CLogger::CleanupRenderQueue()
 		m_RenderMessages.erase(m_RenderMessages.begin(), m_RenderMessages.end() - RENDER_LIMIT);
 }
 
-CLogger::ScopedReplacement::ScopedReplacement() :
-	m_OldLogger{std::exchange(g_Logger, &m_ThisLogger)}
-{}
-
-CLogger::ScopedReplacement::ScopedReplacement(std::ostream* mainLog, std::ostream* interestingLog,
-	const bool takeOwnership, const bool useDebugPrintf) :
-	m_ThisLogger{mainLog, interestingLog, takeOwnership, useDebugPrintf},
+CLogger::ScopedReplacement::ScopedReplacement(std::ostream& mainLog, std::ostream& interestingLog,
+	const bool useDebugPrintf) :
+	m_ThisLogger{mainLog, interestingLog, useDebugPrintf},
 	m_OldLogger{std::exchange(g_Logger, &m_ThisLogger)}
 {}
 
@@ -326,8 +285,24 @@ CLogger::ScopedReplacement::~ScopedReplacement()
 	g_Logger = m_OldLogger;
 }
 
+namespace
+{
+std::ofstream OpenLogFile(const wchar_t* filePrefix, const char* logName)
+{
+	OsPath path{psLogDir() / (filePrefix + g_UniqueLogPostfix + L".html")};
+	debug_printf("FILES| %s written to '%s'\n", logName, path.string8().c_str());
+	return std::ofstream{OsString(path).c_str(), std::ofstream::trunc};
+}
+}
+
+FileLogger::FileLogger() :
+	m_MainLog{OpenLogFile(L"mainlog", "Main log")},
+	m_InterestingLog{OpenLogFile(L"interestinglog", "Interesting log")},
+	m_ScopedReplacement{m_MainLog, m_InterestingLog, true}
+{}
+
 TestLogger::TestLogger() :
-	m_ScopedReplacement{&m_Stream, &blackHoleStream, false, false}
+	m_ScopedReplacement{m_Stream, blackHoleStream, false}
 {}
 
 std::string TestLogger::GetOutput()
@@ -336,5 +311,5 @@ std::string TestLogger::GetOutput()
 }
 
 TestStdoutLogger::TestStdoutLogger() :
-	m_ScopedReplacement{&std::cout, &blackHoleStream, false, false}
+	m_ScopedReplacement{std::cout, blackHoleStream, false}
 {}
