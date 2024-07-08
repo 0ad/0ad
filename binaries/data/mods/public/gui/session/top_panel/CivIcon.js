@@ -29,12 +29,12 @@ class CivIcon
 		this.openPage(this.dialogSelection.page);
 	}
 
-	openPage(page)
+	async openPage(page)
 	{
 		closeOpenDialogs();
 		g_PauseControl.implicitPause();
 
-		pageLoop(
+		this.dialogSelection = await pageLoop(
 			page,
 			{
 				// If an Observer triggers `openPage()` via hotkey, g_ViewedPlayer could be -1 or 0
@@ -42,12 +42,8 @@ class CivIcon
 				"civ": this.dialogSelection.args.civ ?? g_Players[Math.max(g_ViewedPlayer, 1)].civ
 
 				// TODO add info about researched techs and unlocked entities
-			},
-			data =>
-			{
-				this.dialogSelection = data;
-				resumeGame();
 			});
+		resumeGame();
 	}
 
 	rebuild()

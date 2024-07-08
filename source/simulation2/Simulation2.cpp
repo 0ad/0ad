@@ -585,6 +585,8 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 		cmpPathfinder->UpdateGrid();
 		cmpPathfinder->StartProcessingMoves(false);
 	}
+
+	componentManager.GetScriptInterface().GetContext().RunJobs();
 }
 
 void CSimulation2Impl::Interpolate(float simFrameLength, float frameOffset, float realFrameLength)

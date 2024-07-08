@@ -5,9 +5,9 @@ function initTerms(terms)
 	g_Terms = terms;
 }
 
-function openTerms(page)
+async function openTerms(page)
 {
-	Engine.PushGuiPage(
+	const data = await Engine.PushGuiPage(
 		"page_termsdialog.xml",
 		{
 			"file": g_Terms[page].file,
@@ -16,19 +16,17 @@ function openTerms(page)
 			"urlButtons": g_Terms[page].urlButtons || [],
 			"termsURL": g_Terms[page].termsURL || undefined,
 			"page": page
-		},
-		data => {
-			g_Terms[data.page].accepted = data.accepted;
+		});
 
-			Engine.ConfigDB_CreateAndSaveValue(
-				"user",
-				g_Terms[data.page].config,
-				data.accepted ? getTermsHash(data.page) : "0");
+	g_Terms[data.page].accepted = data.accepted;
 
-			if (g_Terms[data.page].callback)
-				g_Terms[data.page].callback(data);
-		}
-	);
+	Engine.ConfigDB_CreateAndSaveValue(
+		"user",
+		g_Terms[data.page].config,
+		data.accepted ? getTermsHash(data.page) : "0");
+
+	if (g_Terms[data.page].callback)
+		g_Terms[data.page].callback(data);
 }
 
 function checkTerms()

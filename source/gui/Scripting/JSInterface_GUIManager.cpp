@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,9 +32,10 @@ namespace JSI_GUIManager
 {
 // Note that the initData argument may only contain clonable data.
 // Functions aren't supported for example!
-void PushGuiPage(const ScriptRequest& rq, const std::wstring& name, JS::HandleValue initData, JS::HandleValue callbackFunction)
+// It returns a promise.
+JS::Value PushGuiPage(const ScriptRequest& rq, const std::wstring& name, JS::HandleValue initData)
 {
-	g_GUI->PushPage(name, Script::WriteStructuredClone(rq, initData), callbackFunction);
+	return g_GUI->PushPage(name, Script::WriteStructuredClone(rq, initData));
 }
 
 void SwitchGuiPage(const ScriptInterface& scriptInterface, const std::wstring& name, JS::HandleValue initData)

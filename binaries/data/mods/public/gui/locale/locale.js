@@ -52,14 +52,11 @@ function languageSelectionChanged()
 	localeText.caption = locale;
 }
 
-function openAdvancedMenu()
+async function openAdvancedMenu()
 {
 	let localeText = Engine.GetGUIObjectByName("localeText");
-	Engine.PushGuiPage("page_locale_advanced.xml", { "locale": localeText.caption }, applyFromAdvancedMenu);
-}
+	const locale = await Engine.PushGuiPage("page_locale_advanced.xml", { "locale": localeText.caption });
 
-function applyFromAdvancedMenu(locale)
-{
 	if (!locale)
 		return;
 
@@ -72,6 +69,5 @@ function applyFromAdvancedMenu(locale)
 	if (index != -1)
 		languageList.selected = index;
 
-	var localeText = Engine.GetGUIObjectByName("localeText");
 	localeText.caption = locale;
 }

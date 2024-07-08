@@ -1262,19 +1262,19 @@ function initSelectionPanels()
  *
  * @param {string} [civCode] - The template name of the entity that researches the selected technology.
  */
-function showTemplateDetails(templateName, civCode)
+async function showTemplateDetails(templateName, civCode)
 {
 	if (inputState != INPUT_NORMAL)
 		return;
 	g_PauseControl.implicitPause();
 
-	Engine.PushGuiPage(
+	await Engine.PushGuiPage(
 		"page_viewer.xml",
 		{
 			"templateName": templateName,
 			"civ": civCode
-		},
-		resumeGame);
+		});
+	resumeGame();
 }
 
 /**
