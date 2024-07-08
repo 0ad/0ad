@@ -5,12 +5,13 @@
 # Translators:
 # Adrián Chaves Fernández, 2019
 # daniel diaz, 2020
+# nin hum, 2024
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2023-08-18 07:08+0000\n"
 "PO-Revision-Date: 2018-10-14 18:34+0000\n"
-"Last-Translator: daniel diaz, 2020\n"
+"Last-Translator: nin hum, 2024\n"
 "Language-Team: Galician (https://app.transifex.com/wildfire-games/teams/17418/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,10 +24,12 @@ msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant UserReporter Terms and "
 "Conditions[/font]"
 msgstr ""
+"[font=\"sans-bold-18\"]Condicións do Informador de Usuario de 0  d.C. — A "
+"ascensión dos imperios[/font]"
 
 #: gui/userreport/Terms_and_Conditions.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2023-08-17"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Data do Documento:[/font] 2023-08-17"
 
 #: gui/userreport/Terms_and_Conditions.txt:5
 msgid ""
@@ -35,6 +38,10 @@ msgid ""
 "Wildfire Games and community developers to improve the performance and "
 "compatibility of 0 A.D."
 msgstr ""
+"O 0 A.D. Informador de Usuario é unha ferramenta que lle permite, enviar "
+"automaticamente como xogador do 0 A.D. ,  detalles do sistema de hardware e "
+"software para axudar a Wildfire Games e aos desenroladores comunitarios a "
+"mellorar o rendemento e a compatibilidade de 0 A.D."
 
 #: gui/userreport/Terms_and_Conditions.txt:7
 msgid "[font=\"sans-bold-14\"]Purpose of the UserReport:[/font]"
@@ -46,12 +53,17 @@ msgid ""
 "sets and OpenGL capabilities) are widely supported by the computer systems "
 "of 0 A.D. players."
 msgstr ""
+"Os informes de usuario indicar que funcionalidades do sistema (p. ex. grupos"
+" de instrucións da CPU ou funcionalidades de OpenGL) son compatíbeis con "
+"gran parte dos computadores que usan os xogadores de 0  A.D."
 
 #: gui/userreport/Terms_and_Conditions.txt:9
 msgid ""
 "This allows developers to decide which 0 A.D. program code is safe to use "
 "and which optimizations are most feasible to implement next."
 msgstr ""
+"Isto permite aos desenvolvedores decidir que código do programa 0  A.D. usar"
+" e en que optimizacións é máis efectivo traballar."
 
 #: gui/userreport/Terms_and_Conditions.txt:10
 msgid ""
@@ -87,6 +99,8 @@ msgstr ""
 msgid ""
 " 3. Application Details, for example the 0 A.D. version and build number."
 msgstr ""
+" 3. Detalles do aplicativo, p. ex. a versión de 0  A.D. e a número de "
+"construción."
 
 #: gui/userreport/Terms_and_Conditions.txt:16
 msgid ""
@@ -102,6 +116,9 @@ msgid ""
 "specific set of hardware or system software without allowing them to "
 "attribute the data to any person."
 msgstr ""
+"    O identificador de usuario permite aos desenvolvedores contar o número "
+"de xogadores de 0 A.D. que usan un grupo específico de hardware o software "
+"de sistema sen permitirlles atribuír os datos a ninguén."
 
 #: gui/userreport/Terms_and_Conditions.txt:18
 msgid ""
@@ -139,6 +156,9 @@ msgid ""
 "community developers may help contribute to 0 A.D. development using this "
 "data (GDPR 4.5)."
 msgstr ""
+" 1. Publicar datos de informes de usuario, excluíndo o pseudónimo "
+"identificador de usuario, para que os desenvolvedores da comunidade poidan "
+"colaborar co desenvolvemento de 0 A.D.  usando eses datos (GDPR 4.5)."
 
 #: gui/userreport/Terms_and_Conditions.txt:25
 msgid ""
@@ -235,6 +255,8 @@ msgid ""
 "    The UserID pseudonym can be found in the user.cfg file of the "
 "configuration folder of 0 A.D."
 msgstr ""
+"    O pseudónimo do identificador de usuario pode consultarse no ficheiro "
+"user.cfg do cartafol de configuración de 0 A.D."
 
 #: gui/userreport/Terms_and_Conditions.txt:40
 msgid "    The current configuration folder is %(configPath)s."
@@ -245,6 +267,8 @@ msgid ""
 "    The user obtains a machine-readable and human-readable copy of the "
 "UserReport data in the logs folder of 0 A.D. (GDPR 20)."
 msgstr ""
+"    O usuario obtén unha copia dos datos do informe de usuario, lexíbel por "
+"máquinas e humanos, no cartafol de rexistros de 0 A.D. (GDPR 20)."
 
 #: gui/userreport/Terms_and_Conditions.txt:42
 msgid "    The data can be reviewed before the UserReporter is enabled."
@@ -285,6 +309,10 @@ msgid ""
 "development of 0 A.D., if the data was processed unlawfully or if the user "
 "objects to the processing and has overriding legitimate grounds (GDPR 17)."
 msgstr ""
+" 4. dereito de borrado dos informes do usuario se non son relevantes para o "
+"desenvolvemento de 0 A.D., se os datos de procesaron incorrectamente ou se o"
+" usuario obxecta ante o procesamento e conta con xustificacións lexítimas "
+"para impedilo (GDPR 17)."
 
 #: gui/userreport/Terms_and_Conditions.txt:48
 msgid ""
@@ -338,6 +366,8 @@ msgid ""
 " 2. Wildfire Games has legitimate interests in the development of 0 A.D. and"
 " protection against cyberattacks (GDPR 6.1.f)."
 msgstr ""
+" 2. Wildfire Games ten intereses lexítimos no desenvolvemento de 0 A.D. e "
+"protección contra ataques cibernéticos (GDPR 6.1.f)."
 
 #: gui/userreport/Terms_and_Conditions.txt:56
 msgid ""
