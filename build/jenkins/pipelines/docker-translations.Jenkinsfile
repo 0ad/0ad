@@ -50,6 +50,7 @@ pipeline {
 						}
 						sh "python3 source/tools/i18n/cleanTranslationFiles.py"
 						sh "python3 source/tools/i18n/checkDiff.py --verbose"
+						sh "python3 source/tools/i18n/creditTranslators.py"
 					}
 				}
 			}
