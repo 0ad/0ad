@@ -23,9 +23,9 @@ class CivInfoButton
 		this.openPage(this.civInfo.page);
 	}
 
-	openPage(page)
+	async openPage(page)
 	{
-		pageLoop(page, this.civInfo.args, data => this.civInfo = data);
+		this.civInfo = await pageLoop(page, this.civInfo.args);
 	}
 }
 

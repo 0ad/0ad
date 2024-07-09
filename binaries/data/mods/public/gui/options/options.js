@@ -80,17 +80,14 @@ var g_OptionType = {
 			control.caption = value;
 		},
 		"initGUI": (option, control) => {
-			control.children[2].onPress = () => {
-				colorMixer(
-					control.caption,
-					(color) => {
-						if (color != control.caption)
-						{
-							control.caption = color;
-							control.onTextEdit();
-						}
-					}
-				);
+			control.children[2].onPress = async() => {
+				const color = await Engine.PushGuiPage("page_colormixer.xml", control.caption);
+
+				if (color != control.caption)
+				{
+					control.caption = color;
+					control.onTextEdit();
+				}
 			};
 		},
 		"guiToValue": control => control.caption,

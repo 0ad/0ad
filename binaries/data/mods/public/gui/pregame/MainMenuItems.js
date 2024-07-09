@@ -90,31 +90,32 @@ var g_MainMenuItems = [
 			{
 				"caption": translate("Load Game"),
 				"tooltip": translate("Load a saved game."),
-				"onPress": Engine.PushGuiPage.bind(Engine, "page_loadgame.xml", {}, (gameId) =>
+				"onPress": async() => {
+					const gameId = await Engine.PushGuiPage("page_loadgame.xml");
+
+					if (!gameId)
+						return;
+
+					const metadata = Engine.StartSavedGame(gameId);
+					if (!metadata)
 					{
-						if (!gameId)
-							return;
+						error("Could not load saved game: " + gameId);
+						return;
+					}
 
-						const metadata = Engine.StartSavedGame(gameId);
-						if (!metadata)
-						{
-							error("Could not load saved game: " + gameId);
-							return;
-						}
-
-						Engine.SwitchGuiPage("page_loading.xml", {
-							"attribs": metadata.initAttributes,
-							"playerAssignments": {
-								"local": {
-									"name": metadata.initAttributes.settings.
-										PlayerData[metadata.playerID]?.Name ??
-										singleplayerName(),
-									"player": metadata.playerID
-								}
-							},
-							"savedGUIData": metadata.gui
-						});
-					})
+					Engine.SwitchGuiPage("page_loading.xml", {
+						"attribs": metadata.initAttributes,
+						"playerAssignments": {
+							"local": {
+								"name": metadata.initAttributes.settings.
+									PlayerData[metadata.playerID]?.Name ??
+									singleplayerName(),
+								"player": metadata.playerID
+							}
+						},
+						"savedGUIData": metadata.gui
+					});
+				}
 			},
 			{
 				"caption": translate("Continue Campaign"),
@@ -221,11 +222,8 @@ var g_MainMenuItems = [
 			{
 				"caption": translate("Options"),
 				"tooltip": translate("Adjust game settings."),
-				"onPress": () => {
-					Engine.PushGuiPage(
-						"page_options.xml",
-						{},
-						fireConfigChangeHandlers);
+				"onPress": async() => {
+					fireConfigChangeHandlers(await Engine.PushGuiPage("page_options.xml"));
 				}
 			},
 			{

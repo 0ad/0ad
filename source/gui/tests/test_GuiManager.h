@@ -26,6 +26,7 @@
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Hotkey.h"
 #include "ps/XML/Xeromyces.h"
+#include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptRequest.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/StructuredClone.h"
@@ -72,7 +73,7 @@ public:
 		Script::CreateObject(rq, &val);
 
 		Script::StructuredClone data = Script::WriteStructuredClone(rq, JS::NullHandleValue);
-		g_GUI->PushPage(L"event/page_event.xml", data, JS::UndefinedHandleValue);
+		g_GUI->PushPage(L"event/page_event.xml", data);
 
 		const ScriptInterface& pageScriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
 		ScriptRequest prq(pageScriptInterface);
@@ -135,7 +136,7 @@ public:
 		Script::CreateObject(rq, &val);
 
 		Script::StructuredClone data = Script::WriteStructuredClone(rq, JS::NullHandleValue);
-		g_GUI->PushPage(L"hotkey/page_hotkey.xml", data, JS::UndefinedHandleValue);
+		g_GUI->PushPage(L"hotkey/page_hotkey.xml", data);
 
 		// Press 'a'.
 		SDL_Event_ hotkeyNotification;
@@ -208,20 +209,28 @@ public:
 		JS::RootedValue val(rq.cx);
 		Script::CreateObject(rq, &val);
 
+		TS_ASSERT_EQUALS(g_GUI->GetPageCount(), 0);
 		Script::StructuredClone data = Script::WriteStructuredClone(rq, JS::NullHandleValue);
-		g_GUI->PushPage(L"regainFocus/page_emptyPage.xml", data, JS::UndefinedHandleValue);
+		g_GUI->PushPage(L"regainFocus/page_emptyPage.xml", data);
 
 		const ScriptInterface& pageScriptInterface = *(g_GUI->GetActiveGUI()->GetScriptInterface());
 		ScriptRequest prq(pageScriptInterface);
 		JS::RootedValue global(prq.cx, prq.globalValue());
 
-		g_GUI->PushPage(L"regainFocus/page_emptyPage.xml", data, JS::UndefinedHandleValue);
+		TS_ASSERT_EQUALS(g_GUI->GetPageCount(), 1);
+		g_GUI->PushPage(L"regainFocus/page_emptyPage.xml", data);
+		TS_ASSERT_EQUALS(g_GUI->GetPageCount(), 2);
 		g_GUI->PopPage(data);
+		TS_ASSERT_EQUALS(g_GUI->GetPageCount(), 1);
 
 		// This page instantly pushes an empty page with a callback that pops another page again.
-		g_GUI->PushPage(L"regainFocus/page_pushWithPopOnInit.xml", data, JS::UndefinedHandleValue);
+		g_GUI->PushPage(L"regainFocus/page_pushWithPopOnInit.xml", data);
+		TS_ASSERT_EQUALS(g_GUI->GetPageCount(), 3);
 
-		// Pop the empty page and trigger the callback (effectively pops twice).
+		// Pop the empty page
 		g_GUI->PopPage(data);
+		TS_ASSERT_EQUALS(g_GUI->GetPageCount(), 2);
+		scriptInterface->GetContext().RunJobs();
+		TS_ASSERT_EQUALS(g_GUI->GetPageCount(), 1);
 	}
 };

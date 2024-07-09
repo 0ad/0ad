@@ -9,13 +9,14 @@
 # mandruis, 2016
 # Nicolás Gómez, 2022
 # Nicolás S., 2022-2023
+# nin hum, 2024
 # Stanislas Dolcini, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-06-10 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Ismael Lires, 2023\n"
+"Last-Translator: nin hum, 2024\n"
 "Language-Team: Galician (http://app.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1324,7 +1325,7 @@ msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "Créditos do 0  A.D."
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
@@ -1520,7 +1521,7 @@ msgstr "En memoria de"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "Fundador de 0  A.D."
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
@@ -1536,7 +1537,7 @@ msgstr "Un agradecemento especial a:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "E grazas a toda a comunidade por facer 0  A.D. posíbel."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -2217,17 +2218,17 @@ msgstr "Mover o cursor á esquerda dunha palabra."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the right of cursor."
-msgstr ""
+msgstr "Mover o cursor ao comezo dunha palabra á esquerda do cursor."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to right word"
-msgstr ""
+msgstr "Move o cursor á palabra dereita"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
 msgid "Toggle fullscreen/windowed mode."
-msgstr ""
+msgstr "Alterna o modo de pantalla completa/xanela."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.name
 msgctxt "hotkey metadata"
@@ -2237,17 +2238,17 @@ msgstr "Activar a pantalla completa"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.desc
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode."
-msgstr ""
+msgstr "Alternar para o modo de estrutura de arame."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.name
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode"
-msgstr ""
+msgstr "Alternar para o modo de estrutura de arame"
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys active in the game setup screen."
-msgstr ""
+msgstr "Teclas rápidas activas na pantalla de configuración do xogo."
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.name
 msgctxt "hotkey metadata"
@@ -2257,27 +2258,27 @@ msgstr "Configuración da partida"
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.desc
 msgctxt "hotkey metadata"
 msgid "Open the map browser."
-msgstr ""
+msgstr "Abre o navegador de mapas."
 
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.name
 msgctxt "hotkey metadata"
 msgid "Open map browser"
-msgstr ""
+msgstr "Abre o navegador de mapas"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
 msgid "In-game hotkeys."
-msgstr ""
+msgstr "Teclas rápidas no xogo."
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.name
 msgctxt "hotkey metadata"
 msgid "In-game"
-msgstr ""
+msgstr "No xogo"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attack instead of another action (e.g. capture)."
-msgstr ""
+msgstr "Modificador para atacar en lugar doutra acción (por exemplo, capturar)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.name
 msgctxt "hotkey metadata"
@@ -2287,32 +2288,32 @@ msgstr "Forzar ataque"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove when clicking on a point."
-msgstr ""
+msgstr "Modificador para mover o ataque ao facer clic nun punto."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.name
 msgctxt "hotkey metadata"
 msgid "Attack Move"
-msgstr ""
+msgstr "Movemento de ataque"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove targeting only units when clicking on a point."
-msgstr ""
+msgstr "Modificador para atacar o movemento apuntando só ás unidades ao facer clic nun punto."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.name
 msgctxt "hotkey metadata"
 msgid "Attack Move (unit only)"
-msgstr ""
+msgstr "Movemento de ataque (só unidade)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to set the rally point on the building itself."
-msgstr ""
+msgstr "Modificador para establecer o punto de reunión no propio edificio."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.name
 msgctxt "hotkey metadata"
 msgid "Auto-rally point"
-msgstr ""
+msgstr "Punto de auto-rally"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.desc
 msgctxt "hotkey metadata"
@@ -2327,12 +2328,12 @@ msgstr "Volver ao traballo"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to train units in batches."
-msgstr ""
+msgstr "Modificador para adestrar unidades en lotes."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.name
 msgctxt "hotkey metadata"
 msgid "Batch production"
-msgstr ""
+msgstr "Produción por lotes"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.desc
 msgctxt "hotkey metadata"
@@ -2344,63 +2345,63 @@ msgstr "Envía as unidades seleccionadas cun movemento de ataque ao sitio especi
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.name
 msgctxt "hotkey metadata"
 msgid "Call to arms"
-msgstr ""
+msgstr "Chamada ás armas"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.capture.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to capture instead of another action (e.g. attack)."
-msgstr ""
+msgstr "Modificador para capturar en lugar doutra acción (por exemplo, atacar)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.capture.name
 msgctxt "hotkey metadata"
 msgid "Force capture"
-msgstr ""
+msgstr "Forza Captura"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Modifier to deselect units when clicking group icon, instead of selecting."
-msgstr ""
+msgstr "Modificador para anular a selección de unidades ao facer clic na icona do grupo, en lugar de seleccionar."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.name
 msgctxt "hotkey metadata"
 msgid "Deselect unit type"
-msgstr ""
+msgstr "Deseleccione o tipo de unidade"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr ""
+msgstr "Establece o cursor en Flare mentres se preme esta tecla de acceso rápido."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
 msgid "Flare (hold)"
-msgstr ""
+msgstr "Aviso (manteña)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr ""
+msgstr "Establece o cursor en Aviso. Pódese soltar a tecla de acceso rápido."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
 msgid "Flare (toggle)"
-msgstr ""
+msgstr "Aviso (alternar)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to put the desired trade resource to 100%."
-msgstr ""
+msgstr "Modificador para poñer o recurso comercial desexado ao 100%."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr ""
+msgstr "Establecer comercio ao 100%"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to garrison when clicking on building."
-msgstr ""
+msgstr "Modificador de guarnición ao facer clic no edificio."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.name
 msgctxt "hotkey metadata"
@@ -2410,7 +2411,7 @@ msgstr "Acuartelar"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to escort/guard when clicking on unit/building."
-msgstr ""
+msgstr "Modificador para escoltar/gardar ao facer clic na unidade/edificio."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.name
 msgctxt "hotkey metadata"
@@ -2430,77 +2431,77 @@ msgstr "Destruír as unidades seleccionadas"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
 msgctxt "hotkey metadata"
 msgid "Order an entity to leave a turret point."
-msgstr ""
+msgstr "Ordene a unha entidade que abandone un punto de torre."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.name
 msgctxt "hotkey metadata"
 msgid "Leave Turret Point"
-msgstr ""
+msgstr "Deixar o Punto de Torre"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to barter bunch of resources."
-msgstr ""
+msgstr "Modificador para trocar unha morea de recursos."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.name
 msgctxt "hotkey metadata"
 msgid "Mass barter"
-msgstr ""
+msgstr "Troco masivo"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to tribute bunch of resources."
-msgstr ""
+msgstr "Modificador de tributo de recursos."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.name
 msgctxt "hotkey metadata"
 msgid "Mass tribute"
-msgstr ""
+msgstr "Tributo masivo"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to move to a point instead of another action (e.g. gather)."
-msgstr ""
+msgstr "Modificador para moverse a un punto no canto a outra acción (por exemplo, reunir)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.name
 msgctxt "hotkey metadata"
 msgid "Force move"
-msgstr ""
+msgstr "Forzar o movemento"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Do not ask confirmation when deleting a building/unit."
-msgstr ""
+msgstr "Non pidas confirmación ao eliminar un edificio/unidade."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Destroy without confirmation"
-msgstr ""
+msgstr "Destruír sen confirmación"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to occupy a turret when clicking on a turret holder."
-msgstr ""
+msgstr "Modificador para ocupar unha torre ao facer clic nun soporte de torre."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.name
 msgctxt "hotkey metadata"
 msgid "Occupy Turret Point"
-msgstr ""
+msgstr "ocupar o Punto de Torre"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to order only one entity in selection."
-msgstr ""
+msgstr "Modificador para ordenar só unha entidade na selección."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.name
 msgctxt "hotkey metadata"
 msgid "Order one unit"
-msgstr ""
+msgstr "Pide unha unidade"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to patrol a unit."
-msgstr ""
+msgstr "Modificador para patrullar unha unidade."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
 msgctxt "hotkey metadata"
@@ -2510,17 +2511,17 @@ msgstr "Patrullar"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to execute this order, then go back to the current order."
-msgstr ""
+msgstr "Modificador para executar esta orde e despois volver á orde actual."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.name
 msgctxt "hotkey metadata"
 msgid "Push order in front"
-msgstr ""
+msgstr "Empuxe a orde por diante"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to queue unit orders instead of replacing."
-msgstr ""
+msgstr "Modificador para facer fila de pedidos de unidades en lugar de substituír."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.name
 msgctxt "hotkey metadata"
@@ -2530,107 +2531,107 @@ msgstr "Orde da cola"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.desc
 msgctxt "hotkey metadata"
 msgid "Add first unit type to queue."
-msgstr ""
+msgstr "Engade o primeiro tipo de unidade á cola."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.name
 msgctxt "hotkey metadata"
 msgid "Queue 1st unit"
-msgstr ""
+msgstr "Cola 1ª unidade"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.desc
 msgctxt "hotkey metadata"
 msgid "Add second unit type to queue."
-msgstr ""
+msgstr "Engade o segundo tipo de unidade á cola."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.2.name
 msgctxt "hotkey metadata"
 msgid "Queue 2nd unit"
-msgstr ""
+msgstr "Cola 2ª unidade"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.desc
 msgctxt "hotkey metadata"
 msgid "Add third unit type to queue."
-msgstr ""
+msgstr "Engade o terceiro tipo de unidade á cola."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.3.name
 msgctxt "hotkey metadata"
 msgid "Queue 3rd unit"
-msgstr ""
+msgstr "Cola 3ª unidade"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.desc
 msgctxt "hotkey metadata"
 msgid "Add fourth unit type to queue."
-msgstr ""
+msgstr "Engade o cuarto tipo de unidade á cola."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.4.name
 msgctxt "hotkey metadata"
 msgid "Queue 4th unit"
-msgstr ""
+msgstr "Cola 4ª unidade"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.desc
 msgctxt "hotkey metadata"
 msgid "Add fivth unit type to queue."
-msgstr ""
+msgstr "Engade o quinto tipo de unidade á cola."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.5.name
 msgctxt "hotkey metadata"
 msgid "Queue 5th unit"
-msgstr ""
+msgstr "Cola 5ª unidade"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.desc
 msgctxt "hotkey metadata"
 msgid "Add sixth unit type to queue."
-msgstr ""
+msgstr "Engade o sexto tipo de unidade á cola."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.6.name
 msgctxt "hotkey metadata"
 msgid "Queue 6th unit"
-msgstr ""
+msgstr "Cola 6ª unidade"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.desc
 msgctxt "hotkey metadata"
 msgid "Add seventh unit type to queue."
-msgstr ""
+msgstr "Engade o sétimo tipo de unidade á cola."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.7.name
 msgctxt "hotkey metadata"
 msgid "Queue 7th unit"
-msgstr ""
+msgstr "Cola 7ª unidade"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.desc
 msgctxt "hotkey metadata"
 msgid "Add eighth unit type to queue."
-msgstr ""
+msgstr "Engadir oitavo tipo de unidade á cola."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.8.name
 msgctxt "hotkey metadata"
 msgid "Queue 8th unit"
-msgstr ""
+msgstr "Cola 8ª unidade"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.desc
 msgctxt "hotkey metadata"
 msgid "Turn off Auto-Queue for selected structures."
-msgstr ""
+msgstr "Desactiva a cola automática para as estruturas seleccionadas."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.name
 msgctxt "hotkey metadata"
 msgid "Deactivate auto-queue"
-msgstr ""
+msgstr "Desactivar a cola automática"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.desc
 msgctxt "hotkey metadata"
 msgid "Turn on Auto-Queue for selected structures."
-msgstr ""
+msgstr "Activa a cola automática para as estruturas seleccionadas."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.name
 msgctxt "hotkey metadata"
 msgid "Activate auto-queue"
-msgstr ""
+msgstr "Activa a cola automática"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to repair when clicking on building/mechanical unit."
-msgstr ""
+msgstr "Modificador para reparar ao facer clic no edificio/unidade mecánica."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.name
 msgctxt "hotkey metadata"
@@ -2640,37 +2641,37 @@ msgstr "Reparar"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.ccw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate building placement preview anticlockwise."
-msgstr ""
+msgstr "Xira a vista previa da ubicación do edificio no sentido antihorario."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate building counterclockwise"
-msgstr ""
+msgstr "Xire o edificio no sentido antihorario"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate building placement preview clockwise."
-msgstr ""
+msgstr "Xira a vista previa da ubicación do edificio no sentido horario."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate building clockwise"
-msgstr ""
+msgstr "Xire o edificio no sentido das agullas do reloxo"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to align new structures with nearby existing structure."
-msgstr ""
+msgstr "Modificador para aliñar novas estruturas coa estrutura existente próxima."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.name
 msgctxt "hotkey metadata"
 msgid "Toggle snap-to-edge"
-msgstr ""
+msgstr "Alterna o axuste ao bordo"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.desc
 msgctxt "hotkey metadata"
 msgid "Stop the current action."
-msgstr ""
+msgstr "Detén a acción actual."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.name
 msgctxt "hotkey metadata"
@@ -2682,17 +2683,17 @@ msgctxt "hotkey metadata"
 msgid ""
 "Switch between null default formation and the last default formation used "
 "(defaults to 'box')."
-msgstr ""
+msgstr "Cambia entre a formación predeterminada nula e a última formación predeterminada utilizada (por defecto é \"caixa\")."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.name
 msgctxt "hotkey metadata"
 msgid "Toggle default formation"
-msgstr ""
+msgstr "Alternar a formación predeterminada"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
 msgctxt "hotkey metadata"
 msgid "Unload garrisoned units when a building/mechanical unit is selected."
-msgstr ""
+msgstr "Descarga as unidades guarnidas cando se selecciona un edificio/unidade mecánica."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.name
 msgctxt "hotkey metadata"
@@ -2702,27 +2703,27 @@ msgstr "Desaloxar"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.desc
 msgctxt "hotkey metadata"
 msgid "Unload turreted units."
-msgstr ""
+msgstr "Descargar unidades de torreta."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.name
 msgctxt "hotkey metadata"
 msgid "Unload Turrets"
-msgstr ""
+msgstr "Descargar torretas"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to unload all units of type."
-msgstr ""
+msgstr "Modificador para descargar todas as unidades de tipo."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.name
 msgctxt "hotkey metadata"
 msgid "Unload unit type"
-msgstr ""
+msgstr "Tipo de unidade de descarga"
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys for the in-game user interface."
-msgstr ""
+msgstr "Teclas rápidas para a interface de usuario do xogo."
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.name
 msgctxt "hotkey metadata"
@@ -2732,37 +2733,37 @@ msgstr "Interface gráfica no xogo"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter."
-msgstr ""
+msgstr "Activa o contador de alto o fogo."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter"
-msgstr ""
+msgstr "Activa o contador de alto o fogo"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window."
-msgstr ""
+msgstr "Alternar a xanela de chat."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.name
 msgctxt "hotkey metadata"
 msgid "Toggle chat"
-msgstr ""
+msgstr "Alterna o chat"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the civilization info."
-msgstr ""
+msgstr "Alterna a información da civilización."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
 msgid "Toggle civ info"
-msgstr ""
+msgstr "alternar información civ"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle “frames per second” counter."
-msgstr ""
+msgstr "Alterna o contador de “fotogramas por segundo”."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.name
 msgctxt "hotkey metadata"
@@ -2777,34 +2778,34 @@ msgstr "Mostrar a sala de espera para partidas de varios xogadores nunha xanela 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
 msgid "Toggle MP lobby"
-msgstr ""
+msgstr "Alternar a sala de MP"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window and select the previous private chat partner."
-msgstr ""
+msgstr "Alterna a xanela de chat e selecciona o compañeiro de chat privado anterior."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.name
 msgctxt "hotkey metadata"
 msgid "Toggle private chat"
-msgstr ""
+msgstr "Alterna o chat privado"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.desc
 msgctxt "hotkey metadata"
 msgid "Load the latest quicksaved game. Does nothing if no quicksaves exist."
-msgstr ""
+msgstr "Carga o último xogo gardado rápido. Non fai nada se non existen gardados rápidos."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.name
 msgctxt "hotkey metadata"
 msgid "Quickload"
-msgstr ""
+msgstr "Carga rápida"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Make a temporary save of the game that can be loaded with quickload. "
 "Quicksaving always overwrites the previous save."
-msgstr ""
+msgstr "Fai un gardado temporal do xogo que se pode cargar con carga rápida. O gardado rápido sempre sobrescribe o gardado anterior."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.name
 msgctxt "hotkey metadata"
@@ -2814,47 +2815,47 @@ msgstr "Gardado rápido"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle current display of computer time."
-msgstr ""
+msgstr "Alternar a visualización actual da hora do ordenador."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle real-time overlay"
-msgstr ""
+msgstr "Alterna a superposición en tempo real"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle developer commands panel."
-msgstr ""
+msgstr "Alterna o panel de comandos do programador."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle dev overlay"
-msgstr ""
+msgstr "Alternar a superposición de dev"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.desc
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors."
-msgstr ""
+msgstr "Alternar as cores da diplomacia."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors"
-msgstr ""
+msgstr "Alternar as cores da diplomacia"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game barter/trade page."
-msgstr ""
+msgstr "Alternar a páxina de troco/intercambio no xogo."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle barter"
-msgstr ""
+msgstr "Alternar o troco"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game diplomacy page."
-msgstr ""
+msgstr "Alternar a páxina de diplomacia no xogo."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.name
 msgctxt "hotkey metadata"
@@ -2864,67 +2865,67 @@ msgstr "Establecer a diplomacia"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu."
-msgstr ""
+msgstr "Alterna o menú do xogo."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu"
-msgstr ""
+msgstr "Alterna o menú do xogo"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game objectives page."
-msgstr ""
+msgstr "Aternaar a páxina de obxectivos do xogo."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle objectives"
-msgstr ""
+msgstr "Alternar obxetivos"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle visibility of the in-game user interface."
-msgstr ""
+msgstr "Alterna a visibilidade da interface de usuario do xogo."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle GUI visibility"
-msgstr ""
+msgstr "Alterna a visibilidade da GUI"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Alterna o panel de titoriais no xogo."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle tutorial"
-msgstr ""
+msgstr "Alternar o tutorial"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarded units."
-msgstr ""
+msgstr "Alterna o resalte das unidades protexidas."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarded highlight"
-msgstr ""
+msgstr "Alterna o resaltado protexido"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarding units."
-msgstr ""
+msgstr "Alterna o resalte das unidades de garda."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarding highlight"
-msgstr ""
+msgstr "Alterna a protección destacada"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.desc
 msgctxt "hotkey metadata"
 msgid "Delete the saved game (in the save/load windows)."
-msgstr ""
+msgstr "Elimina a partida gardada (nas xanelas de gardar/cargar)."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.name
 msgctxt "hotkey metadata"
@@ -2934,7 +2935,7 @@ msgstr "Borrar partida gardada"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Don't ask for confirmation when deleting a saved game."
-msgstr ""
+msgstr "Non pidas confirmación ao eliminar unha partida gardada."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.name
 msgctxt "hotkey metadata"
@@ -2946,124 +2947,124 @@ msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of status bars e.g. health indicator for all your "
 "buildings/units on the map (including unselected)."
-msgstr ""
+msgstr "Alternar a visualización das barras de estado, p. ex. indicador de saúde de todos os seus edificios/unidades no mapa (incluíndo os non seleccionados)."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
 msgid "Toggle status bars"
-msgstr ""
+msgstr "Alterna as barras de estado"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.desc
 msgctxt "hotkey metadata"
 msgid "Activate fast-forward mode. Must have activated timewarp."
-msgstr ""
+msgstr "Alterna as barras de estado"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.name
 msgctxt "hotkey metadata"
 msgid "Fast-forward (timewarp)"
-msgstr ""
+msgstr "Avance rápido (dobre tempo)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.desc
 msgctxt "hotkey metadata"
 msgid "Rewind time. Must have activated timewarp."
-msgstr ""
+msgstr "Rebobinar o tempo. Debe ter activado salto de tempo."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
 msgid "Rewind (timewarp)"
-msgstr ""
+msgstr "Rebobinar (salto de tempo)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of attack range overlays of selected defensive structures."
-msgstr ""
+msgstr "Alterna a visualización das superposicións do rango de ataque das estruturas defensivas seleccionadas."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle attack ranges"
-msgstr ""
+msgstr "Alternar intervalos de ataque"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of aura range overlays of selected units and structures."
-msgstr ""
+msgstr "Alterna a visualización das superposicións do rango de aura das unidades e estruturas seleccionadas."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle aura ranges"
-msgstr ""
+msgstr "Alterna os rangos de aura"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.desc
 msgctxt "hotkey metadata"
 msgid "Toggle display of heal range overlays of selected units."
-msgstr ""
+msgstr "Alterna a visualización das superposicións do intervalo de curación das unidades seleccionadas."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle heal ranges"
-msgstr ""
+msgstr "Alternar intervalos de curación"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.desc
 msgctxt "hotkey metadata"
 msgid "Toggle unit silhouettes."
-msgstr ""
+msgstr "Alternar as siluetas das unidades."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.name
 msgctxt "hotkey metadata"
 msgid "Toggle unit silhouettes"
-msgstr ""
+msgstr "Alternar as siluetas das unidades"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the structure tree."
-msgstr ""
+msgstr "Alterna a árbore de estruturas."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
 msgid "Toggle structure tree"
-msgstr ""
+msgstr "Alternar a estrutura da árbore"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game summary."
-msgstr ""
+msgstr "Alterna o resumo do xogo."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.name
 msgctxt "hotkey metadata"
 msgid "Toggle summary"
-msgstr ""
+msgstr "Alternar resumo"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window in team chat mode."
-msgstr ""
+msgstr "Alterna a xanela de chat no modo de chat en equipo."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.name
 msgctxt "hotkey metadata"
 msgid "Toggle team chat"
-msgstr ""
+msgstr "Alterna o chat do equipo"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Shows the game time elapsed since the game started."
-msgstr ""
+msgstr "Mostra o tempo de xogo transcorrido desde que comezou o xogo."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle game-time overlay"
-msgstr ""
+msgstr "Alterna a superposición de tempo de xogo"
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys relating to modifying unit selection."
-msgstr ""
+msgstr "Teclas rápidas relacionadas coa modificación da selección de unidades."
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.name
 msgctxt "hotkey metadata"
 msgid "Selecting Units"
-msgstr ""
+msgstr "Selección de unidades"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.desc
 msgctxt "hotkey metadata"
@@ -3078,7 +3079,7 @@ msgstr "Engadir a selección"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Un-select all units and cancel building placement."
-msgstr ""
+msgstr "Deseleccione todas as unidades e cancele a colocación do edificio."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
@@ -3088,322 +3089,322 @@ msgstr "Cancelar selección"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1 to the current selection."
-msgstr ""
+msgstr "Engade o grupo de control 1 á selección actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1"
-msgstr ""
+msgstr "Engadir grupo de control 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10 to the current selection."
-msgstr ""
+msgstr "Engade o grupo de control 10 á selección actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10"
-msgstr ""
+msgstr "Engadir grupo de control 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2 to the current selection."
-msgstr ""
+msgstr "Engade o grupo de control 2 á selección actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2"
-msgstr ""
+msgstr "Engadir grupo de control 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3 to the current selection."
-msgstr ""
+msgstr "Engade o grupo de control 3 á selección actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3"
-msgstr ""
+msgstr "Engadir grupo de control 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4 to the current selection."
-msgstr ""
+msgstr "Engade o grupo de control 4 á selección actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4"
-msgstr ""
+msgstr "Engadir grupo de control 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5 to the current selection."
-msgstr ""
+msgstr "Engade o grupo de control 5 á selección actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5"
-msgstr ""
+msgstr "Engadir grupo de control 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6 to the current selection."
-msgstr ""
+msgstr "Engade o grupo de control 6 á selección actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6"
-msgstr ""
+msgstr "Engadir grupo de control 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7 to the current selection."
-msgstr ""
+msgstr "Engade o grupo de control 7 á selección actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7"
-msgstr ""
+msgstr "Engadir grupo de control 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8 to the current selection."
-msgstr ""
+msgstr "Engade o grupo de control 8 á selección actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8"
-msgstr ""
+msgstr "Engadir grupo de control 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9 to the current selection."
-msgstr ""
+msgstr "Engade o grupo de control 9 á selección actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9"
-msgstr ""
+msgstr "Engadir grupo de control 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 1."
-msgstr ""
+msgstr "Garda a selección actual como grupo de control 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 1"
-msgstr ""
+msgstr "Establecer grupo de control 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 10."
-msgstr ""
+msgstr "Garda a selección actual como grupo de control 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 10"
-msgstr ""
+msgstr "Establecer grupo de control 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 2."
-msgstr ""
+msgstr "Garda a selección actual como grupo de control 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 2"
-msgstr ""
+msgstr "Establecer grupo de control 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 3."
-msgstr ""
+msgstr "Garda a selección actual como grupo de control 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 3"
-msgstr ""
+msgstr "Establecer grupo de control 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 4."
-msgstr ""
+msgstr "Garda a selección actual como grupo de control 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 4"
-msgstr ""
+msgstr "Establecer grupo de control 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 5."
-msgstr ""
+msgstr "Garda a selección actual como grupo de control 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 5"
-msgstr ""
+msgstr "Establecer grupo de control 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 6."
-msgstr ""
+msgstr "Garda a selección actual como grupo de control 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 6"
-msgstr ""
+msgstr "Establecer grupo de control 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 7."
-msgstr ""
+msgstr "Garda a selección actual como grupo de control 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 7"
-msgstr ""
+msgstr "Establecer grupo de control 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 8."
-msgstr ""
+msgstr "Garda a selección actual como grupo de control 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 8"
-msgstr ""
+msgstr "Establecer grupo de control 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 9."
-msgstr ""
+msgstr "Garda a selección actual como grupo de control 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 9"
-msgstr ""
+msgstr "Establecer grupo de control 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 1."
-msgstr ""
+msgstr "Cambie a selección actual a Grupo de control 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 1"
-msgstr ""
+msgstr "Seleccione Grupo de control 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 10."
-msgstr ""
+msgstr "Cambie a selección actual a Grupo de control 10."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 10"
-msgstr ""
+msgstr "Seleccione Grupo de control 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 2."
-msgstr ""
+msgstr "Cambie a selección actual a Grupo de control 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 2"
-msgstr ""
+msgstr "Seleccione Grupo de control 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 3."
-msgstr ""
+msgstr "Cambie a selección actual a Grupo de control 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 3"
-msgstr ""
+msgstr "Seleccione Grupo de control 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 4."
-msgstr ""
+msgstr "Cambie a selección actual a Grupo de control 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 4"
-msgstr ""
+msgstr "Seleccione Grupo de control 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 5."
-msgstr ""
+msgstr "Cambie a selección actual a Grupo de control 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 5"
-msgstr ""
+msgstr "Seleccione Grupo de control 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 6."
-msgstr ""
+msgstr "Cambie a selección actual a Grupo de control 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 6"
-msgstr ""
+msgstr "Seleccione Grupo de control 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 7."
-msgstr ""
+msgstr "Cambie a selección actual a Grupo de control 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 7"
-msgstr ""
+msgstr "Seleccione Grupo de control 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 8."
-msgstr ""
+msgstr "Cambie a selección actual a Grupo de control 8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 8"
-msgstr ""
+msgstr "Seleccione Grupo de control 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 9."
-msgstr ""
+msgstr "Cambie a selección actual a Grupo de control 9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
-msgstr ""
+msgstr "Seleccione Grupo de control 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle builder."
-msgstr ""
+msgstr "Seleccione o seguinte constructor inactivo."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
 msgctxt "hotkey metadata"
 msgid "Select next idle builder"
-msgstr ""
+msgstr "Seleccione o seguinte constructor inactivo"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only idle units."
-msgstr ""
+msgstr "Seleccione só unidades inactivas."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.name
 msgctxt "hotkey metadata"
 msgid "Select only idle units"
-msgstr ""
+msgstr "Seleccione só unidades inactivas"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.desc
 msgctxt "hotkey metadata"
@@ -3413,32 +3414,32 @@ msgstr "Seleccionar a seguinte unidade ociosa"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.name
 msgctxt "hotkey metadata"
 msgid "Select next idle unit"
-msgstr ""
+msgstr "Seleccione a seguinte unidade inactiva"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior."
-msgstr ""
+msgstr "Selecciona o seguinte guerreiro inactivo."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.name
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior"
-msgstr ""
+msgstr "Selecciona o seguinte guerreiro inactivo"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle worker."
-msgstr ""
+msgstr "Seleccione o seguinte traballador inactivo."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.name
 msgctxt "hotkey metadata"
 msgid "Select next idle worker"
-msgstr ""
+msgstr "Seleccione o seguinte traballador inactivo"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only military units to the selection."
-msgstr ""
+msgstr "Engade só unidades militares á selección."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
 msgctxt "hotkey metadata"
@@ -3448,22 +3449,22 @@ msgstr "Seleccionar só militar"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only non-military units to the selection."
-msgstr ""
+msgstr "Engade só unidades non militares á selección."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select non-military only"
-msgstr ""
+msgstr "Seleccione só non militares"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
 msgid "Include offscreen units in selection."
-msgstr ""
+msgstr "Incluír unidades fóra da pantalla na selección."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
 msgid "Include offscreen"
-msgstr ""
+msgstr "Incluír fóra da pantalla"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
@@ -3473,37 +3474,37 @@ msgstr "Borrar unidades da selección"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
 msgctxt "hotkey metadata"
 msgid "Remove units from selection"
-msgstr ""
+msgstr "Eliminar unidades da selección"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to select units individually, opposed to per formation."
-msgstr ""
+msgstr "Modificador para seleccionar unidades individualmente, en oposición a por formación."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.name
 msgctxt "hotkey metadata"
 msgid "Single selection"
-msgstr ""
+msgstr "Selección única"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
-msgstr ""
+msgstr "Seleccione só unidades feridas."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
 msgctxt "hotkey metadata"
 msgid "Select only wounded units"
-msgstr ""
+msgstr "Seleccione só unidades feridas"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "Elimina a partida gardada seleccionada usando %(hotkey)s"
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:205
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr ""
+msgstr "Mantén premido %(hotkey)s para omitir o diálogo de confirmación mentres eliminas."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:50
 #, javascript-format
@@ -3546,11 +3547,11 @@ msgstr "Cargar"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "Esta partida gardada require a versión %(requiredVersion)s de 0 A.D. A versión que está a executar é a %(currentVersion)s."
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "Esta partida gardada require unha versión anterior de 0 A.D."
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
@@ -3672,7 +3673,7 @@ msgstr "Ningún"
 
 #: gui/locale_advanced/locale_advanced.js:91
 msgid "invalid locale"
-msgstr ""
+msgstr "rexional non válida"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):25
 msgid "Country:"
@@ -3760,7 +3761,7 @@ msgstr "Mellor para multixogador"
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
-msgstr ""
+msgstr "Mapas recomendados para o xogo multixogador."
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
@@ -3780,7 +3781,7 @@ msgstr "Todos os mapas do tipo selecionado."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr ""
+msgstr "Navegador de mapas"
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:59
@@ -3792,7 +3793,7 @@ msgstr "Pechar"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:60
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr ""
+msgstr "%(hotkey)s: Pecha o navegador de mapas."
 
 #: gui/hotkeys/hotkeys.xml:(caption):111 gui/loadgame/load.xml:(caption):50
 #: gui/locale/locale.xml:(caption):36
@@ -3804,7 +3805,7 @@ msgstr "Cancelar"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:65
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr ""
+msgstr "%(hotkey)s: Pecha o navegador de mapas e descarta a selección."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -3814,11 +3815,11 @@ msgstr "+"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):18
 msgctxt "zoom out"
 msgid "−"
-msgstr ""
+msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr ""
+msgstr "Buscar mapa:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
@@ -3826,42 +3827,42 @@ msgstr "Filtro:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr ""
+msgstr "Escolle un mapa aleatorio"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):52
 msgctxt "map selection dialog"
 msgid "Select"
-msgstr ""
+msgstr "Seleccione"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
-msgstr ""
+msgstr "Ir á páxina anterior."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:28
 msgid "Go to the next page."
-msgstr ""
+msgstr "Vaia á páxina seguinte."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr ""
+msgstr "Aumenta o tamaño da vista previa do mapa."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr ""
+msgstr "Diminuír o tamaño da vista previa do mapa."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
 msgid "Maps: %(mapCount)s"
-msgstr ""
+msgstr "Mapas: %(mapCount)s"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
-msgstr ""
+msgstr "Páxina: %(currentPage)s/%(maxPage)s"
 
 #: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
-msgstr ""
+msgstr "Escolle un mapa ao azar."
 
 #: gui/options/options.js:109
 #, javascript-format
@@ -3890,7 +3891,7 @@ msgstr "Máx.: %(max)s"
 #, javascript-format
 msgid ""
 "Changes will be reverted in %(time)s seconds. Do you want to keep changes?"
-msgstr ""
+msgstr "Os cambios reverteranse en %(time)ssegundos. Queres manter os cambios?"
 
 #: gui/options/options.js:206
 #, javascript-format
@@ -3906,7 +3907,7 @@ msgstr "Restabelecer as opcións borrará a súa configuración gardada. Queres 
 
 #: gui/options/options.js:429
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Algúns valores de configuración non son válidos. Estás seguro de que queres gardalos?"
 
 #: gui/options/options.js:454
 msgid "You have unsaved changes, do you want to close this window?"
@@ -3922,7 +3923,7 @@ msgstr "Nome do xogador (un xogador)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Como queres que te traten nas partidas para un só xogador."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -3934,11 +3935,11 @@ msgstr "Como queres que se dirixan a ti nas partidas de varios xogadores (salvo 
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "Pausa de fondo"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Pausa os xogos dun xogador cando a xanela perda o foco."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
@@ -3984,51 +3985,51 @@ msgstr "Mostrar sempre o tempo restante da tregua."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Marca de tempo do chat"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Mostra a hora na que se publicou unha mensaxe de chat."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
-msgstr ""
+msgstr "Denominación das entidades."
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific names first"
-msgstr ""
+msgstr "Primeiro nomes específicos"
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Display specific names before generic names."
-msgstr ""
+msgstr "Mostrar nomes específicos antes dos nomes xenéricos."
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic names first"
-msgstr ""
+msgstr "Primeiro nomes xenéricos"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Display generic names before specific names."
-msgstr ""
+msgstr "Mostrar nomes xenéricos antes de nomes específicos."
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only specific names"
-msgstr ""
+msgstr "Só nomes específicos"
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Display only specific names for entities."
-msgstr ""
+msgstr "Mostra só nomes específicos para entidades."
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only generic names"
-msgstr ""
+msgstr "Só nomes xenéricos"
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Display only generic names for entities."
-msgstr ""
+msgstr "Mostra só nomes xenéricos para entidades."
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
-msgstr ""
+msgstr "Como mostrar os nomes das entidades."
 
 #: gui/options/options.json[1].label
 msgid "Graphics (general)"
@@ -4040,7 +4041,7 @@ msgstr "Modo xanela"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "Comeza 0 A.D. nunha xanela."
 
 #: gui/options/options.json[1].options[10].label
 msgid "FPS throttling in games"
@@ -4067,30 +4068,30 @@ msgstr "250%"
 
 #: gui/options/options.json[1].options[12].label
 msgid "Mouse drag"
-msgstr ""
+msgstr "Arrastre do rato"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid ""
 "Number of pixels the mouse can move before the action is considered a drag."
-msgstr ""
+msgstr "Número de píxeles que pode mover o rato antes de que a acción se considere un arrastre."
 
 #: gui/options/options.json[1].options[13].label
 msgid "Mouse grab in fullscreen"
-msgstr ""
+msgstr "Captura do rato en pantalla completa"
 
 #: gui/options/options.json[1].options[13].tooltip
 msgid ""
 "Constrain mouse in the fullscreen mode to the window boundaries. It's used "
 "to avoid mouse going out of a display in case of multiple displays."
-msgstr ""
+msgstr "Restrinxir o rato no modo de pantalla completa aos límites da xanela. Utilízase para evitar que o rato se saia dunha pantalla en caso de varias pantallas."
 
 #: gui/options/options.json[1].options[14].label
 msgid "Mouse grab in window mode"
-msgstr ""
+msgstr "Captura do rato en modo xanela"
 
 #: gui/options/options.json[1].options[14].tooltip
 msgid "Constrain mouse in the window mode to the window boundaries."
-msgstr ""
+msgstr "Restrinxir o rato no modo xanela aos límites da xanela."
 
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label
@@ -4100,25 +4101,25 @@ msgstr "Néboa"
 #: gui/options/options.json[1].options[1].tooltip
 #: gui/options/options.json[2].options[1].tooltip
 msgid "Enable fog."
-msgstr ""
+msgstr "Activa a néboa."
 
 #: gui/options/options.json[1].options[2].label
 #: gui/options/options.json[2].options[2].label
 msgid "Post-processing"
-msgstr ""
+msgstr "Post-procesamento"
 
 #: gui/options/options.json[1].options[2].tooltip
 #: gui/options/options.json[2].options[2].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
+msgstr "Use filtros de posprocesamento de espazo de pantalla (HDR, Bloom, DOF, etc.)."
 
 #: gui/options/options.json[1].options[3].label
 msgid "Resolution scale"
-msgstr ""
+msgstr "Escala de resolución"
 
 #: gui/options/options.json[1].options[3].list[0].label
 msgid "50%"
-msgstr ""
+msgstr "50%"
 
 #: gui/options/options.json[1].options[11].list[0].label
 #: gui/options/options.json[1].options[3].list[1].label
@@ -4127,7 +4128,7 @@ msgstr "75%"
 
 #: gui/options/options.json[1].options[3].list[2].label
 msgid "87.5%"
-msgstr ""
+msgstr "87.5%"
 
 #: gui/options/options.json[1].options[11].list[1].label
 #: gui/options/options.json[1].options[3].list[3].label
@@ -4158,44 +4159,44 @@ msgstr "200%"
 msgid ""
 "A smaller scale makes rendering faster but produces a more blurry picture, a"
 " large scale makes rendering slower but produces a better picture."
-msgstr ""
+msgstr "Unha escala máis pequena fai a renderización máis rápida pero produce unha imaxe máis borrosa, unha escala grande fai que a renderización sexa máis lenta pero produce unha imaxe mellor."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Upscale technique"
-msgstr ""
+msgstr "Técnica de escalado"
 
 #: gui/options/options.json[1].options[4].list[0].label
 msgid "FidelityFX Super Resolution 1.0"
-msgstr ""
+msgstr "FidelityFX Super Resolution 1.0"
 
 #: gui/options/options.json[1].options[4].list[0].tooltip
 msgid ""
 "Advanced upscale technique. For better results, use FSR with antialiasing "
 "enabled. Using it with the OpenGL backend may have some issues, consider "
 "using Vulkan backend instead."
-msgstr ""
+msgstr "Técnica avanzada de escalado. Para obter mellores resultados, use FSR co antialiasing activado. Usalo co backend de OpenGL pode ter algúns problemas, considere usar o backend de Vulkan no seu lugar."
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "Bilinear"
-msgstr ""
+msgstr "Bilinear"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid ""
 "Bilinear upscale technique. Produces a slightly blurry picture depending on "
 "the scale."
-msgstr ""
+msgstr "Técnica bilineal de escalado. Produce unha imaxe lixeiramente borrosa dependendo da escala."
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "Pixelated"
-msgstr ""
+msgstr "Pixelado"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid "Simplest upscale technique. Used mostly for stylized effect."
-msgstr ""
+msgstr "Técnica de escalado máis sinxela. Usado principalmente para efectos estilizados."
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Technique defines performance and quality of upscaling process."
-msgstr ""
+msgstr "A técnica define o rendemento e a calidade do proceso de ampliación."
 
 #: gui/options/options.json[1].options[5].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][9].label
@@ -4209,11 +4210,11 @@ msgstr "Activar as sombras."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "Siluetas de unidades"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "Mostrar esquemas de unidades detrás das estruturas."
 
 #: gui/options/options.json[1].options[7].label
 msgid "Particles"
@@ -4251,7 +4252,7 @@ msgstr "Gráficos (avanzado)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Renderer backend"
-msgstr ""
+msgstr " \nRenderizador"
 
 #: gui/options/options.json[2].options[0].list[0].label
 msgid "OpenGL"
@@ -4259,35 +4260,35 @@ msgstr "OpenGL"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Backend de OpenGL predeterminado con GLSL. REQUIRE O REINICIO DO XOGO"
 
 #: gui/options/options.json[2].options[0].list[1].label
 msgid "OpenGL ARB (Deprecated)"
-msgstr ""
+msgstr "OpenGL ARB (obsoleto)"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid ""
 "Legacy OpenGL backend with ARB shaders. It's deprecated and it's going to be"
 " removed in future versions of the game. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Backend de OpenGL legado con sombreadores ARB. Está obsoleto e eliminarase en futuras versións do xogo. REQUIRE O REINICIO DO XOGO"
 
 #: gui/options/options.json[2].options[0].list[2].label
 msgid "Vulkan"
-msgstr ""
+msgstr "Vulkan"
 
 #: gui/options/options.json[2].options[0].list[2].tooltip
 msgid "Modern API, requires up-to-date drivers. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "API moderna, require controladores actualizados. REQUIRE O REINICIO DO XOGO"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid ""
 "Choose the renderer's backend. It's recommended to use Vulkan if supported. "
 "REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Escolla o backend do renderizador. Recoméndase usar Vulkan se é compatible. REQUIRE O REINICIO DO XOGO"
 
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
-msgstr ""
+msgstr "Antialiasing"
 
 #: gui/options/options.json[2].options[3].list[0].label
 #: gui/options/options.json[2].options[4].list[0].label
@@ -4299,91 +4300,91 @@ msgstr "Desactivados"
 
 #: gui/options/options.json[2].options[3].list[0].tooltip
 msgid "Do not use antialiasing."
-msgstr ""
+msgstr "Non use antialiasing."
 
 #: gui/options/options.json[2].options[3].list[1].label
 msgid "FXAA"
-msgstr ""
+msgstr "FXAA"
 
 #: gui/options/options.json[2].options[3].list[1].tooltip
 msgid "Fast, but simple antialiasing."
-msgstr ""
+msgstr "rápido, pero sinxelo Antialiasing ."
 
 #: gui/options/options.json[2].options[3].list[2].label
 msgid "MSAA (2×)"
-msgstr ""
+msgstr "MSAA (2×)"
 
 #: gui/options/options.json[2].options[3].list[2].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "O antialiasing lento, pero de alta calidade, usa dúas mostras por píxel. Compatible con GL3.3+."
 
 #: gui/options/options.json[2].options[3].list[3].label
 msgid "MSAA (4×)"
-msgstr ""
+msgstr "MSAA (4×)"
 
 #: gui/options/options.json[2].options[3].list[3].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr ""
+msgstr "O antialiasing lento, pero de alta calidade, usa catro mostras por píxel. Compatible con GL3.3+."
 
 #: gui/options/options.json[2].options[3].list[4].label
 msgid "MSAA (8×)"
-msgstr ""
+msgstr "MSAA (8×)"
 
 #: gui/options/options.json[2].options[3].list[4].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr ""
+msgstr "O antialiasing lento, pero de alta calidade, usa oito mostras por píxel. Compatible con GL3.3+."
 
 #: gui/options/options.json[2].options[3].list[5].label
 msgid "MSAA (16×)"
-msgstr ""
+msgstr "MSAA (16×)"
 
 #: gui/options/options.json[2].options[3].list[5].tooltip
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr ""
+msgstr "O antialiasing lento, pero de alta calidade, usa dezaseis mostras por píxel. Compatible con GL3.3+."
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "Reduce aliasing effect on edges."
-msgstr ""
+msgstr "Reducir o efecto de aliasing nos bordos."
 
 #: gui/options/options.json[2].options[4].label
 msgid "Sharpening"
-msgstr ""
+msgstr "Aguzado"
 
 #: gui/options/options.json[2].options[4].list[0].tooltip
 msgid "Do not use sharpening."
-msgstr ""
+msgstr "Non usar Aguzado"
 
 #: gui/options/options.json[2].options[4].list[1].label
 msgid "FidelityFX CAS"
-msgstr ""
+msgstr "FidelityFX CAS"
 
 #: gui/options/options.json[2].options[4].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
-msgstr ""
+msgstr "Agudo adaptativo ao contraste, un paso de nitidez rápido e baseado en contraste."
 
 #: gui/options/options.json[2].options[4].tooltip
 msgid "Reduce blurry effects."
-msgstr ""
+msgstr "Reduce os efectos borrosos."
 
 #: gui/options/options.json[2].options[5].label
 msgid "Sharpness factor"
-msgstr ""
+msgstr "Factor de nitidez"
 
 #: gui/options/options.json[2].options[5].tooltip
 msgid "The sharpness of the choosen pass."
-msgstr ""
+msgstr "A nitidez do pase elixido."
 
 #: gui/options/options.json[2].options[6].label
 msgid "Model quality"
-msgstr ""
+msgstr "Calidade do modelo"
 
 #: gui/options/options.json[2].options[6].list[0].label._string
 msgctxt "Option for the meshes' level of detail."
@@ -4392,7 +4393,7 @@ msgstr "Baixa"
 
 #: gui/options/options.json[2].options[6].list[0].label.tooltip
 msgid "Simpler models for better performance."
-msgstr ""
+msgstr "Modelos máis sinxelos para un mellor rendemento."
 
 #: gui/options/options.json[2].options[6].list[0][1].label._string
 msgctxt "Option for the meshes' level of detail."
@@ -4401,7 +4402,7 @@ msgstr "Normal"
 
 #: gui/options/options.json[2].options[6].list[0][1].label.tooltip
 msgid "Average quality and average performance."
-msgstr ""
+msgstr "Calidade media e rendemento medio."
 
 #: gui/options/options.json[2].options[6].list[0][1][2].label._string
 msgctxt "Option for the meshes' level of detail."
@@ -4410,11 +4411,11 @@ msgstr "Alta"
 
 #: gui/options/options.json[2].options[6].list[0][1][2].label.tooltip
 msgid "High quality models."
-msgstr ""
+msgstr "Modelos de alta calidade."
 
 #: gui/options/options.json[2].options[6].list[0][7].label
 msgid "Model appearance randomization"
-msgstr ""
+msgstr "Aleatorización da aparencia do modelo"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0].label._string
 msgctxt "Option for the meshes' amount of variety."
@@ -4423,7 +4424,7 @@ msgstr "Ningún"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0].label.tooltip
 msgid "Entities will all look the same."
-msgstr ""
+msgstr "Todas as entidades terán o mesmo aspecto."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].label
 msgid "Quality"
@@ -4449,25 +4450,25 @@ msgstr "Sombras suaves."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].label
 msgid "Cutoff distance"
-msgstr ""
+msgstr "Distancia de corte"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].tooltip
 msgid "Hides shadows beyond a certain distance from a camera."
-msgstr ""
+msgstr "Oculta sombras máis aló dunha certa distancia dunha cámara."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].label
 msgid "Cover whole map"
-msgstr ""
+msgstr "Cubra todo o mapa"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].tooltip
 msgid ""
 "When ON shadows cover the whole map and shadows cutoff distance is ignored. "
 "Useful for making screenshots of a whole map."
-msgstr ""
+msgstr "Cando ACTIVAS as sombras cobren todo o mapa e ignora a distancia de corte das sombras. Útil para facer capturas de pantalla dun mapa completo."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].label
 msgid "Water effects"
-msgstr ""
+msgstr "Efectos da auga"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].tooltip
 msgid ""
@@ -4477,7 +4478,7 @@ msgstr "Cando se desactiva, úsase a opción máis baixa posíbel para renderiza
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "Efectos da auga de alta calidade"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].tooltip
 msgid ""
@@ -4487,7 +4488,7 @@ msgstr "Usar efectos de gran calidade para a auga, para as ondas da costa e mail
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Reflexos da auga"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -4495,7 +4496,7 @@ msgstr "Permitir que a auga reflicta as imaxes."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].label
 msgid "Water refraction"
-msgstr ""
+msgstr "Refracción da auga"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -4503,7 +4504,7 @@ msgstr "Usar un mapa real de refracción da auga e non transparencia."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].label
 msgid "Real water depth"
-msgstr ""
+msgstr "Profundidade real da auga"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -4511,7 +4512,7 @@ msgstr "Usar a profundidade real da auga nos cálculos de renderización."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].label
 msgid "Texture quality"
-msgstr ""
+msgstr "Calidade da textura"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label._string
 msgctxt "Option for the texture quality."
@@ -4542,7 +4543,7 @@ msgstr "Alta"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].label
 msgid "Texture anisotropic filter"
-msgstr ""
+msgstr "Filtro anisotrópico de textura"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[0].label
 msgid "1x"
@@ -4572,13 +4573,13 @@ msgstr "16x"
 msgid ""
 "Makes textures look better, especially terrain. If the anisotropic filter "
 "value is unsupported it will be set to the max supported value."
-msgstr ""
+msgstr "Fai que as texturas se vexan mellor, especialmente o terreo. Se o valor do filtro anisótropo non é compatible, establecerase no valor máximo admitido."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].tooltip
 msgid ""
 "Decrease texture quality making them blurrier but increases game "
 "performance."
-msgstr ""
+msgstr "Diminúe a calidade da textura facéndoas borrosas pero aumenta o rendemento do xogo."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].label
 msgid "Master volume"
@@ -4598,7 +4599,7 @@ msgstr "Ganancia da música das partidas."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[2].label
 msgid "Ambient volume"
-msgstr ""
+msgstr "Volume ambiente"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[2].tooltip
 msgid "In game ambient sound gain."
@@ -4606,7 +4607,7 @@ msgstr "Ganancia dos sons ambientais das partidas."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[3].label
 msgid "Action volume"
-msgstr ""
+msgstr "Volume de acción"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[3].tooltip
 msgid "In game unit action sound gain."
@@ -4614,7 +4615,7 @@ msgstr "Ganancia dos sons das accións das unidades nas partidas."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[4].label
 msgid "UI volume"
-msgstr ""
+msgstr "Volume da IU"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[4].tooltip
 msgid "UI sound gain."
@@ -4622,7 +4623,7 @@ msgstr "Ganancia dos sons da interface de usuario."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[5].label
 msgid "Nick notification"
-msgstr ""
+msgstr "Notificación de alcume"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
@@ -4630,7 +4631,7 @@ msgstr "Recibir notificacións de son cando alguén escriba o teu alcume."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[6].label
 msgid "New player notification in game setup"
-msgstr ""
+msgstr "Notificación de novo xogador na configuración do xogo"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
@@ -4642,7 +4643,7 @@ msgstr "Configuración da partida"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[0].label
 msgid "Enable game setting tips"
-msgstr ""
+msgstr "Activa os consellos de configuración do xogo"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[0].tooltip
 msgid "Show tips when setting up a game."
@@ -4650,7 +4651,7 @@ msgstr "Mostrar consellos ao preparar unha partida."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[1].label
 msgid "Enable settings panel slide"
-msgstr ""
+msgstr "Activar o desprazamento do panel de configuración"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
@@ -4667,7 +4668,7 @@ msgstr "Gardar e restaurar a configuración da partira para usala rapidamente ao
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].label
 msgid "Default AI difficulty"
-msgstr ""
+msgstr "Dificultade predeterminada da IA"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0].label._string
 msgctxt "Option for the AI difficulty."
@@ -4691,7 +4692,7 @@ msgstr "Normal"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "Comportamento predeterminado da IA"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label._string
 msgctxt "Option for the AI difficulty."
@@ -4725,7 +4726,7 @@ msgstr "Moi alta"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].label
 msgid "Assign players"
-msgstr ""
+msgstr "Asignar xogadores"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[0].label
@@ -4734,7 +4735,7 @@ msgstr "Todos"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr ""
+msgstr "Os xogadores que se unan ao partido asignaranse se hai un espazo libre."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[1].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[1].label
@@ -4745,11 +4746,11 @@ msgstr "Amizades"
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr ""
+msgstr "Os xogadores que se unan ao partido só serán asignados se son compañeiros do anfitrión e se hai un espazo libre."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr ""
+msgstr "Os xogadores só reciben un espazo cando o anfitrión a asigna explícitamente."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].tooltip
 msgid ""
@@ -4759,11 +4760,11 @@ msgstr "Asignar automaticamente aos clientes que se unan a ocos baleiros de xoga
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].label
 msgid "Networking / Lobby"
-msgstr ""
+msgstr "Rede / Sala"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].label
 msgid "TLS encryption"
-msgstr ""
+msgstr "Cifrado TLS"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].tooltip
 msgid ""
@@ -4772,7 +4773,7 @@ msgstr "Protexer o acceso e os datos intercambiados co servidor da sala de esper
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].label
 msgid "Chat backlog"
-msgstr ""
+msgstr "Historial de conversas"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
@@ -4780,7 +4781,7 @@ msgstr "Número de mensaxes do historial para cargar ao unirse á sala de espera
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].label
 msgid "Game rating column"
-msgstr ""
+msgstr "Columna de puntuación da partida"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].tooltip
 msgid ""
@@ -4790,7 +4791,7 @@ msgstr "Mostrar a puntuación media dos xogadores participantes nunha columna da
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Avisos de rede"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -4798,7 +4799,7 @@ msgstr "Mostrar que xogador ten unha mala conexión nas partidas de varios xogad
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "Un observador tardío únese"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].tooltip
 msgid ""
@@ -4816,23 +4817,23 @@ msgstr "Prohibir que se unan espectadores unha vez acadado o límite."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].label
 msgid "Max lag for observers"
-msgstr ""
+msgstr "Retraso máximo para os observadores"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr ""
+msgstr "Ao aloxar, fai unha pausa no xogo se os observadores están atrasando máis que tantas voltas. Se se establece en -1, ignoraranse os observadores."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].label
 msgid "(Observer) Speed up when lagging."
-msgstr ""
+msgstr "(Observador) Acelerar cando está atrasado."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
-msgstr ""
+msgstr "Cando observes un xogo, acelera automaticamente se comezas a atrasar para poñerte ao día coa partida en directo."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].tooltip
 msgid "These settings only affect the multiplayer."
@@ -4840,11 +4841,11 @@ msgstr "Estas opcións só afectan ás partidas de varios xogadores."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].label
 msgid "Game Session"
-msgstr ""
+msgstr "Sesión de xogo"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[0].label
 msgid "Wounded unit health"
-msgstr ""
+msgstr "Saúde da unidade de feridos"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[0].tooltip
 msgid ""
@@ -4854,23 +4855,23 @@ msgstr "O atallo de unidade ferida considera as unidades seleccionadas como feri
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "Visualización do rango de aura"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Mostra o rango de auras das unidades e estruturas seleccionadas. (Tamén se pode alternar coa tecla de acceso rápido durante un xogo)."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "Visualización do rango de cura"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].tooltip
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
-msgstr ""
+msgstr "Mostra o rango de curación das unidades seleccionadas. (Tamén se pode alternar coa tecla de acceso rápido durante un xogo)."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].label
 msgid "Rank icon above status bar"
@@ -4886,16 +4887,16 @@ msgstr "Barra de experiencia."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr ""
+msgstr "Mostra unha barra de estado da experiencia enriba de cada unidade seleccionada."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "Suxestións detalladas"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
+msgstr "Mostrar consellos detallados para unidades adestrables en estruturas de produción de unidades."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].label
 msgid "Sort resources and population tooltip"
@@ -4920,7 +4921,7 @@ msgstr "Ordenar dinamicamente os xogadores por valor nos consellos de recursos e
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].label
 msgid "Diplomacy colors: self"
-msgstr ""
+msgstr "Cores da diplomacia: eu"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
@@ -4928,7 +4929,7 @@ msgstr "Cor túa ao activar as cores diplomáticas."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].label
 msgid "Diplomacy colors: ally"
-msgstr ""
+msgstr "Cores diplomáticas: Aliado"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
@@ -4936,7 +4937,7 @@ msgstr "Cor dos aliados ao activar as cores diplomáticas."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].label
 msgid "Diplomacy colors: neutral"
-msgstr ""
+msgstr "Cores diplomáticas: Neutral"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
@@ -4944,7 +4945,7 @@ msgstr "Cor dos xogadores neutrais ao activar as cores diplomáticas."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
 msgid "Diplomacy colors: enemy"
-msgstr ""
+msgstr "Cores diplomáticas: Inimigo"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -4952,7 +4953,7 @@ msgstr "Cor dos inimigos ao activar as cores diplomáticas."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].label
 msgid "Batch training size"
-msgstr ""
+msgstr "Tamaño dos lotes de adestramento"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].tooltip
 msgid "Number of units trained per batch by default."
@@ -4960,98 +4961,98 @@ msgstr "Número de unidades adestradas por lote de maneira predeterminada."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].label
 msgid "Snap to edges"
-msgstr ""
+msgstr "Axustar aos bordos"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr ""
+msgstr "Tecla rápida para activar o encaixe"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr ""
+msgstr "As estruturas novas están aliñadas coas estruturas próximas mentres se preme a tecla de acceso rápido."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
 msgid "Hotkey to disable snapping"
-msgstr ""
+msgstr "Tecla rápida para desactivar o encaixe"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr ""
+msgstr "As estruturas novas están aliñadas coas estruturas próximas a menos que se prema a tecla de acceso rápido."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr ""
+msgstr "Esta opción permite aliñar novas estruturas coas estruturas próximas."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].label
 msgid "Control group membership"
-msgstr ""
+msgstr "Control de pertenza ao grupo"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].label
 msgid "Single"
-msgstr ""
+msgstr "Único"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
-msgstr ""
+msgstr "Ao engadir unha Unidade ou Estrutura a un grupo de control, elimínanse doutros grupos de control. Use esta opción se quere que os grupos de control se refiran a distintos exércitos."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].label
 msgid "Multiple"
-msgstr ""
+msgstr "Múltiple"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr ""
+msgstr "As unidades e estruturas poden formar parte de múltiples grupos de control. Isto é útil para manter simultáneamente grupos de control para distintos exércitos e un grupo de control para todo o exército."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].tooltip
 msgid "Decide whether units can be part of multiple control groups."
-msgstr ""
+msgstr "Decida se as unidades poden formar parte de varios grupos de control."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].label
 msgid "Formation control"
-msgstr ""
+msgstr "Control de formación"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[0].label
 msgid "Walk/Patrol Only"
-msgstr ""
+msgstr "Só camiño/patrulla"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[0].tooltip
 msgid "Other orders will disband existing formations."
-msgstr ""
+msgstr "Outras ordes disolverán as formacións existentes."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[1].label
 msgid "No override"
-msgstr ""
+msgstr "Sen substitución"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[1].tooltip
 msgid "Units in formations stay in formations."
-msgstr ""
+msgstr "As unidades en formacións quedan en formacións."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr ""
+msgstr "Decide se as formacións están habilitadas para todas as ordes ou só \"Camiño\" e \"Patrulla\"."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[23].label
 msgid "Battalion-style formations"
-msgstr ""
+msgstr "Formacións tipo batallón"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[23].tooltip
 msgid "Whether formations are selected as a whole."
-msgstr ""
+msgstr "Se as formacións se seleccionan no seu conxunto."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].label
 msgid "Scroll batch increment ratio"
-msgstr ""
+msgstr "Ratio de incremento do lote de desprazamento"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].tooltip
 msgid ""
@@ -5060,23 +5061,23 @@ msgstr "Número de veces que hai que desprazar para aumentar ou diminuír o tama
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].label
 msgid "Flare display duration"
-msgstr ""
+msgstr "Duración do aviso"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
-msgstr ""
+msgstr "Canto tempo se mostran os avisos no minimapa en segundos."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
 msgid "Minimap icons"
-msgstr ""
+msgstr "Iconas do minimapa"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
 msgid "Show special icons for some entities on the minimap."
-msgstr ""
+msgstr "Mostra iconas especiais para algunhas entidades no minimapa."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
 msgid "Chat notification attack"
-msgstr ""
+msgstr "Notificación de chat de ataque"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].tooltip
 msgid "Show a chat notification if you are attacked by another player."
@@ -5084,7 +5085,7 @@ msgstr "Mostrar unha notificación de conversa se outro xogador o ataca."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].label
 msgid "Chat notification tribute"
-msgstr ""
+msgstr "Notificación de chat de tributo"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].tooltip
 msgid ""
@@ -5094,7 +5095,7 @@ msgstr "Mostrar unha notificación de conversa se un aliado tributa recursos a o
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].label
 msgid "Chat notification barter"
-msgstr ""
+msgstr "Notificación de chat de comercio"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].tooltip
 msgid ""
@@ -5103,7 +5104,7 @@ msgstr "Mostrar unha notificación de conversa aos espectadores cando un xogador
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].label
 msgid "Chat notification phase"
-msgstr ""
+msgstr "Notificación de chat de fase"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[0].label
 msgid "Disable"
@@ -5125,13 +5126,13 @@ msgstr "Mostrar unha notificación de conversa se ti ou un aliado comezou, inter
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].label
 msgid "Attack range visualization"
-msgstr ""
+msgstr "Visualización do alcance do ataque"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Mostra o rango de ataque das estruturas defensivas seleccionadas. (Tamén se pode alternar coa tecla de acceso rápido durante un xogo)."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5160,11 +5161,11 @@ msgstr "Resolución do mapa de sombras. Os valores altos poden quebrar o xogo ao
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1].label._string
 msgctxt "Option for the meshes' amount of variety."
 msgid "Limited"
-msgstr ""
+msgstr "Limitado"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1].label.tooltip
 msgid "Entities will be less diverse."
-msgstr ""
+msgstr "As entidades serán menos diversas."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label._string
 msgctxt "Option for the meshes' amount of variety."
@@ -5173,11 +5174,11 @@ msgstr "Normal"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label.tooltip
 msgid "Entities appearance is randomized normally."
-msgstr ""
+msgstr "A aparencia das entidades é aleatoria normalmente."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][8].label
 msgid "Shader effects"
-msgstr ""
+msgstr "Efectos de sombreado"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
@@ -5187,15 +5188,15 @@ msgstr "Número de efectos de tecnoloxía de sombras. REQUIRE REINICIAR A PARTID
 msgid ""
 "Randomize the appearance of entities. Disabling gives a small performance "
 "improvement."
-msgstr ""
+msgstr "Aleatorizar a aparición de entidades. A desactivación dá unha pequena mellora de rendemento."
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Model quality setting."
-msgstr ""
+msgstr "Configuración da calidade do modelo."
 
 #: gui/options/options.json[2].tooltip
 msgid "More specific rendering settings."
-msgstr ""
+msgstr "Configuración de renderización máis específica."
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
@@ -5221,7 +5222,7 @@ msgstr "Aprender a xogar"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "Aprende a xogar, inicia o titorial, descubre as árbores tecnolóxicas e a historia detrás das civilizacións."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -5229,7 +5230,7 @@ msgstr "Manual"
 
 #: gui/pregame/MainMenuItems.js:8
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Abrir o manual de 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
@@ -5237,7 +5238,7 @@ msgstr "Titorial"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the introductory tutorial."
-msgstr ""
+msgstr "Comeza o titorial introdutorio."
 
 #: gui/pregame/MainMenuItems.js:36
 #: gui/reference/common/Buttons/StructreeButton.js:26
@@ -5249,47 +5250,47 @@ msgstr "Árbore de estruturas"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: Ver a árbore de estruturas das civilizacións de 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:42
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:26
 msgid "Civilization Overview"
-msgstr ""
+msgstr "Visión xeral da civilización"
 
 #: gui/pregame/MainMenuItems.js:43
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s:Aprende sobre as civilizacións que aparecen en 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:48
 msgid "Catafalque Overview"
-msgstr ""
+msgstr "Visión xeral do catafalco"
 
 #: gui/pregame/MainMenuItems.js:49
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "Compare os bonos de catafalcos que aparecen en 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:55
 msgid "Map Overview"
-msgstr ""
+msgstr "Visión xeral do mapa"
 
 #: gui/pregame/MainMenuItems.js:56
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "Consulta os diferentes mapas que aparecen en 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:64 gui/pregame/MainMenuItems.js:120
 msgid "Continue Campaign"
-msgstr ""
+msgstr "Continuar Campaña"
 
 #: gui/pregame/MainMenuItems.js:65 gui/pregame/MainMenuItems.js:121
 #: gui/pregame/MainMenuItems.js:137 gui/pregame/MainMenuItems.js:144
 msgid "Relive history through historical military campaigns."
-msgstr ""
+msgstr "Revive a historia a través de campañas militares históricas."
 
 #: gui/pregame/MainMenuItems.js:73 gui/pregame/MainMenuItems.js:129
 msgid "Error opening campaign run:"
-msgstr ""
+msgstr "Erro ao abrir a campaña:"
 
 #: gui/pregame/MainMenuItems.js:80
 msgid "Single-player"
@@ -5297,7 +5298,7 @@ msgstr "Un xogador"
 
 #: gui/pregame/MainMenuItems.js:81
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Inicia, carga ou volve xogar unha partida para un só xogador."
 
 #: gui/pregame/MainMenuItems.js:84
 msgid "Matches"
@@ -5305,15 +5306,15 @@ msgstr "Batallas"
 
 #: gui/pregame/MainMenuItems.js:85
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Comeza unha nova partida para un só xogador."
 
 #: gui/pregame/MainMenuItems.js:92
 msgid "Load a saved game."
-msgstr ""
+msgstr "Cargar unha partida gardada."
 
 #: gui/pregame/MainMenuItems.js:136
 msgid "New Campaign"
-msgstr ""
+msgstr "Nova Campaña"
 
 #: gui/pregame/MainMenuItems.js:143
 msgid "Load Campaign"
@@ -5350,7 +5351,7 @@ msgstr "Aloxar unha partida"
 
 #: gui/pregame/MainMenuItems.js:183
 msgid "Host a multiplayer game."
-msgstr ""
+msgstr "Organiza un xogo multixogador."
 
 #: gui/pregame/MainMenuItems.js:191
 msgid "Game Lobby"
@@ -5373,7 +5374,7 @@ msgstr "Opcións"
 
 #: gui/pregame/MainMenuItems.js:219
 msgid "Change game options."
-msgstr ""
+msgstr "Cambiar as opcións do xogo."
 
 #: gui/pregame/MainMenuItems.js:222
 msgid "Options"
@@ -5389,7 +5390,7 @@ msgstr "Atallos do teclado"
 
 #: gui/pregame/MainMenuItems.js:233
 msgid "Adjust hotkeys."
-msgstr ""
+msgstr "Axustar as teclas de acceso rápido."
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale_advanced/locale_advanced.xml:(caption):14
@@ -5415,7 +5416,7 @@ msgstr "Pantalla de benvida"
 
 #: gui/pregame/MainMenuItems.js:254
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Mostrar de novo a pantalla de benvida. Útil se o escondeches por erro."
 
 #: gui/pregame/MainMenuItems.js:262
 msgid "Scenario Editor"
@@ -5429,7 +5430,7 @@ msgstr "Abrir o editor de escenarios Atlas nunha nova xanela. Tamén pode abrilo
 
 #: gui/pregame/MainMenuItems.js:268
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "Seguro que queres saír de 0 A.D. e abrir o Editor de escenarios?"
 
 #: gui/pregame/MainMenuItems.js:275
 msgid ""
@@ -5447,7 +5448,7 @@ msgstr "Créditos"
 
 #: gui/pregame/MainMenuItems.js:281
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Mostrar o 0 A.D. créditos."
 
 #: gui/pregame/MainMenuItems.js:287
 msgid "Exit"
@@ -5455,11 +5456,11 @@ msgstr "Saír"
 
 #: gui/pregame/MainMenuItems.js:288
 msgid "Exit the game."
-msgstr ""
+msgstr "Saír do xogo."
 
 #: gui/pregame/MainMenuItems.js:292
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr ""
+msgstr "Estás seguro de que queres saír de 0 A.D.?"
 
 #: gui/pregame/ProjectInformation.js:6
 msgid "WILDFIRE GAMES"
@@ -5473,7 +5474,7 @@ msgstr "Alpha XXVII: Agni"
 msgid ""
 "Notice: This game is under development and many features have not been added"
 " yet."
-msgstr ""
+msgstr "Aviso: este xogo está en desenvolvemento e moitas funcións aínda non se engadiron."
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
@@ -5493,7 +5494,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr ""
+msgstr "Fai clic para abrir o 0 A.D. Chat IRC no teu navegador (#0ad en webchat.quakenet.org). Está dirixido por voluntarios que realizan todo tipo de tarefas, pode tardar un tempo en responder a súa pregunta. Alternativamente, podes usar o foro (ver Sitio web)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5501,16 +5502,16 @@ msgstr "Informar dun erro"
 
 #: gui/pregame/ProjectInformation.js:42
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Fai clic para visitar 0 A.D. Rastrexa para informar dun erro, fallo ou erro."
 
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
 msgid "FAQ"
-msgstr ""
+msgstr "FAQ"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to visit the Frequently Asked Questions page in your browser."
-msgstr ""
+msgstr "Fai clic para visitar a páxina de Preguntas frecuentes no teu navegador."
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
@@ -5518,7 +5519,7 @@ msgstr "Traducir o xogo"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Fai clic para abrir o 0 A.D. traducir páxina no teu navegador."
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
@@ -5576,7 +5577,7 @@ msgstr "Activar o envío"
 
 #: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr ""
+msgstr "Grazas por axudar a mellorar 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
@@ -5593,7 +5594,7 @@ msgstr "descoñecido"
 
 #: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
-msgstr ""
+msgstr "Axuda a mellorar 0 A.D.!"
 
 #: gui/pregame/userreport/userreport.js:87
 msgid ""
@@ -5604,11 +5605,11 @@ msgstr "Pode enviarnos automaticamente información que nos pode axudar a soluci
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
 msgid "%(hotkey)s: Close Catafalque Bonuses."
-msgstr ""
+msgstr "%(hotkey)s: Pechar bonos de Catafalco."
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
-msgstr ""
+msgstr "Bonos de Catafalco."
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
@@ -5633,7 +5634,7 @@ msgstr "• %(name)s %(info_icon)s%(description)s"
 #: gui/reference/civinfo/CivInfoPage.js:120
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Pechar visión xeral da civilización."
 
 #: gui/reference/civinfo/Sections/GameplaySection.js:30
 #, javascript-format
@@ -5666,19 +5667,19 @@ msgstr[1] "Heroes"
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
 msgid_plural "Specific Structures"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Estrutura Específica"
+msgstr[1] "Estruturas Específicas"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
 msgid_plural "Specific Technologies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tecnoloxía específica"
+msgstr[1] "Tecnoloxías específicas"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:32
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: Cambie á vista xeral de Civilization."
 
 #: gui/reference/common/Buttons/StructreeButton.js:32
 #, javascript-format
@@ -5760,7 +5761,7 @@ msgstr "%(hotkey)s: Pechar a árbore de estruturas."
 #: gui/reference/viewer/ViewerPage.js:178
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
-msgstr ""
+msgstr "%(hotkey)s: Pecha o visor de modelos"
 
 #: gui/reference/viewer/viewer.xml:(caption):16
 msgid "Information"
@@ -5894,7 +5895,7 @@ msgstr "Filtra as repeticións escribindo un ou varios nomes de xogadores, parci
 #: gui/replaymenu/replay_menu.js:200
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
+msgstr "Elimina a reprodución seleccionada usando %(hotkey)s"
 
 #: gui/replaymenu/replay_menu.js:285
 #, javascript-format
@@ -5927,7 +5928,7 @@ msgstr "Menú principal"
 
 #: gui/replaymenu/replay_menu.xml:(caption):240
 msgid "Rebuild Cache"
-msgstr ""
+msgstr "Reconstruír a caché"
 
 #: gui/replaymenu/replay_menu.xml:(caption):247
 #: gui/summary/summary.xml:(caption):26
@@ -5964,7 +5965,7 @@ msgstr "Buscar Xogador"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):98
 msgid "File path for the currently selected replay."
-msgstr ""
+msgstr "Ruta do ficheiro para a repetición actualmente seleccionada."
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):241
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -5973,7 +5974,7 @@ msgstr "Construír de novo a caché da repetición desde cero. Pode ser lento!"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"] Grazas por instalar 0 A.D. Empires Ascendant!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -5995,7 +5996,7 @@ msgstr "[imgleft=\"iconLag\"] O xogo pode sufrir problemas de rendemento, especi
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]0A.D. é Software Libre: podes participar no seu desenvolvemento."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
@@ -6364,7 +6365,7 @@ msgstr "%(hotkey)s: Conmutar a sala de espera para partidas de varios xogadores 
 #: gui/summary/summary.js:556
 #, javascript-format
 msgid "Focus the %(name)s summary tab."
-msgstr ""
+msgstr "Centra a %(name)spestana de resumo."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
@@ -6420,7 +6421,7 @@ msgstr "Pode construírse en territorio neutral ou inimigo. Bo para construír u
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct rams and train citizen soldiers."
-msgstr ""
+msgstr "Constrúe arietes e adestra cidadáns soldados."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
@@ -6434,11 +6435,11 @@ msgstr "AUTOCOLA"
 
 #: gui/text/tips/autoqueue.txt:2
 msgid "Enable the autoqueue feature to automatically train units."
-msgstr ""
+msgstr "Activa a función de cola automática para adestrar unidades automaticamente."
 
 #: gui/text/tips/autoqueue.txt:3
 msgid "Works as long as you have enough resources, then it will stop."
-msgstr ""
+msgstr "Funciona mentres teñas recursos suficientes, entón parará."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -6448,7 +6449,7 @@ msgstr "Cuartel"
 msgid ""
 "Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "Adestra a todos os cidadáns soldado. Algunhas civilizacións tamén poden desbloquear o adestramento de campións."
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
@@ -6458,7 +6459,7 @@ msgstr "As unidades gañan experiencia mentres están guarnecidas no interior do
 msgid ""
 "Build one early to train citizen soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "Construír un canto antes para adestrar cidadáns soldado mentres avanzas o asentamento."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
@@ -6472,29 +6473,29 @@ msgstr "BIOMAS"
 msgid ""
 "Biomes can be used on some random maps and determine which region of the "
 "world the map represents."
-msgstr ""
+msgstr "Os biomas pódense usar nalgúns mapas aleatorios e determinar que rexión do mundo representa o mapa."
 
 #: gui/text/tips/biomes.txt:3
 msgid ""
 "They influence the appearence of the maps and also the amount of resources "
 "that are available."
-msgstr ""
+msgstr "Inflúen na aparencia dos mapas e tamén na cantidade de recursos dispoñibles."
 
 #: gui/text/tips/briton_war_dog.txt:1
 msgid "WAR DOG"
-msgstr ""
+msgstr "CAN DE GUERRA"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
-msgstr ""
+msgstr "Un can que os británicos poden adestrar no cortello de cabalería."
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
-msgstr ""
+msgstr "Ten pouca saúde, pero é rápido e atacará sen medo aos inimigos."
 
 #: gui/text/tips/briton_war_dog.txt:4
 msgid "Use them as support in your army or for quick raids."
-msgstr ""
+msgstr "Utilízaos como apoio no teu exército ou para incursións rápidas."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6518,19 +6519,19 @@ msgstr "Usa o lanceiro como infantería pesada contra a cabalaría. Usa a cabala
 
 #: gui/text/tips/carth_shipyard.txt:1
 msgid "CARTHAGINIAN NAVAL SHIPYARD"
-msgstr ""
+msgstr "ESTALEIRO NAVAL CARTAXINÉS"
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
-msgstr ""
+msgstr "Peirao especial dos cartaxineses para construír buques de guerra."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
-msgstr ""
+msgstr "Gornece barcos no interior para reparalos lentamente."
 
 #: gui/text/tips/carth_shipyard.txt:4
 msgid "Much stronger than other docks, but also more expensive."
-msgstr ""
+msgstr "Moito máis forte que outros peiraos, pero tamén máis caro."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -6538,7 +6539,7 @@ msgstr "Catapultas"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against structures."
-msgstr ""
+msgstr "Máquinas de asedio a distancia que son boas contra estruturas."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -6552,24 +6553,24 @@ msgstr "Poden empaquetarse en carros para movelas, e desempaquetalas en máquina
 
 #: gui/text/tips/cavalry_stable.txt:1
 msgid "CAVALRY STABLE"
-msgstr ""
+msgstr "CORTELLO DE CABALERIA"
 
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr ""
+msgstr "Adestra unidades de cabalería e permíteche investigar tecnoloxías específicas de cabalería."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
-msgstr ""
+msgstr "As unidades adquiren experiencia mentres están guarnidas dentro da estrutura."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC HEAVY ARROW SHIP"
-msgstr ""
+msgstr "BARCO CELTA PESADO CON FRECHAS"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "The main warship for the Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "O principal buque de guerra dos británicos, galos e iberos."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Can transport up to 40 units."
@@ -6577,7 +6578,7 @@ msgstr "Pode transportar ata 40 unidades."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can be improved with greater health and garrison capacity."
-msgstr ""
+msgstr "Pódese mellorar con maior saúde e capacidade de guarnición."
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
@@ -6591,11 +6592,11 @@ msgstr "Muros fortes de pedra que te axudan a protexer a túa cidade."
 msgid ""
 "When your ranged infantry units are occupying the turrets, they have "
 "additional armor and can shoot at the enemy. "
-msgstr ""
+msgstr "Cando as túas unidades de infantería a distancia ocupan as torres, teñen unha armadura adicional e poden disparar ao inimigo."
 
 #: gui/text/tips/city_walls.txt:4
 msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
-msgstr ""
+msgstr "Vulnerable a armas de asedio como catapultas, arietes e elefantes de guerra."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -6621,23 +6622,23 @@ msgstr "Adestra cidadáns: cidadás, cidadáns soldado de infantaría e cidadán
 
 #: gui/text/tips/default_formation.txt:1
 msgid "DEFAULT FORMATION"
-msgstr ""
+msgstr "FORMACIÓN POR DEFECTO"
 
 #: gui/text/tips/default_formation.txt:2
 msgid ""
 "Right-click an icon to set the default formation: units that are ordered to "
 "walk or patrol will automatically use it."
-msgstr ""
+msgstr "Fai clic co botón dereito nunha icona para establecer a formación predeterminada: as unidades ás que se lles ordene camiñar ou patrullar usarana automaticamente."
 
 #: gui/text/tips/default_formation.txt:3
 msgid "Can be de-activated by choosing “no formation” as the default."
-msgstr ""
+msgstr "Pódese desactivar escollendo “sen formación” como predeterminado."
 
 #: gui/text/tips/default_formation.txt:4
 msgid ""
 "The “Formation control” option lets you choose whether formations disband "
 "for orders other than walking or patrolling."
-msgstr ""
+msgstr "A opción “Control de formación” permítelle escoller se as formacións se disolven por ordes que non sexan camiñar ou patrullar."
 
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -6645,41 +6646,41 @@ msgstr "Torres de defensa"
 
 #: gui/text/tips/defense_towers.txt:2
 msgid "Strong watchtowers, which help you defend your position."
-msgstr ""
+msgstr "Torres de vixía fortes, que che axudan a defender a túa posición."
 
 #: gui/text/tips/defense_towers.txt:3
 msgid ""
 "They have a large vision range and will shoot arrows at the enemy in sight. "
-msgstr ""
+msgstr "Teñen un gran alcance de visión e dispararán frechas ao inimigo á vista."
 
 #: gui/text/tips/defense_towers.txt:4
 msgid ""
 "You can garrison more infantry inside them to increase the number of arrows "
 "they shoot."
-msgstr ""
+msgstr "Podes gardar máis infantería no seu interior para aumentar o número de frechas que disparan."
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
-msgstr ""
+msgstr "CORTELLO DE ELEFANTES"
 
 #: gui/text/tips/elephant_stable.txt:2
 msgid ""
 "The structure is available to some civilizations to train elephant units."
-msgstr ""
+msgstr "A estrutura está dispoñible para algunhas civilizacións para adestrar unidades de elefantes."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES AND MERCENARY CAMPS"
-msgstr ""
+msgstr "EMBAIXADAS E CAMPAMENTOS DE MERCENARIOS"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special structures allowing you to hire mercenaries for your army."
-msgstr ""
+msgstr "Estruturas especiais que che permiten contratar mercenarios para o teu exército."
 
 #: gui/text/tips/embassies.txt:3
 msgid ""
 "Mercenaries will not gather resources and cost only metal, but they are "
 "experienced and strong."
-msgstr ""
+msgstr "Os mercenarios non reunirán recursos e custarán só metal, pero son experimentados e fortes."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -6701,7 +6702,7 @@ msgstr "Pescar é máis rápido que recoller comida do campo."
 msgid ""
 "Careful! Fish are not an infinite resource! Although they do slowly "
 "repopulate when left alone."
-msgstr ""
+msgstr "Coidado! Os peixes non son un recurso infinito! Aínda que se repoboan lentamente cando se deixan sós."
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
@@ -6722,13 +6723,13 @@ msgstr "FORMACIÓNS"
 #: gui/text/tips/formations.txt:2
 msgid ""
 "Arrange your soldiers in formations to keep them organized during battles."
-msgstr ""
+msgstr "Organiza os teus soldados en formacións para mantelos organizados durante as batallas."
 
 #: gui/text/tips/formations.txt:3
 msgid ""
 "Formations are selected as a whole by default, but that can be changed in "
 "the game settings."
-msgstr ""
+msgstr "As formacións son seleccionadas como un todo por defecto, pero iso pódese cambiar na configuración do xogo."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -6738,7 +6739,7 @@ msgstr "Fortaleza"
 msgid ""
 "Usually the strongest structure of a civilization and the place where you "
 "can train Heroes."
-msgstr ""
+msgstr "Normalmente é a estrutura máis forte dunha civilización e o lugar onde podes adestrar heroes."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
@@ -6797,67 +6798,67 @@ msgstr "HEROES"
 msgid ""
 "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
 " and Boudicca."
-msgstr ""
+msgstr "Personaxes históricos, como Xerxes, Leónidas, Pericles, Aníbal, Escipión e Boudicca."
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr ""
+msgstr "Moita saúde e ataques moi fortes."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
-msgstr ""
+msgstr "Teñen auras que alteran as estatísticas doutras unidades ou estruturas."
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr ""
+msgstr "Atención: cada heroe só pode ser recrutado unha vez por partido!"
 
 #: gui/text/tips/iber_fireship.txt:1
 msgid "FIRESHIPS"
-msgstr ""
+msgstr "BARCOS DE LUME"
 
 #: gui/text/tips/iber_fireship.txt:2
 msgid "Available to the Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Dispoñible para os británicos, galos e iberos."
 
 #: gui/text/tips/iber_fireship.txt:3
 msgid ""
 "Construct them, move them near enemy ships, then ignite them to set them "
 "ablaze."
-msgstr ""
+msgstr "Constrúeos, móveos preto das naves inimigas e, a continuación, encéndeos para prenderlles lume."
 
 #: gui/text/tips/iber_fireship.txt:4
 msgid ""
 "They cause Fire damage to nearby enemy ships and themselves start to lose "
 "health."
-msgstr ""
+msgstr "Causan danos por lume ás naves inimigas próximas e eles mesmos comezan a perder saúde."
 
 #: gui/text/tips/iber_fireship.txt:5
 msgid "Very good against Siege Ships."
-msgstr ""
+msgstr "Moi eficaces contra os barcos de asedio."
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
-msgstr ""
+msgstr "FARO"
 
 #: gui/text/tips/lighthouse.txt:2
 msgid ""
 "Special Ptolemaic structures to increase your vision range when built on the"
 " shore."
-msgstr ""
+msgstr "Estruturas ptolemaicas especiais para aumentar o seu alcance de visión cando se constrúe na costa."
 
 #: gui/text/tips/map_flare.txt:1
 msgid "MAP FLARE"
-msgstr ""
+msgstr "AVISO SOBRE O MAPA"
 
 #: gui/text/tips/map_flare.txt:2
 msgid ""
 "Use this feature to let your team know where on the map something important "
 "happens."
-msgstr ""
+msgstr "Usa esta función para que o teu equipo saiba onde sucede algo importante do mapa."
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
-msgstr ""
+msgstr "Verán o aviso no seu minimapa."
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"
@@ -6865,18 +6866,18 @@ msgstr "PIRÁMIDES DE MEROË"
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
-msgstr ""
+msgstr "Estruturas especiais dispoñibles para os Kushites."
 
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
 "The small pyramids improve the gathering rate of the workers around them."
-msgstr ""
+msgstr "As pequenas pirámides melloran a taxa de reunión dos traballadores cas rodean."
 
 #: gui/text/tips/meroe_pyramids.txt:4
 msgid ""
 "The large pyramids increase the military capabilities of soldiers around "
 "them."
-msgstr ""
+msgstr "As grandes pirámides aumentan as capacidades militares dos soldados cas rodean."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -6888,13 +6889,13 @@ msgstr "Construir en territorio neutral ou propio."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr ""
+msgstr "Barato e rápido construílo, pero débil."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr ""
+msgstr "Infantería de guarnición para unha visión ampla, e para evitar perder o control do posto avanzado debido á decadencia do territorio."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -6910,7 +6911,7 @@ msgstr "A meirande parte das faccións teñen acceso a ela na fase de aldea."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "ACHAEMENID ARCHITECTURE"
-msgstr ""
+msgstr "ARQUITECTURA AQUEMENIDA"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
@@ -6918,7 +6919,7 @@ msgstr "Tecnoloxía especial para os persas."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr ""
+msgstr "Estruturas +25% saúde."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
@@ -6949,61 +6950,61 @@ msgstr "Dispoñíbel para os cuxitas, os macedonios, os tolemaicos e os seléuci
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "SIEGE WARSHIP"
-msgstr ""
+msgstr "BARCO DE GUERRA DE ASEDIO"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, Seleucids, and Han Chinese."
-msgstr ""
+msgstr "O buque de guerra estándar máis pesado. Dispoñible para: cartaxineses, ptolomeos, romanos, seléucidas e chineses han."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid ""
 "Strong crush damage and long range make them good against Arrow Ships and "
 "Buildings near the shore."
-msgstr ""
+msgstr "O forte dano por esmagamento e o longo alcance fan que sexan bos contra barcos de frechas e edificios preto da costa."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid ""
 "Countered by melee ships, such as Ramming Ships and Fire Ships, and other "
 "Siege Ships."
-msgstr ""
+msgstr "Contrarrestado por barcos corpo a corpo, como buques de embestido e buques de lume, e outros buques de asedio."
 
 #: gui/text/tips/ramming_ships.txt:1
 msgid "RAMMING SHIPS"
-msgstr ""
+msgstr "BARCOS ARIETE"
 
 #: gui/text/tips/ramming_ships.txt:2
 msgid "A strong and fast melee ship available to Mediterranean civilizations."
-msgstr ""
+msgstr "Un barco corpo a corpo forte e rápido dispoñible para as civilizacións mediterráneas."
 
 #: gui/text/tips/ramming_ships.txt:3
 msgid "Transport up to 30 troops swiftly across the water."
-msgstr ""
+msgstr "Transporta ata 30 tropas rapidamente pola auga."
 
 #: gui/text/tips/ramming_ships.txt:4
 msgid "Good against Siege Ships due to speed and strong ramming attack. "
-msgstr ""
+msgstr "Bo contra barcos de asedio debido á velocidade e ao forte ataque de embestida."
 
 #: gui/text/tips/ramming_ships.txt:5
 msgid "Countered by Arrow Ships and Defense Towers. "
-msgstr ""
+msgstr "Contrarrestados por barcos de frechas e torres de defensa."
 
 #: gui/text/tips/resource_counter.txt:1
 msgid "RESOURCE COUNTER"
-msgstr ""
+msgstr "CONTADOR DE RECURSOS"
 
 #: gui/text/tips/resource_counter.txt:2
 msgid ""
 "The resource counter panel shows you how much of each resources you have at "
 "the moment."
-msgstr ""
+msgstr "O panel contador de recursos móstrache a cantidade de cada recurso que tes neste momento."
 
 #: gui/text/tips/resource_counter.txt:3
 msgid ""
 "The number below it shows you how many citizens are currently gathering "
 "them."
-msgstr ""
+msgstr "O número de abaixo indica cantos cidadáns os están reunindo actualmente."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -7027,35 +7028,35 @@ msgstr "A madeira adoita escasear, pero as árbores baobab dan moita madeira."
 
 #: gui/text/tips/shrine.txt:1
 msgid "SHRINES"
-msgstr ""
+msgstr "SANTUARIOS"
 
 #: gui/text/tips/shrine.txt:2
 msgid "Capturable map objects. Cannot be built or destroyed."
-msgstr ""
+msgstr "Obxectos do mapa capturables. Non se pode construír nin destruír."
 
 #: gui/text/tips/shrine.txt:3
 msgid "Train Elite Healers and heal garrisoned units."
-msgstr ""
+msgstr "Adestra Curandeiros de élite e cura unidades de guarnición."
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
-msgstr ""
+msgstr "ENCAIXE"
 
 #: gui/text/tips/snapping.txt:2
 msgid ""
 "Structures can be aligned by keeping the snap hotkey pressed during "
 "placement."
-msgstr ""
+msgstr "As estruturas pódense aliñar mantendo pulsada a tecla rápida durante a colocación."
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
-msgstr ""
+msgstr "O aliñamento das estruturas permite conservar espazo para futuras construcións."
 
 #: gui/text/tips/snapping.txt:4
 msgid ""
 "Tightly packed groups of structures can also be used for obstructing raiding"
 " enemies."
-msgstr ""
+msgstr "Tamén se poden usar grupos de estruturas moi compactas para obstruír os inimigos que asaltan."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -7142,7 +7143,7 @@ msgstr "Decaemento polo territorio"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr ""
+msgstr "A decadencia ocorre cando as estruturas non están conectadas a un Centro Civil aliado."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
@@ -7154,52 +7155,52 @@ msgstr "O proceso de decaemento pode atrasarse ou reverterse acuartelando unidad
 msgid ""
 "When the decay is completed, the structure will be given to the most "
 "influential neighbor."
-msgstr ""
+msgstr "Cando se complete a decadencia, a estrutura será entregada ao veciño máis influente."
 
 #: gui/text/tips/theater.txt:1
 msgid "THEATER"
-msgstr ""
+msgstr "TEATRO"
 
 #: gui/text/tips/theater.txt:2
 msgid ""
 "Special structures of the Hellenic civilizations to increase the size of "
 "your territory while you control it."
-msgstr ""
+msgstr "Estruturas especiais das civilizacións helénicas para aumentar o tamaño do teu territorio mentres o controlas."
 
 #: gui/text/tips/treasure.txt:1
 msgid "TREASURES"
-msgstr ""
+msgstr "TESOUROS"
 
 #: gui/text/tips/treasure.txt:2
 msgid ""
 "Collectible chests and bare resources on land and shipwrecks on the shore."
-msgstr ""
+msgstr "Cofres coleccionables e recursos expostos en terra e naufraxios na costa."
 
 #: gui/text/tips/treasure.txt:3
 msgid ""
 "Provide you with a resource boost, so keep an eye out for them as you "
 "explore."
-msgstr ""
+msgstr "Ofréceche un impulso de recursos, así que estea atento a eles mentres exploras."
 
 #: gui/text/tips/triremes.txt:1
 msgid "ARROW SHIPS"
-msgstr ""
+msgstr "BARCOS DE FRECHA"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The basic Warship for most factions."
-msgstr ""
+msgstr "O buque de guerra básico para a maioría das faccións."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Transport up to 30 troops across the water."
-msgstr ""
+msgstr "Transporta ata 30 tropas pola auga."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Good against melee Warships, such as Ramming Ships and Fire Ships."
-msgstr ""
+msgstr "Bo contra buques de guerra corpo a corpo, como buques de embestida e buques de incendio."
 
 #: gui/text/tips/triremes.txt:5
 msgid "Countered by Siege Ships and other Arrow Ships. "
-msgstr ""
+msgstr "Contrarrestado por buques de asedio e outros buques de frechas."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"

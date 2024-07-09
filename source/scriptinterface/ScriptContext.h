@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,11 @@
 // Those are minimal defaults. The runtime for the main game is larger and GCs upon a larger growth.
 constexpr int DEFAULT_CONTEXT_SIZE = 16 * 1024 * 1024;
 constexpr int DEFAULT_HEAP_GROWTH_BYTES_GCTRIGGER = 2 * 1024 * 1024;
+
+namespace Script
+{
+class JobQueue;
+}
 
 /**
  * Abstraction around a SpiderMonkey JSContext.
@@ -75,6 +80,14 @@ public:
 	void UnRegisterRealm(JS::Realm* realm);
 
 	/**
+	 * Runs the promise continuation.
+	 * On contexts where promises can be used this function has to be
+	 * called.
+	 * This function has to be called frequently.
+	 */
+	void RunJobs();
+
+	/**
 	 * GetGeneralJSContext returns the context without starting a GC request and without
 	 * entering any compartment. It should only be used in specific situations, such as
 	 * creating a new compartment, or when initializing a persistent rooted.
@@ -86,14 +99,15 @@ public:
 private:
 
 	JSContext* m_cx;
+	const std::unique_ptr<Script::JobQueue> m_JobQueue;
 
 	void PrepareZonesForIncrementalGC() const;
 	std::list<JS::Realm*> m_Realms;
 
 	int m_ContextSize;
 	int m_HeapGrowthBytesGCTrigger;
-	int m_LastGCBytes;
-	double m_LastGCCheck;
+	int m_LastGCBytes{0};
+	double m_LastGCCheck{0.0};
 };
 
 // Using a global object for the context is a workaround until Simulation, AI, etc,

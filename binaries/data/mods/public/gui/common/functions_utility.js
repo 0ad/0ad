@@ -288,19 +288,15 @@ function getBuildString()
  *	property that page is opened with the @a args property of that object.
  *	That continues untill there is no @a nextPage property in the completion
  *	value. If there is no @a nextPage in the completion value the
- *	@a continuation is called with the completion value.
+ *	@a completionValue is returned.
  * @param {String} page - The page first opened.
  * @param args - passed to the first page opened.
- * @param continuation {function | undefined} - Completion callback, called when
- *	there is no @a nextPage property in the completion value.
  */
-function pageLoop(page, args, continuation)
+async function pageLoop(page, args)
 {
-	(function recursiveFunction(completionValue)
-		{
-			if (completionValue?.nextPage != null)
-				Engine.PushGuiPage(completionValue.nextPage, completionValue.args, recursiveFunction);
-			else
-				continuation?.(completionValue);
-		})({ "nextPage": page, "args": args });
+	let completionValue = { "nextPage": page, "args": args };
+	while (completionValue?.nextPage != null)
+		completionValue = await Engine.PushGuiPage(completionValue.nextPage, completionValue.args);
+
+	return completionValue;
 }

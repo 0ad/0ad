@@ -23,8 +23,11 @@ function downloadModsButton()
 	openTerms("Disclaimer");
 }
 
-function openModIo(data)
+async function openModIo(data)
 {
-	if (data.accepted)
-		Engine.PushGuiPage("page_modio.xml", {}, initMods);
+	if (!data.accepted)
+		return;
+
+	await Engine.PushGuiPage("page_modio.xml");
+	initMods();
 }

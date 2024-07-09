@@ -16,11 +16,12 @@ MenuButtons.prototype.Manual = class
 		this.pauseControl = pauseControl;
 	}
 
-	onPress()
+	async onPress()
 	{
 		closeOpenDialogs();
 		this.pauseControl.implicitPause();
-		Engine.PushGuiPage("page_manual.xml", {}, resumeGame);
+		await Engine.PushGuiPage("page_manual.xml");
+		resumeGame();
 	}
 };
 
@@ -54,18 +55,18 @@ MenuButtons.prototype.Save = class
 		this.pauseControl = pauseControl;
 	}
 
-	onPress()
+	async onPress()
 	{
 		closeOpenDialogs();
 		this.pauseControl.implicitPause();
 
-		Engine.PushGuiPage(
+		await Engine.PushGuiPage(
 			"page_loadgame.xml",
 			{
 				"savedGameData": getSavedGameData(),
 				"campaignRun": g_CampaignSession ? g_CampaignSession.run.filename : null
-			},
-			resumeGame);
+			});
+		resumeGame();
 	}
 };
 
@@ -92,7 +93,7 @@ MenuButtons.prototype.Summary = class
 		});
 	}
 
-	onPress()
+	async onPress()
 	{
 		if (Engine.IsAtlasRunning())
 			return;
@@ -102,7 +103,7 @@ MenuButtons.prototype.Summary = class
 		 // Allows players to see their own summary.
 		// If they have shared ally vision researched, they are able to see the summary of there allies too.
 		let simState = Engine.GuiInterfaceCall("GetExtendedSimulationState");
-		Engine.PushGuiPage(
+		const data = await Engine.PushGuiPage(
 			"page_summary.xml",
 			{
 				"sim": {
@@ -117,11 +118,10 @@ MenuButtons.prototype.Summary = class
 					"isInGame": true,
 					"summarySelection": this.summarySelection
 				},
-			},
-			data => {
-				this.summarySelection = data.summarySelection;
-				this.pauseControl.implicitResume();
 			});
+
+		this.summarySelection = data.summarySelection;
+		this.pauseControl.implicitResume();
 	}
 };
 
@@ -162,18 +162,13 @@ MenuButtons.prototype.Options = class
 		this.pauseControl = pauseControl;
 	}
 
-	onPress()
+	async onPress()
 	{
 		closeOpenDialogs();
 		this.pauseControl.implicitPause();
 
-		Engine.PushGuiPage(
-			"page_options.xml",
-			{},
-			changes => {
-				fireConfigChangeHandlers(changes);
-				resumeGame();
-			});
+		fireConfigChangeHandlers(await Engine.PushGuiPage("page_options.xml"));
+		resumeGame();
 	}
 };
 
@@ -186,15 +181,13 @@ MenuButtons.prototype.Hotkeys = class
 		this.pauseControl = pauseControl;
 	}
 
-	onPress()
+	async onPress()
 	{
 		closeOpenDialogs();
 		this.pauseControl.implicitPause();
 
-		Engine.PushGuiPage(
-			"hotkeys/page_hotkeys.xml",
-			{},
-			() => { resumeGame(); });
+		await Engine.PushGuiPage("hotkeys/page_hotkeys.xml");
+		resumeGame();
 	}
 };
 

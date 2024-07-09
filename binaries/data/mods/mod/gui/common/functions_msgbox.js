@@ -1,6 +1,7 @@
-function messageBox(mbWidth, mbHeight, mbMessage, mbTitle, mbButtonCaptions, mbBtnCode, mbCallbackArgs)
+async function messageBox(mbWidth, mbHeight, mbMessage, mbTitle, mbButtonCaptions, mbBtnCode,
+	mbCallbackArgs)
 {
-	Engine.PushGuiPage(
+	const btnCode = await Engine.PushGuiPage(
 		"page_msgbox.xml",
 		{
 			"width": mbWidth,
@@ -8,16 +9,16 @@ function messageBox(mbWidth, mbHeight, mbMessage, mbTitle, mbButtonCaptions, mbB
 			"message": mbMessage,
 			"title": mbTitle,
 			"buttonCaptions": mbButtonCaptions
-		},
-		btnCode => {
-			if (mbBtnCode !== undefined && mbBtnCode[btnCode])
-				mbBtnCode[btnCode](mbCallbackArgs ? mbCallbackArgs[btnCode] : undefined);
 		});
+
+	if (mbBtnCode !== undefined && mbBtnCode[btnCode])
+		mbBtnCode[btnCode](mbCallbackArgs ? mbCallbackArgs[btnCode] : undefined);
 }
 
-function timedConfirmation(width, height, message, timeParameter, timeout, title, buttonCaptions, btnCode, callbackArgs)
+async function timedConfirmation(width, height, message, timeParameter, timeout, title, buttonCaptions,
+	btnCode, callbackArgs)
 {
-	Engine.PushGuiPage(
+	const button = await Engine.PushGuiPage(
 		"page_timedconfirmation.xml",
 		{
 			"width": width,
@@ -27,22 +28,10 @@ function timedConfirmation(width, height, message, timeParameter, timeout, title
 			"timeout": timeout,
 			"title": title,
 			"buttonCaptions": buttonCaptions
-		},
-		button => {
-			if (btnCode !== undefined && btnCode[button])
-				btnCode[button](callbackArgs ? callbackArgs[button] : undefined);
 		});
-}
 
-function colorMixer(color, callback)
-{
-	Engine.PushGuiPage(
-		"page_colormixer.xml",
-		color,
-		result => {
-			callback(result);
-		}
-	);
+	if (btnCode !== undefined && btnCode[button])
+		btnCode[button](callbackArgs ? callbackArgs[button] : undefined);
 }
 
 function openURL(url)

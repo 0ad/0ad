@@ -68,9 +68,9 @@ public:
 	 * Load a new GUI page and make it active. All current pages will be retained,
 	 * and will still be drawn and receive tick events, but will not receive
 	 * user inputs.
-	 * If given, the callbackHandler function will be executed once this page is closed.
+	 * The returned promise will be fulfilled once the pushed page is closed.
 	 */
-	void PushPage(const CStrW& pageName, Script::StructuredClone initData, JS::HandleValue callbackFunc);
+	JS::Value PushPage(const CStrW& pageName, Script::StructuredClone initData);
 
 	/**
 	 * Unload the currently active GUI page, and make the previous page active.
@@ -146,16 +146,17 @@ private:
 		void LoadPage(ScriptContext& scriptContext);
 
 		/**
-		 * Sets the callback handler when a new page is opened that will be performed when the page is closed.
+		 * A new promise gets set. A reference to that promise is returned. The promise will settle when
+		 * the page is closed.
 		 */
-		void SetCallbackFunction(ScriptInterface& scriptInterface, JS::HandleValue callbackFunc);
+		JS::Value ReplacePromise(ScriptInterface& scriptInterface);
 
 		/**
 		 * Execute the stored callback function with the given arguments.
 		 */
-		void PerformCallbackFunction(Script::StructuredClone args);
+		void ResolvePromise(Script::StructuredClone args);
 
-		CStrW m_Name;
+		std::wstring m_Name;
 		std::unordered_set<VfsPath> inputs; // for hotloading
 		Script::StructuredClone initData; // data to be passed to the init() function
 		std::shared_ptr<CGUI> gui; // the actual GUI page
@@ -164,7 +165,7 @@ private:
 		 * Function executed by this parent GUI page when the child GUI page it pushed is popped.
 		 * Notice that storing it in the SGUIPage instead of CGUI means that it will survive the hotloading CGUI reset.
 		 */
-		std::shared_ptr<JS::PersistentRootedValue> callbackFunction;
+		std::shared_ptr<JS::PersistentRootedObject> callbackFunction;
 	};
 
 	std::shared_ptr<CGUI> top() const;
@@ -176,8 +177,22 @@ private:
 	 * The page stack must not move pointers on push/pop, or pushing a page in a page's init method
 	 * may crash (as the pusher page will suddenly have moved, and the stack will be confused).
 	 * Therefore use std::deque over std::vector.
+	 * Also the elements have to be destructed back to front.
 	 */
-	using PageStackType = std::deque<SGUIPage>;
+	class PageStackType : public std::deque<SGUIPage>
+	{
+	public:
+		~PageStackType()
+		{
+			clear();
+		}
+
+		void clear()
+		{
+			while (!std::deque<SGUIPage>::empty())
+				std::deque<SGUIPage>::pop_back();
+		}
+	};
 	PageStackType m_PageStack;
 
 	CTemplateLoader m_TemplateLoader;
