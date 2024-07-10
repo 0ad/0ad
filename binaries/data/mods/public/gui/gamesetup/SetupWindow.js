@@ -33,7 +33,7 @@ class SetupWindow
 		let playerAssignmentsController = new PlayerAssignmentsController(this, netMessages);
 		let gameSettingsController = new GameSettingsController(this, netMessages, playerAssignmentsController, mapCache);
 		let readyController = new ReadyController(netMessages, gameSettingsController, playerAssignmentsController);
-		let lobbyGameRegistrationController = Engine.HasXmppClient() &&
+		const lobbyGameRegistrationController = g_IsController && Engine.HasXmppClient() &&
 			new LobbyGameRegistrationController(initData, this, netMessages, mapCache, playerAssignmentsController);
 
 		// These class instances control central data and do not manage any GUI Object.
