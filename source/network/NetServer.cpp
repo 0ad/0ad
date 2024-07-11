@@ -252,7 +252,11 @@ void CNetServerWorker::SetupUPnP()
 	else if ((devlist = upnpDiscover(10000, 0, 0, 0, 0, 0)) != NULL)
 #endif
 	{
+#if defined(MINIUPNPC_API_VERSION) && MINIUPNPC_API_VERSION >= 18
+		ret = UPNP_GetValidIGD(devlist, &urls, &data, internalIPAddress, sizeof(internalIPAddress), nullptr, 0);
+#else
 		ret = UPNP_GetValidIGD(devlist, &urls, &data, internalIPAddress, sizeof(internalIPAddress));
+#endif
 		allocatedUrls = ret != 0; // urls is allocated on non-zero return values
 	}
 	else
@@ -270,17 +274,28 @@ void CNetServerWorker::SetupUPnP()
 	case 1:
 		LOGMESSAGE("Net server: found valid IGD = %s", urls.controlURL);
 		break;
+#if defined(MINIUPNPC_API_VERSION) && MINIUPNPC_API_VERSION >= 18
 	case 2:
-		LOGMESSAGE("Net server: found a valid, not connected IGD = %s, will try to continue anyway", urls.controlURL);
+		LOGMESSAGE("Net server: found IGD with reserved IP = %s, will try to continue anyway", urls.controlURL);
 		break;
 	case 3:
+#else
+	case 2:
+#endif
+		LOGMESSAGE("Net server: found a valid, not connected IGD = %s, will try to continue anyway", urls.controlURL);
+		break;
+#if defined(MINIUPNPC_API_VERSION) && MINIUPNPC_API_VERSION >= 18
+	case 4:
+#else
+	case 3:
+#endif
 		LOGMESSAGE("Net server: found a UPnP device unrecognized as IGD = %s, will try to continue anyway", urls.controlURL);
 		break;
 	default:
 		debug_warn(L"Unrecognized return value from UPNP_GetValidIGD");
 	}
 
-	// Try getting our external/internet facing IP. TODO: Display this on the game-setup page for conviniance.
+	// Try getting our external/internet facing IP. TODO: Display this on the game-setup page for convenience.
 	ret = UPNP_GetExternalIPAddress(urls.controlURL, data.first.servicetype, externalIPAddress);
 	if (ret != UPNPCOMMAND_SUCCESS)
 	{
