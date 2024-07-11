@@ -46,8 +46,7 @@ class LobbyGameRegistrationController
 
 	onClosePage()
 	{
-		if (g_IsController && Engine.HasXmppClient())
-			Engine.SendUnregisterGame();
+		Engine.SendUnregisterGame();
 	}
 
 	/**
@@ -55,9 +54,6 @@ class LobbyGameRegistrationController
 	 */
 	sendDelayed()
 	{
-		if (!g_IsController || !Engine.HasXmppClient())
-			return;
-
 		// Already sending an update - do nothing.
 		if (this.timer !== undefined)
 			return;
@@ -70,9 +66,6 @@ class LobbyGameRegistrationController
 	 */
 	sendImmediately()
 	{
-		if (!g_IsController || !Engine.HasXmppClient())
-			return;
-
 		// Wait until a map has been selected.
 		if (!g_GameSettings.map.map)
 			return;
