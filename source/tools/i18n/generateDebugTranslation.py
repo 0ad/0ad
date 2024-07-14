@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2022 Wildfire Games.
+# Copyright (C) 2024 Wildfire Games.
 # This file is part of 0 A.D.
 #
 # 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,7 +48,8 @@ def generate_long_strings(root_path, input_file_name, output_file_name, language
     # Fill catalog with English strings.
     for message in template_catalog:
         long_string_catalog.add(
-            id=message.id, string=message.id, context=message.context)
+            id=message.id, string=message.id, context=message.context,
+            auto_comments=message.auto_comments)
 
     # Load existing translation catalogs.
     existing_translation_catalogs = getCatalogs(input_file_path, languages)
@@ -112,12 +113,14 @@ def generate_debug(root_path, input_file_name, output_file_name):
             out_catalog.add(
                 id=message.id,
                 string=(DEBUG_PREFIX + message.id[0],),
-                context=message.context)
+                context=message.context,
+                auto_comments=message.auto_comments)
         else:
             out_catalog.add(
                 id=message.id,
                 string=DEBUG_PREFIX + message.id,
-                context=message.context)
+                context=message.context,
+                auto_comments=message.auto_comments)
 
     out_catalog.writeTo(output_file_path)
 
