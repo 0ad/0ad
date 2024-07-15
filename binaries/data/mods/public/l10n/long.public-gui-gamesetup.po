@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-06-10 07:18+0000\n"
-"PO-Revision-Date: 2024-06-10 07:18+0000\n"
+"POT-Creation-Date: 2024-07-15 07:19+0000\n"
+"PO-Revision-Date: 2024-07-15 07:19+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -126,9 +126,13 @@ msgstr "လှည့်ဖြားမှုများ"
 msgid "Toggle the usability of cheats."
 msgstr "Uključite  ili isključite mogućnost  korištenja šifri  za varanje. "
 
+#. Translation: Make sure to differentiate between the revealed map and explored map
+#. settings!
 msgid "Explored Map"
 msgstr "Išžvalgytas žemėlapis"
 
+#. Translation: Make sure to differentiate between the revealed map and explored map
+#. settings!
 msgid "Toggle explored map (see initial map)."
 msgstr "Tabulam exploratam instituere (lusores tabulam pristinam videre possunt)."
 
@@ -171,9 +175,13 @@ msgstr "Määrää sankari varuskuntaan"
 msgid "Toggle whether heroes can be garrisoned."
 msgstr "Ativa ou desabita a possibilidade do herói poder ser aquartelado num edifício ou não."
 
+#. Translation: Make sure to differentiate between the revealed map and explored map
+#. settings!
 msgid "Revealed Map"
 msgstr "Mapa air fhoillseachadh"
 
+#. Translation: Make sure to differentiate between the revealed map and explored map
+#. settings!
 msgid "Toggle revealed map (see everything)."
 msgstr "Tabulam apertam instituere (lusores omnes in hac tabula ad tempus videre possunt)."
 
@@ -691,6 +699,8 @@ msgctxt "loading screen progress"
 msgid "%(percentage)s%%"
 msgstr "%(percentage)s %%"
 
+#. Translation: A bullet point used before every item of list of tips displayed on loading
+#. screen
 #, python-format
 msgid "• %(tiptext)s"
 msgstr "• %(tiptext)s"

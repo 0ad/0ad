@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-06-10 07:18+0000\n"
-"PO-Revision-Date: 2024-06-10 07:18+0000\n"
+"POT-Creation-Date: 2024-07-15 07:19+0000\n"
+"PO-Revision-Date: 2024-07-15 07:19+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -91,6 +91,7 @@ msgctxt "Separator for a list of client loading messages"
 msgid ", "
 msgstr "، و"
 
+#. Translation: The "x" means "times", with the mathematical meaning of multiplication.
 #, python-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)sবার (%(speed)sগুন গতিতে)"
@@ -113,6 +114,8 @@ msgctxt "countdown format"
 msgid "m:ss"
 msgstr "മിനിറ്റ്:സെക്കൻഡ്"
 
+#. Translation: String displayed when the research is paused. E.g. by being garrisoned or
+#. when not the first item in the queue.
 msgid "This item is paused."
 msgstr "Αυτό το αντικείμενο είναι σε παύση"
 
@@ -217,10 +220,12 @@ msgstr ""
 "Brùth air %(hotkey)s gus a’ chabadaich phrìobhaideach mu dheireadh a thagh thu "
 "fhosgladh."
 
+#. Translation: A player that left the game joins again
 #, python-format
 msgid "%(player)s is starting to rejoin the game."
 msgstr "%(player)s a zo o kregiñ da emezelañ e-barzh ar c'hoariadenn."
 
+#. Translation: A player joins the game for the first time
 #, python-format
 msgid "%(player)s is starting to join the game."
 msgstr "%(player)s a zo o kregiñ da stagañ gant ar c'hoariadenn."
@@ -237,10 +242,12 @@ msgstr "Στον παίκτη %(username)s απαγορεύτηκε η πρόσ�
 msgid "%(username)s has been kicked"
 msgstr "Ο παίκτης %(username)s εκδιώχθηκε από το παιχνίδι."
 
+#. Translation: A player that left the game joins again
 #, python-format
 msgid "%(player)s has rejoined the game."
 msgstr "%(player)s heeft zich opnieuw bij het spel aangesloten."
 
+#. Translation: A player joins the game for the first time
 #, python-format
 msgid "%(player)s has joined the game."
 msgstr "%(player)s en deus staget gant ar c'hoariadenn."
@@ -328,6 +335,8 @@ msgstr "Overagngen til %(phaseName)s for %(player)s har blitt kansellert."
 msgid "%(player)s has reached the %(phaseName)s."
 msgstr "%(player)s on saavuttanut vaiheen %(phaseName)s."
 
+#. Translation: This comma is used for separating first to penultimate elements in an
+#. enumeration.
 msgid ", "
 msgstr "، و"
 
@@ -610,6 +619,7 @@ msgstr "Diskargañ ar statud a zo er mare-mañ da %(filepath)s"
 msgid "Out of Sync"
 msgstr "Chailleadh an sioncronachadh"
 
+#. Translation: This is shown if replay is out of sync
 msgid "Out-Of-Sync"
 msgstr "Se ha perdido la sincronización"
 
@@ -619,9 +629,11 @@ msgstr "Confirmar decisión"
 msgid "The game has finished, what do you want to do?"
 msgstr "Thàinig an geama gu crìoch, dè tha thu airson dèanamh?"
 
+#. Translation: Shown in the Dialog that shows up when the game finishes
 msgid "Stay"
 msgstr "Tetap di sini"
 
+#. Translation: Shown in the Dialog that shows up when the game finishes
 msgid "Quit and View Summary"
 msgstr "Fàg an-seo ’s seall air a’ gheàrr-chunntas"
 
@@ -788,10 +800,12 @@ msgstr "%(label)s %(details)s"
 msgid "Loot:"
 msgstr "Ryöstösaalis:"
 
+#. Translation: Used in the trading gain tooltip
 #, python-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s님)"
 
+#. Translation: Used in the trading gain tooltip to concatenate profits of different players
 msgid "+"
 msgstr "+"
 
@@ -1103,6 +1117,8 @@ msgstr "По возрастанию"
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s님: %(statValue)s"
 
+#. Translation: Do not insert spaces around the slash symbol for this exact string. Keep only
+#. one space between popLimit and popMax.
 #, python-format
 msgid "%(popCount)s/%(popLimit)s (%(popMax)s)"
 msgstr "%(popCount)s / %(popLimit)s (%(popMax)s)"

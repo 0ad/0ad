@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-07-08 07:18+0000\n"
-"PO-Revision-Date: 2024-07-08 07:18+0000\n"
+"POT-Creation-Date: 2024-07-15 07:19+0000\n"
+"PO-Revision-Date: 2024-07-15 07:19+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -59,10 +59,13 @@ msgctxt "filesize unit"
 msgid "GiB"
 msgstr "Gigabitů"
 
+#. Translation: For example: 123.4 KiB
 #, python-format
 msgid "%(filesize)s %(unit)s"
 msgstr "%(filesize)s  %(unit)s"
 
+#. Translation: Time-format string. See http://userguide.icu-project.org/formatparse/datetime
+#. for a guide to the meaning of the letters.
 msgid "mm:ss"
 msgstr "mm:ss"
 
@@ -261,10 +264,13 @@ msgstr "’Ga luchdadh a-nuas"
 msgid "Cancel Download"
 msgstr "Sguir dhen luchdadh a-nuas"
 
+#. Translation: Mod file download indicator. Current size over expected final size, with
+#. percentage complete.
 #, python-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
 msgstr " %(current)s / %(total)s (%(percent)s%%)"
 
+#. Translation: Mod file download status message.
 #, python-format
 msgid ""
 "Time Elapsed: %(elapsed)s\n"
@@ -278,6 +284,8 @@ msgstr ""
 msgid "∞"
 msgstr "бесконачно"
 
+#. Translation: Average download speed, used to give the user a very rough and naive idea of
+#. the download time. For example: 123.4 KiB/s
 #, python-format
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s %(unit)s در ثانیه"
@@ -464,6 +472,8 @@ msgstr "Politique de Confidentialité de mod.io"
 msgid "OK"
 msgstr "Ceart go leor"
 
+#. Translation: Label of a button that when pressed opens the Terms and Conditions in the
+#. default webbrowser.
 msgid "View online"
 msgstr "Προβολή στο διαδίκτυο"
 

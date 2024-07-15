@@ -2,13 +2,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-07-08 07:18+0000\n"
-"PO-Revision-Date: 2024-07-08 07:18+0000\n"
+"POT-Creation-Date: 2024-07-15 07:19+0000\n"
+"PO-Revision-Date: 2024-07-15 07:19+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit"
 
+#. dennis-ignore: *
 #, python-format
 msgid "FPS: %(fps)4s"
 msgstr "Bilder per sekund: %(fps)4s"
@@ -39,42 +40,52 @@ msgstr "مادر طبیعت"
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Kompilatsioon: %(buildDate)s (%(revision)s)"
 
+#. Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
 #, python-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdescription)s)"
 
+#. Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
 #, python-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 msgstr "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 
+#. Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
 #, python-format
 msgid "%(playerName)s (%(AIdescription)s)"
 msgstr "%(playerName)s (%(AIdescription)s)"
 
+#. Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
 #, python-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
 msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
+#. Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
 #, python-format
 msgid "%(playerName)s (OFFLINE)"
 msgstr "%(playerName)s (ЧЕЛТӘРГӘ ТОТАШМАГАН)"
 
+#. Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
 #, python-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
 msgstr "%(playerName)s (ЧЕЛТӘРГӘ ТОТАШМАГАН, %(state)s)"
 
+#. Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
 #, python-format
 msgid "%(playerName)s (%(civ)s)"
 msgstr "%(playerName)s님 (%(civ)s)"
 
+#. Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
 #, python-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
 msgstr "%(playerName)s님 (%(civ)s, %(state)s)"
 
+#. Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
 #, python-format
 msgid "%(playerName)s"
 msgstr "%(playerName)s님"
 
+#. Translation: Describe a player in a selected game, f.e. in the replay- or savegame menu
 #, python-format
 msgid "%(playerName)s (%(state)s)"
 msgstr "%(playerName)s 님 (%(state)s)"
@@ -97,6 +108,8 @@ msgstr "Nessuna Squadra"
 msgid "Team %(team)s"
 msgstr "Conjuntu %(team)s"
 
+#. Translation: Describe players of one team in a selected game, f.e. in the replay- or
+#. savegame menu or lobby
 #, python-format
 msgid ""
 "%(team)s:\n"
@@ -399,6 +412,7 @@ msgstr "Verbinding verbroken"
 msgid "Only the host can kick clients!"
 msgstr "El anfitrión es el único que puede echar a clientes de la partida."
 
+#. Translation: Number of currently connected players/observers and their names
 #, python-format
 msgid "Users (%(num)s): %(users)s"
 msgstr "Cleachdaichean (%(num)s): %(users)s"
@@ -646,18 +660,22 @@ msgstr[1] "Pfeile"
 msgid "%(projectileString)s / %(attackRateString)s"
 msgstr "%(projectileString)s / %(attackRateString)s"
 
+#. Translation: For example: Range: 2 to 10 (+2) meters
 #, python-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(minRange)s hingga %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
+#. Translation: For example: Range: 10 (+2) meters
 #, python-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
+#. Translation: For example: Range: 2 to 10 meters
 #, python-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(minRange)s hingga %(maxRange)s %(rangeUnit)s"
 
+#. Translation: For example: Range: 10 meters
 #, python-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
@@ -669,6 +687,7 @@ msgstr "Distancia de tiro:"
 msgid "+%(number)s"
 msgstr "+%(number)s"
 
+#. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3) meters"
 msgid "meters"
 msgstr "meatair"
 
@@ -847,6 +866,8 @@ msgstr "Velocitat de recol·lecció:"
 msgid "%(resourceIcon)s %(rate)s"
 msgstr "%(resourceIcon)s %(rate)s"
 
+#. Translation: Label in tooltip showing the resource type and quantity of a given resource
+#. supply.
 #, python-format
 msgid "%(label)s %(component)s %(amount)s"
 msgstr "%(label)s %(component)s %(amount)s"
@@ -854,6 +875,8 @@ msgstr "%(label)s %(component)s %(amount)s"
 msgid "Resource Supply:"
 msgstr "Approvisionnement en ressources:"
 
+#. Translation: Marks that a resource supply entity has an unending, infinite, supply of its
+#. resource.
 msgid "∞"
 msgstr "∞"
 
@@ -874,6 +897,8 @@ msgstr "%(resources)s / %(time)s"
 msgid "Upkeep:"
 msgstr "Náklady na vydržiavanie:"
 
+#. Translation: This string is part of the resources cost string on
+#. the tooltip for wall structures.
 #, python-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s белән %(resourceIcon)s %(maximum)s арасында"
@@ -886,6 +911,7 @@ msgstr "Ballachan:  %(costs)s"
 msgid "Towers:  %(costs)s"
 msgstr "Bokšteliai:  %(costs)s"
 
+#. Translation: Label in tooltip showing cost of a unit, structure or technology.
 #, python-format
 msgid "%(label)s %(costs)s"
 msgstr "%(label)s %(costs)s"
@@ -961,6 +987,8 @@ msgstr "%(primaryName)s"
 msgid "Classes:"
 msgstr "Категорії:"
 
+#. Translation: %(component) will be the icon for the loot type and %(loot) will be the
+#. value.
 #, python-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
@@ -975,9 +1003,13 @@ msgstr "%(label)s %(icons)s"
 msgid "Dropsite for:"
 msgstr "Şunun için bırakma alanı : "
 
+#. Translation: Appears in a tooltip to indicate that right-clicking the corresponding GUI
+#. element will open the Template Details GUI page.
 msgid "Right-click to view more information."
 msgstr "Клацнути правою кнопкою миші, щоб переглянути більше інформації."
 
+#. Translation: Appears in a tooltip to indicate that clicking the corresponding GUI element
+#. will open the Template Details GUI page.
 msgid "Click to view more information."
 msgstr "Нажмите, чтобы посмотреть дополнительную информацию."
 
@@ -2894,6 +2926,9 @@ msgstr "Նկարագրություն"
 msgid "Language:"
 msgstr "Hizkuntza:"
 
+#. A locale is a set of parameters that defines the user’s language, country and any special
+#. variant preferences that the user wants to see in their user interface. Here, “Locale”
+#. refers to the code that identifies those settings, such as ‘en_US’.
 msgid "Locale:"
 msgstr "Področne nastavitve:"
 
@@ -4281,6 +4316,7 @@ msgstr ""
 "Πολεμήστε εναντίον ενός ή περισσότερων παικτών, σε ένα παιχνίδι για πολλούς παίκτες "
 "(multiplayer)."
 
+#. Translation: Join a game by specifying the host's IP address.
 msgid "Join Game"
 msgstr "Придружи се постојећој игри"
 
@@ -4513,6 +4549,7 @@ msgstr "%(hotkey)s: Закрыть бонусы погребальных кол�
 msgid "Catafalque Bonuses"
 msgstr "Buannachdan na leapa-righe"
 
+#. Translation: Description of an item in the CivInfo page, on a new line and indented.
 #, python-format
 msgid ""
 "\n"
@@ -4521,6 +4558,11 @@ msgstr ""
 "\n"
 "     %(description)s"
 
+#. Translation: An entry in the CivInfo Page. The newline and indentation of the description
+#. is handled elsewhere.
+#. Example:
+#. > • Name of a Special Something (i)
+#. >     A brief description of the aforementioned something.
 #, python-format
 msgid "• %(name)s %(info_icon)s%(description)s"
 msgstr "• %(name)s님 %(info_icon)s%(description)s"
@@ -4577,28 +4619,42 @@ msgstr "Քաղաքակրթություն՝"
 msgid "%(health_min)s to %(health_max)s"
 msgstr "%(health_min)s hingga %(health_max)s"
 
+#. Translation: Label followed by a list of values.
 #, python-format
 msgid "%(listHeader)s %(listOfValues)s"
 msgstr "%(listHeader)s %(listOfValues)s"
 
+#. Translation: Label before a list of the names of units that build the structure selected.
 msgid "Built by:"
 msgstr "다음 유닛으로 이 건축물을 지을 수 있음:"
 
+#. Translation: Label before a list of the names of structures or units that train the unit
+#. selected.
 msgid "Trained by:"
 msgstr "Gerekruteerd door:"
 
+#. Translation: Label before a list of names of structures or units that research the
+#. technology selected.
 msgid "Researched at:"
 msgstr "Kaset da benn enklaskoù diwar e benn e:"
 
+#. Translation: Label before a list of the names of structures the selected unit can
+#. construct or build.
 msgid "Builds:"
 msgstr "Amit fel tud építeni:"
 
+#. Translation: Label before a list of the names of technologies the selected unit or
+#. structure can research.
 msgid "Researches:"
 msgstr "Kutatható fejlesztések:"
 
+#. Translation: Label before a list of the names of units the selected unit or structure can
+#. train.
 msgid "Trains:"
 msgstr "Kiképezhető egységek:"
 
+#. Translation: Label before a list of the names of units or structures the selected unit or
+#. structure can be upgradable to.
 msgid "Upgradable to:"
 msgstr "Możliwość unowocześnienia do:"
 
@@ -4662,6 +4718,7 @@ msgctxt "duration"
 msgid "Any"
 msgstr "Mikä tahansa"
 
+#. Translation: Shorter duration than max minutes.
 #, python-format
 msgctxt "duration filter"
 msgid "< %(max)s min"
@@ -4669,6 +4726,7 @@ msgid_plural "< %(max)s min"
 msgstr[0] "< %(max)s min"
 msgstr[1] "< %(max)s min"
 
+#. Translation: Longer duration than min minutes.
 #, python-format
 msgctxt "duration filter"
 msgid "> %(min)s min"
@@ -4676,6 +4734,7 @@ msgid_plural "> %(min)s min"
 msgstr[0] "> %(min)s min"
 msgstr[1] "> %(min)s min"
 
+#. Translation: Duration between min and max minutes.
 #, python-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
@@ -4939,6 +4998,7 @@ msgstr "Beneficios commerciales"
 msgid "Barter efficiency"
 msgstr "Efektywność handlu wymiennego"
 
+#. Translation: use %(resourceWithinSentence)s if needed
 #, python-format
 msgid "%(resourceFirstWord)s exchanged"
 msgstr "%(resourceFirstWord)s alışverişi yapıldı"
@@ -5869,42 +5929,57 @@ msgstr ""
 msgid "Harvest from animals, berry bushes, fish, or fields."
 msgstr "Colheita de animais, arbustos de bagas, peixes ou campos agrícolas."
 
+#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
 msgctxt "firstWord"
 msgid "Food"
 msgstr "Nourriture"
 
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "nourriture"
 
+#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
 msgctxt "firstWord"
 msgid "Fish"
 msgstr "Arrainkia"
 
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
 msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Arrainkia"
 
+#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
 msgctxt "firstWord"
 msgid "Fruit"
 msgstr "buah-buahan"
 
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
 msgctxt "withinSentence"
 msgid "Fruit"
 msgstr "buah-buahan"
 
+#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
 msgctxt "firstWord"
 msgid "Grain"
 msgstr "Padi-padian"
 
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
 msgctxt "withinSentence"
 msgid "Grain"
 msgstr "Padi-padian"
 
+#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
 msgctxt "firstWord"
 msgid "Meat"
 msgstr "Fleisch"
 
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
 msgctxt "withinSentence"
 msgid "Meat"
 msgstr "Fleisch"
@@ -5912,26 +5987,35 @@ msgstr "Fleisch"
 msgid "Mine from metal mines or quarries."
 msgstr "Tochail mèinnean meatailt no cuaraidhean gus fhaighinn."
 
+#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
 msgctxt "firstWord"
 msgid "Metal"
 msgstr "Meatailt"
 
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "meatailte"
 
+#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
 msgctxt "firstWord"
 msgid "Ore"
 msgstr "Clach-mheatailt"
 
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
 msgctxt "withinSentence"
 msgid "Ore"
 msgstr "Clach-mheatailt"
 
+#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
 msgctxt "firstWord"
 msgid "Ruins"
 msgstr "ნანგრევები"
 
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
 msgctxt "withinSentence"
 msgid "Ruins"
 msgstr "ნანგრევები"
@@ -5939,18 +6023,24 @@ msgstr "ნანგრევები"
 msgid "Mine from rocks, stone quarries or ruins."
 msgstr "Těžit ze skal, z lomů na kámen nebo z rozvalin (trosek, zbořenišť, zřícenin)."
 
+#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
 msgctxt "firstWord"
 msgid "Stone"
 msgstr "Камінь"
 
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "cloiche"
 
+#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
 msgctxt "firstWord"
 msgid "Rock"
 msgstr "Stenbumling"
 
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
 msgctxt "withinSentence"
 msgid "Rock"
 msgstr "Stenbumling"
@@ -5958,18 +6048,24 @@ msgstr "Stenbumling"
 msgid "Cut down from trees or groves."
 msgstr "Leag craobhan no doireachan gus fhaighinn."
 
+#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
 msgctxt "firstWord"
 msgid "Wood"
 msgstr "மரக்கட்டை"
 
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "மரக்கட்டை"
 
+#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
 msgctxt "firstWord"
 msgid "Tree"
 msgstr "Zuhaitza"
 
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
 msgctxt "withinSentence"
 msgid "Tree"
 msgstr "Zuhaitza"
