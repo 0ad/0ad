@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-06-17 07:18+0000\n"
-"PO-Revision-Date: 2024-06-17 07:18+0000\n"
+"POT-Creation-Date: 2024-07-15 07:19+0000\n"
+"PO-Revision-Date: 2024-07-15 07:19+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -435,26 +435,38 @@ msgstr ""
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "Non é posíbel construír a estrutura «%(name)s» en terreo non apto."
 
+#. Translation: territoryType being displayed in a translated sentence in the form: "House
+#. cannot be built in %(territoryType)s territory.".
 msgctxt "Territory type"
 msgid "own"
 msgstr "perc'hennet"
 
+#. Translation: territoryType being displayed in a translated sentence in the form: "House
+#. cannot be built in %(territoryType)s territory.".
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr "agad fhèin nach eil ceangailte"
 
+#. Translation: territoryType being displayed in a translated sentence in the form: "House
+#. cannot be built in %(territoryType)s territory.".
 msgctxt "Territory type"
 msgid "allied"
 msgstr "comhghuaillithe"
 
+#. Translation: territoryType being displayed in a translated sentence in the form: "House
+#. cannot be built in %(territoryType)s territory.".
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr "verbündetem und nicht verbundenem"
 
+#. Translation: territoryType being displayed in a translated sentence in the form: "House
+#. cannot be built in %(territoryType)s territory.".
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "neo-phàirteach"
 
+#. Translation: territoryType being displayed in a translated sentence in the form: "House
+#. cannot be built in %(territoryType)s territory.".
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "nepriateľskom"
@@ -484,18 +496,26 @@ msgid_plural "%(name)s too far from a %(category)s, must be within %(distance)s 
 msgstr[0] "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgstr[1] "%(name)s too far from a %(category)s, must be within %(distance)s meters"
 
+#. Translation: Territory types being displayed as part of a list like "Valid territories:
+#. own, ally".
 msgctxt "Territory type list"
 msgid "own"
 msgstr "perc'hennet"
 
+#. Translation: Territory types being displayed as part of a list like "Valid territories:
+#. own, ally".
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "aig caidreabhach"
 
+#. Translation: Territory types being displayed as part of a list like "Valid territories:
+#. own, ally".
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "الأقاليم المحايدة"
 
+#. Translation: Territory types being displayed as part of a list like "Valid territories:
+#. own, ally".
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "aig an nàmhaid"

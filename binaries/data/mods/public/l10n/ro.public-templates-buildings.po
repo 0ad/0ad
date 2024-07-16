@@ -26,7 +26,7 @@
 # Robert, 2018
 # coyoty, 2014
 # Silvio George, 2017
-# Silviu Apostol (yomisimie), 2023
+# Silviu Apostol (yomisimie), 2023-2024
 # Simona Iacob, 2021
 # Stefan Bayreuther, 2021
 # Victor Achim, 2021
@@ -38,7 +38,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-01-08 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: Dominik Jastrzębski, 2022-2024\n"
+"Last-Translator: Silviu Apostol (yomisimie), 2023-2024\n"
 "Language-Team: Romanian (http://app.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -682,7 +682,7 @@ msgstr "Dìguó Xuéyuàn"
 
 #: simulation/templates/structures/han/academy.xml:30
 msgid "Train Champions and research their technologies."
-msgstr ""
+msgstr "Instruiește eroi și cercetează tehnologii lor proprii."
 
 #: simulation/templates/structures/han/academy.xml:31
 msgid "Academy"
@@ -1083,7 +1083,7 @@ msgstr ""
 
 #: simulation/templates/structures/kush/shrine.xml:12
 msgid "Shrine"
-msgstr ""
+msgstr "Altar"
 
 #: simulation/templates/structures/kush/shrine.xml:13
 msgid "ḥwt-nṯr"
@@ -1252,7 +1252,7 @@ msgid ""
 "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
 "archers recieve a range and armor bonus. Only archers can garrison. Needs "
 "the murder holes tech to protect its foot."
-msgstr ""
+msgstr "Turn mai durabil cu metereze pentru maxim 16 arcași. Arcașii vizibil în garnizoană primesc bonus de rază și armură. Numai arcașii pot fi plasați în garnizoană. Are nevoie de tehnologia guri de aruncare pentru a proteja baza."
 
 #: simulation/templates/structures/maur/wall_gate.xml:15
 msgid "Dwara"
@@ -1468,7 +1468,7 @@ msgstr "Asiyah"
 
 #: simulation/templates/structures/pers/tachara.xml:29
 msgid "Winter Palace"
-msgstr ""
+msgstr "Palat de iarna"
 
 #: simulation/templates/structures/pers/tachara.xml:30
 msgid "Taçara"
@@ -1476,23 +1476,23 @@ msgstr "Taçara"
 
 #: simulation/templates/structures/pers/tachara.xml:31
 msgid "Train Heroes and make use of the “Satrapy Tribute” feature."
-msgstr ""
+msgstr "Antrenează eroi și folosește calitatea \"Tributul Satrapului\""
 
 #: simulation/templates/structures/pers/tachara.xml:76
 msgid "Receive free Food tribute to your treasury from your subject peoples."
-msgstr ""
+msgstr "Primește mâncare ca tribut în vistieră de la supuși."
 
 #: simulation/templates/structures/pers/tachara.xml:81
 msgid "Receive free Wood tribute to your treasury from your subject peoples."
-msgstr ""
+msgstr "Primește lemn ca tribut în vistieră de la supuși."
 
 #: simulation/templates/structures/pers/tachara.xml:86
 msgid "Receive free Stone tribute to your treasury from your subject peoples."
-msgstr ""
+msgstr "Primește piatră ca tribut în vistieră de la supuși."
 
 #: simulation/templates/structures/pers/tachara.xml:91
 msgid "Receive free Metal tribute to your treasury from your subject peoples."
-msgstr ""
+msgstr "Primește metal ca tribut în vistieră de la supuși."
 
 #: simulation/templates/structures/pers/temple.xml:12
 msgid "Āyadanam"
@@ -1519,7 +1519,7 @@ msgstr "Grădinile suspendate din Babilon"
 
 #: simulation/templates/structures/pirates/dock.xml:8
 msgid "Pirate Port"
-msgstr ""
+msgstr "Port de pirați"
 
 #: simulation/templates/structures/ptol/elephant_stable.xml:5
 #: simulation/templates/structures/sele/elephant_stable.xml:5
@@ -1539,7 +1539,7 @@ msgstr ""
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Very large "
 "vision range."
-msgstr ""
+msgstr "Construiește pe un țărm în teritoriu propriu, neutru sau al unui aliat. Rază vizuală foarte mare."
 
 #: simulation/templates/structures/ptol/mercenary_camp.xml:27
 msgid "Mercenary Camp"
@@ -1549,7 +1549,7 @@ msgstr "Tabără de mercenari"
 msgid ""
 "Cheap Barracks-like structure that is buildable in neutral territory, but "
 "casts no territory influence. Train Mercenaries."
-msgstr ""
+msgstr "Construcție ieftină asemeni unei barăci ce poate fi construită pe teritoriu neutru, nu exercită influență teritorială. Antrenează mercenari. "
 
 #: simulation/templates/structures/ptol/military_colony.xml:9
 #: simulation/templates/structures/sele/military_colony.xml:9
@@ -1817,7 +1817,7 @@ msgstr ""
 
 #: simulation/templates/structures/shrine_persian.xml:9
 msgid "Fire Temple"
-msgstr ""
+msgstr "Templul focului"
 
 #: simulation/templates/structures/spart/gerousia.xml:22
 msgid "Spartan Senate"
@@ -2361,7 +2361,7 @@ msgstr "Câmp"
 #: simulation/templates/template_structure_resource_field.xml:21
 msgid ""
 "Harvest grain for food. Each subsequent gatherer works less efficiently."
-msgstr ""
+msgstr "Recoltează grâne pentru mâncare. Fiecare adunator ulterior va avea o eficiență scăzută."
 
 #: simulation/templates/template_structure_special.xml:19
 msgid "Special Structure"

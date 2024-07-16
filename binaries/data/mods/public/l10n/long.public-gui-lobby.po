@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-06-10 07:18+0000\n"
-"PO-Revision-Date: 2024-06-10 07:18+0000\n"
+"POT-Creation-Date: 2024-07-15 07:19+0000\n"
+"PO-Revision-Date: 2024-07-15 07:19+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -48,6 +48,7 @@ msgstr "Tá na modhnuithe neamhréireacha"
 msgid "The game has already started. Do you want to join as observer?"
 msgstr "Tá an cluiche ag imirt cheana féin. Ar mhaith leat a theacht le chéile mar breathnóir?"
 
+#. Translation: Join the game currently selected in the list.
 msgid "Join Game"
 msgstr "Придружи се постојећој игри"
 
@@ -103,6 +104,7 @@ msgstr "Rodyti šį pagalbos pranešimą."
 msgid "Chat commands:"
 msgstr "Commandes de discussion :"
 
+#. Translation: Chat command help format
 #, python-format
 msgid "%(command)s - %(description)s"
 msgstr "%(command)s - %(description)s"
@@ -112,6 +114,7 @@ msgstr ""
 "Cuir teachdaireachd mu do dhèidhinn. Mar eisimpleir: /me a’ dol a shnàmh. Thoir an aire"
 " gum feum am /me a bhith air toiseach na loidhne."
 
+#. Translation: Chat command
 msgid "/me"
 msgstr "/أنا"
 
@@ -122,12 +125,14 @@ msgstr ""
 "Kasit un destenn evel ur gemennadenn flapva (ha pa grogfe gant ur veskell/slash). "
 "Skouer: /lavar/skoazell a zo un urzhiad eus ar c'hentañ."
 
+#. Translation: Chat command
 msgid "/say"
 msgstr "/سخن گفتن"
 
 msgid "Clear all chat scrollback."
 msgstr "Tyhjennä koko keskustelun näkyvissä oleva historia."
 
+#. Translation: Chat message issued using the ‘/me’ command.
 #, python-format
 msgid "* %(sender)s %(message)s"
 msgstr "* %(sender)s %(message)s"
@@ -198,6 +203,7 @@ msgstr "%(nick)s heeft het onderwerp van de lobby veranderd in:"
 msgid "%(nick)s deleted the lobby subject."
 msgstr "%(nick)s heeft het onderwerp van de lobby verwijderd."
 
+#. Translation: Chat status message
 #, python-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
@@ -208,6 +214,7 @@ msgstr "Konektatuta."
 msgid "Disconnected."
 msgstr "Verbinding verbroken."
 
+#. Translation: Caption for system notifications shown in the chat panel
 msgid "System:"
 msgstr "Järjestelmä:"
 
@@ -215,10 +222,13 @@ msgstr "Järjestelmä:"
 msgid "=== %(system)s %(message)s"
 msgstr "=== %(system)s %(message)s"
 
+#. Translation: Chat message format when there is a time prefix.
 #, python-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
+#. Translation: Time prefix as shown in the multiplayer lobby (when you enable it in the
+#. options page).
 #, python-format
 msgid "\\[%(time)s]"
 msgstr "\\[%(time)s]"
@@ -241,10 +251,12 @@ msgstr "Chan eil"
 msgid "Yes"
 msgstr "Sumuhun"
 
+#. Translation: The number of players and observers in this game
 #, python-format
 msgid "%(current)s/%(max)s +%(observercount)s"
 msgstr "%(current)s / %(max)s + %(observercount)s "
 
+#. Translation: The number of players in this game
 #, python-format
 msgid "%(current)s/%(max)s"
 msgstr "%(current)s / %(max)s"
@@ -275,6 +287,7 @@ msgstr "Cluicheadairean: %(current)s/%(total)s"
 msgid "Victory Conditions:"
 msgstr "Vereisten voor overwinning:"
 
+#. Translation: Comma used to concatenate victory conditions
 msgid ", "
 msgstr "، و"
 
@@ -284,6 +297,7 @@ msgstr "Upravené verze:"
 msgid "Mods (incompatible):"
 msgstr "Modifikace (nekompatibilní):"
 
+#. Translation: %(time)s is the hour and minute here.
 #, python-format
 msgid "Game started at %(time)s"
 msgstr "Tá an cluiche tosaithe ag %(time)s"
