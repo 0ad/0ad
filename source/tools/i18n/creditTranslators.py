@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2022 Wildfire Games.
+# Copyright (C) 2024 Wildfire Games.
 # This file is part of 0 A.D.
 #
 # 0 A.D. is free software: you can redistribute it and/or modify
@@ -157,8 +157,15 @@ for lang in langs.keys():
             poFile.close()
 
     # Sort and remove duplicates
-    # Sorting should ignore case to have a neat credits list
-    langsLists[lang] = sorted(set(langsLists[lang]), key=lambda s: s.lower())
+    # Sorting should ignore case, but prefer versions of names starting
+    # with an upper case letter to have a neat credits list.
+    translators = {}
+    for name in sorted(langsLists[lang], reverse=True):
+        if name.lower() not in translators.keys():
+            translators[name.lower()] = name
+        elif name.istitle():
+            translators[name.lower()] = name
+    langsLists[lang] = sorted(translators.values(), key=lambda s: s.lower())
 
 # Now insert the new data into the new JSON file
 for (langCode, langList) in sorted(langsLists.items()):
