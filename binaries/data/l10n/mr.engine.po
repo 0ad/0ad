@@ -57,7 +57,7 @@ msgstr "unknown subtype (see logs)"
 
 #: lobby/XmppClient.cpp:1355
 msgid "The certificate is not trusted."
-msgstr ""
+msgstr "हे प्रमाणपत्र विश्वसनीय नाही."
 
 #: lobby/XmppClient.cpp:1356
 msgid "The certificate hasn't got a known issuer."
@@ -65,15 +65,15 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1357
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "हे प्रमाणपत्र रद्द झालं आहे."
 
 #: lobby/XmppClient.cpp:1358
 msgid "The certificate has expired."
-msgstr ""
+msgstr "या प्रमाणपत्राची मुदत संपली आहे."
 
 #: lobby/XmppClient.cpp:1359
 msgid "The certificate is not yet active."
-msgstr ""
+msgstr "हे प्रमाणपत्र इतक्यात सक्रिय नाही."
 
 #: lobby/XmppClient.cpp:1360
 msgid "The certificate has not been issued for the peer connected to."
@@ -130,7 +130,7 @@ msgstr "अज्ञात त्रुटी"
 
 #: lobby/XmppClient.cpp:1431
 msgid "Stream error"
-msgstr ""
+msgstr "स्ट्रीममध्ये त्रुटी"
 
 #: lobby/XmppClient.cpp:1432
 msgid "The incoming stream version is unsupported"
@@ -138,23 +138,23 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1433
 msgid "The stream has been closed by the server"
-msgstr ""
+msgstr "स्ट्रीम सर्व्हरने बंद केली"
 
 #: lobby/XmppClient.cpp:1437
 msgid "An I/O error occurred"
-msgstr ""
+msgstr "आय.ओ. त्रुटी आढळली"
 
 #: lobby/XmppClient.cpp:1439
 msgid "The connection was refused by the server"
-msgstr ""
+msgstr "सर्व्हरने जोड नाकारला"
 
 #: lobby/XmppClient.cpp:1440
 msgid "Resolving the server's hostname failed"
-msgstr ""
+msgstr "सर्व्हरचे होस्टनेम रिझॉल्व्ह करण्यात अपयशी"
 
 #: lobby/XmppClient.cpp:1441
 msgid "This system is out of memory"
-msgstr ""
+msgstr "या सिस्टमची मेमरी संपली आहे"
 
 #: lobby/XmppClient.cpp:1443
 msgid ""
@@ -180,7 +180,7 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1469
 msgid "Your account has been successfully registered"
-msgstr ""
+msgstr "तुमचे खाते यशस्वीरित्या नोंदवण्यात आले आहे"
 
 #: lobby/XmppClient.cpp:1470
 msgid "Not all necessary information provided"
@@ -225,12 +225,12 @@ msgstr "डाउनलोड सुरू करण्यात अपयश. �
 #: ps/ModIo.cpp:400
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "एसिंक्रोनस डाउनलोड अपयशी: %s, %s."
 
 #: ps/ModIo.cpp:428
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "डाउनलोड अपयशी. सर्व्हरचे उत्तर: %s; %s."
 
 #: ps/ModIo.cpp:534
 msgid "Mismatched filesize."
@@ -239,15 +239,15 @@ msgstr "फाईलचा आकार जुळत नाही."
 #: ps/ModIo.cpp:552
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "अवैध फाईल. md5 %s ची अपेक्षा होती, पण %s मिळाले."
 
 #: ps/ModIo.cpp:567
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "शेवटचा हॅश गणण्यात अपयशी."
 
 #: ps/ModIo.cpp:573
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "सही पडताळण्यात अपयशी."
 
 #: ps/SavedGame.cpp:142
 #, c-format
@@ -256,7 +256,7 @@ msgstr "गेम '%s' येथे सेव्ह केला"
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
-msgstr ""
+msgstr "कस्टम बिल्ड"
 
 #: renderer/Renderer.cpp:565 renderer/Renderer.cpp:568
 #: renderer/Renderer.cpp:680 renderer/Renderer.cpp:683

@@ -3,11 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# sabretou, 2024
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-06-10 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"Last-Translator: sabretou, 2024\n"
 "Language-Team: Marathi (http://app.transifex.com/wildfire-games/0ad/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +26,7 @@ msgstr ""
 #: gui/common/campaigns/CampaignRun.js:115
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -39,7 +41,7 @@ msgstr ""
 #: gui/common/color.js:198
 msgctxt "hotkey"
 msgid "Tab"
-msgstr ""
+msgstr "टॅब"
 
 #: gui/common/functions_global_object.js:53
 msgid "Loading Aborted"
@@ -52,100 +54,100 @@ msgstr "गाया"
 #: gui/common/functions_utility.js:280
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr ""
+msgstr "बिल्ड: %(buildDate)s (%(revision)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:68
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:71
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:77
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:80
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:90
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (ऑफलाईन)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:93
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (ऑफलाईन, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:100
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:103
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:107
 #, javascript-format
 msgid "%(playerName)s"
-msgstr ""
+msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:110
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:130
 msgid "Unknown Civilization"
-msgstr ""
+msgstr "अज्ञात संस्कृती"
 
 #: gui/common/gamedescription.js:137
 msgctxt "playerstate"
 msgid "defeated"
-msgstr ""
+msgstr "पराभव"
 
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "won"
-msgstr ""
+msgstr "विजय"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
-msgstr ""
+msgstr "संघात नाही"
 
 #: gui/common/gamedescription.js:160
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "%(team)s संघ"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or
@@ -155,18 +157,18 @@ msgstr ""
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
-msgstr ""
+msgstr "%(team)s:\n%(playerDescriptions)s"
 
 #: gui/common/gamedescription.js:171
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "प्रेक्षक"
+msgstr[1] "प्रेक्षक"
 
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr ""
+msgstr "अनंत गेम"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
@@ -218,7 +220,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:256
 msgid "Diplomacy"
-msgstr ""
+msgstr "मुत्सद्देगिरी"
 
 #: gui/common/gamedescription.js:257
 msgid "Players can make alliances and declare war on allies."
@@ -226,7 +228,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:262
 msgid "Last Man Standing"
-msgstr ""
+msgstr "उभा असलेला शेवटचा"
 
 #: gui/common/gamedescription.js:263
 msgid ""
@@ -246,11 +248,11 @@ msgstr ""
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
-msgstr ""
+msgstr "युद्धबंदी"
 
 #: gui/common/gamedescription.js:276 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
-msgstr ""
+msgstr "निष्क्रिय"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
@@ -266,19 +268,19 @@ msgstr[1] ""
 #: gui/common/gamedescription.js:288
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "यादृच्छिक मॅप"
 
 #: gui/common/gamedescription.js:289
 msgid "Randomly select a map from the list."
-msgstr ""
+msgstr "यादीतून एखादा मॅप यादृच्छिकरित्या निवडा."
 
 #: gui/common/gamedescription.js:294
 msgid "Map Name"
-msgstr ""
+msgstr "मॅपचे नाव"
 
 #: gui/common/gamedescription.js:300
 msgid "Map Description"
-msgstr ""
+msgstr "मॅपचे वर्णन"
 
 #: gui/common/gamedescription.js:306
 msgid "Map Type"
@@ -286,24 +288,24 @@ msgstr "नकाशा प्रकार"
 
 #: gui/common/gamedescription.js:315
 msgid "Map Size"
-msgstr ""
+msgstr "मॅपचा आकार"
 
 #: gui/common/gamedescription.js:324
 msgctxt "biome"
 msgid "Random Biome"
-msgstr ""
+msgstr "यादृच्छिक बायोम"
 
 #: gui/common/gamedescription.js:325
 msgid "Randomly select a biome from the list."
-msgstr ""
+msgstr "यादीतून एखादे बायोम यादृच्छिकरित्या निवडा."
 
 #: gui/common/gamedescription.js:340
 msgid "Nomad Mode"
-msgstr ""
+msgstr "भटका मोड"
 
 #: gui/common/gamedescription.js:340
 msgid "Civic Centers"
-msgstr ""
+msgstr "नागरी केंद्र"
 
 #: gui/common/gamedescription.js:343
 msgid ""
@@ -313,43 +315,43 @@ msgstr ""
 
 #: gui/common/gamedescription.js:344
 msgid "Players start with a Civic Center."
-msgstr ""
+msgstr "सुरुवातीला खेळाडूंकडे एक नागरी केंद्र असते."
 
 #: gui/common/gamedescription.js:349
 msgid "Starting Resources"
-msgstr ""
+msgstr "सुरुवातीची साधने"
 
 #: gui/common/gamedescription.js:353
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "प्रति खेळाडू"
 
 #: gui/common/gamedescription.js:354
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:365
 msgid "Population Limit"
-msgstr ""
+msgstr "लोकसंख्येची मर्यादा"
 
 #: gui/common/gamedescription.js:369
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "प्रति खेळाडू"
 
 #: gui/common/gamedescription.js:377
 msgid "World Population Cap"
-msgstr ""
+msgstr "जागतिक लोकसंख्येची मर्यादा"
 
 #: gui/common/gamedescription.js:385
 msgid "Treasures"
-msgstr ""
+msgstr "खजिने"
 
 #: gui/common/gamedescription.js:387
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "निष्क्रिय"
 
 #: gui/common/gamedescription.js:388
 msgctxt "treasures"
@@ -370,7 +372,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:407
 msgid "Cheats"
-msgstr ""
+msgstr "चीट"
 
 #: gui/common/gamedescription.js:410
 msgid ""
@@ -385,7 +387,7 @@ msgstr ""
 #: gui/common/gamedescription.js:421 gui/common/gamedescription.js:428
 msgctxt "game setup option"
 msgid "disabled"
-msgstr ""
+msgstr "निष्क्रिय"
 
 #: gui/common/gamedescription.js:424 gui/common/tooltips.js:161
 #: gui/common/tooltips.js:227 gui/common/tooltips.js:248
@@ -397,25 +399,25 @@ msgstr ""
 #: gui/common/tooltips.js:1205
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/common/gamedescription.js:427
 msgctxt "game setup option"
 msgid "enabled"
-msgstr ""
+msgstr "सक्रिय"
 
 #: gui/common/gamedescription.js:440
 msgid "Victorious"
-msgstr ""
+msgstr "विजयी"
 
 #: gui/common/gamedescription.js:445
 msgid "Defeated"
-msgstr ""
+msgstr "पराभवी"
 
 #: gui/common/gamedescription.js:454
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
-msgstr ""
+msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -449,23 +451,23 @@ msgstr ""
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "नेटवर्क प्रोटोकॉल आवृत्ती चुकीची आहे."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "गेम लोड होत आहे, कृपया नंतर पुन्हा प्रयत्न करा."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "गेम आधीच सुरू झाला आहे, आता प्रेक्षकांना अनुमती नाही."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "तुम्हाला किक करण्यात आले आहे."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "तुम्हाला बॅन करण्यात आले आहे."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
@@ -473,7 +475,7 @@ msgstr ""
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "सर्व्हर भरून गेले आहे."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
@@ -493,7 +495,7 @@ msgstr ""
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr ""
+msgstr "पासवर्ड अवैध आहे."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
@@ -501,12 +503,12 @@ msgstr ""
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "STUN एंडपॉइंट सापडले नाही."
 
 #: gui/common/network.js:84
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[अवैध मूल्य %(id)s]"
 
 #: gui/common/network.js:98
 msgid "Lost connection to the server."
@@ -514,11 +516,11 @@ msgstr ""
 
 #: gui/common/network.js:99
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "सर्व्हरशी कनेक्ट करण्यात अपयशी."
 
 #: gui/common/network.js:101
 msgid "Disconnected"
-msgstr ""
+msgstr "डिस्कनेक्ट झाले"
 
 #: gui/common/network.js:109
 msgid "Only the host can kick clients!"
@@ -542,22 +544,22 @@ msgstr ""
 #: gui/loadgame/SavegameDetails.js:41 gui/reference/common/tooltips.js:13
 #: gui/replaymenu/replay_menu.js:284
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/common/settings.js:116
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "सँडबॉक्स"
 
 #: gui/common/settings.js:120
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "अतिशय सोपे"
 
 #: gui/common/settings.js:124
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "सोपे"
 
 #: gui/common/settings.js:128
 msgctxt "aiDiff"
@@ -567,12 +569,12 @@ msgstr "मध्यम"
 #: gui/common/settings.js:133
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "कठीण"
 
 #: gui/common/settings.js:137
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "अतिशय कठीण"
 
 #: gui/common/settings.js:147
 msgctxt "aiBehavior"
@@ -582,7 +584,7 @@ msgstr "यादृच्छिक"
 #: gui/common/settings.js:152
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "समतोल"
 
 #: gui/common/settings.js:156
 msgctxt "aiBehavior"
@@ -619,7 +621,7 @@ msgstr ""
 #: gui/common/settings.js:192
 msgctxt "map"
 msgid "Scenario"
-msgstr ""
+msgstr "सेनारियो"
 
 #: gui/common/settings.js:193
 msgid "A map with a predefined landscape and matchsettings."
@@ -627,7 +629,7 @@ msgstr ""
 
 #: gui/common/settings.js:271 gui/common/settings.js:294
 msgid "Unlimited"
-msgstr ""
+msgstr "अमर्यादित"
 
 #: gui/common/settings.js:342
 msgctxt "AI name"
@@ -642,7 +644,7 @@ msgstr "अज्ञात"
 #: gui/common/settings.js:364
 msgctxt "AI behavior"
 msgid "Default"
-msgstr ""
+msgstr "डिफॉल्ट"
 
 #: gui/common/settings.js:376
 msgctxt "map type"
@@ -652,12 +654,12 @@ msgstr "अज्ञात"
 #: gui/common/settings.js:388
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "डिफॉल्ट"
 
 #: gui/common/settings.js:403
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(जगात)"
 
 #: gui/common/settings.js:404 gui/common/settings.js:408
 msgctxt "population capacity"
@@ -666,7 +668,7 @@ msgstr "अज्ञात"
 
 #: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
-msgstr ""
+msgstr "अज्ञात जिंकण्याची अट"
 
 #: gui/common/tab_buttons.js:65
 #, javascript-format
@@ -691,40 +693,40 @@ msgstr ""
 #: gui/common/tooltips.js:64
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/tooltips.js:73
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s आणि %(lastAmount)s"
 
 #: gui/common/tooltips.js:107
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(time)s %(second)s"
+msgstr[1] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:109 gui/common/tooltips.js:570
 #: gui/common/tooltips.js:1072
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "सेकंद"
+msgstr[1] "सेकंद"
 
 #: gui/common/tooltips.js:162 gui/common/tooltips.js:173
 msgid "Health:"
-msgstr ""
+msgstr "आरोग्य:"
 
 #: gui/common/tooltips.js:172
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(healthLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:184
 #, javascript-format
 msgid "%(captureLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:185
 msgid "Capture points:"
@@ -733,18 +735,18 @@ msgstr ""
 #: gui/common/tooltips.js:196
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:216 gui/common/tooltips.js:482
 #, javascript-format
 msgid ""
 "%(label)s\n"
 "%(details)s"
-msgstr ""
+msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:217
 msgid "Resistance:"
-msgstr ""
+msgstr "प्रतिकारशक्ती:"
 
 #: gui/common/tooltips.js:228
 msgid "Damage:"
@@ -753,12 +755,12 @@ msgstr ""
 #: gui/common/tooltips.js:231 gui/common/tooltips.js:251
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(resistancePercentage)s"
 
 #: gui/common/tooltips.js:236 gui/common/tooltips.js:256
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:249
 msgid "Capture:"
@@ -782,7 +784,7 @@ msgstr ""
 #: gui/common/tooltips.js:293
 #, javascript-format
 msgid "%(name)s %(details)s"
-msgstr ""
+msgstr "%(name)s %(details)s"
 
 #: gui/common/tooltips.js:280
 #, javascript-format
@@ -810,25 +812,25 @@ msgstr ""
 
 #: gui/common/tooltips.js:318
 msgid "Rate:"
-msgstr ""
+msgstr "दर:"
 
 #: gui/common/tooltips.js:319
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(projectileCount)s %(projectileName)s"
+msgstr[1] "%(projectileCount)s %(projectileName)s"
 
 #: gui/common/tooltips.js:321
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "बाण"
+msgstr[1] "बाण"
 
 #: gui/common/tooltips.js:324
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
-msgstr ""
+msgstr "%(projectileString)s / %(attackRateString)s"
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
 #: gui/common/tooltips.js:344
@@ -836,25 +838,25 @@ msgstr ""
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s ते %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:346
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 2 to 10 meters
 #: gui/common/tooltips.js:350
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:352
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
 #: gui/common/tooltips.js:362 gui/common/tooltips.js:1065
 msgid "Range:"
@@ -863,30 +865,30 @@ msgstr ""
 #: gui/common/tooltips.js:365
 #, javascript-format
 msgid "+%(number)s"
-msgstr ""
+msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
 #: gui/common/tooltips.js:369
 msgid "meters"
-msgstr ""
+msgstr "मीटर"
 
 #: gui/common/tooltips.js:370 gui/common/tooltips.js:1067
 #: gui/common/tooltips.js:1097
 msgid "meter"
 msgid_plural "meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "मीटर"
+msgstr[1] "मीटर"
 
 #: gui/common/tooltips.js:380
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s"
 
 #: gui/common/tooltips.js:391
 #, javascript-format
 msgid "%(amount)s %(name)s"
-msgstr ""
+msgstr "%(amount)s %(name)s"
 
 #: gui/common/tooltips.js:399
 #, javascript-format
@@ -896,7 +898,7 @@ msgstr ""
 #: gui/common/tooltips.js:402
 #, javascript-format
 msgid "%(label)s: %(effects)s"
-msgstr ""
+msgstr "%(label)s: %(effects)s"
 
 #: gui/common/tooltips.js:408
 #, javascript-format
@@ -924,41 +926,41 @@ msgstr "नाही"
 #: gui/common/tooltips.js:420
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "%(name)s देते"
 
 #: gui/common/tooltips.js:453
 #, javascript-format
 msgid "%(attackType)s"
-msgstr ""
+msgstr "%(attackType)s"
 
 #: gui/common/tooltips.js:472
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:483
 msgid "Attack:"
-msgstr ""
+msgstr "आक्रमणशक्ती:"
 
 #: gui/common/tooltips.js:510
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s %(stackability)s"
 
 #: gui/common/tooltips.js:515
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s"
 
 #: gui/common/tooltips.js:526
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
-msgstr ""
+msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:527
 msgid "Duration"
-msgstr ""
+msgstr "कालावधी"
 
 #: gui/common/tooltips.js:541
 msgctxt "status effect stackability"
@@ -978,12 +980,12 @@ msgstr ""
 #: gui/common/tooltips.js:547
 #, javascript-format
 msgid "%(stackability)s"
-msgstr ""
+msgstr "%(stackability)s"
 
 #: gui/common/tooltips.js:558
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:559
 msgid "Garrison Limit"
@@ -992,11 +994,11 @@ msgstr ""
 #: gui/common/tooltips.js:566
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
-msgstr ""
+msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:567 gui/common/tooltips.js:1060
 msgid "Heal:"
-msgstr ""
+msgstr "उपचारशक्ती:"
 
 #: gui/common/tooltips.js:569
 msgctxt "garrison tooltip"
@@ -1006,7 +1008,7 @@ msgstr "आरोग्य"
 #: gui/common/tooltips.js:583
 #, javascript-format
 msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:584
 msgid "Garrison Size"
@@ -1015,12 +1017,12 @@ msgstr ""
 #: gui/common/tooltips.js:587
 msgctxt "nested garrison"
 msgid "+ "
-msgstr ""
+msgstr "+ "
 
 #: gui/common/tooltips.js:599
 #, javascript-format
 msgid "%(label)s: %(turretsLimit)s"
-msgstr ""
+msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:600
 msgid "Turret Positions"
@@ -1030,7 +1032,7 @@ msgstr ""
 #: gui/common/tooltips.js:631
 #, javascript-format
 msgid "%(label)s: %(value)s"
-msgstr ""
+msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:622
 msgid "Projectile Limit"
@@ -1039,7 +1041,7 @@ msgstr ""
 #: gui/common/tooltips.js:627
 msgctxt "projectiles"
 msgid "Default"
-msgstr ""
+msgstr "डिफॉल्ट"
 
 #: gui/common/tooltips.js:632
 msgctxt "projectiles"
@@ -1048,11 +1050,11 @@ msgstr ""
 
 #: gui/common/tooltips.js:642
 msgid "Number of repairers:"
-msgstr ""
+msgstr "दुरुस्त करणार्‍यांची संख्या:"
 
 #: gui/common/tooltips.js:648
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "दुरुस्त होण्यास उरलेला वेळ:"
 
 #: gui/common/tooltips.js:652
 #, javascript-format
@@ -1071,7 +1073,7 @@ msgstr[1] ""
 
 #: gui/common/tooltips.js:676
 msgid "Number of builders:"
-msgstr ""
+msgstr "बांधणार्‍यांची संख्या:"
 
 #: gui/common/tooltips.js:682
 msgid "Remaining build time:"
@@ -1095,17 +1097,17 @@ msgstr[1] ""
 #: gui/common/tooltips.js:736 gui/common/tooltips.js:1009
 #, javascript-format
 msgid "%(component)s %(cost)s"
-msgstr ""
+msgstr "%(component)s %(cost)s"
 
 #: gui/common/tooltips.js:769
 msgid "Gather Rates:"
-msgstr ""
+msgstr "गोळा करायचा दर:"
 
 #: gui/common/tooltips.js:772 gui/common/tooltips.js:845
 #: gui/common/tooltips.js:869
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(rate)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource
@@ -1113,7 +1115,7 @@ msgstr ""
 #: gui/common/tooltips.js:790
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
-msgstr ""
+msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/common/tooltips.js:791
 msgid "Resource Supply:"
@@ -1124,16 +1126,16 @@ msgstr ""
 #. resource.
 #: gui/common/tooltips.js:794 gui/summary/summary.js:120
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/common/tooltips.js:820
 msgid "Reward:"
-msgstr ""
+msgstr "बक्षीस:"
 
 #: gui/common/tooltips.js:823
 #, javascript-format
 msgid "%(resourceIcon)s %(reward)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(reward)s"
 
 #: gui/common/tooltips.js:841
 msgid "Resource Trickle:"
@@ -1142,7 +1144,7 @@ msgstr ""
 #: gui/common/tooltips.js:842 gui/common/tooltips.js:866
 #, javascript-format
 msgid "%(resources)s / %(time)s"
-msgstr ""
+msgstr "%(resources)s / %(time)s"
 
 #: gui/common/tooltips.js:865
 msgid "Upkeep:"
@@ -1153,38 +1155,38 @@ msgstr ""
 #: gui/common/tooltips.js:918
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 
 #: gui/common/tooltips.js:947
 #, javascript-format
 msgid "Walls:  %(costs)s"
-msgstr ""
+msgstr "भिंत:  %(costs)s"
 
 #: gui/common/tooltips.js:948
 #, javascript-format
 msgid "Towers:  %(costs)s"
-msgstr ""
+msgstr "बुरूज:  %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
 #: gui/common/tooltips.js:956
 #, javascript-format
 msgid "%(label)s %(costs)s"
-msgstr ""
+msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:957
 msgid "Cost:"
-msgstr ""
+msgstr "खर्च:"
 
 #: gui/common/tooltips.js:973
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "%(technology)s आवश्यक आहे"
 
 #: gui/common/tooltips.js:993
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:994
 msgid "Population Bonus:"
@@ -1197,53 +1199,53 @@ msgstr ""
 #: gui/common/tooltips.js:1029
 #, javascript-format
 msgid "%(label)s %(speeds)s"
-msgstr ""
+msgstr "%(label)s %(speeds)s"
 
 #: gui/common/tooltips.js:1030
 msgid "Speed:"
-msgstr ""
+msgstr "वेग:"
 
 #: gui/common/tooltips.js:1032 gui/common/tooltips.js:1037
 #: gui/common/tooltips.js:1042
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
-msgstr ""
+msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:1034
 msgid "Walk"
-msgstr ""
+msgstr "चालणे"
 
 #: gui/common/tooltips.js:1039
 msgid "Run"
-msgstr ""
+msgstr "धावणे"
 
 #: gui/common/tooltips.js:1044
 msgid "Acceleration"
-msgstr ""
+msgstr "प्रवेग"
 
 #: gui/common/tooltips.js:1059 gui/common/tooltips.js:1064
 #: gui/common/tooltips.js:1069 gui/common/tooltips.js:1094
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(label)s %(val)s %(unit)s"
+msgstr[1] "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:1062
 msgid "Health"
 msgid_plural "Health"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "आरोग्य"
+msgstr[1] "आरोग्य"
 
 #: gui/common/tooltips.js:1086
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
-msgstr ""
+msgstr "%(auralabel)s %(aurainfo)s"
 
 #: gui/common/tooltips.js:1087
 #, javascript-format
 msgid "%(auraname)s:"
-msgstr ""
+msgstr "%(auraname)s:"
 
 #: gui/common/tooltips.js:1095
 msgctxt "aura"
@@ -1253,12 +1255,12 @@ msgstr ""
 #: gui/common/tooltips.js:1118 gui/common/tooltips.js:1146
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
-msgstr ""
+msgstr "%(primaryName)s (%(secondaryName)s)"
 
 #: gui/common/tooltips.js:1122 gui/common/tooltips.js:1139
 #, javascript-format
 msgid "%(primaryName)s"
-msgstr ""
+msgstr "%(primaryName)s"
 
 #: gui/common/tooltips.js:1169
 msgid "Classes:"
@@ -1270,7 +1272,7 @@ msgstr ""
 #: gui/common/tooltips.js:1196
 #, javascript-format
 msgid "%(component)s %(loot)s"
-msgstr ""
+msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:1206
 msgid "Loot:"
@@ -1279,7 +1281,7 @@ msgstr "लूटः"
 #: gui/common/tooltips.js:1216
 #, javascript-format
 msgid "%(label)s %(icons)s"
-msgstr ""
+msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1217
 msgid "Dropsite for:"
@@ -1290,29 +1292,29 @@ msgstr ""
 #. element will open the Template Details GUI page.
 #: gui/common/tooltips.js:1225
 msgid "Right-click to view more information."
-msgstr ""
+msgstr "अधिक माहितीसाठी येथे राइट-क्लिक करा."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
 #: gui/common/tooltips.js:1231
 msgid "Click to view more information."
-msgstr ""
+msgstr "अधिक माहितीसाठी येथे क्लिक करा."
 
 #: gui/common/tooltips.js:1240
 msgctxt "One letter abbreviation for million"
 msgid "M"
-msgstr ""
+msgstr "द"
 
 #: gui/common/tooltips.js:1243 gui/common/tooltips.js:1246
 msgctxt "One letter abbreviation for thousand"
 msgid "k"
-msgstr ""
+msgstr "ह"
 
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
@@ -1352,11 +1354,11 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Content[11].Subtitle
 msgid "Guitar"
-msgstr ""
+msgstr "गिटार"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[12].Subtitle
 msgid "Handpan"
-msgstr ""
+msgstr "हँडपॅन"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[13].Subtitle
 msgid "Harp"
@@ -1404,7 +1406,7 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
 msgid "Djembe"
-msgstr ""
+msgstr "जेंबे"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
 msgid "Dulcimer"
@@ -1416,7 +1418,7 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Title
 msgid "Music"
-msgstr ""
+msgstr "संगीत"
 
 #: gui/credits/texts/audio.jsonContent[2].Title
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].label
@@ -1425,19 +1427,19 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
 msgid "Greek"
-msgstr ""
+msgstr "ग्रीक"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
 msgid "Latin"
-msgstr ""
+msgstr "लॅटिन"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
-msgstr ""
+msgstr "नपाटान"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "फारसी"
 
 #: gui/credits/texts/audio.jsonContent[3].Title
 msgid "Voices"
@@ -1445,7 +1447,7 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "ऑडियो"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -1472,11 +1474,11 @@ msgstr ""
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr ""
+msgstr "Indiegogo 2013 कँपेन\n1000 पेक्षा अधिक देणगीदार (!), त्यात सामील:"
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
-msgstr ""
+msgstr "देणगीदार"
 
 #: gui/credits/texts/history.jsonTitle
 msgid "History References"
@@ -1484,7 +1486,7 @@ msgstr ""
 
 #: gui/credits/texts/maps.jsonContent[0].Title
 msgid "Map Making"
-msgstr ""
+msgstr "मॅप बनवणे"
 
 #: gui/credits/texts/maps.jsonContent[1].Title
 msgid "Random Map Scripts"
@@ -1492,7 +1494,7 @@ msgstr ""
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "मॅप"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -1504,7 +1506,7 @@ msgstr ""
 
 #: gui/credits/texts/programming.jsonTitle
 msgid "Programming"
-msgstr ""
+msgstr "प्रोग्रामिंग"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
@@ -1512,7 +1514,7 @@ msgstr ""
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
 msgid "0 A.D. Founder"
-msgstr ""
+msgstr "0 A.D. चे संस्थापक"
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
@@ -1532,7 +1534,7 @@ msgstr ""
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr ""
+msgstr "या संकल्पाच्या विकासात कोणत्याही इतिहासकाराला हानी पोहोचली नाही."
 
 #: gui/credits/texts/special.jsonTitle
 msgid "Special Credits"
@@ -1540,7 +1542,7 @@ msgstr ""
 
 #: gui/credits/texts/translators.jsonTitle
 msgid "Translators"
-msgstr ""
+msgstr "अनुवादक "
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Tips.txt:1
 msgid ""
@@ -1553,25 +1555,25 @@ msgstr ""
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
-msgstr ""
+msgstr "इतर हॉटकी"
 
 #: gui/hotkeys/HotkeyPicker.js:56
 #, javascript-format
 msgid "#%i"
-msgstr ""
+msgstr "#%i"
 
 #: gui/hotkeys/HotkeyPicker.js:72
 msgid " (hold to register)"
-msgstr ""
+msgstr " (नोंदण्यास दाबून ठेवा)"
 
 #: gui/hotkeys/HotkeyPicker.js:73 gui/hotkeys/HotkeyPicker.js:104
 msgid "Enter new Hotkey, hold to register."
-msgstr ""
+msgstr "नवीन हॉटकी प्रविष्ट करा, नोंदवायला दाबून ठेवा."
 
 #: gui/hotkeys/HotkeyPicker.js:106
 msgctxt "Unassigned hotkey"
 msgid "(unused)"
-msgstr ""
+msgstr "(वापरात नाही)"
 
 #: gui/hotkeys/HotkeyPicker.js:115
 msgid "May conflict with: "
@@ -1579,11 +1581,11 @@ msgstr ""
 
 #: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
-msgstr ""
+msgstr "सर्व हॉटकी"
 
 #: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
-msgstr ""
+msgstr "सर्व उपलब्ध हॉटकी."
 
 #: gui/hotkeys/HotkeysPage.js:156
 msgid ""
@@ -1598,11 +1600,11 @@ msgstr "पुष्टीकरण"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
-msgstr ""
+msgstr "टूलटिप उपलब्ध नाही."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
-msgstr ""
+msgstr "वर्ग:"
 
 #: gui/hotkeys/hotkeys.xml:(caption):24
 msgid "Filter:"
@@ -1611,15 +1613,15 @@ msgstr ""
 #: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):101
 #: gui/options/options.xml:(caption):44
 msgid "Reset"
-msgstr ""
+msgstr "रिसेट"
 
 #: gui/hotkeys/hotkeys.xml:(caption):72
 msgid "Hotkey"
-msgstr ""
+msgstr "हॉटकी"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
-msgstr ""
+msgstr "हॉटकी वर्णन"
 
 #: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
@@ -1630,7 +1632,7 @@ msgstr ""
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
 msgid "Accept"
-msgstr ""
+msgstr "स्वीकारा"
 
 #: gui/hotkeys/hotkeys.xml:(heading):39
 msgctxt "hotkey list"
@@ -1640,7 +1642,7 @@ msgstr "नाव"
 #: gui/hotkeys/hotkeys.xml:(heading):43
 msgctxt "hotkey list"
 msgid "Mapping"
-msgstr ""
+msgstr "मॅपिंग"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):45
@@ -1649,23 +1651,23 @@ msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):57
 msgid "Saves changes"
-msgstr ""
+msgstr "बदल सेव्ह करा"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr ""
+msgstr "सेव्ह न केलेले बदल गमावले जातील"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr ""
+msgstr "हॉटकी सेट करायला येथे क्लिक करा"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
-msgstr ""
+msgstr "हॉटकी डिलीट करायला येथे क्लिक करा"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
-msgstr ""
+msgstr "हॉटकी बदलून बंद करा"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
@@ -1674,12 +1676,12 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsoncategories.camera.desc
 msgctxt "hotkey metadata"
 msgid "Camera-related hotkeys."
-msgstr ""
+msgstr "कॅमेरा-संबंधित हॉटकी."
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.name
 msgctxt "hotkey metadata"
 msgid "Camera"
-msgstr ""
+msgstr "कॅमेरा"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
@@ -1829,7 +1831,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.name
 msgctxt "hotkey metadata"
 msgid "Reset Camera"
-msgstr ""
+msgstr "कॅमेरा रिसेट करा"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
 msgctxt "hotkey metadata"
@@ -1947,22 +1949,22 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in."
-msgstr ""
+msgstr "कॅमेरा आत झूम करा."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in"
-msgstr ""
+msgstr "आत झूम करा"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out."
-msgstr ""
+msgstr "कॅमेरा बाहेर झूम करा."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out"
-msgstr ""
+msgstr "बाहेर झूम करा"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.desc
 msgctxt "hotkey metadata"
@@ -1982,7 +1984,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase zoom speed"
-msgstr ""
+msgstr "झूम वेग वाढवा"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
 msgctxt "hotkey metadata"
@@ -1992,7 +1994,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in (step-by-step)"
-msgstr ""
+msgstr "आत झूम करा (टप्प्या-टप्प्याने)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.desc
 msgctxt "hotkey metadata"
@@ -2007,22 +2009,22 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsoncategories.general.desc
 msgctxt "hotkey metadata"
 msgid "General hotkeys."
-msgstr ""
+msgstr "साधाराण हॉटकी."
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.name
 msgctxt "hotkey metadata"
 msgid "General"
-msgstr ""
+msgstr "साधारण"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take large BMP screenshot."
-msgstr ""
+msgstr "मोठा BMP स्क्रीनशॉट काढा."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
 msgctxt "hotkey metadata"
 msgid "Big screenshot"
-msgstr ""
+msgstr "मोठा स्क्रीनशॉट"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.desc
 msgctxt "hotkey metadata"
@@ -2032,12 +2034,12 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
-msgstr ""
+msgstr "बंद/रद्द"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
 msgid "Confirm the current command."
-msgstr ""
+msgstr "वर्तमान आदेशाची खात्री करा."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
 msgctxt "hotkey metadata"
@@ -2057,22 +2059,22 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard."
-msgstr ""
+msgstr "क्लिपबोर्डला कॉपी करा."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.name
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "क्लिपबोर्डला कॉपी करा"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.desc
 msgctxt "hotkey metadata"
 msgid "Cut selected text and copy to the clipboard."
-msgstr ""
+msgstr "निवडलेले मजकूर कट करून क्लिपबोर्डला कॉपी करा."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.name
 msgctxt "hotkey metadata"
 msgid "Cut to clipboard"
-msgstr ""
+msgstr "क्लिपबोर्डला कट करा"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
 msgctxt "hotkey metadata"
@@ -2089,12 +2091,12 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard."
-msgstr ""
+msgstr "क्लिपबोर्डपासून पेस्ट करा."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.name
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard"
-msgstr ""
+msgstr "क्लिपबोर्डपासून पेस्ट करा"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
@@ -2139,12 +2141,12 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take PNG screenshot."
-msgstr ""
+msgstr "PNG स्क्रीनशॉट काढा."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
 msgctxt "hotkey metadata"
 msgid "Screenshot"
-msgstr ""
+msgstr "स्क्रीनशॉट"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
@@ -2159,22 +2161,22 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
 msgid "Show the next tab."
-msgstr ""
+msgstr "पुढचा टॅब दाखवा."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.name
 msgctxt "hotkey metadata"
 msgid "Next tab"
-msgstr ""
+msgstr "पुढचा टॅब"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.desc
 msgctxt "hotkey metadata"
 msgid "Show the previous tab."
-msgstr ""
+msgstr "मागचा टॅब दाखवा."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.name
 msgctxt "hotkey metadata"
 msgid "Previous tab"
-msgstr ""
+msgstr "मागचा टॅब"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.desc
 msgctxt "hotkey metadata"
@@ -2244,27 +2246,27 @@ msgstr ""
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.name
 msgctxt "hotkey metadata"
 msgid "Game Setup"
-msgstr ""
+msgstr "गेमची मांडणी"
 
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.desc
 msgctxt "hotkey metadata"
 msgid "Open the map browser."
-msgstr ""
+msgstr "मॅप ब्राउझर उघडा."
 
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.name
 msgctxt "hotkey metadata"
 msgid "Open map browser"
-msgstr ""
+msgstr "मॅप ब्राउझर"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
 msgid "In-game hotkeys."
-msgstr ""
+msgstr "गेम चालू असतानाची हॉटकी"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.name
 msgctxt "hotkey metadata"
 msgid "In-game"
-msgstr ""
+msgstr "गेम चालू असताना"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.desc
 msgctxt "hotkey metadata"
@@ -2387,7 +2389,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr ""
+msgstr "व्यापार 100%ला सेट करा"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
@@ -2497,7 +2499,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
 msgctxt "hotkey metadata"
 msgid "Patrol"
-msgstr ""
+msgstr "गस्त घाला"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.desc
 msgctxt "hotkey metadata"
@@ -2627,7 +2629,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.name
 msgctxt "hotkey metadata"
 msgid "Repair"
-msgstr ""
+msgstr "दुरुस्त करा"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.ccw.desc
 msgctxt "hotkey metadata"
@@ -2662,7 +2664,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.desc
 msgctxt "hotkey metadata"
 msgid "Stop the current action."
-msgstr ""
+msgstr "वर्तमान कार्य थांबवा."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.name
 msgctxt "hotkey metadata"
@@ -2789,7 +2791,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.name
 msgctxt "hotkey metadata"
 msgid "Quickload"
-msgstr ""
+msgstr "जलद लोड"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.desc
 msgctxt "hotkey metadata"
@@ -2801,7 +2803,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.name
 msgctxt "hotkey metadata"
 msgid "Quicksave"
-msgstr ""
+msgstr "जलद सेव्ह"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.desc
 msgctxt "hotkey metadata"
@@ -2921,12 +2923,12 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.name
 msgctxt "hotkey metadata"
 msgid "Delete saved game"
-msgstr ""
+msgstr "सेव्ह केलेला गेम डिलीट करा"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Don't ask for confirmation when deleting a saved game."
-msgstr ""
+msgstr "सेव्ह केलेला गेम डिलीट करताना खात्री करण्यास विचारू नका."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.name
 msgctxt "hotkey metadata"
@@ -3075,7 +3077,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
-msgstr ""
+msgstr "निवड रद्द करा"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.desc
 msgctxt "hotkey metadata"
@@ -3380,12 +3382,12 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle builder."
-msgstr ""
+msgstr "पुढचा कार्यहीन बांधणारा निवडा."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
 msgctxt "hotkey metadata"
 msgid "Select next idle builder"
-msgstr ""
+msgstr "पुढचा कार्यहीन बांधणारा निवडा"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"
@@ -3410,7 +3412,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior."
-msgstr ""
+msgstr "पुढचा कार्यहीन योद्धा निवडा."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.name
 msgctxt "hotkey metadata"
@@ -3490,7 +3492,7 @@ msgstr ""
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "%(hotkey)s दाबून निवडलेला सेव्हगेम डिलीट करा."
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:205
 #, javascript-format
@@ -3500,38 +3502,38 @@ msgstr ""
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:50
 #, javascript-format
 msgid "\"%(label)s\""
-msgstr ""
+msgstr "\"%(label)s\""
 
 #: gui/loadgame/SavegameDeleter.js:53
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr ""
+msgstr "सेव्ह केलेला गेम कायमचा डिलीट केला जाईल. असे नक्की करायचे आहे का?"
 
 #: gui/loadgame/SavegameDeleter.js:54
 msgid "DELETE"
-msgstr ""
+msgstr "डिलीट"
 
 #: gui/loadgame/SavegameDetails.js:43
 #, javascript-format
 msgid "Mods: %(mods)s"
-msgstr ""
+msgstr "मॉड: %(mods)s"
 
 #: gui/loadgame/SavegameList.js:181
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/loadgame/SavegameList.js:192
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/loadgame/SavegameList.js:193
 #, javascript-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #: gui/loadgame/SavegameLoader.js:9
 msgid "Load"
-msgstr ""
+msgstr "लोड करा"
 
 #: gui/loadgame/SavegameLoader.js:39
 #, javascript-format
@@ -3550,21 +3552,21 @@ msgstr ""
 
 #: gui/loadgame/SavegameLoader.js:55
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "तुम्हाला तरीही पुढे जायचे आहे का?"
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:187
 #: gui/options/options.js:365 gui/options/options.js:430
 #: gui/options/options.js:455
 msgid "Warning"
-msgstr ""
+msgstr "चेतावणी"
 
 #: gui/loadgame/SavegamePage.js:34
 msgid "Save Game"
-msgstr ""
+msgstr "गेम सेव्ह करा"
 
 #: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:91
 msgid "Load Game"
-msgstr ""
+msgstr "गेम लोड करा"
 
 #: gui/hotkeys/hotkeys.xml:(caption):53 gui/loadgame/SavegameWriter.js:16
 #: gui/options/options.xml:(caption):56
@@ -3581,7 +3583,7 @@ msgstr ""
 
 #: gui/loadgame/load.xml:(caption):44
 msgid "No saved games found."
-msgstr ""
+msgstr "सेव्ह केलेला एकही गेम सापडला नाही."
 
 #: gui/loadgame/load.xml:(caption):54
 #: gui/replaymenu/replay_menu.xml:(caption):234
@@ -3594,7 +3596,7 @@ msgstr ""
 
 #: gui/loadgame/load.xml:(caption):74
 msgid "Players:"
-msgstr ""
+msgstr "खेळाडू:"
 
 #: gui/loadgame/load.xml:(caption):78
 msgid "Played time:"
@@ -3604,23 +3606,23 @@ msgstr ""
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):32
 #: gui/replaymenu/replay_menu.xml:(caption):153
 msgid "Map Type:"
-msgstr ""
+msgstr "मॅपचा प्रकार:"
 
 #: gui/loadgame/load.xml:(caption):86
 #: gui/replaymenu/replay_menu.xml:(caption):168
 msgid "Map Size:"
-msgstr ""
+msgstr "मॅपचा आकार:"
 
 #: gui/loadgame/load.xml:(caption):90
 #: gui/replaymenu/replay_menu.xml:(caption):183
 msgid "Victory:"
-msgstr ""
+msgstr "विजय:"
 
 #: gui/loadgame/load.xml:(heading):27
 #: gui/replaymenu/replay_menu.xml:(heading):71
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "तारीख / वेळ"
 
 #: gui/loadgame/load.xml:(heading):31
 msgctxt "replay"
@@ -3631,17 +3633,17 @@ msgstr "नकाशा प्रकार"
 #: gui/replaymenu/replay_menu.xml:(heading):79
 msgctxt "replay"
 msgid "Map Name"
-msgstr ""
+msgstr "मॅपचे नाव"
 
 #: gui/loadgame/load.xml:(heading):39
 msgctxt "replay"
 msgid "Description"
-msgstr ""
+msgstr "वर्णन"
 
 #: gui/locale/locale.xml:(caption):17
 #: gui/locale_advanced/locale_advanced.xml:(caption):17
 msgid "Language:"
-msgstr ""
+msgstr "भाषा:"
 
 #. A locale is a set of parameters that defines the user’s language, country
 #. and any special
@@ -3650,7 +3652,7 @@ msgstr ""
 #. refers to the code that identifies those settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr ""
+msgstr "लोकेल:"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
@@ -3664,15 +3666,15 @@ msgstr "काहीही नाही"
 
 #: gui/locale_advanced/locale_advanced.js:91
 msgid "invalid locale"
-msgstr ""
+msgstr "अवैध लोकेल"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):25
 msgid "Country:"
-msgstr ""
+msgstr "देश:"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):34
 msgid "Script:"
-msgstr ""
+msgstr "स्क्रिप्ट:"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):41
 msgid "Variant (unused):"
@@ -3688,7 +3690,7 @@ msgstr ""
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):60
 msgid "Dictionary files used:"
-msgstr ""
+msgstr "वापरण्यात आलेले शब्दकोश फाईल:"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):70
 msgid "Auto detect"
@@ -3712,11 +3714,11 @@ msgstr "यादृच्छिक"
 
 #: gui/maps/MapCache.js:66
 msgid "A randomly selected map."
-msgstr ""
+msgstr "यादृच्छिकरित्या निवडलेला मॅप."
 
 #: gui/maps/MapFilters.js:91
 msgid "Default"
-msgstr ""
+msgstr "डिफॉल्ट"
 
 #: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
@@ -3728,7 +3730,7 @@ msgstr "नौदल नकाशे"
 
 #: gui/maps/MapFilters.js:98
 msgid "Maps where ships are needed to reach the enemy."
-msgstr ""
+msgstr "शत्रूपर्यंत पोहोचण्यास जहाजांची गरज पडेल असे मॅप."
 
 #: gui/maps/MapFilters.js:103
 msgid "Demo Maps"
@@ -3748,7 +3750,7 @@ msgstr ""
 
 #: gui/maps/MapFilters.js:115
 msgid "Best for MP"
-msgstr ""
+msgstr "मल्टिप्लेयरसाठी सर्वोत्तम"
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
@@ -3756,7 +3758,7 @@ msgstr ""
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
-msgstr ""
+msgstr "ट्रिगर मॅप"
 
 #: gui/maps/MapFilters.js:122
 msgid "Maps that come with scripted events and potentially spawn enemy units."
@@ -3768,11 +3770,11 @@ msgstr "सर्व नकाशे"
 
 #: gui/maps/MapFilters.js:128
 msgid "Every map of the chosen maptype."
-msgstr ""
+msgstr "निवडलेल्या मॅप प्रकारचे प्रत्येक मॅप."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr ""
+msgstr "मॅप ब्राउझर"
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:59
@@ -3784,7 +3786,7 @@ msgstr "बंद करा"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:60
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr ""
+msgstr "%(hotkey)s: मॅप ब्राउझर बंद करा."
 
 #: gui/hotkeys/hotkeys.xml:(caption):111 gui/loadgame/load.xml:(caption):50
 #: gui/locale/locale.xml:(caption):36
@@ -3801,16 +3803,16 @@ msgstr ""
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):18
 msgctxt "zoom out"
 msgid "−"
-msgstr ""
+msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr ""
+msgstr "मॅपचा शोध घ्या:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
@@ -3818,20 +3820,20 @@ msgstr ""
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr ""
+msgstr "यादृच्छिक मॅप निवडा"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):52
 msgctxt "map selection dialog"
 msgid "Select"
-msgstr ""
+msgstr "निवडा"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
-msgstr ""
+msgstr "मागच्या पानावर जा."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:28
 msgid "Go to the next page."
-msgstr ""
+msgstr "पुढच्या पानावर जा."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
@@ -3844,39 +3846,39 @@ msgstr ""
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
 msgid "Maps: %(mapCount)s"
-msgstr ""
+msgstr "मॅप: %(mapCount)s"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
-msgstr ""
+msgstr "पान: %(currentPage)s/%(maxPage)s"
 
 #: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
-msgstr ""
+msgstr "यादृच्छिकरित्या मॅप निवडा."
 
 #: gui/options/options.js:109
 #, javascript-format
 msgid "Default: %(value)s"
-msgstr ""
+msgstr "डिफॉल्ट: %(value)s"
 
 #: gui/options/options.js:135
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "किमान: %(min)s, कमाल: %(max)s"
 
 #: gui/options/options.js:137
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "किमान: %(min)s"
 
 #: gui/options/options.js:139
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "कमाल: %(max)s"
 
 #: gui/options/options.js:184
 #, javascript-format
@@ -3888,7 +3890,7 @@ msgstr ""
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
-msgstr ""
+msgstr "मूल्य: %(val)s (किमान: %(min)s, कमाल: %(max)s)"
 
 #: gui/options/options.js:364
 msgid ""
@@ -3906,11 +3908,11 @@ msgstr ""
 
 #: gui/options/options.json[0].label
 msgid "General"
-msgstr ""
+msgstr "साधारण"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "खेळाडूचे नाव (सिंगलप्लेयर)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
@@ -3918,7 +3920,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "खेळाडूचे नाव (मल्टिप्येयर)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
@@ -3934,7 +3936,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "स्वागताचा पडदा सक्रिय करा"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -3988,7 +3990,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific names first"
-msgstr ""
+msgstr "विशिष्ट नावे आधी"
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Display specific names before generic names."
@@ -3996,7 +3998,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic names first"
-msgstr ""
+msgstr "सामान्य नावे आधी"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Display generic names before specific names."
@@ -4004,7 +4006,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only specific names"
-msgstr ""
+msgstr "फक्त विशिष्ट नावे"
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Display only specific names for entities."
@@ -4012,7 +4014,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only generic names"
-msgstr ""
+msgstr "फक्त सामान्य नावे"
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Display only generic names for entities."
@@ -4024,15 +4026,15 @@ msgstr ""
 
 #: gui/options/options.json[1].label
 msgid "Graphics (general)"
-msgstr ""
+msgstr "ग्राफिक्स (साधारण)"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "विंडो मोड"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr ""
+msgstr "0 A.D. एका विंडोमध्ये सुरू करा."
 
 #: gui/options/options.json[1].options[10].label
 msgid "FPS throttling in games"
@@ -4051,11 +4053,11 @@ msgstr ""
 
 #: gui/options/options.json[1].options[11].list[6].label
 msgid "225%"
-msgstr ""
+msgstr "225%"
 
 #: gui/options/options.json[1].options[11].list[7].label
 msgid "250%"
-msgstr ""
+msgstr "250%"
 
 #: gui/options/options.json[1].options[12].label
 msgid "Mouse drag"
@@ -4087,17 +4089,17 @@ msgstr ""
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label
 msgid "Fog"
-msgstr ""
+msgstr "धुके"
 
 #: gui/options/options.json[1].options[1].tooltip
 #: gui/options/options.json[2].options[1].tooltip
 msgid "Enable fog."
-msgstr ""
+msgstr "धुके सक्रिय करा."
 
 #: gui/options/options.json[1].options[2].label
 #: gui/options/options.json[2].options[2].label
 msgid "Post-processing"
-msgstr ""
+msgstr "पोस्ट-प्रॉसेसिंग"
 
 #: gui/options/options.json[1].options[2].tooltip
 #: gui/options/options.json[2].options[2].tooltip
@@ -4110,41 +4112,41 @@ msgstr ""
 
 #: gui/options/options.json[1].options[3].list[0].label
 msgid "50%"
-msgstr ""
+msgstr "50%"
 
 #: gui/options/options.json[1].options[11].list[0].label
 #: gui/options/options.json[1].options[3].list[1].label
 msgid "75%"
-msgstr ""
+msgstr "75%"
 
 #: gui/options/options.json[1].options[3].list[2].label
 msgid "87.5%"
-msgstr ""
+msgstr "87.5%"
 
 #: gui/options/options.json[1].options[11].list[1].label
 #: gui/options/options.json[1].options[3].list[3].label
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: gui/options/options.json[1].options[11].list[2].label
 #: gui/options/options.json[1].options[3].list[4].label
 msgid "125%"
-msgstr ""
+msgstr "125%"
 
 #: gui/options/options.json[1].options[11].list[3].label
 #: gui/options/options.json[1].options[3].list[5].label
 msgid "150%"
-msgstr ""
+msgstr "150%"
 
 #: gui/options/options.json[1].options[11].list[4].label
 #: gui/options/options.json[1].options[3].list[6].label
 msgid "175%"
-msgstr ""
+msgstr "175%"
 
 #: gui/options/options.json[1].options[11].list[5].label
 #: gui/options/options.json[1].options[3].list[7].label
 msgid "200%"
-msgstr ""
+msgstr "200%"
 
 #: gui/options/options.json[1].options[3].tooltip
 msgid ""
@@ -4169,7 +4171,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].list[1].label
 msgid "Bilinear"
-msgstr ""
+msgstr "बायलिनियर"
 
 #: gui/options/options.json[1].options[4].list[1].tooltip
 msgid ""
@@ -4179,7 +4181,7 @@ msgstr ""
 
 #: gui/options/options.json[1].options[4].list[2].label
 msgid "Pixelated"
-msgstr ""
+msgstr "पिक्सेलेटेड"
 
 #: gui/options/options.json[1].options[4].list[2].tooltip
 msgid "Simplest upscale technique. Used mostly for stylized effect."
@@ -4192,12 +4194,12 @@ msgstr ""
 #: gui/options/options.json[1].options[5].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][9].label
 msgid "Shadows"
-msgstr ""
+msgstr "सावल्या"
 
 #: gui/options/options.json[1].options[5].tooltip
 #: gui/options/options.json[2].options[6].list[0][7].list[0][9].tooltip
 msgid "Enable shadows."
-msgstr ""
+msgstr "सावल्या सक्रिय करा."
 
 #: gui/options/options.json[1].options[6].label
 msgid "Unit silhouettes"
@@ -4209,15 +4211,15 @@ msgstr ""
 
 #: gui/options/options.json[1].options[7].label
 msgid "Particles"
-msgstr ""
+msgstr "पार्टिकल"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid "Enable particles."
-msgstr ""
+msgstr "पार्टिकल सक्रिय करा."
 
 #: gui/options/options.json[1].options[8].label
 msgid "VSync"
-msgstr ""
+msgstr "व्हीसिंक"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
@@ -4239,15 +4241,15 @@ msgstr ""
 
 #: gui/options/options.json[2].label
 msgid "Graphics (advanced)"
-msgstr ""
+msgstr "ग्राफिक्स (प्रगत)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Renderer backend"
-msgstr ""
+msgstr "रेंडरर बॅकएंड"
 
 #: gui/options/options.json[2].options[0].list[0].label
 msgid "OpenGL"
-msgstr ""
+msgstr "ओपनजीएल"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
@@ -4265,11 +4267,11 @@ msgstr ""
 
 #: gui/options/options.json[2].options[0].list[2].label
 msgid "Vulkan"
-msgstr ""
+msgstr "व्हलकन"
 
 #: gui/options/options.json[2].options[0].list[2].tooltip
 msgid "Modern API, requires up-to-date drivers. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "आधुनिक API, नवीनतम ड्रायव्हर आवश्यक. गेम रिस्टार्ट करावा लागेल!"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid ""
@@ -4279,7 +4281,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
-msgstr ""
+msgstr "अँटीएलिअझिंग"
 
 #: gui/options/options.json[2].options[3].list[0].label
 #: gui/options/options.json[2].options[4].list[0].label
@@ -4287,23 +4289,23 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[2].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "निष्क्रिय"
 
 #: gui/options/options.json[2].options[3].list[0].tooltip
 msgid "Do not use antialiasing."
-msgstr ""
+msgstr "अँटीएलिअझिंग वापरू नका."
 
 #: gui/options/options.json[2].options[3].list[1].label
 msgid "FXAA"
-msgstr ""
+msgstr "FXAA"
 
 #: gui/options/options.json[2].options[3].list[1].tooltip
 msgid "Fast, but simple antialiasing."
-msgstr ""
+msgstr "वेगवान पण साधे अँटीएलिअझिंग"
 
 #: gui/options/options.json[2].options[3].list[2].label
 msgid "MSAA (2×)"
-msgstr ""
+msgstr "MSAA (2×)"
 
 #: gui/options/options.json[2].options[3].list[2].tooltip
 msgid ""
@@ -4313,7 +4315,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].list[3].label
 msgid "MSAA (4×)"
-msgstr ""
+msgstr "MSAA (4×)"
 
 #: gui/options/options.json[2].options[3].list[3].tooltip
 msgid ""
@@ -4323,7 +4325,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].list[4].label
 msgid "MSAA (8×)"
-msgstr ""
+msgstr "MSAA (8×)"
 
 #: gui/options/options.json[2].options[3].list[4].tooltip
 msgid ""
@@ -4333,7 +4335,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].list[5].label
 msgid "MSAA (16×)"
-msgstr ""
+msgstr "MSAA (16×)"
 
 #: gui/options/options.json[2].options[3].list[5].tooltip
 msgid ""
@@ -4347,15 +4349,15 @@ msgstr ""
 
 #: gui/options/options.json[2].options[4].label
 msgid "Sharpening"
-msgstr ""
+msgstr "शार्पनिंग"
 
 #: gui/options/options.json[2].options[4].list[0].tooltip
 msgid "Do not use sharpening."
-msgstr ""
+msgstr "शार्पनिंग वापरू नका."
 
 #: gui/options/options.json[2].options[4].list[1].label
 msgid "FidelityFX CAS"
-msgstr ""
+msgstr "FidelityFX CAS"
 
 #: gui/options/options.json[2].options[4].list[1].tooltip
 msgid "Contrast adaptive sharpening, a fast, contrast based sharpening pass."
@@ -4375,12 +4377,12 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].label
 msgid "Model quality"
-msgstr ""
+msgstr "मॉडेल गुणवत्ता"
 
 #: gui/options/options.json[2].options[6].list[0].label._string
 msgctxt "Option for the meshes' level of detail."
 msgid "Low"
-msgstr ""
+msgstr "कमी"
 
 #: gui/options/options.json[2].options[6].list[0].label.tooltip
 msgid "Simpler models for better performance."
@@ -4398,7 +4400,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][1][2].label._string
 msgctxt "Option for the meshes' level of detail."
 msgid "High"
-msgstr ""
+msgstr "अधिक"
 
 #: gui/options/options.json[2].options[6].list[0][1][2].label.tooltip
 msgid "High quality models."
@@ -4419,12 +4421,12 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].label
 msgid "Quality"
-msgstr ""
+msgstr "गुणवत्ता"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0].label._string
 msgctxt "Option for the shadow quality."
 msgid "Low"
-msgstr ""
+msgstr "कमी"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1].label._string
 msgctxt "Option for the shadow quality."
@@ -4459,7 +4461,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].label
 msgid "Water effects"
-msgstr ""
+msgstr "पाण्याचे इफेक्ट"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].tooltip
 msgid ""
@@ -4479,7 +4481,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].label
 msgid "Water reflections"
-msgstr ""
+msgstr "पाण्यावरील प्रतिबिंब"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -4503,16 +4505,16 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].label
 msgid "Texture quality"
-msgstr ""
+msgstr "टेक्शचर गुणवत्ता"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label._string
 msgctxt "Option for the texture quality."
 msgid "Low"
-msgstr ""
+msgstr "कमी"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label.tooltip
 msgid "Low"
-msgstr ""
+msgstr "कमी"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1].label._string
 msgctxt "Option for the texture quality."
@@ -4526,11 +4528,11 @@ msgstr "मध्यम"
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1][2].label._string
 msgctxt "Option for the texture quality."
 msgid "High"
-msgstr ""
+msgstr "अधिक"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1][2].label.tooltip
 msgid "High"
-msgstr ""
+msgstr "अधिक"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].label
 msgid "Texture anisotropic filter"
@@ -4538,27 +4540,27 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[0].label
 msgid "1x"
-msgstr ""
+msgstr "1x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].tooltip
 msgid "2x"
-msgstr ""
+msgstr "2x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].tooltip
 msgid "4x"
-msgstr ""
+msgstr "4x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].tooltip
 msgid "8x"
-msgstr ""
+msgstr "8x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].tooltip
 msgid "16x"
-msgstr ""
+msgstr "16x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].tooltip
 msgid ""
@@ -4630,7 +4632,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].label
 msgid "Game Setup"
-msgstr ""
+msgstr "गेमची मांडणी"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[0].label
 msgid "Enable game setting tips"
@@ -4664,17 +4666,17 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0].label._string
 msgctxt "Option for the AI difficulty."
 msgid "Sandbox"
-msgstr ""
+msgstr "सँडबॉक्स"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1].label._string
 msgctxt "Option for the AI difficulty."
 msgid "Very Easy"
-msgstr ""
+msgstr "अतिशय सोपे"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2].label._string
 msgctxt "Option for the AI difficulty."
 msgid "Easy"
-msgstr ""
+msgstr "सोपे"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3].label._string
 msgctxt "Option for the AI difficulty."
@@ -4688,7 +4690,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label._string
 msgctxt "Option for the AI difficulty."
 msgid "Hard"
-msgstr ""
+msgstr "कठीण"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[0].label
 msgid "Random"
@@ -4696,7 +4698,7 @@ msgstr "यादृच्छिक"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "समतोल"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[2].label
 msgid "Aggressive"
@@ -4713,7 +4715,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4][5].label._string
 msgctxt "Option for the AI difficulty."
 msgid "Very Hard"
-msgstr ""
+msgstr "अतिशय कठीण"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].label
 msgid "Assign players"
@@ -4731,7 +4733,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[1].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[1].label
 msgid "Buddies"
-msgstr ""
+msgstr "मित्र"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[1].tooltip
 msgid ""
@@ -4782,7 +4784,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].label
 msgid "Network warnings"
-msgstr ""
+msgstr "नेटवर्क चेतावण्या"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -4790,7 +4792,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "प्रेक्षक उशिरा सहभागी होणे"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].tooltip
 msgid ""
@@ -4800,7 +4802,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].label
 msgid "Observer limit"
-msgstr ""
+msgstr "प्रेक्षकांची मर्यादा"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
@@ -4895,15 +4897,15 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[0].label
 msgid "Unordered"
-msgstr ""
+msgstr "अक्रमित"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[1].label
 msgid "Ascending"
-msgstr ""
+msgstr "चढत्या क्रमात"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[2].label
 msgid "Descending"
-msgstr ""
+msgstr "उतरत्या क्रमात"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].tooltip
 msgid ""
@@ -4912,7 +4914,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].label
 msgid "Diplomacy colors: self"
-msgstr ""
+msgstr "मुत्सद्देगिरी रंग: स्वतःचे"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
@@ -4920,7 +4922,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].label
 msgid "Diplomacy colors: ally"
-msgstr ""
+msgstr "मुत्सद्देगिरी रंग: मित्राचे"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
@@ -4936,11 +4938,11 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
 msgid "Diplomacy colors: enemy"
-msgstr ""
+msgstr "मुत्सद्देगिरी रंग: शत्रूचे"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
-msgstr ""
+msgstr "मुत्सद्देगिरीचे रंग सक्रिय केल्यावर शत्रूचे रंग."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].label
 msgid "Batch training size"
@@ -4979,11 +4981,11 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].label
 msgid "Control group membership"
-msgstr ""
+msgstr "नियंत्रण गट सदस्यता"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].label
 msgid "Single"
-msgstr ""
+msgstr "एक"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].tooltip
 msgid ""
@@ -4994,7 +4996,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].label
 msgid "Multiple"
-msgstr ""
+msgstr "अनेक"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].tooltip
 msgid ""
@@ -5060,7 +5062,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
 msgid "Minimap icons"
-msgstr ""
+msgstr "मिनिमॅप आयकन"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
 msgid "Show special icons for some entities on the minimap."
@@ -5099,7 +5101,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[0].label
 msgid "Disable"
-msgstr ""
+msgstr "निष्क्रिय करा"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[1].label
 msgid "Completed"
@@ -5107,7 +5109,7 @@ msgstr "पूर्ण"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[2].label
 msgid "All displayed"
-msgstr ""
+msgstr "दाखवलेले सर्व"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].tooltip
 msgid ""
@@ -5136,12 +5138,12 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][2].label._string
 msgctxt "Option for the shadow quality."
 msgid "High"
-msgstr ""
+msgstr "अधिक"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][2][3].label._string
 msgctxt "Option for the shadow quality."
 msgid "Very High"
-msgstr ""
+msgstr "अत्यधिक "
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].tooltip
 msgid ""
@@ -5152,7 +5154,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1].label._string
 msgctxt "Option for the meshes' amount of variety."
 msgid "Limited"
-msgstr ""
+msgstr "मर्यादित"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1].label.tooltip
 msgid "Entities will be less diverse."
@@ -5161,7 +5163,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label._string
 msgctxt "Option for the meshes' amount of variety."
 msgid "Normal"
-msgstr ""
+msgstr "साधारण"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label.tooltip
 msgid "Entities appearance is randomized normally."
@@ -5169,11 +5171,11 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][8].label
 msgid "Shader effects"
-msgstr ""
+msgstr "शेडर इफेक्ट"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "शेडर इफेक्ट्सची संख्या. गेम रिस्टार्ट करावा लागेल!"
 
 #: gui/options/options.json[2].options[6].list[0][7].tooltip
 msgid ""
@@ -5191,7 +5193,7 @@ msgstr ""
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
-msgstr ""
+msgstr "गेम पर्याय"
 
 #: gui/options/options.xml:(caption):50
 msgid "Revert"
@@ -5207,7 +5209,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:3
 msgid "Learn to Play"
-msgstr ""
+msgstr "खेळायला शिका"
 
 #: gui/pregame/MainMenuItems.js:4
 msgid ""
@@ -5225,7 +5227,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
-msgstr ""
+msgstr "ट्यूटोरियल"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the introductory tutorial."
@@ -5235,7 +5237,7 @@ msgstr ""
 #: gui/reference/common/Buttons/StructreeButton.js:26
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
-msgstr ""
+msgstr "इमारतींचे माहितीवृक्ष"
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
@@ -5252,7 +5254,7 @@ msgstr ""
 #: gui/pregame/MainMenuItems.js:43
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: 0 A.D. मधील संस्कृतींविषयी शिका."
 
 #: gui/pregame/MainMenuItems.js:48
 msgid "Catafalque Overview"
@@ -5272,7 +5274,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:64 gui/pregame/MainMenuItems.js:120
 msgid "Continue Campaign"
-msgstr ""
+msgstr "कँपेन चालू ठेवा"
 
 #: gui/pregame/MainMenuItems.js:65 gui/pregame/MainMenuItems.js:121
 #: gui/pregame/MainMenuItems.js:137 gui/pregame/MainMenuItems.js:144
@@ -5281,39 +5283,39 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:73 gui/pregame/MainMenuItems.js:129
 msgid "Error opening campaign run:"
-msgstr ""
+msgstr "कँपेन रन उघडण्यात त्रुटी आढळली:"
 
 #: gui/pregame/MainMenuItems.js:80
 msgid "Single-player"
-msgstr ""
+msgstr "सिंगलप्लेयर"
 
 #: gui/pregame/MainMenuItems.js:81
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "सिंगलप्लेयर गेम सुरू करा, लोड करा, किंवा रिप्ले करा."
 
 #: gui/pregame/MainMenuItems.js:84
 msgid "Matches"
-msgstr ""
+msgstr "सामने"
 
 #: gui/pregame/MainMenuItems.js:85
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "नवीन सिंगलप्लेयर गेम सुरू करा."
 
 #: gui/pregame/MainMenuItems.js:92
 msgid "Load a saved game."
-msgstr ""
+msgstr "सेव्ह केलेला गेम लोड करा."
 
 #: gui/pregame/MainMenuItems.js:136
 msgid "New Campaign"
-msgstr ""
+msgstr "नवीन कँपेन"
 
 #: gui/pregame/MainMenuItems.js:143
 msgid "Load Campaign"
-msgstr ""
+msgstr "कँपेन लोड करा"
 
 #: gui/pregame/MainMenuItems.js:153 gui/pregame/MainMenuItems.js:203
 msgid "Replays"
-msgstr ""
+msgstr "रिप्ले"
 
 #: gui/pregame/MainMenuItems.js:154 gui/pregame/MainMenuItems.js:204
 msgid "Playback previous games."
@@ -5321,7 +5323,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:168
 msgid "Multiplayer"
-msgstr ""
+msgstr "मल्टिप्लेयर"
 
 #: gui/pregame/MainMenuItems.js:169
 msgid "Fight against one or more human players in a multiplayer game."
@@ -5330,7 +5332,7 @@ msgstr ""
 #. Translation: Join a game by specifying the host's IP address.
 #: gui/pregame/MainMenuItems.js:173
 msgid "Join Game"
-msgstr ""
+msgstr "गेममध्ये सहभागी व्हा"
 
 #: gui/pregame/MainMenuItems.js:174
 msgid "Joining an existing multiplayer game."
@@ -5346,7 +5348,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:191
 msgid "Game Lobby"
-msgstr ""
+msgstr "गेम लॉबी"
 
 #: gui/pregame/MainMenuItems.js:193
 #, javascript-format
@@ -5365,7 +5367,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:219
 msgid "Change game options."
-msgstr ""
+msgstr "गेमचे पर्याय बदला."
 
 #: gui/pregame/MainMenuItems.js:222
 msgid "Options"
@@ -5387,31 +5389,31 @@ msgstr ""
 #: gui/locale_advanced/locale_advanced.xml:(caption):14
 #: gui/pregame/MainMenuItems.js:239
 msgid "Language"
-msgstr ""
+msgstr "भाषा"
 
 #: gui/pregame/MainMenuItems.js:240
 msgid "Choose the language of the game."
-msgstr ""
+msgstr "गेमची भाषा निवडा."
 
 #: gui/pregame/MainMenuItems.js:246
 msgid "Mod Selection"
-msgstr ""
+msgstr "मॉड निवड"
 
 #: gui/pregame/MainMenuItems.js:247
 msgid "Select and download mods for the game."
-msgstr ""
+msgstr "गेमसाठी मॉड निवडा व डाउनलोड करा."
 
 #: gui/pregame/MainMenuItems.js:253
 msgid "Welcome Screen"
-msgstr ""
+msgstr "स्वागत पडदा"
 
 #: gui/pregame/MainMenuItems.js:254
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr ""
+msgstr "स्वागत पडदा पुन्हा दाखवा. चुकून लपवला असेल तर हा पर्याय कामाचा."
 
 #: gui/pregame/MainMenuItems.js:262
 msgid "Scenario Editor"
-msgstr ""
+msgstr "सेनारियो संपादक"
 
 #: gui/pregame/MainMenuItems.js:263
 msgid ""
@@ -5447,19 +5449,19 @@ msgstr "सोडा"
 
 #: gui/pregame/MainMenuItems.js:288
 msgid "Exit the game."
-msgstr ""
+msgstr "गेममधून बाहेर पडा."
 
 #: gui/pregame/MainMenuItems.js:292
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr ""
+msgstr "तुम्हाला 0 A.D. मधून नक्की बाहेर पडायचे आहे का?"
 
 #: gui/pregame/ProjectInformation.js:6
 msgid "WILDFIRE GAMES"
-msgstr ""
+msgstr "वाइल्डफायर गेम्स"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXVII: Agni"
-msgstr ""
+msgstr "Alpha XXVII: Agni"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5469,11 +5471,11 @@ msgstr ""
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
-msgstr ""
+msgstr "संकेतस्थळ"
 
 #: gui/pregame/ProjectInformation.js:26
 msgid "Click to open play0ad.com in your web browser."
-msgstr ""
+msgstr "आपल्या ब्राउझरमध्ये play0ad.com उघडण्यास येथे क्लिक करा."
 
 #: gui/pregame/ProjectInformation.js:33
 msgid "Chat"
@@ -5489,24 +5491,24 @@ msgstr ""
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
-msgstr ""
+msgstr "बगचा अहवाल द्या"
 
 #: gui/pregame/ProjectInformation.js:42
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "बग, क्रॅश, किंवा त्रुटीचा अहवाल देण्यास 0 A.D. Trac ला जाण्यासाठी येथे क्लिक करा."
 
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
 msgid "FAQ"
-msgstr ""
+msgstr "फॅक"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to visit the Frequently Asked Questions page in your browser."
-msgstr ""
+msgstr "वारंवार विचारल्या जाणार्‍या प्रश्नांचे पान आपल्या ब्राउझरमध्ये पाहण्यास येथे क्लिक करा."
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
-msgstr ""
+msgstr "गेमचे भाषांतर करा"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
@@ -5514,7 +5516,7 @@ msgstr ""
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
-msgstr ""
+msgstr "देणगी द्या"
 
 #: gui/pregame/ProjectInformation.js:66
 msgid "Help with the project expenses by donating."
@@ -5523,7 +5525,7 @@ msgstr ""
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "अटी"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
@@ -5531,61 +5533,61 @@ msgstr ""
 
 #: gui/pregame/userreport/userreport.js:18
 msgid "Publications"
-msgstr ""
+msgstr "प्रकाशने"
 
 #: gui/pregame/userreport/userreport.js:27
 #: gui/pregame/userreport/userreport.js:28
 #: gui/pregame/userreport/userreport.js:29
 msgid "connecting to server"
-msgstr ""
+msgstr "सर्व्हरला कनेक्ट करत आहे"
 
 #: gui/pregame/userreport/userreport.js:30
 #, javascript-format
 msgid "uploading (%f%%)"
-msgstr ""
+msgstr "अपलोड करत आहे (%f%%)"
 
 #: gui/pregame/userreport/userreport.js:33
 msgid "upload succeeded"
-msgstr ""
+msgstr "अपलोड करण्यात यश"
 
 #: gui/pregame/userreport/userreport.js:34
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "अपलोड करण्यात अपयश (%(errorCode)s)"
 
 #: gui/pregame/userreport/userreport.js:37
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "अपलोड करण्यात अपयश (%(errorMessage)s)"
 
 #: gui/pregame/userreport/userreport.js:61
 msgid "Disable Feedback"
-msgstr ""
+msgstr "फीडबॅक निष्क्रिय करा"
 
 #: gui/pregame/userreport/userreport.js:61
 msgid "Enable Feedback"
-msgstr ""
+msgstr "फीडबॅक सक्रिय करा"
 
 #: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr ""
+msgstr "0 A.D. सुधारण्यात मदत केली याबद्दल तुमचे आभार!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr ""
+msgstr "फीडबॅक यावेळी सक्रिय आहे."
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
 msgid "Status: %(status)s."
-msgstr ""
+msgstr "स्थिती: %(status)s."
 
 #: gui/pregame/userreport/userreport.js:84
 msgid "unknown"
-msgstr ""
+msgstr "अज्ञात"
 
 #: gui/pregame/userreport/userreport.js:86
 msgid "Help improve 0 A.D.!"
-msgstr ""
+msgstr "0 A.D. सुधारण्यात आमची मदत करा!"
 
 #: gui/pregame/userreport/userreport.js:87
 msgid ""
@@ -5609,7 +5611,7 @@ msgstr ""
 msgid ""
 "\n"
 "     %(description)s"
-msgstr ""
+msgstr "\n     %(description)s"
 
 #. Translation: An entry in the CivInfo Page. The newline and indentation of
 #. the description
@@ -5620,7 +5622,7 @@ msgstr ""
 #: gui/reference/civinfo/CivInfoPage.js:109
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr ""
+msgstr "• %(name)s %(info_icon)s%(description)s"
 
 #: gui/reference/civinfo/CivInfoPage.js:120
 #, javascript-format
@@ -5630,12 +5632,12 @@ msgstr ""
 #: gui/reference/civinfo/Sections/GameplaySection.js:30
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr ""
+msgstr "%(civilization)s गेमप्ले"
 
 #: gui/reference/civinfo/Sections/HistorySection.js:30
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "%(civilization)s यांचा इतिहास"
 
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
@@ -5652,20 +5654,20 @@ msgstr[1] ""
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
 msgid_plural "Heroes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "नायक"
+msgstr[1] "नायक"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
 msgid_plural "Specific Structures"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "विशिष्ट इमारत"
+msgstr[1] "विशिष्ट इमारती"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
 msgid_plural "Specific Technologies"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "विशिष्ट तंत्रज्ञान"
+msgstr[1] "विशिष्ट तंत्रज्ञान"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:32
 #, javascript-format
@@ -5675,63 +5677,63 @@ msgstr ""
 #: gui/reference/common/Buttons/StructreeButton.js:32
 #, javascript-format
 msgid "%(hotkey)s: Switch to Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: इमारतींचे माहितीवृक्ष पाहा."
 
 #: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
 msgid "Civilization:"
-msgstr ""
+msgstr "संस्कृती:"
 
 #: gui/reference/common/TemplateParser.js:165
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr ""
+msgstr "%(health_min)s ते %(health_max)s"
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/tooltips.js:10
 #, javascript-format
 msgid "%(listHeader)s %(listOfValues)s"
-msgstr ""
+msgstr "%(listHeader)s %(listOfValues)s"
 
 #. Translation: Label before a list of the names of units that build the
 #. structure selected.
 #: gui/reference/common/tooltips.js:27
 msgid "Built by:"
-msgstr ""
+msgstr "यांनी बांधा:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit
 #. selected.
 #: gui/reference/common/tooltips.js:33
 msgid "Trained by:"
-msgstr ""
+msgstr "यांनी तयार करा:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the
 #. technology selected.
 #: gui/reference/common/tooltips.js:39
 msgid "Researched at:"
-msgstr ""
+msgstr "यांनी संशोधित करा:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can
 #. construct or build.
 #: gui/reference/common/tooltips.js:48
 msgid "Builds:"
-msgstr ""
+msgstr "याने बांधता येते:"
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or
 #. structure can research.
 #: gui/reference/common/tooltips.js:57
 msgid "Researches:"
-msgstr ""
+msgstr "याने संशोधित करता येते:"
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can
 #. train.
 #: gui/reference/common/tooltips.js:66
 msgid "Trains:"
-msgstr ""
+msgstr "याने तयार करता येते:"
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or
@@ -5747,7 +5749,7 @@ msgstr ""
 #: gui/reference/structree/StructreePage.js:90
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr ""
+msgstr "%(hotkey)s: इमारतींचे माहितीवृक्ष बंद करा."
 
 #: gui/reference/viewer/ViewerPage.js:178
 #, javascript-format
@@ -5756,7 +5758,7 @@ msgstr ""
 
 #: gui/reference/viewer/viewer.xml:(caption):16
 msgid "Information"
-msgstr ""
+msgstr "माहिती"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
@@ -5769,12 +5771,12 @@ msgstr ""
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr ""
+msgstr "तुमच्याकडे असलेली आवृत्ती: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:97
 #, javascript-format
 msgid "Required version: %(version)s"
-msgstr ""
+msgstr "आवश्यक असलेली आवृत्ती: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:100
 msgid "Incompatible replay"
@@ -5782,40 +5784,40 @@ msgstr ""
 
 #: gui/replaymenu/replay_actions.js:126
 msgid "No summary data available."
-msgstr ""
+msgstr "सारांश डेटा उपलब्ध नाही."
 
 #: gui/replaymenu/replay_actions.js:175
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr ""
+msgstr "तुम्हाला हा रिप्ले नक्की कायमचा डिलीट करायचा आहे का?"
 
 #: gui/replaymenu/replay_actions.js:177
 msgid "Delete replay"
-msgstr ""
+msgstr "रिप्ले डिलीट करा"
 
 #: gui/replaymenu/replay_filters.js:52
 msgctxt "datetime"
 msgid "Any"
-msgstr ""
+msgstr "कोणताही"
 
 #: gui/replaymenu/replay_filters.js:68
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "कोणताही"
 
 #: gui/replaymenu/replay_filters.js:84
 msgctxt "map name"
 msgid "Any"
-msgstr ""
+msgstr "कोणताही"
 
 #: gui/replaymenu/replay_filters.js:100
 msgctxt "population capacity"
 msgid "Any"
-msgstr ""
+msgstr "कोणताही"
 
 #: gui/replaymenu/replay_filters.js:119
 msgctxt "duration"
 msgid "Any"
-msgstr ""
+msgstr "कोणताही"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:123
@@ -5823,8 +5825,8 @@ msgstr ""
 msgctxt "duration filter"
 msgid "< %(max)s min"
 msgid_plural "< %(max)s min"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "< %(max)s मिनि"
+msgstr[1] "< %(max)s मिनि"
 
 #. Translation: Longer duration than min minutes.
 #: gui/replaymenu/replay_filters.js:127
@@ -5832,39 +5834,39 @@ msgstr[1] ""
 msgctxt "duration filter"
 msgid "> %(min)s min"
 msgid_plural "> %(min)s min"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "> %(min)s मिनि"
+msgstr[1] "> %(min)s मिनि"
 
 #. Translation: Duration between min and max minutes.
 #: gui/replaymenu/replay_filters.js:130
 #, javascript-format
 msgctxt "duration filter"
 msgid "%(min)s - %(max)s min"
-msgstr ""
+msgstr "%(min)s - %(max)s मिनि"
 
 #: gui/replaymenu/replay_filters.js:145
 msgctxt "replay filter"
 msgid "Any"
-msgstr ""
+msgstr "कोणताही"
 
 #: gui/replaymenu/replay_filters.js:146
 msgctxt "replay filter"
 msgid "Single-player"
-msgstr ""
+msgstr "सिंगलप्लेयर"
 
 #: gui/replaymenu/replay_filters.js:147
 msgctxt "replay filter"
 msgid "Multiplayer"
-msgstr ""
+msgstr "मल्टिप्लेयर"
 
 #: gui/replaymenu/replay_filters.js:148
 msgctxt "replay filter"
 msgid "Campaigns"
-msgstr ""
+msgstr "कँपेन"
 
 #: gui/replaymenu/replay_filters.js:162
 msgid "Any victory condition"
-msgstr ""
+msgstr "कोणतीही जिंकण्याची अट"
 
 #: gui/replaymenu/replay_filters.js:175
 msgid "Rated and unrated games"
@@ -5886,24 +5888,24 @@ msgstr ""
 #: gui/replaymenu/replay_menu.js:200
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
+msgstr "%(hotkey)s दाबून निवडलेला रिप्ले डिलीट करा."
 
 #: gui/replaymenu/replay_menu.js:285
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
-msgstr ""
+msgstr "खेळाडू: %(numberOfPlayers)s"
 
 #: gui/replaymenu/replay_menu.js:309
 msgid "yyyy-MM-dd HH:mm"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm"
 
 #: gui/replaymenu/replay_menu.js:339
 msgid "yyyy-MM"
-msgstr ""
+msgstr "yyyy-MM"
 
 #: gui/replaymenu/replay_menu.xml:(caption):14
 msgid "Replay Games"
-msgstr ""
+msgstr "गेम रिप्ले करा"
 
 #: gui/replaymenu/replay_menu.xml:(caption):112
 msgid "Filter compatible replays"
@@ -5911,7 +5913,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):216
 msgid "Spoiler"
-msgstr ""
+msgstr "स्पॉइलर"
 
 #: gui/replaymenu/replay_menu.xml:(caption):228
 msgid "Main Menu"
@@ -5924,39 +5926,39 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(caption):247
 #: gui/summary/summary.xml:(caption):26
 msgid "Summary"
-msgstr ""
+msgstr "सारांश"
 
 #: gui/replaymenu/replay_menu.xml:(caption):253
 msgid "Start Replay"
-msgstr ""
+msgstr "रिप्ले सुरू करा"
 
 #: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "खेळाडू"
 
 #: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
 msgid "Size"
-msgstr ""
+msgstr "आकार"
 
 #: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Population"
-msgstr ""
+msgstr "लोकसंख्या"
 
 #: gui/replaymenu/replay_menu.xml:(heading):91
 msgctxt "replay"
 msgid "Duration"
-msgstr ""
+msgstr "कालावधी"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "खेळाडूचा शोध घ्या"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):98
 msgid "File path for the currently selected replay."
-msgstr ""
+msgstr "यावेळी निवडलेल्या रिप्लेचा फाईल पाथ."
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):241
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -5969,7 +5971,7 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
@@ -5997,15 +5999,15 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
-msgstr ""
+msgstr "आपले स्वागत आहे!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):19
 msgid "Show this message in the future"
-msgstr ""
+msgstr "हा निरोप भविष्यातसुद्धा दाखवा"
 
 #: gui/splashscreen/splashscreen.xml:(caption):25
 msgid "OK"
-msgstr ""
+msgstr "ठीक आहे"
 
 #: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "Official Forum (web)"
@@ -6019,7 +6021,7 @@ msgstr ""
 #: gui/summary/layout.js:110 gui/summary/layout.js:161
 #: gui/summary/layout.js:193 gui/summary/summary.xml:(caption):70
 msgid "Player name"
-msgstr ""
+msgstr "खेळाडूचे नाव"
 
 #: gui/summary/layout.js:16
 msgid "Total score"
@@ -6039,15 +6041,15 @@ msgstr ""
 
 #: gui/summary/layout.js:31
 msgid "Structures"
-msgstr ""
+msgstr "इमारती"
 
 #: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:111
 msgid "Total"
-msgstr ""
+msgstr "एकूण"
 
 #: gui/summary/layout.js:35
 msgid "Houses"
-msgstr ""
+msgstr "घरे"
 
 #: gui/summary/layout.js:36
 msgid "Economic"
@@ -6063,7 +6065,7 @@ msgstr "लष्कर"
 
 #: gui/summary/layout.js:39
 msgid "Fortresses"
-msgstr ""
+msgstr "गडे"
 
 #: gui/summary/layout.js:40
 msgid "Civ centers"
@@ -6102,7 +6104,7 @@ msgstr ""
 
 #: gui/summary/layout.js:77
 msgid "Heroes"
-msgstr ""
+msgstr "नायक"
 
 #: gui/summary/layout.js:78
 msgid "Siege"
@@ -6110,11 +6112,11 @@ msgstr ""
 
 #: gui/summary/layout.js:79
 msgid "Navy"
-msgstr ""
+msgstr "नौदल"
 
 #: gui/summary/layout.js:80
 msgid "Traders"
-msgstr ""
+msgstr "व्यापारी"
 
 #: gui/summary/layout.js:84
 #, javascript-format
@@ -6123,7 +6125,7 @@ msgstr ""
 
 #: gui/summary/layout.js:108
 msgid "Resources"
-msgstr ""
+msgstr "साधने"
 
 #: gui/summary/layout.js:120
 msgid "Tributes"
@@ -6138,11 +6140,11 @@ msgstr ""
 
 #: gui/summary/layout.js:129
 msgid "Treasures collected"
-msgstr ""
+msgstr "गोळा केलेले खजिने"
 
 #: gui/summary/layout.js:130
 msgid "Loot"
-msgstr ""
+msgstr "लूट"
 
 #: gui/summary/layout.js:131
 msgid "Livestock bred"
@@ -6181,7 +6183,7 @@ msgstr ""
 
 #: gui/summary/layout.js:195 gui/summary/summary.js:99
 msgid "Population"
-msgstr ""
+msgstr "लोकसंख्या"
 
 #: gui/summary/layout.js:196
 msgid "Map control (peak)"
@@ -6201,18 +6203,18 @@ msgstr ""
 
 #: gui/summary/layout.js:200
 msgid "Feminization"
-msgstr ""
+msgstr "महिलाकरण"
 
 #: gui/summary/layout.js:203
 msgid "Bribes"
-msgstr ""
+msgstr "लाच"
 
 #: gui/summary/layout.js:204
 #, javascript-format
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
-msgstr ""
+msgstr "लाच\n(%(succeeded)s / %(failed)s)"
 
 #: gui/summary/layout.js:230
 msgid "Charts"
@@ -6224,15 +6226,15 @@ msgstr ""
 
 #: gui/summary/summary.js:30
 msgid "Trained"
-msgstr ""
+msgstr "तयार केले"
 
 #: gui/summary/summary.js:35
 msgid "Constructed"
-msgstr ""
+msgstr "बांधले"
 
 #: gui/summary/summary.js:40
 msgid "Gathered"
-msgstr ""
+msgstr "गोळा केले"
 
 #: gui/summary/summary.js:44
 msgid "Count"
@@ -6240,11 +6242,11 @@ msgstr ""
 
 #: gui/summary/summary.js:49
 msgid "Sent"
-msgstr ""
+msgstr "पाठवले"
 
 #: gui/summary/summary.js:54
 msgid "Bought"
-msgstr ""
+msgstr "विकत घेतले"
 
 #: gui/summary/summary.js:59
 msgid "Income"
@@ -6256,31 +6258,31 @@ msgstr ""
 
 #: gui/summary/summary.js:69
 msgid "Succeeded"
-msgstr ""
+msgstr "यशस्वी झाले"
 
 #: gui/summary/summary.js:74
 msgid "Destroyed"
-msgstr ""
+msgstr "नष्ट केले"
 
 #: gui/summary/summary.js:79
 msgid "Killed"
-msgstr ""
+msgstr "मारले"
 
 #: gui/summary/summary.js:84
 msgid "Lost"
-msgstr ""
+msgstr "गमावले"
 
 #: gui/summary/summary.js:89
 msgid "Used"
-msgstr ""
+msgstr "वापरले"
 
 #: gui/summary/summary.js:94
 msgid "Received"
-msgstr ""
+msgstr "मिळवले"
 
 #: gui/summary/summary.js:104
 msgid "Sold"
-msgstr ""
+msgstr "विकले"
 
 #: gui/summary/summary.js:109
 msgid "Outcome"
@@ -6288,23 +6290,23 @@ msgstr ""
 
 #: gui/summary/summary.js:114
 msgid "Failed"
-msgstr ""
+msgstr "अयशस्वी झाले"
 
 #: gui/summary/summary.js:201
 #, javascript-format
 msgctxt "Player listing with color indicator"
 msgid "%(colorIndicator)s %(playerListing)s"
-msgstr ""
+msgstr "%(colorIndicator)s %(playerListing)s"
 
 #: gui/summary/summary.js:204
 msgctxt "Charts player color indicator"
 msgid "■"
-msgstr ""
+msgstr "■"
 
 #: gui/summary/summary.js:234
 msgctxt "Player listing"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/summary/summary.js:340
 msgid "Time elapsed"
@@ -6320,19 +6322,19 @@ msgstr ""
 
 #: gui/summary/summary.js:514
 msgid "You have been disconnected."
-msgstr ""
+msgstr "तुम्ही डिस्कनेक्ट झाला आहात."
 
 #: gui/summary/summary.js:516
 msgid "You have left the game."
-msgstr ""
+msgstr "तुम्ही गेम सोडला आहे."
 
 #: gui/summary/summary.js:518
 msgid "You have won the battle!"
-msgstr ""
+msgstr "तुम्ही लढाईत विजय मिळवला आहे!"
 
 #: gui/summary/summary.js:520
 msgid "You have been defeated…"
-msgstr ""
+msgstr "तुम्ही पराभूत झाला आहात..."
 
 #: gui/summary/summary.js:521
 msgid "You have abandoned the game."
@@ -6346,7 +6348,7 @@ msgstr ""
 #: gui/summary/summary.js:532
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
-msgstr ""
+msgstr "%(mapName)s - %(mapType)s"
 
 #: gui/summary/summary.js:544
 #, javascript-format
@@ -6361,17 +6363,17 @@ msgstr ""
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
 msgid "Category:"
-msgstr ""
+msgstr "वर्ग:"
 
 #: gui/summary/summary.xml:(caption):130
 msgctxt "summary chart"
 msgid "Value:"
-msgstr ""
+msgstr "मूल्य:"
 
 #: gui/summary/summary.xml:(caption):140
 msgctxt "summary chart"
 msgid "Type:"
-msgstr ""
+msgstr "प्रकार:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
@@ -6379,30 +6381,30 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
-msgstr ""
+msgstr "रिप्ले पाहा"
 
 #: gui/summary/summary.xml:(caption):192
 msgid "Continue"
-msgstr ""
+msgstr "पुढे जा"
 
 #: gui/summary/summary.xml:(tooltip):126
 msgctxt "summary chart"
 msgid "Category"
-msgstr ""
+msgstr "वर्ग"
 
 #: gui/summary/summary.xml:(tooltip):136
 msgctxt "summary chart"
 msgid "Value"
-msgstr ""
+msgstr "मूल्य"
 
 #: gui/summary/summary.xml:(tooltip):147
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
+msgstr "प्रकार"
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
-msgstr ""
+msgstr "रोमन सेनेची शिबिर"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
@@ -6534,7 +6536,7 @@ msgstr ""
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
-msgstr ""
+msgstr "महाग आणि मंद."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
@@ -6561,7 +6563,7 @@ msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "The main warship for the Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "ब्रिटन, गॉल, आणि आयबीरियनांचे मुख्य युद्धनौका."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Can transport up to 40 units."
@@ -6573,7 +6575,7 @@ msgstr ""
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
-msgstr ""
+msgstr "शहरी भिंत"
 
 #: gui/text/tips/city_walls.txt:2
 msgid "Strong stone walls that help you protect your city."
@@ -6595,7 +6597,7 @@ msgstr ""
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "The foundation of your new colony."
-msgstr ""
+msgstr "तुमच्या नवीन वसाहतीचा पाया."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
@@ -6661,7 +6663,7 @@ msgstr ""
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES AND MERCENARY CAMPS"
-msgstr ""
+msgstr "दूतावास आणि भाडोत्री सैनिकांच्या शिबिरे"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special structures allowing you to hire mercenaries for your army."
@@ -6675,7 +6677,7 @@ msgstr ""
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
-msgstr ""
+msgstr "मासेमारी"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
@@ -6724,7 +6726,7 @@ msgstr ""
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
-msgstr ""
+msgstr "गड"
 
 #: gui/text/tips/fortress.txt:2
 msgid ""
@@ -6783,7 +6785,7 @@ msgstr ""
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
-msgstr ""
+msgstr "नायक"
 
 #: gui/text/tips/heroes.txt:2
 msgid ""
@@ -6793,7 +6795,7 @@ msgstr ""
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr ""
+msgstr "पुष्कळ आरोग्य आणि अतिशय प्रबल हल्ले."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
@@ -6805,11 +6807,11 @@ msgstr ""
 
 #: gui/text/tips/iber_fireship.txt:1
 msgid "FIRESHIPS"
-msgstr ""
+msgstr "अग्रिनौका"
 
 #: gui/text/tips/iber_fireship.txt:2
 msgid "Available to the Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "ब्रिटन, गॉल, आणि आयबीरियनांना उपलब्ध."
 
 #: gui/text/tips/iber_fireship.txt:3
 msgid ""
@@ -6829,7 +6831,7 @@ msgstr ""
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
-msgstr ""
+msgstr "दीपगृह"
 
 #: gui/text/tips/lighthouse.txt:2
 msgid ""
@@ -6853,7 +6855,7 @@ msgstr ""
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"
-msgstr ""
+msgstr "मेरोएचे पिरामिड"
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
@@ -6880,7 +6882,7 @@ msgstr ""
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr ""
+msgstr "स्वस्त आणि झटकन बांधले जाते, पण दुर्बळ."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
@@ -6902,15 +6904,15 @@ msgstr ""
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "ACHAEMENID ARCHITECTURE"
-msgstr ""
+msgstr "हखामनी वास्तुशास्त्र"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr ""
+msgstr "फारसींसाठी विशेष तंत्रज्ञान."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr ""
+msgstr "इमारती +25% आरोग्य."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
@@ -7105,19 +7107,19 @@ msgstr ""
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
-msgstr ""
+msgstr "मंदिरे"
 
 #: gui/text/tips/temples.txt:2
 msgid "Town Phase structure."
-msgstr ""
+msgstr "नगर टप्प्याची इमारत"
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
-msgstr ""
+msgstr "आपल्या सैनिकांचा रणावर उपचार करण्यास वैद्य तयार करा."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
-msgstr ""
+msgstr "उपचाराच्या तंत्रज्ञानांचे संशोधन करा."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
@@ -7150,7 +7152,7 @@ msgstr ""
 
 #: gui/text/tips/theater.txt:1
 msgid "THEATER"
-msgstr ""
+msgstr "नाट्यगृह"
 
 #: gui/text/tips/theater.txt:2
 msgid ""
@@ -7160,7 +7162,7 @@ msgstr ""
 
 #: gui/text/tips/treasure.txt:1
 msgid "TREASURES"
-msgstr ""
+msgstr "खजिने"
 
 #: gui/text/tips/treasure.txt:2
 msgid ""
@@ -7195,7 +7197,7 @@ msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr ""
+msgstr "युद्धाचे हत्ती"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
@@ -7203,7 +7205,7 @@ msgstr ""
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
-msgstr ""
+msgstr "अन्न आणि धातूचा खर्च जास्त, पण अतिशय प्रबल."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
@@ -7213,15 +7215,15 @@ msgstr ""
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
-msgstr ""
+msgstr "देवमासे"
 
 #: gui/text/tips/whales.txt:2
 msgid "An oceanic resource."
-msgstr ""
+msgstr "महासागरातले एक साधन."
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
-msgstr ""
+msgstr "2000 अन्न."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
@@ -7240,7 +7242,7 @@ msgstr ""
 #: simulation/data/resources/food.jsonname
 msgctxt "firstWord"
 msgid "Food"
-msgstr ""
+msgstr "अन्न"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7248,7 +7250,7 @@ msgstr ""
 #: simulation/data/resources/food.jsonname
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "अन्न"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -7270,7 +7272,7 @@ msgstr "मासे"
 #: simulation/data/resources/food.jsonsubtypes.fruit
 msgctxt "firstWord"
 msgid "Fruit"
-msgstr ""
+msgstr "फळ"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7278,14 +7280,14 @@ msgstr ""
 #: simulation/data/resources/food.jsonsubtypes.fruit
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr ""
+msgstr "फळ"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: simulation/data/resources/food.jsonsubtypes.grain
 msgctxt "firstWord"
 msgid "Grain"
-msgstr ""
+msgstr "धान्य"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7293,14 +7295,14 @@ msgstr ""
 #: simulation/data/resources/food.jsonsubtypes.grain
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr ""
+msgstr "धान्य"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: simulation/data/resources/food.jsonsubtypes.meat
 msgctxt "firstWord"
 msgid "Meat"
-msgstr ""
+msgstr "मांस"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7308,7 +7310,7 @@ msgstr ""
 #: simulation/data/resources/food.jsonsubtypes.meat
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr ""
+msgstr "मांस"
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
@@ -7319,7 +7321,7 @@ msgstr ""
 #: simulation/data/resources/metal.jsonname
 msgctxt "firstWord"
 msgid "Metal"
-msgstr ""
+msgstr "धातू"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7327,14 +7329,14 @@ msgstr ""
 #: simulation/data/resources/metal.jsonname
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "धातू"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: simulation/data/resources/metal.jsonsubtypes.ore
 msgctxt "firstWord"
 msgid "Ore"
-msgstr ""
+msgstr "धातुक"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7342,7 +7344,7 @@ msgstr ""
 #: simulation/data/resources/metal.jsonsubtypes.ore
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr ""
+msgstr "धातुक"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -7399,14 +7401,14 @@ msgstr "खडक"
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr ""
+msgstr "झाडांपासून व वनांपासून कापून काढा."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: simulation/data/resources/wood.jsonname
 msgctxt "firstWord"
 msgid "Wood"
-msgstr ""
+msgstr "लाकूड"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7414,7 +7416,7 @@ msgstr ""
 #: simulation/data/resources/wood.jsonname
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "लाकूड"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
