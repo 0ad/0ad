@@ -3,11 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# sabretou, 2024
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-09-11 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
+"Last-Translator: sabretou, 2024\n"
 "Language-Team: Marathi (http://app.transifex.com/wildfire-games/0ad/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,12 +46,12 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:9
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr ""
+msgstr "मी आत्ताच %(_player_)s विरुद्ध सेना पाठवली आहे."
 
 #: simulation/ai/petra/chatHelper.js:10
 #, javascript-format
 msgid "I am sending an army against %(_player_)s."
-msgstr ""
+msgstr "मी %(_player_)s विरुद्ध सेना पाठवत आहे."
 
 #: simulation/ai/petra/chatHelper.js:16
 #, javascript-format
@@ -134,7 +136,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:47
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr ""
+msgstr "%(_player_)s आणि मी आता मित्र आहोत."
 
 #: simulation/ai/petra/chatHelper.js:50
 #, javascript-format
@@ -144,7 +146,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:53
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr ""
+msgstr "%(_player_)s आणि मी आता शत्रू आहोत."
 
 #: simulation/ai/petra/chatHelper.js:60
 #, javascript-format
@@ -416,7 +418,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:91
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr ""
+msgstr "एका अज्ञात त्रुटीमुळे %(name)s बांधता आले नाही"
 
 #: simulation/components/BuildRestrictions.js:115
 #, javascript-format
@@ -426,7 +428,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:163
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr ""
+msgstr "%(name)s हे दुसर्‍या इमारतीवर किंवा साधनावर बांधणे अशक्य आहे"
 
 #: simulation/components/BuildRestrictions.js:167
 #, javascript-format
@@ -439,7 +441,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:195
 msgctxt "Territory type"
 msgid "own"
-msgstr ""
+msgstr "स्वतःचे"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -479,7 +481,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:220
 msgctxt "Territory type"
 msgid "enemy"
-msgstr ""
+msgstr "शत्रू"
 
 #: simulation/components/BuildRestrictions.js:225
 #, javascript-format
@@ -519,7 +521,7 @@ msgstr[1] ""
 #: simulation/components/BuildRestrictions.js:327
 msgctxt "Territory type list"
 msgid "own"
-msgstr ""
+msgstr "स्वतःचे"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
@@ -527,7 +529,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:329
 msgctxt "Territory type list"
 msgid "ally"
-msgstr ""
+msgstr "मित्र"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
@@ -543,27 +545,27 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:333
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr ""
+msgstr "शत्रू"
 
 #: simulation/components/CeasefireManager.js:99
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr ""
+msgstr "%(time)s मघ्ये आक्रमण शक्य होईल"
 
 #: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
-msgstr ""
+msgstr "आता आक्रमण शक्य आहे!"
 
 #: simulation/components/EndGameManager.js:169
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s जिंकले आहेत (शेवटचे जिवंत खेळाडू)."
+msgstr[1] "%(players)s आणि %(lastPlayer)s जिंकले आहेत (शेवटचे जिवंत खेळाडू)."
 
 #: simulation/components/EndGameManager.js:177
 msgid "Last remaining player wins."
-msgstr ""
+msgstr "शेवटचा उरलेला खेळाडू जिंकेल."
 
 #: simulation/components/EntityLimits.js:195
 #, javascript-format
@@ -629,39 +631,39 @@ msgstr ""
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
-msgstr ""
+msgstr "कासव (0.1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20×)"
-msgstr ""
+msgstr "फास्ट फॉर्वर्ड (20×)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25×)"
-msgstr ""
+msgstr "हळू (0.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5×)"
-msgstr ""
+msgstr "फुरसतीने (0.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75×)"
-msgstr ""
+msgstr "सावकाश (0.75×)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1×)"
-msgstr ""
+msgstr "साधारण (1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25×)"
-msgstr ""
+msgstr "वेगवान (1.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5×)"
-msgstr ""
+msgstr "खूप वेगवान (1.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2×)"
-msgstr ""
+msgstr "वेडेपणा (2×)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5×)"
@@ -669,11 +671,11 @@ msgstr ""
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10×)"
-msgstr ""
+msgstr "फास्ट फॉर्वर्ड (10×)"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
-msgstr ""
+msgstr "खूप छोटे"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
@@ -681,7 +683,7 @@ msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
-msgstr ""
+msgstr "छोटा"
 
 #: simulation/data/settings/map_sizes.jsonData[1].Tooltip
 msgid ""
@@ -691,7 +693,7 @@ msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
-msgstr ""
+msgstr "साधारण"
 
 #: simulation/data/settings/map_sizes.jsonData[2].Tooltip
 msgid ""
@@ -707,7 +709,7 @@ msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
-msgstr ""
+msgstr "मोठा"
 
 #: simulation/data/settings/map_sizes.jsonData[4].Tooltip
 msgid ""
@@ -717,7 +719,7 @@ msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
-msgstr ""
+msgstr "खूप मोठा"
 
 #: simulation/data/settings/map_sizes.jsonData[5].Tooltip
 #: simulation/data/settings/map_sizes.jsonData[6].Tooltip
@@ -728,7 +730,7 @@ msgstr ""
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
-msgstr ""
+msgstr "प्रचंड"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -744,37 +746,37 @@ msgstr "खेळाडू २"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr ""
+msgstr "खेळाडू 3"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr ""
+msgstr "खेळाडू 4"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "खेळाडू 5"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "खेळाडू 6"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "खेळाडू 7"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "खेळाडू 8"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "खूप कमी"
 
 #: simulation/data/settings/starting_resources.jsonData[1].Title
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "कमी"
 
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
@@ -784,21 +786,21 @@ msgstr "मध्यम"
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "अधिक"
 
 #: simulation/data/settings/starting_resources.jsonData[4].Title
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "अत्यधिक "
 
 #: simulation/data/settings/starting_resources.jsonData[5].Title
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "डेथमॅच"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Title
 msgid "Very Easy"
-msgstr ""
+msgstr "अतिशय सोपे"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
@@ -806,7 +808,7 @@ msgstr ""
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
-msgstr ""
+msgstr "सोपे"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
@@ -824,7 +826,7 @@ msgstr ""
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
-msgstr ""
+msgstr "कठीण"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
 msgid "Choose this difficulty if you want to be really challenged."
@@ -832,7 +834,7 @@ msgstr ""
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
-msgstr ""
+msgstr "अतिशय कठीण"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
@@ -868,7 +870,7 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
-msgstr ""
+msgstr "शत्रूच्या सर्व इमारती नष्ट करून त्यांना हरवा."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -884,11 +886,11 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
-msgstr ""
+msgstr "शत्रूच्या नायकाचा वध करून त्यांना हरवा."
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
-msgstr ""
+msgstr "राजहत्या"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid ""
@@ -937,7 +939,7 @@ msgstr ""
 #: simulation/helpers/Commands.js:803
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr ""
+msgstr "%(_player_)s विरुद्ध आक्रमणाची विनंती केली आहे."
 
 #: simulation/helpers/Commands.js:842
 msgid "There are no bribable units"
@@ -954,7 +956,7 @@ msgstr ""
 #: simulation/helpers/Commands.js:952
 #, javascript-format
 msgid "%(unit)s can't be controlled."
-msgstr ""
+msgstr "%(unit)s ला नियंत्रित करता येत नाही."
 
 #: simulation/helpers/Commands.js:1203
 msgid "The building's technology requirements are not met."

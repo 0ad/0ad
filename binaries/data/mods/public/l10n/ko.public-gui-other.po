@@ -609,7 +609,7 @@ msgstr "공격적"
 #: gui/common/settings.js:173
 msgctxt "map"
 msgid "Skirmish"
-msgstr "접전지역"
+msgstr "전초전"
 
 #: gui/common/settings.js:174
 msgid ""
@@ -4256,13 +4256,13 @@ msgstr "GLSL을 사용하는 기본 OpenGL 백엔드입니다. 게임 재시작 
 
 #: gui/options/options.json[2].options[0].list[1].label
 msgid "OpenGL ARB (Deprecated)"
-msgstr ""
+msgstr "OpenGL ARB (사용 중단됨)"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid ""
 "Legacy OpenGL backend with ARB shaders. It's deprecated and it's going to be"
 " removed in future versions of the game. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "레거시 OpenGL 백엔드와 ARB 셰이더가 사용됩니다. 이 방식은 더 이상 사용되지 않는 방식이며, 향후 게임 버전에서는 제거될 예정입니다. 게임을 다시 시작해야 합니다"
 
 #: gui/options/options.json[2].options[0].list[2].label
 msgid "Vulkan"
@@ -4276,7 +4276,7 @@ msgstr "최신 API에는 최신 드라이버가 필요합니다. 게임을 다�
 msgid ""
 "Choose the renderer's backend. It's recommended to use Vulkan if supported. "
 "REQUIRES GAME RESTART"
-msgstr ""
+msgstr "렌더러 백엔드를 선택하세요. Vulkan을 지원한다면 Vulkan 사용을 권장합니다. 게임 재시작 필요합니다"
 
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
@@ -6484,7 +6484,7 @@ msgstr "부대에서 지원하거나 빠른 습격을 위해 사용합니다."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
-msgstr "카르타고인의 신성한 악대"
+msgstr "카르타고족 신성대"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."

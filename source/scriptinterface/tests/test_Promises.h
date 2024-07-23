@@ -42,6 +42,15 @@ public:
 		ScriptFunction::CallVoid(rq, global, "endTest");
 	}
 
+	void test_exception()
+	{
+		ScriptInterface script("Engine", "Test", g_ScriptContext);
+		TestLogger logger;
+		TS_ASSERT(script.LoadGlobalScriptFile(L"promises/reject.js"));
+		TS_ASSERT_STR_CONTAINS(logger.GetOutput(),
+			"An unhandled promise got rejected:\nError: message");
+	}
+
 	void setUp()
 	{
 		g_VFS = CreateVfs();

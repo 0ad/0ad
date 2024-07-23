@@ -3,11 +3,13 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
+# sabretou, 2024
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
+"Last-Translator: sabretou, 2024\n"
 "Language-Team: Marathi (http://app.transifex.com/wildfire-games/0ad/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,7 +19,7 @@ msgstr ""
 
 #: gui/colormixer/colormixer.js:24
 msgid "Color"
-msgstr ""
+msgstr "रंग"
 
 #: gui/colormixer/colormixer.js:25
 msgid ""
@@ -26,15 +28,15 @@ msgstr ""
 
 #: gui/colormixer/colormixer.js:90
 msgid "Red"
-msgstr ""
+msgstr "लाल"
 
 #: gui/colormixer/colormixer.js:90
 msgid "Green"
-msgstr ""
+msgstr "हिरवा"
 
 #: gui/colormixer/colormixer.js:90
 msgid "Blue"
-msgstr ""
+msgstr "निळा"
 
 #: gui/colormixer/colormixer.js:91
 msgid "Save"
@@ -50,7 +52,7 @@ msgstr "रद्द करा"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "%(url)s उघडत आहे\n डिफॉल्ट वेब ब्राउझरमध्ये. कृपया प्रतीक्षा करा…"
 
 #: gui/common/functions_msgbox.js:58
 msgid "Opening page"
@@ -80,45 +82,45 @@ msgstr ""
 #: gui/common/l10n.js:33
 #, javascript-format
 msgid "%(filesize)s %(unit)s"
-msgstr ""
+msgstr "%(filesize)s %(unit)s"
 
 #. Translation: Time-format string. See http://userguide.icu-
 #. project.org/formatparse/datetime
 #. for a guide to the meaning of the letters.
 #: gui/common/l10n.js:46
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/l10n.js:46
 msgid "HH:mm:ss"
-msgstr ""
+msgstr "HH:mm:ss"
 
 #: gui/common/l10n.js:143
 msgctxt "enumeration"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/common/mod.js:20
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
-msgstr ""
+msgstr "%(mod)s (%(version)s)"
 
 #: gui/common/mod.js:31
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/common/mod.js:39
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "आवश्यक: %(mods)s"
 
 #: gui/common/mod.js:41
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "सक्रिय: %(mods)s"
 
 #: gui/incompatible_mods/incompatible_mods.txt:1
 msgid ""
@@ -128,7 +130,7 @@ msgstr ""
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:3
 msgid ""
@@ -152,7 +154,7 @@ msgstr ""
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):19
 msgid "Ok"
-msgstr ""
+msgstr "ठीक आहे"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
@@ -160,7 +162,7 @@ msgstr ""
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2023-07-27"
-msgstr ""
+msgstr "दस्ताऐवजाची तारीख: 2023-07-27"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
@@ -207,7 +209,7 @@ msgstr ""
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 msgid "Retry"
-msgstr ""
+msgstr "पुन्हा प्रयत्न करा"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 #: gui/modio/modio.js:117
@@ -235,12 +237,12 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "फाईल डाउनलोड अपयशी.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr ""
+msgstr "डाउनलोड करण्यात त्रुटी"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -249,7 +251,7 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "फाईल डाउनलोड त्रुटी.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
@@ -267,7 +269,7 @@ msgstr ""
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
-msgstr ""
+msgstr "अवैध मॉड: %(error)s"
 
 #: gui/modio/modio.js:246
 msgid "Fetching and updating list of available mods."
@@ -275,24 +277,24 @@ msgstr ""
 
 #: gui/modio/modio.js:247
 msgid "Updating"
-msgstr ""
+msgstr "अपडेट करत आहे"
 
 #: gui/modio/modio.js:249
 msgid "Cancel Update"
-msgstr ""
+msgstr "अपडेट रद्द करा"
 
 #: gui/modio/modio.js:265
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr ""
+msgstr "“%(modname)s” डाउनलोड करत आहे"
 
 #: gui/modio/modio.js:268
 msgid "Downloading"
-msgstr ""
+msgstr "डाउनलोड करत आहे"
 
 #: gui/modio/modio.js:270
 msgid "Cancel Download"
-msgstr ""
+msgstr "डाउनलोड रद्द करा"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with
@@ -300,7 +302,7 @@ msgstr ""
 #: gui/modio/modio.js:337
 #, javascript-format
 msgid "%(current)s / %(total)s (%(percent)s%%)"
-msgstr ""
+msgstr "%(current)s / %(total)s (%(percent)s%%)"
 
 #. Translation: Mod file download status message.
 #: gui/modio/modio.js:347
@@ -313,7 +315,7 @@ msgstr ""
 
 #: gui/modio/modio.js:349
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #. Translation: Average download speed, used to give the user a very rough and
 #. naive idea of
@@ -321,15 +323,15 @@ msgstr ""
 #: gui/modio/modio.js:351
 #, javascript-format
 msgid "%(number)s %(unit)s/s"
-msgstr ""
+msgstr "%(number)s %(unit)s/से."
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr ""
+msgstr "mod.io मॉड"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
 msgid "Available Mods"
-msgstr ""
+msgstr "उपलब्ध मॉड"
 
 #: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
@@ -337,7 +339,7 @@ msgstr ""
 
 #: gui/modio/modio.xml:(caption):88
 msgid "Back"
-msgstr ""
+msgstr "मागे"
 
 #: gui/modio/modio.xml:(caption):93
 msgid "Refresh List"
@@ -345,7 +347,7 @@ msgstr ""
 
 #: gui/modio/modio.xml:(caption):98
 msgid "Download"
-msgstr ""
+msgstr "डाउनलोड करा"
 
 #: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
 #: gui/modmod/modmod.xml:(heading):131
@@ -355,7 +357,7 @@ msgstr "नाव"
 #: gui/modio/modio.xml:(heading):57 gui/modmod/modmod.xml:(heading):93
 #: gui/modmod/modmod.xml:(heading):134
 msgid "Version"
-msgstr ""
+msgstr "आवृत्ती"
 
 #: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
 #: gui/modmod/modmod.xml:(heading):140
@@ -364,7 +366,7 @@ msgstr ""
 
 #: gui/modio/modio.xml:(heading):63
 msgid "File Size"
-msgstr ""
+msgstr "फाईलचा आकार"
 
 #: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
 #: gui/modmod/modmod.xml:(heading):143
@@ -421,16 +423,16 @@ msgstr ""
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr ""
+msgstr "mod.io पाहा"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr ""
+msgstr "हा मॉड अस्तित्वात नाही"
 
 #: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
-msgstr ""
+msgstr "सक्रिय करा"
 
 #: gui/modmod/modmod.js:167
 msgid "Dependencies not met"
@@ -439,19 +441,19 @@ msgstr ""
 #: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
-msgstr ""
+msgstr "निष्क्रिय करा"
 
 #: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
-msgstr ""
+msgstr "कोणताही मॉड निवडला नाही."
 
 #: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
-msgstr ""
+msgstr "किमान 0ad मॉड सक्रिय करा"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
-msgstr ""
+msgstr "मॉडिफिकेशन"
 
 #: gui/modmod/modmod.xml:(caption):37
 msgid "Negate"
@@ -463,7 +465,7 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
-msgstr ""
+msgstr "वर्णन"
 
 #: gui/modmod/modmod.xml:(caption):114
 msgid "Enabled Mods"
@@ -471,7 +473,7 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):183
 msgid "Visit Website"
-msgstr ""
+msgstr "संकेतस्थळ पाहा"
 
 #: gui/modmod/modmod.xml:(caption):192
 msgid "Quit"
@@ -479,11 +481,11 @@ msgstr "सोडा"
 
 #: gui/modmod/modmod.xml:(caption):202
 msgid "Help"
-msgstr ""
+msgstr "मदत"
 
 #: gui/modmod/modmod.xml:(caption):207
 msgid "Download Mods"
-msgstr ""
+msgstr "मॉड डाउनलोड करा"
 
 #: gui/modmod/modmod.xml:(caption):212
 msgid "Save Configuration"
@@ -491,15 +493,15 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):217
 msgid "Save and Restart"
-msgstr ""
+msgstr "सेव्ह करून रिस्टार्ट करा"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):137
 msgid "(Folder)"
-msgstr ""
+msgstr "(फोल्डर)"
 
 #: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
 msgid "Website"
-msgstr ""
+msgstr "संकेतस्थळ"
 
 #: gui/modmod/modmod.xml:(placeholder_text):24
 msgid "Filter"
@@ -525,7 +527,7 @@ msgstr ""
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr ""
+msgstr "mod.io अटी"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
@@ -533,28 +535,28 @@ msgstr ""
 
 #: gui/msgbox/msgbox.js:25 gui/timedconfirmation/timedconfirmation.js:46
 msgid "OK"
-msgstr ""
+msgstr "ठीक आहे"
 
 #. Translation: Label of a button that when pressed opens the Terms and
 #. Conditions in the
 #. default webbrowser.
 #: gui/termsdialog/termsdialog.js:30
 msgid "View online"
-msgstr ""
+msgstr "ऑनलाईन पाहा"
 
 #: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr ""
+msgstr "%(url)s हे ब्राउझरमध्ये उघडा."
 
 #: gui/termsdialog/termsdialog.xml:(caption):15
 msgid "Language"
-msgstr ""
+msgstr "भाषा"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr ""
+msgstr "नाकारा"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"
-msgstr ""
+msgstr "स्वीकारा"

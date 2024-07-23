@@ -132,6 +132,7 @@ ScriptContext::ScriptContext(int contextSize, int heapGrowthBytesGCTrigger):
 	ScriptEngine::GetSingleton().RegisterContext(m_cx);
 
 	JS::SetJobQueue(m_cx, m_JobQueue.get());
+	JS::SetPromiseRejectionTrackerCallback(m_cx, &Script::UnhandledRejectedPromise);
 }
 
 ScriptContext::~ScriptContext()
