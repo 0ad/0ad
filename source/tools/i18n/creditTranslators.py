@@ -29,88 +29,13 @@ Translatable strings will be extracted from the generated file, so this should b
 once before updateTemplates.py.
 """
 
-import json, os, glob, re
+import json, os, re
+from collections import defaultdict
+from pathlib import Path
+
+from babel import Locale, UnknownLocaleError
 
 from i18n_helper import l10nFolderName, transifexClientFolder, projectRootDirectory
-
-# We credit everyone that helps translating even if the translations don't
-# make it into the game.
-# Note: Needs to be edited manually when new languages are added on Transifex.
-langs = {
-    'af': 'Afrikaans',
-    'ar': 'الدارجة (Arabic)',
-    'ast': 'Asturianu',
-    'az': 'Azərbaycan dili',
-    'bar': 'Bairisch',
-    'be': 'Беларуская мова (Belarusian)',
-    'bg': 'Български (Bulgarian)',
-    'bn': 'বাংলা (Bengali)',
-    'br': 'Brezhoneg',
-    'ca': 'Català',
-    'cs': 'Čeština ',
-    'cy': 'Cymraeg',
-    'da': 'Dansk',
-    'de': 'Deutsch',
-    'el': 'Ελληνικά (Greek)',
-    'en_GB': 'English (United Kingdom)',
-    'eo': 'Esperanto',
-    'es': 'Español',
-    'es_AR': 'Español (Argentina)',
-    'es_CL': 'Español (Chile)',
-    'es_MX': 'Español (Mexico)',
-    'et': 'Eesti keel',
-    'eu': 'Euskara',
-    'fa': 'فارسی (Farsi)',
-    'fi': 'Suomi',
-    'fr': 'Français',
-    'fr_CA': 'Français (Canada)',
-    'frp': 'Franco-Provençal (Arpitan)',
-    'ga': 'Gaeilge',
-    'gd': 'Gàidhlig',
-    'gl': 'Galego',
-    'he': 'עברית (Hebrew)',
-    'hi': 'हिन्दी (Hindi)',
-    'hr': 'Croatian',
-    'hu': 'Magyar',
-    'hy': 'Հայերէն (Armenian)',
-    'id': 'Bahasa Indonesia',
-    'it': 'Italiano',
-    'ja': '日本語 (Japanese)',
-    'jbo': 'Lojban',
-    'ka': 'ქართული ენა (Georgian)',
-    'ko': '한국어 (Korean)',
-    'krl': 'Karjalan kieli',
-    'ku': 'کوردی (Kurdish)',
-    'la': 'Latin',
-    'lt': 'Lietuvių kalba',
-    'lv': 'Latviešu valoda',
-    'mk': 'македонски (Macedonian)',
-    'ml': 'മലയാളം (Malayalam)',
-    'mr': 'मराठी (Marathi)',
-    'ms': 'بهاس ملايو (Malay)',
-    'nb': 'Norsk Bokmål',
-    'nl': 'Nederlands',
-    'pl': 'Polski',
-    'pt_BR': 'Português (Brazil)',
-    'pt_PT': 'Português (Portugal)',
-    'ro': 'Românește',
-    'ru': 'Русский язык (Russian)',
-    'sk': 'Slovenčina',
-    'sl': 'Slovenščina',
-    'sq': 'Shqip',
-    'sr': 'Cрпски (Serbian)',
-    'sv': 'Svenska',
-    'szl': 'ślōnskŏ gŏdka',
-    'ta_IN': 'தமிழ் (India)',
-    'te': 'తెలుగు (Telugu)',
-    'th': 'ภาษาไทย (Thai)', 
-    'tl': 'Tagalog',
-    'tr': 'Türkçe (Turkish)',
-    'uk': 'Українська (Ukrainian)',
-    'uz': 'Ўзбек тили (Uzbek)',
-    'vi': 'Tiếng Việt (Vietnamese)',
-    'zh': '中文, 汉语, 漢語 (Chinese)',
-    'zh_TW': '臺灣話 Chinese (Taiwan)'}
 
 poLocations = []
 for root, folders, filenames in os.walk(projectRootDirectory):
@@ -121,8 +46,8 @@ for root, folders, filenames in os.walk(projectRootDirectory):
 
 creditsLocation = os.path.join(projectRootDirectory, 'binaries', 'data', 'mods', 'public', 'gui', 'credits', 'texts', 'translators.json')
 
-# This dictionnary will hold creditors lists for each language, indexed by code
-langsLists = {}
+# This dictionary will hold creditors lists for each language, indexed by code
+langsLists = defaultdict(list)
 
 # Create the new JSON data
 newJSONData = {'Title': 'Translators', 'Content': []}
@@ -134,14 +59,17 @@ translatorMatch = re.compile(r"^#\s+([^,<]*)")
 deletedUsernameMatch = re.compile(r"[0-9a-f]{32}(_[0-9a-f]{7})?")
 
 # Search
-for lang in langs.keys():
-    if lang not in langsLists.keys():
-        langsLists[lang] = []
+for location in poLocations:
+    files = Path(location).glob('*.po')
 
-    for location in poLocations:
-        files = glob.glob(os.path.join(location, lang + '.*.po'))
-        for file in files:
-            poFile = open(file.replace('\\', '/'), encoding='utf-8')
+    for file in files:
+        lang = file.stem.split(".")[0]
+
+        # Skip debug translations
+        if lang == "debug" or lang == "long":
+            continue
+
+        with file.open(encoding='utf-8') as poFile:
             reached = False
             for line in poFile:
                 if reached:
@@ -154,11 +82,11 @@ for lang in langs.keys():
                         langsLists[lang].append(username)
                 if line.strip() == '# Translators:':
                     reached = True
-            poFile.close()
 
-    # Sort and remove duplicates
-    # Sorting should ignore case, but prefer versions of names starting
-    # with an upper case letter to have a neat credits list.
+# Sort translator names and remove duplicates
+# Sorting should ignore case, but prefer versions of names starting
+# with an upper case letter to have a neat credits list.
+for lang in langsLists.keys():
     translators = {}
     for name in sorted(langsLists[lang], reverse=True):
         if name.lower() not in translators.keys():
@@ -168,10 +96,20 @@ for lang in langs.keys():
     langsLists[lang] = sorted(translators.values(), key=lambda s: s.lower())
 
 # Now insert the new data into the new JSON file
-for (langCode, langList) in sorted(langsLists.items()):
-    newJSONData['Content'].append({'LangName': langs[langCode], 'List': []})
-    for name in langList:
-        newJSONData['Content'][-1]['List'].append({'name': name})
+for langCode, langList in sorted(langsLists.items()):
+    try:
+        lang_name = Locale.parse(langCode).english_name
+    except UnknownLocaleError:
+        lang_name = Locale.parse('en').languages.get(langCode)
+
+        if not lang_name:
+            raise
+
+    translators = [{'name': name} for name in langList]
+    newJSONData['Content'].append({'LangName': lang_name, 'List': translators})
+
+# Sort languages by their English names
+newJSONData['Content'] = sorted(newJSONData['Content'], key=lambda x: x['LangName'])
 
 # Save the JSON data to the credits file
 creditsFile = open(creditsLocation, 'w', encoding='utf-8')
