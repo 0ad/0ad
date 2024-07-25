@@ -40,7 +40,7 @@ function init()
 			error("Could not load credits for " + category + "!");
 			continue;
 		}
-		translateObjectKeys(json, ["Title", "Subtitle"]);
+		translateObjectKeys(json, ["Title", "Subtitle", "LangName"]);
 		g_PanelData.push({
 			"label": json.Title || category,
 			"content": parseHelper(json.Content)

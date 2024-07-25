@@ -69,6 +69,7 @@ class Extractor(object):
         :return:    An iterator over ``(message, plural, context, (location, pos), comment)`` tuples.
         :rtype:     ``iterator``
         """
+        empty_string_pattern = re.compile(r"^\s*$")
         directoryAbsolutePath = os.path.abspath(self.directoryPath)
         for root, folders, filenames in os.walk(directoryAbsolutePath):
             for subdir in folders:
@@ -86,6 +87,9 @@ class Extractor(object):
                         if pathmatch(filemask, filename):
                             filepath = os.path.join(directoryAbsolutePath, filename)
                             for message, plural, context, breadcrumb, position, comments in self.extractFromFile(filepath):
+                                if empty_string_pattern.match(message):
+                                    continue
+
                                 # Replace spaces in filenames by non-breaking spaces so that word
                                 # wrapping in po files does not split up our paths
                                 yield message, plural, context, (filename.replace(' ', u"\xa0") + (":"+breadcrumb if breadcrumb else ""), position), comments
