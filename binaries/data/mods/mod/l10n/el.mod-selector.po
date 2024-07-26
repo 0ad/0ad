@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS, 2021\n"
 "Language-Team: Greek (http://app.transifex.com/wildfire-games/0ad/language/el/)\n"
@@ -47,18 +47,18 @@ msgid "Save"
 msgstr "Αποθήκευση"
 
 #: gui/colormixer/colormixer.js:91 gui/modio/modio.js:136
-#: gui/modmod/modmod.xml:(caption):197
+#: gui/modmod/modmod.xml:197
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: gui/common/functions_msgbox.js:55
+#: gui/common/functions_msgbox.js:44
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "Άνοιγμα %(url)s\nστον προκαθορισμένο φυλλομετρητή. Παρακαλώ περιμένετε..."
 
-#: gui/common/functions_msgbox.js:58
+#: gui/common/functions_msgbox.js:47
 msgid "Opening page"
 msgstr "Αρχική σελίδα"
 
@@ -152,11 +152,11 @@ msgstr "Οι μή συμβατές τροποποιήσεις θα εμφανι�
 msgid "[/font]"
 msgstr "[/font]"
 
-#: gui/incompatible_mods/incompatible_mods.xml:(caption):12
+#: gui/incompatible_mods/incompatible_mods.xml:12
 msgid "Incompatible mods"
 msgstr "Ασύμβατα mods"
 
-#: gui/incompatible_mods/incompatible_mods.xml:(caption):19
+#: gui/incompatible_mods/incompatible_mods.xml:19
 msgid "Ok"
 msgstr "Εντάξει "
 
@@ -329,58 +329,54 @@ msgstr "∞"
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s %(unit)s/δτρλπ"
 
-#: gui/modio/modio.xml:(caption):18
+#: gui/modio/modio.xml:18
 msgid "mod.io Mods"
 msgstr "Mods του mod.io"
 
-#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
+#: gui/modio/modio.xml:25 gui/modmod/modmod.xml:70
 msgid "Available Mods"
 msgstr "Διαθέσιμες τροποποιήσεις."
 
-#: gui/modio/modio.xml:(caption):82
-msgid "Filter valid mods"
-msgstr "Φιλτράρετε έγκυρες τροποποιήσεις "
-
-#: gui/modio/modio.xml:(caption):88
-msgid "Back"
-msgstr "Πίσω"
-
-#: gui/modio/modio.xml:(caption):93
-msgid "Refresh List"
-msgstr "Ανανέωση Λίστας"
-
-#: gui/modio/modio.xml:(caption):98
-msgid "Download"
-msgstr "Λήψη"
-
-#: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
-#: gui/modmod/modmod.xml:(heading):131
-msgid "Name"
-msgstr "Όνομα"
-
-#: gui/modio/modio.xml:(heading):57 gui/modmod/modmod.xml:(heading):93
-#: gui/modmod/modmod.xml:(heading):134
-msgid "Version"
-msgstr "Έκδοση"
-
-#: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
-#: gui/modmod/modmod.xml:(heading):140
-msgid "Mod Label"
-msgstr "Ετικέτα Mod"
-
-#: gui/modio/modio.xml:(heading):63
-msgid "File Size"
-msgstr "Μέγεθος Αρχείου"
-
-#: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
-#: gui/modmod/modmod.xml:(heading):143
-msgid "Dependencies"
-msgstr "Εξαρτήσεις"
-
-#: gui/modio/modio.xml:(placeholder_text):35
+#: gui/modio/modio.xml:35
 msgctxt "placeholder text for input field to filter mods"
 msgid "Filter"
 msgstr "Φίλτρο"
+
+#: gui/modio/modio.xml:54 gui/modmod/modmod.xml:90 gui/modmod/modmod.xml:131
+msgid "Name"
+msgstr "Όνομα"
+
+#: gui/modio/modio.xml:57 gui/modmod/modmod.xml:93 gui/modmod/modmod.xml:134
+msgid "Version"
+msgstr "Έκδοση"
+
+#: gui/modio/modio.xml:60 gui/modmod/modmod.xml:99 gui/modmod/modmod.xml:140
+msgid "Mod Label"
+msgstr "Ετικέτα Mod"
+
+#: gui/modio/modio.xml:63
+msgid "File Size"
+msgstr "Μέγεθος Αρχείου"
+
+#: gui/modio/modio.xml:66 gui/modmod/modmod.xml:102 gui/modmod/modmod.xml:143
+msgid "Dependencies"
+msgstr "Εξαρτήσεις"
+
+#: gui/modio/modio.xml:82
+msgid "Filter valid mods"
+msgstr "Φιλτράρετε έγκυρες τροποποιήσεις "
+
+#: gui/modio/modio.xml:88
+msgid "Back"
+msgstr "Πίσω"
+
+#: gui/modio/modio.xml:93
+msgid "Refresh List"
+msgstr "Ανανέωση Λίστας"
+
+#: gui/modio/modio.xml:98
+msgid "Download"
+msgstr "Λήψη"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
@@ -413,19 +409,19 @@ msgid ""
 "out and install some!"
 msgstr ""
 
-#: gui/modmod/help/help.xml:(caption):13
+#: gui/modmod/help/help.xml:13
 msgid "Pyrogenesis Mod Selector"
 msgstr "Επιλογέας Pyrogenesis Mod"
 
-#: gui/modmod/help/help.xml:(caption):21
+#: gui/modmod/help/help.xml:21
 msgid "Close"
 msgstr "Κλείσιμο"
 
-#: gui/modmod/help/help.xml:(caption):25
+#: gui/modmod/help/help.xml:25
 msgid "Modding Guide"
 msgstr "Οδηγός Τροποποίησης"
 
-#: gui/modmod/help/help.xml:(caption):29
+#: gui/modmod/help/help.xml:29
 msgid "Visit mod.io"
 msgstr "Επίσκεψη mod.io"
 
@@ -455,63 +451,39 @@ msgstr "Δεν έχει επιλεχθεί κάποιο mod."
 msgid "Enable at least 0ad mod"
 msgstr "Ενεργοποιείστε τουλάχιστον μία λειτουργία στο 0ad."
 
-#: gui/modmod/modmod.xml:(caption):12
+#: gui/modmod/modmod.xml:12
 msgid "Modifications"
 msgstr "Τροποποίησεις"
 
-#: gui/modmod/modmod.xml:(caption):37
-msgid "Negate"
-msgstr "Ακυρώση"
-
-#: gui/modmod/modmod.xml:(caption):51
-msgid "Filter compatible"
-msgstr "Συμβατό με Φίλτρο"
-
-#: gui/modmod/modmod.xml:(caption):63
-msgid "Description"
-msgstr "Περιγραφή"
-
-#: gui/modmod/modmod.xml:(caption):114
-msgid "Enabled Mods"
-msgstr "Ενεργοποιημένα Mods"
-
-#: gui/modmod/modmod.xml:(caption):183
-msgid "Visit Website"
-msgstr "Επίσκεψη Ιστοσελίδας"
-
-#: gui/modmod/modmod.xml:(caption):192
-msgid "Quit"
-msgstr "Έξοδος"
-
-#: gui/modmod/modmod.xml:(caption):202
-msgid "Help"
-msgstr "Βοήθεια"
-
-#: gui/modmod/modmod.xml:(caption):207
-msgid "Download Mods"
-msgstr "Λήψη Mods"
-
-#: gui/modmod/modmod.xml:(caption):212
-msgid "Save Configuration"
-msgstr "Αποθήκευση Ρυθμίσεων"
-
-#: gui/modmod/modmod.xml:(caption):217
-msgid "Save and Restart"
-msgstr "Αποθήλευση και επαννεκίνηση"
-
-#: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):137
-msgid "(Folder)"
-msgstr "(Φάκελος)"
-
-#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
-msgid "Website"
-msgstr "Ιστοσελίδα"
-
-#: gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.xml:24
 msgid "Filter"
 msgstr "Φίλτρο"
 
-#: gui/modmod/modmod.xml:(tooltip):115
+#: gui/modmod/modmod.xml:37
+msgid "Negate"
+msgstr "Ακυρώση"
+
+#: gui/modmod/modmod.xml:51
+msgid "Filter compatible"
+msgstr "Συμβατό με Φίλτρο"
+
+#: gui/modmod/modmod.xml:63
+msgid "Description"
+msgstr "Περιγραφή"
+
+#: gui/modmod/modmod.xml:96 gui/modmod/modmod.xml:137
+msgid "(Folder)"
+msgstr "(Φάκελος)"
+
+#: gui/modmod/modmod.xml:105 gui/modmod/modmod.xml:146
+msgid "Website"
+msgstr "Ιστοσελίδα"
+
+#: gui/modmod/modmod.xml:114
+msgid "Enabled Mods"
+msgstr "Ενεργοποιημένα Mods"
+
+#: gui/modmod/modmod.xml:115
 msgid ""
 "Enabled mods are loaded from top to bottom. Mods loaded later might "
 "overwrite settings of mods loaded earlier. It is advisable to have more "
@@ -519,11 +491,35 @@ msgid ""
 "order."
 msgstr "Οι ενεργοποιημένες λειτουργίες φορτώνονται απο πάνω πρός τα κάτω. Οι λειτουργίες που φορτώνονται αργότερα ίσως αντικαταστήσουν λειτουργίες που φορτώθηκαν νωρίτερα. Συστήνουμε οι πιο πολύπλοκες λειτουργίες (mods) να φορτώνονται τελευταίες.\nΧρησιμοποιήστε τα βέλη στα δεξιά για να αλλαξετε τη σειρά φόρτωσης."
 
-#: gui/modmod/modmod.xml:(tooltip):161 gui/modmod/modmod.xml:(tooltip):175
+#: gui/modmod/modmod.xml:161 gui/modmod/modmod.xml:175
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
 msgstr "Αλλαγή της σειράς εκκίνησης των mods. Αυτό θα πρέπει να ταιριάζει με τις εξαρτήσεις των mods."
+
+#: gui/modmod/modmod.xml:183
+msgid "Visit Website"
+msgstr "Επίσκεψη Ιστοσελίδας"
+
+#: gui/modmod/modmod.xml:192
+msgid "Quit"
+msgstr "Έξοδος"
+
+#: gui/modmod/modmod.xml:202
+msgid "Help"
+msgstr "Βοήθεια"
+
+#: gui/modmod/modmod.xml:207
+msgid "Download Mods"
+msgstr "Λήψη Mods"
+
+#: gui/modmod/modmod.xml:212
+msgid "Save Configuration"
+msgstr "Αποθήκευση Ρυθμίσεων"
+
+#: gui/modmod/modmod.xml:217
+msgid "Save and Restart"
+msgstr "Αποθήλευση και επαννεκίνηση"
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
@@ -553,14 +549,14 @@ msgstr "Προβολή στο διαδίκτυο"
 msgid "Open %(url)s in the browser."
 msgstr "Άνοιγμα %(url)s στο φυλλομετρητή."
 
-#: gui/termsdialog/termsdialog.xml:(caption):15
+#: gui/termsdialog/termsdialog.xml:15
 msgid "Language"
 msgstr "Γλώσσα"
 
-#: gui/termsdialog/termsdialog.xml:(caption):33
+#: gui/termsdialog/termsdialog.xml:33
 msgid "Decline"
 msgstr "Άρνηση"
 
-#: gui/termsdialog/termsdialog.xml:(caption):38
+#: gui/termsdialog/termsdialog.xml:38
 msgid "Accept"
 msgstr "Αποδοχή"

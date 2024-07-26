@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
 "Last-Translator: Ural Ishmukhametov, 2022\n"
 "Language-Team: Tatar (https://app.transifex.com/wildfire-games/teams/17418/tt/)\n"
@@ -18,7 +18,12 @@ msgstr ""
 "Language: tt\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: campaigns/new_maps.jsonDescription
+#: campaigns/new_maps.json
+msgctxt "Campaign Template"
+msgid "Demo campaign - new maps"
+msgstr "Демонстрация кампаниясы - яңа карталар"
+
+#: campaigns/new_maps.json
 msgctxt "Campaign Template"
 msgid ""
 "Discover the new and improved maps in Alpha XXVII with a demo campaign, "
@@ -27,17 +32,32 @@ msgstr ""
 "Ачыгыз үзегез өчен Alpha XXVII-нең яңа һәм яхшыртылган карталарын "
 "демонстрация кампаниясы белән, кайсысы сезне бөтенесе аша үткәрә."
 
-#: campaigns/new_maps.jsonName
+#: campaigns/tutorial.json
 msgctxt "Campaign Template"
-msgid "Demo campaign - new maps"
-msgstr "Демонстрация кампаниясы - яңа карталар"
+msgid "Tutorial"
+msgstr "Өйрәнү кампаниясы"
 
-#: campaigns/tutorial.jsonDescription
+#: campaigns/tutorial.json
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
 msgstr ""
 
-#: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
+#: campaigns/tutorial.json
+msgctxt "Campaign Template"
+msgid "Introductory Tutorial"
+msgstr "Башлап китергә өйрәнү"
+
+#: campaigns/tutorial.json
+msgctxt "Campaign Template"
+msgid "This is a basic tutorial to get you started playing 0 A.D."
+msgstr ""
+
+#: campaigns/tutorial.json
+msgctxt "Campaign Template"
+msgid "Economy Walkthrough"
+msgstr "Икътисад нигезе"
+
+#: campaigns/tutorial.json
 msgctxt "Campaign Template"
 msgid ""
 "This map will give a rough guide for starting the game effectively.  Early "
@@ -51,74 +71,54 @@ msgstr ""
 "өйрәтә алачаксыз. Искәрмә: башта бөтен нәрсә бик тиз була, шуның өчен "
 "баштагы кисәген күп тапкыр үтергә әзерләнегез."
 
-#: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
-msgctxt "Campaign Template"
-msgid "Economy Walkthrough"
-msgstr "Икътисад нигезе"
-
-#: campaigns/tutorial.jsonLevels.introduction.Description
-msgctxt "Campaign Template"
-msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
-
-#: campaigns/tutorial.jsonLevels.introduction.Name
-msgctxt "Campaign Template"
-msgid "Introductory Tutorial"
-msgstr "Башлап китергә өйрәнү"
-
-#: campaigns/tutorial.jsonName
-msgctxt "Campaign Template"
-msgid "Tutorial"
-msgstr "Өйрәнү кампаниясы"
-
-#: gui/campaigns/default_menu/CampaignMenu.js:155
+#: gui/campaigns/default_menu/CampaignMenu.js:185
 msgctxt "campaign status"
 msgid "Completed"
 msgstr "Үтелгән"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:157
+#: gui/campaigns/default_menu/CampaignMenu.js:187
 msgctxt "campaign status"
 msgid "Available"
 msgstr "Ачык"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:216
+#: gui/campaigns/default_menu/CampaignMenu.js:246
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
 msgstr "Кампанияны тәмамлау загрузкасы ялгышы %s: %s."
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
+#: gui/campaigns/default_menu/CampaignMenu.xml:14
 msgid "Campaign Name"
 msgstr "Кампания исеме"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
-msgid "No scenario selected"
-msgstr "Сценарий сайланмаган"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
-msgid "Back to Main Menu"
-msgstr "Төп менюга кайтырга"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
-msgid "Saved Games"
-msgstr "Яздырылган уеннар"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
-msgid "Start Scenario"
-msgstr "Сценарийны башларга"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
-msgid "Resume Saved Game"
-msgstr "Яздырылган уенны тәмамлау"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
+#: gui/campaigns/default_menu/CampaignMenu.xml:27
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
 msgstr "Сценарий исеме"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
+#: gui/campaigns/default_menu/CampaignMenu.xml:31
 msgctxt "campaignLevelList"
 msgid "Status"
 msgstr "Статус"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:45
+msgid "No scenario selected"
+msgstr "Сценарий сайланмаган"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:58
+msgid "Back to Main Menu"
+msgstr "Төп менюга кайтырга"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:62
+msgid "Saved Games"
+msgstr "Яздырылган уеннар"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:66
+msgid "Start Scenario"
+msgstr "Сценарийны башларга"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:69
+msgid "Resume Saved Game"
+msgstr "Яздырылган уенны тәмамлау"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
@@ -143,38 +143,38 @@ msgstr "Юк"
 msgid "Yes"
 msgstr "Әйе"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):13
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):39
+#: gui/campaigns/load_modal/LoadModal.xml:13
+#: gui/campaigns/load_modal/LoadModal.xml:39
 msgid "Load Campaign"
 msgstr "Кампанияны тәмамларга"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):20
+#: gui/campaigns/load_modal/LoadModal.xml:20
 msgid "No ongoing campaigns."
 msgstr "Башланган кампаниялар юк."
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):24
+#: gui/campaigns/load_modal/LoadModal.xml:24
 msgid "Name of selected run:"
 msgstr "Сайланган уенның үтүе исеме:"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):31
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
+#: gui/campaigns/load_modal/LoadModal.xml:31
+#: gui/campaigns/new_modal/NewCampaignModal.xml:23
 msgid "Cancel"
 msgstr "Баш тарту"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):35
+#: gui/campaigns/load_modal/LoadModal.xml:35
 msgid "Delete"
 msgstr "Бетерү"
 
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
+#: gui/campaigns/new_modal/NewCampaignModal.xml:12
 msgid "Start a campaign"
 msgstr "Кампанияны башларга"
 
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
+#: gui/campaigns/new_modal/NewCampaignModal.xml:16
 msgid "Please enter the name of your new campaign run:"
 msgstr "Кампания үтүе исемен, зинһар өчен, билгеләгез:"
 
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
+#: gui/campaigns/new_modal/NewCampaignModal.xml:27
+#: gui/campaigns/setup/CampaignSetupPage.xml:55
 msgid "Start Campaign"
 msgstr "Кампанияны башларга"
 
@@ -182,22 +182,22 @@ msgstr "Кампанияны башларга"
 msgid "No campaign selected."
 msgstr "Кампания сайланмаган."
 
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
+#: gui/campaigns/setup/CampaignSetupPage.xml:10
 msgid "Campaigns"
 msgstr "Кампаниялар"
 
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
-msgid "No Campaign selected"
-msgstr "Кампания сайланмаган"
-
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
-msgid "Main Menu"
-msgstr "Төп меню"
-
-#: gui/campaigns/setup/CampaignSetupPage.xml:(heading):26
+#: gui/campaigns/setup/CampaignSetupPage.xml:26
 msgctxt "campaignsetup"
 msgid "Name"
 msgstr "Исем"
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:37
+msgid "No Campaign selected"
+msgstr "Кампания сайланмаган"
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:50
+msgid "Main Menu"
+msgstr "Төп меню"
 
 #: gui/common/campaigns/CampaignRun.js:115
 #, javascript-format

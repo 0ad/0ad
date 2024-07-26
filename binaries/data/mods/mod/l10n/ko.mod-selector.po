@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
 "Last-Translator: Junghee Lee, 2022-2024\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -47,18 +47,18 @@ msgid "Save"
 msgstr "저장하기"
 
 #: gui/colormixer/colormixer.js:91 gui/modio/modio.js:136
-#: gui/modmod/modmod.xml:(caption):197
+#: gui/modmod/modmod.xml:197
 msgid "Cancel"
 msgstr "취소하기"
 
-#: gui/common/functions_msgbox.js:55
+#: gui/common/functions_msgbox.js:44
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "%(url)s 을(를)\n 기존의 웹 브라우저로 열고 있습니다. 잠시만 기다려 주십시오…"
 
-#: gui/common/functions_msgbox.js:58
+#: gui/common/functions_msgbox.js:47
 msgid "Opening page"
 msgstr "페이지를 여는중"
 
@@ -152,11 +152,11 @@ msgstr "호환되지 않는 모드는 활성화된 모드 목록(하단 패널)�
 msgid "[/font]"
 msgstr "[/font]"
 
-#: gui/incompatible_mods/incompatible_mods.xml:(caption):12
+#: gui/incompatible_mods/incompatible_mods.xml:12
 msgid "Incompatible mods"
 msgstr "호환되지 않는 모드"
 
-#: gui/incompatible_mods/incompatible_mods.xml:(caption):19
+#: gui/incompatible_mods/incompatible_mods.xml:19
 msgid "Ok"
 msgstr "확인"
 
@@ -329,58 +329,54 @@ msgstr "∞"
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s %(unit)s/s"
 
-#: gui/modio/modio.xml:(caption):18
+#: gui/modio/modio.xml:18
 msgid "mod.io Mods"
 msgstr "mod.io 모드"
 
-#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
+#: gui/modio/modio.xml:25 gui/modmod/modmod.xml:70
 msgid "Available Mods"
 msgstr "사용 가능한 모드"
 
-#: gui/modio/modio.xml:(caption):82
-msgid "Filter valid mods"
-msgstr "유효한 모드 필터"
-
-#: gui/modio/modio.xml:(caption):88
-msgid "Back"
-msgstr "뒤로"
-
-#: gui/modio/modio.xml:(caption):93
-msgid "Refresh List"
-msgstr "목록 새로 고침"
-
-#: gui/modio/modio.xml:(caption):98
-msgid "Download"
-msgstr "다운로드"
-
-#: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
-#: gui/modmod/modmod.xml:(heading):131
-msgid "Name"
-msgstr "이름"
-
-#: gui/modio/modio.xml:(heading):57 gui/modmod/modmod.xml:(heading):93
-#: gui/modmod/modmod.xml:(heading):134
-msgid "Version"
-msgstr "버전"
-
-#: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
-#: gui/modmod/modmod.xml:(heading):140
-msgid "Mod Label"
-msgstr "모드 이름"
-
-#: gui/modio/modio.xml:(heading):63
-msgid "File Size"
-msgstr "파일 크기"
-
-#: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
-#: gui/modmod/modmod.xml:(heading):143
-msgid "Dependencies"
-msgstr "종속성"
-
-#: gui/modio/modio.xml:(placeholder_text):35
+#: gui/modio/modio.xml:35
 msgctxt "placeholder text for input field to filter mods"
 msgid "Filter"
 msgstr "필터"
+
+#: gui/modio/modio.xml:54 gui/modmod/modmod.xml:90 gui/modmod/modmod.xml:131
+msgid "Name"
+msgstr "이름"
+
+#: gui/modio/modio.xml:57 gui/modmod/modmod.xml:93 gui/modmod/modmod.xml:134
+msgid "Version"
+msgstr "버전"
+
+#: gui/modio/modio.xml:60 gui/modmod/modmod.xml:99 gui/modmod/modmod.xml:140
+msgid "Mod Label"
+msgstr "모드 이름"
+
+#: gui/modio/modio.xml:63
+msgid "File Size"
+msgstr "파일 크기"
+
+#: gui/modio/modio.xml:66 gui/modmod/modmod.xml:102 gui/modmod/modmod.xml:143
+msgid "Dependencies"
+msgstr "종속성"
+
+#: gui/modio/modio.xml:82
+msgid "Filter valid mods"
+msgstr "유효한 모드 필터"
+
+#: gui/modio/modio.xml:88
+msgid "Back"
+msgstr "뒤로"
+
+#: gui/modio/modio.xml:93
+msgid "Refresh List"
+msgstr "목록 새로 고침"
+
+#: gui/modio/modio.xml:98
+msgid "Download"
+msgstr "다운로드"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
@@ -413,19 +409,19 @@ msgid ""
 "out and install some!"
 msgstr "mod.io 서비스는 IndieDB와 ModDB의 개발사인 DBolical에서 개발했습니다. 이 웹사이트들은 오랫동안 0 A.D.와 다른 인디 프로젝트에 대해 널리 알려왔습니다! 현재 mod.io에서는 팀에서 검증한 모든 모드를 나열하고 다운로드할 수 있습니다. \"모드 다운로드\"를 클릭하고 몇 가지 모드를 설치해 보세요!"
 
-#: gui/modmod/help/help.xml:(caption):13
+#: gui/modmod/help/help.xml:13
 msgid "Pyrogenesis Mod Selector"
 msgstr "화재 발생 모드 선택기"
 
-#: gui/modmod/help/help.xml:(caption):21
+#: gui/modmod/help/help.xml:21
 msgid "Close"
 msgstr "닫기"
 
-#: gui/modmod/help/help.xml:(caption):25
+#: gui/modmod/help/help.xml:25
 msgid "Modding Guide"
 msgstr "모딩 가이드"
 
-#: gui/modmod/help/help.xml:(caption):29
+#: gui/modmod/help/help.xml:29
 msgid "Visit mod.io"
 msgstr "mod.io 방문"
 
@@ -455,63 +451,39 @@ msgstr "선택된 모드가 없습니다."
 msgid "Enable at least 0ad mod"
 msgstr "0ad 모드만 활성화"
 
-#: gui/modmod/modmod.xml:(caption):12
+#: gui/modmod/modmod.xml:12
 msgid "Modifications"
 msgstr "모드"
 
-#: gui/modmod/modmod.xml:(caption):37
-msgid "Negate"
-msgstr "무효화"
-
-#: gui/modmod/modmod.xml:(caption):51
-msgid "Filter compatible"
-msgstr "필터 호환가능"
-
-#: gui/modmod/modmod.xml:(caption):63
-msgid "Description"
-msgstr "설명"
-
-#: gui/modmod/modmod.xml:(caption):114
-msgid "Enabled Mods"
-msgstr "모드 활성화됨"
-
-#: gui/modmod/modmod.xml:(caption):183
-msgid "Visit Website"
-msgstr "웹사이트 방문"
-
-#: gui/modmod/modmod.xml:(caption):192
-msgid "Quit"
-msgstr "종료"
-
-#: gui/modmod/modmod.xml:(caption):202
-msgid "Help"
-msgstr "도움말"
-
-#: gui/modmod/modmod.xml:(caption):207
-msgid "Download Mods"
-msgstr "모드 다운로드"
-
-#: gui/modmod/modmod.xml:(caption):212
-msgid "Save Configuration"
-msgstr "환경설정 저장하기"
-
-#: gui/modmod/modmod.xml:(caption):217
-msgid "Save and Restart"
-msgstr "저장 후 다시 시작"
-
-#: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):137
-msgid "(Folder)"
-msgstr "(폴더)"
-
-#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
-msgid "Website"
-msgstr "웹사이트"
-
-#: gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.xml:24
 msgid "Filter"
 msgstr "필터"
 
-#: gui/modmod/modmod.xml:(tooltip):115
+#: gui/modmod/modmod.xml:37
+msgid "Negate"
+msgstr "무효화"
+
+#: gui/modmod/modmod.xml:51
+msgid "Filter compatible"
+msgstr "필터 호환가능"
+
+#: gui/modmod/modmod.xml:63
+msgid "Description"
+msgstr "설명"
+
+#: gui/modmod/modmod.xml:96 gui/modmod/modmod.xml:137
+msgid "(Folder)"
+msgstr "(폴더)"
+
+#: gui/modmod/modmod.xml:105 gui/modmod/modmod.xml:146
+msgid "Website"
+msgstr "웹사이트"
+
+#: gui/modmod/modmod.xml:114
+msgid "Enabled Mods"
+msgstr "모드 활성화됨"
+
+#: gui/modmod/modmod.xml:115
 msgid ""
 "Enabled mods are loaded from top to bottom. Mods loaded later might "
 "overwrite settings of mods loaded earlier. It is advisable to have more "
@@ -519,11 +491,35 @@ msgid ""
 "order."
 msgstr "활성화된 모드는 위에서 아래로 불러옵니다. 나중에 불러온 모드는 이전에 불러온 모드의 설정을 덮어쓸 수 있습니다. 더 복잡한 모드를 마지막에 불러오는 것이 좋습니다. 불러오기 순서를 변경하려면 오른쪽에 있는 화살표를 사용합니다."
 
-#: gui/modmod/modmod.xml:(tooltip):161 gui/modmod/modmod.xml:(tooltip):175
+#: gui/modmod/modmod.xml:161 gui/modmod/modmod.xml:175
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
 msgstr "모드가 시작되는 순서를 변경합니다. 이것은 모드의 종속성과 일치해야 합니다."
+
+#: gui/modmod/modmod.xml:183
+msgid "Visit Website"
+msgstr "웹사이트 방문"
+
+#: gui/modmod/modmod.xml:192
+msgid "Quit"
+msgstr "종료"
+
+#: gui/modmod/modmod.xml:202
+msgid "Help"
+msgstr "도움말"
+
+#: gui/modmod/modmod.xml:207
+msgid "Download Mods"
+msgstr "모드 다운로드"
+
+#: gui/modmod/modmod.xml:212
+msgid "Save Configuration"
+msgstr "환경설정 저장하기"
+
+#: gui/modmod/modmod.xml:217
+msgid "Save and Restart"
+msgstr "저장 후 다시 시작"
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
@@ -553,14 +549,14 @@ msgstr "온라인으로 보기"
 msgid "Open %(url)s in the browser."
 msgstr "%(url)s을(를) 브라우저로 엽니다."
 
-#: gui/termsdialog/termsdialog.xml:(caption):15
+#: gui/termsdialog/termsdialog.xml:15
 msgid "Language"
 msgstr "언어"
 
-#: gui/termsdialog/termsdialog.xml:(caption):33
+#: gui/termsdialog/termsdialog.xml:33
 msgid "Decline"
 msgstr "거부"
 
-#: gui/termsdialog/termsdialog.xml:(caption):38
+#: gui/termsdialog/termsdialog.xml:38
 msgid "Accept"
 msgstr "동의"

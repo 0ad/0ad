@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-06-17 07:08+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Tomáš Matýs, 2018,2021-2022,2024\n"
 "Language-Team: Czech (http://app.transifex.com/wildfire-games/0ad/language/cs/)\n"
@@ -35,176 +35,180 @@ msgstr ""
 "Language: cs\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
-#: simulation/data/technologies/agoge.jsondescription
+#: simulation/data/technologies/agoge.json
+msgid "The Agoge"
+msgstr "Agoge (vojenská výchova)"
+
+#: simulation/data/technologies/agoge.json
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
 msgstr "Sparťané byli ubytováni a cvičeni od mladého věku tak, aby byli vynikajícími válečníky a aby vydrželi jakékoli strádání, které by jim vojenský život přinesl."
 
-#: simulation/data/technologies/agoge.jsongenericName
-msgid "The Agoge"
-msgstr "Agoge (vojenská výchova)"
-
-#: simulation/data/technologies/agoge.jsonrequirementsTooltip
-#: simulation/data/technologies/art_of_war.jsonrequirementsTooltip
-#: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
-#: simulation/data/technologies/barracks_batch_training.jsonrequirementsTooltip
-#: simulation/data/technologies/civil_engineering_02.jsonrequirementsTooltip
-#: simulation/data/technologies/civil_service_02.jsonrequirementsTooltip
-#: simulation/data/technologies/equine_transports.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_carts.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_chain_pump.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_fertilizer.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_sharpaxes.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_mining_silvermining.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_mining_slaves.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_range_2.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_rate_2.jsonrequirementsTooltip
-#: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
-#: simulation/data/technologies/hellenistic_metropolis.jsonrequirementsTooltip
-#: simulation/data/technologies/immortals.jsonrequirementsTooltip
-#: simulation/data/technologies/long_walls.jsonrequirementsTooltip
-#: simulation/data/technologies/nisean_horses.jsonrequirementsTooltip
-#: simulation/data/technologies/ostracism.jsonrequirementsTooltip
-#: simulation/data/technologies/parade_of_daphne.jsonrequirementsTooltip
-#: simulation/data/technologies/pharaonic_cult.jsonrequirementsTooltip
-#: simulation/data/technologies/poison_arrows.jsonrequirementsTooltip
-#: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
-#: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
-#: simulation/data/technologies/roman_reforms.jsonrequirementsTooltip
-#: simulation/data/technologies/ship_capture_resistance.jsonrequirementsTooltip
-#: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
-#: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_attack.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_bolt_accuracy.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_cost_time.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_health.jsonrequirementsTooltip
-#: simulation/data/technologies/siege_pack_unpack.jsonrequirementsTooltip
-#: simulation/data/technologies/silk_road.jsonrequirementsTooltip
-#: simulation/data/technologies/silvershields.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_melee_03.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_melee_03_variant.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_ranged_03.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_hack_03.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_pierce_03.jsonrequirementsTooltip
-#: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
-#: simulation/data/technologies/subterranean_aqueducts.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_health.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
-#: simulation/data/technologies/traditional_army_sele.jsonrequirementsTooltip
-#: simulation/data/technologies/unlock_champion_cavalry.jsonrequirementsTooltip
-#: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
-#: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
-#: simulation/data/technologies/unlock_neodamodes.jsonrequirementsTooltip
-#: simulation/data/technologies/unlock_spies.jsonrequirementsTooltip
-#: simulation/data/technologies/warship_arrow_attack.jsonrequirementsTooltip
-#: simulation/data/technologies/warship_siege_attack.jsonrequirementsTooltip
-#: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
-msgid "Unlocked in City Phase."
-msgstr "Odemknuto ve velkoměstské fázi."
-
-#: simulation/data/technologies/agoge.jsontooltip
+#: simulation/data/technologies/agoge.json
 msgid "Champion Hoplites +25% health, but +5% training time."
 msgstr "Šampionští Hoplíti+25% bodů zdraví, ale +5% zvýšení doby výcviku."
 
-#: simulation/data/technologies/archer_attack_spread.jsondescription
-msgid "Encouraging soldiers to practice archery improves their accuracy."
-msgstr "Povzbuzení vojáků k procvičování lukostřelby zvyšuje jejich přesnost."
+#: simulation/data/technologies/agoge.json
+#: simulation/data/technologies/art_of_war.json
+#: simulation/data/technologies/attack_soldiers_will.json
+#: simulation/data/technologies/barracks_batch_training.json
+#: simulation/data/technologies/civil_engineering_02.json
+#: simulation/data/technologies/civil_service_02.json
+#: simulation/data/technologies/equine_transports.json
+#: simulation/data/technologies/gather_capacity_carts.json
+#: simulation/data/technologies/gather_farming_chain_pump.json
+#: simulation/data/technologies/gather_farming_fertilizer.json
+#: simulation/data/technologies/gather_lumbering_sharpaxes.json
+#: simulation/data/technologies/gather_mining_silvermining.json
+#: simulation/data/technologies/gather_mining_slaves.json
+#: simulation/data/technologies/heal_range_2.json
+#: simulation/data/technologies/heal_rate_2.json
+#: simulation/data/technologies/health_regen_units.json
+#: simulation/data/technologies/hellenistic_metropolis.json
+#: simulation/data/technologies/immortals.json
+#: simulation/data/technologies/long_walls.json
+#: simulation/data/technologies/nisean_horses.json
+#: simulation/data/technologies/ostracism.json
+#: simulation/data/technologies/parade_of_daphne.json
+#: simulation/data/technologies/pharaonic_cult.json
+#: simulation/data/technologies/poison_arrows.json
+#: simulation/data/technologies/poison_blades.json
+#: simulation/data/technologies/pop_house_02.json
+#: simulation/data/technologies/reformed_army_sele.json
+#: simulation/data/technologies/roman_reforms.json
+#: simulation/data/technologies/ship_capture_resistance.json
+#: simulation/data/technologies/ship_cost_time.json
+#: simulation/data/technologies/ship_movement_speed.json
+#: simulation/data/technologies/siege_attack.json
+#: simulation/data/technologies/siege_bolt_accuracy.json
+#: simulation/data/technologies/siege_cost_time.json
+#: simulation/data/technologies/siege_health.json
+#: simulation/data/technologies/siege_pack_unpack.json
+#: simulation/data/technologies/silk_road.json
+#: simulation/data/technologies/silvershields.json
+#: simulation/data/technologies/soldier_attack_melee_03.json
+#: simulation/data/technologies/soldier_attack_melee_03_variant.json
+#: simulation/data/technologies/soldier_attack_ranged_03.json
+#: simulation/data/technologies/soldier_resistance_hack_03.json
+#: simulation/data/technologies/soldier_resistance_pierce_03.json
+#: simulation/data/technologies/stable_batch_training.json
+#: simulation/data/technologies/subterranean_aqueducts.json
+#: simulation/data/technologies/tower_health.json
+#: simulation/data/technologies/tower_murderholes.json
+#: simulation/data/technologies/trade_gain_02.json
+#: simulation/data/technologies/traditional_army_sele.json
+#: simulation/data/technologies/unlock_champion_cavalry.json
+#: simulation/data/technologies/unlock_champion_chariots.json
+#: simulation/data/technologies/unlock_champion_infantry.json
+#: simulation/data/technologies/unlock_neodamodes.json
+#: simulation/data/technologies/unlock_spies.json
+#: simulation/data/technologies/warship_arrow_attack.json
+#: simulation/data/technologies/warship_siege_attack.json
+#: simulation/data/technologies/wonder_population_cap.json
+msgid "Unlocked in City Phase."
+msgstr "Odemknuto ve velkoměstské fázi."
 
-#: simulation/data/technologies/archer_attack_spread.jsongenericName
+#: simulation/data/technologies/archer_attack_spread.json
 msgid "Archery Training"
 msgstr "Lučištnický výcvik"
 
-#: simulation/data/technologies/archer_attack_spread.jsonrequirementsTooltip
-#: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
-#: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
-#: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
-#: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
-#: simulation/data/technologies/cost_healer.jsonrequirementsTooltip
-#: simulation/data/technologies/crossbow_training.jsonrequirementsTooltip
-#: simulation/data/technologies/dock_efficiency.jsonrequirementsTooltip
-#: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_water_weeding.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_mining_serfs.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_mining_shaftmining.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_range.jsonrequirementsTooltip
-#: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
-#: simulation/data/technologies/hoplite_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
-#: simulation/data/technologies/krypteia.jsonrequirementsTooltip
-#: simulation/data/technologies/pheidian_workshop.jsonrequirementsTooltip
-#: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
-#: simulation/data/technologies/roman_roads.jsonrequirementsTooltip
-#: simulation/data/technologies/serapis_cult.jsonrequirementsTooltip
-#: simulation/data/technologies/ship_health.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_ranged_02.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_range.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
-#: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
-#: simulation/data/technologies/trader_health.jsonrequirementsTooltip
-#: simulation/data/technologies/tyrtean_paeans.jsonrequirementsTooltip
-#: simulation/data/technologies/warship_ramming_speed.jsonrequirementsTooltip
-#: simulation/data/technologies/warship_resistance.jsonrequirementsTooltip
-msgid "Unlocked in Town Phase."
-msgstr "Odemknuto v městské fázi."
+#: simulation/data/technologies/archer_attack_spread.json
+msgid "Encouraging soldiers to practice archery improves their accuracy."
+msgstr "Povzbuzení vojáků k procvičování lukostřelby zvyšuje jejich přesnost."
 
-#: simulation/data/technologies/archer_attack_spread.jsontooltip
+#: simulation/data/technologies/archer_attack_spread.json
 msgid "Archers −20% ranged attack spread."
 msgstr "Lučištníci −20% z rozptylu při útoku na dálku."
 
-#: simulation/data/technologies/archery_tradition.jsondescription
+#: simulation/data/technologies/archer_attack_spread.json
+#: simulation/data/technologies/architecture_kush.json
+#: simulation/data/technologies/cavalry_health.json
+#: simulation/data/technologies/civil_engineering_01.json
+#: simulation/data/technologies/civil_service_01.json
+#: simulation/data/technologies/cost_healer.json
+#: simulation/data/technologies/crossbow_training.json
+#: simulation/data/technologies/dock_efficiency.json
+#: simulation/data/technologies/garrison_heal.json
+#: simulation/data/technologies/gather_capacity_wheelbarrow.json
+#: simulation/data/technologies/gather_farming_harvester.json
+#: simulation/data/technologies/gather_farming_training.json
+#: simulation/data/technologies/gather_farming_water_weeding.json
+#: simulation/data/technologies/gather_lumbering_strongeraxes.json
+#: simulation/data/technologies/gather_mining_serfs.json
+#: simulation/data/technologies/gather_mining_shaftmining.json
+#: simulation/data/technologies/heal_range.json
+#: simulation/data/technologies/heal_rate.json
+#: simulation/data/technologies/hoplite_tradition.json
+#: simulation/data/technologies/iphicratean_reforms.json
+#: simulation/data/technologies/krypteia.json
+#: simulation/data/technologies/pheidian_workshop.json
+#: simulation/data/technologies/pop_house_01.json
+#: simulation/data/technologies/roman_roads.json
+#: simulation/data/technologies/serapis_cult.json
+#: simulation/data/technologies/ship_health.json
+#: simulation/data/technologies/soldier_attack_melee_01.json
+#: simulation/data/technologies/soldier_attack_melee_02.json
+#: simulation/data/technologies/soldier_attack_ranged_01.json
+#: simulation/data/technologies/soldier_attack_ranged_02.json
+#: simulation/data/technologies/soldier_resistance_hack_01.json
+#: simulation/data/technologies/soldier_resistance_hack_02.json
+#: simulation/data/technologies/soldier_resistance_pierce_01.json
+#: simulation/data/technologies/soldier_resistance_pierce_02.json
+#: simulation/data/technologies/tower_crenellations.json
+#: simulation/data/technologies/tower_range.json
+#: simulation/data/technologies/trade_commercial_treaty.json
+#: simulation/data/technologies/trade_gain_01.json
+#: simulation/data/technologies/trader_health.json
+#: simulation/data/technologies/tyrtean_paeans.json
+#: simulation/data/technologies/warship_ramming_speed.json
+#: simulation/data/technologies/warship_resistance.json
+msgid "Unlocked in Town Phase."
+msgstr "Odemknuto v městské fázi."
+
+#: simulation/data/technologies/archery_tradition.json
+msgid "Archery Tradition"
+msgstr "Lučištnická tradice"
+
+#: simulation/data/technologies/archery_tradition.json
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
 " a penchant for using massed archers in battle."
 msgstr "Indové, Íránci a Kúšité měli tradici vynikající lukostřelby a zálibu v hromadném nasazování lučištníků v bitvách."
 
-#: simulation/data/technologies/archery_tradition.jsongenericName
-msgid "Archery Tradition"
-msgstr "Lučištnická tradice"
-
-#: simulation/data/technologies/archery_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/cavalry_movement_speed.jsonrequirementsTooltip
-#: simulation/data/technologies/fishing_boat_gather_rate.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_seed_drill.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_farming_training_ptol.jsonrequirementsTooltip
-#: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
-#: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
-#: simulation/data/technologies/ship_vision.jsonrequirementsTooltip
-#: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
-msgid "Unlocked in Village Phase."
-msgstr "Odemknuto ve vesnické fázi."
-
-#: simulation/data/technologies/archery_tradition.jsontooltip
+#: simulation/data/technologies/archery_tradition.json
 msgid "Archers +10 attack range."
 msgstr "Lučištníci +10 k dosahu útoku"
 
-#: simulation/data/technologies/architecture_kush.jsongenericName
+#: simulation/data/technologies/archery_tradition.json
+#: simulation/data/technologies/cavalry_movement_speed.json
+#: simulation/data/technologies/fishing_boat_gather_rate.json
+#: simulation/data/technologies/gather_capacity_basket.json
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.json
+#: simulation/data/technologies/gather_farming_plows.json
+#: simulation/data/technologies/gather_farming_seed_drill.json
+#: simulation/data/technologies/gather_farming_training_ptol.json
+#: simulation/data/technologies/gather_lumbering_ironaxes.json
+#: simulation/data/technologies/health_females_01.json
+#: simulation/data/technologies/ship_vision.json
+#: simulation/data/technologies/tower_watch.json
+msgid "Unlocked in Village Phase."
+msgstr "Odemknuto ve vesnické fázi."
+
+#: simulation/data/technologies/architecture_kush.json
 msgid "Monumental Architecture"
 msgstr "Monumentální architektura"
 
-#: simulation/data/technologies/architecture_kush.jsontooltip
+#: simulation/data/technologies/architecture_kush.json
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
 msgstr "Občanské stavby +20% k době výstavby, +20% k bodům zdraví a +20% k bodům ukořistění."
 
-#: simulation/data/technologies/architecture_pers.jsondescription
+#: simulation/data/technologies/architecture_pers.json
+msgid "Achaemenid Architecture"
+msgstr "Achaemenidská architektura"
+
+#: simulation/data/technologies/architecture_pers.json
 msgid ""
 "The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to"
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
@@ -212,155 +216,157 @@ msgid ""
 "Elamite capital of Susa."
 msgstr "Peršané postavili báječnou 1677 km dlouhou královskou silnici ze Sard do Sus; Darius Veliký a Xerxes rovněž postavili okouzlující Persepolis; Kýros II. Veliký zkrášlil Ekbatana a víceméně znovu postavil staré elamitské hlavní město Susy."
 
-#: simulation/data/technologies/architecture_pers.jsongenericName
-msgid "Achaemenid Architecture"
-msgstr "Achaemenidská architektura"
-
-#: simulation/data/technologies/architecture_pers.jsontooltip
+#: simulation/data/technologies/architecture_pers.json
 msgid "Structures +25% health and capture points, but also +20% build time."
 msgstr "Stavby  získají +25% k bodům zdraví a na bodech za kořist, potřebují ale také +20% více času na výstavbu."
 
-#: simulation/data/technologies/arsenal_philon.jsondescription
+#: simulation/data/technologies/arsenal_philon.json
+msgid "Arsenal of Philon"
+msgstr "Philonská zbrojnice"
+
+#: simulation/data/technologies/arsenal_philon.json
 msgid ""
 "The arsenal was mainly used as a warehouse for materials and instruments for"
 " the equipment of warships."
 msgstr "Arzenál sloužil především jako sklad materiálu a nástrojů pro vybavení válečných lodí."
 
-#: simulation/data/technologies/arsenal_philon.jsongenericName
-msgid "Arsenal of Philon"
-msgstr "Philonská zbrojnice"
-
-#: simulation/data/technologies/arsenal_philon.jsonrequirementsTooltip
-#: simulation/data/technologies/juggernauts.jsonrequirementsTooltip
-msgid "Unlocked in City Phase. Requires “Shipwrights.”"
-msgstr "Odemknuto ve velkoměstské fázi. Požaduje “Lodní řemeslníci.”"
-
-#: simulation/data/technologies/arsenal_philon.jsontooltip
+#: simulation/data/technologies/arsenal_philon.json
 msgid "Warships +1 health/second self-repair rate."
 msgstr "Válečné lodě +1 ke zdraví/sekundu k rychlosti samooprav."
 
-#: simulation/data/technologies/art_of_war.jsondescription
+#: simulation/data/technologies/arsenal_philon.json
+#: simulation/data/technologies/juggernauts.json
+msgid "Unlocked in City Phase. Requires “Shipwrights.”"
+msgstr "Odemknuto ve velkoměstské fázi. Požaduje “Lodní řemeslníci.”"
+
+#: simulation/data/technologies/art_of_war.json
+msgid "Sun Tzu's \"The Art of War\""
+msgstr "Sun Tzu \"Umění války\""
+
+#: simulation/data/technologies/art_of_war.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Sūnzǐ BīngFǎ"
+msgstr "Sūnzǐ BīngFǎ"
+
+#: simulation/data/technologies/art_of_war.json
 msgid ""
 "This famous and most important work of the Seven Military Classics teaches "
 "Han commanders everything about planning battles, maintaining armies, and "
 "defeating one's enemies."
 msgstr "Toto slavné a nejdůležitější dílo Sedmi vojenských klasiků naučí velitele Han vše o plánování bitev, udržování armád a porážení nepřátel."
 
-#: simulation/data/technologies/art_of_war.jsongenericName
-msgid "Sun Tzu's \"The Art of War\""
-msgstr "Sun Tzu \"Umění války\""
-
-#: simulation/data/technologies/art_of_war.jsonspecificName.han
-msgid "Sūnzǐ BīngFǎ"
-msgstr "Sūnzǐ BīngFǎ"
-
-#: simulation/data/technologies/art_of_war.jsontooltip
+#: simulation/data/technologies/art_of_war.json
 msgid "All Citizen-Soldiers −20% required promotion experience."
 msgstr "Všichni občanští vojáci −20% se vyžaduje ke zkušenostem pro zvýšení úrovně."
 
-#: simulation/data/technologies/attack_soldiers_will.jsondescription
+#: simulation/data/technologies/attack_soldiers_will.json
+msgid "Will to Fight"
+msgstr "Vůle bojovat"
+
+#: simulation/data/technologies/attack_soldiers_will.json
 msgid ""
 "The will to fight is crucial to victory. Inspire your troops with higher "
 "pay."
 msgstr "Pro vítězství je rozhodující vůle bojovat. Podněcujte své jednotky vyššími platy."
 
-#: simulation/data/technologies/attack_soldiers_will.jsongenericName
-msgid "Will to Fight"
-msgstr "Vůle bojovat"
-
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.athen
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.mace
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.ptol
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.sele
-#: simulation/data/technologies/attack_soldiers_will.jsonspecificName.spart
-msgid "Dynamis"
-msgstr "Dynamis"
-
-#: simulation/data/technologies/attack_soldiers_will.jsontooltip
+#: simulation/data/technologies/attack_soldiers_will.json
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
 msgstr "Vojáci, obléhací stroje a lodě +25% k poškození při útoku."
 
-#: simulation/data/technologies/barracks_batch_training.jsondescription
+#: simulation/data/technologies/attack_soldiers_will.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Dynamis"
+msgstr "Dynamis"
+
+#: simulation/data/technologies/barracks_batch_training.json
 msgid ""
 "Decreases training time of infantry if they are trained in batches or companies. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
 msgstr "Snižuje dobu výcviku pěchoty, pokud je cvičena v šaržích nebo rotách. Velké šarže budou mít větší užitek než malé šarže.\nMatematicky: Čas tréninku jedné šarže se vydělí `batchSize^0.1`."
 
-#: simulation/data/technologies/barracks_batch_training.jsongenericName
-#: simulation/data/technologies/stable_batch_training.jsongenericName
-msgid "Conscription"
-msgstr "Branná povinnost"
-
-#: simulation/data/technologies/barracks_batch_training.jsontooltip
+#: simulation/data/technologies/barracks_batch_training.json
 msgid "Decreases batch training time of units trained in Barracks."
 msgstr "Snižuje čas výcviku šarží jednotek vycvičených v kasárnách."
 
-#: simulation/data/technologies/cavalry_health.jsondescription
-msgid "Selectively breed better war horses."
-msgstr "Výběrově chovejte lepší válečné koně."
+#: simulation/data/technologies/barracks_batch_training.json
+#: simulation/data/technologies/stable_batch_training.json
+msgid "Conscription"
+msgstr "Branná povinnost"
 
-#: simulation/data/technologies/cavalry_health.jsongenericName
+#: simulation/data/technologies/cavalry_health.json
 msgid "Horse Breeding"
 msgstr "Chov koní"
 
-#: simulation/data/technologies/cavalry_health.jsontooltip
+#: simulation/data/technologies/cavalry_health.json
+msgid "Selectively breed better war horses."
+msgstr "Výběrově chovejte lepší válečné koně."
+
+#: simulation/data/technologies/cavalry_health.json
 msgid "Cavalry +10% health."
 msgstr "Jízda získá +10% na zdraví."
 
-#: simulation/data/technologies/cavalry_movement_speed.jsondescription
-msgid "Train your horses to move faster."
-msgstr "Cvičte své koně, aby běželi rychleji."
-
-#: simulation/data/technologies/cavalry_movement_speed.jsongenericName
+#: simulation/data/technologies/cavalry_movement_speed.json
 msgid "Horse Racing"
 msgstr "Závody koní"
 
-#: simulation/data/technologies/cavalry_movement_speed.jsontooltip
+#: simulation/data/technologies/cavalry_movement_speed.json
+msgid "Train your horses to move faster."
+msgstr "Cvičte své koně, aby běželi rychleji."
+
+#: simulation/data/technologies/cavalry_movement_speed.json
 msgid "Cavalry +10% walk speed."
 msgstr "Jízda získá +10% k rychlosti chůze."
 
-#: simulation/data/technologies/civbonuses/brit_woad_warriors.jsondescription
+#: simulation/data/technologies/civbonuses/brit_woad_warriors.json
+msgid "Woad Warriors"
+msgstr "Modří válečníci"
+
+#: simulation/data/technologies/civbonuses/brit_woad_warriors.json
 msgid ""
 "Britons paint their bodies with Woad, which produces a blue color and gives "
 "them a fiercesome appearance in battle."
 msgstr "Britové natírají svá těla Woadem, který vytváří modrou barvu a dává jim divoký vzhled v bitvě."
 
-#: simulation/data/technologies/civbonuses/brit_woad_warriors.jsongenericName
-msgid "Woad Warriors"
-msgstr "Modří válečníci"
-
-#: simulation/data/technologies/civbonuses/brit_woad_warriors.jsontooltip
+#: simulation/data/technologies/civbonuses/brit_woad_warriors.json
 msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
 msgstr "Všechny pěší jednotky získají +5% k rychlosti pohybu a získají +1 k braní kořisti."
 
-#: simulation/data/technologies/civbonuses/cart_walls.jsondescription
+#: simulation/data/technologies/civbonuses/cart_walls.json
+msgid "Triple Walls"
+msgstr "Trojité hradby"
+
+#: simulation/data/technologies/civbonuses/cart_walls.json
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These "
 "walls were never breached. Even when the city was taken by the Romans, it "
 "was via the city's harbor, not by storming its walls."
 msgstr "Kartaginci stavěli zdi svých měst ve třech soustředných kruzích. Tyto zdi nikdy nebyly prolomeny. Dokonce i když bylo město obsazeno Římany, podařilo se to udělat proniknutím přes přístav, nikoli dybytím hradem."
 
-#: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
-msgid "Triple Walls"
-msgstr "Trojité hradby"
-
-#: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
+#: simulation/data/technologies/civbonuses/cart_walls.json
 msgid "City Walls +100% build time, +100% stone cost, and +200% health."
 msgstr "Městské hradby +100% doby výstavby, +100% k ceně kamene a +200% k bodům zdraví."
 
-#: simulation/data/technologies/civbonuses/celt_structures.jsondescription
-msgid "Celtic structures were mostly made of wood with rubble foundations."
-msgstr "Keltské budovy byly většinou udělány ze dřeva se základy ze štěrku."
-
-#: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
+#: simulation/data/technologies/civbonuses/celt_structures.json
 msgid "Wooden Construction"
 msgstr "Dřevěná stavba"
 
-#: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
+#: simulation/data/technologies/civbonuses/celt_structures.json
+msgid "Celtic structures were mostly made of wood with rubble foundations."
+msgstr "Keltské budovy byly většinou udělány ze dřeva se základy ze štěrku."
+
+#: simulation/data/technologies/civbonuses/celt_structures.json
 msgid "Structures −20% build time, −20% health, and −20% capture points."
 msgstr "Stavby −20% z doby výstavby, −20% z bodů zdraví a −20% z bodů za zajetí."
 
-#: simulation/data/technologies/civbonuses/delian_league.jsondescription
+#: simulation/data/technologies/civbonuses/delian_league.json
+msgid "Delian League"
+msgstr "Délský spolek"
+
+#: simulation/data/technologies/civbonuses/delian_league.json
 msgid ""
 "Shortly after the great naval victories at Salamis and Mykale, the Greek "
 "city-states instituted the so-called Delian League in 478 BC, whose purpose "
@@ -368,83 +374,83 @@ msgid ""
 "contributed ships and money, while the Athenians offered their entire navy."
 msgstr "Krátce po velkých námořních vítězstvích u Salamíny a Mykale zavedly řecké městské státy v roce 478 př. n. l. tzv. Delianskou ligu, jejímž účelem bylo vytlačit Peršany z Egejské oblasti. Spojenecké státy přispěly loděmi a penězi, zatímco Athéňané nabídli celé své námořnictvo."
 
-#: simulation/data/technologies/civbonuses/delian_league.jsongenericName
-msgid "Delian League"
-msgstr "Délský spolek"
-
-#: simulation/data/technologies/civbonuses/delian_league.jsontooltip
+#: simulation/data/technologies/civbonuses/delian_league.json
 msgid "Ships −25% construction time."
 msgstr "Lodě −25% z doby výstavby"
 
-#: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
+#: simulation/data/technologies/civbonuses/gaul_cavalry.json
+msgid "Superior Cavalry"
+msgstr "Vynikající jízda"
+
+#: simulation/data/technologies/civbonuses/gaul_cavalry.json
 msgid ""
 "The Gauls were well-known for their effective cavalry. Celtic mercenaries "
 "were in demand throughout the Mediterranean."
 msgstr "Galové byli známí svou účinnou jízdou. Keltští žoldáci byli žádáni po celém Středomoří."
 
-#: simulation/data/technologies/civbonuses/gaul_cavalry.jsongenericName
-msgid "Superior Cavalry"
-msgstr "Vynikající jízda"
-
-#: simulation/data/technologies/civbonuses/gaul_cavalry.jsontooltip
+#: simulation/data/technologies/civbonuses/gaul_cavalry.json
 msgid "Cavalry +10% melee attack damage."
 msgstr "Jízda získá +10% přídavek k poškození při boji na blízko."
 
-#: simulation/data/technologies/civbonuses/greek_structures.jsondescription
-msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "Řekové používali stavby z kamene od rané mykénské doby."
-
-#: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
+#: simulation/data/technologies/civbonuses/greek_structures.json
 msgid "Hellenic Architecture"
 msgstr "Helénská architektura"
 
-#: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
+#: simulation/data/technologies/civbonuses/greek_structures.json
+msgid "The Greeks used stone construction from early Mycenaean times."
+msgstr "Řekové používali stavby z kamene od rané mykénské doby."
+
+#: simulation/data/technologies/civbonuses/greek_structures.json
 msgid "Structures +10% health and +10% capture points."
 msgstr "Stavby +10% k  bodům zdraví a +10% k bodům za zajetí."
 
-#: simulation/data/technologies/civbonuses/han_population.jsondescription
+#: simulation/data/technologies/civbonuses/han_population.json
+msgid "Federated States"
+msgstr "Federativní státy"
+
+#: simulation/data/technologies/civbonuses/han_population.json
 msgid ""
 "By uniting China under one emperor, the Han Dynasty ruled over 40 million "
 "people, one of the largest empires of antiquity by population."
 msgstr "Sjednocením Číny pod jedním císařem dynastie Han vládla více než 40 milionům lidí, což je jedna z největších starověkých říší podle počtu obyvatel."
 
-#: simulation/data/technologies/civbonuses/han_population.jsongenericName
-msgid "Federated States"
-msgstr "Federativní státy"
-
-#: simulation/data/technologies/civbonuses/han_population.jsontooltip
-#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+#: simulation/data/technologies/civbonuses/han_population.json
+#: simulation/data/technologies/civbonuses/maur_population.json
+#: simulation/data/technologies/civbonuses/pers_population.json
 msgid "+10% maximum population limit."
 msgstr "+10% k omezení na nejvyšší počet obyvatel."
 
-#: simulation/data/technologies/civbonuses/han_walls.jsondescription
+#: simulation/data/technologies/civbonuses/han_walls.json
+msgid "Great Wall"
+msgstr "Velká zeď"
+
+#: simulation/data/technologies/civbonuses/han_walls.json
 msgid ""
 "The Han built massive walls made from rammed earth. These were gigantic "
 "fortifications several meters thick and stretching for kilometers."
 msgstr "Han postavili masivní zdi z udusané hlíny. Jednalo se o gigantická opevnění silná několik metrů a táhnoucí se na kilometry."
 
-#: simulation/data/technologies/civbonuses/han_walls.jsongenericName
-msgid "Great Wall"
-msgstr "Velká zeď"
-
-#: simulation/data/technologies/civbonuses/han_walls.jsontooltip
+#: simulation/data/technologies/civbonuses/han_walls.json
 msgid "City Walls +50% health."
 msgstr "Městské hradby získají +50% na zdraví."
 
-#: simulation/data/technologies/civbonuses/mace_storehouse.jsondescription
-msgid "The Macedonian economy relied greatly on their vast natural resources."
-msgstr "Makedonská ekonomika se velmi spoléhala na jejich obrovské přírodní zdroje."
-
-#: simulation/data/technologies/civbonuses/mace_storehouse.jsongenericName
+#: simulation/data/technologies/civbonuses/mace_storehouse.json
 msgid "Resource-Rich Economy"
 msgstr "Ekonomika bohatá na zdroje"
 
-#: simulation/data/technologies/civbonuses/mace_storehouse.jsontooltip
+#: simulation/data/technologies/civbonuses/mace_storehouse.json
+msgid "The Macedonian economy relied greatly on their vast natural resources."
+msgstr "Makedonská ekonomika se velmi spoléhala na jejich obrovské přírodní zdroje."
+
+#: simulation/data/technologies/civbonuses/mace_storehouse.json
 msgid "Storehouse technologies −100% research time."
 msgstr "Skladové technologie −100% doby výzkumu."
 
-#: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
+#: simulation/data/technologies/civbonuses/maur_elephants.json
+msgid "Elephant Tradition"
+msgstr "Sloní tradice"
+
+#: simulation/data/technologies/civbonuses/maur_elephants.json
 msgid ""
 "India is the land of the elephants. Elephant warfare originated in India and"
 " continued for millennia. It was also the source of elephants for the "
@@ -452,15 +458,22 @@ msgid ""
 "elephants."
 msgstr "Indie je zemí slonů. Válčení se slony vzniklo v Indii a pokračovala po tisíciletí. Ta bylo také zdrojem slonů pro východní Středomoří. Indičtí králové byli schopni poslat do bitvy velké množství válečných slonů."
 
-#: simulation/data/technologies/civbonuses/maur_elephants.jsongenericName
-msgid "Elephant Tradition"
-msgstr "Sloní tradice"
-
-#: simulation/data/technologies/civbonuses/maur_elephants.jsontooltip
+#: simulation/data/technologies/civbonuses/maur_elephants.json
 msgid "Elephants −30% training time."
 msgstr "Sloni −30% z doby výcviku."
 
-#: simulation/data/technologies/civbonuses/maur_population.jsondescription
+#: simulation/data/technologies/civbonuses/maur_population.json
+msgid "Emperor of Emperors"
+msgstr "Císař císařů"
+
+#: simulation/data/technologies/civbonuses/maur_population.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Chakravarti Samrāt"
+msgstr "Chakravarti Samrāt"
+
+#: simulation/data/technologies/civbonuses/maur_population.json
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
 "an area of 5 million square kilometers, with a population of close to 60 "
@@ -470,29 +483,25 @@ msgid ""
 "time."
 msgstr "Maurijská říše zahrnovala tucty dříve nezávislých království rozkládajících se na ploše 5 milionů km², s obyvatelstvem v počtu 60 milionů lidí. Maurijští vládci drželi titul císař císařů a veleli stálé armádě 600000 pěšáků, 9000 slonů, 8000 válečných vozů 30000 jezdců, nejspíše největšího vojska své doby."
 
-#: simulation/data/technologies/civbonuses/maur_population.jsongenericName
-msgid "Emperor of Emperors"
-msgstr "Císař císařů"
+#: simulation/data/technologies/civbonuses/maur_walls.json
+msgid "Wooden Walls"
+msgstr "Dřevěné hradby"
 
-#: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
-msgid "Chakravarti Samrāt"
-msgstr "Chakravarti Samrāt"
-
-#: simulation/data/technologies/civbonuses/maur_walls.jsondescription
+#: simulation/data/technologies/civbonuses/maur_walls.json
 msgid ""
 "The Mauryas built their city walls out of wood, an abundant natural resource"
 " in India."
 msgstr "Maurjové stavěli zdi svých měst ze dřeva, protože dřevo je v Indii hojně se vyskytující přírodní zdroj."
 
-#: simulation/data/technologies/civbonuses/maur_walls.jsongenericName
-msgid "Wooden Walls"
-msgstr "Dřevěné hradby"
-
-#: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
+#: simulation/data/technologies/civbonuses/maur_walls.json
 msgid "City Walls −20% build time and −20% health."
 msgstr "Městské hradby −20% z doby výstavby a −20% z bodů zdraví."
 
-#: simulation/data/technologies/civbonuses/pers_population.jsondescription
+#: simulation/data/technologies/civbonuses/pers_population.json
+msgid "Great King's Levy"
+msgstr "Povolávací rozkaz Velkokrále"
+
+#: simulation/data/technologies/civbonuses/pers_population.json
 msgid ""
 "The Persians could and did levy a large number of infantry during wartime "
 "due to the sheer size of the Achaemenid Empire and the way in which it was "
@@ -502,11 +511,11 @@ msgid ""
 "regiments, the Persian infantry was not a standing professional force."
 msgstr "Peršané mohli na základě prosté velikosti Achjmenovské říše a způsobu, jakým byla vybudována, v době války povolat početnou pěchotu. Obecně byla perská pěchota dobře vycvičena a bojovala s velkou neústupností, byla však navzdory výše řečenému špatná v boji muže proti muži. Obzvláště nebyla perská pěchota - s výjimkou elitních pluků - žádným stálým profesionálním vojskem."
 
-#: simulation/data/technologies/civbonuses/pers_population.jsongenericName
-msgid "Great King's Levy"
-msgstr "Povolávací rozkaz Velkokrále"
+#: simulation/data/technologies/civbonuses/ptol_structures.json
+msgid "Sun-dried Mud Bricks"
+msgstr "Hliněné cihly sušené na slunci"
 
-#: simulation/data/technologies/civbonuses/ptol_structures.jsondescription
+#: simulation/data/technologies/civbonuses/ptol_structures.json
 msgid ""
 "Sun-dried mud bricks were a common building material in hot and dry areas, "
 "especially where wood was scarce. Although not as strong and durable as "
@@ -514,157 +523,165 @@ msgid ""
 "floods, mud bricks have the advantage they are cheap and easy to produce."
 msgstr "Hliněné cihly sušené na slunci byly běžným stavebním materiálem v horkých a suchých oblastech, zejména tam, kde bylo dřeva málo. Ačkoli nejsou hliněné cihly tak silné a odolné jako pálené cihly nebo přírodní kámen a jsou náchylné k opotřebení kvůli neustálým dešťům a silným povodním, mají tu výhodu, že jsou levné a snadno se vyrábějí."
 
-#: simulation/data/technologies/civbonuses/ptol_structures.jsongenericName
-msgid "Sun-dried Mud Bricks"
-msgstr "Hliněné cihly sušené na slunci"
-
-#: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
+#: simulation/data/technologies/civbonuses/ptol_structures.json
 msgid ""
 "Houses and Economic Structures −40% wood cost, health, and capture points as"
 " well as +50% build time."
 msgstr "Domy a ekonomické stavby −40% nákladů na dřevo, zdraví a body zajetí a také +50% času stavby."
 
-#: simulation/data/technologies/civbonuses/rome_siege.jsondescription
-msgid "Soldiers were well Trained to Operate Siege Engines."
-msgstr "Vojáci byli dobře vycvičeni k obsluze obléhacích strojů."
-
-#: simulation/data/technologies/civbonuses/rome_siege.jsongenericName
+#: simulation/data/technologies/civbonuses/rome_siege.json
 msgid "Legionary Engineers"
 msgstr "Legionářští inženýři"
 
-#: simulation/data/technologies/civbonuses/rome_siege.jsontooltip
+#: simulation/data/technologies/civbonuses/rome_siege.json
+msgid "Soldiers were well Trained to Operate Siege Engines."
+msgstr "Vojáci byli dobře vycvičeni k obsluze obléhacích strojů."
+
+#: simulation/data/technologies/civbonuses/rome_siege.json
 msgid ""
 "Siege Catapults and Onagers 10% faster fire rate and +20% movement speed."
 msgstr "Obléhací katapulty a Onagery o 10% rychlejší střelba a +20% rychlost pohybu."
 
-#: simulation/data/technologies/civbonuses/sele_farms.jsondescription
+#: simulation/data/technologies/civbonuses/sele_farms.json
+msgid "Fertile Crescent"
+msgstr "Úrodný půlměsíc"
+
+#: simulation/data/technologies/civbonuses/sele_farms.json
 msgid ""
 "The Seleucid empire was located in a highly fertile region with productive "
 "soils. Farms are cheaper and faster to build."
 msgstr "Seleukovská říše se nacházela ve vysoce úrodné oblasti s úrodnou půdou. Farmy jsou levnější a rychleji se staví."
 
-#: simulation/data/technologies/civbonuses/sele_farms.jsongenericName
-msgid "Fertile Crescent"
-msgstr "Úrodný půlměsíc"
-
-#: simulation/data/technologies/civbonuses/sele_farms.jsontooltip
+#: simulation/data/technologies/civbonuses/sele_farms.json
 msgid "Farms −25% wood cost and −75% build time."
 msgstr "Farmy −25% náklady na dřevo a −75% doby výstavby."
 
-#: simulation/data/technologies/civil_engineering_01.jsongenericName
+#: simulation/data/technologies/civil_engineering_01.json
 msgid "Improved Construction"
 msgstr "Vylepšená konstrukce"
 
-#: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
-#: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
-msgid "Gōngchéng"
-msgstr "Gōngchéng"
-
-#: simulation/data/technologies/civil_engineering_01.jsontooltip
+#: simulation/data/technologies/civil_engineering_01.json
 msgid "All structures −10% build time and −10% cost."
 msgstr "Všechny stavby −10% doby výstavby a −10% nákladů. "
 
-#: simulation/data/technologies/civil_engineering_02.jsongenericName
+#: simulation/data/technologies/civil_engineering_01.json
+#: simulation/data/technologies/civil_engineering_02.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Gōngchéng"
+msgstr "Gōngchéng"
+
+#: simulation/data/technologies/civil_engineering_02.json
 msgid "Robust Architecture"
 msgstr "Robustní architektura"
 
-#: simulation/data/technologies/civil_engineering_02.jsontooltip
+#: simulation/data/technologies/civil_engineering_02.json
 msgid "All structures +20% health."
 msgstr "Všechny stavby získají +20% ke zdraví."
 
-#: simulation/data/technologies/civil_service_01.jsongenericName
+#: simulation/data/technologies/civil_service_01.json
 msgid "Efficient Bureaucracy"
 msgstr "Efektivní byrokracie"
 
-#: simulation/data/technologies/civil_service_01.jsonspecificName.han
-#: simulation/data/technologies/civil_service_02.jsonspecificName.han
-msgid "Guānliáo"
-msgstr "Guānliáo"
-
-#: simulation/data/technologies/civil_service_01.jsontooltip
+#: simulation/data/technologies/civil_service_01.json
 msgid "Ministers −50% train time."
 msgstr "Ministři −50% z doby výcviku."
 
-#: simulation/data/technologies/civil_service_02.jsongenericName
+#: simulation/data/technologies/civil_service_01.json
+#: simulation/data/technologies/civil_service_02.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Guānliáo"
+msgstr "Guānliáo"
+
+#: simulation/data/technologies/civil_service_02.json
 msgid "Intensive Training"
 msgstr "Intenzivní výcvik"
 
-#: simulation/data/technologies/civil_service_02.jsontooltip
+#: simulation/data/technologies/civil_service_02.json
 msgid "Ministers +50% health."
 msgstr "Ministři získají +50% na zdraví."
 
-#: simulation/data/technologies/colonization.jsondescription
+#: simulation/data/technologies/colonization.json
+msgid "Colonization"
+msgstr "Kolonizace"
+
+#: simulation/data/technologies/colonization.json
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
 msgstr "Kartáginci zřídili mnoho obchodních koloníí a nakonec udrželi nadvládu nad více než 300 velkoměsty a městy jen v Severní Africe."
 
-#: simulation/data/technologies/colonization.jsongenericName
-msgid "Colonization"
-msgstr "Kolonizace"
-
-#: simulation/data/technologies/colonization.jsontooltip
+#: simulation/data/technologies/colonization.json
 msgid ""
 "Civic Structures (Civic Center, Temples, and Houses) −25% build time and "
 "resource costs."
 msgstr "Občanské stavby (občanské centrum, chrámy a domy) −25% nákladů na výstavbu a náklady na zdroje."
 
-#: simulation/data/technologies/cost_healer.jsondescription
+#: simulation/data/technologies/cost_healer.json
+msgid "Sacrificial Ritual"
+msgstr "Obětní rituál"
+
+#: simulation/data/technologies/cost_healer.json
 msgid ""
 "Sacrificial rituals were quite common in ancient times, whether to satisfy "
 "the gods, calm natural disasters, or even improve harvests."
 msgstr "Obětní rituály byly ve starověku zcela běžné, ať už k uspokojení bohů, zklidnění přírodních katastrof nebo dokonce ke zlepšení úrody."
 
-#: simulation/data/technologies/cost_healer.jsongenericName
-msgid "Sacrificial Ritual"
-msgstr "Obětní rituál"
-
-#: simulation/data/technologies/cost_healer.jsontooltip
+#: simulation/data/technologies/cost_healer.json
 msgid "Healers –40% training time, and the metal cost is removed."
 msgstr "Léčitelé –40% tréninkového času a náklady na kov jsou odstraněny."
 
-#: simulation/data/technologies/crossbow_training.jsondescription
-msgid "The Han had a penchant for using massed crossbowmen in battle."
-msgstr "Han měl zálibu v používání mnoha střelců s kuší v bitvě."
-
-#: simulation/data/technologies/crossbow_training.jsongenericName
+#: simulation/data/technologies/crossbow_training.json
 msgid "Crossbow Training"
 msgstr "Výcvik s kuší"
 
-#: simulation/data/technologies/crossbow_training.jsontooltip
+#: simulation/data/technologies/crossbow_training.json
+msgid "The Han had a penchant for using massed crossbowmen in battle."
+msgstr "Han měl zálibu v používání mnoha střelců s kuší v bitvě."
+
+#: simulation/data/technologies/crossbow_training.json
 msgid "Crossbow Infantry −20% train time."
 msgstr "Pěchota vybavená kuší −20% z doby výcviku."
 
-#: simulation/data/technologies/dock_efficiency.jsondescription
-#: simulation/data/technologies/ship_cost_time.jsondescription
-msgid ""
-"Employ skilled shipwrights with specialized tools to speed up ship "
-"construction."
-msgstr "Zaměstnejte zkušené lodní stavitele s účelovými nástroji pro urychlení stavby lodí."
-
-#: simulation/data/technologies/dock_efficiency.jsongenericName
+#: simulation/data/technologies/dock_efficiency.json
 msgid "Shipwrights"
 msgstr "Lodní řemeslníci"
 
-#: simulation/data/technologies/dock_efficiency.jsonspecificName.athen
-#: simulation/data/technologies/dock_efficiency.jsonspecificName.mace
-#: simulation/data/technologies/dock_efficiency.jsonspecificName.ptol
-#: simulation/data/technologies/dock_efficiency.jsonspecificName.sele
-#: simulation/data/technologies/dock_efficiency.jsonspecificName.spart
-msgid "Naupēgoi"
-msgstr "Naupēgoi"
-
-#: simulation/data/technologies/dock_efficiency.jsonspecificName.rome
+#: simulation/data/technologies/dock_efficiency.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Faber Navalis"
 msgstr "Faber Navalis"
 
-#: simulation/data/technologies/dock_efficiency.jsontooltip
+#: simulation/data/technologies/dock_efficiency.json
 msgid ""
 "Docks work 20% faster (Ships −20% build time; Technologies −20% research "
 "time) and are built 20% faster."
 msgstr "Doky pracují o 20% rychleji (lodě −20% času stavby; Technologie −20% času výzkumu) a jsou stavěny o 20% rychleji."
 
-#: simulation/data/technologies/equine_transports.jsondescription
+#: simulation/data/technologies/dock_efficiency.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Naupēgoi"
+msgstr "Naupēgoi"
+
+#: simulation/data/technologies/dock_efficiency.json
+#: simulation/data/technologies/ship_cost_time.json
+msgid ""
+"Employ skilled shipwrights with specialized tools to speed up ship "
+"construction."
+msgstr "Zaměstnejte zkušené lodní stavitele s účelovými nástroji pro urychlení stavby lodí."
+
+#: simulation/data/technologies/equine_transports.json
+msgid "Equine Transports"
+msgstr "Koňská přeprava"
+
+#: simulation/data/technologies/equine_transports.json
 msgid ""
 "Early Achaemenid rulers acted towards making Persia the first great Asian "
 "empire to rule the seas. The Great King behaved favourably towards the "
@@ -675,15 +692,15 @@ msgid ""
 "were retrofitted to carry horses and their riders."
 msgstr "Raní Achaimenovští vládci udělali z Persie první asijskou velkou říši, která ovládala moře. Velkokrál napomáhal mnohým mořským národům, aby si zajistil jejich služby, sám ale také začal různé námořní činnosti. Během vlády Dareia I. byl například v Egyptě postaven kanál a perské loďstvo byla vyslána k prozkoumávání řeky Indus. Podle Herodota bylo dovybaveno asi 300 lodí perského loďstva, aby mohly přepravovat koně a jejich jezdce."
 
-#: simulation/data/technologies/equine_transports.jsongenericName
-msgid "Equine Transports"
-msgstr "Koňská přeprava"
-
-#: simulation/data/technologies/equine_transports.jsontooltip
+#: simulation/data/technologies/equine_transports.json
 msgid "Phoenician Triremes gain the ability to train Cavalry."
 msgstr "Fénické trojveslice získají schopnost cvičit  jízdu."
 
-#: simulation/data/technologies/exploration.jsondescription
+#: simulation/data/technologies/exploration.json
+msgid "Exploration"
+msgstr "Objevování"
+
+#: simulation/data/technologies/exploration.json
 msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they "
 "were going and going to go; their merchant traders had missions to "
@@ -692,511 +709,524 @@ msgid ""
 "routes."
 msgstr "Nikdo nevěděl lépe než Kartáginci, kam ve starověkém světě jdou a půjdou; jejich obchodníci měli poslání všude. Číňané byli známí průzkumníci, kteří kdysi vyslali flotilu lodí do Indického oceánu, aby rozšířili své znalosti a otevřeli nové obchodní cesty."
 
-#: simulation/data/technologies/exploration.jsongenericName
-msgid "Exploration"
-msgstr "Objevování"
-
-#: simulation/data/technologies/exploration.jsonrequirementsTooltip
+#: simulation/data/technologies/exploration.json
 msgid "Unlocked in Village Phase. Requires “Lookouts.”"
 msgstr "Odemčeno ve vesnické fázi. Požaduje  “Vyhlídky.”"
 
-#: simulation/data/technologies/exploration.jsontooltip
+#: simulation/data/technologies/exploration.json
 msgid "Traders and Ships +20% vision range."
 msgstr "Obchodníci a lodě vidí o +20% dále."
 
-#: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
-msgid "Salting allows to preserve fish longer."
-msgstr "Nasolování umožňuje uchovat ryby déle."
-
-#: simulation/data/technologies/fishing_boat_gather_capacity.jsongenericName
+#: simulation/data/technologies/fishing_boat_gather_capacity.json
 msgid "Salt Curing"
 msgstr "Vytvrzování solí"
 
-#: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
+#: simulation/data/technologies/fishing_boat_gather_capacity.json
+msgid "Salting allows to preserve fish longer."
+msgstr "Nasolování umožňuje uchovat ryby déle."
+
+#: simulation/data/technologies/fishing_boat_gather_capacity.json
 msgid "Unlocked in Village Phase. Requires “Fishing Nets.”"
 msgstr "Odemčeno ve vesnické fázi. Požaduje “Rybářské sítě.”"
 
-#: simulation/data/technologies/fishing_boat_gather_capacity.jsontooltip
+#: simulation/data/technologies/fishing_boat_gather_capacity.json
 msgid "Fishing Boats +20 food capacity."
 msgstr "Rybářské lodě mají +20 ke kapacitě jídla."
 
-#: simulation/data/technologies/fishing_boat_gather_rate.jsondescription
-msgid "Use nets to improve the productivity of fishing boats."
-msgstr "Využijte sítí k zlepšení produktivity rybářských člunů."
-
-#: simulation/data/technologies/fishing_boat_gather_rate.jsongenericName
+#: simulation/data/technologies/fishing_boat_gather_rate.json
 msgid "Fishing Nets"
 msgstr "Rybářské sítě"
 
-#: simulation/data/technologies/fishing_boat_gather_rate.jsontooltip
+#: simulation/data/technologies/fishing_boat_gather_rate.json
+msgid "Use nets to improve the productivity of fishing boats."
+msgstr "Využijte sítí k zlepšení produktivity rybářských člunů."
+
+#: simulation/data/technologies/fishing_boat_gather_rate.json
 msgid "Fishing Boats +30% fish gather rate. Unlocks “Salt Curing.”"
 msgstr "Rybářské čluny získávají ryby o +30% rychleji. Odemyká “Vytvrzování solí.”"
 
-#: simulation/data/technologies/garrison_heal.jsondescription
-msgid "Units regain health over time while garrisoned."
-msgstr "Jednotky se léčí rychleji, když jsou umístěny v budovách."
-
-#: simulation/data/technologies/garrison_heal.jsongenericName
+#: simulation/data/technologies/garrison_heal.json
 msgid "Living Conditions"
 msgstr "Životní podmínky"
 
-#: simulation/data/technologies/garrison_heal.jsontooltip
+#: simulation/data/technologies/garrison_heal.json
+msgid "Units regain health over time while garrisoned."
+msgstr "Jednotky se léčí rychleji, když jsou umístěny v budovách."
+
+#: simulation/data/technologies/garrison_heal.json
 msgid "Structures +1 garrison heal rate."
 msgstr "Stavby +1 k rychlosti léčení posádky."
 
-#: simulation/data/technologies/gather_ahimsa.jsondescription
+#: simulation/data/technologies/gather_ahimsa.json
+msgid "Ahimsa"
+msgstr "Ahimsa"
+
+#: simulation/data/technologies/gather_ahimsa.json
 msgid ""
 "Ahimsa is the ancient Indian principle of nonviolence which applies to "
 "actions towards all living beings. It is a key virtue in Indian religions "
 "like Jainism, Buddhism, Hinduism, and Sikhism."
 msgstr "Ahimsa je starodávný indický princip nenásilí, který se vztahuje na jednání vůči všem živým bytostem. Je to klíčová ctnost v indických náboženstvích, jako je džinismus, buddhismus, hinduismus a sikhismus."
 
-#: simulation/data/technologies/gather_ahimsa.jsongenericName
-msgid "Ahimsa"
-msgstr "Ahimsa"
-
-#: simulation/data/technologies/gather_ahimsa.jsontooltip
+#: simulation/data/technologies/gather_ahimsa.json
 msgid "Units +100% fruit gather rate, but −80% meat and fish gather."
 msgstr ""
 
-#: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
-msgid "Breed livestock to slaughter for meat."
-msgstr "Chov hospodářských zvířat na porážku pro maso."
-
-#: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
+#: simulation/data/technologies/gather_animals_stockbreeding.json
 msgid "Stockbreeding"
 msgstr "Chov dobytka"
 
-#: simulation/data/technologies/gather_animals_stockbreeding.jsontooltip
+#: simulation/data/technologies/gather_animals_stockbreeding.json
+msgid "Breed livestock to slaughter for meat."
+msgstr "Chov hospodářských zvířat na porážku pro maso."
+
+#: simulation/data/technologies/gather_animals_stockbreeding.json
 msgid "Domestic Animals −25% breeding time."
 msgstr "-25% z času pro odchov hospodářských zvířat."
 
-#: simulation/data/technologies/gather_capacity_basket.jsondescription
-msgid "Workers use baskets. Increases shuttling capacity for all resources."
-msgstr "Dělníci používají koše.  Zvyšuje objem při přenášení pro všechny zdroje."
-
-#: simulation/data/technologies/gather_capacity_basket.jsongenericName
+#: simulation/data/technologies/gather_capacity_basket.json
 msgid "Baskets"
 msgstr "Koše"
 
-#: simulation/data/technologies/gather_capacity_basket.jsontooltip
-#: simulation/data/technologies/gather_capacity_carts.jsontooltip
-#: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
+#: simulation/data/technologies/gather_capacity_basket.json
+msgid "Workers use baskets. Increases shuttling capacity for all resources."
+msgstr "Dělníci používají koše.  Zvyšuje objem při přenášení pro všechny zdroje."
+
+#: simulation/data/technologies/gather_capacity_basket.json
+#: simulation/data/technologies/gather_capacity_carts.json
+#: simulation/data/technologies/gather_capacity_wheelbarrow.json
 msgid "Workers +5 resource capacity."
 msgstr "Dělníci +5 k objemu při přenášení zdrojů."
 
-#: simulation/data/technologies/gather_capacity_carts.jsondescription
+#: simulation/data/technologies/gather_capacity_carts.json
+msgid "Horse-drawn Carts"
+msgstr "Vozy tažené koňmi"
+
+#: simulation/data/technologies/gather_capacity_carts.json
 msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
 msgstr "Dělníci používají dvoukolé vozy tažené koni. Zvyšuje objem při přenášení pro všechny zdroje."
 
-#: simulation/data/technologies/gather_capacity_carts.jsongenericName
-msgid "Horse-drawn Carts"
-msgstr "Vozy tažené koňmi"
+#: simulation/data/technologies/gather_capacity_wheelbarrow.json
+msgid "Wheelbarrow"
+msgstr "Trakař"
 
-#: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
+#: simulation/data/technologies/gather_capacity_wheelbarrow.json
 msgid ""
 "Workers use wheelbarrows. Increases shuttling capacity for all resources."
 msgstr "Dělníci používají trakaře. Zvyšuje objem při přenášení pro všechny zdroje."
 
-#: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
-msgid "Wheelbarrow"
-msgstr "Trakař"
-
-#: simulation/data/technologies/gather_farming_chain_pump.jsondescription
-msgid "Install a chain pump for improved irrigation."
-msgstr "Pro lepší zavlažování nainstalujte řetězové čerpadlo."
-
-#: simulation/data/technologies/gather_farming_chain_pump.jsongenericName
+#: simulation/data/technologies/gather_farming_chain_pump.json
 msgid "Chain Pump"
 msgstr "Řetězové čerpadlo"
 
-#: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
-#: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsontooltip
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
-#: simulation/data/technologies/gather_farming_training_ptol.jsontooltip
-#: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
+#: simulation/data/technologies/gather_farming_chain_pump.json
+msgid "Install a chain pump for improved irrigation."
+msgstr "Pro lepší zavlažování nainstalujte řetězové čerpadlo."
+
+#: simulation/data/technologies/gather_farming_chain_pump.json
+#: simulation/data/technologies/gather_farming_fertilizer.json
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.json
+#: simulation/data/technologies/gather_farming_plows.json
+#: simulation/data/technologies/gather_farming_seed_drill.json
+#: simulation/data/technologies/gather_farming_training.json
+#: simulation/data/technologies/gather_farming_training_ptol.json
+#: simulation/data/technologies/gather_farming_water_weeding.json
 msgid "Workers +20% grain gather rate."
 msgstr "Dělníci sklízí obilí o +20% rychleji."
 
-#: simulation/data/technologies/gather_farming_fertilizer.jsondescription
-#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsondescription
-msgid "Extra nutrients for farms."
-msgstr "Dodatečné živiny pro statky."
-
-#: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
-#: simulation/data/technologies/gather_farming_fertilizer_ptol.jsongenericName
+#: simulation/data/technologies/gather_farming_fertilizer.json
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.json
 msgid "Fertilizer"
 msgstr "Hnojivo"
 
-#: simulation/data/technologies/gather_farming_harvester.jsondescription
+#: simulation/data/technologies/gather_farming_fertilizer.json
+#: simulation/data/technologies/gather_farming_fertilizer_ptol.json
+msgid "Extra nutrients for farms."
+msgstr "Dodatečné živiny pro statky."
+
+#: simulation/data/technologies/gather_farming_harvester.json
+msgid "Harvesting Machine"
+msgstr "Sklízecí stroj"
+
+#: simulation/data/technologies/gather_farming_harvester.json
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
 msgstr "Galové vynalezli sklízecí stroj, díky němuž bylo mnohem snazší sklízet obilí."
 
-#: simulation/data/technologies/gather_farming_harvester.jsongenericName
-msgid "Harvesting Machine"
-msgstr "Sklízecí stroj"
-
-#: simulation/data/technologies/gather_farming_harvester.jsontooltip
+#: simulation/data/technologies/gather_farming_harvester.json
 msgid "Workers +10% grain gather rate."
 msgstr "Dělníci sklízí obilí o +10% rychleji."
 
-#: simulation/data/technologies/gather_farming_plows.jsondescription
+#: simulation/data/technologies/gather_farming_plows.json
+msgid "Iron Plow"
+msgstr "Železný pluh"
+
+#: simulation/data/technologies/gather_farming_plows.json
 msgid ""
 "Equip your workers with iron plows, animal-drawn instruments to turn the "
 "sod."
 msgstr "Vybavte své pracovníky železnými pluhy, nástroji taženými zvířaty k obracení drnu."
 
-#: simulation/data/technologies/gather_farming_plows.jsongenericName
-msgid "Iron Plow"
-msgstr "Železný pluh"
-
-#: simulation/data/technologies/gather_farming_seed_drill.jsondescription
-msgid "Equip your workers with seed drills."
-msgstr "Vybavte své pracovníky secími stroji."
-
-#: simulation/data/technologies/gather_farming_seed_drill.jsongenericName
+#: simulation/data/technologies/gather_farming_seed_drill.json
 msgid "Seed Drill"
 msgstr "Secí stroj"
 
-#: simulation/data/technologies/gather_farming_training.jsondescription
-#: simulation/data/technologies/gather_farming_training_ptol.jsondescription
-msgid "Training for workers to increase farm gathering speed."
-msgstr "Výcvik zaměstnanců ke zvýšení rychlosti sklizně na statku."
+#: simulation/data/technologies/gather_farming_seed_drill.json
+msgid "Equip your workers with seed drills."
+msgstr "Vybavte své pracovníky secími stroji."
 
-#: simulation/data/technologies/gather_farming_training.jsongenericName
-#: simulation/data/technologies/gather_farming_training_ptol.jsongenericName
+#: simulation/data/technologies/gather_farming_training.json
+#: simulation/data/technologies/gather_farming_training_ptol.json
 msgid "Gather Training"
 msgstr "Výcvik sběračů"
 
-#: simulation/data/technologies/gather_farming_water_weeding.jsondescription
-msgid "Remove water weeds to preserve nutrients for the rice plants."
-msgstr "Odstraňte vodní plevel, abyste zachovali živiny pro rostliny rýže."
+#: simulation/data/technologies/gather_farming_training.json
+#: simulation/data/technologies/gather_farming_training_ptol.json
+msgid "Training for workers to increase farm gathering speed."
+msgstr "Výcvik zaměstnanců ke zvýšení rychlosti sklizně na statku."
 
-#: simulation/data/technologies/gather_farming_water_weeding.jsongenericName
+#: simulation/data/technologies/gather_farming_water_weeding.json
 msgid "Water Weeding"
 msgstr "Vodní pletí"
 
-#: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
-#: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
-#: simulation/data/technologies/gather_lumbering_strongeraxes.jsondescription
-msgid "Increases wood gathering rates for trees."
-msgstr "Zvýší rychlost těžení dřeva ze stromů."
+#: simulation/data/technologies/gather_farming_water_weeding.json
+msgid "Remove water weeds to preserve nutrients for the rice plants."
+msgstr "Odstraňte vodní plevel, abyste zachovali živiny pro rostliny rýže."
 
-#: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
+#: simulation/data/technologies/gather_lumbering_ironaxes.json
 msgid "Iron Axe Heads"
 msgstr "Železné sekery"
 
-#: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
-#: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
-#: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
+#: simulation/data/technologies/gather_lumbering_ironaxes.json
+#: simulation/data/technologies/gather_lumbering_sharpaxes.json
+#: simulation/data/technologies/gather_lumbering_strongeraxes.json
+msgid "Increases wood gathering rates for trees."
+msgstr "Zvýší rychlost těžení dřeva ze stromů."
+
+#: simulation/data/technologies/gather_lumbering_ironaxes.json
+#: simulation/data/technologies/gather_lumbering_sharpaxes.json
+#: simulation/data/technologies/gather_lumbering_strongeraxes.json
 msgid "Workers +25% wood gather rate."
 msgstr "Dělníci získají +25% k rychlosti sběru dřeva."
 
-#: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
+#: simulation/data/technologies/gather_lumbering_sharpaxes.json
 msgid "Sharp Axe Heads"
 msgstr "Ostré sekery"
 
-#: simulation/data/technologies/gather_lumbering_strongeraxes.jsongenericName
+#: simulation/data/technologies/gather_lumbering_strongeraxes.json
 msgid "Stronger Axe"
 msgstr "Silnější Sekera"
 
-#: simulation/data/technologies/gather_mining_serfs.jsondescription
+#: simulation/data/technologies/gather_mining_serfs.json
+msgid "Serfs"
+msgstr "Nevolníci"
+
+#: simulation/data/technologies/gather_mining_serfs.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Heilōtes"
+msgstr "Heilóti"
+
+#: simulation/data/technologies/gather_mining_serfs.json
 msgid ""
 "Compel serfs to help your workers quarry stone. Increases stone gathering "
 "rates."
 msgstr "Přinuťte nevolníky k tomu, aby pomohli vašim dělníkům v dole na kámen. Zvyšuje rychlost lámání kamene."
 
-#: simulation/data/technologies/gather_mining_serfs.jsongenericName
-msgid "Serfs"
-msgstr "Nevolníci"
-
-#: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
-msgid "Heilōtes"
-msgstr "Heilóti"
-
-#: simulation/data/technologies/gather_mining_serfs.jsontooltip
-#: simulation/data/technologies/gather_mining_servants.jsontooltip
-#: simulation/data/technologies/gather_mining_slaves.jsontooltip
+#: simulation/data/technologies/gather_mining_serfs.json
+#: simulation/data/technologies/gather_mining_servants.json
+#: simulation/data/technologies/gather_mining_slaves.json
 msgid "Workers +25% stone gather rate."
 msgstr "Dělníci získají +25% k rychlosti těžby kamene."
 
-#: simulation/data/technologies/gather_mining_servants.jsondescription
-msgid "Hire servants to help quarry stone. Increases stone gathering rates."
-msgstr "Najměte zaměstnance, aby pomohli s dolováním kamene. Zvyšuje rychlost těžby."
-
-#: simulation/data/technologies/gather_mining_servants.jsongenericName
+#: simulation/data/technologies/gather_mining_servants.json
 msgid "Servants"
 msgstr "Sluhové"
 
-#: simulation/data/technologies/gather_mining_servants.jsonspecificName.athen
-#: simulation/data/technologies/gather_mining_servants.jsonspecificName.mace
-#: simulation/data/technologies/gather_mining_servants.jsonspecificName.ptol
-#: simulation/data/technologies/gather_mining_servants.jsonspecificName.sele
-#: simulation/data/technologies/gather_mining_servants.jsonspecificName.spart
+#: simulation/data/technologies/gather_mining_servants.json
+msgid "Hire servants to help quarry stone. Increases stone gathering rates."
+msgstr "Najměte zaměstnance, aby pomohli s dolováním kamene. Zvyšuje rychlost těžby."
+
+#: simulation/data/technologies/gather_mining_servants.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Douloi"
 msgstr "Douloi (otroci)"
 
-#: simulation/data/technologies/gather_mining_shaftmining.jsondescription
-msgid "Develop shaft mining. Increases metal gathering rates."
-msgstr "Vyviňte důlní těžbu v šachtách. Zvyšuje rychlost těžby kovu."
-
-#: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
+#: simulation/data/technologies/gather_mining_shaftmining.json
 msgid "Shaft Mining"
 msgstr "Hornické šachty"
 
-#: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
-#: simulation/data/technologies/gather_mining_silvermining.jsontooltip
-#: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
+#: simulation/data/technologies/gather_mining_shaftmining.json
+msgid "Develop shaft mining. Increases metal gathering rates."
+msgstr "Vyviňte důlní těžbu v šachtách. Zvyšuje rychlost těžby kovu."
+
+#: simulation/data/technologies/gather_mining_shaftmining.json
+#: simulation/data/technologies/gather_mining_silvermining.json
+#: simulation/data/technologies/gather_mining_wedgemallet.json
 msgid "Workers +25% metal gather rate."
 msgstr "Dělníci získají +25% k rychlosti těžby kovu."
 
-#: simulation/data/technologies/gather_mining_silvermining.jsondescription
-msgid "Strike a vein of precious silver. Increases metal gathering rates."
-msgstr "Najděte žílu cenného stříbra. Zvyšuje rychlost těžby kovu."
-
-#: simulation/data/technologies/gather_mining_silvermining.jsongenericName
+#: simulation/data/technologies/gather_mining_silvermining.json
 msgid "Silver Mining"
 msgstr "Dolování stříbra"
 
-#: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.athen
+#: simulation/data/technologies/gather_mining_silvermining.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Mines of Laureion"
 msgstr "Laurijské doly"
 
-#: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.mace
+#: simulation/data/technologies/gather_mining_silvermining.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Mines of Krenides"
 msgstr "Krenidské doly"
 
-#: simulation/data/technologies/gather_mining_slaves.jsondescription
+#: simulation/data/technologies/gather_mining_silvermining.json
+msgid "Strike a vein of precious silver. Increases metal gathering rates."
+msgstr "Najděte žílu cenného stříbra. Zvyšuje rychlost těžby kovu."
+
+#: simulation/data/technologies/gather_mining_slaves.json
+msgid "Slaves"
+msgstr "Otroci"
+
+#: simulation/data/technologies/gather_mining_slaves.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Servi"
+msgstr "Servi (otroci)"
+
+#: simulation/data/technologies/gather_mining_slaves.json
 msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
 msgstr "Nakupte otroky, aby pomohli vašim dělníkům v dole na kámen. Zvyšuje rychlost lámání kamene."
 
-#: simulation/data/technologies/gather_mining_slaves.jsongenericName
-msgid "Slaves"
-msgstr "Otroci"
-
-#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.athen
-#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.mace
-#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.ptol
-#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.sele
-#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.spart
+#: simulation/data/technologies/gather_mining_slaves.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Andrapoda"
 msgstr "Andrapoda (váleční zajatci)"
 
-#: simulation/data/technologies/gather_mining_slaves.jsonspecificName.rome
-msgid "Servi"
-msgstr "Servi (otroci)"
+#: simulation/data/technologies/gather_mining_wedgemallet.json
+msgid "Wedge and Mallet"
+msgstr "Kladivo a dláto"
 
-#: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
+#: simulation/data/technologies/gather_mining_wedgemallet.json
 msgid ""
 "Equip your workers with helpful tools. Increases metal gathering rates."
 msgstr "Vybavte své dělníky užitečnými nástroji. Zvyšuje rychlost těžby kovu."
 
-#: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
-msgid "Wedge and Mallet"
-msgstr "Kladivo a dláto"
-
-#: simulation/data/technologies/gather_wicker_baskets.jsondescription
-#: simulation/data/technologies/gather_wicker_baskets_maur.jsondescription
-msgid "Equip your foragers with wicker baskets for foraging."
-msgstr "Vybavte své sběrače proutěnými koši na sběr."
-
-#: simulation/data/technologies/gather_wicker_baskets.jsongenericName
-#: simulation/data/technologies/gather_wicker_baskets_maur.jsongenericName
+#: simulation/data/technologies/gather_wicker_baskets.json
+#: simulation/data/technologies/gather_wicker_baskets_maur.json
 msgid "Wicker Baskets"
 msgstr "Košíkářství"
 
-#: simulation/data/technologies/gather_wicker_baskets.jsontooltip
-#: simulation/data/technologies/gather_wicker_baskets_maur.jsontooltip
+#: simulation/data/technologies/gather_wicker_baskets.json
+#: simulation/data/technologies/gather_wicker_baskets_maur.json
+msgid "Equip your foragers with wicker baskets for foraging."
+msgstr "Vybavte své sběrače proutěnými koši na sběr."
+
+#: simulation/data/technologies/gather_wicker_baskets.json
+#: simulation/data/technologies/gather_wicker_baskets_maur.json
 msgid "Workers +50% fruit gather rate."
 msgstr "Dělníci sbírají ovoce o +50% rychleji."
 
-#: simulation/data/technologies/heal_range.jsondescription
-#: simulation/data/technologies/heal_range_2.jsondescription
-msgid "Increases the healing and vision range of all healers."
-msgstr "Zvětší léčivý dosah a rozhled všech léčitelů."
-
-#: simulation/data/technologies/heal_range.jsongenericName
+#: simulation/data/technologies/heal_range.json
 msgid "Healing Range"
 msgstr "Dosah léčení"
 
-#: simulation/data/technologies/heal_range.jsonspecificName.athen
-#: simulation/data/technologies/heal_range.jsonspecificName.mace
-#: simulation/data/technologies/heal_range.jsonspecificName.ptol
-#: simulation/data/technologies/heal_range.jsonspecificName.sele
-#: simulation/data/technologies/heal_range.jsonspecificName.spart
+#: simulation/data/technologies/heal_range.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Olympic Pantheon"
 msgstr "Olympský panteon"
 
-#: simulation/data/technologies/heal_range.jsontooltip
-#: simulation/data/technologies/heal_range_2.jsontooltip
+#: simulation/data/technologies/heal_range.json
+#: simulation/data/technologies/heal_range_2.json
+msgid "Increases the healing and vision range of all healers."
+msgstr "Zvětší léčivý dosah a rozhled všech léčitelů."
+
+#: simulation/data/technologies/heal_range.json
+#: simulation/data/technologies/heal_range_2.json
 msgid "Healers +5 healing range."
 msgstr "Léčitelé získají +5 na dosahu léčení."
 
-#: simulation/data/technologies/heal_range_2.jsongenericName
+#: simulation/data/technologies/heal_range_2.json
 msgid "Healing Range 2"
 msgstr "Dosah léčení 2"
 
-#: simulation/data/technologies/heal_range_2.jsonspecificName.athen
+#: simulation/data/technologies/heal_range_2.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Akadēmeia"
 msgstr "Akademie"
 
-#: simulation/data/technologies/heal_rate.jsondescription
-#: simulation/data/technologies/heal_rate_2.jsondescription
-msgid "Increases the healing rate of all healers."
-msgstr "Zvětší rychlost léčení všech léčitelů."
-
-#: simulation/data/technologies/heal_rate.jsongenericName
+#: simulation/data/technologies/heal_rate.json
 msgid "Healing Rate"
 msgstr "Rychlost léčení"
 
-#: simulation/data/technologies/heal_rate.jsonspecificName.athen
-#: simulation/data/technologies/heal_rate.jsonspecificName.mace
-#: simulation/data/technologies/heal_rate.jsonspecificName.ptol
-#: simulation/data/technologies/heal_rate.jsonspecificName.sele
-#: simulation/data/technologies/heal_rate.jsonspecificName.spart
+#: simulation/data/technologies/heal_rate.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Sphagia"
 msgstr "Sphagia"
 
-#: simulation/data/technologies/heal_rate.jsontooltip
-#: simulation/data/technologies/heal_rate_2.jsontooltip
+#: simulation/data/technologies/heal_rate.json
+#: simulation/data/technologies/heal_rate_2.json
+msgid "Increases the healing rate of all healers."
+msgstr "Zvětší rychlost léčení všech léčitelů."
+
+#: simulation/data/technologies/heal_rate.json
+#: simulation/data/technologies/heal_rate_2.json
 msgid "Healers −20% healing time."
 msgstr "Léčitelé léčí o −20% rychleji."
 
-#: simulation/data/technologies/heal_rate_2.jsongenericName
+#: simulation/data/technologies/heal_rate_2.json
 msgid "Healing Rate 2"
 msgstr "Rychlost léčení 2"
 
-#: simulation/data/technologies/heal_rate_2.jsonspecificName.athen
-#: simulation/data/technologies/heal_rate_2.jsonspecificName.mace
-#: simulation/data/technologies/heal_rate_2.jsonspecificName.ptol
-#: simulation/data/technologies/heal_rate_2.jsonspecificName.sele
-#: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
+#: simulation/data/technologies/heal_rate_2.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hippocratic Oath"
 msgstr "Hippokratova přísaha"
 
-#: simulation/data/technologies/health_females_01.jsondescription
+#: simulation/data/technologies/health_females_01.json
+msgid "The Loom"
+msgstr "Tkalcovský stav"
+
+#: simulation/data/technologies/health_females_01.json
 msgid ""
 "The loom allowed the creation of finer clothing for settlers. Women of the "
 "household were taught from a young age how to weave on the loom, and "
 "subsequently spent a large share of their lives working with it."
 msgstr "Tkalcovský stav dovolil výrobu jemných látek, kterými jsou obyvatelé sídliště ošaceni. Ženy v domácnosti se odmalička učily obsluze kalcovského stavu a strávily značnou část svého života prací s ním."
 
-#: simulation/data/technologies/health_females_01.jsongenericName
-msgid "The Loom"
-msgstr "Tkalcovský stav"
-
-#: simulation/data/technologies/health_females_01.jsontooltip
+#: simulation/data/technologies/health_females_01.json
 msgid "Female Citizens +100% health."
 msgstr "Občanky získají +100% na zdraví."
 
-#: simulation/data/technologies/health_regen_units.jsondescription
-msgid "Organic units will slowly regenerate health over time when idle."
-msgstr "Živé jednotky si časem pomalu obnovují zdraví, pokud nic nedělají."
-
-#: simulation/data/technologies/health_regen_units.jsongenericName
+#: simulation/data/technologies/health_regen_units.json
 msgid "Battlefield Medicine"
 msgstr "Lékařství na bitevním poli"
 
-#: simulation/data/technologies/health_regen_units.jsontooltip
+#: simulation/data/technologies/health_regen_units.json
+msgid "Organic units will slowly regenerate health over time when idle."
+msgstr "Živé jednotky si časem pomalu obnovují zdraví, pokud nic nedělají."
+
+#: simulation/data/technologies/health_regen_units.json
 msgid "Idle Organic units +0.5 health regeneration rate."
 msgstr "Nečinné organické jednotky získají +0,5 k rychlosti obnovení zdraví."
 
-#: simulation/data/technologies/hellenistic_metropolis.jsondescription
+#: simulation/data/technologies/hellenistic_metropolis.json
+msgid "Hellenistic Metropolis"
+msgstr "Helénské hlavní město"
+
+#: simulation/data/technologies/hellenistic_metropolis.json
 msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
 msgstr "Počínaje Alexandrem, helénští monarchové zakládali ve svých říších mnoho nových měst, kde se řecká kultura a umění prolínali s tamními zvyky a utvářely tak pestrou helénskou civilizaci."
 
-#: simulation/data/technologies/hellenistic_metropolis.jsongenericName
-msgid "Hellenistic Metropolis"
-msgstr "Helénské hlavní město"
-
-#: simulation/data/technologies/hellenistic_metropolis.jsontooltip
+#: simulation/data/technologies/hellenistic_metropolis.json
 msgid "Civic Centers +100% health and capture points, double default arrows."
 msgstr "Správní střediska získají navíc +100% na zdraví a na bodech za kořist a stříli dvojnásob šípů."
 
-#: simulation/data/technologies/helot_economy.jsondescription
+#: simulation/data/technologies/helot_economy.json
+msgid "Helot Economy"
+msgstr "Ekonomika helótů"
+
+#: simulation/data/technologies/helot_economy.json
 msgid ""
 "Helots were the servants of Greece. Unlike slaves, helots were owned by the "
 "state, which managed economic production. Helots must give a reasonable "
 "portion of their harvest to support a warrior and his family or widow."
 msgstr "Helóti byli služebníci Řecka. Na rozdíl od otroků byli heloti ve vlastnictví státu, který řídil ekonomickou výrobu. Heloti musí dávat přiměřenou část své úrody na podporu válečníka a jeho rodiny nebo vdovy."
 
-#: simulation/data/technologies/helot_economy.jsongenericName
-msgid "Helot Economy"
-msgstr "Ekonomika helótů"
-
-#: simulation/data/technologies/helot_economy.jsontooltip
+#: simulation/data/technologies/helot_economy.json
 msgid ""
 "Infantry Javelineers +100% grain gather rate, but −10% ranged attack pierce "
 "damage."
 msgstr "Pěchotní oštěpaři +100% rychlost sběru zrna, ale −10% poškození při útoku na dálku."
 
-#: simulation/data/technologies/hoplite_tradition.jsondescription
-msgid "Hoplite soldiers constituted most of the armies of Greece."
-msgstr "Hoplítští vojáci byli součástí většiny armád Řecka."
-
-#: simulation/data/technologies/hoplite_tradition.jsongenericName
+#: simulation/data/technologies/hoplite_tradition.json
 msgid "Hoplite Tradition"
 msgstr "Hoplítská tradice"
 
-#: simulation/data/technologies/hoplite_tradition.jsontooltip
+#: simulation/data/technologies/hoplite_tradition.json
+msgid "Hoplite soldiers constituted most of the armies of Greece."
+msgstr "Hoplítští vojáci byli součástí většiny armád Řecka."
+
+#: simulation/data/technologies/hoplite_tradition.json
 msgid ""
 "Hoplites −25% training time, −50% promotion experience, and +10% health."
 msgstr "Hoplíté −25% z doby výcviku, −50% ze zkušeností na povýšení a +10% zdraví."
 
-#: simulation/data/technologies/immortals.jsondescription
+#: simulation/data/technologies/immortals.json
+msgid "Immortals"
+msgstr "Nesmrtelní"
+
+#: simulation/data/technologies/immortals.json
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
 msgstr "Achajmenovci udržovali 10 000 silných elitních sborů, označovaných řeckými autory jako Athanatoi (“Nesmrtelní”)."
 
-#: simulation/data/technologies/immortals.jsongenericName
-msgid "Immortals"
-msgstr "Nesmrtelní"
-
-#: simulation/data/technologies/immortals.jsontooltip
+#: simulation/data/technologies/immortals.json
 msgid "Immortals −50% training time."
 msgstr "Nesmrtelní −50% z doby výcviku."
 
-#: simulation/data/technologies/iphicratean_reforms.jsondescription
+#: simulation/data/technologies/iphicratean_reforms.json
+msgid "Iphicratean Reforms"
+msgstr "Ifikratovy reformy"
+
+#: simulation/data/technologies/iphicratean_reforms.json
 msgid ""
 "Athenian gymnasium, docks and triremes can train Marines (Epibates "
 "Athenaikos)."
 msgstr "Aténské gymnázium, doky a trojveslice mohou cvičit vojáky námořní pěchoty (Epibates Athenaikos)."
 
-#: simulation/data/technologies/iphicratean_reforms.jsongenericName
-msgid "Iphicratean Reforms"
-msgstr "Ifikratovy reformy"
-
-#: simulation/data/technologies/iphicratean_reforms.jsontooltip
+#: simulation/data/technologies/iphicratean_reforms.json
 msgid ""
 "Athenian Docks and Triremes can train Marines and Cretan Mercenary Archers."
 msgstr "Aténské doky a trojveslice mohou trénovat vojáky námořní pěchoty a krétské žoldnéřské lukostřelce."
 
-#: simulation/data/technologies/juggernauts.jsongenericName
+#: simulation/data/technologies/juggernauts.json
 msgid "Juggernauts"
 msgstr "Kolosy"
 
-#: simulation/data/technologies/juggernauts.jsonspecificName.ptol
+#: simulation/data/technologies/juggernauts.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Tessarakonterēs"
 msgstr "Desetiveslice"
 
-#: simulation/data/technologies/juggernauts.jsontooltip
+#: simulation/data/technologies/juggernauts.json
 msgid "Siege Ships +50% health, +25% more projectiles, but −25% speed."
 msgstr "Obléhací lodě +50% zdraví, +25% více projektilů, ale −25% rychlosti."
 
-#: simulation/data/technologies/krypteia.jsondescription
+#: simulation/data/technologies/krypteia.json
+msgid "Krypteia"
+msgstr "Krypteia"
+
+#: simulation/data/technologies/krypteia.json
 msgid ""
 "Krypteia was an Agoge rite of passage, during which soldiers learned how to "
 "camouflage themselves and gained combat experience. The Spartans declared "
@@ -1205,17 +1235,17 @@ msgid ""
 " murdering any Helot they encountered along the way."
 msgstr "Krypteia byla rituálem průchodu Agóge, během kterého se vojáci naučili, jak se maskovat, a získali bojové zkušenosti. Sparťané každoročně vyhlašovali válku helótům, aniž by byl problém nebo vina je zavraždit. Během této iniciace mladíci přes den spali a v noci se potulovali a zavraždili každého helóta, kterého cestou potkali."
 
-#: simulation/data/technologies/krypteia.jsongenericName
-msgid "Krypteia"
-msgstr "Krypteia"
-
-#: simulation/data/technologies/krypteia.jsontooltip
+#: simulation/data/technologies/krypteia.json
 msgid ""
 "Champion Hoplites +10% melee attack damage, but Citizen Infantry Javelineers"
 " +30% training time."
 msgstr "Šampionští hoplíté +10% poškození při útoku na blízko, ale Oštěpaři občanské pěchoty +30% tréninkového času."
 
-#: simulation/data/technologies/long_walls.jsondescription
+#: simulation/data/technologies/long_walls.json
+msgid "Athenian Long Walls"
+msgstr "Athénské dlouhé hradby"
+
+#: simulation/data/technologies/long_walls.json
 msgid ""
 "The Long Walls of Athens were constructed under the auspices of the wily "
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
@@ -1223,94 +1253,97 @@ msgid ""
 "out the city during a siege."
 msgstr "Athénské dlouhé hradby byly postaveny pod záštitou Themistokla a rozšířeny 6 km od města k přístavu Pireus. Tímto byly zabezpečeny námořní zásobovací cesty pro město a nepříteli zabráněno město během obléhání vyhladovět."
 
-#: simulation/data/technologies/long_walls.jsongenericName
-msgid "Athenian Long Walls"
-msgstr "Athénské dlouhé hradby"
-
-#: simulation/data/technologies/long_walls.jsontooltip
+#: simulation/data/technologies/long_walls.json
 msgid "Build Walls in own or neutral territory."
 msgstr "Postavit zdi ve vlastním nebo neutrálním území."
 
-#: simulation/data/technologies/nisean_horses.jsondescription
+#: simulation/data/technologies/nisean_horses.json
+msgid "Nisean War Horses"
+msgstr "Nisští váleční koně"
+
+#: simulation/data/technologies/nisean_horses.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Nisioi"
+msgstr "Nisioi"
+
+#: simulation/data/technologies/nisean_horses.json
 msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
 msgstr "Dnes vymřelá Nisiananská rasa koní byla jedním z největších a nejodolnějších koní antiky. Tito koně byli velmi vyhledáváni Seleukovci a Peršany, když jak jezdci tak i koně získali časem těžké brnění."
 
-#: simulation/data/technologies/nisean_horses.jsongenericName
-msgid "Nisean War Horses"
-msgstr "Nisští váleční koně"
-
-#: simulation/data/technologies/nisean_horses.jsonspecificName.sele
-msgid "Nisioi"
-msgstr "Nisioi"
-
-#: simulation/data/technologies/nisean_horses.jsontooltip
+#: simulation/data/technologies/nisean_horses.json
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
 msgstr "Elitní jízdní bojovník s oštěpem +20% k bodům zdraví, ale +10% zvýšení doby výcviku."
 
-#: simulation/data/technologies/ostracism.jsondescription
+#: simulation/data/technologies/ostracism.json
+msgid "Ostracism"
+msgstr "Ostracismus"
+
+#: simulation/data/technologies/ostracism.json
 msgid ""
 "In ancient Athens, ostracism was the process by which any citizen, including"
 " political leaders, could be expelled from the city-state for 10 years."
 msgstr "Ve starověkých Athénách byl ostracismus procesem, kterým mohl být jakýkoli občan, včetně politických vůdců, vyloučen z městského státu na 10 let."
 
-#: simulation/data/technologies/ostracism.jsongenericName
-msgid "Ostracism"
-msgstr "Ostracismus"
-
-#: simulation/data/technologies/ostracism.jsontooltip
+#: simulation/data/technologies/ostracism.json
 msgid "Citizen soldiers +5% health, but Heroes −40% health."
 msgstr "Občanští vojáci +5% zdraví, ale hrdinové −40% zdraví."
 
-#: simulation/data/technologies/outpost_vision.jsondescription
-msgid "Increases outpost vision."
-msgstr "Zvyšuje dohled rozhleden."
-
-#: simulation/data/technologies/outpost_vision.jsongenericName
+#: simulation/data/technologies/outpost_vision.json
 msgid "Carrier Pigeons"
 msgstr "Poštovní holubi"
 
-#: simulation/data/technologies/outpost_vision.jsontooltip
+#: simulation/data/technologies/outpost_vision.json
+msgid "Increases outpost vision."
+msgstr "Zvyšuje dohled rozhleden."
+
+#: simulation/data/technologies/outpost_vision.json
 msgid "Outposts +33% vision range."
 msgstr "Rozhledny dohlédnou o +33% dále."
 
-#: simulation/data/technologies/pair_gather_food_maur.jsongenericName
+#: simulation/data/technologies/pair_gather_food_maur.json
 msgid "Wicker Basket vs Ahimsa"
 msgstr "Košíkářství vs Ahimsa"
 
-#: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
+#: simulation/data/technologies/pair_unlock_champions_sele.json
 msgid "Traditional Army vs Reform Army"
 msgstr "Tradiční armáda proti reformní armádě"
 
-#: simulation/data/technologies/pair_unlock_civil_engineering_han.jsongenericName
+#: simulation/data/technologies/pair_unlock_civil_engineering_han.json
 msgid "Civil Engineering"
 msgstr "Stavební inženýrství"
 
-#: simulation/data/technologies/pair_unlock_civil_service_han.jsongenericName
+#: simulation/data/technologies/pair_unlock_civil_service_han.json
 msgid "Civil Service"
 msgstr "Státní služba"
 
-#: simulation/data/technologies/pair_unlock_cult_ptol.jsongenericName
+#: simulation/data/technologies/pair_unlock_cult_ptol.json
 msgid "Cult"
 msgstr "Kult"
 
-#: simulation/data/technologies/parade_of_daphne.jsondescription
+#: simulation/data/technologies/parade_of_daphne.json
+msgid "Parade of Daphne"
+msgstr "Přehlídka Dafné"
+
+#: simulation/data/technologies/parade_of_daphne.json
 msgid ""
 "The festival at Daphne was a major event of the Seleucid Empire: tens of "
 "thousands of well-equipped troops participated in the opening procession."
 msgstr "Svátek v Dafné byl významnou událostí Seleukovské říše: zahajovacího průvodu se zúčastnily desítky tisíc dobře vyzbrojených jednotek."
 
-#: simulation/data/technologies/parade_of_daphne.jsongenericName
-msgid "Parade of Daphne"
-msgstr "Přehlídka Dafné"
-
-#: simulation/data/technologies/parade_of_daphne.jsontooltip
+#: simulation/data/technologies/parade_of_daphne.json
 msgid "Champions −20% training time."
 msgstr "Elitní vojáci −20% z doby výcviku."
 
-#: simulation/data/technologies/pharaonic_cult.jsondescription
+#: simulation/data/technologies/pharaonic_cult.json
+msgid "Pharaonic Cult"
+msgstr "Kult faraonů"
+
+#: simulation/data/technologies/pharaonic_cult.json
 msgid ""
 "The Pharaohs were worshipped as living gods. Their word was sacrosanct and "
 "beyond reproach, at least among the common people. The Ptolemaic dynasts "
@@ -1318,80 +1351,79 @@ msgid ""
 "degrees of success."
 msgstr "Faraoni byli uctíváni jako živí bohové. Jejich slovo bylo posvátné a bez výčitek, alespoň mezi prostým lidem. Ptolemaiovští dynastové jistě využili tohoto starodávného zvyku na maximum, s různou mírou úspěchu."
 
-#: simulation/data/technologies/pharaonic_cult.jsongenericName
-msgid "Pharaonic Cult"
-msgstr "Kult faraonů"
-
-#: simulation/data/technologies/pharaonic_cult.jsontooltip
+#: simulation/data/technologies/pharaonic_cult.json
 msgid "Heroes +2 health/second self-regen rate."
 msgstr "Rychlost samouzdravení hrdinů +2 zdraví za sekundu."
 
-#: simulation/data/technologies/phase_city.jsondescription
+#: simulation/data/technologies/phase_city.json
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_city_generic or phase_city_{civ}."
 msgstr "Napodobující technologie pro použití v požadavcích šablon, nahrazená phase_city_generic nebo phase_city_{civ}."
 
-#: simulation/data/technologies/phase_city.jsongenericName
-#: simulation/data/technologies/phase_city_athen.jsongenericName
-#: simulation/data/technologies/phase_city_generic.jsongenericName
-#: simulation/data/technologies/phase_city_pers.jsongenericName
+#: simulation/data/technologies/phase_city.json
+#: simulation/data/technologies/phase_city_athen.json
+#: simulation/data/technologies/phase_city_generic.json
+#: simulation/data/technologies/phase_city_pers.json
 msgid "City Phase"
 msgstr "Velkoměstská fáze"
 
-#: simulation/data/technologies/phase_city_athen.jsondescription
+#: simulation/data/technologies/phase_city_athen.json
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
 msgstr "Postupte z rušného města ke skutečné metropoli, plné zázraků přinášených novými výrobními postupy. Toto je atická městská fáze, v níž je rychlost shromažďování kovu zvýšena v souvislosti se zvýhodněním \"Stříbrné sovy\"."
 
-#: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_city_pers.jsonrequirementsTooltip
-msgid "Requires three Town Structures."
-msgstr "Vyžaduje tři městské budovy."
-
-#: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.ptol
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.sele
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.spart
-msgid "Megalopolis"
-msgstr "Megalopole"
-
-#: simulation/data/technologies/phase_city_athen.jsontooltip
+#: simulation/data/technologies/phase_city_athen.json
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
 msgstr "Postupujte do fáze velkoměsta, která odemkne více jednotek a technologií. Správní střediska +25% k poloměru územního vlivu. Stavby +1 k rychlosti obnovy bodů zajetí za usazenou jednotku. Dělníci +10% k rychlosti sbírání kovů."
 
-#: simulation/data/technologies/phase_city_generic.jsondescription
+#: simulation/data/technologies/phase_city_athen.json
+#: simulation/data/technologies/phase_city_generic.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Megalopolis"
+msgstr "Megalopole"
+
+#: simulation/data/technologies/phase_city_athen.json
+#: simulation/data/technologies/phase_city_generic.json
+#: simulation/data/technologies/phase_city_pers.json
+msgid "Requires three Town Structures."
+msgstr "Vyžaduje tři městské budovy."
+
+#: simulation/data/technologies/phase_city_generic.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Jùn"
+msgstr "Jùn"
+
+#: simulation/data/technologies/phase_city_generic.json
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology."
 msgstr "Postupte z rušného města ke skutečné metropoli, plné zázraků přinášených novými výrobními postupy."
 
-#: simulation/data/technologies/phase_city_generic.jsonspecificName.han
-msgid "Jùn"
-msgstr "Jùn"
-
-#: simulation/data/technologies/phase_city_generic.jsontooltip
+#: simulation/data/technologies/phase_city_generic.json
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units."
 msgstr "Postupujte do fáze velkoměsta, která odemkne více jednotek a technologií. Správní střediska +25% k poloměru územního vlivu. Stavby +1 k rychlosti obnovy bodů zajetí za usazenou jednotku."
 
-#: simulation/data/technologies/phase_city_pers.jsondescription
+#: simulation/data/technologies/phase_city_pers.json
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase.\n"
 "The 'Times of War' bonus decreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
 msgstr ""
 
-#: simulation/data/technologies/phase_city_pers.jsontooltip
+#: simulation/data/technologies/phase_city_pers.json
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +1 capture points "
@@ -1399,71 +1431,74 @@ msgid ""
 "units trained in Stables."
 msgstr "Postupujte do fáze velkoměsta, která odemkne více jednotek a technologií. Správní střediska +25% k poloměru územního vlivu. Stavby +1 k rychlosti obnovy bodů zajetí za usazenou jednotku. Snižuje dobu výcviku šarží jednotek trénovaných ve stájích."
 
-#: simulation/data/technologies/phase_town.jsondescription
+#: simulation/data/technologies/phase_town.json
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
 msgstr "Napodobující technologie pro použití v požadavcích šablon, nahrazená phase_town_generic nebo phase_town_{civ}."
 
-#: simulation/data/technologies/phase_town.jsongenericName
-#: simulation/data/technologies/phase_town_athen.jsongenericName
-#: simulation/data/technologies/phase_town_generic.jsongenericName
-#: simulation/data/technologies/phase_town_pers.jsongenericName
+#: simulation/data/technologies/phase_town.json
+#: simulation/data/technologies/phase_town_athen.json
+#: simulation/data/technologies/phase_town_generic.json
+#: simulation/data/technologies/phase_town_pers.json
 msgid "Town Phase"
 msgstr "Vesnická fáze"
 
-#: simulation/data/technologies/phase_town_athen.jsondescription
+#: simulation/data/technologies/phase_town_athen.json
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
 msgstr "Postupte z malé vesnice k rušnému městu, připravenému k rychlému rozšiřování. Toto je atická městská fáze, v níž je rychlost shromažďování kovu zvýšena v souvislosti se zvýhodněním \"Stříbrné sovy\"."
 
-#: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
-#: simulation/data/technologies/phase_town_pers.jsonrequirementsTooltip
-msgid "Requires five Village Structures."
-msgstr "Vyžaduje pět vesnických budov."
-
-#: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.mace
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.ptol
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.sele
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.spart
-msgid "Kōmopolis"
-msgstr "Kōmopolis"
-
-#: simulation/data/technologies/phase_town_athen.jsontooltip
+#: simulation/data/technologies/phase_town_athen.json
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
 msgstr "Postupujte do fáze města, která odemkne více jednotek a technologií. Správní střediska +25% k poloměru územního vlivu. Stavby +0.5 k rychlosti obnovy bodů zajetí za usazenou jednotku. Dělníci +10% k rychlosti sbírání kovů."
 
-#: simulation/data/technologies/phase_town_generic.jsondescription
+#: simulation/data/technologies/phase_town_athen.json
+#: simulation/data/technologies/phase_town_generic.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Kōmopolis"
+msgstr "Kōmopolis"
+
+#: simulation/data/technologies/phase_town_athen.json
+#: simulation/data/technologies/phase_town_generic.json
+#: simulation/data/technologies/phase_town_pers.json
+msgid "Requires five Village Structures."
+msgstr "Vyžaduje pět vesnických budov."
+
+#: simulation/data/technologies/phase_town_generic.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Xìan"
+msgstr "Xìan"
+
+#: simulation/data/technologies/phase_town_generic.json
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
 msgstr "Postupte z malé vesnice do rušného města, připraveného se rychle rozšířit."
 
-#: simulation/data/technologies/phase_town_generic.jsonspecificName.han
-msgid "Xìan"
-msgstr "Xìan"
-
-#: simulation/data/technologies/phase_town_generic.jsontooltip
+#: simulation/data/technologies/phase_town_generic.json
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units."
 msgstr "Postupujte do fáze města, která odemkne více entit a technologií. Správní střediska +25% k poloměru územního vlivu. Stavby +0.5 k rychlosti obnovy bodů zajetí za usazenou jednotku."
 
-#: simulation/data/technologies/phase_town_pers.jsondescription
+#: simulation/data/technologies/phase_town_pers.json
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. This is the Persian town phase.\n"
 "The 'Times of War' bonus dercreases the batch training time in Stables. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
 msgstr "Pokroky z malé vesnice do rušného města, připraveného k rychlé expanzi. Toto je fáze perského města.\nBonus 'Čas Války' zvyšuje dobu tréninku šarží ve stájích. Velké šarže budou mít větší užitek než malé šarže.\nMatematicky: Čas tréninku jedné šarže se vydělí `batchSize^0.1`."
 
-#: simulation/data/technologies/phase_town_pers.jsontooltip
+#: simulation/data/technologies/phase_town_pers.json
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +0.5 capture points "
@@ -1471,11 +1506,15 @@ msgid ""
 "units trained in Stables."
 msgstr "Postupujte do fáze města, která odemkne více jednotek a technologií. Správní střediska +25% k poloměru územního vlivu. Stavby +0.5 k rychlosti obnovy bodů zajetí za usazenou jednotku. Snižuje dobu výcviku šarží jednotek trénovaných ve stájích."
 
-#: simulation/data/technologies/phase_village.jsongenericName
+#: simulation/data/technologies/phase_village.json
 msgid "Village Phase"
 msgstr "Vesnická fáze"
 
-#: simulation/data/technologies/pheidian_workshop.jsondescription
+#: simulation/data/technologies/pheidian_workshop.json
+msgid "Pheidian Workshop"
+msgstr "Pheidiasova dílna"
+
+#: simulation/data/technologies/pheidian_workshop.json
 msgid ""
 "Pheidias was a Greek sculptor, painter and architect, who lived in the 5th "
 "century BC, and is commonly regarded as one of the greatest of all sculptors"
@@ -1487,87 +1526,95 @@ msgid ""
 "as the entrance to the Acropolis in Athens."
 msgstr "Pheidias byl řecký sochař, malíř a architekt, který žil v 5. století před naším letopočtem a je běžně považován za jednoho z největších ze všech sochařů klasického Řecka: Phidiasova socha Dia v Olympii byla jedním ze sedmi divů starověku. Svět. Phidias navrhl sochy bohyně Athény na athénské Akropoli, jmenovitě Athénu Parthenos uvnitř Parthenonu a Athénu Promachos, kolosální bronzovou sochu Athény, která stála mezi ní a Propylaea, monumentální bránu, která sloužila jako vchod do Akropole. v Aténách."
 
-#: simulation/data/technologies/pheidian_workshop.jsongenericName
-msgid "Pheidian Workshop"
-msgstr "Pheidiasova dílna"
-
-#: simulation/data/technologies/pheidian_workshop.jsontooltip
+#: simulation/data/technologies/pheidian_workshop.json
 msgid "Temples and Wonder −50% stone cost and build time."
 msgstr "Chrámy a divy −50% nákladů na kámen a dobu výstavby."
 
-#: simulation/data/technologies/poison_arrows.jsongenericName
+#: simulation/data/technologies/poison_arrows.json
 msgid "Poison Arrows"
 msgstr "Jedovaté šípy"
 
-#: simulation/data/technologies/poison_arrows.jsontooltip
+#: simulation/data/technologies/poison_arrows.json
 msgid "Ranged Soldiers +20% attack damage."
 msgstr "Vojáci na dálku +20% k poškození."
 
-#: simulation/data/technologies/poison_blades.jsongenericName
+#: simulation/data/technologies/poison_blades.json
 msgid "Poison Blades"
 msgstr "Jedovaté čepele"
 
-#: simulation/data/technologies/poison_blades.jsontooltip
+#: simulation/data/technologies/poison_blades.json
 msgid "Melee Soldiers +20% attack damage."
 msgstr "Vojáci na blízko získávají +20% k útoku."
 
-#: simulation/data/technologies/pop_house_01.jsondescription
+#: simulation/data/technologies/pop_house_01.json
+msgid "Home Garden"
+msgstr "Zahrada u domu"
+
+#: simulation/data/technologies/pop_house_01.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Paradaidām"
+msgstr "Paradaidām"
+
+#: simulation/data/technologies/pop_house_01.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Peristylium"
+msgstr "Peristylium"
+
+#: simulation/data/technologies/pop_house_01.json
 msgid ""
 "Home gardens ranged from simple fenced-in areas to large manicured and "
 "colonnaded enclosures."
 msgstr "Domácí zahrady sahají od jednoduchých oplocených kusů země až po prostorné a částečně zastřešené oplocení."
 
-#: simulation/data/technologies/pop_house_01.jsongenericName
-msgid "Home Garden"
-msgstr "Zahrada u domu"
-
-#: simulation/data/technologies/pop_house_01.jsonspecificName.athen
-#: simulation/data/technologies/pop_house_01.jsonspecificName.mace
-#: simulation/data/technologies/pop_house_01.jsonspecificName.ptol
-#: simulation/data/technologies/pop_house_01.jsonspecificName.sele
-#: simulation/data/technologies/pop_house_01.jsonspecificName.spart
+#: simulation/data/technologies/pop_house_01.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Peristylon"
 msgstr "Peristylon"
 
-#: simulation/data/technologies/pop_house_01.jsonspecificName.pers
-msgid "Paradaidām"
-msgstr "Paradaidām"
-
-#: simulation/data/technologies/pop_house_01.jsonspecificName.rome
-msgid "Peristylium"
-msgstr "Peristylium"
-
-#: simulation/data/technologies/pop_house_01.jsontooltip
-#: simulation/data/technologies/pop_house_02.jsontooltip
+#: simulation/data/technologies/pop_house_01.json
+#: simulation/data/technologies/pop_house_02.json
 msgid "Houses +20% population bonus."
 msgstr "Domy přidávají dalších +20% k přídavku na počet obyvatel."
 
-#: simulation/data/technologies/pop_house_02.jsondescription
+#: simulation/data/technologies/pop_house_02.json
+msgid "Manors"
+msgstr "Panské sídlo"
+
+#: simulation/data/technologies/pop_house_02.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Insulae"
+msgstr "Obrovský činžák"
+
+#: simulation/data/technologies/pop_house_02.json
 msgid ""
 "Homes tended to expand as the wealth and population of a settlement grew."
 msgstr "Příbytky tíhly k rozšiřování, jak rostla úroveň zdraví a počet obyvatel osady."
 
-#: simulation/data/technologies/pop_house_02.jsongenericName
-msgid "Manors"
-msgstr "Panské sídlo"
-
-#: simulation/data/technologies/pop_house_02.jsonspecificName.rome
-msgid "Insulae"
-msgstr "Obrovský činžák"
-
-#: simulation/data/technologies/reformed_army_sele.jsondescription
-msgid "The Roman-style core of the Seleucid army."
-msgstr "Římské jádro seleukovské armády."
-
-#: simulation/data/technologies/reformed_army_sele.jsongenericName
+#: simulation/data/technologies/reformed_army_sele.json
 msgid "Reform Army"
 msgstr "Reformovaná armáda"
 
-#: simulation/data/technologies/reformed_army_sele.jsontooltip
+#: simulation/data/technologies/reformed_army_sele.json
+msgid "The Roman-style core of the Seleucid army."
+msgstr "Římské jádro seleukovské armády."
+
+#: simulation/data/technologies/reformed_army_sele.json
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr "Odemkněte elitního pěšího šermíře."
 
-#: simulation/data/technologies/roman_reforms.jsondescription
+#: simulation/data/technologies/roman_reforms.json
+msgid "Marian Reforms"
+msgstr "Máriovy reformy"
+
+#: simulation/data/technologies/roman_reforms.json
 msgid ""
 "Regularize the army into a professional, organized force. The Marian reforms"
 " were a series of military reforms in the last century BC attributed to "
@@ -1575,34 +1622,37 @@ msgid ""
 "and standardization of the heavy infantry unit: the Legionary."
 msgstr "Zregulování armády na profesionální, organizovanou sílu. Mariánské reformy byly sérií vojenských reforem v minulém století př. n. l. připisovaných Gaiovi Mariovi, které zahrnovaly zrušení občanské jízdy, změny vybavení a standardizaci jednotky těžké pěchoty: legionáře."
 
-#: simulation/data/technologies/roman_reforms.jsongenericName
-msgid "Marian Reforms"
-msgstr "Máriovy reformy"
-
-#: simulation/data/technologies/roman_reforms.jsontooltip
+#: simulation/data/technologies/roman_reforms.json
 msgid ""
 "Convert Infantry to Marian Legionaries, Cavalry to Auxiliary Cavalry, unlock"
 " Onagers and Centurions, but lose access to Spear Cavalry and Italic Heavy "
 "Infantry."
 msgstr "Přeměňte pěchotu na mariánské legionáře, jízdu na pomocnou jízdu, odemkněte Onagery a centuriony, ale ztratíte přístup k jízdě s kopím a italské těžké pěchotě."
 
-#: simulation/data/technologies/roman_roads.jsondescription
-msgid "All roads lead to Rome."
-msgstr "Všechny cesty vedou do Říma."
-
-#: simulation/data/technologies/roman_roads.jsongenericName
+#: simulation/data/technologies/roman_roads.json
 msgid "Roman Roads"
 msgstr "Římské cesty"
 
-#: simulation/data/technologies/roman_roads.jsonspecificName.rome
+#: simulation/data/technologies/roman_roads.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Viae Romanum"
 msgstr "Viae Romanum"
 
-#: simulation/data/technologies/roman_roads.jsontooltip
+#: simulation/data/technologies/roman_roads.json
+msgid "All roads lead to Rome."
+msgstr "Všechny cesty vedou do Říma."
+
+#: simulation/data/technologies/roman_roads.json
 msgid "All Land Units +5% movement speed."
 msgstr "Všechny pozemní jednotky +5% rychlosti pohybu."
 
-#: simulation/data/technologies/serapis_cult.jsondescription
+#: simulation/data/technologies/serapis_cult.json
+msgid "Serapis Cult"
+msgstr "Kult Serapis"
+
+#: simulation/data/technologies/serapis_cult.json
 msgid ""
 "The cult of Serapis was introduced during the 3rd century BC on the orders "
 "of Ptolemy I of Egypt as a means to unify the Greeks and Egyptians in his "
@@ -1614,563 +1664,569 @@ msgid ""
 " in Alexandria."
 msgstr "Kult Serapis byl zaveden během 3. století před naším letopočtem na příkaz Ptolemaia I. Egyptského jako prostředek ke sjednocení Řeků a Egypťanů v jeho říši. Bůh byl zobrazován jako řecký vzhled, ale s egyptskými ozdobami a kombinovanou ikonografií z mnoha kultů, což znamenalo jak hojnost, tak vzkříšení. Serapeion byl jakýkoli chrám nebo náboženský okrsek zasvěcený Serapis. Kult Serapis rozšířili jako věc záměrné politiky ptolemaiovští králové, kteří také vybudovali obrovské serapeum v Alexandrii."
 
-#: simulation/data/technologies/serapis_cult.jsongenericName
-msgid "Serapis Cult"
-msgstr "Kult Serapis"
-
-#: simulation/data/technologies/serapis_cult.jsontooltip
+#: simulation/data/technologies/serapis_cult.json
 msgid "+2.0 metal trickle per second."
 msgstr "+2.0 přírůstek kovu za sekundu."
 
-#: simulation/data/technologies/ship_capture_resistance.jsondescription
-msgid "Marines were a vital part of ship defense and offense."
-msgstr "Námořní pěchota byla zásadní součástí obrany a útoku lodí."
-
-#: simulation/data/technologies/ship_capture_resistance.jsongenericName
+#: simulation/data/technologies/ship_capture_resistance.json
 msgid "Marines"
 msgstr "Námořníci"
 
-#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.athen
-#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.cart
-#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.mace
-#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.pers
-#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.ptol
-#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.sele
-#: simulation/data/technologies/ship_capture_resistance.jsonspecificName.spart
-msgid "Epibatai"
-msgstr "Epibatai"
+#: simulation/data/technologies/ship_capture_resistance.json
+msgid "Marines were a vital part of ship defense and offense."
+msgstr "Námořní pěchota byla zásadní součástí obrany a útoku lodí."
 
-#: simulation/data/technologies/ship_capture_resistance.jsontooltip
+#: simulation/data/technologies/ship_capture_resistance.json
 msgid "All Warships +40% capture resistance."
 msgstr "Všechny válečné lodě +40% odolnost proti zajetí."
 
-#: simulation/data/technologies/ship_cost_time.jsongenericName
+#: simulation/data/technologies/ship_capture_resistance.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Epibatai"
+msgstr "Epibatai"
+
+#: simulation/data/technologies/ship_cost_time.json
 msgid "Naval Architects"
 msgstr "Námořní stavitelé"
 
-#: simulation/data/technologies/ship_cost_time.jsontooltip
+#: simulation/data/technologies/ship_cost_time.json
 msgid "Ships −20% construction time."
 msgstr "Lodě −20% z doby výstavby."
 
-#: simulation/data/technologies/ship_health.jsondescription
-msgid "Wooden reinforcement beams for ship hulls."
-msgstr "Zesílené dřevěné trámy pro trupy lodí."
-
-#: simulation/data/technologies/ship_health.jsongenericName
+#: simulation/data/technologies/ship_health.json
 msgid "Reinforced Hull"
 msgstr "Zesílený trup"
 
-#: simulation/data/technologies/ship_health.jsontooltip
+#: simulation/data/technologies/ship_health.json
+msgid "Wooden reinforcement beams for ship hulls."
+msgstr "Zesílené dřevěné trámy pro trupy lodí."
+
+#: simulation/data/technologies/ship_health.json
 msgid "Ships +25% health, but −10% speed."
 msgstr "Lodě +25% zdraví, ale −10% rychlosti."
 
-#: simulation/data/technologies/ship_movement_speed.jsondescription
+#: simulation/data/technologies/ship_movement_speed.json
+msgid "Experienced Crews"
+msgstr "Zkušené posádky"
+
+#: simulation/data/technologies/ship_movement_speed.json
 msgid ""
 "Train your oarsmen and sailors to move more efficiently and speed up your "
 "ships."
 msgstr "Cvičte veslaře a námořníky, aby se pohybovali účinněji a zrychlili vaše lodě."
 
-#: simulation/data/technologies/ship_movement_speed.jsongenericName
-msgid "Experienced Crews"
-msgstr "Zkušené posádky"
-
-#: simulation/data/technologies/ship_movement_speed.jsontooltip
+#: simulation/data/technologies/ship_movement_speed.json
 msgid "Ships +10% movement speed."
 msgstr "Lodě získají +10% k rychlosti pohybu."
 
-#: simulation/data/technologies/ship_vision.jsondescription
+#: simulation/data/technologies/ship_vision.json
+msgid "Lookouts"
+msgstr "Rozhledny"
+
+#: simulation/data/technologies/ship_vision.json
 msgid ""
 "Lookouts aboard ship were important for sighting land, spotting navigational"
 " hazards, and directing fire in battle."
 msgstr "Rozhledny na palubě lodi byly důležité pro pozorování země, zjišťování navigačních nebezpečí a řízení palby v bitvě."
 
-#: simulation/data/technologies/ship_vision.jsongenericName
-msgid "Lookouts"
-msgstr "Rozhledny"
-
-#: simulation/data/technologies/ship_vision.jsonspecificName.athen
-#: simulation/data/technologies/ship_vision.jsonspecificName.mace
-#: simulation/data/technologies/ship_vision.jsonspecificName.ptol
-#: simulation/data/technologies/ship_vision.jsonspecificName.sele
-#: simulation/data/technologies/ship_vision.jsonspecificName.spart
-msgid "Prōratēs"
-msgstr "Prōratēs"
-
-#: simulation/data/technologies/ship_vision.jsontooltip
+#: simulation/data/technologies/ship_vision.json
 msgid ""
 "Ships and Boats +10% vision range; Scout Ships an additional +25% vision "
 "range. Unlocks “Exploration” for the Carthaginians and Han Chinese."
 msgstr "Lodě a čluny +10% dosah vidění; průzkumné lodě dodává další +25% rozsah vidění. Odemyká “Průzkum” pro Kartagince a Číňany Han."
 
-#: simulation/data/technologies/siege_attack.jsondescription
-msgid "Advanced technologies improve siege efficiency."
-msgstr "Pokročilé technologie zlepšují účinnost obléhání."
+#: simulation/data/technologies/ship_vision.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Prōratēs"
+msgstr "Prōratēs"
 
-#: simulation/data/technologies/siege_attack.jsongenericName
+#: simulation/data/technologies/siege_attack.json
 msgid "Advanced Siege"
 msgstr "Pokročilé obléhání"
 
-#: simulation/data/technologies/siege_attack.jsontooltip
+#: simulation/data/technologies/siege_attack.json
+msgid "Advanced technologies improve siege efficiency."
+msgstr "Pokročilé technologie zlepšují účinnost obléhání."
+
+#: simulation/data/technologies/siege_attack.json
 msgid "Siege Engines +25% attack crush damage."
 msgstr "Obléhací zbraně získají +25% k drtivému poškození při útoku."
 
-#: simulation/data/technologies/siege_bolt_accuracy.jsondescription
-msgid "Improvement to projectile accuracy."
-msgstr "Zlepšení přesnosti cílení."
-
-#: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
+#: simulation/data/technologies/siege_bolt_accuracy.json
 msgid "Bolt Accuracy"
 msgstr "Přesnost šípu"
 
-#: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
+#: simulation/data/technologies/siege_bolt_accuracy.json
+msgid "Improvement to projectile accuracy."
+msgstr "Zlepšení přesnosti cílení."
+
+#: simulation/data/technologies/siege_bolt_accuracy.json
 msgid "Bolt Shooters −20% ranged attack spread."
 msgstr "Střelci šípů −20% z rozptylu při útoku na dálku."
 
-#: simulation/data/technologies/siege_cost_time.jsondescription
-msgid "The science or craft of laying or carrying out sieges."
-msgstr "Věda nebo obratnost při zahajování nebo provádění obléhání. "
-
-#: simulation/data/technologies/siege_cost_time.jsongenericName
+#: simulation/data/technologies/siege_cost_time.json
 msgid "Siegecraft"
 msgstr "Vedení boje při obléhání"
 
-#: simulation/data/technologies/siege_cost_time.jsontooltip
+#: simulation/data/technologies/siege_cost_time.json
+msgid "The science or craft of laying or carrying out sieges."
+msgstr "Věda nebo obratnost při zahajování nebo provádění obléhání. "
+
+#: simulation/data/technologies/siege_cost_time.json
 msgid "Siege Engines −20% construction time."
 msgstr "Obléhací stroje –20% z času na postavení."
 
-#: simulation/data/technologies/siege_health.jsondescription
+#: simulation/data/technologies/siege_health.json
+msgid "Armor Plating"
+msgstr "Pancéřování"
+
+#: simulation/data/technologies/siege_health.json
 msgid ""
 "Cover the exterior with iron plates to protect against fire and projectiles."
 msgstr "Vnější část zakryjte železnými destičkami, které chrání před ohněm a střelami."
 
-#: simulation/data/technologies/siege_health.jsongenericName
-msgid "Armor Plating"
-msgstr "Pancéřování"
-
-#: simulation/data/technologies/siege_health.jsontooltip
+#: simulation/data/technologies/siege_health.json
 msgid "Battering Rams and Siege Towers +25% health."
 msgstr "Beranidla a obléhací věže +25% ke zdraví."
 
-#: simulation/data/technologies/siege_pack_unpack.jsondescription
-msgid "Military engineers are responsible for improvements in siege engines."
-msgstr "Vojenští inženýři jsou zodpovědní za vylepšení obléhacích strojů."
-
-#: simulation/data/technologies/siege_pack_unpack.jsongenericName
+#: simulation/data/technologies/siege_pack_unpack.json
 msgid "Military Engineers"
 msgstr "Vojenští inženýři"
 
-#: simulation/data/technologies/siege_pack_unpack.jsontooltip
+#: simulation/data/technologies/siege_pack_unpack.json
+msgid "Military engineers are responsible for improvements in siege engines."
+msgstr "Vojenští inženýři jsou zodpovědní za vylepšení obléhacích strojů."
+
+#: simulation/data/technologies/siege_pack_unpack.json
 msgid "Siege Engines –40% pack and unpack time."
 msgstr "Obléhací stroje –40% z času na rozkládání a seskládání."
 
-#: simulation/data/technologies/silk_road.jsongenericName
+#: simulation/data/technologies/silk_road.json
 msgid "Silk Road"
 msgstr "Hedvábná stezka"
 
-#: simulation/data/technologies/silk_road.jsontooltip
+#: simulation/data/technologies/silk_road.json
 msgid "Traders +20% international trade bonus."
 msgstr "Navýšení zisku z mezinárodního obchodu pro obchodníky o +20%."
 
-#: simulation/data/technologies/silvershields.jsondescription
+#: simulation/data/technologies/silvershields.json
+msgid "Silver Shields Regiment"
+msgstr "Pluk Stříbrné štíty"
+
+#: simulation/data/technologies/silvershields.json
 msgid ""
 "The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
 "the Macedonian army."
 msgstr "Stříbrné štíty nebo Argyraspidai byli elitní těžká pěchota makedonského vojska"
 
-#: simulation/data/technologies/silvershields.jsongenericName
-msgid "Silver Shields Regiment"
-msgstr "Pluk Stříbrné štíty"
-
-#: simulation/data/technologies/silvershields.jsontooltip
+#: simulation/data/technologies/silvershields.json
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
 msgstr "Povyšte elitní pěší nositele štítů na Stříbrné štíty, které mají více životních bodů a způsobují vážnější zranění."
 
-#: simulation/data/technologies/soldier_attack_melee_01.jsondescription
+#: simulation/data/technologies/soldier_attack_melee_01.json
+msgid "Side Arms"
+msgstr "Záložní zbraně"
+
+#: simulation/data/technologies/soldier_attack_melee_01.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Pugio"
+msgstr "Pugio"
+
+#: simulation/data/technologies/soldier_attack_melee_01.json
 msgid ""
 "Often, a soldier would carry a secondary weapon in addition to his primary "
 "weapon of choice, to be drawn when the primary weapon has failed or been "
 "broken."
 msgstr "Většinou by voják nosil i poboční zbraň ke své hlavní, aby bylo možné ji použít, kdyby hlavní zbraň selhala, nebo se zničila."
 
-#: simulation/data/technologies/soldier_attack_melee_01.jsongenericName
-msgid "Side Arms"
-msgstr "Záložní zbraně"
-
-#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.athen
-#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.mace
-#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.ptol
-#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.sele
-#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.spart
+#: simulation/data/technologies/soldier_attack_melee_01.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Xiphos"
 msgstr "Xífos"
 
-#: simulation/data/technologies/soldier_attack_melee_01.jsonspecificName.rome
-msgid "Pugio"
-msgstr "Pugio"
-
-#: simulation/data/technologies/soldier_attack_melee_01.jsontooltip
-#: simulation/data/technologies/soldier_attack_melee_02.jsontooltip
+#: simulation/data/technologies/soldier_attack_melee_01.json
+#: simulation/data/technologies/soldier_attack_melee_02.json
 msgid "Soldiers +15% melee attack damage."
 msgstr "Vojáci získávají +15% k útoku na blízko."
 
-#: simulation/data/technologies/soldier_attack_melee_02.jsondescription
-msgid "Using iron instead of bronze gave weapons additional power."
-msgstr "Použití železa místo bronzu zvyšuje sílu zbraní."
-
-#: simulation/data/technologies/soldier_attack_melee_02.jsongenericName
+#: simulation/data/technologies/soldier_attack_melee_02.json
 msgid "Iron Weapons"
 msgstr "Železné zbraně"
 
-#: simulation/data/technologies/soldier_attack_melee_03.jsondescription
+#: simulation/data/technologies/soldier_attack_melee_02.json
+msgid "Using iron instead of bronze gave weapons additional power."
+msgstr "Použití železa místo bronzu zvyšuje sílu zbraní."
+
+#: simulation/data/technologies/soldier_attack_melee_03.json
+msgid "Carburization"
+msgstr "Nauhličování"
+
+#: simulation/data/technologies/soldier_attack_melee_03.json
 msgid ""
 "By adding a small amount of carbon during the iron smelting process, a "
 "stronger material, steel, can be forged."
 msgstr "Přidáním malého množství uhlíku během procesu tavení železa lze kovat silnější materiál jako je ocel."
 
-#: simulation/data/technologies/soldier_attack_melee_03.jsongenericName
-msgid "Carburization"
-msgstr "Nauhličování"
-
-#: simulation/data/technologies/soldier_attack_melee_03.jsontooltip
+#: simulation/data/technologies/soldier_attack_melee_03.json
 msgid "Soldiers +20% melee attack damage."
 msgstr "Vojáci získávají +20% k útoku na blízko."
 
-#: simulation/data/technologies/soldier_attack_melee_03_variant.jsondescription
+#: simulation/data/technologies/soldier_attack_melee_03_variant.json
+msgid "Steel Working"
+msgstr "Zpracování oceli"
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Wootz Steel"
+msgstr "Wootzská ocel"
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Toledo Steel"
+msgstr "Toledská ocel"
+
+#: simulation/data/technologies/soldier_attack_melee_03_variant.json
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful "
 "markings. Not only that, but the steel's hardness is unparalleled."
 msgstr "Tajné techniky zpracování kovu dávají ostřím mečů osobitou a krásnou kresbu. A to není vše, nejen to. Stupeň tvrdosti oceli je nevídaný."
 
-#: simulation/data/technologies/soldier_attack_melee_03_variant.jsongenericName
-msgid "Steel Working"
-msgstr "Zpracování oceli"
-
-#: simulation/data/technologies/soldier_attack_melee_03_variant.jsonspecificName.iber
-msgid "Toledo Steel"
-msgstr "Toledská ocel"
-
-#: simulation/data/technologies/soldier_attack_melee_03_variant.jsonspecificName.maur
-msgid "Wootz Steel"
-msgstr "Wootzská ocel"
-
-#: simulation/data/technologies/soldier_attack_melee_03_variant.jsontooltip
+#: simulation/data/technologies/soldier_attack_melee_03_variant.json
 msgid ""
 "Soldiers +20% melee attack damage. Swordsmen get an additional +20% bonus."
 msgstr "Vojáci získávají +20% k útoku na blízko. Šermíři získají přídavek navíc +20%."
 
-#: simulation/data/technologies/soldier_attack_ranged_01.jsondescription
+#: simulation/data/technologies/soldier_attack_ranged_01.json
+msgid "Improved Fletching"
+msgstr "Vylepšené opeření"
+
+#: simulation/data/technologies/soldier_attack_ranged_01.json
 msgid ""
 "Improving the fletching of arrows increases their stability and speed, and "
 "thus their penetration."
 msgstr "Vylepšením opeření šípů se zvyšuje jejich letová stálost a rychlost, a tím i jejich průraznost."
 
-#: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
-msgid "Improved Fletching"
-msgstr "Vylepšené opeření"
-
-#: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
-#: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
+#: simulation/data/technologies/soldier_attack_ranged_01.json
+#: simulation/data/technologies/soldier_attack_ranged_02.json
 msgid "Soldiers +15% ranged attack damage."
 msgstr "Vojáci +15% k poškození při útoku na dálku."
 
-#: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
-msgid "Projectile points made of iron enable missiles to penetrate deeper."
-msgstr "Hroty střel vyrobené ze železa umožňují střelám proniknout hlouběji."
-
-#: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
+#: simulation/data/technologies/soldier_attack_ranged_02.json
 msgid "Iron Arrowheads"
 msgstr "Železné hroty šípů "
 
-#: simulation/data/technologies/soldier_attack_ranged_03.jsondescription
-msgid "Arrowheads with three lobes instead of two inflict larger wounds."
-msgstr "Šípy se třemi laloky místo dvou způsobují větší rány."
+#: simulation/data/technologies/soldier_attack_ranged_02.json
+msgid "Projectile points made of iron enable missiles to penetrate deeper."
+msgstr "Hroty střel vyrobené ze železa umožňují střelám proniknout hlouběji."
 
-#: simulation/data/technologies/soldier_attack_ranged_03.jsongenericName
+#: simulation/data/technologies/soldier_attack_ranged_03.json
 msgid "Trilobate Arrowheads"
 msgstr "Trojhrané hroty šípů "
 
-#: simulation/data/technologies/soldier_attack_ranged_03.jsontooltip
+#: simulation/data/technologies/soldier_attack_ranged_03.json
+msgid "Arrowheads with three lobes instead of two inflict larger wounds."
+msgstr "Šípy se třemi laloky místo dvou způsobují větší rány."
+
+#: simulation/data/technologies/soldier_attack_ranged_03.json
 msgid "Soldiers +20% ranged attack damage."
 msgstr "Vojáci +20 % k poškození při útoku na dálku."
 
-#: simulation/data/technologies/soldier_ranged_experience.jsontooltip
+#: simulation/data/technologies/soldier_ranged_experience.json
 msgid "Ranged Soldiers +25% promotion experience."
 msgstr "Střelecké jednotky +25% ke zkušenostem pro zvýšení úrovně."
 
-#: simulation/data/technologies/soldier_resistance_hack_01.jsondescription
-msgid "Body armor made from quilted wool, linen, cotton, or leather."
-msgstr "Brnění vyrobené z prošívané vlny, lnu, bavlny nebo kůže."
-
-#: simulation/data/technologies/soldier_resistance_hack_01.jsongenericName
+#: simulation/data/technologies/soldier_resistance_hack_01.json
 msgid "Quilted Body Armor"
 msgstr "Prošívané brnění"
 
-#: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.athen
-#: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.mace
-#: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.ptol
-#: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.sele
-#: simulation/data/technologies/soldier_resistance_hack_01.jsonspecificName.spart
+#: simulation/data/technologies/soldier_resistance_hack_01.json
+msgid "Body armor made from quilted wool, linen, cotton, or leather."
+msgstr "Brnění vyrobené z prošívané vlny, lnu, bavlny nebo kůže."
+
+#: simulation/data/technologies/soldier_resistance_hack_01.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Spolas"
 msgstr "Spolas"
 
-#: simulation/data/technologies/soldier_resistance_hack_01.jsontooltip
-#: simulation/data/technologies/soldier_resistance_hack_02.jsontooltip
+#: simulation/data/technologies/soldier_resistance_hack_01.json
+#: simulation/data/technologies/soldier_resistance_hack_02.json
 msgid "Soldiers +1 hack resistance."
 msgstr "Vojáci +1 k obraně proti sečným útokům."
 
-#: simulation/data/technologies/soldier_resistance_hack_02.jsondescription
-msgid "Body armor made from laminated linen."
-msgstr "Brnění vyrobené z vrstveného lnu."
-
-#: simulation/data/technologies/soldier_resistance_hack_02.jsongenericName
+#: simulation/data/technologies/soldier_resistance_hack_02.json
 msgid "Laminated Linen Body Armor"
 msgstr "Vrstvené lněné brnění"
 
-#: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.athen
-#: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.mace
-#: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.ptol
-#: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.sele
-#: simulation/data/technologies/soldier_resistance_hack_02.jsonspecificName.spart
+#: simulation/data/technologies/soldier_resistance_hack_02.json
+msgid "Body armor made from laminated linen."
+msgstr "Brnění vyrobené z vrstveného lnu."
+
+#: simulation/data/technologies/soldier_resistance_hack_02.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Linothōrax"
 msgstr "Linothórax"
 
-#: simulation/data/technologies/soldier_resistance_hack_03.jsondescription
-msgid "Body armor made of small metal rings linked together."
-msgstr "Brnění vyrobené z malých kovových kroužků spojených dohromady."
-
-#: simulation/data/technologies/soldier_resistance_hack_03.jsongenericName
+#: simulation/data/technologies/soldier_resistance_hack_03.json
 msgid "Mail Body Armor"
 msgstr "Řetězové brnění"
 
-#: simulation/data/technologies/soldier_resistance_hack_03.jsontooltip
+#: simulation/data/technologies/soldier_resistance_hack_03.json
+msgid "Body armor made of small metal rings linked together."
+msgstr "Brnění vyrobené z malých kovových kroužků spojených dohromady."
+
+#: simulation/data/technologies/soldier_resistance_hack_03.json
 msgid "Soldiers +2 hack resistance."
 msgstr "Vojáci +2 k obraně proti sečným útokům."
 
-#: simulation/data/technologies/soldier_resistance_pierce_01.jsondescription
+#: simulation/data/technologies/soldier_resistance_pierce_01.json
+msgid "Wooden Shield"
+msgstr "Dřevěný štít"
+
+#: simulation/data/technologies/soldier_resistance_pierce_01.json
 msgid ""
 "Wooden shields are heavier but much better able to resist projectiles and "
 "blows than wicker-frame shields."
 msgstr "Dřevěné štíty jsou těžší, ale mnohem lépe odolávají střelám a úderům než štíty z proutěného rámu."
 
-#: simulation/data/technologies/soldier_resistance_pierce_01.jsongenericName
-msgid "Wooden Shield"
-msgstr "Dřevěný štít"
-
-#: simulation/data/technologies/soldier_resistance_pierce_01.jsontooltip
-#: simulation/data/technologies/soldier_resistance_pierce_02.jsontooltip
+#: simulation/data/technologies/soldier_resistance_pierce_01.json
+#: simulation/data/technologies/soldier_resistance_pierce_02.json
 msgid "Soldiers +1 pierce resistance."
 msgstr "Vojáci +1 k obraně proti bodným útokům."
 
-#: simulation/data/technologies/soldier_resistance_pierce_02.jsondescription
-msgid "Strengthen shields with a metal rim or spine."
-msgstr "Posilte štíty kovovým okrajem nebo páteří."
-
-#: simulation/data/technologies/soldier_resistance_pierce_02.jsongenericName
+#: simulation/data/technologies/soldier_resistance_pierce_02.json
 msgid "Metal Rim"
 msgstr "Kovový okraj"
 
-#: simulation/data/technologies/soldier_resistance_pierce_03.jsondescription
-msgid "Strengthen shields further with stronger metal alloys."
-msgstr "Posilte štíty ještě silnějšími kovovými slitinami."
+#: simulation/data/technologies/soldier_resistance_pierce_02.json
+msgid "Strengthen shields with a metal rim or spine."
+msgstr "Posilte štíty kovovým okrajem nebo páteří."
 
-#: simulation/data/technologies/soldier_resistance_pierce_03.jsongenericName
+#: simulation/data/technologies/soldier_resistance_pierce_03.json
 msgid "Improved Shield Alloys"
 msgstr "Vylepšené slitiny štítu"
 
-#: simulation/data/technologies/soldier_resistance_pierce_03.jsontooltip
+#: simulation/data/technologies/soldier_resistance_pierce_03.json
+msgid "Strengthen shields further with stronger metal alloys."
+msgstr "Posilte štíty ještě silnějšími kovovými slitinami."
+
+#: simulation/data/technologies/soldier_resistance_pierce_03.json
 msgid "Soldiers +2 pierce resistance."
 msgstr "Vojáci +2 k obraně proti bodným útokům."
 
-#: simulation/data/technologies/spy_counter.jsondescription
-msgid "Recruit a network of informants to watch over your people."
-msgstr "Nabrat lidi pro síť informátorů, aby dávali pozor na tvůj lid. "
-
-#: simulation/data/technologies/spy_counter.jsongenericName
+#: simulation/data/technologies/spy_counter.json
 msgid "Counterintelligence"
 msgstr "Kontrarozvědka"
 
-#: simulation/data/technologies/spy_counter.jsontooltip
+#: simulation/data/technologies/spy_counter.json
+msgid "Recruit a network of informants to watch over your people."
+msgstr "Nabrat lidi pro síť informátorů, aby dávali pozor na tvůj lid. "
+
+#: simulation/data/technologies/spy_counter.json
 msgid "Make your units 50% more expensive to bribe."
 msgstr "Udělejte své jednotky o 50% dražší při uplácení."
 
-#: simulation/data/technologies/stable_batch_training.jsondescription
+#: simulation/data/technologies/stable_batch_training.json
 msgid ""
 "Decreases training time of cavalry if they are trained in batches or squadrons. Large batches will benefit more than small batches.\n"
 "In mathematical terms: The training time of one batch gets divided by `batchSize^0.1`."
 msgstr "Snižuje dobu výcviku kavalérie, pokud je cvičena v šaržích nebo eskadrech. Velké šarže budou mít větší užitek než malé šarže.\nMatematicky: Čas tréninku jedné šarže se vydělí `batchSize^0.1`."
 
-#: simulation/data/technologies/stable_batch_training.jsontooltip
+#: simulation/data/technologies/stable_batch_training.json
 msgid "Decrease batch training time of units trained in Stables."
 msgstr "Snižuje čas výcviku šarží jednotek vycvičených ve stájích."
 
-#: simulation/data/technologies/subterranean_aqueducts.jsondescription
+#: simulation/data/technologies/subterranean_aqueducts.json
+msgid "Subterranean Aqueducts"
+msgstr "Podzemní akvadukty"
+
+#: simulation/data/technologies/subterranean_aqueducts.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Kārēz"
+msgstr "Kārēz"
+
+#: simulation/data/technologies/subterranean_aqueducts.json
 msgid ""
 "Qanāt or Kārēz, a network of underground aqueducts connected to the yakhchal"
 " ice house."
 msgstr "Qanāt nebo Kārēz, síť podzemních akvaduktů napojených na yakhchalskou ledárnu."
 
-#: simulation/data/technologies/subterranean_aqueducts.jsongenericName
-msgid "Subterranean Aqueducts"
-msgstr "Podzemní akvadukty"
-
-#: simulation/data/technologies/subterranean_aqueducts.jsonspecificName.pers
-msgid "Kārēz"
-msgstr "Kārēz"
-
-#: simulation/data/technologies/subterranean_aqueducts.jsontooltip
+#: simulation/data/technologies/subterranean_aqueducts.json
 msgid "Ice House +1 trickle food rate per second."
 msgstr "Ledárna +1 k rychlosti dostávání jídla za sekundu."
 
-#: simulation/data/technologies/tower_crenellations.jsondescription
+#: simulation/data/technologies/tower_crenellations.json
+msgid "Crenellations"
+msgstr "Cimbuří"
+
+#: simulation/data/technologies/tower_crenellations.json
 msgid ""
 "Crenellations on the battlements allow soldiers wider range of fire in "
 "defending a keep."
 msgstr "Cimbuří dovoluje vojákům větší dosah při obraně pevnosti."
 
-#: simulation/data/technologies/tower_crenellations.jsongenericName
-msgid "Crenellations"
-msgstr "Cimbuří"
-
-#: simulation/data/technologies/tower_crenellations.jsontooltip
+#: simulation/data/technologies/tower_crenellations.json
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
 msgstr "Strážné a kamenné věže +40% zvýšení počtu šípů vystřelených vojákem posádky."
 
-#: simulation/data/technologies/tower_health.jsondescription
-msgid "Reinforce the foundations in preparation of an attack."
-msgstr "Posílit základy v přípravě na útok."
-
-#: simulation/data/technologies/tower_health.jsongenericName
+#: simulation/data/technologies/tower_health.json
 msgid "Sturdy Foundations"
 msgstr "Bytelné základy"
 
-#: simulation/data/technologies/tower_health.jsontooltip
+#: simulation/data/technologies/tower_health.json
+msgid "Reinforce the foundations in preparation of an attack."
+msgstr "Posílit základy v přípravě na útok."
+
+#: simulation/data/technologies/tower_health.json
 msgid "Towers +25% health."
 msgstr "Věže + 25% ke zdraví."
 
-#: simulation/data/technologies/tower_murderholes.jsondescription
-msgid "Murder holes allow hitting enemies at the foot of the tower."
-msgstr "Díry ve stropě umožňují zasáhnout nepřátele pod věží."
-
-#: simulation/data/technologies/tower_murderholes.jsongenericName
+#: simulation/data/technologies/tower_murderholes.json
 msgid "Murder Holes"
 msgstr "Díry ve stropě"
 
-#: simulation/data/technologies/tower_murderholes.jsontooltip
+#: simulation/data/technologies/tower_murderholes.json
+msgid "Murder holes allow hitting enemies at the foot of the tower."
+msgstr "Díry ve stropě umožňují zasáhnout nepřátele pod věží."
+
+#: simulation/data/technologies/tower_murderholes.json
 msgid "Sentry and Stone Towers have 0 minimum attack range."
 msgstr "Strážné a kamenné věže mají 0 minimum k dosahu při útoku."
 
-#: simulation/data/technologies/tower_range.jsondescription
-msgid "Arrow shooters increase the maximum range of the fire arrows."
-msgstr "Střelci šípů zvýší největší dosah zapálených šípů."
-
-#: simulation/data/technologies/tower_range.jsongenericName
+#: simulation/data/technologies/tower_range.json
 msgid "Arrow Shooters"
 msgstr "Střelci šípů"
 
-#: simulation/data/technologies/tower_range.jsontooltip
+#: simulation/data/technologies/tower_range.json
+msgid "Arrow shooters increase the maximum range of the fire arrows."
+msgstr "Střelci šípů zvýší největší dosah zapálených šípů."
+
+#: simulation/data/technologies/tower_range.json
 msgid "Sentry and Stone Towers +8 attack range."
 msgstr "Strážné a kamenné věže +8 k dosahu při útoku."
 
-#: simulation/data/technologies/tower_watch.jsondescription
-msgid "A night's watch increases vigilance."
-msgstr "Noční hlídka zvyšuje bdělost."
-
-#: simulation/data/technologies/tower_watch.jsongenericName
+#: simulation/data/technologies/tower_watch.json
 msgid "Sentries"
 msgstr "Stráže"
 
-#: simulation/data/technologies/tower_watch.jsonspecificName.athen
-#: simulation/data/technologies/tower_watch.jsonspecificName.mace
-#: simulation/data/technologies/tower_watch.jsonspecificName.ptol
-#: simulation/data/technologies/tower_watch.jsonspecificName.sele
-#: simulation/data/technologies/tower_watch.jsonspecificName.spart
-msgid "Nyktophylakes"
-msgstr "Nyktophylakes"
-
-#: simulation/data/technologies/tower_watch.jsonspecificName.han
+#: simulation/data/technologies/tower_watch.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Shàobīng"
 msgstr "Shàobīng"
 
-#: simulation/data/technologies/tower_watch.jsonspecificName.rome
+#: simulation/data/technologies/tower_watch.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Vigiles"
 msgstr "Vigiles"
 
-#: simulation/data/technologies/tower_watch.jsontooltip
+#: simulation/data/technologies/tower_watch.json
+msgid "A night's watch increases vigilance."
+msgstr "Noční hlídka zvyšuje bdělost."
+
+#: simulation/data/technologies/tower_watch.json
 msgid "Sentry and Stone Towers +1 default arrow count."
 msgstr "Strážné a kamenné věže +1 k výchozímu počtu šípů."
 
-#: simulation/data/technologies/trade_commercial_treaty.jsondescription
-msgid "Improve the international trading profit."
-msgstr "Vylepšit mezinárodní obchodní zisk."
+#: simulation/data/technologies/tower_watch.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Nyktophylakes"
+msgstr "Nyktophylakes"
 
-#: simulation/data/technologies/trade_commercial_treaty.jsongenericName
+#: simulation/data/technologies/trade_commercial_treaty.json
 msgid "Commercial Treaty"
 msgstr "Obchodní smlouva"
 
-#: simulation/data/technologies/trade_commercial_treaty.jsontooltip
+#: simulation/data/technologies/trade_commercial_treaty.json
+msgid "Improve the international trading profit."
+msgstr "Vylepšit mezinárodní obchodní zisk."
+
+#: simulation/data/technologies/trade_commercial_treaty.json
 msgid "Traders +10% trade profit between allies."
 msgstr "Obchodníci +10% k obchodnímu zisku mezi spojenci."
 
-#: simulation/data/technologies/trade_gain_01.jsondescription
-#: simulation/data/technologies/trade_gain_02.jsondescription
-msgid "The progress in handicraft improves the trading profit."
-msgstr "Pokrok v řemeslné výrobě zlepšuje obchodní zisk."
-
-#: simulation/data/technologies/trade_gain_01.jsongenericName
+#: simulation/data/technologies/trade_gain_01.json
 msgid "Handicraft"
 msgstr "Řemeslná výroba"
 
-#: simulation/data/technologies/trade_gain_01.jsontooltip
-#: simulation/data/technologies/trade_gain_02.jsontooltip
+#: simulation/data/technologies/trade_gain_01.json
+#: simulation/data/technologies/trade_gain_02.json
+msgid "The progress in handicraft improves the trading profit."
+msgstr "Pokrok v řemeslné výrobě zlepšuje obchodní zisk."
+
+#: simulation/data/technologies/trade_gain_01.json
+#: simulation/data/technologies/trade_gain_02.json
 msgid "Traders +15% trade gain."
 msgstr "Obchodníci +15% k zisku z obchodu."
 
-#: simulation/data/technologies/trade_gain_02.jsongenericName
+#: simulation/data/technologies/trade_gain_02.json
 msgid "Advanced Handicraft"
 msgstr "Pokročilá řemeslná výroba"
 
-#: simulation/data/technologies/trader_health.jsondescription
-msgid "Traders traveling together in caravans are less vulnerable."
-msgstr "Obchodníci cestující společně s karavanou jsou méně zranitelní."
-
-#: simulation/data/technologies/trader_health.jsongenericName
+#: simulation/data/technologies/trader_health.json
 msgid "Trade Caravan"
 msgstr "Obchodní karavana"
 
-#: simulation/data/technologies/trader_health.jsontooltip
+#: simulation/data/technologies/trader_health.json
+msgid "Traders traveling together in caravans are less vulnerable."
+msgstr "Obchodníci cestující společně s karavanou jsou méně zranitelní."
+
+#: simulation/data/technologies/trader_health.json
 msgid "Land Traders +50% health."
 msgstr "Pozemní obchodníci získají +50% na zdraví."
 
-#: simulation/data/technologies/traditional_army_sele.jsondescription
-msgid "The Macedonian-style core of the Seleucid army."
-msgstr "Makedonské jádro seleukovské armády."
-
-#: simulation/data/technologies/traditional_army_sele.jsongenericName
+#: simulation/data/technologies/traditional_army_sele.json
 msgid "Traditional Army"
 msgstr "Tradiční armáda"
 
-#: simulation/data/technologies/traditional_army_sele.jsontooltip
+#: simulation/data/technologies/traditional_army_sele.json
+msgid "The Macedonian-style core of the Seleucid army."
+msgstr "Makedonské jádro seleukovské armády."
+
+#: simulation/data/technologies/traditional_army_sele.json
 msgid "Unlock the Champion Infantry Pikeman."
 msgstr "Odemkněte elitního pěšího kopiníka."
 
-#: simulation/data/technologies/tyrtean_paeans.jsondescription
+#: simulation/data/technologies/tyrtean_paeans.json
+msgid "Tyrtean Paeans"
+msgstr "Tyrtean Paeans"
+
+#: simulation/data/technologies/tyrtean_paeans.json
 msgid ""
 "Paeans were battle hymns that were sung by the Hoplites when they charged "
 "the enemy lines. One of the first known Paeans was composed by Tirteus, a "
 "warrior poet of Sparta, during the First Messenian War."
 msgstr "Pajány byli bojové hymny zpívané hoplíty při prorážení nepřátelských řad. Jedny z prvních známých pajánů byly složeny Tirteem, bojovým básníkem Sparty, během první messénské války."
 
-#: simulation/data/technologies/tyrtean_paeans.jsongenericName
-msgid "Tyrtean Paeans"
-msgstr "Tyrtean Paeans"
-
-#: simulation/data/technologies/tyrtean_paeans.jsontooltip
+#: simulation/data/technologies/tyrtean_paeans.json
 msgid "Champion Hoplites +10% movement speed."
 msgstr "Šampionští hoplíté získají +10% k rychlosti pohybu."
 
-#: simulation/data/technologies/unit_advanced.jsontooltip
+#: simulation/data/technologies/unit_advanced.json
 msgid ""
 "Advanced and Elite units +20% training time, +25% health, +0.7 capture "
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
@@ -2178,7 +2234,7 @@ msgid ""
 "damage; Ranged units −20% spread."
 msgstr "Pokročilé a elitní jednotky +20% k době výcviku, +25% k bodům zdraví, +0,7 k síle útoku při zajímání, +20% ke kořisti, a −30% z rychlosti sbírání; Léčitelé +5 k síle léčení a +3 k dosahu léčení; Jednotky na blízko +1 odolnosti a +20% k poškození při útoku; Střelecké jednotky −20% z rozptylu."
 
-#: simulation/data/technologies/unit_elite.jsontooltip
+#: simulation/data/technologies/unit_elite.json
 msgid ""
 "Elite units +20% training time, +25% health, +0.8 capture attack strength, "
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
@@ -2186,316 +2242,313 @@ msgid ""
 "spread."
 msgstr "Elitní jednotky +20% k době výcviku, +25% k bodům zdraví, +0,8 k síle útoku při zajímání, +20% ke kořisti, a −30% z rychlosti sbírání; Léčitelé +5 k síle léčení a +3 k dosahu léčení; Jednotky na blízko +1 k odolnosti a +20% k poškození při útoku; Střelecké jednotky −20% z rozptylu."
 
-#: simulation/data/technologies/unlock_champion_cavalry.jsondescription
-#: simulation/data/technologies/unlock_champion_chariots.jsondescription
-#: simulation/data/technologies/unlock_champion_infantry.jsondescription
+#: simulation/data/technologies/unlock_champion_cavalry.json
+msgid "Unlock Champion Cavalry"
+msgstr "Odemkněte elitní jezdectvo."
+
+#: simulation/data/technologies/unlock_champion_cavalry.json
+msgid "Unlock Champion Cavalry at the Stable."
+msgstr "Odemkněte elitní jezdectvo ve stáji."
+
+#: simulation/data/technologies/unlock_champion_cavalry.json
+#: simulation/data/technologies/unlock_champion_chariots.json
+#: simulation/data/technologies/unlock_champion_infantry.json
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
 msgstr "Gardové jednotky (elitní vojáci) jsou profesionálové, kteří mají nejlepší zbraně a nejlepší výcvik."
 
-#: simulation/data/technologies/unlock_champion_cavalry.jsongenericName
-msgid "Unlock Champion Cavalry"
-msgstr "Odemkněte elitní jezdectvo."
-
-#: simulation/data/technologies/unlock_champion_cavalry.jsontooltip
-msgid "Unlock Champion Cavalry at the Stable."
-msgstr "Odemkněte elitní jezdectvo ve stáji."
-
-#: simulation/data/technologies/unlock_champion_chariots.jsongenericName
+#: simulation/data/technologies/unlock_champion_chariots.json
 msgid "Unlock Champion Chariots"
 msgstr "Odemkněte elitní válečné vozy"
 
-#: simulation/data/technologies/unlock_champion_chariots.jsontooltip
+#: simulation/data/technologies/unlock_champion_chariots.json
 msgid "Unlock Champion Chariots at the Stable."
 msgstr "Odemkněte elitní válečné vozy ve stáji."
 
-#: simulation/data/technologies/unlock_champion_infantry.jsongenericName
+#: simulation/data/technologies/unlock_champion_infantry.json
 msgid "Unlock Champion Infantry"
 msgstr "Odemkněte elitní pěchotu"
 
-#: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.mace
-#: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.ptol
-msgid "Agēma"
-msgstr "Agēma"
-
-#: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.rome
+#: simulation/data/technologies/unlock_champion_infantry.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Regio Cohors"
 msgstr "Regio Cohors"
 
-#: simulation/data/technologies/unlock_champion_infantry.jsontooltip
+#: simulation/data/technologies/unlock_champion_infantry.json
 msgid "Unlock Champions Infantry at the Barracks."
 msgstr "Odemkněte elitní pěchotu v kasárnách."
 
-#: simulation/data/technologies/unlock_females_house.jsondescription
-msgid "A festival attended by women-only, to celebrate female fertility."
-msgstr "Festival určený pouze ženám k uctění jejich plodnosti."
+#: simulation/data/technologies/unlock_champion_infantry.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Agēma"
+msgstr "Agēma"
 
-#: simulation/data/technologies/unlock_females_house.jsongenericName
+#: simulation/data/technologies/unlock_females_house.json
 msgid "Fertility Festival"
 msgstr "Svátek plodnosti"
 
-#: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
-#: simulation/data/technologies/unlock_females_house.jsonspecificName.mace
-#: simulation/data/technologies/unlock_females_house.jsonspecificName.ptol
-#: simulation/data/technologies/unlock_females_house.jsonspecificName.sele
-#: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
-msgid "Thesmophoria"
-msgstr "Thesmophoria"
-
-#: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
+#: simulation/data/technologies/unlock_females_house.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Bona Dea"
 msgstr "Bona Dea"
 
-#: simulation/data/technologies/unlock_females_house.jsontooltip
+#: simulation/data/technologies/unlock_females_house.json
+msgid "A festival attended by women-only, to celebrate female fertility."
+msgstr "Festival určený pouze ženám k uctění jejich plodnosti."
+
+#: simulation/data/technologies/unlock_females_house.json
 msgid "Unlock the ability to train women from houses."
 msgstr "Odemknout schopnost cvičit ženy z domů."
 
-#: simulation/data/technologies/unlock_neodamodes.jsondescription
+#: simulation/data/technologies/unlock_females_house.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Thesmophoria"
+msgstr "Thesmophoria"
+
+#: simulation/data/technologies/unlock_neodamodes.json
+msgid "Unlock Neodamodes"
+msgstr "Odemkni Neodamódy"
+
+#: simulation/data/technologies/unlock_neodamodes.json
 msgid ""
 "In ancient Sparta, the Helots who were freed by the state in reward for "
 "military service were known as Neodamodes."
 msgstr "Ve starověké Spartě byli helótové, kteří byli osvobozeni státem jako odměna za vojenskou službu, známí jako Neodamódové."
 
-#: simulation/data/technologies/unlock_neodamodes.jsongenericName
-msgid "Unlock Neodamodes"
-msgstr "Odemkni Neodamódy"
-
-#: simulation/data/technologies/unlock_neodamodes.jsontooltip
+#: simulation/data/technologies/unlock_neodamodes.json
 msgid "Unlock the ability to train Spearman Neodamodes at the Barracks."
 msgstr "Odemkněte schopnost trénovat Neodamodéské kopytníky v kasárnách."
 
-#: simulation/data/technologies/unlock_shared_dropsites.jsondescription
+#: simulation/data/technologies/unlock_shared_dropsites.json
+msgid "Diaspora"
+msgstr "Diaspora (rozptýlení příslušníci národa)"
+
+#: simulation/data/technologies/unlock_shared_dropsites.json
 msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit the wealth"
 " of these countries."
 msgstr "Rozšíření obchodu vede k trvalému ustanovení kupců a jejich rodin v cizích zemích, umožňuje jim využívat bohatství těchto zemí."
 
-#: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
-msgid "Diaspora"
-msgstr "Diaspora (rozptýlení příslušníci národa)"
-
-#: simulation/data/technologies/unlock_shared_dropsites.jsonrequirementsTooltip
+#: simulation/data/technologies/unlock_shared_dropsites.json
 msgid "Requires three Traders"
 msgstr "Vyžaduje tři obchodníky"
 
-#: simulation/data/technologies/unlock_shared_dropsites.jsontooltip
+#: simulation/data/technologies/unlock_shared_dropsites.json
 msgid "Allows using allied dropsites."
 msgstr "Umožňuje používání skladišť spojenců."
 
-#: simulation/data/technologies/unlock_shared_los.jsondescription
+#: simulation/data/technologies/unlock_shared_los.json
+msgid "Cartography"
+msgstr "Kartografie"
+
+#: simulation/data/technologies/unlock_shared_los.json
 msgid ""
 "By means of trading and travelling people explored beyond the boundaries of "
 "their lands and drew maps of it in order to share and memorize their "
 "discoveries."
 msgstr "Pomocí obchodu a cestování, lidé objevovali vzdálené krajiny za hranicemi jejich země a vytvářeli mapy pro sdílení a zapamatování jejich objevů."
 
-#: simulation/data/technologies/unlock_shared_los.jsongenericName
-msgid "Cartography"
-msgstr "Kartografie"
-
-#: simulation/data/technologies/unlock_shared_los.jsontooltip
+#: simulation/data/technologies/unlock_shared_los.json
 msgid ""
 "See what your allies see, browse their summary and check their resources and"
 " population count in the top panel."
 msgstr "Vidět to, co vidí spojenci, prohlížet si jejich výsledky, suroviny a počet obyvatel v horním panelu."
 
-#: simulation/data/technologies/unlock_spies.jsondescription
+#: simulation/data/technologies/unlock_spies.json
+msgid "Espionage"
+msgstr "Špionáž"
+
+#: simulation/data/technologies/unlock_spies.json
 msgid ""
 "Merchants' first goal was trading, but they also gathered information about "
 "the countries they crossed."
 msgstr "Hlavní cíl obchodníků byl samozřejmě obchod, ale také získávali údaje o zemích, kterými prošli."
 
-#: simulation/data/technologies/unlock_spies.jsongenericName
-msgid "Espionage"
-msgstr "Špionáž"
-
-#: simulation/data/technologies/unlock_spies.jsontooltip
+#: simulation/data/technologies/unlock_spies.json
 msgid ""
 "Allows bribing the units of other players in order to share their vision."
 msgstr "Umožňuje podplatit jednotky ostatních hráčů pro získání jejich výhledu."
 
-#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
-msgid "Hire professional mercenaries to fight in your army."
-msgstr "Najmout do armády profesionální žoldnéře."
-
-#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsongenericName
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.json
 msgid "Expertise In War"
 msgstr "Válečná odbornost"
 
-#: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.json
+msgid "Hire professional mercenaries to fight in your army."
+msgstr "Najmout do armády profesionální žoldnéře."
+
+#: simulation/data/technologies/upgrade_rank_advanced_mercenary.json
 msgid "Mercenaries start at Advanced rank."
 msgstr "Žoldáci začínají na pokročilé úrovni."
 
-#: simulation/data/technologies/warship_arrow_attack.jsondescription
-msgid "Mounting bolt shooters onto ships helped give added firepower."
-msgstr "Montáž vystřelovačů střel na lodě pomohla dodat další palebnou sílu."
-
-#: simulation/data/technologies/warship_arrow_attack.jsongenericName
+#: simulation/data/technologies/warship_arrow_attack.json
 msgid "Naval Oxybeles"
 msgstr "Námořní Oxybeles"
 
-#: simulation/data/technologies/warship_arrow_attack.jsontooltip
+#: simulation/data/technologies/warship_arrow_attack.json
+msgid "Mounting bolt shooters onto ships helped give added firepower."
+msgstr "Montáž vystřelovačů střel na lodě pomohla dodat další palebnou sílu."
+
+#: simulation/data/technologies/warship_arrow_attack.json
 msgid "Arrow Ships +10 crush attack damage and +10% attack range."
 msgstr "Lodě s šípy +10 poškození při rozdrcení a +10% dosah útoku."
 
-#: simulation/data/technologies/warship_fireship_attack.jsondescription
+#: simulation/data/technologies/warship_fireship_attack.json
+msgid "Burning Pitch"
+msgstr "Hořící smola"
+
+#: simulation/data/technologies/warship_fireship_attack.json
 msgid ""
 "Pitch can be made from petroleum, coal tar, or pine tar. It can be used to "
 "help seal the hulls of boats as well as assist in igniting enemy ships."
 msgstr "Smola může být vyrobena z ropy, černouhelného dehtu nebo borovicového dehtu. Může být použit k utěsnění trupů člunů a také k zapálení nepřátelských lodí."
 
-#: simulation/data/technologies/warship_fireship_attack.jsongenericName
-msgid "Burning Pitch"
-msgstr "Hořící smola"
-
-#: simulation/data/technologies/warship_fireship_attack.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_fireship_attack.json
 msgid "Unlocked in City Phase. Requires “Naval Construction.”"
 msgstr "Odemknuto ve velkoměstské fázi. Vyžaduje “Námořní konstrukci.”"
 
-#: simulation/data/technologies/warship_fireship_attack.jsontooltip
+#: simulation/data/technologies/warship_fireship_attack.json
 msgid "Fire Ships +25% health and +25% attack damage."
 msgstr "Ohnivé lodě +25% zdraví a +25% poškození při útoku."
 
-#: simulation/data/technologies/warship_health.jsondescription
-msgid "The hypozomata brace the structure of a ship."
-msgstr "Hypozomata opásání zesiluje strukturu lodi."
-
-#: simulation/data/technologies/warship_health.jsongenericName
+#: simulation/data/technologies/warship_health.json
 msgid "Undergirding Cables"
 msgstr "Podkladové kabely"
 
-#: simulation/data/technologies/warship_health.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_health.json
+msgid "The hypozomata brace the structure of a ship."
+msgstr "Hypozomata opásání zesiluje strukturu lodi."
+
+#: simulation/data/technologies/warship_health.json
 msgid "Unlocked in City Phase. Requires “Ship Cladding.”"
 msgstr "Odemknuto ve velkoměstské fázi. Požaduje  “Obložení lodi.”"
 
-#: simulation/data/technologies/warship_health.jsonspecificName.athen
-#: simulation/data/technologies/warship_health.jsonspecificName.cart
-#: simulation/data/technologies/warship_health.jsonspecificName.mace
-#: simulation/data/technologies/warship_health.jsonspecificName.pers
-#: simulation/data/technologies/warship_health.jsonspecificName.ptol
-#: simulation/data/technologies/warship_health.jsonspecificName.sele
-#: simulation/data/technologies/warship_health.jsonspecificName.spart
-msgid "Hypozomata"
-msgstr "Hypozomata"
-
-#: simulation/data/technologies/warship_health.jsontooltip
+#: simulation/data/technologies/warship_health.json
 msgid "Arrow Ships and Ramming Ships +25% health."
 msgstr "Lodě s šípy a Lodě s beranidly +25% zdraví."
 
-#: simulation/data/technologies/warship_ramming_attack.jsondescription
-msgid "A bronze beak at the prow of the ship, used for ramming enemy ships."
-msgstr "Bronzový zobák na přídi lodi, používaný k narážení nepřátelských lodí."
+#: simulation/data/technologies/warship_health.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Hypozomata"
+msgstr "Hypozomata"
 
-#: simulation/data/technologies/warship_ramming_attack.jsongenericName
+#: simulation/data/technologies/warship_ramming_attack.json
 msgid "Bronze Ram"
 msgstr "Bronzové beranidlo"
 
-#: simulation/data/technologies/warship_ramming_attack.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_ramming_attack.json
+msgid "A bronze beak at the prow of the ship, used for ramming enemy ships."
+msgstr "Bronzový zobák na přídi lodi, používaný k narážení nepřátelských lodí."
+
+#: simulation/data/technologies/warship_ramming_attack.json
 msgid "Unlocked in City Phase. Requires “Flanking Maneuvers.”"
 msgstr "Odemknuto ve velkoměstské fázi. Požaduje “Boční manévry.”"
 
-#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.athen
-#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.cart
-#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.mace
-#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.pers
-#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.ptol
-#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.sele
-#: simulation/data/technologies/warship_ramming_attack.jsonspecificName.spart
-msgid "Embolon"
-msgstr "Embolon"
-
-#: simulation/data/technologies/warship_ramming_attack.jsontooltip
+#: simulation/data/technologies/warship_ramming_attack.json
 msgid "Ramming Ships +30% attack damage."
 msgstr "Lodě s beranidlem +30% poškození útoku."
 
-#: simulation/data/technologies/warship_ramming_speed.jsondescription
+#: simulation/data/technologies/warship_ramming_attack.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Embolon"
+msgstr "Embolon"
+
+#: simulation/data/technologies/warship_ramming_speed.json
+msgid "Flanking Maneuvers"
+msgstr "Boční manévry"
+
+#: simulation/data/technologies/warship_ramming_speed.json
 msgid ""
 "The flanking maneuver was attempted in order to position the ship for a "
 "successful ram. To pull this off in the chaos of a sea battle, a ship's crew"
 " needed to be highly trained and well-motivated."
 msgstr "Byl proveden pokus o boční manévr, aby se loď umístila pro úspěšný beranidlový útok. Aby to zvládli v chaosu námořní bitvy, musela být posádka lodi vysoce vycvičená a dobře motivovaná."
 
-#: simulation/data/technologies/warship_ramming_speed.jsongenericName
-msgid "Flanking Maneuvers"
-msgstr "Boční manévry"
-
-#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.athen
-#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.cart
-#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.mace
-#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.pers
-#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.ptol
-#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.sele
-#: simulation/data/technologies/warship_ramming_speed.jsonspecificName.spart
-msgid "Periplous"
-msgstr "Periplous"
-
-#: simulation/data/technologies/warship_ramming_speed.jsontooltip
+#: simulation/data/technologies/warship_ramming_speed.json
 msgid "Ramming Ships +25% speed and acceleration. Unlocks “Bronze Rams.”"
 msgstr "Lodě s beranidly +25% rychlosti a zrychlení. Odemkne “Bronzové beranidla.”"
 
-#: simulation/data/technologies/warship_ranged_attack.jsondescription
+#: simulation/data/technologies/warship_ramming_speed.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Periplous"
+msgstr "Periplous"
+
+#: simulation/data/technologies/warship_ranged_attack.json
+msgid "Flaming Projectiles"
+msgstr "Hořící projektily"
+
+#: simulation/data/technologies/warship_ranged_attack.json
 msgid ""
 "Flaming munitions were very useful against wooden targets such as ships."
 msgstr "Hořící munice byla velmi užitečná proti dřevěným cílům, jako jsou lodě."
 
-#: simulation/data/technologies/warship_ranged_attack.jsongenericName
-msgid "Flaming Projectiles"
-msgstr "Hořící projektily"
-
-#: simulation/data/technologies/warship_ranged_attack.jsonrequirementsTooltip
+#: simulation/data/technologies/warship_ranged_attack.json
 msgid "Unlocked in City Phase. Requires “Naval Ballistae.”"
 msgstr "Odemknuto ve velkoměstské fázi. Vyžaduje “Námořní balistu.”"
 
-#: simulation/data/technologies/warship_ranged_attack.jsontooltip
+#: simulation/data/technologies/warship_ranged_attack.json
 msgid "Ranged Warships +10% attack damage."
 msgstr "Válečné lodě na dálku +10% k poškození."
 
-#: simulation/data/technologies/warship_resistance.jsondescription
-msgid "Armor for the flanks of a warship."
-msgstr "Brnění pro boky válečné lodi."
-
-#: simulation/data/technologies/warship_resistance.jsongenericName
+#: simulation/data/technologies/warship_resistance.json
 msgid "Ship Cladding"
 msgstr "Opláštění lodi"
 
-#: simulation/data/technologies/warship_resistance.jsontooltip
+#: simulation/data/technologies/warship_resistance.json
+msgid "Armor for the flanks of a warship."
+msgstr "Brnění pro boky válečné lodi."
+
+#: simulation/data/technologies/warship_resistance.json
 msgid ""
 "Warships +1 pierce and crush armor. Unlocks “Undergirding Cables” for some "
 "civilizations."
 msgstr "Válečné lodě +1 k brnění proti propíchnutí a brnění proti rozdrcení. Některým civilizacím odemkne “Podkladové kabely”."
 
-#: simulation/data/technologies/warship_siege_attack.jsondescription
-msgid "Mounting stronger catapults onto ships helped give added firepower."
-msgstr "Montáž silnějších katapultů na lodě pomohla dodat další palebnou sílu."
-
-#: simulation/data/technologies/warship_siege_attack.jsongenericName
+#: simulation/data/technologies/warship_siege_attack.json
 msgid "Naval Ballistae"
 msgstr "Námořní balista"
 
-#: simulation/data/technologies/warship_siege_attack.jsontooltip
+#: simulation/data/technologies/warship_siege_attack.json
+msgid "Mounting stronger catapults onto ships helped give added firepower."
+msgstr "Montáž silnějších katapultů na lodě pomohla dodat další palebnou sílu."
+
+#: simulation/data/technologies/warship_siege_attack.json
 msgid "Siege Ships +20% attack range and vision range."
 msgstr "Obléhací lodě +20% k útočnýmu dosahu a dostřelu."
 
-#: simulation/data/technologies/wonder_population_cap.jsondescription
-msgid "The wonder attracts many more people to your civilization."
-msgstr "Div přitahuje k vaší kultuře spoustu dalších lidí."
-
-#: simulation/data/technologies/wonder_population_cap.jsongenericName
+#: simulation/data/technologies/wonder_population_cap.json
 msgid "Glorious Expansion"
 msgstr "Velkolepý rozmach"
 
-#: simulation/data/technologies/wonder_population_cap.jsonspecificName.athen
-#: simulation/data/technologies/wonder_population_cap.jsonspecificName.mace
-#: simulation/data/technologies/wonder_population_cap.jsonspecificName.ptol
-#: simulation/data/technologies/wonder_population_cap.jsonspecificName.sele
-#: simulation/data/technologies/wonder_population_cap.jsonspecificName.spart
-msgid "Peristasis"
-msgstr "Peristasis"
+#: simulation/data/technologies/wonder_population_cap.json
+msgid "The wonder attracts many more people to your civilization."
+msgstr "Div přitahuje k vaší kultuře spoustu dalších lidí."
 
-#: simulation/data/technologies/wonder_population_cap.jsontooltip
+#: simulation/data/technologies/wonder_population_cap.json
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
 msgstr "Povolte auru „Velkolepý rozmach“: +20% k omezení největšího počtu obyvatel za každý vlastněný div."
+
+#: simulation/data/technologies/wonder_population_cap.json
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Peristasis"
+msgstr "Peristasis"

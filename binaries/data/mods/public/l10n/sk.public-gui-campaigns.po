@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
 "Last-Translator: Zuzana Miadoková, 2023\n"
 "Language-Team: Slovak (https://app.transifex.com/wildfire-games/teams/17418/sk/)\n"
@@ -22,7 +22,12 @@ msgstr ""
 "Language: sk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
-#: campaigns/new_maps.jsonDescription
+#: campaigns/new_maps.json
+msgctxt "Campaign Template"
+msgid "Demo campaign - new maps"
+msgstr "Demonštračná kampaň - nové mapy"
+
+#: campaigns/new_maps.json
 msgctxt "Campaign Template"
 msgid ""
 "Discover the new and improved maps in Alpha XXVII with a demo campaign, "
@@ -31,17 +36,32 @@ msgstr ""
 "Objav nové mapy Alfy XXVII prostredníctvom demo kampane, ktorá ťa prevedie "
 "cez všetky z nich."
 
-#: campaigns/new_maps.jsonName
+#: campaigns/tutorial.json
 msgctxt "Campaign Template"
-msgid "Demo campaign - new maps"
-msgstr "Demonštračná kampaň - nové mapy"
+msgid "Tutorial"
+msgstr "Tutoriál"
 
-#: campaigns/tutorial.jsonDescription
+#: campaigns/tutorial.json
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
 msgstr "Nauč sa hrať 0 A.D."
 
-#: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
+#: campaigns/tutorial.json
+msgctxt "Campaign Template"
+msgid "Introductory Tutorial"
+msgstr "Úvodný tutoriál"
+
+#: campaigns/tutorial.json
+msgctxt "Campaign Template"
+msgid "This is a basic tutorial to get you started playing 0 A.D."
+msgstr "Toto je tutoriál, ktorý ťa naučí základy hry 0 A.D."
+
+#: campaigns/tutorial.json
+msgctxt "Campaign Template"
+msgid "Economy Walkthrough"
+msgstr "Sprievodca ekonomikou"
+
+#: campaigns/tutorial.json
 msgctxt "Campaign Template"
 msgid ""
 "This map will give a rough guide for starting the game effectively.  Early "
@@ -55,74 +75,54 @@ msgstr ""
 "neskorej hre postaviť dostatok jednotiek. Varovanie: Začiatok tohto "
 "tutoriálu je veľmi rýchly, buď pripravený ho prejsť viackrát."
 
-#: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
-msgctxt "Campaign Template"
-msgid "Economy Walkthrough"
-msgstr "Sprievodca ekonomikou"
-
-#: campaigns/tutorial.jsonLevels.introduction.Description
-msgctxt "Campaign Template"
-msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "Toto je tutoriál, ktorý ťa naučí základy hry 0 A.D."
-
-#: campaigns/tutorial.jsonLevels.introduction.Name
-msgctxt "Campaign Template"
-msgid "Introductory Tutorial"
-msgstr "Úvodný tutoriál"
-
-#: campaigns/tutorial.jsonName
-msgctxt "Campaign Template"
-msgid "Tutorial"
-msgstr "Tutoriál"
-
-#: gui/campaigns/default_menu/CampaignMenu.js:155
+#: gui/campaigns/default_menu/CampaignMenu.js:185
 msgctxt "campaign status"
 msgid "Completed"
 msgstr "Ukončené"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:157
+#: gui/campaigns/default_menu/CampaignMenu.js:187
 msgctxt "campaign status"
 msgid "Available"
 msgstr "Dostupné"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:216
+#: gui/campaigns/default_menu/CampaignMenu.js:246
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
 msgstr "Chyba pri načítaní kampaňového behu %s: %s."
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
+#: gui/campaigns/default_menu/CampaignMenu.xml:14
 msgid "Campaign Name"
 msgstr "Meno kampane"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
-msgid "No scenario selected"
-msgstr "Nebol vybraný žiadny scenár"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
-msgid "Back to Main Menu"
-msgstr "Späť do hlavného menu"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
-msgid "Saved Games"
-msgstr "Uložené hry"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
-msgid "Start Scenario"
-msgstr "Spustiť scenár"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
-msgid "Resume Saved Game"
-msgstr "Pokračovať v uloženej hre"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
+#: gui/campaigns/default_menu/CampaignMenu.xml:27
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
 msgstr "Názov scenáru"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
+#: gui/campaigns/default_menu/CampaignMenu.xml:31
 msgctxt "campaignLevelList"
 msgid "Status"
 msgstr "Stav"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:45
+msgid "No scenario selected"
+msgstr "Nebol vybraný žiadny scenár"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:58
+msgid "Back to Main Menu"
+msgstr "Späť do hlavného menu"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:62
+msgid "Saved Games"
+msgstr "Uložené hry"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:66
+msgid "Start Scenario"
+msgstr "Spustiť scenár"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:69
+msgid "Resume Saved Game"
+msgstr "Pokračovať v uloženej hre"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
@@ -145,38 +145,38 @@ msgstr "Nie"
 msgid "Yes"
 msgstr "Áno"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):13
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):39
+#: gui/campaigns/load_modal/LoadModal.xml:13
+#: gui/campaigns/load_modal/LoadModal.xml:39
 msgid "Load Campaign"
 msgstr "Načítať kampaň"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):20
+#: gui/campaigns/load_modal/LoadModal.xml:20
 msgid "No ongoing campaigns."
 msgstr "Žiadne prebiehajúce kampane."
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):24
+#: gui/campaigns/load_modal/LoadModal.xml:24
 msgid "Name of selected run:"
 msgstr "Meno vybraného behu:"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):31
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
+#: gui/campaigns/load_modal/LoadModal.xml:31
+#: gui/campaigns/new_modal/NewCampaignModal.xml:23
 msgid "Cancel"
 msgstr "Zrušiť"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):35
+#: gui/campaigns/load_modal/LoadModal.xml:35
 msgid "Delete"
 msgstr "Vymazať"
 
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
+#: gui/campaigns/new_modal/NewCampaignModal.xml:12
 msgid "Start a campaign"
 msgstr "Začať kampaň"
 
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
+#: gui/campaigns/new_modal/NewCampaignModal.xml:16
 msgid "Please enter the name of your new campaign run:"
 msgstr "Zadaj meno nového kampaňového behu:"
 
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
+#: gui/campaigns/new_modal/NewCampaignModal.xml:27
+#: gui/campaigns/setup/CampaignSetupPage.xml:55
 msgid "Start Campaign"
 msgstr "Začať kampaň"
 
@@ -184,22 +184,22 @@ msgstr "Začať kampaň"
 msgid "No campaign selected."
 msgstr "Nebola vybraná žiadna kampaň."
 
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
+#: gui/campaigns/setup/CampaignSetupPage.xml:10
 msgid "Campaigns"
 msgstr "Kampane"
 
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
-msgid "No Campaign selected"
-msgstr "Nebola vybraná žiadna kampaň"
-
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
-msgid "Main Menu"
-msgstr "Hlavné menu"
-
-#: gui/campaigns/setup/CampaignSetupPage.xml:(heading):26
+#: gui/campaigns/setup/CampaignSetupPage.xml:26
 msgctxt "campaignsetup"
 msgid "Name"
 msgstr "Názov"
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:37
+msgid "No Campaign selected"
+msgstr "Nebola vybraná žiadna kampaň"
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:50
+msgid "Main Menu"
+msgstr "Hlavné menu"
 
 #: gui/common/campaigns/CampaignRun.js:115
 #, javascript-format

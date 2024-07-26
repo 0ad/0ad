@@ -32,7 +32,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-05-24 07:08+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: aa4a75b616c7281b4c1ca3782cfac296_76b465e, 2022\n"
 "Language-Team: Ukrainian (http://app.transifex.com/wildfire-games/0ad/language/uk/)\n"
@@ -525,21 +525,6 @@ msgstr "Герой"
 msgid "Hero Cavalry"
 msgstr "Геройська кавалерія"
 
-#: simulation/templates/template_unit_hero_cavalry.xml:36
-#: simulation/templates/template_unit_hero_elephant_melee.xml:60
-#: simulation/templates/template_unit_hero_healer.xml:43
-#: simulation/templates/template_unit_hero_infantry.xml:34
-#: simulation/templates/units/brit/hero_boudicca.xml:19
-#: simulation/templates/units/han/support_minister.xml:74
-#: simulation/templates/units/kush/hero_amanirenas.xml:20
-#: simulation/templates/units/maur/hero_ashoka.xml:19
-#: simulation/templates/units/pers/hero_darius_i.xml:19
-#: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:19
-msgid ""
-"\n"
-"        "
-msgstr "\n        "
-
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:24
 msgid "Hero Cavalry Archer"
 msgstr "Герой кавалеріських стрільців"
@@ -900,6 +885,9 @@ msgid "Athenian Catafalque"
 msgstr ""
 
 #: simulation/templates/units/athen/catafalque.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Solon"
 msgstr "Солон"
 
@@ -1020,6 +1008,9 @@ msgid "Advanced"
 msgstr "Просунутий"
 
 #: simulation/templates/units/athen/cavalry_javelineer_b.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pródromos"
 msgstr "Продромос"
 
@@ -1162,6 +1153,9 @@ msgid "Greek Cavalry"
 msgstr "Грецька кавалерія"
 
 #: simulation/templates/units/athen/cavalry_swordsman_b.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hippeús"
 msgstr "Ґіппеус"
 
@@ -1170,6 +1164,9 @@ msgid "City Guard"
 msgstr "Міська варта"
 
 #: simulation/templates/units/athen/champion_infantry.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Epílektos"
 msgstr "Епілєктос"
 
@@ -1178,6 +1175,9 @@ msgid "Athenian Marine"
 msgstr "Афінська морська піхота"
 
 #: simulation/templates/units/athen/champion_marine.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Epibátēs Athēnaîos"
 msgstr "Епібатес атхенайос"
 
@@ -1186,11 +1186,20 @@ msgid "Scythian Archer"
 msgstr "Скіфський стрілець"
 
 #: simulation/templates/units/athen/champion_ranged.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Toxótēs Skythikós"
 msgstr "Токсотес скютхікос"
 
 #: simulation/templates/units/athen/hero_hippocrates.xml:12
+msgid "Hippocrates"
+msgstr ""
+
 #: simulation/templates/units/athen/hero_hippocrates.xml:13
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hippocrates"
 msgstr ""
 
@@ -1199,6 +1208,9 @@ msgid "Iphicrates"
 msgstr "Іфікрат"
 
 #: simulation/templates/units/athen/hero_iphicrates.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Iphikratēs"
 msgstr "Іфікратес"
 
@@ -1207,6 +1219,9 @@ msgid "Pericles"
 msgstr "Перікл"
 
 #: simulation/templates/units/athen/hero_pericles.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Periklēs"
 msgstr "Періклєс"
 
@@ -1215,6 +1230,9 @@ msgid "Themistocles"
 msgstr "Фемістокл"
 
 #: simulation/templates/units/athen/hero_themistocles.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Themistoklēs"
 msgstr "Тхемістоклєс"
 
@@ -1223,6 +1241,9 @@ msgid "Xenophon"
 msgstr "Ксенофонт"
 
 #: simulation/templates/units/athen/hero_xenophon.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Xenophōn"
 msgstr "Ксенофон"
 
@@ -1237,6 +1258,9 @@ msgstr "Критський найманський стрілець"
 #: simulation/templates/units/athen/infantry_marine_archer_b.xml:6
 #: simulation/templates/units/mace/infantry_archer_b.xml:8
 #: simulation/templates/units/ptol/infantry_archer_b.xml:14
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Toxótēs Krētikós"
 msgstr "Токсотес кретікос"
 
@@ -1245,6 +1269,9 @@ msgid "Thracian Peltast"
 msgstr "Фракійський пельтаст"
 
 #: simulation/templates/units/athen/infantry_javelineer_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Peltastḗs Thrâx"
 msgstr "Пельтастес тракс"
 
@@ -1253,6 +1280,9 @@ msgid "Athenian Slinger Militia"
 msgstr "Афінський пращник ополчення"
 
 #: simulation/templates/units/athen/infantry_slinger_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Psilòs Athēnaîos"
 msgstr "Псільос атхенайос"
 
@@ -1261,11 +1291,17 @@ msgid "Athenian Hoplite"
 msgstr "Афінський гопліт"
 
 #: simulation/templates/units/athen/infantry_spearman_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hoplítēs Athēnaîos"
 msgstr "Хоплітес атхенайос"
 
 #: simulation/templates/units/athen/ship_arrow.xml:8
 #: simulation/templates/units/athen/ship_ram.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Triḗrēs Athēnaía"
 msgstr "Триерес атхенайа"
 
@@ -1274,6 +1310,9 @@ msgstr "Триерес атхенайа"
 #: simulation/templates/units/ptol/ship_fishing.xml:9
 #: simulation/templates/units/sele/ship_fishing.xml:9
 #: simulation/templates/units/spart/ship_fishing.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ploîon Halieutikón"
 msgstr "Плоіон халіеутікон"
 
@@ -1282,11 +1321,17 @@ msgstr "Плоіон халіеутікон"
 #: simulation/templates/units/ptol/ship_merchant.xml:9
 #: simulation/templates/units/sele/ship_merchant.xml:9
 #: simulation/templates/units/spart/ship_merchant.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ploîon Phortēgikón"
 msgstr "Плоіон фортегікон"
 
 #: simulation/templates/units/athen/ship_scout.xml:8
 #: simulation/templates/units/spart/ship_scout.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pentēkóntoros"
 msgstr "Пентеконторос"
 
@@ -1294,6 +1339,9 @@ msgstr "Пентеконторос"
 #: simulation/templates/units/mace/siege_lithobolos_packed.xml:5
 #: simulation/templates/units/ptol/siege_lithobolos_packed.xml:5
 #: simulation/templates/units/sele/siege_lithobolos_packed.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Lithobólos"
 msgstr "Літоболос"
 
@@ -1301,6 +1349,9 @@ msgstr "Літоболос"
 #: simulation/templates/units/cart/siege_oxybeles_packed.xml:5
 #: simulation/templates/units/mace/siege_oxybeles_packed.xml:5
 #: simulation/templates/units/spart/siege_oxybeles_packed.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Oxybelḗs"
 msgstr "Оксюбелєс"
 
@@ -1309,10 +1360,16 @@ msgstr "Оксюбелєс"
 #: simulation/templates/units/ptol/siege_ram.xml:8
 #: simulation/templates/units/sele/siege_ram.xml:8
 #: simulation/templates/units/spart/siege_ram.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Krios"
 msgstr "Кріос"
 
 #: simulation/templates/units/athen/support_female_citizen.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Gýnē Athēnaía"
 msgstr "Ґюне атхенайа"
 
@@ -1333,10 +1390,16 @@ msgstr "Хірург"
 #: simulation/templates/units/ptol/support_healer_b.xml:6
 #: simulation/templates/units/sele/support_healer_b.xml:7
 #: simulation/templates/units/spart/support_healer_b.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Iatros"
 msgstr "Іатрос"
 
 #: simulation/templates/units/athen/support_slave.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Doûlos"
 msgstr "Дульос"
 
@@ -1344,6 +1407,9 @@ msgstr "Дульос"
 #: simulation/templates/units/mace/support_trader.xml:10
 #: simulation/templates/units/ptol/support_trader.xml:9
 #: simulation/templates/units/sele/support_trader.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Émporos"
 msgstr "Емпорос"
 
@@ -1352,11 +1418,17 @@ msgid "Briton Catafalque"
 msgstr ""
 
 #: simulation/templates/units/brit/catafalque.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Cassiuellaunos"
 msgstr "Кассіуеллаунос"
 
 #: simulation/templates/units/brit/cavalry_javelineer_b.xml:6
 #: simulation/templates/units/gaul/cavalry_javelineer_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Marcacos"
 msgstr "Маркакос"
 
@@ -1366,6 +1438,9 @@ msgstr "Кавалерія переслідування"
 
 #: simulation/templates/units/brit/cavalry_swordsman_b.xml:6
 #: simulation/templates/units/gaul/cavalry_swordsman_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Eporedos"
 msgstr "Епоредос"
 
@@ -1378,6 +1453,9 @@ msgid "Celtic Chariot"
 msgstr "Кельтська колісниця"
 
 #: simulation/templates/units/brit/champion_chariot.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Essedon"
 msgstr "Есседон"
 
@@ -1386,6 +1464,9 @@ msgid "Brythonic Champion"
 msgstr "Бритський чемпіон"
 
 #: simulation/templates/units/brit/champion_infantry_swordsman.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Argos"
 msgstr "Арґос"
 
@@ -1398,6 +1479,9 @@ msgstr "Боудікка"
 #: simulation/templates/units/brit/hero_boudicca.xml:14
 #: simulation/templates/units/brit/hero_boudicca_cavalry_javelineer.xml:9
 #: simulation/templates/units/brit/hero_boudicca_sword.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Boudica"
 msgstr "Боудіка"
 
@@ -1406,8 +1490,11 @@ msgid "Caratacus"
 msgstr "Каратак"
 
 #: simulation/templates/units/brit/hero_caratacos.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Caratacos"
-msgstr "Каратакос"
+msgstr ""
 
 #: simulation/templates/units/brit/hero_cunobelin.xml:8
 #: simulation/templates/units/brit/hero_cunobelin_infantry.xml:8
@@ -1416,11 +1503,17 @@ msgstr "Кунобелін"
 
 #: simulation/templates/units/brit/hero_cunobelin.xml:9
 #: simulation/templates/units/brit/hero_cunobelin_infantry.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Cunobelinos"
 msgstr "Кунобелінос"
 
 #: simulation/templates/units/brit/infantry_javelineer_b.xml:13
 #: simulation/templates/units/gaul/infantry_javelineer_b.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Adretos"
 msgstr "Адретос"
 
@@ -1430,6 +1523,9 @@ msgstr "Кельтський пращник"
 
 #: simulation/templates/units/brit/infantry_slinger_b.xml:7
 #: simulation/templates/units/gaul/infantry_slinger_b.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Talmoris"
 msgstr "Талморіс"
 
@@ -1439,36 +1535,57 @@ msgstr "Кельтський списоносець"
 
 #: simulation/templates/units/brit/infantry_spearman_b.xml:7
 #: simulation/templates/units/gaul/infantry_spearman_b.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Catucos"
 msgstr "Катукос"
 
 #: simulation/templates/units/brit/ship_arrow.xml:18
 #: simulation/templates/units/gaul/ship_arrow.xml:18
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pontos"
 msgstr "Понтос"
 
 #: simulation/templates/units/brit/ship_fire.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Briton Fire Ship"
 msgstr ""
 
 #: simulation/templates/units/brit/ship_fishing.xml:9
 #: simulation/templates/units/gaul/ship_fishing.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Longos"
 msgstr "Лонґос"
 
 #: simulation/templates/units/brit/ship_merchant.xml:9
 #: simulation/templates/units/gaul/ship_merchant.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Nauson"
-msgstr "Наусон"
+msgstr ""
 
 #: simulation/templates/units/brit/ship_scout.xml:9
 #: simulation/templates/units/gaul/ship_scout.xml:9
 #: simulation/templates/units/iber/ship_scout.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Skiff"
 msgstr ""
 
 #: simulation/templates/units/brit/siege_ram.xml:5
 #: simulation/templates/units/gaul/siege_ram.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Molton"
 msgstr "Молтон"
 
@@ -1479,22 +1596,37 @@ msgstr "Кельтська жінка"
 
 #: simulation/templates/units/brit/support_female_citizen.xml:6
 #: simulation/templates/units/gaul/support_female_citizen.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Bena"
 msgstr "Бена"
 
 #: simulation/templates/units/brit/support_healer_b.xml:8
-#: simulation/templates/units/brit/support_healer_b.xml:9
 #: simulation/templates/units/gaul/support_healer_b.xml:8
+msgid "Druid"
+msgstr "Друїд"
+
+#: simulation/templates/units/brit/support_healer_b.xml:9
 #: simulation/templates/units/gaul/support_healer_b.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Druid"
 msgstr "Друїд"
 
 #: simulation/templates/units/brit/support_trader.xml:9
 #: simulation/templates/units/gaul/support_trader.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Uogition"
 msgstr "Уоґітіон"
 
 #: simulation/templates/units/brit/war_dog.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Agrocuna"
 msgstr "Аґрокуна"
 
@@ -1503,6 +1635,9 @@ msgid "Carthaginian Catafalque"
 msgstr ""
 
 #: simulation/templates/units/cart/catafalque.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hasdrubal (Quartermaster)"
 msgstr "Гасдрубал (Інтендант)"
 
@@ -1511,14 +1646,20 @@ msgid "Numidian Cavalry"
 msgstr "Нумідійська кавалерія"
 
 #: simulation/templates/units/cart/cavalry_javelineer_b.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ḥayyāl Raḫūv Masili"
-msgstr "Хайял рахув масілі"
+msgstr ""
 
 #: simulation/templates/units/cart/cavalry_spearman_ital_b.xml:5
 msgid "Italic Cavalry"
 msgstr "Італійська кавалерія"
 
 #: simulation/templates/units/cart/cavalry_spearman_ital_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ḥayyāl Romaḥ Raḫūv"
 msgstr "Хайял ромах рахув"
 
@@ -1528,6 +1669,9 @@ msgstr "Галльська наймана кавалерія"
 
 #: simulation/templates/units/cart/cavalry_swordsman_gaul_b.xml:6
 #: simulation/templates/units/cart/cavalry_swordsman_iber_b.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ḥayyāl Ḥerev Raḫūv"
 msgstr "Хайял херев рахув"
 
@@ -1540,6 +1684,9 @@ msgid "Sacred Band Cavalry"
 msgstr "Кавалерія священного отряду"
 
 #: simulation/templates/units/cart/champion_cavalry.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Sacred Band of Astarte"
 msgstr "Священний отряд Астарти"
 
@@ -1548,6 +1695,9 @@ msgid "North African War Elephant"
 msgstr "Північноафриканський бойовий слон"
 
 #: simulation/templates/units/cart/champion_elephant.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pil Malḥamit"
 msgstr "Піл мальхаміт"
 
@@ -1556,6 +1706,9 @@ msgid "Sacred Band Infantry"
 msgstr "Піхота священного отряду"
 
 #: simulation/templates/units/cart/champion_infantry.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Sacred Band of Ba'al"
 msgstr "Священний отряд Баала"
 
@@ -1564,14 +1717,20 @@ msgid "Sacred Band Pikeman"
 msgstr "Пікінер священного отряду"
 
 #: simulation/templates/units/cart/champion_pikeman.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Mašal"
-msgstr "Машал"
+msgstr ""
 
 #: simulation/templates/units/cart/hero_hamilcar.xml:14
 msgid "Hamilcar Barca"
 msgstr "Гамількар Барка"
 
 #: simulation/templates/units/cart/hero_hamilcar.xml:15
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ḥimelqart Baraq"
 msgstr "Хімелькарт Барак"
 
@@ -1580,22 +1739,31 @@ msgid "Hannibal Barca"
 msgstr "Ганнібал Барка"
 
 #: simulation/templates/units/cart/hero_hannibal.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ḥannibaʿal Baraq"
-msgstr "Ханнібаал Барак"
+msgstr ""
 
 #: simulation/templates/units/cart/hero_maharbal.xml:8
 msgid "Maharbal"
 msgstr "Магарбал"
 
 #: simulation/templates/units/cart/hero_maharbal.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Maharbaʿal"
-msgstr "Махарбаал"
+msgstr ""
 
 #: simulation/templates/units/cart/infantry_archer_b.xml:14
 msgid "Mauritanian Archer"
 msgstr "Мавританський стрілець"
 
 #: simulation/templates/units/cart/infantry_archer_b.xml:15
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Qešet"
 msgstr "Кешет"
 
@@ -1604,6 +1772,9 @@ msgid "Iberian Mercenary Skirmisher"
 msgstr "Іберійський найманський застрільник"
 
 #: simulation/templates/units/cart/infantry_javelineer_iber_b.xml:14
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Sǝḫīr Kidōn"
 msgstr "Сехір кідон"
 
@@ -1612,6 +1783,9 @@ msgid "Balearic Slinger"
 msgstr "Балеарський пращник"
 
 #: simulation/templates/units/cart/infantry_slinger_iber_b.xml:14
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Qallāʿ Ibušimi"
 msgstr "Кальла ібушімі"
 
@@ -1620,6 +1794,9 @@ msgid "Libyan Spearman"
 msgstr "Лівійський списоносець"
 
 #: simulation/templates/units/cart/infantry_spearman_b.xml:15
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Sǝḫīr Ḥanīt"
 msgstr "Сехір ханіт"
 
@@ -1629,23 +1806,38 @@ msgid "Gallic Mercenary Swordsman"
 msgstr "Галльський найманський мечник"
 
 #: simulation/templates/units/cart/infantry_swordsman_gaul_b.xml:14
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Seḫīr Ḥerev"
 msgstr "Сехір херев"
 
 #: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:14
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Seḫīr Romaḥ"
 msgstr "Сехір ромах"
 
 #: simulation/templates/units/cart/ship_arrow.xml:9
 #: simulation/templates/units/cart/ship_ram.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Tlat-Mašōt"
 msgstr "Тлат-машот"
 
 #: simulation/templates/units/cart/ship_fishing.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Noon-Mašōt"
 msgstr "Ноон-машот"
 
 #: simulation/templates/units/cart/ship_merchant.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Seḥer"
 msgstr "Сехер"
 
@@ -1657,19 +1849,31 @@ msgid ""
 msgstr "Торгує між доками. Розмістити торговця на борту для додаткового прибутку (має +20% за кожного в гарнізоні). Збирає прибуткові водні скарби. Карфагеняни мають +25% бонусу морської торгівлі."
 
 #: simulation/templates/units/cart/ship_scout.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Du-Mašōt"
 msgstr "Ду-машот"
 
 #: simulation/templates/units/cart/ship_siege.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ḥameš-Mašōt"
 msgstr "Хамеш-машот"
 
 #: simulation/templates/units/cart/siege_ballista_packed.xml:5
 #: simulation/templates/units/rome/siege_ballista_packed.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ballista"
 msgstr "Баліста"
 
 #: simulation/templates/units/cart/support_female_citizen.xml:13
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Aštāh"
 msgstr "Аштах"
 
@@ -1678,10 +1882,16 @@ msgid "Carthaginian Woman"
 msgstr "Карфагенська жінка"
 
 #: simulation/templates/units/cart/support_healer_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Kehinit"
 msgstr "Кехініт"
 
 #: simulation/templates/units/cart/support_trader.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Mekir"
 msgstr "Мекір"
 
@@ -1690,6 +1900,9 @@ msgid "Gallic Catafalque"
 msgstr ""
 
 #: simulation/templates/units/gaul/catafalque.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ambiorix"
 msgstr "Амбіорікс"
 
@@ -1698,6 +1911,9 @@ msgid "Gallic Noble Cavalry"
 msgstr "Галльська шляхетна кавалерія"
 
 #: simulation/templates/units/gaul/champion_cavalry.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Uerouicos"
 msgstr "Уероуікос"
 
@@ -1706,14 +1922,23 @@ msgid "Naked Fanatic"
 msgstr "Голий фанатик"
 
 #: simulation/templates/units/gaul/champion_fanatic.xml:13
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Bariogaisatos"
 msgstr "Баріоґайсатос"
 
 #: simulation/templates/units/gaul/champion_infantry_swordsman.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Soliduros"
 msgstr "Солідурос"
 
 #: simulation/templates/units/gaul/champion_infantry_trumpeter.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Carnucos"
 msgstr "Карнукос"
 
@@ -1722,6 +1947,9 @@ msgid "Brennus"
 msgstr "Бренн"
 
 #: simulation/templates/units/gaul/hero_brennus.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Brennos"
 msgstr "Бреннос"
 
@@ -1732,6 +1960,9 @@ msgstr "Верцингеторикс"
 
 #: simulation/templates/units/gaul/hero_vercingetorix.xml:9
 #: simulation/templates/units/gaul/hero_vercingetorix_infantry.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Uercingetorix"
 msgstr "Уеркінґеторікс"
 
@@ -1740,10 +1971,16 @@ msgid "Viridomarus"
 msgstr "Вірідомар"
 
 #: simulation/templates/units/gaul/hero_viridomarus.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Britomaros"
 msgstr "Брітомарос"
 
 #: simulation/templates/units/gaul/ship_fire.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Gallic Fire Ship"
 msgstr ""
 
@@ -1752,26 +1989,44 @@ msgid "Han Catafalque"
 msgstr ""
 
 #: simulation/templates/units/han/catafalque.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Emperor Wǔ (Liu Che)"
 msgstr "Імператор У (Лю Че)"
 
 #: simulation/templates/units/han/cavalry_archer_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Gōng Qíbīng"
 msgstr "Ґун цібін"
 
 #: simulation/templates/units/han/cavalry_crossbowman_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Han Cavalry Crossbowman"
 msgstr "Ханьський кавалерійський арбалетник"
 
 #: simulation/templates/units/han/cavalry_spearman_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Máo Qíbīng"
 msgstr "Мао цібін"
 
 #: simulation/templates/units/han/cavalry_swordsman_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Dāo Qíbīng"
 msgstr "Дао цібін"
 
 #: simulation/templates/units/han/champion_cavalry_spearman_academy.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Wu Wei Yin Cao Cao Guard"
 msgstr "Охорона У Вей Їнь Цао Цао"
 
@@ -1780,6 +2035,9 @@ msgid "Han War Chariot"
 msgstr "Ханьська військова колісниця"
 
 #: simulation/templates/units/han/champion_chariot_academy.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Zhanche"
 msgstr "Чжаньче"
 
@@ -1788,10 +2046,16 @@ msgid "Palace Guard Archer"
 msgstr "Стрілець палацової охорони"
 
 #: simulation/templates/units/han/champion_infantry_archer_academy.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Yǔ Lín"
 msgstr "Юй лінь"
 
 #: simulation/templates/units/han/champion_infantry_crossbowman_academy.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Juezhang"
 msgstr "Цзюечжан"
 
@@ -1800,30 +2064,48 @@ msgid "Palace Guard Spearman"
 msgstr "Списоносець палацової охорони"
 
 #: simulation/templates/units/han/champion_infantry_spearman_academy.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hǔ Bēn"
 msgstr "Ху бень"
 
 #: simulation/templates/units/han/hero_han_xin.xml:9
 #: simulation/templates/units/han/hero_han_xin_horse.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hán Xìn"
 msgstr "Хань Сінь"
 
 #: simulation/templates/units/han/hero_liu_bang.xml:9
 #: simulation/templates/units/han/hero_liu_bang_horse.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Liú Bāng"
 msgstr "Лю Бан"
 
 #: simulation/templates/units/han/hero_wei_qing.xml:16
 #: simulation/templates/units/han/hero_wei_qing_chariot.xml:20
 #: simulation/templates/units/han/hero_wei_qing_horse.xml:16
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Wèi Qīng"
 msgstr "Вей Цін"
 
 #: simulation/templates/units/han/infantry_archer_b.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Shè Shǒu"
 msgstr "Ше шоу"
 
 #: simulation/templates/units/han/infantry_crossbowman_b.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Nǔ Shǒu"
 msgstr "Ну шоу"
 
@@ -1837,34 +2119,58 @@ msgid "Halberdier"
 msgstr "Алебардник"
 
 #: simulation/templates/units/han/infantry_pikeman_b.xml:21
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Jǐ Bīng"
 msgstr "Цзі бін"
 
 #: simulation/templates/units/han/infantry_spearman_b.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Máo Bīng"
 msgstr "Мао бін"
 
 #: simulation/templates/units/han/infantry_swordsman_special_b.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Dāo Bīng"
 msgstr "Дао бін"
 
 #: simulation/templates/units/han/ship_arrow.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Lóu Chuán"
 msgstr "Лоу чуань"
 
 #: simulation/templates/units/han/ship_fishing.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Yú Chuán"
 msgstr "Юй чуань"
 
 #: simulation/templates/units/han/ship_merchant.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Shāng Chuán"
 msgstr "Шан чуань"
 
 #: simulation/templates/units/han/ship_scout.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Zhàn Chuán"
 msgstr "Чжань чуань"
 
 #: simulation/templates/units/han/ship_siege.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Dà Lóu Chuán"
 msgstr "Да лоу чуань"
 
@@ -1873,26 +2179,44 @@ msgid "Mangonel"
 msgstr "Мангонель"
 
 #: simulation/templates/units/han/siege_mangonel_packed.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Tóushí Chē"
 msgstr "Тоуши че"
 
 #: simulation/templates/units/han/siege_ram.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Gōngchéng Chuí"
 msgstr "Ґунчен чуй"
 
 #: simulation/templates/units/han/siege_shoushe.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Nǔ Chē"
 msgstr "Ну че"
 
 #: simulation/templates/units/han/siege_tower.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Gōngchéng Tǎ"
 msgstr "Ґунчен та"
 
 #: simulation/templates/units/han/support_female_citizen.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Fù Nǚ"
 msgstr "Фу нюй"
 
 #: simulation/templates/units/han/support_healer_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Yīshī"
 msgstr "Їши"
 
@@ -1901,6 +2225,9 @@ msgid "Imperial Minister"
 msgstr "Імперський міністр"
 
 #: simulation/templates/units/han/support_minister.xml:42
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Guānlì"
 msgstr "Ґуаньлі"
 
@@ -1916,6 +2243,9 @@ msgid "Minister"
 msgstr "Міністр"
 
 #: simulation/templates/units/han/support_trader.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Shāngrén"
 msgstr "Шанжень"
 
@@ -1924,75 +2254,129 @@ msgid "Iberian Catafalque"
 msgstr ""
 
 #: simulation/templates/units/iber/catafalque.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Mandonius"
 msgstr "Мандоній"
 
 #: simulation/templates/units/iber/cavalry_javelineer_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Kantabriako Zaldun"
 msgstr "Кантабріако сальдун"
 
 #: simulation/templates/units/iber/cavalry_spearman_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Lantzari"
 msgstr "Ланцарі"
 
 #: simulation/templates/units/iber/champion_cavalry.xml:26
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Leial Zalduneria"
 msgstr "Лєйаль сальдунєріа"
 
 #: simulation/templates/units/iber/champion_infantry_swordsman.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Leial Ezpatari"
 msgstr "Лєйаль еспатарі"
 
 #: simulation/templates/units/iber/hero_caros.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Caros"
 msgstr "Карос"
 
 #: simulation/templates/units/iber/hero_indibil.xml:8
 #: simulation/templates/units/iber/hero_indibil_infantry.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Indibil"
 msgstr "Індібіл"
 
 #: simulation/templates/units/iber/hero_viriato.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Viriato"
 msgstr "Віріат"
 
 #: simulation/templates/units/iber/infantry_javelineer_b.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Lusitano Ezpatari"
 msgstr "Лусітано еспатарі"
 
 #: simulation/templates/units/iber/infantry_slinger_b.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Habailari"
 msgstr "Абайларі"
 
 #: simulation/templates/units/iber/infantry_spearman_b.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ezkutari"
 msgstr "Ескутарі"
 
 #: simulation/templates/units/iber/infantry_swordsman_b.xml:16
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ezpatari"
 msgstr "Еспатарі"
 
 #: simulation/templates/units/iber/ship_arrow.xml:18
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ponti"
 msgstr "Понті"
 
 #: simulation/templates/units/iber/ship_fire.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Iberian Fire Ship"
 msgstr "Іберійський брандер"
 
 #: simulation/templates/units/iber/ship_fishing.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Arrantza Ontzi"
 msgstr "Аранца онці"
 
 #: simulation/templates/units/iber/ship_merchant.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Merkataritza Itsasontzi"
 msgstr "Мєркатаріца іцасонці"
 
 #: simulation/templates/units/iber/siege_ram.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ahariburu"
 msgstr "Аарібуру"
 
 #: simulation/templates/units/iber/support_female_citizen.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Emazteki"
 msgstr "Емастєкі"
 
@@ -2005,10 +2389,16 @@ msgid "Priestess of Ataekina"
 msgstr "Жриця Атегіни"
 
 #: simulation/templates/units/iber/support_healer_b.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Emakumezko Apaiz de Ataekina"
-msgstr "Емакумєско апайс дє Атєкіна"
+msgstr ""
 
 #: simulation/templates/units/iber/support_trader.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Merkatari"
 msgstr "Мєркатарі"
 
@@ -2017,10 +2407,16 @@ msgid "Kushite Catafalque"
 msgstr ""
 
 #: simulation/templates/units/kush/catafalque.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Shanakdakheto"
 msgstr "Шанакдакето"
 
 #: simulation/templates/units/kush/cavalry_javelineer_b.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "iry hr ssmwtt"
 msgstr "Ірі хер сесмутет"
 
@@ -2033,6 +2429,9 @@ msgid "Blemmye Desert Raider"
 msgstr "Блеммійський пустельний переслідувач"
 
 #: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:18
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "nhw Bulahau gml"
 msgstr "Неху булахау ґемел"
 
@@ -2046,6 +2445,9 @@ msgid "Meroitic Heavy Cavalry"
 msgstr "Мероїтська важка кавалерія"
 
 #: simulation/templates/units/kush/cavalry_spearman_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Htr"
 msgstr "Хетер"
 
@@ -2054,6 +2456,9 @@ msgid "Noble Cavalry"
 msgstr "Шляхетна кавалерія"
 
 #: simulation/templates/units/kush/champion_cavalry.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Htr Msʿ n mh-ib"
 msgstr "Хетер меса ні мех-іб"
 
@@ -2062,6 +2467,9 @@ msgid "Meroitic War Elephant"
 msgstr "Мероїтський бойовий слон"
 
 #: simulation/templates/units/kush/champion_elephant.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Abore ʿhȝ"
 msgstr "Аборе аха"
 
@@ -2070,6 +2478,9 @@ msgid "Napatan Temple Guard"
 msgstr "Напатанський храмовий охоронець"
 
 #: simulation/templates/units/kush/champion_infantry_amun.xml:13
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "rs ʿImn"
 msgstr "Рес Амен"
 
@@ -2078,6 +2489,9 @@ msgid "Meroitic Temple Guard"
 msgstr "Мероїтська храмова охорона"
 
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "rs ʿIprmk"
 msgstr "Рес Аперемек"
 
@@ -2086,6 +2500,9 @@ msgid "Noble Archer"
 msgstr "Шляхетний стрілець"
 
 #: simulation/templates/units/kush/champion_infantry_archer.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hry pdty"
 msgstr "Хері педеті"
 
@@ -2096,6 +2513,9 @@ msgstr "Аманірена"
 
 #: simulation/templates/units/kush/hero_amanirenas.xml:15
 #: simulation/templates/units/kush/hero_amanirenas_infantry.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Amnirense qore li kdwe li"
 msgstr "Амніренсе коре лі кдве лі"
 
@@ -2104,10 +2524,16 @@ msgid "Arakamani"
 msgstr "Ергамен"
 
 #: simulation/templates/units/kush/hero_arakamani.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "I͗rk-k-I͗mn H̱nm-ı͗-Rʿ"
 msgstr "Арек-ке-Амен Хенем-а-Ре"
 
 #: simulation/templates/units/kush/hero_harsiotef.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ḥr-sȝ-it.f Sȝ-mrı͗-I͗mn"
 msgstr "Хер-са-ітеф Са-мера-Амен"
 
@@ -2116,6 +2542,9 @@ msgid "Nastasen"
 msgstr "Настасен"
 
 #: simulation/templates/units/kush/hero_nastasen.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "N-ı͗-s-tȝ-s-nn Kȝ-ʿnḫ-Rʿ"
 msgstr "Ні-а-се-та-се-нен Ка-анх-Ре"
 
@@ -2124,14 +2553,20 @@ msgid "Nubian Archer"
 msgstr "Нубійський стрілець"
 
 #: simulation/templates/units/kush/infantry_archer_b.xml:16
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pdty Nhsyw"
-msgstr "Педеті нехесіу"
+msgstr ""
 
 #: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:15
 msgid "Noba Skirmisher"
 msgstr "Застрільник ноба"
 
 #: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:16
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "nhw ʿhȝw Noba"
 msgstr "Неху ахау ноба"
 
@@ -2140,6 +2575,9 @@ msgid "Noba Maceman"
 msgstr "Булавоносець ноба"
 
 #: simulation/templates/units/kush/infantry_maceman_merc_b.xml:16
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "nhw Noba"
 msgstr "Неху ноба"
 
@@ -2148,6 +2586,9 @@ msgid "Meroitic Pikeman"
 msgstr "Мероїтський пікінер"
 
 #: simulation/templates/units/kush/infantry_pikeman_b.xml:16
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "siȝwrd"
 msgstr "Сіауред"
 
@@ -2156,6 +2597,9 @@ msgid "Nubian Spearman"
 msgstr "Нубійський списоносець"
 
 #: simulation/templates/units/kush/infantry_spearman_b.xml:16
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "iry-rdwy Nhsyw"
 msgstr "Ірі-редуі нехесіу"
 
@@ -2164,14 +2608,23 @@ msgid "Meroitic Swordsman"
 msgstr "Мероїтський мечник"
 
 #: simulation/templates/units/kush/infantry_swordsman_b.xml:16
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "knw hps"
 msgstr "Кену хепес"
 
 #: simulation/templates/units/kush/ship_arrow.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "shry ʿȝ"
 msgstr "Сехері аа"
 
 #: simulation/templates/units/kush/ship_fishing.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Whʿ-rmw"
 msgstr "Уеха-рему"
 
@@ -2180,6 +2633,9 @@ msgid "Nile Trading Barge"
 msgstr "Нільський торгівельний баркас"
 
 #: simulation/templates/units/kush/ship_merchant.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Dȝy sbt"
 msgstr "Даі себет"
 
@@ -2188,10 +2644,16 @@ msgid "Kushite Siege Tower"
 msgstr "Кушитська облогова вежа"
 
 #: simulation/templates/units/kush/siege_tower.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "iwn n ms"
 msgstr "Іун ні мес"
 
 #: simulation/templates/units/kush/support_female_citizen.xml:14
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Shmt"
 msgstr "Сехемет"
 
@@ -2204,6 +2666,9 @@ msgid "Priest"
 msgstr "Жрець"
 
 #: simulation/templates/units/kush/support_healer_b.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "wʿb nsw"
 msgstr "Уаб несу"
 
@@ -2212,6 +2677,9 @@ msgid "Nilotic Merchant"
 msgstr "Нілотський купець"
 
 #: simulation/templates/units/kush/support_trader.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "rmt sbt"
 msgstr "Ремет себет"
 
@@ -2220,6 +2688,9 @@ msgid "Macedonian Catafalque"
 msgstr ""
 
 #: simulation/templates/units/mace/catafalque.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Philip V"
 msgstr "Філіпп V"
 
@@ -2228,6 +2699,9 @@ msgid "Odrysian Skirmish Cavalry"
 msgstr "Одриська застрільницька кавалерія"
 
 #: simulation/templates/units/mace/cavalry_javelineer_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hippakontistḕs Odrysós"
 msgstr "Хіппаконтістес одрісос"
 
@@ -2236,6 +2710,9 @@ msgid "Thessalian Lancer"
 msgstr "Фесалійський списник"
 
 #: simulation/templates/units/mace/cavalry_spearman_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Xystophóros Thessalikós"
 msgstr "Ксістофорос тессалікос"
 
@@ -2245,10 +2722,16 @@ msgid "Companion Cavalry"
 msgstr "Кавалерія супроводу"
 
 #: simulation/templates/units/mace/champion_cavalry.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hetaîros"
 msgstr "Хетаірос"
 
 #: simulation/templates/units/mace/champion_infantry_crossbowman.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Gastraphetophoros"
 msgstr "Гастрафетофорос"
 
@@ -2257,14 +2740,23 @@ msgid "Macedonian Shield Bearer"
 msgstr "Македонський щитоносець"
 
 #: simulation/templates/units/mace/champion_infantry_spearman.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hypaspistḗs"
 msgstr "Хіпаспістес"
 
 #: simulation/templates/units/mace/champion_infantry_spearman_02.xml:15
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hypaspistḗs Argyraspídi"
 msgstr "Хіпаспістес аргіраспіді"
 
 #: simulation/templates/units/mace/champion_infantry_swordsman.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Rhomphaiaphoros"
 msgstr "Ромфаіафорос"
 
@@ -2273,6 +2765,9 @@ msgid "Alexander III the Great"
 msgstr "Александр III Великий"
 
 #: simulation/templates/units/mace/hero_alexander_iii.xml:23
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Alexandros ho Megas"
 msgstr "Александрос хо Мегас"
 
@@ -2285,6 +2780,9 @@ msgid "Craterus"
 msgstr "Кратер"
 
 #: simulation/templates/units/mace/hero_craterus.xml:15
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Krateros"
 msgstr "Кратерос"
 
@@ -2293,6 +2791,9 @@ msgid "Demetrius I the Besieger"
 msgstr "Деметрій I Обложник"
 
 #: simulation/templates/units/mace/hero_demetrius_i.xml:15
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Dēmētrios Poliorkētēs"
 msgstr "Деметріос Поліоркетес"
 
@@ -2303,6 +2804,9 @@ msgstr "Філіпп II Македонський"
 
 #: simulation/templates/units/mace/hero_philip_ii.xml:10
 #: simulation/templates/units/mace/hero_philip_ii_pike.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Philippos B' ho Makedōn"
 msgstr "Філіппос B' хо Македон"
 
@@ -2311,6 +2815,9 @@ msgid "Pyrrhus I of Epirus"
 msgstr "Пірр I Епірський"
 
 #: simulation/templates/units/mace/hero_pyrrhus_i.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pyrrhos ho Epeiros"
 msgstr "Піррос хо Епеірос"
 
@@ -2319,6 +2826,9 @@ msgid "Agrianian Peltast"
 msgstr "Пельтаст агріанів"
 
 #: simulation/templates/units/mace/infantry_javelineer_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Peltastḗs Agrías"
 msgstr "Пельтастес агріас"
 
@@ -2327,6 +2837,9 @@ msgid "Foot Companion"
 msgstr "Піший супроводник"
 
 #: simulation/templates/units/mace/infantry_pikeman_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pezétairos"
 msgstr "Пезетаірос"
 
@@ -2335,29 +2848,47 @@ msgid "Rhodian Slinger"
 msgstr "Родоський пращник"
 
 #: simulation/templates/units/mace/infantry_slinger_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Sphendonḗtēs Rhódios"
 msgstr "Сфендонетес родіос"
 
 #: simulation/templates/units/mace/ship_arrow.xml:10
 #: simulation/templates/units/ptol/ship_arrow.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Tetrērēs"
 msgstr ""
 
 #: simulation/templates/units/mace/ship_ram.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Triḗrēs Makedonikḗ"
 msgstr "Трірес Македоніке"
 
 #: simulation/templates/units/mace/ship_scout.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hemiolos"
 msgstr "Хеміолос"
 
 #: simulation/templates/units/mace/siege_tower.xml:5
 #: simulation/templates/units/ptol/siege_tower.xml:5
 #: simulation/templates/units/sele/siege_tower.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Helépolis"
 msgstr "Хелеполіс"
 
 #: simulation/templates/units/mace/support_female_citizen.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Gýnē Makedonikḗ"
 msgstr "Ґюне македоніке"
 
@@ -2370,8 +2901,10 @@ msgid "Mauryan Catafalque"
 msgstr ""
 
 #: simulation/templates/units/maur/catafalque.xml:10
-#: simulation/templates/units/maur/hero_bindusara_infantry.xml:5
 #: simulation/templates/units/maur/hero_bindusara_infantry.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Bindusara"
 msgstr "Біндусара"
 
@@ -2380,14 +2913,20 @@ msgid "Indian Light Cavalry"
 msgstr "Індійська легка кавалерія"
 
 #: simulation/templates/units/maur/cavalry_javelineer_b.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ashwarohi"
-msgstr "Ашварохі"
+msgstr ""
 
 #: simulation/templates/units/maur/cavalry_swordsman_b.xml:6
 msgid "Indian Raiding Cavalry"
 msgstr "Індійська кавалерія переслідування"
 
 #: simulation/templates/units/maur/cavalry_swordsman_b.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Aśvārohagaṇaḥ"
 msgstr "Ашварохаганах"
 
@@ -2396,6 +2935,9 @@ msgid "War Chariot"
 msgstr "Військова колісниця"
 
 #: simulation/templates/units/maur/champion_chariot.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Rath"
 msgstr "Ратх"
 
@@ -2405,6 +2947,9 @@ msgid "Indian War Elephant"
 msgstr "Індійський бойовий слон"
 
 #: simulation/templates/units/maur/champion_elephant.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Gajendra"
 msgstr "Гаджендра"
 
@@ -2413,6 +2958,9 @@ msgid "Warrior"
 msgstr "Воїн"
 
 #: simulation/templates/units/maur/champion_infantry_maceman.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Yōddha"
 msgstr "Йоддха"
 
@@ -2422,6 +2970,9 @@ msgstr "Дівчина-охоронниця"
 
 #: simulation/templates/units/maur/champion_maiden.xml:7
 #: simulation/templates/units/maur/champion_maiden_archer.xml:21
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Visha Kanya"
 msgstr "Віша кан'я"
 
@@ -2430,6 +2981,9 @@ msgid "Maiden Guard Archer"
 msgstr "Стрілець дівочої охорони"
 
 #: simulation/templates/units/maur/elephant_archer_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Vachii Gaja"
 msgstr "Вачіі гаджа"
 
@@ -2440,8 +2994,11 @@ msgstr "Ашока Великий"
 
 #: simulation/templates/units/maur/hero_ashoka.xml:13
 #: simulation/templates/units/maur/hero_ashoka_infantry.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Aśoka Devānāmpriya"
-msgstr "Ашока Деванампрія"
+msgstr ""
 
 #: simulation/templates/units/maur/hero_ashoka_infantry.xml:11
 msgid ""
@@ -2449,18 +3006,31 @@ msgid ""
 "during Ashoka's lifetime."
 msgstr "Особливість героя: \"Едикти Ашоки\" – колони едикту Ашоки можуть бути споруджені під час життя Ашоки."
 
+#: simulation/templates/units/maur/hero_bindusara_infantry.xml:5
+msgid "Bindusara"
+msgstr "Біндусара"
+
 #: simulation/templates/units/maur/hero_chanakya.xml:9
 msgid "Acharya Chanakya"
 msgstr "Ачар'я Чанак'я"
 
 #: simulation/templates/units/maur/hero_chanakya.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Acharya Chāṇakya"
 msgstr "Ачар'я Чанак'я"
 
 #: simulation/templates/units/maur/hero_chandragupta.xml:9
-#: simulation/templates/units/maur/hero_chandragupta.xml:10
 #: simulation/templates/units/maur/hero_chandragupta_infantry.xml:5
+msgid "Chandragupta Maurya"
+msgstr "Чандраґупта Маур'я"
+
+#: simulation/templates/units/maur/hero_chandragupta.xml:10
 #: simulation/templates/units/maur/hero_chandragupta_infantry.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Chandragupta Maurya"
 msgstr "Чандраґупта Маур'я"
 
@@ -2473,6 +3043,9 @@ msgid "Longbowman"
 msgstr "Воїн з довгим луком"
 
 #: simulation/templates/units/maur/infantry_archer_b.xml:13
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Dhanurdhar"
 msgstr "Дханурдхар"
 
@@ -2481,6 +3054,9 @@ msgid "Bamboo Spearman"
 msgstr "Воїн з бамбуковим списом"
 
 #: simulation/templates/units/maur/infantry_spearman_b.xml:13
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Kauntika"
 msgstr "Каунтіка"
 
@@ -2489,11 +3065,17 @@ msgid "Indian Swordsman"
 msgstr "Індійський мечник"
 
 #: simulation/templates/units/maur/infantry_swordsman_b.xml:18
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Khadagdhari"
 msgstr "Кхадагдхарі"
 
 #: simulation/templates/units/maur/ship_arrow.xml:18
 #: simulation/templates/units/maur/ship_scout.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Yudhpot"
 msgstr "Юдхпот"
 
@@ -2502,6 +3084,9 @@ msgid "Fisherman"
 msgstr "Рибалка"
 
 #: simulation/templates/units/maur/ship_fishing.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Matsyapalak"
 msgstr "Матс'япалак"
 
@@ -2510,14 +3095,23 @@ msgid "Trading Ship"
 msgstr "Торгівельний корабель"
 
 #: simulation/templates/units/maur/ship_merchant.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Vanijyik Nauka"
-msgstr "Ванідж'їк наука"
+msgstr ""
 
 #: simulation/templates/units/maur/support_elephant.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Karmākara Gaja"
 msgstr "Кармакара гаджа"
 
 #: simulation/templates/units/maur/support_female_citizen.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Naari"
 msgstr "Наарі"
 
@@ -2530,12 +3124,18 @@ msgid "Brahmin Priest"
 msgstr "Брахманський жрець"
 
 #: simulation/templates/units/maur/support_healer_b.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Brāhmaṇa Pujari"
 msgstr "Брахмана пуджарі"
 
 #: simulation/templates/units/maur/support_trader.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Vaishya"
-msgstr "Вайш'я"
+msgstr ""
 
 #: simulation/templates/units/mace/champion_infantry_swordsman.xml:5
 #: simulation/templates/units/merc_black_cloak.xml:5
@@ -2552,6 +3152,9 @@ msgid "Thracian Black Cloak"
 msgstr "Фракійський чорний плащ"
 
 #: simulation/templates/units/merc_black_cloak.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Rhomphaiophoros"
 msgstr "Ромфайофорос"
 
@@ -2560,6 +3163,9 @@ msgid "Armored Swordsman"
 msgstr "Броньований мечник"
 
 #: simulation/templates/units/merc_thorakites.xml:13
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Thōrakitēs"
 msgstr "Торакітес"
 
@@ -2568,10 +3174,16 @@ msgid "Heavy Skirmisher"
 msgstr "Важкий застрільник"
 
 #: simulation/templates/units/merc_thureophoros.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Thyreophoros"
 msgstr "Тхюреофорос"
 
 #: simulation/templates/units/noldor_warship.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Mankar Cirya"
 msgstr "Манкар кір'я"
 
@@ -2580,6 +3192,9 @@ msgid "Persian Apple Bearer"
 msgstr "Перський носій яблук"
 
 #: simulation/templates/units/pers/arstibara.xml:14
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Arštibara"
 msgstr "Арштібара"
 
@@ -2588,6 +3203,9 @@ msgid "Persian Catafalque"
 msgstr ""
 
 #: simulation/templates/units/pers/catafalque.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Artaxšaçā"
 msgstr "Артахшасса"
 
@@ -2596,6 +3214,9 @@ msgid "Parthian Horse Archer"
 msgstr "Парфянський кінний стрілець"
 
 #: simulation/templates/units/pers/cavalry_archer_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Asabāra Parθava"
 msgstr "Асабара партава"
 
@@ -2604,6 +3225,9 @@ msgid "Hyrcanian Cavalry"
 msgstr "Гирканська кавалерія"
 
 #: simulation/templates/units/pers/cavalry_axeman_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Asabāra Varkaniya"
 msgstr "Асабара варканія"
 
@@ -2612,6 +3236,9 @@ msgid "Median Light Cavalry"
 msgstr "Мідійська легка кавалерія"
 
 #: simulation/templates/units/pers/cavalry_javelineer_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Asabāra Māda"
 msgstr "Асабара мада"
 
@@ -2620,6 +3247,9 @@ msgid "Cappadocian Cavalry"
 msgstr "Каппадокська кавалерія"
 
 #: simulation/templates/units/pers/cavalry_spearman_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Asabāra Katpatuka"
 msgstr "Асабара катпатука"
 
@@ -2629,6 +3259,9 @@ msgstr "Бактрійський важкий списник"
 
 #: simulation/templates/units/pers/champion_cavalry.xml:7
 #: simulation/templates/units/pers/champion_cavalry_archer.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Asabāra Baxtriš"
 msgstr "Асабара бахтріш"
 
@@ -2641,10 +3274,16 @@ msgid "Babylonian Scythed Chariot"
 msgstr "Вавилонська колісниця з косами"
 
 #: simulation/templates/units/pers/champion_chariot.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Raθa Bābiruviya"
 msgstr "Рата бабірувія"
 
 #: simulation/templates/units/pers/champion_elephant.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pila Hinduya"
 msgstr "Піла хіндуя"
 
@@ -2655,6 +3294,9 @@ msgstr "Перський безсмертний"
 
 #: simulation/templates/units/pers/champion_infantry.xml:18
 #: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:17
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Anušiya"
 msgstr "Анушія"
 
@@ -2676,6 +3318,9 @@ msgid "Cyrus II The Great"
 msgstr "Кир II Великий"
 
 #: simulation/templates/units/pers/hero_cyrus_ii.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Kuruš"
 msgstr "Куруш"
 
@@ -2684,6 +3329,9 @@ msgid "Darius I the Great"
 msgstr "Дарій I Великий"
 
 #: simulation/templates/units/pers/hero_darius_i.xml:14
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Dārayavahuš"
 msgstr "Дараявахуш"
 
@@ -2694,6 +3342,9 @@ msgstr "Ксеркс I"
 
 #: simulation/templates/units/pers/hero_xerxes_i.xml:10
 #: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:14
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Xšayāršā"
 msgstr "Хшаярша"
 
@@ -2702,6 +3353,9 @@ msgid "Sogdian Archer"
 msgstr "Согдійський стрілець"
 
 #: simulation/templates/units/pers/infantry_archer_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Θanuvaniya Suguda"
 msgstr "Тануванія сугуда"
 
@@ -2710,6 +3364,9 @@ msgid "Lydian Auxiliary"
 msgstr "Лідійський ауксіларій"
 
 #: simulation/templates/units/pers/infantry_javelineer_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pastiš Spardiya"
 msgstr "Пастіш спардія"
 
@@ -2718,6 +3375,9 @@ msgid "Shield Bearer"
 msgstr "Щитоносець"
 
 #: simulation/templates/units/pers/infantry_spearman_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Sparabara"
 msgstr "Спарабара"
 
@@ -2726,6 +3386,9 @@ msgid "Cardaces Hoplite"
 msgstr "Гопліт кардаків"
 
 #: simulation/templates/units/pers/kardakes_hoplite.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hoplites Kardakes"
 msgstr "Хоплітес кардакес"
 
@@ -2734,15 +3397,24 @@ msgid "Cardaces Skirmisher"
 msgstr "Застрільник кардаків"
 
 #: simulation/templates/units/pers/kardakes_skirmisher.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Peltastes Kardakes"
 msgstr "Пелтастес кардакес"
 
 #: simulation/templates/units/pers/ship_arrow.xml:10
 #: simulation/templates/units/pers/ship_ram.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hamaraniyanava Vazarka"
 msgstr "Хамараніянава вазарка"
 
 #: simulation/templates/units/pers/ship_fishing.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Masiyakara"
 msgstr "Масіякара"
 
@@ -2751,22 +3423,34 @@ msgid "Ionian Trade Ship"
 msgstr "Іонійський торгівельний корабель"
 
 #: simulation/templates/units/pers/ship_merchant.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Nauš Yauna"
 msgstr "Науш яуна"
 
 #: simulation/templates/units/pers/ship_scout.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hamaraniyanava"
-msgstr "Хамараніянава"
+msgstr ""
 
 #: simulation/templates/units/pers/siege_ram.xml:20
 msgid "Assyrian Siege Ram"
 msgstr "Ассирійський облоговий таран"
 
 #: simulation/templates/units/pers/siege_ram.xml:21
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hamaranakuba Aθuriya"
 msgstr "Хамаранакуба атурія"
 
 #: simulation/templates/units/pers/support_female_citizen.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Banu Miyanrudani"
 msgstr "Бану міянрудані"
 
@@ -2779,6 +3463,9 @@ msgid "Median Magus"
 msgstr "Мідійський маг"
 
 #: simulation/templates/units/pers/support_healer_b.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Maguš Māda"
 msgstr "Магуш мада"
 
@@ -2787,6 +3474,9 @@ msgid "Aramaean Merchant"
 msgstr "Арамейський купець"
 
 #: simulation/templates/units/pers/support_trader.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Tamkarum Arami"
 msgstr "Тамкарум арамі"
 
@@ -2797,10 +3487,16 @@ msgid ""
 msgstr "Торгує ресурсами між Вашими власними ринками та ринками Ваших союзників. Перси мають +25% бонусу сухопутної торгівлі."
 
 #: simulation/templates/units/pirates/ship_arrow.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Rhodian Marauder"
 msgstr ""
 
 #: simulation/templates/units/pirates/ship_merchant.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Blockade Runner"
 msgstr ""
 
@@ -2813,6 +3509,9 @@ msgid "Destroy this ship to loot its large amount of treasure."
 msgstr ""
 
 #: simulation/templates/units/pirates/ship_scout.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Cilician Pirate Ship"
 msgstr ""
 
@@ -2822,6 +3521,9 @@ msgid "Machine Guns"
 msgstr "Кулемети"
 
 #: simulation/templates/units/plane.xml:47
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "P-51 Mustang"
 msgstr "P-51 Мустанг"
 
@@ -2834,6 +3536,9 @@ msgid "Ptolemaic Catafalque"
 msgstr ""
 
 #: simulation/templates/units/ptol/catafalque.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ptolemy III Euergetes (Benefactor)"
 msgstr "Птолемей III Евергет (Благодійник)"
 
@@ -2842,6 +3547,9 @@ msgid "Nabataean Camel Archer"
 msgstr "Набатейський стрілець на верблюді"
 
 #: simulation/templates/units/ptol/cavalry_archer_b.xml:18
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Mutsābiq Gamal Nabatu"
 msgstr "Муцабік гамал набату"
 
@@ -2850,6 +3558,9 @@ msgid "Tarantine Settler Cavalry"
 msgstr "Кавалерія тарентійських поселенців"
 
 #: simulation/templates/units/ptol/cavalry_javelineer_merc_b.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hippeús Tarantînos"
 msgstr "Хіппеус тарантінос"
 
@@ -2858,6 +3569,9 @@ msgid "Macedonian Settler Cavalry"
 msgstr "Кавалерія македонських поселенців"
 
 #: simulation/templates/units/ptol/cavalry_spearman_merc_b.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hippeús Makedonikós"
 msgstr "Хіппеус македонікос"
 
@@ -2866,6 +3580,9 @@ msgid "Royal Guard Cavalry"
 msgstr "Кавалерія царської охорони"
 
 #: simulation/templates/units/ptol/champion_cavalry.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ágēma Basiléōs"
 msgstr "Агема басілеос"
 
@@ -2874,6 +3591,9 @@ msgid "Towered War Elephant"
 msgstr "Бойовий слон із вежею"
 
 #: simulation/templates/units/ptol/champion_elephant.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Polémou Eléphantos"
 msgstr "Полемоу елефантос"
 
@@ -2882,6 +3602,9 @@ msgid "Royal Guard Infantry"
 msgstr "Піхота царської охорони"
 
 #: simulation/templates/units/ptol/champion_infantry_pikeman.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Phalangitès Agema"
 msgstr "Фалангітес агема"
 
@@ -2890,6 +3613,9 @@ msgid "Juggernaut"
 msgstr "Джаггернаут"
 
 #: simulation/templates/units/ptol/champion_juggernaut.xml:25
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Tessarakonterēs"
 msgstr "Тессараконтерес"
 
@@ -2898,6 +3624,9 @@ msgid "Cleopatra VII"
 msgstr "Клеопатра VII"
 
 #: simulation/templates/units/ptol/hero_cleopatra_vii.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Kleopatra H' Philopatōr"
 msgstr "Клеопатра H' Філопатор"
 
@@ -2906,6 +3635,9 @@ msgid "Ptolemy I"
 msgstr "Птолемей I"
 
 #: simulation/templates/units/ptol/hero_ptolemy_i.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ptolemaios A' Sōter"
 msgstr "Птолемаіос A' Сотер"
 
@@ -2914,6 +3646,9 @@ msgid "Ptolemy IV"
 msgstr "Птолемей IV"
 
 #: simulation/templates/units/ptol/hero_ptolemy_iv.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ptolemaios D' Philopatōr"
 msgstr "Птолемаіос D' Філопатор"
 
@@ -2922,6 +3657,9 @@ msgid "Mercenary Thureos Skirmisher"
 msgstr "Найманський застрільник з туреосом"
 
 #: simulation/templates/units/ptol/infantry_javelineer_b.xml:14
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Thureophóros Akrobolistḗs"
 msgstr "Туреофорос акроболістес"
 
@@ -2930,6 +3668,9 @@ msgid "Egyptian Pikeman"
 msgstr "Єгипетський пікінер"
 
 #: simulation/templates/units/ptol/infantry_pikeman_b.xml:14
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Phalaggomákhimos"
 msgstr "Фалаггомахімос"
 
@@ -2938,6 +3679,9 @@ msgid "Judean Slinger"
 msgstr "Юдейський пращник"
 
 #: simulation/templates/units/ptol/infantry_slinger_b.xml:14
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hebraikós Sphendonḗtēs"
 msgstr "Хебраікос сфендонетес"
 
@@ -2946,32 +3690,53 @@ msgid "Mercenary Thureos Spearman"
 msgstr "Найманський списоносець з туреосом"
 
 #: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:14
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Thureophóros Misthophóros"
 msgstr "Туреофорос містофорос"
 
 #: simulation/templates/units/ptol/infantry_swordsman_merc_b.xml:13
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Gallikós Mistophorós"
 msgstr "Галлікос містофорос"
 
 #: simulation/templates/units/ptol/ship_ram.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pentērēs"
 msgstr ""
 
 #: simulation/templates/units/ptol/ship_scout.xml:9
 #: simulation/templates/units/sele/ship_scout.xml:10
 #: simulation/templates/units/spart/ship_arrow.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Dierēs"
 msgstr "Діерес"
 
 #: simulation/templates/units/ptol/ship_siege.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Octērēs"
 msgstr ""
 
 #: simulation/templates/units/ptol/siege_polybolos_packed.xml:19
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Polybolos"
 msgstr "Поліболос"
 
 #: simulation/templates/units/ptol/support_female_citizen.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Gýnē Aigýptia"
 msgstr "Ґюне аґюптіа"
 
@@ -2984,6 +3749,9 @@ msgid "Roman Catafalque"
 msgstr ""
 
 #: simulation/templates/units/rome/catafalque.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Lūcius Iūnius Brūtus"
 msgstr "Люціус Йуніус Брутус"
 
@@ -2992,6 +3760,9 @@ msgid "Auxiliary Cavalry"
 msgstr ""
 
 #: simulation/templates/units/rome/cavalry_auxiliary_b.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Eques Alaris"
 msgstr ""
 
@@ -3004,6 +3775,9 @@ msgid "Allied Cavalry"
 msgstr "Союзна кавалерія"
 
 #: simulation/templates/units/rome/cavalry_javelineer_b.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Eques Socius"
 msgstr "Еквес соціус"
 
@@ -3012,10 +3786,16 @@ msgid "Roman Cavalry"
 msgstr "Римська кавалерія"
 
 #: simulation/templates/units/rome/cavalry_spearman_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Eques Rōmānus"
 msgstr "Еквес романус"
 
 #: simulation/templates/units/rome/champion_cavalry.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Eques Cōnsulāris"
 msgstr "Еквес консуляріс"
 
@@ -3033,6 +3813,9 @@ msgid "Gladiator Spearman"
 msgstr "Списоносець-гладіатор"
 
 #: simulation/templates/units/rome/champion_infantry_spear_gladiator.xml:21
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hoplomachus"
 msgstr "Гопльомахус"
 
@@ -3041,6 +3824,9 @@ msgid "Gladiator Swordsman"
 msgstr "Мечник-гладіатор"
 
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:21
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Murmillo"
 msgstr "Мурмілльо"
 
@@ -3049,6 +3835,9 @@ msgid "Italic Heavy Infantry"
 msgstr "Італійський важкий піхотинець"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman.xml:13
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Extrāōrdinārius"
 msgstr "Екстраордінаріус"
 
@@ -3061,6 +3850,9 @@ msgstr "Маріанський легіонер"
 #: simulation/templates/units/rome/champion_infantry_swordsman_02.xml:5
 #: simulation/templates/units/rome/champion_infantry_swordsman_03.xml:12
 #: simulation/templates/units/rome/infantry_legionary.xml:22
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Legiōnārius"
 msgstr "Лєґіонаріус"
 
@@ -3071,6 +3863,9 @@ msgstr "Римський центуріон"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:15
 #: simulation/templates/units/rome/champion_infantry_swordsman_centurion.xml:22
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Centuriō"
 msgstr "Центуріо"
 
@@ -3079,6 +3874,9 @@ msgid "Praetorian Guard"
 msgstr "Преторіанська гвардія"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_05.xml:15
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Praetorianus"
 msgstr "Преторіанус"
 
@@ -3094,16 +3892,25 @@ msgstr ""
 
 #: simulation/templates/units/rome/hero_marcellus.xml:10
 #: simulation/templates/units/rome/hero_marcellus_infantry.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Mārcus Claudius Mārcellus"
 msgstr "Маркус Клявдіус Марцеллюс"
 
 #: simulation/templates/units/rome/hero_maximus.xml:9
 #: simulation/templates/units/rome/hero_maximus_infantry.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Quīntus Fabius Maximus Verrūcōsus Cūnctātor"
 msgstr "Квінтус Фабіус Максімус Веррукозус Кунктатор"
 
 #: simulation/templates/units/rome/hero_scipio.xml:9
 #: simulation/templates/units/rome/hero_scipio_infantry.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pūblius Cornēlius Scīpiō Āfricānus"
 msgstr "Публіус Корнеліус Сціпіо Афріканус"
 
@@ -3112,6 +3919,9 @@ msgid "Legionary Skirmisher"
 msgstr ""
 
 #: simulation/templates/units/rome/infantry_antesignanus.xml:22
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Antesignānus"
 msgstr ""
 
@@ -3125,6 +3935,9 @@ msgid "Roman Skirmisher"
 msgstr "Римський застрільник"
 
 #: simulation/templates/units/rome/infantry_javelineer_b.xml:14
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Vēles"
 msgstr "Велєс"
 
@@ -3133,6 +3946,9 @@ msgid "Veteran Spearman"
 msgstr "Досвідчений списоносець"
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:20
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Triārius"
 msgstr "Тріаріус"
 
@@ -3150,6 +3966,9 @@ msgid "Roman Swordsman"
 msgstr "Римський мечник"
 
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:20
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hastātus"
 msgstr "Гастатус"
 
@@ -3158,35 +3977,59 @@ msgid "Elite rank Swordsmen can be promoted to champion Centurions."
 msgstr ""
 
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:20
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Servus"
 msgstr "Сервус"
 
 #: simulation/templates/units/rome/ship_arrow.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Trirēmis Rōmāna"
 msgstr "Тріреміс романа"
 
 #: simulation/templates/units/rome/ship_fishing.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Nāvicula Piscātōria"
 msgstr "Навікуля піскаторіа"
 
 #: simulation/templates/units/rome/ship_merchant.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Corbīta"
 msgstr "Корбіта"
 
 #: simulation/templates/units/rome/ship_ram.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Quadrirēmis Rōmāna"
 msgstr ""
 
 #: simulation/templates/units/rome/ship_scout.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Liburna"
 msgstr "Лібурна"
 
 #: simulation/templates/units/rome/ship_siege.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Quīnquerēmis Rōmāna"
 msgstr "Квінквереміс романа"
 
 #: simulation/templates/units/rome/siege_onager.xml:16
 #: simulation/templates/units/rome/siege_onager_packed.xml:16
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Onager"
 msgstr "Онагр"
 
@@ -3195,14 +4038,23 @@ msgid "An area of effect siege unit unlocked by Marian Reforms."
 msgstr ""
 
 #: simulation/templates/units/rome/siege_ram.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ariēs"
 msgstr "Аріес"
 
 #: simulation/templates/units/rome/siege_scorpio_packed.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Scorpiō"
 msgstr "Скорпіо"
 
 #: simulation/templates/units/rome/support_female_citizen.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Rōmāna"
 msgstr "Романа"
 
@@ -3215,6 +4067,9 @@ msgid "Doctor"
 msgstr "Доктор"
 
 #: simulation/templates/units/rome/support_healer_b.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Medicus"
 msgstr "Медікус"
 
@@ -3223,22 +4078,43 @@ msgid "Plebeian Merchant"
 msgstr "Купець плебеїв"
 
 #: simulation/templates/units/rome/support_trader.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Mercātor"
 msgstr "Меркатор"
 
 #: simulation/templates/units/samnite_skirmisher.xml:4
+msgid "Samnite Skirmisher"
+msgstr "Самнітський застрільник"
+
 #: simulation/templates/units/samnite_skirmisher.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Samnite Skirmisher"
 msgstr "Самнітський застрільник"
 
 #: simulation/templates/units/samnite_spearman.xml:4
+msgid "Samnite Spearman"
+msgstr "Самнітський списоносець"
+
 #: simulation/templates/units/samnite_spearman.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Samnite Spearman"
 msgstr "Самнітський списоносець"
 
 #: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:13
 #: simulation/templates/units/samnite_swordsman.xml:4
+msgid "Samnite Swordsman"
+msgstr "Самнітський мечник"
+
 #: simulation/templates/units/samnite_swordsman.xml:5
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Samnite Swordsman"
 msgstr "Самнітський мечник"
 
@@ -3247,6 +4123,9 @@ msgid "Seleucid Catafalque"
 msgstr ""
 
 #: simulation/templates/units/sele/catafalque.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Antiochus I Soter (Savior)"
 msgstr "Антіох I Сотер (Спаситель)"
 
@@ -3255,6 +4134,9 @@ msgid "Dahae Horse Archer"
 msgstr "Кінний стрілець дахів"
 
 #: simulation/templates/units/sele/cavalry_archer_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hippotoxotès Dahae"
 msgstr "Хіппотоксотес дахе"
 
@@ -3263,10 +4145,16 @@ msgid "Militia Cavalry"
 msgstr "Кавалерія ополчення"
 
 #: simulation/templates/units/sele/cavalry_javelineer_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hippakontistès Politès"
 msgstr "Хіппаконтістес політес"
 
 #: simulation/templates/units/sele/cavalry_spearman_merc_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hippos Hetairike"
 msgstr "Хіппос хетаіріке"
 
@@ -3275,6 +4163,9 @@ msgid "Seleucid Cataphract"
 msgstr "Селевкідській катафрактарій"
 
 #: simulation/templates/units/sele/champion_cavalry.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Seleukidón Kataphraktos"
 msgstr "Селеукідон катафрактос"
 
@@ -3283,6 +4174,9 @@ msgid "Scythed Chariot"
 msgstr "Колісниця з косами"
 
 #: simulation/templates/units/sele/champion_chariot.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Drepanèphoros"
 msgstr "Дрепанефорос"
 
@@ -3291,6 +4185,9 @@ msgid "Armored War Elephant"
 msgstr "Броньований бойовий слон"
 
 #: simulation/templates/units/sele/champion_elephant.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Thorakisménos Eléphantos"
 msgstr "Торакісменос елефантос"
 
@@ -3299,6 +4196,9 @@ msgid "Silver Shield"
 msgstr "Срібний щит"
 
 #: simulation/templates/units/sele/champion_infantry_pikeman.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Argyraspis"
 msgstr "Аргіраспіс"
 
@@ -3307,6 +4207,9 @@ msgid "Romanized Heavy Swordsman"
 msgstr "Романізований важкий мечник"
 
 #: simulation/templates/units/sele/champion_infantry_swordsman.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Thorakitès Rhomaïkós"
 msgstr "Торакітес ромаікос"
 
@@ -3315,6 +4218,9 @@ msgid "Antiochus III the Great"
 msgstr "Антіох III Великий"
 
 #: simulation/templates/units/sele/hero_antiochus_iii.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Antiokhos G' Megas"
 msgstr "Антіохос G' Мегас"
 
@@ -3323,6 +4229,9 @@ msgid "Antiochus IV"
 msgstr "Антіох IV"
 
 #: simulation/templates/units/sele/hero_antiochus_iv.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Antiokhos D' Epiphanēs"
 msgstr "Антіохос D' Епіфанес"
 
@@ -3331,6 +4240,9 @@ msgid "Seleucus I"
 msgstr "Селевк I"
 
 #: simulation/templates/units/sele/hero_seleucus_i.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Seleukos A' Nikatōr"
 msgstr "Селеукос A' Нікатор"
 
@@ -3339,6 +4251,9 @@ msgid "Syrian Archer"
 msgstr "Сирійський стрілець"
 
 #: simulation/templates/units/sele/infantry_archer_merc_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Toxótēs Syrías"
 msgstr "Токсотес сіріас"
 
@@ -3347,6 +4262,9 @@ msgid "Arab Javelineer"
 msgstr "Арабський метальник списа"
 
 #: simulation/templates/units/sele/infantry_javelineer_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pezakontistès Aravikós"
 msgstr "Пезаконтістес аравікос"
 
@@ -3355,6 +4273,9 @@ msgid "Phalangite"
 msgstr "Фалангіт"
 
 #: simulation/templates/units/sele/infantry_pikeman_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Phalangitēs"
 msgstr "Фалянгітес"
 
@@ -3363,6 +4284,9 @@ msgid "Militia Thureos Spearman"
 msgstr "Списоносець ополчення з довгим щитом"
 
 #: simulation/templates/units/sele/infantry_spearman_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Thureophóros Politès"
 msgstr "Туреофорос політес"
 
@@ -3371,22 +4295,37 @@ msgid "Thracian Mercenary Swordsman"
 msgstr "Фракійський найманський мечник"
 
 #: simulation/templates/units/sele/infantry_swordsman_merc_b.xml:13
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Rhomphaiaphoros Thrakikós"
 msgstr "Ромфаіафорос тракікос"
 
 #: simulation/templates/units/sele/ship_arrow.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Seleukidó̱n Triērēs"
 msgstr "Селеукідон тріерес"
 
 #: simulation/templates/units/sele/ship_ram.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Seleukidó̱n Tetrērēs"
 msgstr ""
 
 #: simulation/templates/units/sele/ship_siege.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pentères"
 msgstr "Пентерес"
 
 #: simulation/templates/units/sele/support_female_citizen.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Syrías Gýnē"
 msgstr "Сюріас ґюне"
 
@@ -3399,6 +4338,9 @@ msgid "Spartan Catafalque"
 msgstr ""
 
 #: simulation/templates/units/spart/catafalque.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Lycurgus"
 msgstr "Лікург"
 
@@ -3407,6 +4349,9 @@ msgid "Perioikoi Cavalryman"
 msgstr "Кавалерист періеків"
 
 #: simulation/templates/units/spart/cavalry_javelineer_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pródromos Perioïkós"
 msgstr "Продромос періоікос"
 
@@ -3415,6 +4360,9 @@ msgid "Greek Allied Cavalry"
 msgstr "Грецька союзна кавалерія"
 
 #: simulation/templates/units/spart/cavalry_spearman_b.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hippeús Symmakhikós"
 msgstr "Хіппеус сіммахікос"
 
@@ -3423,14 +4371,20 @@ msgid "Spartan Pikeman"
 msgstr "Спартанський пікінер"
 
 #: simulation/templates/units/spart/champion_infantry_pike.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Phalangites Spartiatis"
-msgstr "Фалангітес спартіатіс"
+msgstr ""
 
 #: simulation/templates/units/spart/champion_infantry_spear.xml:6
 msgid "Spartan Hoplite"
 msgstr "Спартанський гопліт"
 
 #: simulation/templates/units/spart/champion_infantry_spear.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Spartiátēs"
 msgstr "Спартіатес"
 
@@ -3443,6 +4397,9 @@ msgid "Skiritai Commando"
 msgstr "Воїн спецпризначення скірітів"
 
 #: simulation/templates/units/spart/champion_infantry_swordsman.xml:19
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ékdromos Skirítēs"
 msgstr "Екдромос скірітес"
 
@@ -3451,11 +4408,20 @@ msgid "Agis III"
 msgstr "Агіс III"
 
 #: simulation/templates/units/spart/hero_agis.xml:11
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Agis"
 msgstr "Агіс"
 
 #: simulation/templates/units/spart/hero_brasidas.xml:9
+msgid "Brasidas"
+msgstr "Брасід"
+
 #: simulation/templates/units/spart/hero_brasidas.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Brasidas"
 msgstr "Брасід"
 
@@ -3464,6 +4430,9 @@ msgid "Leonidas I"
 msgstr "Леонід I"
 
 #: simulation/templates/units/spart/hero_leonidas.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Leōnidēs"
 msgstr "Леонідес"
 
@@ -3472,6 +4441,9 @@ msgid "Helot Skirmisher"
 msgstr "Ілотський застрільник"
 
 #: simulation/templates/units/spart/infantry_javelineer_b.xml:15
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Akontistḗs Heílōs"
 msgstr "Аконтістес хеілос"
 
@@ -3480,6 +4452,9 @@ msgid "Perioikoi Hoplite"
 msgstr "Гопліт періеків"
 
 #: simulation/templates/units/spart/infantry_spearman_b.xml:15
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hoplítēs Períoikos"
 msgstr "Хоплітес періоікос"
 
@@ -3488,10 +4463,16 @@ msgid "Neodamodes Hoplite"
 msgstr ""
 
 #: simulation/templates/units/spart/infantry_spearman_neodamodes.xml:16
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Neodamōdeis"
 msgstr ""
 
 #: simulation/templates/units/spart/ship_ram.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Triḗrēs"
 msgstr "Трієрес"
 
@@ -3500,10 +4481,16 @@ msgid "Spartan Woman"
 msgstr "Спартанська жінка"
 
 #: simulation/templates/units/spart/support_female_citizen.xml:27
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Spartiâtis"
 msgstr "Спартіатіс"
 
 #: simulation/templates/units/spart/support_trader.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Émporos Períoikos"
 msgstr "Емпорос періоікос"
 
@@ -3512,6 +4499,9 @@ msgid "Theban Sacred Band Hoplite"
 msgstr "Фіванський гопліт священного отряду"
 
 #: simulation/templates/units/theb_sacred_band.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hieroû Thebaíou Lókhou Hoplítai"
 msgstr "Хіероу тебаіоу лохоу хоплітаі"
 
@@ -3524,6 +4514,9 @@ msgid "Fire Raiser"
 msgstr "Підпалювач"
 
 #: simulation/templates/units/theb_siege_fireraiser.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pyrobolos"
 msgstr "Піроболос"
 
@@ -3532,9 +4525,15 @@ msgid "Thespian Black Cloak"
 msgstr "Фракійський чорний плащ"
 
 #: simulation/templates/units/thesp_melanochitones.xml:6
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Melanochitones"
 msgstr "Мелянохітонес"
 
 #: simulation/templates/units/viking_longship.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Longship"
 msgstr "Довгий корабель"

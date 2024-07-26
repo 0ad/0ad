@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-09-11 07:08+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Junghee Lee, 2022-2024\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -415,16 +415,16 @@ msgid ""
 " to fight for our alliance."
 msgstr "나의 문명은 잿더미 속에서 일어섰습니다. 이제 내 군대는 더욱 강력해지고 우리 동맹을 위해 싸울 의지가 생겼습니다."
 
-#: simulation/ai/petra/data.jsondescription
+#: simulation/ai/petra/data.json
+msgid "Petra Bot"
+msgstr "페트라 봇"
+
+#: simulation/ai/petra/data.json
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
 msgstr "페트라는 기본 0 A.D.의 인공지능 봇입니다. Wildfire Games에 문제를 보고해 주세요(기본메뉴의 링크 참조)s.\n\n인공지능의 자원 채집율과 교역 난이도에 따라 다릅니다(샌드박스 -58%, 매우 쉬움 -44%, 쉬움 -25%, 중간 ±0%, 어려움 +25%, 매우 어려움 +56%). 가장 쉬운 레벨은 또한 연구, 훈련 및 건축 속도가 더 느립니다. 또한 샌드박스 레벨은 확장되거나 공격하지 않습니다."
-
-#: simulation/ai/petra/data.jsonname
-msgid "Petra Bot"
-msgstr "페트라 봇"
 
 #: simulation/components/BuildRestrictions.js:91
 #, javascript-format
@@ -637,280 +637,279 @@ msgstr "훈련된 유닛을 생성할 여유 공간을 찾을 수 없습니다."
 msgid "Entity is producing. Cannot start upgrading."
 msgstr "개체가 생성중입니다. 업그레이드를 시작할 수 없습니다."
 
-#: simulation/data/settings/game_speeds.jsonData[0].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Turtle (0.1×)"
 msgstr "거북이 속도 (0.1×)"
 
-#: simulation/data/settings/game_speeds.jsonData[10].Title
-msgid "Fast Forward (20×)"
-msgstr "빨리 감기 (20×)"
-
-#: simulation/data/settings/game_speeds.jsonData[1].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Slow (0.25×)"
 msgstr "느린 속도 (0.25×)"
 
-#: simulation/data/settings/game_speeds.jsonData[2].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Leisurely (0.5×)"
 msgstr "여유로운 속도 (0.5×)"
 
-#: simulation/data/settings/game_speeds.jsonData[3].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Relaxed (0.75×)"
 msgstr "느긋한 속도 (0.75×)"
 
-#: simulation/data/settings/game_speeds.jsonData[4].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Normal (1×)"
 msgstr "정상 속도 (1×)"
 
-#: simulation/data/settings/game_speeds.jsonData[5].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Fast (1.25×)"
 msgstr "빠른 속도 (1.25×)"
 
-#: simulation/data/settings/game_speeds.jsonData[6].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Very Fast (1.5×)"
 msgstr "매우 빠른 속도 (1.5×)"
 
-#: simulation/data/settings/game_speeds.jsonData[7].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Insane (2×)"
 msgstr "미친 속도 (2×)"
 
-#: simulation/data/settings/game_speeds.jsonData[8].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Fast Forward (5×)"
 msgstr "빨리 감기 (5×)"
 
-#: simulation/data/settings/game_speeds.jsonData[9].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Fast Forward (10×)"
 msgstr "빨리 감기 (10×)"
 
-#: simulation/data/settings/map_sizes.jsonData[0].Name
+#: simulation/data/settings/game_speeds.json
+msgid "Fast Forward (20×)"
+msgstr "빨리 감기 (20×)"
+
+#: simulation/data/settings/map_sizes.json
 msgid "Tiny"
 msgstr "초소형"
 
-#: simulation/data/settings/map_sizes.jsonData[0].Tooltip
+#: simulation/data/settings/map_sizes.json
 msgid "This map size has barely any room for even the most basic resources."
 msgstr "이 지도 크기는 가장 기본적인 자원조차 쓸 수 있는 공간이 거의 없습니다."
 
-#: simulation/data/settings/map_sizes.jsonData[1].Name
+#: simulation/data/settings/map_sizes.json
 msgid "Small"
 msgstr "소형"
 
-#: simulation/data/settings/map_sizes.jsonData[1].Tooltip
+#: simulation/data/settings/map_sizes.json
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
 msgstr "소형 지도는 1대1 시합에 적합합니다. 플레이어들이 확장할 공간이 있는 상태에서 신속하게 적군에게 접근할 수 있습니다."
 
-#: simulation/data/settings/map_sizes.jsonData[2].Name
+#: simulation/data/settings/map_sizes.json
 msgid "Normal"
 msgstr "표준"
 
-#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
+#: simulation/data/settings/map_sizes.json
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
 msgstr "이 지도의 크기는 2명의 플레이어들을 위한 충분한 공간을 제공하지만, 8명의 플레이어들도 적합합니다."
 
-#: simulation/data/settings/map_sizes.jsonData[3].Tooltip
+#: simulation/data/settings/map_sizes.json
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
 msgstr "4~8명의 플레이어들이 사용할 수 있는 이상적인 지도입니다. 이웃이 빠르게 접근하는 동안, 확장 가능한 공간이 충분하기 때문입니다."
 
-#: simulation/data/settings/map_sizes.jsonData[4].Name
+#: simulation/data/settings/map_sizes.json
 msgid "Large"
 msgstr "중대형"
 
-#: simulation/data/settings/map_sizes.jsonData[4].Tooltip
+#: simulation/data/settings/map_sizes.json
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
 msgstr "대형 지도 크기는 지도의 많은 부분이 물이나 접근할 수 없는 산으로 덮여 있을 때 권장됩니다."
 
-#: simulation/data/settings/map_sizes.jsonData[5].Name
+#: simulation/data/settings/map_sizes.json
 msgid "Very Large"
 msgstr "대형"
 
-#: simulation/data/settings/map_sizes.jsonData[5].Tooltip
-#: simulation/data/settings/map_sizes.jsonData[6].Tooltip
+#: simulation/data/settings/map_sizes.json
+msgid "Giant"
+msgstr "초대형"
+
+#: simulation/data/settings/map_sizes.json
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
 msgstr "매우 큰 지도는 권장하지 않습니다. 왜냐하면 적에 도달하는 데 매우 오래 걸리고 게임 성능이 저하될 수 있기 때문입니다."
 
-#: simulation/data/settings/map_sizes.jsonData[6].Name
-msgid "Giant"
-msgstr "초대형"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Gaia"
 msgstr "대지의 여신"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 1"
 msgstr "플레이어 1"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 2"
 msgstr "플레이어 2"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 3"
 msgstr "플레이어 3"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 4"
 msgstr "플레이어 4"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 5"
 msgstr "플레이어 5"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 6"
 msgstr "플레이어 6"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 7"
 msgstr "플레이어 7"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 8"
 msgstr "플레이어 8"
 
-#: simulation/data/settings/starting_resources.jsonData[0].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "Very Low"
 msgstr "매우 낮음"
 
-#: simulation/data/settings/starting_resources.jsonData[1].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "Low"
 msgstr "낮음"
 
-#: simulation/data/settings/starting_resources.jsonData[2].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "Medium"
 msgstr "중간"
 
-#: simulation/data/settings/starting_resources.jsonData[3].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "High"
 msgstr "높음"
 
-#: simulation/data/settings/starting_resources.jsonData[4].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "Very High"
 msgstr "매우 높음"
 
-#: simulation/data/settings/starting_resources.jsonData[5].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "Deathmatch"
 msgstr "죽음의 시합"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Very Easy"
 msgstr "매우 쉬움"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Choose this difficulty if you are discovering 0 A.D."
 msgstr "0 A.D.을 발견했다면 이 난이도를 선택하세요."
 
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Easy"
 msgstr "쉬움"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Choose this difficulty if you do not like being knocked down."
 msgstr "당신이 쓰러지는 것을 좋아하지 않는다면 이 난이도를 선택합니다."
 
-#: simulation/data/settings/map_sizes.jsonData[3].Name
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
-msgid "Medium"
-msgstr "중형"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
+#: simulation/data/settings/trigger_difficulties.json
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
 msgstr "이미 0 A.D.에 대한 좋은 경험이 있다면 이 난이도를 선택하세요."
 
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Hard"
 msgstr "어려움"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Choose this difficulty if you want to be really challenged."
 msgstr "정말 도전받고 싶다면 이 난이도를 선택합니다."
 
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Very Hard"
 msgstr "매우 어려움"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Choose this difficulty if you do not mind being swept out."
 msgstr "당신이 휩쓸려 나가도 상관없다면 이 난이도를 선택합니다."
 
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
+#: simulation/data/settings/map_sizes.json
+#: simulation/data/settings/trigger_difficulties.json
+msgid "Medium"
+msgstr "중형"
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.json
+msgid "Capture the Relic"
+msgstr "유적 점령"
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.json
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
 msgstr "지도 곳곳에 흩어져 있는 모든 유적을 점령한 뒤, 일정한 시간 동안 이들을 확보하면 승리합니다."
 
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
-msgid "Capture the Relic"
-msgstr "유적 점령"
+#: simulation/data/settings/victory_conditions/conquest.json
+msgid "Conquest"
+msgstr "점령"
 
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
+#: simulation/data/settings/victory_conditions/conquest.json
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
 msgstr "모든 유닛을 죽이고 모든 건물을 파괴하여 적들을 물리칩니다."
 
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
-msgid "Conquest"
-msgstr "점령"
-
-#: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Description
-msgid "Defeat opponents by destroying all their fully built civic centers."
-msgstr "그들의 완전한 시민 회관을 파괴함으로써 상대방을 물리 치십시오."
-
-#: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Title
+#: simulation/data/settings/victory_conditions/conquest_civic_centers.json
 msgid "Conquest Civic Centers"
 msgstr "정복 시민 회관"
 
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
-msgid "Defeat opponents by destroying all their structures."
-msgstr "모든 건축물들을 파괴하여 상대편을 물리칩니다."
+#: simulation/data/settings/victory_conditions/conquest_civic_centers.json
+msgid "Defeat opponents by destroying all their fully built civic centers."
+msgstr "그들의 완전한 시민 회관을 파괴함으로써 상대방을 물리 치십시오."
 
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
+#: simulation/data/settings/victory_conditions/conquest_structures.json
 msgid "Conquest Structures"
 msgstr "점령 건축물들"
 
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
-msgid "Defeat opponents by killing all their units."
-msgstr "모든 유닛을 죽여 상대를 물리칩니다."
+#: simulation/data/settings/victory_conditions/conquest_structures.json
+msgid "Defeat opponents by destroying all their structures."
+msgstr "모든 건축물들을 파괴하여 상대편을 물리칩니다."
 
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
+#: simulation/data/settings/victory_conditions/conquest_units.json
 msgid "Conquest Units"
 msgstr "점령지 유닛"
 
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
-msgid "Defeat opponents by killing their hero."
-msgstr "영웅을 죽임으로써 상대를 물리칩니다."
+#: simulation/data/settings/victory_conditions/conquest_units.json
+msgid "Defeat opponents by killing all their units."
+msgstr "모든 유닛을 죽여 상대를 물리칩니다."
 
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
+#: simulation/data/settings/victory_conditions/regicide.json
 msgid "Regicide"
 msgstr "국왕 살해"
 
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
+#: simulation/data/settings/victory_conditions/regicide.json
+msgid "Defeat opponents by killing their hero."
+msgstr "영웅을 죽임으로써 상대를 물리칩니다."
+
+#: simulation/data/settings/victory_conditions/wonder.json
+msgid "Wonder"
+msgstr "불가사의"
+
+#: simulation/data/settings/victory_conditions/wonder.json
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
 msgstr "먼저 불가사의를 건설하거나 점령하고 일정 시간 동안 유지하여 게임에서 승리하합시오. 불가사의가 파괴되거나 점령되면 타이머가 재설정됩니다. 동맹 승리 모드가 활성화된 경우나, 자국의 동맹이 변경될 때 타이머도 재설정됩니다."
-
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
-msgid "Wonder"
-msgstr "불가사의"
 
 #: simulation/helpers/Cheat.js:57
 #, javascript-format

@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-09-11 07:08+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: nin hum, 2024\n"
 "Language-Team: Galician (http://app.transifex.com/wildfire-games/0ad/language/gl/)\n"
@@ -411,16 +411,16 @@ msgid ""
 " to fight for our alliance."
 msgstr "A miña civilización levantou das cinzas. Agora os meus exércitos séntense máis fortes e ansiosos por loitar pola nosa alianza."
 
-#: simulation/ai/petra/data.jsondescription
+#: simulation/ai/petra/data.json
+msgid "Petra Bot"
+msgstr "Petra"
+
+#: simulation/ai/petra/data.json
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
 msgstr "Petra é o robot de intelixencia artificial predeterminado de 0  d.C. Informe de calquera problema a Wildfire Games (consulte a ligazón no menú principal).\n\nA taxa de recolección de recursos e ganancias por comercio da intelixencia artificial dependen do nivel de dificultade: −58% en nula, −44% en moi fácil, −25% en fácil, ±0% en media, +25% en difícil, +56% en moi difícil. Os niveis máis doados tamén teñen unhas taxas de investigación, adestramento e construción máis lentas. Ademais, no nivel de dificultade nula non se expande nin ataca."
-
-#: simulation/ai/petra/data.jsonname
-msgid "Petra Bot"
-msgstr "Petra"
 
 #: simulation/components/BuildRestrictions.js:91
 #, javascript-format
@@ -636,280 +636,279 @@ msgstr "Non é posíbel atopar espazo libre no que facer aparecer as unidades ad
 msgid "Entity is producing. Cannot start upgrading."
 msgstr "A entidade está producindo algo. Non se pode mellorar neste momento."
 
-#: simulation/data/settings/game_speeds.jsonData[0].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Turtle (0.1×)"
 msgstr "Tartaruga (×0,1)"
 
-#: simulation/data/settings/game_speeds.jsonData[10].Title
-msgid "Fast Forward (20×)"
-msgstr "Avanzar rapidamente (×20)"
-
-#: simulation/data/settings/game_speeds.jsonData[1].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Slow (0.25×)"
 msgstr "Lento (×0,25)"
 
-#: simulation/data/settings/game_speeds.jsonData[2].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Leisurely (0.5×)"
 msgstr "A modo (×0,5)"
 
-#: simulation/data/settings/game_speeds.jsonData[3].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Relaxed (0.75×)"
 msgstr "Tranquilamente (×0,75)"
 
-#: simulation/data/settings/game_speeds.jsonData[4].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Normal (1×)"
 msgstr "Normal (×1)"
 
-#: simulation/data/settings/game_speeds.jsonData[5].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Fast (1.25×)"
 msgstr "Rápido (×1,25)"
 
-#: simulation/data/settings/game_speeds.jsonData[6].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Very Fast (1.5×)"
 msgstr "Moi rápido (×1,5)"
 
-#: simulation/data/settings/game_speeds.jsonData[7].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Insane (2×)"
 msgstr "De tolos (×2)"
 
-#: simulation/data/settings/game_speeds.jsonData[8].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Fast Forward (5×)"
 msgstr "Avanzar rapidamente (×5)"
 
-#: simulation/data/settings/game_speeds.jsonData[9].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Fast Forward (10×)"
 msgstr "Avanzar rapidamente (×10)"
 
-#: simulation/data/settings/map_sizes.jsonData[0].Name
+#: simulation/data/settings/game_speeds.json
+msgid "Fast Forward (20×)"
+msgstr "Avanzar rapidamente (×20)"
+
+#: simulation/data/settings/map_sizes.json
 msgid "Tiny"
 msgstr "Moi pequeno"
 
-#: simulation/data/settings/map_sizes.jsonData[0].Tooltip
+#: simulation/data/settings/map_sizes.json
 msgid "This map size has barely any room for even the most basic resources."
 msgstr "Este tamaño de mapa apenas ten espazo para os recursos máis básicos."
 
-#: simulation/data/settings/map_sizes.jsonData[1].Name
+#: simulation/data/settings/map_sizes.json
 msgid "Small"
 msgstr "Pequeno"
 
-#: simulation/data/settings/map_sizes.jsonData[1].Tooltip
+#: simulation/data/settings/map_sizes.json
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
 msgstr "Os mapas pequenos son axeitados para partidas entre dous xogadores, xa que os xogadores poden acadar ao inimigo rapidamente, pero tamén teñen algo de espazo para expandirse."
 
-#: simulation/data/settings/map_sizes.jsonData[2].Name
+#: simulation/data/settings/map_sizes.json
 msgid "Normal"
 msgstr "Normal"
 
-#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
+#: simulation/data/settings/map_sizes.json
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
 msgstr "Este mapa fornece espazo abondo para dous xogadores, mais caben até oito xogadores."
 
-#: simulation/data/settings/map_sizes.jsonData[3].Tooltip
+#: simulation/data/settings/map_sizes.json
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
 msgstr "Este é o tamaño de mapa ideal para entre 4 e 8 xogadores, porque hai espazo abondo para expandirse mais tamén pódense atopar rapidamente os inimigos."
 
-#: simulation/data/settings/map_sizes.jsonData[4].Name
+#: simulation/data/settings/map_sizes.json
 msgid "Large"
 msgstr "Grande"
 
-#: simulation/data/settings/map_sizes.jsonData[4].Tooltip
+#: simulation/data/settings/map_sizes.json
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
 msgstr "O tamaño de mapa grande recoméndase cando grandes partes do mapa están cubertas por auga ou montañas inaccesíbeis."
 
-#: simulation/data/settings/map_sizes.jsonData[5].Name
+#: simulation/data/settings/map_sizes.json
 msgid "Very Large"
 msgstr "Moi grande"
 
-#: simulation/data/settings/map_sizes.jsonData[5].Tooltip
-#: simulation/data/settings/map_sizes.jsonData[6].Tooltip
+#: simulation/data/settings/map_sizes.json
+msgid "Giant"
+msgstr "Xigante"
+
+#: simulation/data/settings/map_sizes.json
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
 msgstr "Os mapas moi grandes non se recomendan porque leva moito tempo acadar ao inimigo e o rendemento do xogo pode verse reducido."
 
-#: simulation/data/settings/map_sizes.jsonData[6].Name
-msgid "Giant"
-msgstr "Xigante"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Gaia"
 msgstr "Gaia"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 1"
 msgstr "Xogador 1"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 2"
 msgstr "Xogador 2"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 3"
 msgstr "Xogador 3"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 4"
 msgstr "Xogador 4"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 5"
 msgstr "Xogador 5"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 6"
 msgstr "Xogador 6"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 7"
 msgstr "Xogador 7"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 8"
 msgstr "Xogador 8"
 
-#: simulation/data/settings/starting_resources.jsonData[0].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "Very Low"
 msgstr "Moi escasos"
 
-#: simulation/data/settings/starting_resources.jsonData[1].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "Low"
 msgstr "Escasos"
 
-#: simulation/data/settings/starting_resources.jsonData[2].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "Medium"
 msgstr "Normais"
 
-#: simulation/data/settings/starting_resources.jsonData[3].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "High"
 msgstr "Abundantes"
 
-#: simulation/data/settings/starting_resources.jsonData[4].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "Very High"
 msgstr "Moi abundantes"
 
-#: simulation/data/settings/starting_resources.jsonData[5].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "Deathmatch"
 msgstr "Partida a morte"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Very Easy"
 msgstr "Moi baixa"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Choose this difficulty if you are discovering 0 A.D."
 msgstr "Escolle esta dificultade se estás a descubrir 0  A.D."
 
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Easy"
 msgstr "Baixa"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Choose this difficulty if you do not like being knocked down."
 msgstr "Escolle esta dificultade se non lle gusta perder."
 
-#: simulation/data/settings/map_sizes.jsonData[3].Name
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
-msgid "Medium"
-msgstr "Medios"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
+#: simulation/data/settings/trigger_difficulties.json
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
 msgstr "Escolle esta dificultade se xa tes certa experiencia co 0  A.D."
 
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Hard"
 msgstr "Alta"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Choose this difficulty if you want to be really challenged."
 msgstr "Escolle esta dificultade se queres un verdadeiro reto."
 
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Very Hard"
 msgstr "Moi alta"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Choose this difficulty if you do not mind being swept out."
 msgstr "Escolle esta dificultade se non lle importa sufrir unha derrota aplastante."
 
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
+#: simulation/data/settings/map_sizes.json
+#: simulation/data/settings/trigger_difficulties.json
+msgid "Medium"
+msgstr "Medios"
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.json
+msgid "Capture the Relic"
+msgstr "Capturar a reliquia"
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.json
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
 msgstr "Captura todas as reliquias esparexidas polo mapa e consérvaas durante un certo tempo para gañar a partida."
 
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
-msgid "Capture the Relic"
-msgstr "Capturar a reliquia"
+#: simulation/data/settings/victory_conditions/conquest.json
+msgid "Conquest"
+msgstr "Conquista"
 
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
+#: simulation/data/settings/victory_conditions/conquest.json
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
 msgstr "Derrota aos opoñentes matando a todas as súas unidades e destruíndo todas as estruturas."
 
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
-msgid "Conquest"
-msgstr "Conquista"
-
-#: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Description
-msgid "Defeat opponents by destroying all their fully built civic centers."
-msgstr "Derrota os teus opoñentes destruíndo todos os seus centros cívicos totalmente construídos."
-
-#: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Title
+#: simulation/data/settings/victory_conditions/conquest_civic_centers.json
 msgid "Conquest Civic Centers"
 msgstr "Conquista de centros cívicos"
 
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
-msgid "Defeat opponents by destroying all their structures."
-msgstr "Derrota aos opoñentes destruíndo todas as súas estruturas."
+#: simulation/data/settings/victory_conditions/conquest_civic_centers.json
+msgid "Defeat opponents by destroying all their fully built civic centers."
+msgstr "Derrota os teus opoñentes destruíndo todos os seus centros cívicos totalmente construídos."
 
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
+#: simulation/data/settings/victory_conditions/conquest_structures.json
 msgid "Conquest Structures"
 msgstr "Conquista das estruturas"
 
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
-msgid "Defeat opponents by killing all their units."
-msgstr "Derrota aos opoñentes matando a todas as súas unidades."
+#: simulation/data/settings/victory_conditions/conquest_structures.json
+msgid "Defeat opponents by destroying all their structures."
+msgstr "Derrota aos opoñentes destruíndo todas as súas estruturas."
 
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
+#: simulation/data/settings/victory_conditions/conquest_units.json
 msgid "Conquest Units"
 msgstr "Conquista das unidades"
 
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
-msgid "Defeat opponents by killing their hero."
-msgstr "Derrota aos opoñentes matando aos seus heroes."
+#: simulation/data/settings/victory_conditions/conquest_units.json
+msgid "Defeat opponents by killing all their units."
+msgstr "Derrota aos opoñentes matando a todas as súas unidades."
 
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
+#: simulation/data/settings/victory_conditions/regicide.json
 msgid "Regicide"
 msgstr "Rexicidio"
 
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
+#: simulation/data/settings/victory_conditions/regicide.json
+msgid "Defeat opponents by killing their hero."
+msgstr "Derrota aos opoñentes matando aos seus heroes."
+
+#: simulation/data/settings/victory_conditions/wonder.json
+msgid "Wonder"
+msgstr "Marabilla"
+
+#: simulation/data/settings/victory_conditions/wonder.json
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
 msgstr "Se a primeira persoa en construír ou capturar unha marabilla e mantela durante un certo tempo para gañar a partida. O temporizador restabelecerase cando a marabilla se destrúa ou a capturen. Se o modo de vitoria de aliados está activado, o temporizador tamén se restabelecerá cando as alianzas do seu dono cambien."
-
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
-msgid "Wonder"
-msgstr "Marabilla"
 
 #: simulation/helpers/Cheat.js:57
 #, javascript-format

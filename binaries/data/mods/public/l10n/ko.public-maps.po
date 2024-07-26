@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-06-17 07:08+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Junghee Lee, 2022-2024\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -25,73 +25,77 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: maps/random/aegean_sea.jsonsettings.Description
-msgid "Players start on two sides of a sea with scattered islands."
-msgstr "플레이어들은 섬들이 흩어져 있는 바다의 양쪽에서 출발합니다."
-
-#: maps/random/aegean_sea.jsonsettings.Name
+#: maps/random/aegean_sea.json
 msgid "Aegean Sea"
 msgstr "에게 해"
 
-#: maps/random/african_plains.jsonsettings.Description
+#: maps/random/aegean_sea.json
+msgid "Players start on two sides of a sea with scattered islands."
+msgstr "플레이어들은 섬들이 흩어져 있는 바다의 양쪽에서 출발합니다."
+
+#: maps/random/african_plains.json
+msgid "African Plains"
+msgstr "아프리카 평야"
+
+#: maps/random/african_plains.json
 msgid ""
 "The central region of the vast continent of Africa, birthplace of humanity. "
 "Players start in a lush area teeming with vegetation and wildlife."
 msgstr "인류의 발상지인 광대한 아프리카 대륙의 중심 지역. 플레이어들은 초목과 야생동물이 득실거리는 무성한 지역에서 시작합니다."
 
-#: maps/random/african_plains.jsonsettings.Name
-msgid "African Plains"
-msgstr "아프리카 평야"
+#: maps/random/alpine_lakes.json
+msgid "Alpine Lakes"
+msgstr "알파인 호수"
 
-#: maps/random/alpine_lakes.jsonsettings.Description
+#: maps/random/alpine_lakes.json
 msgid ""
 "High Alpine mountains surrounding deep valleys strung with mountain streams "
 "and finger-like lakes."
 msgstr "계곡과 손가락 모양의 호수로 연결된 깊은 계곡을 둘러싼 높은 알프스 산맥입니다."
 
-#: maps/random/alpine_lakes.jsonsettings.Name
-msgid "Alpine Lakes"
-msgstr "알파인 호수"
-
-#: maps/random/alpine_valley.jsonsettings.Description
-msgid "High Alpine mountains bordering deep valleys."
-msgstr "깊은 계곡과 맞닿은 높은 알프스 산맥입니다."
-
-#: maps/random/alpine_valley.jsonsettings.Name
+#: maps/random/alpine_valley.json
 msgid "Alpine Valley"
 msgstr "알프스의 계곡"
 
-#: maps/random/ambush.jsonsettings.Description
+#: maps/random/alpine_valley.json
+msgid "High Alpine mountains bordering deep valleys."
+msgstr "깊은 계곡과 맞닿은 높은 알프스 산맥입니다."
+
+#: maps/random/ambush.json
+msgid "Ambush"
+msgstr "매복"
+
+#: maps/random/ambush.json
 msgid ""
 "High bluffs overlook the terrain below. Bountiful resources await on the "
 "cliffs, but beware of enemies planning an ambush."
 msgstr "높은 절벽이 아래의 지형을 내려다보고 있습니다. 절벽에는 풍부한 자원이 준비되어 있지만, 매복을 계획하는 적들을 조심해야 합니다."
 
-#: maps/random/ambush.jsonsettings.Name
-msgid "Ambush"
-msgstr "매복"
+#: maps/random/anatolian_plateau.json
+msgid "Anatolian Plateau"
+msgstr "아나톨리아 고원"
 
-#: maps/random/anatolian_plateau.jsonsettings.Description
+#: maps/random/anatolian_plateau.json
 msgid ""
 "An indefensible open land with little wood and stone, representing the "
 "central basin of Asia Minor."
 msgstr "방어하기 어려운 열린 땅에서 나무와 돌이 부족하고 소아시아의 중앙 고원을 표현하였습니다."
 
-#: maps/random/anatolian_plateau.jsonsettings.Name
-msgid "Anatolian Plateau"
-msgstr "아나톨리아 고원"
+#: maps/random/archipelago.json
+msgid "Archipelago"
+msgstr "군도"
 
-#: maps/random/archipelago.jsonsettings.Description
+#: maps/random/archipelago.json
 msgid ""
 "A maze of islands of different sizes and shapes. Players start with more "
 "wood than normal."
 msgstr "크기와 모양이 다른 섬들로 이루어진 미로입니다. 플레이어들은 보통 때보다 더 많은 목재로 시작합니다."
 
-#: maps/random/archipelago.jsonsettings.Name
-msgid "Archipelago"
-msgstr "군도"
+#: maps/random/arctic_summer.json
+msgid "Arctic Summer"
+msgstr "북극의 여름"
 
-#: maps/random/arctic_summer.jsonsettings.Description
+#: maps/random/arctic_summer.json
 msgid ""
 "Summer has arrived to the cold regions of the north and with it have many "
 "animals, profiting from its milder climate. Wolves, ever present, have shed "
@@ -99,32 +103,32 @@ msgid ""
 "traces of winter are rapidly disappearing, only to reappear very soon."
 msgstr "북쪽의 추운 지역에 여름이 오고, 온화한 기후로 인해 많은 동물들이 살고 있습니다. 늑대들은 겨울옷을 벗어 던지고, 사슴, 산토끼, 사향쥐는 평야를 가득 채웁니다. 겨울의 마지막 흔적은 빠르게 사라지고 있지만, 곧 다시 나타납니다."
 
-#: maps/random/arctic_summer.jsonsettings.Name
-msgid "Arctic Summer"
-msgstr "북극의 여름"
+#: maps/random/ardennes_forest.json
+msgid "Ardennes Forest"
+msgstr "아르덴 숲"
 
-#: maps/random/ardennes_forest.jsonsettings.Description
+#: maps/random/ardennes_forest.json
 msgid ""
 "Each player starts deep in the forest.\n"
 "\n"
 "The Ardennes is a region of extensive forests, rolling hills and ridges formed within the Givetian Ardennes mountain range, primarily in modern day Belgium and Luxembourg. The region took its name from the ancient Silva, a vast forest in Roman times called Arduenna Silva."
 msgstr "각 플레이어는 숲 속 깊은 곳에서 시작합니다.\n\n아르덴 산맥(Ardenne)은 오늘날의 벨기에와 룩셈부르크에서 주로 기브티안 아르덴 산맥 내에 형성된 광범위한 숲, 구릉, 능선 지역입니다. 이 지역은 고대 실바에서 이름을 따왔는데요, 아두엔나 실바라고 불리는 로마 시대의 넓은 숲이었습니다."
 
-#: maps/random/ardennes_forest.jsonsettings.Name
-msgid "Ardennes Forest"
-msgstr "아르덴 숲"
+#: maps/random/atlas_mountains.json
+msgid "Atlas Mountains"
+msgstr "아틀라스 산맥"
 
-#: maps/random/atlas_mountains.jsonsettings.Description
+#: maps/random/atlas_mountains.json
 msgid ""
 "A rugged land with small room for buildings with scarce wood. Represents the"
 " mountain range in the Northwest Africa."
 msgstr "나무가 부족한 건축물을 위한 작은 공간이 있는 거친 땅입니다. 북서 아프리카의 산맥을 나타냅니다."
 
-#: maps/random/atlas_mountains.jsonsettings.Name
-msgid "Atlas Mountains"
-msgstr "아틀라스 산맥"
+#: maps/random/bahrain.json
+msgid "Bahrain"
+msgstr "바레인"
 
-#: maps/random/bahrain.jsonsettings.Description
+#: maps/random/bahrain.json
 msgid ""
 "Bahrain, centre of the Dilmun civilization which fell in 800 BC, was in turn"
 " controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
@@ -135,22 +139,22 @@ msgid ""
 "Bahrain?"
 msgstr "기원전 800년에 멸망한 딜문 문명의 중심지였던 바레인은 수메르인, 아시리아인, 바빌로니아인, 페르시아인 및 기타 후대의 민족들에 의해 차례로 지배를 받았습니다. 시누스 페르시쿠스(페르시아만)에 전략적으로 위치한 섬이자 진주 어업이 발달하여 진주 무역의 중심지이기도 한 바레인은 오랫동안 비어 있었던 적이 없습니다. 하지만 이제 이전 거주자들이 떠나고 이 땅은 전쟁을 준비하고 있습니다. 여러분은 바레인의 차기 통치자가 되시겠습니까?"
 
-#: maps/random/bahrain.jsonsettings.Name
-msgid "Bahrain"
-msgstr "바레인"
+#: maps/random/belgian_uplands.json
+msgid "Belgian Uplands"
+msgstr "벨기에 고지대"
 
-#: maps/random/belgian_uplands.jsonsettings.Description
+#: maps/random/belgian_uplands.json
 msgid ""
 "An experimental map with its heightmap generated by erosion to look more "
 "natural. Not all seeds will be fair though! Tiny maps with 8 players may "
 "take a while to generate."
 msgstr "더 자연스럽게 보이도록 침식으로 생성된 등고선이 있는 실험적 지도입니다. 하지만 모든 시드(지도 생성 시 주는 설정값)는 공평하지는 않습니다! 8명이 참여하는 작은 지도는 생성하는 데 시간이 걸릴 수 있습니다."
 
-#: maps/random/belgian_uplands.jsonsettings.Name
-msgid "Belgian Uplands"
-msgstr "벨기에 고지대"
+#: maps/random/botswanan_haven.json
+msgid "Botswanan Haven"
+msgstr "보츠와나의 피난처"
 
-#: maps/random/botswanan_haven.jsonsettings.Description
+#: maps/random/botswanan_haven.json
 msgid ""
 "Botswanan Africa during the wet season, a land which was arid and "
 "inhospitable just weeks before has come to life totally transformed. Herds "
@@ -158,98 +162,80 @@ msgid ""
 "while in the shallow pools lurk fearsome crocodiles."
 msgstr "우기 동안 아프리카 보츠와나는 불과 몇 주 전까지 건조하고 견딜 수없는 땅에서 완전히 바뀌었습니다. 얼룩말떼는 사자 무리가 기다리고 있는 크고 무성한 풀숲 속에서 풀을 뜯고 있고, 얕은 웅덩이에는 무서운 악어떼가 숨어 있습니다."
 
-#: maps/random/botswanan_haven.jsonsettings.Name
-msgid "Botswanan Haven"
-msgstr "보츠와나의 피난처"
+#: maps/random/caledonian_meadows.json
+msgid "Caledonian Meadows"
+msgstr "칼레도니아의 목초 지대"
 
-#: maps/random/caledonian_meadows.jsonsettings.Description
+#: maps/random/caledonian_meadows.json
 msgid ""
 "Fertile lands surrounded by harsh terrain.\n"
 "Remains of recent snowfalls still haunt the forests, and torrential rivers from the snowmelt have barely died away.\n"
 "Aiming at a realistic terrain, this map might not always be balanced."
 msgstr "거친 지형으로 둘러싸인 비옥 한 땅.\n최근 내린 눈의 잔해가 아직도 숲에 남아있고, 눈이 녹아 세차게 흐르는 강은 겨우 사라졌습니다.\n이 지도는 현실적인 지형을 목표로 만들었기 때문에 균형이 맞지 않을 수 있습니다."
 
-#: maps/random/caledonian_meadows.jsonsettings.Name
-msgid "Caledonian Meadows"
-msgstr "칼레도니아의 목초 지대"
+#: maps/random/cantabrian_highlands.json
+msgid "Cantabrian Highlands"
+msgstr "칸타브리아 고원"
 
-#: maps/random/cantabrian_highlands.jsonsettings.Description
+#: maps/random/cantabrian_highlands.json
 msgid ""
 "Each player starts on a hill surrounded by steep cliffs. Inspired by "
 "Cantabria, a mountainous region in the north of the Iberian peninsula."
 msgstr "각 플레이어는 가파른 절벽으로 둘러싸인 언덕에서 시작합니다. 이베리아 반도 북부의 산악 지대인 칸타브리아에서 영감을 받았습니다."
 
-#: maps/random/cantabrian_highlands.jsonsettings.Name
-msgid "Cantabrian Highlands"
-msgstr "칸타브리아 고원"
-
-#: maps/random/canyon.jsonsettings.Description
-msgid "Players start around the map in deep canyons."
-msgstr "플레이어는 깊은 협곡에서 지도를 돌아다니며 시작합니다."
-
-#: maps/random/canyon.jsonsettings.Name
+#: maps/random/canyon.json
 msgid "Canyon"
 msgstr "협곡"
 
-#: maps/random/continent.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[0].Description
-msgid "All players starts on a continent surrounded by water."
-msgstr "모든 플레이어들은 물로 둘러싸인 대륙에서 시작합니다."
+#: maps/random/canyon.json
+msgid "Players start around the map in deep canyons."
+msgstr "플레이어는 깊은 협곡에서 지도를 돌아다니며 시작합니다."
 
-#: maps/random/continent.jsonsettings.Name
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[0].Name
+#: maps/random/continent.json maps/random/unknown.json
 msgid "Continent"
 msgstr "대륙"
 
-#: maps/random/corinthian_isthmus.jsonsettings.Description
+#: maps/random/continent.json maps/random/unknown.json
+msgid "All players starts on a continent surrounded by water."
+msgstr "모든 플레이어들은 물로 둘러싸인 대륙에서 시작합니다."
+
+#: maps/random/corinthian_isthmus.json
+msgid "Corinthian Isthmus"
+msgstr "코린트 지협"
+
+#: maps/random/corinthian_isthmus.json
 msgid ""
 "Two land masses connected by a narrow spit of land, called an 'Isthmus', "
 "inspired by the eponymous area in Greece. Most of the stone on the map is in"
 " the isthmus itself, making it vital to fight for its control."
 msgstr "두 개의 땅덩어리가 좁은 땅덩어리로 연결되어 있는데, '이스무스(지협)'이라고 불리며, 그리스의 어원 지역에서 영감을 받았습니다. 지도상에 있는 대부분의 돌은 지혈 자체에 있기 때문에, 지혈의 통제를 위해 싸우는 것이 필수적입니다."
 
-#: maps/random/corinthian_isthmus.jsonsettings.Name
-msgid "Corinthian Isthmus"
-msgstr "코린트 지협"
+#: maps/random/corsica.json
+msgid "Corsica vs Sardinia"
+msgstr "코르시카 대 사르디니아"
 
-#: maps/random/corsica.jsonsettings.Description
+#: maps/random/corsica.json
 msgid ""
 "The players start on two opposing islands, both with a very jagged relief "
 "that will make landing difficult."
 msgstr "플레이어들은 서로 마주 보는 두개의 섬에서 시작하고, 둘 다 기복이 매우 심해 상륙이 어렵습니다."
 
-#: maps/random/corsica.jsonsettings.Name
-msgid "Corsica vs Sardinia"
-msgstr "코르시카 대 사르디니아"
+#: maps/random/cycladic_archipelago.json
+msgid "Cycladic Archipelago"
+msgstr "키클라데스 제도"
 
-#: maps/random/cycladic_archipelago.jsonsettings.Description
+#: maps/random/cycladic_archipelago.json
 msgid ""
 "Each player starts on an island surrounded by water.\n"
 "\n"
 "The Cyclades is an island group in the Aegean Sea, south-east of the mainland of Greece. They are one of the island groups which constitute the Aegean archipelago. The name refers to the islands around  the sacred island of Delos. The Cyclades comprise about 220 islands. The islands are peaks of a submerged mountainous terrain, with the exception of two volcanic islands, Milos and Santorini. The climate is generally dry and mild, but with the exception of Naxos the soil is not very fertile."
 msgstr "각 플레이어들은 물로 둘러싸인 섬에서 시작합니다.\n\n키클라데스 제도는 그리스 본토 남동쪽에 있는 에게 해의 섬들 입니다. 이들은 에게 해 군도를 구성하는 섬들 중 하나입니다. 그 이름은 델로스 섬 주변의 섬들을 가리킵니다. 키클라데스는 약 220개의 섬으로 이루어져있습니다. 이 섬들은 밀로스와 산토리니라는 두 개의 화산섬을 제외하고는 수몰된 산악 지형의 봉우리입니다. 기후는 대체로 건조하고 온화하지만, 낙소스 섬을 제외하고 토양이 그다지 비옥하지 않습니다."
 
-#: maps/random/cycladic_archipelago.jsonsettings.Name
-msgid "Cycladic Archipelago"
-msgstr "키클라데스 제도"
+#: maps/random/danubius.json
+msgid "Danubius"
+msgstr "다누비우스"
 
-#: maps/random/danubius.jsonsettings.Daytime[0].Description
-msgid "Bright daylight illuminates the scene."
-msgstr "밝은 햇살이 그 광경을 비춥니다."
-
-#: maps/random/danubius.jsonsettings.Daytime[0].Name
-msgid "Day"
-msgstr "낮"
-
-#: maps/random/danubius.jsonsettings.Daytime[1].Description
-msgid "Attackers are covered by the darkness of the night."
-msgstr "공격자들은 밤의 어둠에 가려져 있습니다."
-
-#: maps/random/danubius.jsonsettings.Daytime[1].Name
-msgid "Night"
-msgstr "밤"
-
-#: maps/random/danubius.jsonsettings.Description
+#: maps/random/danubius.json
 msgid ""
 "Players start along the banks of the river Danube in the period following "
 "the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate"
@@ -260,19 +246,35 @@ msgid ""
 "the reemergence of the Geto-Dacian Confederation under King Burebista."
 msgstr "플레이어들은 켈트족인 보이이 부족에 의해 파노니아 침략 후 다뉴브 강둑을 따라 시작합니다. 이 땅에 대한 그들의 지배력을 공고히 하기위해, 나머지 외국 문화를 뿌리 뽑기 위해 켈트족의 지원군이 파견되어졌습니다. 플레이어들은 그들 사이에서 힘을 겨루어야할 뿐만 아니라 이러한 무자비한 침략자들을 물리쳐야합니다. 결국, 보이족은 다키아인의 상승하는 힘에 정복당했기때문에 부레비스타 왕의 치하에서 게토-다키아 연맹이 다시 출현하게 되었습니다."
 
-#: maps/random/danubius.jsonsettings.Name
-msgid "Danubius"
-msgstr "다누비우스"
+#: maps/random/danubius.json
+msgid "Day"
+msgstr "낮"
 
-#: maps/random/deep_forest.jsonsettings.Description
-msgid "A deep dark forest in Germania."
-msgstr "게르마니아의 깊고 어두운 숲."
+#: maps/random/danubius.json
+msgid "Bright daylight illuminates the scene."
+msgstr "밝은 햇살이 그 광경을 비춥니다."
 
-#: maps/random/deep_forest.jsonsettings.Name
+#: maps/random/danubius.json
+msgid "Night"
+msgstr "밤"
+
+#: maps/random/danubius.json
+msgid "Attackers are covered by the darkness of the night."
+msgstr "공격자들은 밤의 어둠에 가려져 있습니다."
+
+#: maps/random/deep_forest.json
 msgid "Deep Forest"
 msgstr "깊은 숲"
 
-#: maps/random/dodecanese.jsonsettings.Description
+#: maps/random/deep_forest.json
+msgid "A deep dark forest in Germania."
+msgstr "게르마니아의 깊고 어두운 숲."
+
+#: maps/random/dodecanese.json
+msgid "Dodecanese"
+msgstr "도데카니사"
+
+#: maps/random/dodecanese.json
 msgid ""
 "Controlling access to the Aegean Sea from the east, the Dodecanese have been"
 " subject to numerous yet short-lived invasions. Ultimately consolidating "
@@ -280,11 +282,11 @@ msgid ""
 "maritime, commercial and cultural centers. Will you achieve the same?"
 msgstr "동쪽에서 에게해의 접근을 통제하고 있는 도데카인들은 수없이 많으면서도 짧은 기간 동안 침략을 받아왔습니다. 궁극적으로 로도스와 힘을 합쳐, 이 섬들은 훌륭한 해양, 상업, 문화의 중심지로 발전했습니다. 당신은 같은 일을 성취할 수 있습니까?"
 
-#: maps/random/dodecanese.jsonsettings.Name
-msgid "Dodecanese"
-msgstr "도데카니사"
+#: maps/random/elephantine.json
+msgid "Elephantine"
+msgstr "엘레판티네"
 
-#: maps/random/elephantine.jsonsettings.Description
+#: maps/random/elephantine.json
 msgid ""
 "Forming the traditional frontier between ancient Kush and Egypt, the "
 "fortified Island of Elephantine was situated on the Nile River at the first "
@@ -294,40 +296,36 @@ msgid ""
 "the Nile, and boasted an impressive temple complex."
 msgstr "고대 쿠시와 이집트 사이의 전통적인 경계를 형성하면서, 요새화된 엘레판티네 섬은 첫 큰 폭포가 있는 나일강에 위치해 있습니다. 이집트 북쪽과 누비아 남쪽의 국경으로서, 엘레판티네는 상아와 다른 상품들의 교역을 위한 중요한 중간 기착지가 되었습니다. 나일강의 근원을 수호하는 크눔 신의 고향으로 여겨지며 인상적인 사원 단지를 자랑합니다."
 
-#: maps/random/elephantine.jsonsettings.Name
-msgid "Elephantine"
-msgstr "엘레판티네"
+#: maps/random/empire.json
+msgid "Empire"
+msgstr "제국"
 
-#: maps/random/empire.jsonsettings.Description
+#: maps/random/empire.json
 msgid ""
 "A neighboring province has pledged alegiance to your rule. It's up to you to command them to victory.\n"
 "[color=\"yellow\"]Caution! If nomad mode is disabled, each player will start with two civic centers.[/color]"
 msgstr "이웃 주에서는 당신의 통치에 충성을 맹세했습니다. 그들에게 승리를 명령하는 것은 당신에게 달려 있습니다.\n[color=\"yellow\"]주의! 유목민 모드가 비활성화된 경우, 각 플레이어는 두 개의 시민 회관으로 시작합니다.[/color]"
 
-#: maps/random/empire.jsonsettings.Name
-msgid "Empire"
-msgstr "제국"
+#: maps/random/english_channel.json
+msgid "English Channel"
+msgstr "영국 해협"
 
-#: maps/random/english_channel.jsonsettings.Description
+#: maps/random/english_channel.json
 msgid ""
 "Players start in either northern France or southern Britain while the "
 "English channel separates them."
 msgstr "플레이어들은 영국해협을 사이로 프랑스 북부나 영국 남부에서 시작합니다."
 
-#: maps/random/english_channel.jsonsettings.Name
-msgid "English Channel"
-msgstr "영국 해협"
+#: maps/random/extinct_volcano.json
+msgid "Extinct Volcano"
+msgstr "사화산"
 
-#: maps/random/extinct_volcano.jsonsettings.Description
+#: maps/random/extinct_volcano.json
 msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "A once fertile valley, desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
 msgstr "[color=\"red\"]중요 사항: 인공지능들은 이지도에서 작동하지 않습니다.[/color]\n\n한때 비옥했던 계곡으로, 이직역의 중심부에 있는 오랜 휴면 화산이 폭발로 인해 황폐화되었습니다. 수년간 텅비어 있고, 타 죽어, 삶의 흔적이 다시 나타나고 퍼지기 시작했습니다. 이제 그땅은 이전 시대의 완전한 풍성함에 절반이 되었습니다. 아아 그렇지않다: 오랜 가뭄이 오래 지속되고 북쪽의 높은 지역에 끊임없이 비가 내렸습니다. 수위가 급격히 높아지면서 플레이어들은 천천히 더 작고 멸종된 화산들 또는 지금은 잠들어있는 큰 원뿔의 높은 땅을 찾아야합니다."
-
-#: maps/random/extinct_volcano.jsonsettings.Name
-msgid "Extinct Volcano"
-msgstr "사화산"
 
 #: maps/random/extinct_volcano_triggers.js:59
 msgid "It keeps on raining, we will have to evacuate soon!"
@@ -345,7 +343,11 @@ msgstr "우리는 마른 땅을 찾아야 합니다. 우리 땅은 곧 물에 �
 msgid "The lakes start swallowing the land, we have to find shelter!"
 msgstr "호수들이 땅을 삼키기 시작합니다. 주거지를 찾아야 합니다!"
 
-#: maps/random/fields_of_meroe.jsonsettings.Description
+#: maps/random/fields_of_meroe.json
+msgid "Fields of Meroë"
+msgstr "메로에의 들판"
+
+#: maps/random/fields_of_meroe.json
 msgid ""
 "The “Island of Meroë”, a vast peninsula flanked by the Nile and Atbarah "
 "rivers, formed the heartland of ancient Kush. Where the harsh deserts start "
@@ -354,46 +356,42 @@ msgid ""
 "life, but grave threats loom on the opposite riverbank."
 msgstr "나일강과 아바라 강이 둘러싸인 광대한 반도인 “I메로에 섬”은 고대 쿠시의 중심지를 형성했습니다. 매서운 사막이 반건조 사바나와 작은 아카시아 숲이 경관을 가로지르는 곳이죠. 이 지역은 자원이 풍부하고 항상 존재하는 나일강이 생명을 가져다 주지만, 반대편 강둑에 심각한 위협이 드리우고 있습니다."
 
-#: maps/random/fields_of_meroe.jsonsettings.Name
-msgid "Fields of Meroë"
-msgstr "메로에의 들판"
+#: maps/random/flood.json
+msgid "Flood"
+msgstr "홍수"
 
-#: maps/random/flood.jsonsettings.Description
+#: maps/random/flood.json
 msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n"
 "\n"
 "A great flood moves across the valley. At some point you have to evacuate your units and use ships to reach the mainland and the other players."
 msgstr "[color=\"red\"]중요 사항: AI 플레이어는 물이 불어나면 작동하지 않습니다[/color]\n\n거대한 홍수가 계곡을 가로질러 이동합니다. 어느 시점에서 유닛을 대피시키고 배를 이용해 본토와 다른 플레이어에게 도달해야 합니다."
 
-#: maps/random/flood.jsonsettings.Name
-msgid "Flood"
-msgstr "홍수"
-
-#: maps/random/flood.jsonsettings.WaterLevels[0].Description
-msgid "The water rises. The homeislands will become uninhabitable."
-msgstr "수위가 상승합니다. 고향 섬들은 사람이 살 수 없게 될 것입니다."
-
-#: maps/random/flood.jsonsettings.WaterLevels[0].Name
+#: maps/random/flood.json
 msgid "Rising"
 msgstr "상승"
 
-#: maps/random/flood.jsonsettings.WaterLevels[1].Description
+#: maps/random/flood.json
+msgid "The water rises. The homeislands will become uninhabitable."
+msgstr "수위가 상승합니다. 고향 섬들은 사람이 살 수 없게 될 것입니다."
+
+#: maps/random/flood.json
+msgid "Shallow"
+msgstr "얕은 수위"
+
+#: maps/random/flood.json
 msgid ""
 "The water doesn't rise. Ships and troops can battle in chest deep waters."
 msgstr "수위가 상승하지 않습니다. 선박과 병력들은 가슴까지 잠긴 물에서 전투를 할 수 있습니다."
 
-#: maps/random/flood.jsonsettings.WaterLevels[1].Name
-msgid "Shallow"
-msgstr "얕은 수위"
+#: maps/random/flood.json
+msgid "Deep"
+msgstr "깊은 수위"
 
-#: maps/random/flood.jsonsettings.WaterLevels[2].Description
+#: maps/random/flood.json
 msgid ""
 "The water doesn't rise. You have to use ships to travel to the mainland."
 msgstr "수위가 상승하지 않습니다. 본토로 이동하려면 선박을 이용해야 합니다."
-
-#: maps/random/flood.jsonsettings.WaterLevels[2].Name
-msgid "Deep"
-msgstr "깊은 수위"
 
 #: maps/random/flood_triggers.js:11
 msgid ""
@@ -401,53 +399,57 @@ msgid ""
 "evacuate the units."
 msgstr "홍수가 계속됩니다. 곧 물이 땅을 삼킬 것입니다. 유닛을 대피시켜야 합니다."
 
-#: maps/random/fortress.jsonsettings.Description
-msgid "Players start in a ready-made fortress with piles of resources."
-msgstr "플레이어들은 자원이 쌓여 있는 준비된 요새에서 시작합니다."
-
-#: maps/random/fortress.jsonsettings.Name
+#: maps/random/fortress.json
 msgid "Fortress"
 msgstr "요새"
 
-#: maps/random/frontier.jsonsettings.Description
-msgid "A wild, unknown landscape awaits rival explorers."
-msgstr "거칠고 알 수 없는 풍경이 경쟁 탐험가를 기다리고 있습니다."
+#: maps/random/fortress.json
+msgid "Players start in a ready-made fortress with piles of resources."
+msgstr "플레이어들은 자원이 쌓여 있는 준비된 요새에서 시작합니다."
 
-#: maps/random/frontier.jsonsettings.Name
+#: maps/random/frontier.json
 msgid "Frontier"
 msgstr "국경"
 
-#: maps/random/gear.jsonsettings.Description
-msgid "A land with waterways decorated in a manner similar to spider web."
-msgstr "거미줄과 유사한 방식으로 장식된 수로가 있는 땅."
+#: maps/random/frontier.json
+msgid "A wild, unknown landscape awaits rival explorers."
+msgstr "거칠고 알 수 없는 풍경이 경쟁 탐험가를 기다리고 있습니다."
 
-#: maps/random/gear.jsonsettings.Name
+#: maps/random/gear.json
 msgid "Gear"
 msgstr "톱니바퀴"
 
-#: maps/random/guadalquivir_river.jsonsettings.Description
+#: maps/random/gear.json
+msgid "A land with waterways decorated in a manner similar to spider web."
+msgstr "거미줄과 유사한 방식으로 장식된 수로가 있는 땅."
+
+#: maps/random/guadalquivir_river.json
+msgid "Guadalquivir River"
+msgstr "과달키비르 강"
+
+#: maps/random/guadalquivir_river.json
 msgid ""
 "Players start in the shores of the Mediterranean Sea with a river flowing between them.\n"
 "\n"
 "The Guadalquivir is the fifth longest river in the Iberian peninsula and the second longest river with its entire length in Spain. The Guadalquivir river is the only great navigable river in Spain. Currently it is navigable to Seville, but in Roman times it was navigable to Cordoba. The ancient city of Tartessos was said to have been located at the mouth of the Guadalquivir, although its site has not yet been found."
 msgstr "플레이어들은 강을 사이에 두고 지중해 연안에서 시작합니다.\n\n과달퀴비르는 이베리아 반도에서 다섯 번째로 긴 강이며,  스페인에서 전체 길이가있는 두 번째로 긴 강입니다. 과달퀴비르 강은 스페인에서 유일하게 항해할 수 있는 강입니다. 현재는 세비야까지 항해할 수 있지만, 로마 시대에는 코르도바까지 항해할 수 있었습니다. 고대 도시 타르테소스는 아직 소재지가 발견되지 않았지만 과달퀴비르 하구에 위치했다고 전해집니다."
 
-#: maps/random/guadalquivir_river.jsonsettings.Name
-msgid "Guadalquivir River"
-msgstr "과달키비르 강"
+#: maps/random/gulf_of_bothnia.json
+msgid "Gulf of Bothnia"
+msgstr "보트니아 만"
 
-#: maps/random/gulf_of_bothnia.jsonsettings.Description
+#: maps/random/gulf_of_bothnia.json
 msgid ""
 "Players start around a gulf dotted with small islands.\n"
 "\n"
 "The Gulf of Bothnia is the northernmost arm of the Baltic Sea."
 msgstr "플레이어들은 작은 섬들로 둘러 싸인 만을 중심으로 시작합니다.\n\n보트니아만은 발트해의 최북단 팔입니다."
 
-#: maps/random/gulf_of_bothnia.jsonsettings.Name
-msgid "Gulf of Bothnia"
-msgstr "보트니아 만"
+#: maps/random/harbor.json
+msgid "Harbor"
+msgstr "항구"
 
-#: maps/random/harbor.jsonsettings.Description
+#: maps/random/harbor.json
 msgid ""
 "Players start with some light fishing opportunities in the calm waters of a "
 "sheltered harbor. A large bounty of seafood lays beyond the protective "
@@ -456,11 +458,11 @@ msgid ""
 "narrow passageways or take to the sea?"
 msgstr "플레이어들은 보호를 받는 항구의 잔잔한 바다에서 일부 가벼운 낚시 기회를 가지고 시작합니다. 깊은 바다의 보호 절벽 너머에는 풍부한 해산물이 있습니다. 절벽의 기슭에 있는 작은 통로는 격렬한 전투와 요새화를 용이하게 합니다. 좁은 통로를 통해 싸우시겠습니까, 아니면 바다로 나가시겠습니까?"
 
-#: maps/random/harbor.jsonsettings.Name
-msgid "Harbor"
-msgstr "항구"
+#: maps/random/hellas.json
+msgid "Hellas"
+msgstr "헬라스 (그리스의 옛 이름)"
 
-#: maps/random/hellas.jsonsettings.Description
+#: maps/random/hellas.json
 msgid ""
 "Hellas, home to the Greeks and through them birthplace to the foundation of "
 "western civilization. Yet the land lacks unity, countless city-states vie "
@@ -468,11 +470,11 @@ msgid ""
 "fall into oblivion, erased from the histories?"
 msgstr "헬라스는 그리스인의 고향이자 서구 문명의 토대가되는 출생지입니다. 그러나 그 땅에는 통일성이 없고, 수많은 도시 국가들이 지배권을 가지기 위해 다투고있습니다.  당신의 폴리스를 위대한 영광으로 이끌 것입니까? 아니면 역사에서 지워진 채 망각 속으로 빠지는 것을 볼 것입니까?"
 
-#: maps/random/hellas.jsonsettings.Name
-msgid "Hellas"
-msgstr "헬라스 (그리스의 옛 이름)"
+#: maps/random/hells_pass.json
+msgid "Hell's Pass"
+msgstr "지옥의 길"
 
-#: maps/random/hells_pass.jsonsettings.Description
+#: maps/random/hells_pass.json
 msgid ""
 "A narrow pass between steep mountains promotes tight, defensive combat. With"
 " bountiful resources far from the front lines, teams may choose to support "
@@ -480,22 +482,22 @@ msgid ""
 "defensible ground."
 msgstr "가파른 산 사이를 아슬아슬하게 통과하면 빈틈없는 방어전을 펼칩니다. 풍부한 자원이 최전선에서 멀리 떨어져 있기 때문에, 각 편들은 노출된 편들을 재정적으로 지원하거나, 더 비옥하지만 방어할 수 없는 지대로 후퇴할 수도 있습니다."
 
-#: maps/random/hells_pass.jsonsettings.Name
-msgid "Hell's Pass"
-msgstr "지옥의 길"
+#: maps/random/hyrcanian_shores.json
+msgid "Hyrcanian Shores"
+msgstr "히르카니아 해변"
 
-#: maps/random/hyrcanian_shores.jsonsettings.Description
+#: maps/random/hyrcanian_shores.json
 msgid ""
 "Each player starts in a coastal area between forested hills and the Sea. "
 "Inspired by the southern regions of the Caspian Sea known in Antiquity as "
 "Hyrcania."
 msgstr "각 플레이어는 숲이 우거진 언덕과 바다 사이의 해안 지역에서 시작합니다. 고대에는 히르카니아로 알려진 카스피해의 남쪽 지역에서 영감을 받았습니다."
 
-#: maps/random/hyrcanian_shores.jsonsettings.Name
-msgid "Hyrcanian Shores"
-msgstr "히르카니아 해변"
+#: maps/random/india.json
+msgid "India"
+msgstr "인도"
 
-#: maps/random/india.jsonsettings.Description
+#: maps/random/india.json
 msgid ""
 "Central India just before the monsoon season - a parched land awaits the "
 "life-bringing rain which is already two months late. Due to the extended "
@@ -503,29 +505,29 @@ msgid ""
 "which have survived the climate are spread out, yet not too scarce."
 msgstr "장마 직전 인도 중부 - 바싹 마른 땅이 벌써 두 달이나 늦은 생기를 불어넣는 비를 기다리고 있습니다. 건조함과 찜통 더위가 길어지면서 가장 큰 호수만 남아 있게 되었습니다. 기후에서 살아남은 강건한 나무들이 퍼져 있지만, 너무 부족하지는 않습니다."
 
-#: maps/random/india.jsonsettings.Name
-msgid "India"
-msgstr "인도"
+#: maps/random/island_stronghold.json
+msgid "Island Stronghold"
+msgstr "요새 섬"
 
-#: maps/random/island_stronghold.jsonsettings.Description
+#: maps/random/island_stronghold.json
 msgid ""
 "Teams start off with nearly adjacent civic centers on a small island, "
 "offering a fortified base from which to expand."
 msgstr "각 편은 작은 섬에 있는 인접한 시민회관에서 시작해서 확장기지 기반을 제공합니다."
 
-#: maps/random/island_stronghold.jsonsettings.Name
-msgid "Island Stronghold"
-msgstr "요새 섬"
-
-#: maps/random/islands.jsonsettings.Description
-msgid "Players start in small islands while there are many others around."
-msgstr "플레이어들은 주변에 많은 다른 플레이어들이 있는 동안 작은 섬에서 시작합니다."
-
-#: maps/random/islands.jsonsettings.Name
+#: maps/random/islands.json
 msgid "Islands"
 msgstr "군도"
 
-#: maps/random/jebel_barkal.jsonsettings.Description
+#: maps/random/islands.json
+msgid "Players start in small islands while there are many others around."
+msgstr "플레이어들은 주변에 많은 다른 플레이어들이 있는 동안 작은 섬에서 시작합니다."
+
+#: maps/random/jebel_barkal.json
+msgid "Jebel Barkal"
+msgstr "게벨 바르칼"
+
+#: maps/random/jebel_barkal.json
 msgid ""
 "Starting near the fertile banks of the Nile, the players besiege the heavily"
 " defended city Napata, which lies at the foot of the hill Jebel Barkal, the "
@@ -536,10 +538,6 @@ msgid ""
 "from the Fourth Cataract, this area became the breadbasket of ancient Kush."
 msgstr "나일강의 비옥한 둑 주변에서 출발한 플레이어들은 “오염되지 않고 깨끗한 산”인 제벨 바칼 언덕 기슭에 위치한 엄중한 방어를 받고 있는 나파타를 포위합니다. 쿠시인과 이집트 사람의 말에 따르면, 이곳은 아문의 남쪽 고향입니다. “두 나라의 왕좌”로 알려진, 고대 종교의 수도 나파타는 그 그늘에 숨어있었습니다. 이곳은 왕을 옹립했던 곳입니다 – 그리고는 철회되었습니다! 네번째의 큰 폭포에서 하류로 흘러내린 풍부한 범람원이 있는 이 지역은 고대 쿠시의 젓줄이 되었습니다."
 
-#: maps/random/jebel_barkal.jsonsettings.Name
-msgid "Jebel Barkal"
-msgstr "게벨 바르칼"
-
 #: maps/random/jebel_barkal_triggers.js:605
 msgid "Napata is attacking!"
 msgstr "나파타가 공격해옵니다!"
@@ -549,56 +547,60 @@ msgstr "나파타가 공격해옵니다!"
 msgid "Napata will attack in %(time)s!"
 msgstr "나파타는 %(time)s 초 후에 공격합니다!"
 
-#: maps/random/kerala.jsonsettings.Description
+#: maps/random/kerala.json
+msgid "Kerala"
+msgstr "케랄라 (인도 서남부의 지방)"
+
+#: maps/random/kerala.json
 msgid ""
 "Players start in the southwestern shores of India between a sea and "
 "mountains."
 msgstr "플레이어들은 인도 남서부 해안에서 바다와 산 사이에서 시작합니다."
 
-#: maps/random/kerala.jsonsettings.Name
-msgid "Kerala"
-msgstr "케랄라 (인도 서남부의 지방)"
-
-#: maps/random/lake.jsonsettings.Description
-msgid "Players start around a lake in the center of the map."
-msgstr "플레이어들은 지도의 중앙에 있는 호수 주변에서 시작합니다."
-
-#: maps/random/lake.jsonsettings.Name
+#: maps/random/lake.json
 msgid "Lake"
 msgstr "호수"
 
-#: maps/random/latium.jsonsettings.Description
+#: maps/random/lake.json
+msgid "Players start around a lake in the center of the map."
+msgstr "플레이어들은 지도의 중앙에 있는 호수 주변에서 시작합니다."
+
+#: maps/random/latium.json
+msgid "Latium"
+msgstr "라티움 (고대 이탈리아 중부 티베르 강가의 지방)"
+
+#: maps/random/latium.json
 msgid ""
 "The Italian peninsula \n"
 "\n"
 " Latium is the region of central western Italy in which the city of Rome was founded and grew to be the capital city of the Roman Empire. Latium was originally a small triangle of fertile, volcanic soil on which resided the tribe of the Latins. It was located on the left bank (east and south) of the Tiber river, extending northward to the Anio river (a left-bank tributary of the Tiber) and southeastward to the Pomptina Palus (Pontine Marshes, now the Pontine Fields) as far south as the Circeian promontory. The right bank of the Tiber was occupied by the Etruscan city of Veii, and the other borders were occupied by Italic tribes. Subsequently Rome defeated Veii and then its Italic neighbors, expanding Latium to the Apennine Mountains in the northeast and to the opposite end of the marsh in the southeast. The modern descendant, the Italian Regione of Lazio, also called Latium in Latin, and occasionally in modern English, is somewhat larger still, but not as much as double the original Latium."
 msgstr "이탈리아 반도\n\n라티움은 이탈리아 중부 서부의 지역으로, 로마 시가 세워져 로마 제국의 수도로 성장했습니다. 라티움은 원래 라틴 부족에 거주했던 비옥하고 화산성 토양의 작은 삼각형이었어요. 티베르 강의 왼쪽 둑(동남쪽)에 위치해 북쪽으로는 아니오 강(티베르 강의 좌안 지류)까지 확장되었고 남동쪽으로는 시르체안 약속장까지 남쪽에 있는 폼프티나 팔루스( 폰틴 마셰스, 현재 폰틴 들판)까지 뻗어 있었습니다. 티베르족의 오른쪽 둑은 에트루스카의 도시인 베이에가 점령했고, 다른 국경들은 이탈리아 부족들이 점령했습니다. 그 후 로마는 베이와 그 다음 이탈리아 이웃 국가들을 물리치고, 라티움을 북동쪽의 아페닌 산맥과 남동쪽의 습지의 반대쪽 끝으로 확장시켰습니다. 현재의 후손인 라치오(Lazio)의 이탈리아 지방인은 라틴어로 라티움이라고도 불리며, 때로는 현재 영어로도 다소 더 크지만, 원래의 라티움보다 두 배나 크지는 않습니다."
 
-#: maps/random/latium.jsonsettings.Name
-msgid "Latium"
-msgstr "라티움 (고대 이탈리아 중부 티베르 강가의 지방)"
+#: maps/random/lions_den.json
+msgid "Lion's Den"
+msgstr "사자굴"
 
-#: maps/random/lions_den.jsonsettings.Description
+#: maps/random/lions_den.json
 msgid ""
 "High cliffs protect each player's main base. Venturing into the unknown can "
 "be risky, but necessary."
 msgstr "높은 절벽은 각 플레이어의 기본 기지를 보호합니다. 미지의 세계로 모험하는 것은 위험할 수 있지만 필요합니다."
 
-#: maps/random/lions_den.jsonsettings.Name
-msgid "Lion's Den"
-msgstr "사자굴"
+#: maps/random/lorraine_plain.json
+msgid "Lorraine Plain"
+msgstr "로렌 평야"
 
-#: maps/random/lorraine_plain.jsonsettings.Description
+#: maps/random/lorraine_plain.json
 msgid ""
 "Players start in a nearly flat Gallic plain divided by a river and its "
 "tributaries."
 msgstr "플레이어들은 강과 그 지류로 나누어진 거의 평지인 갈리아 평야에서 시작합니다."
 
-#: maps/random/lorraine_plain.jsonsettings.Name
-msgid "Lorraine Plain"
-msgstr "로렌 평야"
+#: maps/random/lower_nubia.json
+msgid "Lower Nubia"
+msgstr "하류 누비아"
 
-#: maps/random/lower_nubia.jsonsettings.Description
+#: maps/random/lower_nubia.json
 msgid ""
 "Known in the Greco-Roman world as the Triakontaschoinos, Lower Nubia was the"
 " area between the first and second cataracts of the Nile and formed the "
@@ -609,21 +611,19 @@ msgid ""
 "access to the rich goldfields of the Nubian desert."
 msgstr "그리스-로마 세계에서 트리아콘타초이노스로 알려진 하류 누비아는 나일강의 첫 번째와 두 번째 폭포 사이의 지역이었고 쿠시와 이집트 사이의 전통적인 국경 지역을 형성했습니다. 이 지역의 타는 듯한 사막, 가파른 계곡, 그리고 우뚝 솟은 절벽은 이곳을 살기 힘든 곳으로 만들지만, 이 고대 회랑의 통제는 나일강의 수익성 높은 교역로를 통제하고 누비안 사막의 풍부한 금광에 접근할 수 있는 모든 세력에게 필수적이었습니다."
 
-#: maps/random/lower_nubia.jsonsettings.Name
-msgid "Lower Nubia"
-msgstr "하류 누비아"
-
-#: maps/random/mainland.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[8].Description
-msgid "A typical map without any water."
-msgstr "물이 없는 일반적인 지도입니다."
-
-#: maps/random/mainland.jsonsettings.Name
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[8].Name
+#: maps/random/mainland.json maps/random/unknown.json
 msgid "Mainland"
 msgstr "메인랜드 (스코틀랜드 북쪽 최대의 섬)"
 
-#: maps/random/marmara.jsonsettings.Description
+#: maps/random/mainland.json maps/random/unknown.json
+msgid "A typical map without any water."
+msgstr "물이 없는 일반적인 지도입니다."
+
+#: maps/random/marmara.json
+msgid "Marmara"
+msgstr "마르마라"
+
+#: maps/random/marmara.json
 msgid ""
 "The Propontis (Sea of Marmara) connects the Pontus Euxinus (Black Sea) to "
 "the Aegean Sea, and seperates Asia Minor from Thrace. To the south-west lies"
@@ -635,11 +635,11 @@ msgid ""
 "resources."
 msgstr "프로폰티스호(마르마라 바다)는 폰투스 유시누스(검은 바다)를 에게 해와 연결시키고, 아시아 소수를 타이스로부터 분리시킵니다. 남서쪽으로 헬레스폰트(다르다넬스)가 있고, 그 입구에는 한때 고대 도시 이피(트로이)가 서 있었습니다. 북동쪽에는 보스포루스 트라키아에(보스포루스 해협)가 있는데, 그 곳에는 시간이 지나면 그리스의 도시 비잔티움이 세워지고, 나중에는 콘스탄티노폴리스라는 새로운 이름으로 위대한 비잔틴 제국의 수도가 될 것입니다. 플레이어들은 충분한 자원을 가지고 비옥한 땅에서 시작합니다."
 
-#: maps/random/marmara.jsonsettings.Name
-msgid "Marmara"
-msgstr "마르마라"
+#: maps/random/mediterranean.json
+msgid "Mediterranean"
+msgstr "지중해"
 
-#: maps/random/mediterranean.jsonsettings.Description
+#: maps/random/mediterranean.json
 msgid ""
 "The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
 "Romans. They took the rudimentary knowledge and principles of organisation "
@@ -653,41 +653,40 @@ msgid ""
 "preferred the term 'Mare Internum' or even 'Mare Nostrum'."
 msgstr "지중해, 페니키아, 그리스, 이집트, 그리고 나중에 로마인의 고향. 그들은 메소포타미아에서 조직의 기초지식과 원칙을 가져와 서 더 많은 것으로 만들어서, 학습과 지식의 중심을 지중해 연안으로 옮겨 오늘날 우리가 알고 있는 문명의 기초를 놓았습니다. 지중해는 거의 완전히 육지로 둘러싸여 있습니다: 북쪽에는 갈리아 트란살피나(알프스 남쪽의 골족), 이탈리아, 그리스(그라에시아) 및 아나탈리아가 있고, 동쪽은 시리아, 남쪽으로는 리비아와 모리타니, 서쪽으로는 이베리아로 둘러싸여 있습니다. 지중해라는 이름은 라틴어에서 유래되었지만 로마인들은 '마레 인터넘'이나 심지어 '마레 노스트룸'이라는 용어를 선호했습니다."
 
-#: maps/random/mediterranean.jsonsettings.Name
-msgid "Mediterranean"
-msgstr "지중해"
-
-#: maps/random/migration.jsonsettings.Description
+#: maps/random/migration.json
 msgid ""
 "Players start in small islands in the eastern part of the map. There is a "
 "big continent in the west ready for expansion."
 msgstr "플레이어들은 지도의 동쪽 부분에있는 작은 섬에서 시작합니다. 서쪽에는 확장할 준비가 된 큰 대륙이 있습니다."
 
-#: maps/random/migration.jsonsettings.Name
-#: maps/scenarios/migration.xml:Name:26
+#: maps/random/migration.json maps/scenarios/migration.xml:26
 msgid "Migration"
 msgstr "대이동"
 
-#: maps/random/neareastern_badlands.jsonsettings.Description
+#: maps/random/neareastern_badlands.json
+msgid "Neareastern Badlands"
+msgstr "근동지역 불모지"
+
+#: maps/random/neareastern_badlands.json
 msgid ""
 "A jumbled maze of cliffs, canyons, and rugged terrain with an oasis in the center\n"
 "\n"
 "Cappadocia is a historical region in Central Anatolia. In the time of Herodotus, the Cappadocians were reported as occupying the whole region from Mount Taurus to the vicinity of the the Black Sea. Cappadocia, in this sense, was bounded in the south by the chain of the Taurus Mountains that separate it from Cilicia, to the east by the upper Euphrates and the Armenian Highland, to the north by Pontus, and to the west by Lycaonia and eastern Galatia. Cappadocia lies in eastern Anatolia. The relief consists of a high plateau over 1000 m in altitude that is pierced by volcanic peaks. Due to its inland location and high altitude, Cappadocia has a markedly continental climate, with hot dry summers and cold snowy winters. Rainfall is sparse and the region is largely semi-arid."
 msgstr "중간에 오아시스가 있는 절벽과 협곡, 험준한 지형이 뒤섞인 미로입니다.\n\n카파도키아는 중앙 아나톨리아의 역사 지역입니다. 헤로도토스 시대에 카파도키아 인들은 타우루스 산에서 흑해 부근까지 전 지역을 점령한 것으로 보고되었습니다. 카파도키아는 이런 의미에서 타우루스 산맥의 사슬에 의해 남쪽에는 경계선을 두었는데, 그 사슬은 질리시아에서, 동쪽은 유프라테스 상부와 아르메니아 고원에 의해, 북쪽은 폰투스에 의해, 서쪽은 리카오니아와 동갈라티아에 의해 경계를 이루었습니다. 카파도키아는 아나톨리아 동부에 있습니다. 구제역은 화산 봉우리에 의해 뚫린 고도 1000m 이상의 높은 고원으로 구성되어 있습니다. 카파도시아는 내륙의 위치와 높은 고도 때문에 대륙성 기후가 두드러지게 나타나고, 고온 건조한 여름과 차가운 눈 내리는 겨울이 있습니다. 빗줄기는 드물고 그 지역은 대체로 반건조입니다."
 
-#: maps/random/neareastern_badlands.jsonsettings.Name
-msgid "Neareastern Badlands"
-msgstr "근동지역 불모지"
-
-#: maps/random/new_rms_test.jsonsettings.Description
-msgid "A basic test of the random map generator - not playable."
-msgstr "무작위 지도 생성기의 기초 테스트 - 게임을 진행할 수 없습니다."
-
-#: maps/random/new_rms_test.jsonsettings.Name
+#: maps/random/new_rms_test.json
 msgid "New RMS Test"
 msgstr "새로운 RMS 테스트"
 
-#: maps/random/ngorongoro.jsonsettings.Description
+#: maps/random/new_rms_test.json
+msgid "A basic test of the random map generator - not playable."
+msgstr "무작위 지도 생성기의 기초 테스트 - 게임을 진행할 수 없습니다."
+
+#: maps/random/ngorongoro.json
+msgid "Ngorongoro"
+msgstr "응고롱고로"
+
+#: maps/random/ngorongoro.json
 msgid ""
 "Ngorongoro Crater is the world's largest intact volcanic caldera and is one "
 "of the Seven Natural Wonders of Africa. Due to it's climate, biodiversity "
@@ -695,68 +694,52 @@ msgid ""
 "and the birthplace of mankind."
 msgstr "응고롱고로 분화구는 세계에서 가장 크고 온전한 화산 칼데라이며 아프리카의 7 대 불가사의 중 하나입니다. 기후, 생물 다양성, 역사로 인해 응고롱고는 아프리카의 에덴 동산과 인류의 발상지로 여겨집니다."
 
-#: maps/random/ngorongoro.jsonsettings.Name
-msgid "Ngorongoro"
-msgstr "응고롱고로"
+#: maps/random/northern_lights.json
+msgid "Northern Lights"
+msgstr "북극광 (오로라)"
 
-#: maps/random/northern_lights.jsonsettings.Description
+#: maps/random/northern_lights.json
 msgid ""
 "Players start in a tough map to play with scarce wood and dangerous polar "
 "animals."
 msgstr "플레이어들은 희귀한 나무와 위험한 극지방 동물들이 있는 험난한 지도에서 시작합니다."
 
-#: maps/random/northern_lights.jsonsettings.Name
-msgid "Northern Lights"
-msgstr "북극광 (오로라)"
+#: maps/random/oasis.json
+msgid "Oasis"
+msgstr "오아시스"
 
-#: maps/random/oasis.jsonsettings.Description
+#: maps/random/oasis.json
 msgid ""
 "Players start around a small oasis in the center of the map which holds much"
 " of the available wood on the map."
 msgstr "플레이어들은 지도의 중앙에 있는 작은 오아시스 주변에 시작하고 지도에서 목재는 대부분 그곳에 있습니다."
 
-#: maps/random/oasis.jsonsettings.Name
-msgid "Oasis"
-msgstr "오아시스"
+#: maps/random/persian_highlands.json
+msgid "Persian Highlands"
+msgstr "페르시아 고원"
 
-#: maps/random/persian_highlands.jsonsettings.Description
+#: maps/random/persian_highlands.json
 msgid ""
 "A dry central plateau rich in minerals surrounded by rocky hills\n"
 "\n"
 "The southern parts of Zagros Mountains were the heart of the Persian empires and population. Although the altitude is high, the southern parts are drier that the northern Zagros, leading to a semi-arid climate. Still there are some sparse oak forests in the higher grounds."
 msgstr "바위 언덕으로 둘러싸인 광물이 풍부한 건조한 중앙 고원\n\n자그로스 산맥의 남부는 페르시아 제국과 인구의 중심지였다. 고도가 높지만 남부 지역은 북부 자그로스가 건조한 기후로 이어진다. 여전히 높은 부지에 희소 한 참나무 숲이 있습니다."
 
-#: maps/random/persian_highlands.jsonsettings.Name
-msgid "Persian Highlands"
-msgstr "페르시아 고원"
+#: maps/random/phoenician_levant.json
+msgid "Phoenician Levant"
+msgstr "페니키아 레반트"
 
-#: maps/random/phoenician_levant.jsonsettings.Description
+#: maps/random/phoenician_levant.json
 msgid ""
 "Players start in the eastern part of the map while a great sea is located to"
 " the west."
 msgstr "플레이어들은 지도의 동쪽에서 시작하고 서쪽에는 큰 바다가 있습니다."
 
-#: maps/random/phoenician_levant.jsonsettings.Name
-msgid "Phoenician Levant"
-msgstr "페니키아 레반트"
+#: maps/random/polar_sea.json
+msgid "Polar Sea"
+msgstr "극지방 바다"
 
-#: maps/random/polar_sea.jsonsettings.Daytime[0].Description
-msgid "Scattered sunlight illuminates the scenery in a vivid red tone."
-msgstr "흩뿌려진 햇빛이 생생한 붉은 색조로 풍경을 비춥니다."
-
-#: maps/random/polar_sea.jsonsettings.Daytime[0].Name
-msgid "Dawn"
-msgstr "새벽"
-
-#: maps/random/polar_sea.jsonsettings.Daytime[1].Description
-msgid "The scenery is illuminated by direct or indirect sunlight."
-msgstr "그 풍경은 직사광선이나 간접광선으로 밝혀집니다."
-
-#: maps/random/polar_sea.jsonsettings.Daytime[1].Name
-msgid "Daylight"
-msgstr "햇빛"
-
-#: maps/random/polar_sea.jsonsettings.Description
+#: maps/random/polar_sea.json
 msgid ""
 "Players start in a cold polar region barren of vegetation. In the sea fish "
 "and whales abound, while the fragile icy land teems with huntable walruses "
@@ -769,11 +752,27 @@ msgid ""
 "recommended for inexperienced players.[/color]"
 msgstr "플레이어들은 식물의 차가운 극지방에서 시작합니다. 바다 물고기와 고래가 풍부하고, 깨지기 쉬운 얼음 땅은 사냥할 수있는 고래와 치명적인 늑대로 가득합니다. 가혹하고 금지된 기후로 인해 먹이의 향기에 의해 굶주린 이 늑대들은 무서운 숫자로 나타나기 시작했습니다. 현명하고 강한 통치자는 적을 상대로 승리를 거둘 뿐만 아니라, 이 짐승들이 경제상태를 약화시키고 몰락을 일으키지 않도록 이 짐승의 수를 막을 것입니다. [color=\"red\"]경고: 수집 가능한 나무가 없기 때문에 보물을 비활성화하는 것은 바람직하지 않습니다. 경험이 없는 플레이어들에게는 권장되지 않습니다.[/color]"
 
-#: maps/random/polar_sea.jsonsettings.Name
-msgid "Polar Sea"
-msgstr "극지방 바다"
+#: maps/random/polar_sea.json
+msgid "Dawn"
+msgstr "새벽"
 
-#: maps/random/pompeii.jsonsettings.Description
+#: maps/random/polar_sea.json
+msgid "Scattered sunlight illuminates the scenery in a vivid red tone."
+msgstr "흩뿌려진 햇빛이 생생한 붉은 색조로 풍경을 비춥니다."
+
+#: maps/random/polar_sea.json
+msgid "Daylight"
+msgstr "햇빛"
+
+#: maps/random/polar_sea.json
+msgid "The scenery is illuminated by direct or indirect sunlight."
+msgstr "그 풍경은 직사광선이나 간접광선으로 밝혀집니다."
+
+#: maps/random/pompeii.json
+msgid "Pompeii"
+msgstr "폼페이"
+
+#: maps/random/pompeii.json
 msgid ""
 "Pompeii was an ancient Roman coastal city, in the Campania region of Italy. "
 "Pompeii, along with much of the surrounding area, was mostly destroyed and "
@@ -781,22 +780,22 @@ msgid ""
 "Mount Vesuvius in AD 79."
 msgstr "폼페이는 이탈리아의 캄파니아 지역에 있는 고대 로마의 해안 도시였습니다. 폼페이는 주변의 많은 지역과 함께 AD 79년 베수비우스 화산의 폭발로 화산재와 속돌이 4~6미터의 아래에 대부분 파괴되어 파묻혔습니다."
 
-#: maps/random/pompeii.jsonsettings.Name
-msgid "Pompeii"
-msgstr "폼페이"
+#: maps/random/pyrenean_sierra.json
+msgid "Pyrenean Sierra"
+msgstr "피레네 산맥"
 
-#: maps/random/pyrenean_sierra.jsonsettings.Description
+#: maps/random/pyrenean_sierra.json
 msgid ""
 "High mountains separating the enemies.\n"
 "\n"
 "The Pyrenees is a great mountain range located between modern France and Spain."
 msgstr "높은 산들이 적을 사이에 두고 있습니다.\n\n피레네 산맥은 현재 프랑스와 스페인 사이에 위치한 거대한 산맥입니다."
 
-#: maps/random/pyrenean_sierra.jsonsettings.Name
-msgid "Pyrenean Sierra"
-msgstr "피레네 산맥"
+#: maps/random/ratumacos.json
+msgid "Ratumacos"
+msgstr "라투마코스"
 
-#: maps/random/ratumacos.jsonsettings.Description
+#: maps/random/ratumacos.json
 msgid ""
 "Players start on the banks of the River Sequana (Seine) in Northern Gaul "
 "near the settlement of Ratumacos. Destined to become one of the largest and "
@@ -805,101 +804,102 @@ msgid ""
 "land - but not for long."
 msgstr "플레이어들은 라투마코스 정착지 주변 북부 골족의 세쿠아나 강 유역에서 시작합니다. 중세 유럽에서 가장 크고 가장 번영한 도시 중 하나이자 루앙이라는 새로운 이름으로 영국-노르만 왕조의 수도 중 하나가 될 운명인 라투마코스는 여전히 평화로운 땅이지만 오랫동안은 그렇지 않습니다."
 
-#: maps/random/ratumacos.jsonsettings.Name
-msgid "Ratumacos"
-msgstr "라투마코스"
+#: maps/random/red_sea.json
+msgid "Red Sea"
+msgstr "홍해"
 
-#: maps/random/red_sea.jsonsettings.Description
+#: maps/random/red_sea.json
 msgid ""
 "Historically, the Red Sea was a sea of many nations. Ideally situated for "
 "trade with the Far East, it was coveted by all. Although dry, this land is "
 "by no means inhospitable, and is amply provided with all resources."
 msgstr "역사적으로 홍해는 많은 나라의 바다였습니다. 극동 과의 교역에 이상적으로 자리 잡고 있으며, 모든 사람들이 탐낼 만한 음식이었습니다. 비록 건조하지만, 이 땅은 결코 험악하지 않으며, 모든 자원을 모두 제공합니다."
 
-#: maps/random/red_sea.jsonsettings.Name
-msgid "Red Sea"
-msgstr "홍해"
+#: maps/random/rhine_marshlands.json
+msgid "Rhine Marshlands"
+msgstr "라인강 습지대"
 
-#: maps/random/rhine_marshlands.jsonsettings.Description
+#: maps/random/rhine_marshlands.json
 msgid ""
 "Shallow, passable wetlands with little room for building. Represents the "
 "lowlands of the Rhine basin in Europe."
 msgstr "건물을 지을수 있는 공간이 거의 없는 얕은 습지입니다. 유럽의 라인 강 유역의 저지대 평화를 표현하고 있습니다."
 
-#: maps/random/rhine_marshlands.jsonsettings.Name
-msgid "Rhine Marshlands"
-msgstr "라인강 습지대"
+#: maps/random/river_archipelago.json
+msgid "River Archipelago"
+msgstr "다도해"
 
-#: maps/random/river_archipelago.jsonsettings.Description
+#: maps/random/river_archipelago.json
 msgid ""
 "Narrow strips of lands are separated by waterways, leaving few and shallow "
 "landbridges between them. Tropical wetlands provide plenty of game, but "
 "beware of Mauryan tribesmen when exploring the outermost islands."
 msgstr "좁은 면적의 땅은 수로들로 분리되어 있고, 그 사이에 얕은 육교가 거의 남아있지 않습니다. 열대 습지는 많은 게임을 제공하지만, 가장 외곽의 섬을 탐험할 때는 마우리아 부족 사람들을 조심합니다."
 
-#: maps/random/river_archipelago.jsonsettings.Name
-msgid "River Archipelago"
-msgstr "다도해"
+#: maps/random/rivers.json
+msgid "Rivers"
+msgstr "강"
 
-#: maps/random/rivers.jsonsettings.Description
+#: maps/random/rivers.json
 msgid ""
 "Rivers flow between players and join each other in the center of the map."
 msgstr "강은 플레이어들 사이에 흐르고 지도의 중심에서 서로 합류합니다."
 
-#: maps/random/rivers.jsonsettings.Name
-msgid "Rivers"
-msgstr "강"
+#: maps/random/rmbiome/alpine/late_spring.json
+msgctxt "biome definition"
+msgid "Late Spring"
+msgstr "늦봄"
 
-#: maps/random/rmbiome/alpine/late_spring.jsonDescription.Description
+#: maps/random/rmbiome/alpine/late_spring.json
 msgctxt "biome definition"
 msgid ""
 "A blend of lingering snow and emerging grass, marking a quiet transition "
 "from winter to summer."
 msgstr "녹지가 머리를 내밀고 사라지는 눈, 조용한 겨울에서 여름으로의 변화를 보여줍니다. "
 
-#: maps/random/rmbiome/alpine/late_spring.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Late Spring"
-msgstr "늦봄"
-
-#: maps/random/rmbiome/alpine/winter.jsonDescription.Description
+#: maps/random/rmbiome/alpine/winter.json
 msgctxt "biome definition"
 msgid ""
 "Snow-capped trees loom through the mist. The ground is blanketed in a layer "
 "of snow."
 msgstr "안개 속에 눈 덮인 나무들이 우뚝 서 있습니다. 땅은 눈으로 뒤덮여 있습니다."
 
-#: maps/random/rmbiome/alpine/winter.jsonDescription.Title
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
+#: maps/random/rmbiome/alpine/winter.json
+#: maps/random/rmbiome/gulf_of_bothnia/winter.json
 msgctxt "biome definition"
 msgid "Winter"
 msgstr "겨울"
 
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
+#: maps/random/rmbiome/fields_of_meroe/dry.json
+msgctxt "biome definition"
+msgid "Dry Season"
+msgstr "건조한 계절(건기)"
+
+#: maps/random/rmbiome/fields_of_meroe/dry.json
 msgctxt "biome definition"
 msgid ""
 "The vitalizing waters of the Nile sustain life along its banks, while the "
 "long dry season scorches the land."
 msgstr "나일 강의 활력을 불어넣는 물은 강둑을 따라 생명을 유지하며, 긴 건기는 땅을 불태울 것입니다."
 
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
+#: maps/random/rmbiome/fields_of_meroe/rainy.json
 msgctxt "biome definition"
-msgid "Dry Season"
-msgstr "건조한 계절(건기)"
+msgid "Rainy Season"
+msgstr "비오는 계절(우기)"
 
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
+#: maps/random/rmbiome/fields_of_meroe/rainy.json
 msgctxt "biome definition"
 msgid ""
 "Revelling in the much awaited rain, the baked land transforms into a lush "
 "haven for both man and beast."
 msgstr "많은 기다려온 비에 푹 빠진 구운 땅은 인간과 짐승 모두를위한 무성한 안식처로 변합니다."
 
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
+#: maps/random/rmbiome/generic/aegean.json
 msgctxt "biome definition"
-msgid "Rainy Season"
-msgstr "비오는 계절(우기)"
+msgid "Aegean-Anatolian"
+msgstr "에게해-아나톨리아인"
 
-#: maps/random/rmbiome/generic/aegean.jsonDescription.Description
+#: maps/random/rmbiome/generic/aegean.json
 msgctxt "biome definition"
 msgid ""
 "Start in a region blessed with the Mediterranean climate, a warm and "
@@ -907,12 +907,12 @@ msgid ""
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr "따뜻하고 매력적인 땅인 지중해 기후가 축복받은 지역에서 시작합니다. 편백나무는 지배적인 팬 손바닥과 끊임없이 싸우고 사슴은 행복한 줄도 모르고 그림자에서 풀을 뜯습니다."
 
-#: maps/random/rmbiome/generic/aegean.jsonDescription.Title
+#: maps/random/rmbiome/generic/alpine.json
 msgctxt "biome definition"
-msgid "Aegean-Anatolian"
-msgstr "에게해-아나톨리아인"
+msgid "Subalpine"
+msgstr "아고산지대"
 
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+#: maps/random/rmbiome/generic/alpine.json
 msgctxt "biome definition"
 msgid ""
 "Between the high summits of the Alps, the valleys are filled with fog in the"
@@ -921,12 +921,12 @@ msgid ""
 "goats."
 msgstr "알프스의 높은 정상 사이에 있는 계곡은 이른 아침 안개로 가득차 있습니다. 땅에는 자갈과 바위가 가득하지만, 그 사이로 은빛 전나무와 가문비나무가 자라고 사슴과 산양에게 주거지를 제공합니다."
 
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+#: maps/random/rmbiome/generic/arctic.json
 msgctxt "biome definition"
-msgid "Subalpine"
-msgstr "아고산지대"
+msgid "Arctic"
+msgstr "북극"
 
-#: maps/random/rmbiome/generic/arctic.jsonDescription.Description
+#: maps/random/rmbiome/generic/arctic.json
 msgctxt "biome definition"
 msgid ""
 "A region in the high snowy mountains. Biting winds sweep through the "
@@ -934,12 +934,12 @@ msgid ""
 "goats shiver."
 msgstr "높은 눈 덮인 산의 지역. 물린 바람이 풍부한 응습기 숲을 휩쓸고, 더욱 탄력있는 사슴과 산염소가 떨립니다."
 
-#: maps/random/rmbiome/generic/arctic.jsonDescription.Title
+#: maps/random/rmbiome/generic/autumn.json
 msgctxt "biome definition"
-msgid "Arctic"
-msgstr "북극"
+msgid "Rhine Valley (Fall)"
+msgstr "라인강 계곡 (가을)"
 
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
+#: maps/random/rmbiome/generic/autumn.json
 msgctxt "biome definition"
 msgid ""
 "The first leaves have fallen. The landscape is a dazzling dash of colors "
@@ -948,12 +948,12 @@ msgid ""
 "approaching winter."
 msgstr "첫 번째 잎이 떨어졌습니다. 그 풍경은 돌이킬 수 없이 뒤엉킨 눈부신 빛깔의 연속입니다. 이 온대 지역의 토종 너도밤나무와 참나무는 여러 가지 색깔의 잎을 보이고 동물들은 다가오는 겨울을 준비하려고 노력합니다."
 
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
+#: maps/random/rmbiome/generic/india.json
 msgctxt "biome definition"
-msgid "Rhine Valley (Fall)"
-msgstr "라인강 계곡 (가을)"
+msgid "India"
+msgstr "인도"
 
-#: maps/random/rmbiome/generic/india.jsonDescription.Description
+#: maps/random/rmbiome/generic/india.json
 msgctxt "biome definition"
 msgid ""
 "Explore the mysterious tropics. An extremely green, but also extremely humid"
@@ -962,12 +962,12 @@ msgid ""
 "their territory at all costs."
 msgstr "신비로운 열대를 탐험하세요. 극도로 녹색이지만 매우 습한 환경이 기다리고 있습니다. 키가 큰 투나 나무들은 이런 사생활 침해를 못마땅하게 바라보고 흉포한 호랑이들은 무슨 수를 써서라도 자신의 영토를 지키기로 결심합니다."
 
-#: maps/random/rmbiome/generic/india.jsonDescription.Title
+#: maps/random/rmbiome/generic/nubia.json
 msgctxt "biome definition"
-msgid "India"
-msgstr "인도"
+msgid "Nubia"
+msgstr "누비아"
 
-#: maps/random/rmbiome/generic/nubia.jsonDescription.Description
+#: maps/random/rmbiome/generic/nubia.json
 msgctxt "biome definition"
 msgid ""
 "Nubia, a dry climate in which only the hardy Baobab trees thrive. Solitary "
@@ -975,12 +975,12 @@ msgid ""
 " or elephants roam the wild in search of food."
 msgstr "누비아는 건조한 기후로, 오직 강인한 바오밥 나무만이 번성합니다. 외로운 가젤이 드문드문 풀을 뜯고, 얼룩말, 들개, 기린 또는 코끼리 떼가 먹이를 찾아 야생을 배회합니다."
 
-#: maps/random/rmbiome/generic/nubia.jsonDescription.Title
+#: maps/random/rmbiome/generic/sahara.json
 msgctxt "biome definition"
-msgid "Nubia"
-msgstr "누비아"
+msgid "Sahara"
+msgstr "사하라"
 
-#: maps/random/rmbiome/generic/sahara.jsonDescription.Description
+#: maps/random/rmbiome/generic/sahara.json
 msgctxt "biome definition"
 msgid ""
 "A semi-desert area that boasts numerous clumps of date palms and acacia "
@@ -988,12 +988,12 @@ msgid ""
 "fright at being disturbed."
 msgstr "수많은 대추야자 나무와 아카시아 나무가 우거진 반 사막 지대입니다. 낙타 무리가 야생을 배회하고 가끔 가젤이 방해를 받아 겁에 질려 튀어 나옵니다."
 
-#: maps/random/rmbiome/generic/sahara.jsonDescription.Title
+#: maps/random/rmbiome/generic/savanna.json
 msgctxt "biome definition"
-msgid "Sahara"
-msgstr "사하라"
+msgid "Sudanian Savanna"
+msgstr "수단 사바나"
 
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
+#: maps/random/rmbiome/generic/savanna.json
 msgctxt "biome definition"
 msgid ""
 "The transition between the dry Sahara to the north and the tropical forests "
@@ -1002,12 +1002,12 @@ msgid ""
 " elephants roam."
 msgstr "북쪽의 건조한 사하라와 남쪽의 열대림 사이의 변화입니다. 햇빛은 탁 트인 캐노피를 통해 홍수를 이루고 얼룩말, 들벌, 기린, 코끼리 떼가 배회하는 나무 사이의 초원을 밝혀줍니다."
 
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
+#: maps/random/rmbiome/generic/steppe.json
 msgctxt "biome definition"
-msgid "Sudanian Savanna"
-msgstr "수단 사바나"
+msgid "Eurasian Steppe"
+msgstr "유라시아 대초원"
 
-#: maps/random/rmbiome/generic/steppe.jsonDescription.Description
+#: maps/random/rmbiome/generic/steppe.json
 msgctxt "biome definition"
 msgid ""
 "Wide grasslands stretching to the horizon, without any trees blocking the "
@@ -1015,12 +1015,12 @@ msgid ""
 "peacefully on the empty land, but flee quickly if you try to catch them."
 msgstr "시야를 가리는 나무 없이 지평선까지 펼쳐진 넓은 초원입니다. 스텝 지대는 넓은 야생마 무리의 서식지로, 빈 땅에서는 평화롭게 풀을 뜯지만, 잡으려고 하면 재빨리 도망칩니다."
 
-#: maps/random/rmbiome/generic/steppe.jsonDescription.Title
+#: maps/random/rmbiome/generic/temperate.json
 msgctxt "biome definition"
-msgid "Eurasian Steppe"
-msgstr "유라시아 대초원"
+msgid "Temperate"
+msgstr "온대"
 
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
+#: maps/random/rmbiome/generic/temperate.json
 msgctxt "biome definition"
 msgid ""
 "Lush grasslands carpet the land, in places giving way to magnificent and "
@@ -1029,12 +1029,12 @@ msgid ""
 "dot the land, deer and sheep gorge themselves on this years fallen fruit."
 msgstr "웅장하고 다양한 활엽수 숲으로 가는 길이있는 초원이 땅을 덮었습니다. 포플러 나무, 소나무, 너도밤 나무, 참나무는 모두 패권을 위해 다투지만, 이 근본적인 전쟁은 끝없는 투쟁입니다. 수많은 사과들이 땅에 떨어지고, 사슴과 양은 올해 떨어진 과일들을 실컷먹습니다."
 
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.json
 msgctxt "biome definition"
-msgid "Temperate"
-msgstr "온대"
+msgid "Frozen Lake"
+msgstr "얼어붙은 호수"
 
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.json
 msgctxt "biome definition"
 msgid ""
 "Thick ice has formed on the gulf which is capable of withstanding any "
@@ -1042,12 +1042,7 @@ msgid ""
 "migrating deer who try to find some food under the snow."
 msgstr "어떤 무게도 견딜 수 있는 두꺼운 얼음이 만에 형성되었습니다. 모든 식물은 눈으로 덮여 있지만 눈 아래에서 먹이를 찾으려는 이동하는 사슴 떼가 있습니다."
 
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Frozen Lake"
-msgstr "얼어붙은 호수"
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.json
 msgctxt "biome definition"
 msgid ""
 "A late spring breeze ripples through the conifer forests of the Gulf of "
@@ -1055,20 +1050,20 @@ msgid ""
 "opportunities."
 msgstr "늦은 봄바람이 보스니아 만의 침엽수림을 스쳐지나갑니다. 연중 이맘때 만은 훌륭한 낚시 기회를 제공합니다."
 
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.json
+#: maps/random/rmbiome/persian_highlands/spring.json
 msgctxt "biome definition"
 msgid "Spring"
 msgstr "봄"
 
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
+#: maps/random/rmbiome/gulf_of_bothnia/winter.json
 msgctxt "biome definition"
 msgid ""
 "Winter has set in, carpeting the land with its first snow, but the landscape"
 " is still dotted with colorful berry bushes."
 msgstr "겨울이 시작되어 첫 눈으로 땅을 뒤덮었지만 풍경은 여전히 형형색색의 베리 덤불로 가득 차 있습니다."
 
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
+#: maps/random/rmbiome/persian_highlands/spring.json
 msgctxt "biome definition"
 msgid ""
 "Spring in the highlands, yet the heat has already begun making itself felt. "
@@ -1076,57 +1071,60 @@ msgid ""
 "scorching summer."
 msgstr "고지대의 봄, 하지만 더위는 벌써 느껴지기 시작했습니다. 짧은 생의 푸른 풀들이 무더운 여름을 맞이할 수 있는 발판을 마련하며 퇴각길에 올랐습니다."
 
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
+#: maps/random/rmbiome/persian_highlands/summer.json
+msgctxt "biome definition"
+msgid "Summer"
+msgstr "여름"
+
+#: maps/random/rmbiome/persian_highlands/summer.json
 msgctxt "biome definition"
 msgid ""
 "An arid, hostile land. The blistering heat has baked the ground to a sickly "
 "brown and the remaining trees struggle for survival."
 msgstr "건조하고 적대적인 땅입니다. 물집이 잡히는 더위로 땅이 병든 갈색으로 구워졌고 남은 나무들은 생존을 위해 안간힘을 씁니다."
 
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Summer"
-msgstr "여름"
-
-#: maps/random/saharan_oases.jsonsettings.Description
+#: maps/random/saharan_oases.json
 msgid "Each players starts near a lush oasis in a large, desolate desert."
 msgstr "각 플레이어들은 크고 황량한 사막의 무성한 오아시스 주변에서 시작합니다."
 
-#: maps/random/saharan_oases.jsonsettings.Name
-#: maps/scenarios/saharan_oases.xml:Name:39
+#: maps/random/saharan_oases.json maps/scenarios/saharan_oases.xml:39
 msgid "Saharan Oases"
 msgstr "사하라 오아시스"
 
-#: maps/random/sahel.jsonsettings.Description
+#: maps/random/sahel.json
 msgid ""
 "A somewhat open map with an abundance of food and mineral resources, while "
 "wood is somewhat scarce."
 msgstr "풍부한 식량과 광물 자원이 있는 다소 개방된 지도가지만 목재는 다소 부족합니다."
 
-#: maps/random/sahel.jsonsettings.Name maps/scenarios/sahel.xml:Name:38
+#: maps/random/sahel.json maps/scenarios/sahel.xml:38
 msgid "Sahel"
 msgstr "사헬"
 
-#: maps/random/sahel_watering_holes.jsonsettings.Description
+#: maps/random/sahel_watering_holes.json
+msgid "Sahel Watering Holes"
+msgstr "사헬의 물웅덩이"
+
+#: maps/random/sahel_watering_holes.json
 msgid ""
 "Players start around the map with lines of water between them\n"
 "\n"
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up."
 msgstr "플레이어들은 지도를 중심으로 물줄기를 따라 시작합니다.\n\n아프리카 사바나는 사냥을 위해 동물의 생명으로 가득차 있으며, 주변의 광물 퇴적물은 풍부합니다. 건기가 다가오고 물웅덩이가 건조해지고 있습니다."
 
-#: maps/random/sahel_watering_holes.jsonsettings.Name
-msgid "Sahel Watering Holes"
-msgstr "사헬의 물웅덩이"
-
-#: maps/random/schwarzwald.jsonsettings.Description
-msgid "A forest heavy map with a lake in the middle and plenty of resources."
-msgstr "깊은 숲으로 이뤄진 지도로 중앙에 호수가 있고 자원이 풍부합니다."
-
-#: maps/random/schwarzwald.jsonsettings.Name
+#: maps/random/schwarzwald.json
 msgid "Schwarzwald"
 msgstr "슈바르츠발트"
 
-#: maps/random/scythian_rivulet.jsonsettings.Description
+#: maps/random/schwarzwald.json
+msgid "A forest heavy map with a lake in the middle and plenty of resources."
+msgstr "깊은 숲으로 이뤄진 지도로 중앙에 호수가 있고 자원이 풍부합니다."
+
+#: maps/random/scythian_rivulet.json
+msgid "Scythian Rivulet"
+msgstr "스키타이 개울"
+
+#: maps/random/scythian_rivulet.json
 msgid ""
 "Carpeted in snow, the land slumbers in repose, but this fragile peace is "
 "destined to be shattered - and not by spring. Large packs of wolves lurk in "
@@ -1135,39 +1133,35 @@ msgid ""
 "conquered."
 msgstr "눈이 깔려 땅이 잠들었지만 이 연약한 평화는 봄이 아니라 산산이 부서 질 운명입니다. 먹이를 찾아 야생에 잠복해 있는 큰 늑대 무리, 한 마리의 북극 여우가 숨을 곳을 찾아 허둥지둥 달아납니다.  적대적인 지형에서 시작하여 플레이어들은 정복해야 합니다 - 아니면 정복당합니다."
 
-#: maps/random/scythian_rivulet.jsonsettings.Name
-msgid "Scythian Rivulet"
-msgstr "스키타이 개울"
-
-#: maps/random/snowflake_searocks.jsonsettings.Description
-msgid "Many small islands connected to each other by narrow passages."
-msgstr "많은 작은 섬들은 좁은 통로로 서로 연결되어 있습니다."
-
-#: maps/random/snowflake_searocks.jsonsettings.Name
+#: maps/random/snowflake_searocks.json
 msgid "Snowflake Searocks"
 msgstr "눈송이 바다바위"
 
-#: maps/random/stronghold.jsonsettings.Description
+#: maps/random/snowflake_searocks.json
+msgid "Many small islands connected to each other by narrow passages."
+msgstr "많은 작은 섬들은 좁은 통로로 서로 연결되어 있습니다."
+
+#: maps/random/stronghold.json
+msgid "Stronghold"
+msgstr "요새"
+
+#: maps/random/stronghold.json
 msgid ""
 "Teams start off with nearly adjacent civic centers, offering easy military "
 "and construction cooperation. With slivers of personal territory, teammates "
 "must rely on each other to defend their rear."
 msgstr "각 팀들은 가깝게 인접한 시민 회관에서 시작하여 군대 및 건설 협력을 쉽게 수행 할 수 있습니다. 각 사적인 영토의 길이가 길기 때문에 각 팀원들은 그들의 후방을 방어하기 위해 서로 의지해야합니다."
 
-#: maps/random/stronghold.jsonsettings.Name
-msgid "Stronghold"
-msgstr "요새"
+#: maps/random/survivalofthefittest.json
+msgid "Survival of the Fittest"
+msgstr "적자 생존"
 
-#: maps/random/survivalofthefittest.jsonsettings.Description
+#: maps/random/survivalofthefittest.json
 msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to collect the treasures at the center of the map before others do, and try to build your base up. The last player remaining will be the winner!"
 msgstr "[color=\"red\"]중요 사항: 인공지능들은 이 지도에서 작동하지 않습니다.[/color]\n\n끝없는 적들의 파도로부터 당신의 기지를 보호합니다.  다른 사람들보다 먼저 지도의 중앙에 있는 보물을 모으기 위해 여성 주민을 이용하고 기지를 짓습니다. 마지막 남은 플레이어들이 승자가됩니다!"
-
-#: maps/random/survivalofthefittest.jsonsettings.Name
-msgid "Survival of the Fittest"
-msgstr "적자 생존"
 
 #: maps/random/survivalofthefittest_triggers.js:160
 #, javascript-format
@@ -1183,418 +1177,385 @@ msgstr "적이 물밀듯이 공격해옵니다!"
 msgid "%(player)s has been defeated (lost civic center)."
 msgstr "%(player)s님이 패배했습니다 (시민회관 잃음)."
 
-#: maps/random/syria.jsonsettings.Description
-msgid "Players start in a plains with slightly rolling highlands."
-msgstr "플레이어들은 약간 구불구불 한 고원이 있는 평야에서 시작합니다."
-
-#: maps/random/syria.jsonsettings.Name
+#: maps/random/syria.json
 msgid "Syria"
 msgstr "시리아"
 
-#: maps/random/the_nile.jsonsettings.Description
+#: maps/random/syria.json
+msgid "Players start in a plains with slightly rolling highlands."
+msgstr "플레이어들은 약간 구불구불 한 고원이 있는 평야에서 시작합니다."
+
+#: maps/random/the_nile.json
+msgid "The Nile"
+msgstr "나일강"
+
+#: maps/random/the_nile.json
 msgid ""
 "A calm wide river, representing the Nile River in Egypt, divides the map "
 "into western and eastern parts."
 msgstr "완만하게 넓은 강은 이집트 나일강을 표현했고 지도를 동쪽과 서쪽으로 나누고 있습니다."
 
-#: maps/random/the_nile.jsonsettings.Name
-msgid "The Nile"
-msgstr "나일강"
+#: maps/random/unknown.json
+msgid "Unknown"
+msgstr "알 수 없음"
 
-#: maps/random/unknown.jsonsettings.Description
+#: maps/random/unknown.json
 msgid "The unknown."
 msgstr "알 수 없습니다."
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Description
+#: maps/random/unknown.json
+msgid "Random Land"
+msgstr "무작위 육지"
+
+#: maps/random/unknown.json
 msgid "Choose a random land landscape"
 msgstr "무작위 영토 풍경 선택"
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:39
-#: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
-msgid ""
-"Two Mediterranean land masses connected by a narrow spit of land, called an "
-"'Isthmus'."
-msgstr "지중해에서 두 개의 육지를 연결하는 좁고 잘록한 땅, '지협' 이라고 부릅니다."
-
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
+#: maps/random/unknown.json
 msgid "Isthmus"
 msgstr "지협"
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[2].Description
-msgid "A small central river."
-msgstr "작은 가운데 강입니다."
-
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[2].Name
+#: maps/random/unknown.json
 msgid "Central River"
 msgstr "가운데 강"
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[3].Description
+#: maps/random/unknown.json
+msgid "A small central river."
+msgstr "작은 가운데 강입니다."
+
+#: maps/random/unknown.json
+msgid "Edge Seas"
+msgstr "바다 가장자리"
+
+#: maps/random/unknown.json
 msgid ""
 "Players are aligned on a strip of land with seas bordering on one or both "
 "sides that may hold islands."
 msgstr "플레이어들은 섬을 보유할 수있는 한쪽이나 양쪽에 바다가 접해 있는 땅에 정렬됩니다."
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[3].Name
-msgid "Edge Seas"
-msgstr "바다 가장자리"
-
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[4].Description
-msgid "Land shaped like a concrescent moon around a central lake."
-msgstr "중앙 호수 주위의 초승달처럼 생긴 땅입니다."
-
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[4].Name
+#: maps/random/unknown.json
 msgid "Gulf"
 msgstr "만"
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[5].Description
-msgid "Mainland style with some small random lakes."
-msgstr "작은 무작위 호수가 있는 메인랜드 방식입니다."
+#: maps/random/unknown.json
+msgid "Land shaped like a concrescent moon around a central lake."
+msgstr "중앙 호수 주위의 초승달처럼 생긴 땅입니다."
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[5].Name
+#: maps/random/unknown.json
 msgid "Lakes"
 msgstr "호수"
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[6].Description
+#: maps/random/unknown.json
+msgid "Mainland style with some small random lakes."
+msgstr "작은 무작위 호수가 있는 메인랜드 방식입니다."
+
+#: maps/random/unknown.json
+msgid "Passes"
+msgstr "산길"
+
+#: maps/random/unknown.json
 msgid ""
 "A large hill encompasses the map and leaves players only a small passage to "
 "the two neighboring players."
 msgstr "큰 언덕이 지도를 에워싸고 플레이어들이 이웃한 두 플레이어들에게 작은 통로만 남겨둡니다."
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[6].Name
-msgid "Passes"
-msgstr "산길"
+#: maps/random/unknown.json
+msgid "Lowlands"
+msgstr "낮은 지대"
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[7].Description
+#: maps/random/unknown.json
 msgid ""
 "The land is enclosed by a hill that leaves a small area per player connected"
 " to the large central place."
 msgstr "그 땅은 넓은 중심지에 연결된 플레이어 한 명당 작은 면적을 남겨두는 언덕으로 둘러싸여 있다."
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[7].Name
-msgid "Lowlands"
-msgstr "낮은 지대"
-
-#: maps/random/unknown.jsonsettings.Landscapes[0].Name
-msgid "Random Land"
-msgstr "무작위 육지"
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Description
-msgid "Choose a random naval landscape"
-msgstr "무작위 해상 지형 선택"
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Description
-msgid "A huge sea is dividing the map into two halves."
-msgstr "거대한 바다가지도를 두 부분으로 나누고 있습니다."
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Name
-msgid "Naval: Central Sea"
-msgstr "해상: 중부 해역"
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Description
-msgid "Players are scattered across island chains and disconnected islands."
-msgstr "플레이어들은 연결된 섬들과 단절된 섬들로 흩어져 있다."
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Name
-msgid "Naval: Archipelago"
-msgstr "해상: 군도"
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Description
-msgid "A central lake with rivers possibly separating neighboring players."
-msgstr "강이 흐르는 중앙 호수로 주변 플레이어들을 분리시킬 가능성이 있다."
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Name
-msgid "Naval: Lake and rivers"
-msgstr "해상: 호수와 강"
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Name
+#: maps/random/unknown.json
 msgid "Random Naval"
 msgstr "무작위 해상"
 
-#: maps/random/unknown.jsonsettings.Name
-msgid "Unknown"
-msgstr "알 수 없음"
+#: maps/random/unknown.json
+msgid "Choose a random naval landscape"
+msgstr "무작위 해상 지형 선택"
 
-#: maps/random/volcanic_lands.jsonsettings.Description
-msgid "A charred dead land where players start around a smoking volcano."
-msgstr "플레이어들은 연기를 내뿜는 화산 주위에 타 버린 죽음의 땅에서 시작합니다."
+#: maps/random/unknown.json
+msgid "Naval: Central Sea"
+msgstr "해상: 중부 해역"
 
-#: maps/random/volcanic_lands.jsonsettings.Name
+#: maps/random/unknown.json
+msgid "A huge sea is dividing the map into two halves."
+msgstr "거대한 바다가지도를 두 부분으로 나누고 있습니다."
+
+#: maps/random/unknown.json
+msgid "Naval: Archipelago"
+msgstr "해상: 군도"
+
+#: maps/random/unknown.json
+msgid "Players are scattered across island chains and disconnected islands."
+msgstr "플레이어들은 연결된 섬들과 단절된 섬들로 흩어져 있다."
+
+#: maps/random/unknown.json
+msgid "Naval: Lake and rivers"
+msgstr "해상: 호수와 강"
+
+#: maps/random/unknown.json
+msgid "A central lake with rivers possibly separating neighboring players."
+msgstr "강이 흐르는 중앙 호수로 주변 플레이어들을 분리시킬 가능성이 있다."
+
+#: maps/random/unknown.json maps/skirmishes/corinthian_isthmus_2p.xml:39
+#: maps/skirmishes/corinthian_isthmus_4p.xml:39
+msgid ""
+"Two Mediterranean land masses connected by a narrow spit of land, called an "
+"'Isthmus'."
+msgstr "지중해에서 두 개의 육지를 연결하는 좁고 잘록한 땅, '지협' 이라고 부릅니다."
+
+#: maps/random/volcanic_lands.json
 msgid "Volcanic Lands"
 msgstr "화산의 땅"
 
-#: maps/random/wall_demo.jsonsettings.Description
+#: maps/random/volcanic_lands.json
+msgid "A charred dead land where players start around a smoking volcano."
+msgstr "플레이어들은 연기를 내뿜는 화산 주위에 타 버린 죽음의 땅에서 시작합니다."
+
+#: maps/random/wall_demo.json
+msgid "Wall Demo"
+msgstr "성벽 데모"
+
+#: maps/random/wall_demo.json
 msgid ""
 "A demonstration of wall placement methods/code in random maps. Giant map "
 "size is recommended!"
 msgstr "무작위 지도에서 성벽 배치 방법/코드 데모입니다. 대형 지도 크기를 추천합니다!"
 
-#: maps/random/wall_demo.jsonsettings.Name
-msgid "Wall Demo"
-msgstr "성벽 데모"
-
-#: maps/random/wild_lake.jsonsettings.Description
-msgid "A lake surrounded by hills."
-msgstr "언덕으로 둘러싸인 호수."
-
-#: maps/random/wild_lake.jsonsettings.Name
+#: maps/random/wild_lake.json
 msgid "Wild Lake"
 msgstr "야생 호수"
 
-#: maps/scenarios/Ship Combat Demo.xml:Description:39
-msgid "Ship Combat Demo."
-msgstr "선박 전투 데모입니다."
+#: maps/random/wild_lake.json
+msgid "A lake surrounded by hills."
+msgstr "언덕으로 둘러싸인 호수."
 
-#: maps/scenarios/Ship Combat Demo.xml:Name:39
-msgid "Ship Combat Demo"
-msgstr "선박 전투 데모"
-
-#: maps/scenarios/_default.xml:Description:27
-#: maps/scenarios/temperate_map.xml:Description:26
-#: maps/scenarios/walltest.xml:Description:26
-msgid "Give an interesting description of your map."
-msgstr "지도에 대한 흥미로운 설명을 제공합니다."
-
-#: maps/scenarios/_default.xml:Name:27
+#: maps/scenarios/_default.xml:27
 msgid "Unnamed map"
 msgstr "이름 없는 지도"
 
-#: maps/scenarios/arcadia.xml:Description:38
+#: maps/scenarios/_default.xml:27 maps/scenarios/temperate_map.xml:26
+#: maps/scenarios/walltest.xml:26
+msgid "Give an interesting description of your map."
+msgstr "지도에 대한 흥미로운 설명을 제공합니다."
+
+#: maps/scenarios/arcadia.xml:38
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "그리스 아카디아의 봄. 봄비는 일년 내내 마른 개울 침대가 될 수 있는 것을 협곡으로 만들어, 두 개의 전쟁 부족 사이의 땅을 나누었습니다. \n\n플레이어들은 자원이 풍부한 산악 지역의 양쪽에서 시작합니다. 추가 시작 건물은 플레이어들이 새로운 식민지를 구축 점프 시작하는데 도움이 됩니다."
 
-#: maps/scenarios/arcadia.xml:Name:38
+#: maps/scenarios/arcadia.xml:38
 msgid "Arcadia"
 msgstr "아카디아"
 
-#: maps/scenarios/arcadia.xml:PlayerData[0].Name:38
-#: maps/scenarios/belgian_bog_night.xml:PlayerData[0].Name:38
-#: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[0].Name:38
-#: maps/scenarios/demo_trading.xml:PlayerData[0].Name:26
-#: maps/scenarios/eire_and_albion.xml:PlayerData[0].Name:26
-#: maps/scenarios/fast_oasis.xml:PlayerData[0].Name:26
-#: maps/scenarios/flight_demo.xml:PlayerData[1].Name:39
-#: maps/scenarios/gold_rush.xml:PlayerData[0].Name:26
-#: maps/scenarios/laconia.xml:PlayerData[0].Name:26
-#: maps/scenarios/migration.xml:PlayerData[0].Name:26
-#: maps/scenarios/necropolis.xml:PlayerData[0].Name:38
-#: maps/scenarios/reservoir.xml:PlayerData[0].Name:26
-#: maps/scenarios/saharan_oases.xml:PlayerData[1].Name:39
-#: maps/scenarios/sandbox_britons.xml:PlayerData[1].Name:39
-#: maps/scenarios/sandbox_gauls.xml:PlayerData[1].Name:39
-#: maps/scenarios/sandbox_iberians.xml:PlayerData[0].Name:38
-#: maps/scenarios/siwa_oasis.xml:PlayerData[0].Name:26
-#: maps/scenarios/the_massacre_of_delphi.xml:PlayerData[0].Name:38
-#: maps/scenarios/treasure_islands.xml:PlayerData[0].Name:38
-#: maps/scenarios/tropical_island.xml:PlayerData[0].Name:38
-#: maps/scenarios/walls.xml:PlayerData[0].Name:26
-#: maps/scenarios/walltest.xml:PlayerData[0].Name:26
-#: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/sporades_islands_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[1].Name:39
+#: maps/scenarios/arcadia.xml:38 maps/scenarios/belgian_bog_night.xml:38
+#: maps/scenarios/death_canyon_invasion_force.xml:38
+#: maps/scenarios/demo_trading.xml:26 maps/scenarios/eire_and_albion.xml:26
+#: maps/scenarios/fast_oasis.xml:26 maps/scenarios/flight_demo.xml:39
+#: maps/scenarios/gold_rush.xml:26 maps/scenarios/laconia.xml:26
+#: maps/scenarios/migration.xml:26 maps/scenarios/necropolis.xml:38
+#: maps/scenarios/reservoir.xml:26 maps/scenarios/saharan_oases.xml:39
+#: maps/scenarios/sandbox_britons.xml:39 maps/scenarios/sandbox_gauls.xml:39
+#: maps/scenarios/sandbox_iberians.xml:38 maps/scenarios/siwa_oasis.xml:26
+#: maps/scenarios/the_massacre_of_delphi.xml:38
+#: maps/scenarios/treasure_islands.xml:38
+#: maps/scenarios/tropical_island.xml:38 maps/scenarios/walls.xml:26
+#: maps/scenarios/walltest.xml:26 maps/skirmishes/acropolis_bay_2p.xml:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:39
+#: maps/skirmishes/deccan_plateau_2p.xml:39
+#: maps/skirmishes/sporades_islands_2p.xml:39
+#: maps/skirmishes/zagros_mountains_2p.xml:39
 msgid "Player 1"
 msgstr "플레이어 1"
 
-#: maps/scenarios/arcadia.xml:PlayerData[1].Name:38
-#: maps/scenarios/belgian_bog_night.xml:PlayerData[1].Name:38
-#: maps/scenarios/demo_trading.xml:PlayerData[1].Name:26
-#: maps/scenarios/eire_and_albion.xml:PlayerData[1].Name:26
-#: maps/scenarios/fast_oasis.xml:PlayerData[1].Name:26
-#: maps/scenarios/flight_demo.xml:PlayerData[2].Name:39
-#: maps/scenarios/gold_rush.xml:PlayerData[1].Name:26
-#: maps/scenarios/laconia.xml:PlayerData[1].Name:26
-#: maps/scenarios/migration.xml:PlayerData[1].Name:26
-#: maps/scenarios/necropolis.xml:PlayerData[1].Name:38
-#: maps/scenarios/saharan_oases.xml:PlayerData[2].Name:39
-#: maps/scenarios/sandbox_britons.xml:PlayerData[2].Name:39
-#: maps/scenarios/sandbox_gauls.xml:PlayerData[2].Name:39
-#: maps/scenarios/sandbox_iberians.xml:PlayerData[1].Name:38
-#: maps/scenarios/siwa_oasis.xml:PlayerData[1].Name:26
-#: maps/scenarios/the_massacre_of_delphi.xml:PlayerData[1].Name:38
-#: maps/scenarios/treasure_islands.xml:PlayerData[1].Name:38
-#: maps/scenarios/tropical_island.xml:PlayerData[1].Name:38
-#: maps/scenarios/walls.xml:PlayerData[1].Name:26
-#: maps/scenarios/walltest.xml:PlayerData[1].Name:26
-#: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/sporades_islands_2p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[2].Name:39
+#: maps/scenarios/arcadia.xml:38 maps/scenarios/belgian_bog_night.xml:38
+#: maps/scenarios/demo_trading.xml:26 maps/scenarios/eire_and_albion.xml:26
+#: maps/scenarios/fast_oasis.xml:26 maps/scenarios/flight_demo.xml:39
+#: maps/scenarios/gold_rush.xml:26 maps/scenarios/laconia.xml:26
+#: maps/scenarios/migration.xml:26 maps/scenarios/necropolis.xml:38
+#: maps/scenarios/saharan_oases.xml:39 maps/scenarios/sandbox_britons.xml:39
+#: maps/scenarios/sandbox_gauls.xml:39 maps/scenarios/sandbox_iberians.xml:38
+#: maps/scenarios/siwa_oasis.xml:26
+#: maps/scenarios/the_massacre_of_delphi.xml:38
+#: maps/scenarios/treasure_islands.xml:38
+#: maps/scenarios/tropical_island.xml:38 maps/scenarios/walls.xml:26
+#: maps/scenarios/walltest.xml:26 maps/skirmishes/acropolis_bay_2p.xml:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:39
+#: maps/skirmishes/deccan_plateau_2p.xml:39
+#: maps/skirmishes/sporades_islands_2p.xml:39
+#: maps/skirmishes/zagros_mountains_2p.xml:39
 msgid "Player 2"
 msgstr "플레이어 2"
 
-#: maps/scenarios/azure_coast_2p.xml:Description:26
-#: maps/scenarios/azure_coast_4p.xml:Description:26
-#: maps/scenarios/azure_coast_8p.xml:Description:38
-msgid "Help the young Massilia to settle or expel the Greeks from Gaul."
-msgstr "신생 마실리아를 도와 골 지역에서 그리스인들을 정착시키거나 쫓아내세요."
-
-#: maps/scenarios/azure_coast_2p.xml:Name:26
+#: maps/scenarios/azure_coast_2p.xml:26
 msgid "Azure Coast 2"
 msgstr "하늘빛 해안 2"
 
-#: maps/scenarios/azure_coast_2p.xml:PlayerData[0].Name:26
+#: maps/scenarios/azure_coast_2p.xml:26
 msgid "Greeks"
 msgstr "그리스인"
 
-#: maps/scenarios/azure_coast_2p.xml:PlayerData[1].Name:26
+#: maps/scenarios/azure_coast_2p.xml:26
 msgid "Celts"
 msgstr "켈트인"
 
-#: maps/scenarios/azure_coast_4p.xml:Name:26
+#: maps/scenarios/azure_coast_2p.xml:26 maps/scenarios/azure_coast_4p.xml:26
+#: maps/scenarios/azure_coast_8p.xml:38
+msgid "Help the young Massilia to settle or expel the Greeks from Gaul."
+msgstr "신생 마실리아를 도와 골 지역에서 그리스인들을 정착시키거나 쫓아내세요."
+
+#: maps/scenarios/azure_coast_4p.xml:26
 msgid "Azure Coast 3"
 msgstr "하늘빛 해안 3"
 
-#: maps/scenarios/azure_coast_4p.xml:PlayerData[0].Name:26
+#: maps/scenarios/azure_coast_4p.xml:26
 msgid "East"
 msgstr "동"
 
-#: maps/scenarios/azure_coast_4p.xml:PlayerData[1].Name:26
+#: maps/scenarios/azure_coast_4p.xml:26
 msgid "West"
 msgstr "서"
 
-#: maps/scenarios/azure_coast_4p.xml:PlayerData[2].Name:26
+#: maps/scenarios/azure_coast_4p.xml:26
 msgid "South"
 msgstr "남"
 
-#: maps/scenarios/azure_coast_4p.xml:PlayerData[3].Name:26
+#: maps/scenarios/azure_coast_4p.xml:26
 msgid "North"
 msgstr "북"
 
-#: maps/scenarios/azure_coast_8p.xml:Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Azure Coast 1"
 msgstr "하늘빛 해안 1"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[0].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Antipolis"
 msgstr "앙티폴리스"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[1].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Nikaia"
 msgstr "니카이아"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[2].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Massalia"
 msgstr "마르세유"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[3].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Olbia"
 msgstr "올비아"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[4].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Deciates"
 msgstr "데키아테스"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[5].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Salluvii"
 msgstr "살루비이"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[6].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Cavares"
 msgstr "카바레스"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[7].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Verguni"
 msgstr "베르구니"
 
-#: maps/scenarios/battle_for_the_tiber.xml:Description:26
+#: maps/scenarios/battle_for_the_tiber.xml:26
 msgid ""
 "Rome battles against the Etruscan city of Veii for control of the Tiber "
 "River basin."
 msgstr "로마는 티베르 강 유역의 지배권을 놓고 에트루리아의 도시 베이를 상대로 싸우고 있습니다."
 
-#: maps/scenarios/battle_for_the_tiber.xml:Name:26
+#: maps/scenarios/battle_for_the_tiber.xml:26
 msgid "Battle for the Tiber"
 msgstr "테베레 강 전투"
 
-#: maps/scenarios/battle_for_the_tiber.xml:PlayerData[0].Name:26
+#: maps/scenarios/battle_for_the_tiber.xml:26
 msgid "Rome"
 msgstr "로마"
 
-#: maps/scenarios/battle_for_the_tiber.xml:PlayerData[1].Name:26
+#: maps/scenarios/battle_for_the_tiber.xml:26
 msgid "Veii"
 msgstr "베이이"
 
-#: maps/scenarios/battle_for_the_tiber.xml:PlayerData[2].Name:26
-#: maps/scenarios/battle_for_the_tiber.xml:PlayerData[3].Name:26
+#: maps/scenarios/battle_for_the_tiber.xml:26
 msgid "Gallic Invaders"
 msgstr "갈리아 침략자"
 
-#: maps/scenarios/belgian_bog_night.xml:Description:38
+#: maps/scenarios/belgian_bog_night.xml:38
 msgid "Two Celtic tribes face off across a large bog at night."
 msgstr "두 켈트족 부족들은 밤에 큰 늪지를 가로 질러 마주보고 있습니다."
 
-#: maps/scenarios/belgian_bog_night.xml:Name:38
+#: maps/scenarios/belgian_bog_night.xml:38
 msgid "Belgian Bog Night"
 msgstr "벨기에 늪지의 밤"
 
-#: maps/scenarios/bridge_demo.xml:Description:26
+#: maps/scenarios/bridge_demo.xml:26
 msgid "Demo map showing how to simulate bridges in the Atlas map editor."
 msgstr "아틀라스 지도 편집기에서 다리를 시뮬레이션하는 방법을 보여주는 데모 지도입니다."
 
-#: maps/scenarios/bridge_demo.xml:Name:26
+#: maps/scenarios/bridge_demo.xml:26
 msgid "Bridge demo"
 msgstr "다리 데모"
 
-#: maps/scenarios/bridge_demo.xml:PlayerData[0].Name:26
+#: maps/scenarios/bridge_demo.xml:26
 msgid "Bridge Demo"
 msgstr "다리 데모"
 
-#: maps/scenarios/bridge_demo.xml:PlayerData[1].Name:26
+#: maps/scenarios/bridge_demo.xml:26
 msgid "Other"
 msgstr "기타"
 
-#: maps/scenarios/campaign_test_map.xml:Description:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "A test map for potential Strategic Campaigns."
 msgstr "잠재적 전략적 캠페인에 대한 테스트 지도입니다."
 
-#: maps/scenarios/campaign_test_map.xml:Name:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "Strategic Campaign Proof of Concept"
 msgstr "전략적 캠페인 개념 증명"
 
-#: maps/scenarios/campaign_test_map.xml:PlayerData[0].Name:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "Delian League"
 msgstr "델로스 동맹"
 
-#: maps/scenarios/campaign_test_map.xml:PlayerData[1].Name:38
-#: maps/scenarios/peloponnese.xml:PlayerData[4].Name:39
-#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[1].Name:39
-msgid "Thebes"
-msgstr "테베"
-
-#: maps/scenarios/campaign_test_map.xml:PlayerData[2].Name:38
-#: maps/scenarios/peloponnese.xml:PlayerData[6].Name:39
-msgid "Thessaly"
-msgstr "테살리아"
-
-#: maps/scenarios/campaign_test_map.xml:PlayerData[3].Name:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "Megara"
 msgstr "메가라"
 
-#: maps/scenarios/campaign_test_map.xml:PlayerData[4].Name:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "Eretria"
 msgstr "에레트리아"
 
-#: maps/scenarios/campaign_test_map.xml:PlayerData[5].Name:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "Chalcis"
 msgstr "할키스"
 
-#: maps/scenarios/campaign_test_map.xml:PlayerData[6].Name:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "Peloponnesian League"
 msgstr "펠로폰네소스 동맹"
 
-#: maps/scenarios/campaign_test_map.xml:PlayerData[7].Name:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "Religious Institutions"
 msgstr "종교 단체들"
 
-#: maps/scenarios/campaign_test_map_2_heightmap.xml:Name:38
+#: maps/scenarios/campaign_test_map.xml:38 maps/scenarios/peloponnese.xml:39
+msgid "Thessaly"
+msgstr "테살리아"
+
+#: maps/scenarios/campaign_test_map.xml:38 maps/scenarios/peloponnese.xml:39
+#: maps/skirmishes/egypt_3pv3p.xml:39
+msgid "Thebes"
+msgstr "테베"
+
+#: maps/scenarios/campaign_test_map_2_heightmap.xml:38
 msgid "Campaign Map - Test"
 msgstr "캠페인 지도 - 테스트"
 
@@ -1602,608 +1563,596 @@ msgstr "캠페인 지도 - 테스트"
 msgid "Cutscene starts after 5 seconds"
 msgstr "컷 장면이 5초 후에 시작됩니다"
 
-#: maps/scenarios/cinema_demo.xml:Description:39
+#: maps/scenarios/cinema_demo.xml:39
 msgid "Demo map for cinematic camera movements."
 msgstr "시네마틱 카메라 움직임을 위한 데모 지도입니다."
 
-#: maps/scenarios/cinema_demo.xml:Name:39
+#: maps/scenarios/cinema_demo.xml:39
 msgid "Cinema Demo"
 msgstr "영화 데모"
 
-#: maps/scenarios/cinema_demo.xml:PlayerData[1].Name:39
+#: maps/scenarios/cinema_demo.xml:39
 msgid "Xerxes I"
 msgstr "크세르크세스 1세"
 
-#: maps/scenarios/cinema_demo.xml:PlayerData[2].Name:39
+#: maps/scenarios/cinema_demo.xml:39
 msgid "You"
 msgstr "당신"
 
-#: maps/scenarios/combat_demo.xml:Description:26
+#: maps/scenarios/combat_demo.xml:26
+msgid "Combat Demo"
+msgstr "전투 데모"
+
+#: maps/scenarios/combat_demo.xml:26
 msgid ""
 "A combat demonstration between a small number of ranged and melee infantry "
 "units."
 msgstr "소수의 원거리 보병 유닛과 근접 보병 유닛 간의 전투 시연입니다."
 
-#: maps/scenarios/combat_demo.xml:Name:26
-msgid "Combat Demo"
-msgstr "전투 데모"
-
-#: maps/scenarios/combat_demo_huge.xml:Description:73
-msgid "1296 units. Extremely slow (we need more optimisation)."
-msgstr "1296 개 유닛. 매우 느립니다 (최적화가 더 필요함)."
-
-#: maps/scenarios/combat_demo_huge.xml:Name:73
+#: maps/scenarios/combat_demo_huge.xml:73
 msgid "Combat Demo (Huge)"
 msgstr "전투 데모 (대규모)"
 
-#: maps/scenarios/death_canyon_invasion_force.xml:Description:38
+#: maps/scenarios/combat_demo_huge.xml:73
+msgid "1296 units. Extremely slow (we need more optimisation)."
+msgstr "1296 개 유닛. 매우 느립니다 (최적화가 더 필요함)."
+
+#: maps/scenarios/death_canyon_invasion_force.xml:38
 msgid ""
 "A deep rocky canyon slicing through the desert. Good for multiplayer.\n"
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
 msgstr "사막을 가로지르는 깊은 바위 협곡. 멀티플레이어에 적합합니다.\n\n2명의 플레이어들로 구성된 2팀입니다. 각 팀의 1명의 플레이어는 근거지와 자원을 가지고 시작합니다. 다른 플레이어는 팀원을 돕기 위해 큰 군대만으로 시작합니다."
 
-#: maps/scenarios/death_canyon_invasion_force.xml:Name:38
+#: maps/scenarios/death_canyon_invasion_force.xml:38
 msgid "Death Canyon - Invasion Force"
 msgstr "죽음의 협곡 - 침략군"
 
-#: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[1].Name:38
-#: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[3].Name:38
+#: maps/scenarios/death_canyon_invasion_force.xml:38
 msgid "Invasion Force"
 msgstr "침략군"
 
-#: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[2].Name:38
-#: maps/scenarios/demo_trading.xml:PlayerData[2].Name:26
-#: maps/scenarios/fast_oasis.xml:PlayerData[2].Name:26
-#: maps/scenarios/gold_rush.xml:PlayerData[2].Name:26
-#: maps/scenarios/migration.xml:PlayerData[2].Name:26
-#: maps/scenarios/necropolis.xml:PlayerData[2].Name:38
-#: maps/scenarios/saharan_oases.xml:PlayerData[3].Name:39
-#: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:39
-#: maps/scenarios/sandbox_gauls.xml:PlayerData[3].Name:39
-#: maps/scenarios/siwa_oasis.xml:PlayerData[2].Name:26
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[3].Name:39
+#: maps/scenarios/death_canyon_invasion_force.xml:38
+#: maps/scenarios/demo_trading.xml:26 maps/scenarios/fast_oasis.xml:26
+#: maps/scenarios/gold_rush.xml:26 maps/scenarios/migration.xml:26
+#: maps/scenarios/necropolis.xml:38 maps/scenarios/saharan_oases.xml:39
+#: maps/scenarios/sandbox_britons.xml:39 maps/scenarios/sandbox_gauls.xml:39
+#: maps/scenarios/siwa_oasis.xml:26
+#: maps/skirmishes/cycladic_archipelago_3p.xml:39
 msgid "Player 3"
 msgstr "플레이어 3"
 
-#: maps/scenarios/demo_trading.xml:Description:26
+#: maps/scenarios/demo_trading.xml:26
 msgid "A demonstration of the new trading feature."
 msgstr "새로운 거래 기능의 데모입니다."
 
-#: maps/scenarios/demo_trading.xml:Name:26
+#: maps/scenarios/demo_trading.xml:26
 msgid "Trading Demo"
 msgstr "거래 데모"
 
-#: maps/scenarios/eire_and_albion.xml:Description:26
+#: maps/scenarios/eire_and_albion.xml:26
 msgid ""
 "A demo map of the British Isles, created with the assistance of a height "
 "map."
 msgstr "등고선 지도를 사용하여 만든 영국 제도의 데모 지도입니다."
 
-#: maps/scenarios/eire_and_albion.xml:Name:26
+#: maps/scenarios/eire_and_albion.xml:26
 msgid "Eire and Albion (British Isles)"
 msgstr "아이 레와 알비온 (영국 제도)"
 
-#: maps/scenarios/fast_oasis.xml:Description:26
+#: maps/scenarios/fast_oasis.xml:26
 msgid ""
 "A small desert map. Each player starts near an oasis spotted about an otherwise bleak and sandy desert that is wide open to assault and depredation.\n"
 "\n"
 "Gameplay is tight and fast, with no time to stop and smell the roses."
 msgstr "작은 사막 지도입니다. 각 플레이어는 공격과 약탈에 개방되어 있는 황량하고 모래사막에 있는 오아시스 주변에서 시작합니다.\n\n게임 방식은 빡빡하고 빠르며, 멈출 틈도 없고 장미 향기를 맡을 시간도 없습니다."
 
-#: maps/scenarios/fast_oasis.xml:Name:26
+#: maps/scenarios/fast_oasis.xml:26
 msgid "Fast Oasis"
 msgstr "빠른 오아시스"
 
-#: maps/scenarios/fast_oasis.xml:PlayerData[3].Name:26
-#: maps/scenarios/gold_rush.xml:PlayerData[3].Name:26
-#: maps/scenarios/necropolis.xml:PlayerData[3].Name:38
-#: maps/scenarios/saharan_oases.xml:PlayerData[4].Name:39
-#: maps/scenarios/siwa_oasis.xml:PlayerData[3].Name:26
+#: maps/scenarios/fast_oasis.xml:26 maps/scenarios/gold_rush.xml:26
+#: maps/scenarios/necropolis.xml:38 maps/scenarios/saharan_oases.xml:39
+#: maps/scenarios/siwa_oasis.xml:26
 msgid "Player 4"
 msgstr "플레이어 4"
 
-#: maps/scenarios/fishing_demo.xml:Description:26
-msgid "Test out fishing with a fishing boat. Still in development."
-msgstr "낚싯배로 낚시를 연습해 보세요. 아직 개발 중입니다."
-
-#: maps/scenarios/fishing_demo.xml:Name:26
+#: maps/scenarios/fishing_demo.xml:26
 msgid "Fishing Demo"
 msgstr "낚시 데모"
 
-#: maps/scenarios/flight_demo.xml:Description:39
+#: maps/scenarios/fishing_demo.xml:26
+msgid "Test out fishing with a fishing boat. Still in development."
+msgstr "낚싯배로 낚시를 연습해 보세요. 아직 개발 중입니다."
+
+#: maps/scenarios/flight_demo.xml:39
 msgid "Fly some Mustangs."
 msgstr "머스탱들을 조종해보십시오."
 
-#: maps/scenarios/flight_demo.xml:Name:39
+#: maps/scenarios/flight_demo.xml:39
 msgid "Flight Demo"
 msgstr "비행 데모"
 
-#: maps/scenarios/gold_rush.xml:Description:26
+#: maps/scenarios/gold_rush.xml:26
 msgid ""
 "A wide-open map with a central rocky region rich in Minerals (Metal "
 "Resource). This map may be played if the other more detailed maps cause "
 "uncomfortable lag."
 msgstr "광물(금속 자원)이 풍부한 중앙 암석 지역이 넓게 펼쳐진 지도입니다. 다른 더 자세한 지도가 불편한 지연을 유발할 경우 이 지도가 재생될 수 있습니다."
 
-#: maps/scenarios/gold_rush.xml:Name:26
+#: maps/scenarios/gold_rush.xml:26
 msgid "Gold Rush"
 msgstr "골드 러쉬"
 
-#: maps/scenarios/gorge.xml:Description:26
+#: maps/scenarios/gorge.xml:26
 msgid "A riparian gorge meanders its way through the South lands of Gaul."
 msgstr "강기슭 협곡은 남쪽의 골 지의 땅을 통과합니다."
 
-#: maps/scenarios/gorge.xml:Name:26
+#: maps/scenarios/gorge.xml:26
 msgid "Gorge"
 msgstr "협곡"
 
-#: maps/scenarios/laconia.xml:Description:26
+#: maps/scenarios/laconia.xml:26
 msgid ""
 "The Peloponnesian valley of Laconia, homeland of the Spartans.\n"
 "\n"
 "The Macedonians are encroaching into Spartan lands. After losing a pitched battle against the invaders, the Spartans must rebuild their army quickly before the Macedonians overrun the entire valley."
 msgstr "스파르타인의 고향인 라코니아의 펠로폰네소스 계곡입니다.\n\n마케도니아족들이 스파르타의 영토를 잠식하고 있습니다. 침략자들에 대한 투쟁에서 패한 후, 스파르타족들은 마케도니아인들이 계곡 전체를 점령하기 전에 그들의 군대를 빨리 재건해야 합니다."
 
-#: maps/scenarios/laconia.xml:Name:26
+#: maps/scenarios/laconia.xml:26
 msgid "Laconia"
 msgstr "라코니아"
 
-#: maps/scenarios/migration.xml:Description:26
+#: maps/scenarios/migration.xml:26
 msgid ""
 "Multiplayer map. Each player starts out on a small island with minimal resources situated off the coast of a large land mass.\n"
 "\n"
 "This is a WFG community-designed map by: SMST, NOXAS1, and Yodaspirine."
 msgstr "멀티플레이어 지도입니다. 각 플레이어들은 거대한 육지의 해안에 위치한 최소한의 자원이 있는 작은 섬에서 시작합니다.\n\nWFG 커뮤니티에서 디자인한 지도: SMST, NOXAS1, Yodaspirine."
 
-#: maps/scenarios/miletus.xml:Description:39
+#: maps/scenarios/miletus.xml:39
 msgid "A sandbox scenario for one player."
 msgstr "한 명의 플레이어를 위한 샌드박스 시나리오."
 
-#: maps/scenarios/miletus.xml:Name:39
-#: maps/scenarios/miletus.xml:PlayerData[0].Name:39
+#: maps/scenarios/miletus.xml:39
 msgid "Miletus"
 msgstr "밀로투스"
 
-#: maps/scenarios/miletus.xml:PlayerData[1].Name:39
-#: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[1].Name:38
+#: maps/scenarios/miletus.xml:39 maps/scenarios/sandbox_ptolemies_02.xml:38
 msgid "Romans"
 msgstr "로마인"
 
-#: maps/scenarios/multiplayer_demo.xml:Description:26
+#: maps/scenarios/multiplayer_demo.xml:26
+msgid "Multiplayer Demo"
+msgstr "멀티플레이어 데모"
+
+#: maps/scenarios/multiplayer_demo.xml:26
 msgid ""
 "Small map with lots of resources and some water, for testing gameplay in "
 "non-competitive multiplayer matches."
 msgstr "비경쟁적 멀티플레이어 게임에서 게임 방식을 테스트하기 위해 많은 자원과 물이 포함된 작은 지도입니다."
 
-#: maps/scenarios/multiplayer_demo.xml:Name:26
-msgid "Multiplayer Demo"
-msgstr "멀티플레이어 데모"
+#: maps/scenarios/napata_reconstruction.xml:39
+msgid "Napata Reconstruction"
+msgstr "나파타 재건"
 
-#: maps/scenarios/napata_reconstruction.xml:Description:39
+#: maps/scenarios/napata_reconstruction.xml:39
 msgid ""
 "This map displays a reconstruction of the ancient city Napata. "
 "[color=\"red\"]Note:[/color] The map is not intended to be playable."
 msgstr "이 지도는 고대 도시 나파타의 재건을 표시합니다. [color=\"red\"]참고:[/color] 지도는 재생할 수 없습니다."
 
-#: maps/scenarios/napata_reconstruction.xml:Name:39
-msgid "Napata Reconstruction"
-msgstr "나파타 재건"
-
-#: maps/scenarios/necropolis.xml:Description:38
+#: maps/scenarios/necropolis.xml:38
 msgid ""
 "Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
 msgstr "네 명의 플레이어들이 광활한 나일강 삼각주를 뒤덮었습니다. 각 도시는 큰 고원 위에 자리 잡은 상태에서 시작하지만 자원이 부족하여 각 플레이어들이 자원 운영을 주변 땅으로 확장해야 합니다.\n\n정찰병들은 나일강 주변의 지류가 얕고 여러 지역에서 살 수 있기 때문에 적의 파벌들 사이에 작은 장벽이 되어야 한다고 말합니다."
 
-#: maps/scenarios/necropolis.xml:Name:38
+#: maps/scenarios/necropolis.xml:38
 msgid "Necropolis"
 msgstr "공동묘지"
 
-#: maps/scenarios/pathfinding_demo.xml:Description:38
+#: maps/scenarios/pathfinding_demo.xml:38
 msgid "A map for testing unit movement algorithms."
 msgstr "유닛 이동 알고리즘을 테스트하기 위한 지도입니다."
 
-#: maps/scenarios/pathfinding_demo.xml:Name:38
+#: maps/scenarios/pathfinding_demo.xml:38
 msgid "Pathfinding Demo"
 msgstr "경로찾기 데모"
 
-#: maps/scenarios/pathfinding_terrain_demo.xml:Description:26
+#: maps/scenarios/pathfinding_terrain_demo.xml:26
+msgid "Pathfinding Terrain Demo"
+msgstr "경로찾기 지형 데모"
+
+#: maps/scenarios/pathfinding_terrain_demo.xml:26
 msgid ""
 "A map for testing movement costs and terrain properties in the A* "
 "pathfinder."
 msgstr "A* 길잡이의 이동 비용 및 지형 특성을 시험하기 위한 지도입니다."
 
-#: maps/scenarios/pathfinding_terrain_demo.xml:Name:26
-msgid "Pathfinding Terrain Demo"
-msgstr "경로찾기 지형 데모"
-
-#: maps/scenarios/peloponnese.xml:Description:39
+#: maps/scenarios/peloponnese.xml:39
 msgid "A real-world map of the Greek homeland."
 msgstr "그리스 본토의 실제 지도입니다."
 
-#: maps/scenarios/peloponnese.xml:Name:39
+#: maps/scenarios/peloponnese.xml:39
 msgid "Peloponnesian Wars"
 msgstr "펠로폰네소스 전쟁"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[1].Name:39
+#: maps/scenarios/peloponnese.xml:39
 msgid "Athens"
 msgstr "아테네"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[2].Name:39
+#: maps/scenarios/peloponnese.xml:39
 msgid "Sparta"
 msgstr "스파르타"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[3].Name:39
+#: maps/scenarios/peloponnese.xml:39
 msgid "Elis"
 msgstr "엘리스"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[5].Name:39
+#: maps/scenarios/peloponnese.xml:39
 msgid "Corinth"
 msgstr "코린트"
 
-#: maps/scenarios/pickup_test_map.xml:Description:39
+#: maps/scenarios/pickup_test_map.xml:39
 msgid ""
 "Test map for picking units up, with sea and two islands. Trigger points are "
 "placed."
 msgstr "채집하는 유닛을 위한 테스트 지도로, 바다와 두 개의 섬이 있습니다. 트리거 포인트가 배치되어 있습니다."
 
-#: maps/scenarios/pickup_test_map.xml:Name:39
+#: maps/scenarios/pickup_test_map.xml:39
 msgid "Pickup test map"
 msgstr "테스트 지도 무작위 고르기"
 
-#: maps/scenarios/polynesia.xml:Description:39
+#: maps/scenarios/polynesia.xml:39
 msgid "Demo map for new fancy water effects."
 msgstr "새로운 멋진 물 효과를 위한 데모 지도입니다."
 
-#: maps/scenarios/polynesia.xml:Name:39
+#: maps/scenarios/polynesia.xml:39
 msgid "Polynesia"
 msgstr "폴리네시아"
 
-#: maps/scenarios/polynesia.xml:PlayerData[0].Name:39
+#: maps/scenarios/polynesia.xml:39
 msgid "Samoa"
 msgstr "사모아"
 
-#: maps/scenarios/polynesia.xml:PlayerData[1].Name:39
+#: maps/scenarios/polynesia.xml:39
 msgid "Vanuatu"
 msgstr "바누아투"
 
-#: maps/scenarios/reservoir.xml:Description:26
+#: maps/scenarios/reservoir.xml:26
 msgid "A demo showing water planes."
 msgstr "물 표면을 보여주는 데모입니다."
 
-#: maps/scenarios/reservoir.xml:Name:26
+#: maps/scenarios/reservoir.xml:26
 msgid "Reservoir"
 msgstr "저수지"
 
-#: maps/scenarios/resource_demo.xml:Description:26
-msgid "Demo map for resource gathering."
-msgstr "자원 채집을 위한 데모 지도입니다."
-
-#: maps/scenarios/resource_demo.xml:Name:26
+#: maps/scenarios/resource_demo.xml:26
 msgid "Resource demo"
 msgstr "자원 데모"
 
-#: maps/scenarios/road_demo.xml:Description:26
+#: maps/scenarios/resource_demo.xml:26
+msgid "Demo map for resource gathering."
+msgstr "자원 채집을 위한 데모 지도입니다."
+
+#: maps/scenarios/road_demo.xml:26
 msgid "Demo map showcasing Temperate Road decals."
 msgstr "온대 도로 연결망을 보여주는 데모 지도입니다."
 
-#: maps/scenarios/road_demo.xml:Name:26
+#: maps/scenarios/road_demo.xml:26
 msgid "Road Decals Demo"
 msgstr "도로 연결망 데모"
 
-#: maps/scenarios/saharan_oases.xml:Description:39
+#: maps/scenarios/saharan_oases.xml:39
 msgid ""
 "A desert biome map where each player has founded their colony at their own "
 "lush oasis. The rest of the map is generally wide-open and barren."
 msgstr "사막 생물 군계 지도로, 각 플레이어는 자신만의 울창한 오아시스에 식민지를 건설할 수 있습니다. 지도의 나머지는 일반적으로 넓게 펼쳐진 불모지입니다."
 
-#: maps/scenarios/sahel.xml:Description:38
+#: maps/scenarios/sahel.xml:38
 msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of food and mineral resources, while wood is somewhat scarce."
 msgstr "북아프리카의 아틀라스 산맥 의 남쪽에 위치하고 있습니다.\n\n음식과 광물 자원이 풍부한 다소 개방된 지도가며, 나무는 다소 부족합니다."
 
-#: maps/scenarios/sahel.xml:PlayerData[0].Name:38
+#: maps/scenarios/sahel.xml:38
 msgid "Aulus Manlius Capitolinus"
 msgstr "아우루스 만리우스 카피토리누스"
 
-#: maps/scenarios/sahel.xml:PlayerData[1].Name:38
+#: maps/scenarios/sahel.xml:38
 msgid "Hasdrubal the Fair"
 msgstr "잘생긴 하스드루발"
 
-#: maps/scenarios/sahel.xml:PlayerData[2].Name:38
+#: maps/scenarios/sahel.xml:38
 msgid "Artaxshacha II"
 msgstr "아르탁스샤챠 2세"
 
-#: maps/scenarios/sahel.xml:PlayerData[3].Name:38
+#: maps/scenarios/sahel.xml:38
 msgid "Tautalus"
 msgstr "타우타루스"
 
-#: maps/scenarios/sandbox_athenians.xml:Description:38
+#: maps/scenarios/sandbox_athenians.xml:38
 msgid ""
 "Play with the Athenians faction in a non-threatening sandbox environment."
 msgstr "위협적이지 않은 샌드박스 환경에서 아테네인 파벌과 함께 게임 진행합니다."
 
-#: maps/scenarios/sandbox_athenians.xml:Name:38
+#: maps/scenarios/sandbox_athenians.xml:38
 msgid "Sandbox - The Athenians"
 msgstr "샌드박스 - 아테네인"
 
-#: maps/scenarios/sandbox_athenians.xml:PlayerData[0].Name:38
+#: maps/scenarios/sandbox_athenians.xml:38
 msgid "The Athenians"
 msgstr "아테네인"
 
-#: maps/scenarios/sandbox_athenians.xml:PlayerData[1].Name:38
-#: maps/scenarios/sandbox_macedonians.xml:PlayerData[1].Name:38
+#: maps/scenarios/sandbox_athenians.xml:38
+#: maps/scenarios/sandbox_macedonians.xml:38
 msgid "The Spartans"
 msgstr "스파르타인"
 
-#: maps/scenarios/sandbox_athenians.xml:PlayerData[2].Name:38
-#: maps/scenarios/sandbox_macedonians.xml:PlayerData[2].Name:38
+#: maps/scenarios/sandbox_athenians.xml:38
+#: maps/scenarios/sandbox_macedonians.xml:38
 msgid "The Persians"
 msgstr "페르시아족"
 
-#: maps/scenarios/sandbox_athenians.xml:PlayerData[3].Name:38
-#: maps/scenarios/sandbox_macedonians.xml:PlayerData[3].Name:38
+#: maps/scenarios/sandbox_athenians.xml:38
+#: maps/scenarios/sandbox_macedonians.xml:38
 msgid "The Gauls"
 msgstr "골족"
 
-#: maps/scenarios/sandbox_britons.xml:Description:39
-#: maps/scenarios/sandbox_gauls.xml:Description:39
-msgid "Play around with the Gallic faction in an idyllic sandbox setting."
-msgstr "목가적인 샌드박스 설정에서 갈리아 파벌과 함께 즐기십시오."
-
-#: maps/scenarios/sandbox_britons.xml:Name:39
+#: maps/scenarios/sandbox_britons.xml:39
 msgid "Sandbox - The Britons"
 msgstr "샌드박스 - 브리튼족"
 
-#: maps/scenarios/sandbox_britons.xml:PlayerData[4].Name:39
-#: maps/scenarios/sandbox_gauls.xml:PlayerData[4].Name:39
+#: maps/scenarios/sandbox_britons.xml:39 maps/scenarios/sandbox_gauls.xml:39
+msgid "Play around with the Gallic faction in an idyllic sandbox setting."
+msgstr "목가적인 샌드박스 설정에서 갈리아 파벌과 함께 즐기십시오."
+
+#: maps/scenarios/sandbox_britons.xml:39 maps/scenarios/sandbox_gauls.xml:39
 msgid "Roman Interlopers"
 msgstr "로마 침입자들"
 
-#: maps/scenarios/sandbox_carthaginians.xml:Description:38
+#: maps/scenarios/sandbox_carthaginians.xml:38
 msgid "Explore the Carthaginian Buildings and Units."
 msgstr "카르타고인의 건물과 유닛들을 둘러봅니다."
 
-#: maps/scenarios/sandbox_carthaginians.xml:Name:38
+#: maps/scenarios/sandbox_carthaginians.xml:38
 msgid "Sandbox - The Carthaginians"
 msgstr "샌드박스 - 카르타고인"
 
-#: maps/scenarios/sandbox_carthaginians.xml:PlayerData[0].Name:38
-#: maps/scenarios/serengeti.xml:PlayerData[0].Name:26
-msgid "Carthage"
-msgstr "카르타고"
-
-#: maps/scenarios/sandbox_carthaginians.xml:PlayerData[1].Name:38
+#: maps/scenarios/sandbox_carthaginians.xml:38
 msgid "Creeps"
 msgstr "크립스"
 
-#: maps/scenarios/sandbox_gauls.xml:Name:39
+#: maps/scenarios/sandbox_carthaginians.xml:38 maps/scenarios/serengeti.xml:26
+msgid "Carthage"
+msgstr "카르타고"
+
+#: maps/scenarios/sandbox_gauls.xml:39
 msgid "Sandbox - The Gauls"
 msgstr "샌드박스 - 골족"
 
-#: maps/scenarios/sandbox_han.xml:Description:39
+#: maps/scenarios/sandbox_han.xml:39
 msgid "A simple map showcasing the Han civilization's assets in the game."
 msgstr "게임에서 한족 문명의 자산을 보여주는 간단한 지도입니다."
 
-#: maps/scenarios/sandbox_han.xml:Name:39
+#: maps/scenarios/sandbox_han.xml:39
 msgid "Sandbox - The Han"
 msgstr "샌드박스 - 한족"
 
-#: maps/scenarios/sandbox_iberians.xml:Description:38
+#: maps/scenarios/sandbox_iberians.xml:38
 msgid "A demo map for the Iberians."
 msgstr "이베리아인 지역 데모 지도입니다."
 
-#: maps/scenarios/sandbox_iberians.xml:Name:38
+#: maps/scenarios/sandbox_iberians.xml:38
 msgid "Sandbox - The Iberians"
 msgstr "샌드박스 - 이베리아인"
 
-#: maps/scenarios/sandbox_kushites.xml:Description:39
+#: maps/scenarios/sandbox_kushites.xml:39
 msgid "A simple map showcasing the Kushite civilization's assets in the game."
 msgstr "게임에서 쿠시인 문명의 자산을 보여주는 간단한 지도입니다."
 
-#: maps/scenarios/sandbox_kushites.xml:Name:39
+#: maps/scenarios/sandbox_kushites.xml:39
 msgid "Sandbox - The Kushites"
 msgstr "샌드박스 - 쿠시인"
 
-#: maps/scenarios/sandbox_macedonians.xml:Description:38
+#: maps/scenarios/sandbox_macedonians.xml:38
 msgid ""
 "Play with the Macedonians faction in a non-threatening sandbox environment."
 msgstr "위협적이지 않은 샌드박스 환경에서 마케도니아족의 파벌과 함께 플레이합니다."
 
-#: maps/scenarios/sandbox_macedonians.xml:Name:38
+#: maps/scenarios/sandbox_macedonians.xml:38
 msgid "Sandbox - The Macedonians"
 msgstr "샌드박스 - 마케도니아족"
 
-#: maps/scenarios/sandbox_macedonians.xml:PlayerData[0].Name:38
+#: maps/scenarios/sandbox_macedonians.xml:38
 msgid "The Macedonians"
 msgstr "마케도니아족"
 
-#: maps/scenarios/sandbox_mauryas.xml:Description:39
+#: maps/scenarios/sandbox_mauryas.xml:39
 msgid "A simple map showcasing the Maurya civilization's assets in the game."
 msgstr "게임에서 마우리아 문명의 자산을 보여주는 간단한 지도입니다."
 
-#: maps/scenarios/sandbox_mauryas.xml:Name:39
+#: maps/scenarios/sandbox_mauryas.xml:39
 msgid "Sandbox - The Maurya Indians"
 msgstr "샌드박스 - 마우리아 왕조의 인도인"
 
-#: maps/scenarios/sandbox_persians.xml:Description:39
+#: maps/scenarios/sandbox_persians.xml:39
 msgid "A simple map showcasing the Persian civilization's assets in the game."
 msgstr "게임에서 페르시아 문명의 자산을 보여주는 간단한 지도입니다."
 
-#: maps/scenarios/sandbox_persians.xml:Name:39
+#: maps/scenarios/sandbox_persians.xml:39
 msgid "Sandbox - The Achaemenid Persians"
 msgstr "샌드박스 - 아케메네스 왕조의 페르시아족"
 
-#: maps/scenarios/sandbox_ptolemies.xml:Description:38
+#: maps/scenarios/sandbox_ptolemies.xml:38
 msgid "An islands map good for intense naval combat."
 msgstr "치열한 해상 전투에 적합한 섬 지도입니다."
 
-#: maps/scenarios/sandbox_ptolemies.xml:Name:38
+#: maps/scenarios/sandbox_ptolemies.xml:38
 msgid "Sandbox - The Ptolemaic Egyptians"
 msgstr "샌드박스 - 프톨레마이오스 왕조의의 이집트인"
 
-#: maps/scenarios/sandbox_ptolemies.xml:PlayerData[0].Name:38
+#: maps/scenarios/sandbox_ptolemies.xml:38
 msgid "Ptolemaios A' Soter"
 msgstr "프톨레마이오스 1세 소테르"
 
-#: maps/scenarios/sandbox_ptolemies.xml:PlayerData[1].Name:38
+#: maps/scenarios/sandbox_ptolemies.xml:38
 msgid "Kautilya"
 msgstr "카우틸랴"
 
-#: maps/scenarios/sandbox_ptolemies_02.xml:Description:38
+#: maps/scenarios/sandbox_ptolemies_02.xml:38
 msgid ""
 "Play with the Ptolemaic Egyptians in a non-threatening sandbox setting."
 msgstr "위협적이지 않은 샌드박스 환경에서 프톨레마이오스 왕조의 이집트인들과 함께 게임 진행합니다."
 
-#: maps/scenarios/sandbox_ptolemies_02.xml:Name:38
+#: maps/scenarios/sandbox_ptolemies_02.xml:38
 msgid "Sandbox - The Ptolemaic Egyptians 2"
 msgstr "샌드박스 - 프톨레마이오스 왕조의 이집트인 2"
 
-#: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[0].Name:38
+#: maps/scenarios/sandbox_ptolemies_02.xml:38
 msgid "Ptolemy \"Savior\""
 msgstr "프톨레마이오스 1세 \"소테르\""
 
-#: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[2].Name:38
+#: maps/scenarios/sandbox_ptolemies_02.xml:38
 msgid "Seleucids"
 msgstr "셀레우코스인"
 
-#: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[3].Name:38
+#: maps/scenarios/sandbox_ptolemies_02.xml:38
 msgid "Libyans"
 msgstr "리비아족"
 
-#: maps/scenarios/sandbox_romans.xml:Description:39
+#: maps/scenarios/sandbox_romans.xml:39
 msgid ""
 "A simple map showcasing the Republican Roman civilization's assets in the "
 "game."
 msgstr "게임에서 공화정 로마 문명의 자산을 보여주는 간단한 지도입니다."
 
-#: maps/scenarios/sandbox_romans.xml:Name:39
+#: maps/scenarios/sandbox_romans.xml:39
 msgid "Sandbox - The Romans"
 msgstr "샌드박스 - 로마인"
 
-#: maps/scenarios/sandbox_seleucids.xml:Description:38
+#: maps/scenarios/sandbox_seleucids.xml:38
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
 msgstr "플레이어들이 셀레우코스 문명을 체험할 수 있는 샌드박스 시나리오입니다."
 
-#: maps/scenarios/sandbox_seleucids.xml:Name:38
+#: maps/scenarios/sandbox_seleucids.xml:38
 msgid "Sandbox - The Seleucids"
 msgstr "샌드박스 - 셀레우코스인"
 
-#: maps/scenarios/sandbox_seleucids.xml:PlayerData[0].Name:38
+#: maps/scenarios/sandbox_seleucids.xml:38
 msgid "The Seleucids"
 msgstr "셀레우코스인"
 
-#: maps/scenarios/sandbox_seleucids.xml:PlayerData[1].Name:38
+#: maps/scenarios/sandbox_seleucids.xml:38
 msgid "The Ptolemies"
 msgstr "프톨레마이오스 왕조"
 
-#: maps/scenarios/sandbox_spartans.xml:Description:39
+#: maps/scenarios/sandbox_spartans.xml:39
 msgid "A simple map showcasing the Spartan civilization's assets in the game."
 msgstr "게임에서 스파르타 문명의 자산을 보여주는 간단한 지도입니다."
 
-#: maps/scenarios/sandbox_spartans.xml:Name:39
+#: maps/scenarios/sandbox_spartans.xml:39
 msgid "Sandbox - The Spartans"
 msgstr "샌드박스 - 스파르타인"
 
-#: maps/scenarios/savanna_ravine.xml:Description:38
+#: maps/scenarios/savanna_ravine.xml:38
+msgid "Savanna Ravine"
+msgstr "사바나 협곡"
+
+#: maps/scenarios/savanna_ravine.xml:38
 msgid ""
 "A wide-open Savanna map with a small ravine running down the center, which "
 "is easily forded."
 msgstr "쉽게 건널수있는 중앙의 작은 계곡이 흐르는 활짝 열린 사바나 지도입니다."
 
-#: maps/scenarios/savanna_ravine.xml:Name:38
-msgid "Savanna Ravine"
-msgstr "사바나 협곡"
-
-#: maps/scenarios/serengeti.xml:Description:26
+#: maps/scenarios/serengeti.xml:26
 msgid ""
 "The African serengeti has herds of animals criss crossing the plain. Mineral"
 " wealth is bountiful and wood is in full supply."
 msgstr "아프리카 세렌게티에는 평야를 가로지르는 동물 무리가 있습니다. 광물자원은 풍부하고 목재가 충분히 공급되고 있습니다."
 
-#: maps/scenarios/serengeti.xml:Name:26
+#: maps/scenarios/serengeti.xml:26
 msgid "Serengeti 1"
 msgstr "세렌게티  1"
 
-#: maps/scenarios/serengeti.xml:PlayerData[1].Name:26
+#: maps/scenarios/serengeti.xml:26
 msgid "Iberia"
 msgstr "이베리아"
 
-#: maps/scenarios/serengeti.xml:PlayerData[2].Name:26
+#: maps/scenarios/serengeti.xml:26
 msgid "Greece"
 msgstr "그리스"
 
-#: maps/scenarios/serengeti.xml:PlayerData[3].Name:26
+#: maps/scenarios/serengeti.xml:26
 msgid "Persia"
 msgstr "페르시아"
 
-#: maps/scenarios/ship_formations.xml:Description:26
+#: maps/scenarios/ship_formations.xml:26
 msgid "Ship formations mockup."
 msgstr "선박 대형 모형입니다."
 
-#: maps/scenarios/ship_formations.xml:Name:26
+#: maps/scenarios/ship_formations.xml:26
 msgid "Ship Formations"
 msgstr "선박 대형"
 
-#: maps/scenarios/ship_formations.xml:PlayerData[0].Name:26
+#: maps/scenarios/ship_formations.xml:26
 msgid "Ships"
 msgstr "선박"
 
-#: maps/scenarios/shipattacks.xml:Description:26
+#: maps/scenarios/shipattacks.xml:26
 msgid "Move ships around. Attack other ships."
 msgstr "주위에 선박을 이동합니다. 다른 선박을 공격합니다."
 
-#: maps/scenarios/shipattacks.xml:Name:26
+#: maps/scenarios/shipattacks.xml:26
 msgid "Ships Demo"
 msgstr "선박 데모"
 
-#: maps/scenarios/siwa_oasis.xml:Description:26
+#: maps/scenarios/siwa_oasis.xml:26
 msgid ""
 "Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of"
 " mountainous spokes that divide the home territories of each player."
 msgstr "카르타고 vs. 마세곤 vs. 페르시아 vs. 이베리아! 큰 오아시스는 각 플레이어의 고향 영토를 나누는 산악 스포크의 허브 역할을합니다."
 
-#: maps/scenarios/siwa_oasis.xml:Name:26
+#: maps/scenarios/siwa_oasis.xml:26
 msgid "Siwa Oasis"
 msgstr "시와 오아시스"
 
-#: maps/scenarios/temperate_map.xml:Name:26
+#: maps/scenarios/temperate_map.xml:26
 msgid "Base Temperate Map"
 msgstr "기본 온대 지도"
 
-#: maps/scenarios/territory_demo.xml:Description:26
+#: maps/scenarios/territory_demo.xml:26
 msgid "A demo map showing the territory effects of each type of structure."
 msgstr "각 건축물 유형의 유형의 영토 효과를 보여주는 데모 지도입니다."
 
-#: maps/scenarios/territory_demo.xml:Name:26
+#: maps/scenarios/territory_demo.xml:26
 msgid "Territory Demo"
 msgstr "영토 데모"
 
-#: maps/scenarios/test_foundation.xml:Description:39
+#: maps/scenarios/test_foundation.xml:39
 msgid ""
 "This map is designed to help artists and modders find the adequate "
 "foundation for a specific building. This map is not meant to be playable."
 msgstr "이 지도는 아티스트와 모더가 특정 건물에 적합한 기초를 찾을 수 있도록 설계되었습니다. 이 지도는 플레이할 수 없습니다."
 
-#: maps/scenarios/test_foundation.xml:Name:39
+#: maps/scenarios/test_foundation.xml:39
 msgid "Foundation Testing Map"
 msgstr "기초 테스트용 지도"
 
-#: maps/scenarios/the_massacre_of_delphi.xml:Description:38
+#: maps/scenarios/the_massacre_of_delphi.xml:38
 msgid ""
 "The Celts invade Greece. Fight through the central valley or cut through the"
 " rich highlands in order to secure the lands around Delphi!"
 msgstr "켈트인이 그리스를 침략합니다. 델파이 주변의 땅을 확보하기 위해 중앙 계곡을 통해 싸우거나 풍부한 고지대를 통과해야 합니다!"
 
-#: maps/scenarios/the_massacre_of_delphi.xml:Name:38
+#: maps/scenarios/the_massacre_of_delphi.xml:38
 msgid "Massacre of Delphi"
 msgstr "델파이 대학살"
 
-#: maps/scenarios/the_persian_gates.xml:Description:26
+#: maps/scenarios/the_persian_gates.xml:26
 msgid ""
 "\"It has always been the Greek Dream to go East.\"\n"
 "\n"
@@ -2212,45 +2161,45 @@ msgid ""
 "Will Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?"
 msgstr "\"동부로 가는 것은 언제나 그리스인의 꿈이었습니다.\"\n\n\"그런 자존심을 조심합니다. 동양은 인간과 꿈을 삼키는 방법이 있습니다.\"\n\n알렉산드로스는 페르시아 성문을 통해 그의 길을 밀고 들어가 그의 운명을 완수할 것인가, 아니면 아리오바르자네스는 외세의 침략자로부터 험준한 고대의 땅 페르시스를 방어할 것인가?"
 
-#: maps/scenarios/the_persian_gates.xml:Name:26
+#: maps/scenarios/the_persian_gates.xml:26
 msgid "The Persian Gates"
 msgstr "페르시아 문"
 
-#: maps/scenarios/the_persian_gates.xml:PlayerData[0].Name:26
+#: maps/scenarios/the_persian_gates.xml:26
 msgid "Alexandros Megas"
 msgstr "알렉산드로스 메가스"
 
-#: maps/scenarios/the_persian_gates.xml:PlayerData[1].Name:26
+#: maps/scenarios/the_persian_gates.xml:26
 msgid "Krateros"
 msgstr "크라테로스"
 
-#: maps/scenarios/the_persian_gates.xml:PlayerData[2].Name:26
+#: maps/scenarios/the_persian_gates.xml:26
 msgid "Ariobarzanes"
 msgstr "아리오바르자네스"
 
-#: maps/scenarios/the_persian_gates.xml:PlayerData[3].Name:26
+#: maps/scenarios/the_persian_gates.xml:26
 msgid "Persians"
 msgstr "페르시아족"
 
-#: maps/scenarios/third_macedonian_war.xml:Description:26
+#: maps/scenarios/third_macedonian_war.xml:26
 msgid ""
 "The Romans encroach upon Macedonian lands for the third and final time. Can "
 "the once-proud Macedonians prevail against the Roman juggernaut?"
 msgstr "로마인들은 세 번째이자 마지막 시간 동안 마케도니아 땅을 잠식합니다. 한때 자랑스러웠던 마케도니아족들이 로마의 비대한힘을 상대로 승리할 수 있을까요?"
 
-#: maps/scenarios/third_macedonian_war.xml:Name:26
+#: maps/scenarios/third_macedonian_war.xml:26
 msgid "Third Macedonian War"
 msgstr "제3차 마케도니아 전쟁"
 
-#: maps/scenarios/third_macedonian_war.xml:PlayerData[0].Name:26
+#: maps/scenarios/third_macedonian_war.xml:26
 msgid "Lucius Aemilius Paullus"
 msgstr "루시우스 에밀리우스 폴루스"
 
-#: maps/scenarios/third_macedonian_war.xml:PlayerData[1].Name:26
+#: maps/scenarios/third_macedonian_war.xml:26
 msgid "Perseus of Macedon"
 msgstr "마케도니아의 페르세우스"
 
-#: maps/scenarios/third_macedonian_war.xml:PlayerData[2].Name:26
+#: maps/scenarios/third_macedonian_war.xml:26
 msgid "Greek Allies"
 msgstr "그리스 동맹"
 
@@ -2300,13 +2249,13 @@ msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
 msgstr[0] "%(players)s님과 %(lastPlayer)s님이 졌습니다 (보물 수집)."
 
-#: maps/scenarios/treasure_islands.xml:Description:38
+#: maps/scenarios/treasure_islands.xml:38
 msgid ""
 "Search treasures on small islands and on the water. Collect more treasures "
 "than your opponent to win."
 msgstr "작은 섬과 물에서 보물을 찾으십시오. 상대방보다 많은 보물을 모아서 승리합니다."
 
-#: maps/scenarios/treasure_islands.xml:Name:38
+#: maps/scenarios/treasure_islands.xml:38
 msgid "Treasure Islands"
 msgstr "보물섬"
 
@@ -2330,43 +2279,43 @@ msgstr "선호하지 않습니다"
 msgid "Say rather not"
 msgstr "다른 의견이 있습니다"
 
-#: maps/scenarios/triggers_demo.xml:Description:38
+#: maps/scenarios/triggers_demo.xml:38
 msgid ""
 "Demo map listening to various triggers and printing warning messages about "
 "them"
 msgstr "다양한 트리거를 수신하고 이에 대한 경고 메시지를 인쇄하는 데모 지도입니다"
 
-#: maps/scenarios/triggers_demo.xml:Name:38
+#: maps/scenarios/triggers_demo.xml:38
 msgid "Triggers Demo"
 msgstr "트리거 데모"
 
-#: maps/scenarios/tropical_island.xml:Description:38
+#: maps/scenarios/tropical_island.xml:38
 msgid "Multiplayer map. A tropical paradise."
 msgstr "멀티플레이어 지도입니다. 열대 낙원."
 
-#: maps/scenarios/tropical_island.xml:Name:38
+#: maps/scenarios/tropical_island.xml:38
 msgid "Tropical Island"
 msgstr "열대섬"
 
-#: maps/scenarios/unit_chasing_test.xml:Description:40
+#: maps/scenarios/unit_chasing_test.xml:40
 msgid ""
 "This map is designed to test a few different cases of units chasing each "
 "other."
 msgstr "이 지도는 서로 쫓는 유닛의 몇 가지 다른 사례를 테스트하도록 설계되었습니다."
 
-#: maps/scenarios/unit_chasing_test.xml:Name:40
+#: maps/scenarios/unit_chasing_test.xml:40
 msgid "Unit Chasing test"
 msgstr "추격 테스트 유닛"
 
-#: maps/scenarios/unit_dancing_test.xml:Description:40
+#: maps/scenarios/unit_dancing_test.xml:40
 msgid "This map is designed to test a few different cases of 'Dancing'."
 msgstr "이 지도는 '빠른이동'의 몇 가지 다른 사례를 테스트하도록 설계되었습니다."
 
-#: maps/scenarios/unit_dancing_test.xml:Name:40
+#: maps/scenarios/unit_dancing_test.xml:40
 msgid "Unit Dancing test"
 msgstr "유닛 빠른이동 테스트"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Description:39
+#: maps/scenarios/unit_motion_integration_test.xml:39
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2374,47 +2323,47 @@ msgid ""
 "and weird pathing."
 msgstr "이 지도는 몇 가지 기본적인 유닛 이동 사례를 테스트하기 위해 설계되었습니다. 유닛인공지능, 유닛움직임 및 관련 길잡이가 포함되므로 통합 테스트 지도 역할을 합니다. 유닛이 멈추거나 애니메이션이 잘못되거나 경로가 이상하게 설정되는 등의 문제를 찾아보세요."
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:39
+#: maps/scenarios/unit_motion_integration_test.xml:39
 msgid "Unit Motion Integration Test"
 msgstr "단위 모션 통합 테스트"
 
-#: maps/scenarios/unit_pushing_test.xml:Description:40
+#: maps/scenarios/unit_pushing_test.xml:40
 msgid ""
 "This map is designed to test the performance & functionality of unit "
 "pushing."
 msgstr "이 지도는 유닛 밀기의 성능과 기능을 테스트하도록 설계되었습니다."
 
-#: maps/scenarios/unit_pushing_test.xml:Name:40
+#: maps/scenarios/unit_pushing_test.xml:40
 msgid "Unit Pushing test"
 msgstr "유닛 밀기 테스트"
 
-#: maps/scenarios/units_demo.xml:Description:27
-msgid "Every unit in the game."
-msgstr "게임의 모든 유닛."
-
-#: maps/scenarios/units_demo.xml:Name:27
+#: maps/scenarios/units_demo.xml:27
 msgid "Units Demo"
 msgstr "유닛 데모"
 
-#: maps/scenarios/walls.xml:Description:26
+#: maps/scenarios/units_demo.xml:27
+msgid "Every unit in the game."
+msgstr "게임의 모든 유닛."
+
+#: maps/scenarios/walls.xml:26
 msgid "Walls."
 msgstr "성벽입니다."
 
-#: maps/scenarios/walls.xml:Name:26
+#: maps/scenarios/walls.xml:26
 msgid "Walls"
 msgstr "성벽"
 
-#: maps/scenarios/walltest.xml:Name:26
+#: maps/scenarios/walltest.xml:26
 msgid "WallTest"
 msgstr "성벽테스트"
 
-#: maps/scenarios/we_are_legion.xml:Description:26
-msgid "A quick battle demo map using Roman legionaries."
-msgstr "로마 군단병을 사용한 빠른 전투 데모 지도입니다."
-
-#: maps/scenarios/we_are_legion.xml:Name:26
+#: maps/scenarios/we_are_legion.xml:26
 msgid "We Are Legion"
 msgstr "우리는 선별된 부대다"
+
+#: maps/scenarios/we_are_legion.xml:26
+msgid "A quick battle demo map using Roman legionaries."
+msgstr "로마 군단병을 사용한 빠른 전투 데모 지도입니다."
 
 #: maps/scripts/CaptureTheRelic.js:144
 #, javascript-format
@@ -2533,71 +2482,71 @@ msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
 msgstr[0] "%(players)s님과  %(lastPlayer)s님이 패배했습니다 (불가사의 승리)."
 
-#: maps/skirmishes/acropolis_bay_2p.xml:Description:39
+#: maps/skirmishes/acropolis_bay_2p.xml:39
 msgid ""
 "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
 "\n"
 "To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below."
 msgstr "각 플레이어는 아크로폴리스로 알려진 넓고 평평한 고원 위에서 시합을 시작합니다.\n\n동쪽에는 낚시를 할 수 있는 큰 만이 있습니다. 서쪽은 계곡이 내려다보이는 사람이 없는 아크로폴리스가 있는 험준한 오지입니다."
 
-#: maps/skirmishes/acropolis_bay_2p.xml:Name:39
+#: maps/skirmishes/acropolis_bay_2p.xml:39
 msgid "Acropolis Bay (2)"
 msgstr "아크로폴리스 만 (2)"
 
-#: maps/skirmishes/alpine_mountains_3p.xml:Description:39
+#: maps/skirmishes/alpine_mountains_3p.xml:39
 msgid ""
 "A map filled with impassable mountains and a great number of natural "
 "resources."
 msgstr "통과할 수 없는 산과 수많은 천연 자원으로 가득한 지도입니다."
 
-#: maps/skirmishes/alpine_mountains_3p.xml:Name:39
+#: maps/skirmishes/alpine_mountains_3p.xml:39
 msgid "Alpine Mountains (3)"
 msgstr "알파인 산맥 (3)"
 
-#: maps/skirmishes/alpine_valleys_2p.xml:Description:39
+#: maps/skirmishes/alpine_valleys_2p.xml:39
 msgid ""
 "The high peaks and valleys of the Alps.\n"
 "\n"
 "Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
 msgstr "알프스의 높은 봉우리와 계곡입니다.\n\n각 플레이어들은 안전한 녹색 계곡에 자리한 시합을 시작합니다. 그 사이에는 위험한 알프스 산맥이 있습니다."
 
-#: maps/skirmishes/alpine_valleys_2p.xml:Name:39
+#: maps/skirmishes/alpine_valleys_2p.xml:39
 msgid "Alpine Valleys (2)"
 msgstr "알프스의 계곡 (2)"
 
-#: maps/skirmishes/arabian_oases_2p.xml:Description:39
+#: maps/skirmishes/arabian_oases_2p.xml:39
 msgid ""
 "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
 "\n"
 "This represents the Arabian Desert, South of Mesopotamia."
 msgstr "오래된 인기 지도입니다. 그 외에는 넓게 펼쳐진, 평평한 사막 지도는 두 개의 무성한 오아시스에 의해 중앙이 관통되었습니다.\n\n메소포타미아 남부의 아라비아 사막을 나타냅니다."
 
-#: maps/skirmishes/arabian_oases_2p.xml:Name:39
+#: maps/skirmishes/arabian_oases_2p.xml:39
 msgid "Arabian Oases (2 players)"
 msgstr "아라비아 오아시스 (2인용)"
 
-#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/arabian_oases_2p.xml:39
+#: maps/skirmishes/libyan_oasis_2p.xml:39
 msgid "Northeast Player"
 msgstr "북동쪽 플레이어"
 
-#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/arabian_oases_2p.xml:39
+#: maps/skirmishes/libyan_oasis_2p.xml:39
 msgid "Southwest Player"
 msgstr "남서쪽 플레이어"
 
-#: maps/skirmishes/atlas_valleys_8p.xml:Description:39
+#: maps/skirmishes/atlas_valleys_8p.xml:39
 msgid ""
 "Skirmish high in the Atlas mountains, where snowcapped mountains loom over "
 "desert oases. A wild landscape awaits; every player will experience "
 "different advantages and challenges based on their location."
 msgstr "눈 덮인 산들이 사막의 오아시스 위로 모습을 드러내는 아틀라스 산맥의 높은 곳에서 교전이 벌어지고 있습니다. 거친 풍경이 기다리고 있습니다. 모든 플레이어는 위치에 따라 각기 다른 장점과 도전을 경험하게 될 것입니다."
 
-#: maps/skirmishes/atlas_valleys_8p.xml:Name:39
+#: maps/skirmishes/atlas_valleys_8p.xml:39
 msgid "Atlas Valleys (8)"
 msgstr "아틀라스 밸리 (8)"
 
-#: maps/skirmishes/bactria_2p.xml:Description:39
+#: maps/skirmishes/bactria_2p.xml:39
 msgid ""
 "In the Eastern land of Bactria lies the rich valley carved by the Oxus River.\n"
 "\n"
@@ -2606,11 +2555,15 @@ msgid ""
 "Within the mountains can be found riches as well as danger. The player who can exploit the mountainous area the best will have a significant advantage over their adversary."
 msgstr "박트리아의 동쪽 땅에는 옥서스 강에 의해 조각된 풍부한 계곡이 있습니다.\n\n강의 남쪽은 경작지가 풍부하고 나무와 식량이 풍부합니다. 강의 북쪽에는 넓은 산자락으로 뚫려 있고 자연 방어 태세로 보호되고 있는 산맥이 있습니다.\n\n산 속에서는 위험뿐만 아니라 재물을 찾을 수 있습니다. 산악 지역을 가장 잘 활용할 수 있는 플레이어는 적보다 상당한 이점을 누릴 수 있습니다."
 
-#: maps/skirmishes/bactria_2p.xml:Name:39
+#: maps/skirmishes/bactria_2p.xml:39
 msgid "Bactriana (2)"
 msgstr "박트리아 (2)"
 
-#: maps/skirmishes/barcania_3p.xml:Description:26
+#: maps/skirmishes/barcania_3p.xml:26
+msgid "Barcania (3)"
+msgstr "바르카니아 (3)"
+
+#: maps/skirmishes/barcania_3p.xml:26
 msgid ""
 "A wild and wooded isle, full of forests, gold, and mystery. Mountains, seas,"
 " and thick forests make for a very dynamic and fast-paced 3-player map with "
@@ -2618,108 +2571,104 @@ msgid ""
 "defensive fighting or aggressive maneuvers."
 msgstr "숲, 금, 신비로 가득 찬 숲과 숲이 우거진 섬입니다. 산, 바다, 그리고 울창한 숲은 강력한 방어전이나 공격적 기동뿐만 아니라 교전과 게릴라전의 잠재력이 많은 매우 역동적이고 빠른 3인용 지도를 만듭니다."
 
-#: maps/skirmishes/barcania_3p.xml:Name:26
-msgid "Barcania (3)"
-msgstr "바르카니아 (3)"
-
-#: maps/skirmishes/belgian_bog_2p.xml:Description:39
+#: maps/skirmishes/belgian_bog_2p.xml:39
 msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
 "Wood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
 msgstr "두 명의 플레이어들이 라인강 저지대 어딘가의 큰 늪을 가로질러 대결합니다.\n\n나무는 풍부하지만, 금속과 석재를 발견하고 추출하기 어렵습니다. 사냥과 사냥이 풍부합니다."
 
-#: maps/skirmishes/belgian_bog_2p.xml:Name:39
+#: maps/skirmishes/belgian_bog_2p.xml:39
 msgid "Belgian Bog (2)"
 msgstr "벨기에의 늪지 (2)"
 
-#: maps/skirmishes/butana_steppe_2p.xml:Description:39
+#: maps/skirmishes/butana_steppe_2p.xml:39
 msgid ""
 "South of the Sahara, East of the Nile, lies a semi-arid region today known "
 "as the Butana Steppe."
 msgstr "나일 강의 동쪽인 사하라 남쪽에는 오늘날 부타나 스테페로 알려진 반건조 지역이 있습니다."
 
-#: maps/skirmishes/butana_steppe_2p.xml:Name:39
+#: maps/skirmishes/butana_steppe_2p.xml:39
 msgid "Island of Meroë (2)"
 msgstr "메로에 섬 (2)"
 
-#: maps/skirmishes/caspian_sea_2pv2p.xml:Description:39
+#: maps/skirmishes/caspian_sea_2pv2p.xml:39
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
 msgstr "두 편은 길고 매우 큰 바닷물 호수를 가로질러 마주합니다.\n\n중앙 호수에서 낚시를 즐기며 낚시를 즐겨 보시고 있습니다. 지도에는 돌과 금속 퇴적물이 잘 부여되어 있습니다."
 
-#: maps/skirmishes/caspian_sea_2pv2p.xml:Name:39
+#: maps/skirmishes/caspian_sea_2pv2p.xml:39
 msgid "Caspian Sea (2v2)"
 msgstr "카스피 해 (2v2)"
 
-#: maps/skirmishes/cisalpine_winter_2p.xml:Description:39
+#: maps/skirmishes/cisalpine_winter_2p.xml:39
 msgid ""
 "Northern Italy near the Alps is called Cisalpine Gaul by the Romans. It's a fertile area contested by the Gauls, Etruscans, and Romans alike. \n"
 "\n"
 "CAUTION: Map has a lot of snow particles that could affect graphics performance on low-end hardware."
 msgstr "알프스 주변의 북이탈리아는 로마인들에 의해 시살피네 골이라고 불립니다. 이곳은 골족, 에트루리아인, 로마인 모두가 경쟁하는 비옥한 지역입니다.\n\n주의: 지도에는 저가형 하드웨어의 그래픽 성능에 영향을 미칠 수 있는 많은 눈 입자가 있습니다."
 
-#: maps/skirmishes/cisalpine_winter_2p.xml:Name:39
+#: maps/skirmishes/cisalpine_winter_2p.xml:39
 msgid "Cisalpine Winter (2)"
 msgstr "시살핀 겨울 (2)"
 
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:39
+#: maps/skirmishes/corinthian_isthmus_2p.xml:39
 msgid "Corinthian Isthmus (2)"
 msgstr "코린트 지협 (2)"
 
-#: maps/skirmishes/corinthian_isthmus_4p.xml:Name:39
+#: maps/skirmishes/corinthian_isthmus_4p.xml:39
 msgid "Corinthian Isthmus (4)"
 msgstr "코린트 지협 (4)"
 
-#: maps/skirmishes/corsica_and_sardinia_4p.xml:Description:38
+#: maps/skirmishes/corsica_and_sardinia_4p.xml:38
 msgid ""
 "The players start on two opposing islands, both with a very jagged relief that will make landing difficult.\n"
 "\n"
 "Originally occupied by the Torreans, then marginally settled by Etruscans, Phocaeans and Syracusans. Rome conquered these two islands from Carthage during the First Punic War and in 238 BC created the \"Corsica et Sardinia\" province. The Corsicans regularly revolted and over the course of a century, the island lost two thirds of its Corsican population."
 msgstr "플레이어들은 섬에 상륙을 어렵게 만들 것입니다 매우 들쭉날쭉한 구호와 함께, 두 개의 반대 섬에 시작합니다.\n\n원래 토레아인들이 점령한 후 에트루리아인, 포카인, 시라쿠산이 약간 정착했습니다. 로마는 제1차 포에니 전쟁 동안 카르타고에서 이 두 섬을 정복했고, 기원전 238년에는 \"코르시카 에 사르데냐\" 지방을 만들었습니다. 코르시카인들은 정기적으로 반란을 일으켰다가 한 세기 동안 이 섬은 코르시카 인구의 3분의 2를 잃었습니다."
 
-#: maps/skirmishes/corsica_and_sardinia_4p.xml:Name:38
+#: maps/skirmishes/corsica_and_sardinia_4p.xml:38
 msgid "Corsica and Sardinia (4)"
 msgstr "코르시카와 사르디니아 (4)"
 
-#: maps/skirmishes/crocodilopolis_4p.xml:Description:39
+#: maps/skirmishes/crocodilopolis_4p.xml:39
 msgid ""
 "The ancient lake of Moeris near the Nile River in the Libyan Desert has been settled and used by the Egyptians since prehistoric times. \n"
 "\n"
 "The surrounding lands are dotted with ancient and new monuments and temples, while the lake itself is stocked full of Tilapia, ready for fishing.  "
 msgstr "리비아 사막의 나일강 주변에있는 고대 모에리스 호수는 선사 시대부터 이집트인들에 의해 정착되어 사용되었습니다.\n\n주변 땅에는 고대 및 새로운 기념물과 사원이 산재해 있으며 호수 내에는 낚시를 위해 준비된 틸라피아로 가득 차 있습니다."
 
-#: maps/skirmishes/crocodilopolis_4p.xml:Name:39
+#: maps/skirmishes/crocodilopolis_4p.xml:39
 msgid "Crocodilopolis (4)"
 msgstr "크로코딜로폴리스 (4)"
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:39
-#: maps/skirmishes/cycladic_archipelago_3p.xml:Description:39
-msgid "A \"small island\"-style map set in the Aegean Sea."
-msgstr "에게 해를 배경으로 한 \"작은 섬\" 스타일의 지도입니다."
-
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:39
 msgid "Cycladic Archipelago (2 players)"
 msgstr "키클라데스 군도 (2인용)"
 
-#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:39
+msgid "A \"small island\"-style map set in the Aegean Sea."
+msgstr "에게 해를 배경으로 한 \"작은 섬\" 스타일의 지도입니다."
+
+#: maps/skirmishes/cycladic_archipelago_3p.xml:39
 msgid "Cycladic Archipelago (3 players)"
 msgstr "키클라데스 군도 (3인용)"
 
-#: maps/skirmishes/death_canyon_2p.xml:Description:38
+#: maps/skirmishes/death_canyon_2p.xml:38
 msgid ""
 "A deep rocky canyon slicing through the desert.\n"
 "\n"
 "Each player starts their colony on a plateau on either side of the ravine."
 msgstr "깊은 바위 협곡이 사막을 가르고 있습니다.\n\n각 플레이어들은 협곡 의 양쪽에 있는 고원에서 거주지를 시작합니다."
 
-#: maps/skirmishes/death_canyon_2p.xml:Name:38
+#: maps/skirmishes/death_canyon_2p.xml:38
 msgid "Death Canyon (2)"
 msgstr "죽음의 협곡 (2)"
 
-#: maps/skirmishes/deccan_plateau_2p.xml:Description:39
+#: maps/skirmishes/deccan_plateau_2p.xml:39
 msgid ""
 "Two players square off across the heavily forested Deccan Plateau of central India.\n"
 "\n"
@@ -2728,22 +2677,26 @@ msgid ""
 "Virgin resources lie to the lowlands on either side of the plateau. The lowlands also offer opportunity for expansion and strategic maneuvering."
 msgstr "두 플레이어는 인도 중부의 숲이 우거진 데칸 고원을 가로질러 광장을 가로질러 광장을 장식합니다.\n\n각 플레이어들은 비어있는 농장과 창고로 시합을 시작합니다.\n\n개간되지 않은 자원은 고원 양쪽의 저지대에 있습니다. 낮은 지대는 또한 확장 및 전략적 기동을 위한 기회를 제공합니다."
 
-#: maps/skirmishes/deccan_plateau_2p.xml:Name:39
+#: maps/skirmishes/deccan_plateau_2p.xml:39
 msgid "Deccan Plateau (2)"
 msgstr "데칸 고원 (2)"
 
-#: maps/skirmishes/dueling_cliffs_3pv3p.xml:Description:39
+#: maps/skirmishes/dueling_cliffs_3pv3p.xml:39
 msgid ""
 "A foggy alpine landscape becomes a battleground as each team has an ally "
 "squashed precariously between two enemies. Two forest cliffs overlook the "
 "center lake, accessible from the sides of the map."
 msgstr "안개가 자욱한 알프스 풍경은 각 편은 두 적 사이에 불안정하게 분쇄된 동맹을 가지고 있기 때문에 전장이 됩니다. 두 개의 숲 절벽은 지도의 측면에서 접근할 수있는 중앙 호수를 내려다보고 있습니다."
 
-#: maps/skirmishes/dueling_cliffs_3pv3p.xml:Name:39
+#: maps/skirmishes/dueling_cliffs_3pv3p.xml:39
 msgid "Dueling Cliffs (3v3)"
 msgstr "결투의 절벽 (3v3)"
 
-#: maps/skirmishes/egypt_3pv3p.xml:Description:39
+#: maps/skirmishes/egypt_3pv3p.xml:39
+msgid "Egypt (3v3)"
+msgstr "이집트 (3v3)"
+
+#: maps/skirmishes/egypt_3pv3p.xml:39
 msgid ""
 "Fight for the remains of ancient Egypt!\n"
 "\n"
@@ -2760,49 +2713,45 @@ msgid ""
 "- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
 msgstr "고대 이집트의 유적을 위해 싸워라! \n\n플레이어는 완전히 성장한 도시와 작은 군대로 시작하며 각각 뚜렷한 장점과 단점이 있습니다. 7개의 강력한 요새와 약탈하는 산적들이 있으니 조심하세요!\n\n0 A.D.전 이집트는 내부적으로 헬레니즘(셀레우코스로 대표되는 알렉산드리아)과 전통적인 영향력(프톨레마이오스로 대표되는 멤피스)으로 나뉩니다. 나일 강의 남쪽 기후에 있는 테베는 이미 쿠시족에게 점령당했습니다. 지중해 도시 키레네가 위치한 북서부 알-드샤발 알-아흐다르에서 로마인들은 침공을 준비하고 있습니다. 동쪽 사막 앗-티흐와 시나이 산에서 적(페르시아족으로 대표됨)이 시와 오아시스와 앞으로 전진하고있습니다. 남서부 사막에 있는 차르가(카르타고로 대표됨) 또한 이 파이의 몫을 차지하기 위해 노력하고 있습니다.\n위치:\n- 알렉산드리아: 도서관, 항구 \n- 멤피스: 네크로폴리스, 피라미드, 아피스 신전 \n- 테베: 사원 지구, 왕가의 계곡 - 키레네: 지중해 마키에, 올리브 과수원 \n- 파이윰: 악어 신전, 나일 댐 \n- 동부 사막: 시나이 산, 깊은 와디, 홍해 암초 \n- 서부 사막: 오아시스 차르가와 시와, 카타라 저지대\n"
 
-#: maps/skirmishes/egypt_3pv3p.xml:Name:39
-msgid "Egypt (3v3)"
-msgstr "이집트 (3v3)"
-
-#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[0].Name:39
+#: maps/skirmishes/egypt_3pv3p.xml:39
 msgid "Alexandria"
 msgstr "알렉산드리아"
 
-#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/egypt_3pv3p.xml:39
 msgid "Siwa"
 msgstr "시와"
 
-#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[3].Name:39
+#: maps/skirmishes/egypt_3pv3p.xml:39
 msgid "Sinai"
 msgstr "시나이"
 
-#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[4].Name:39
+#: maps/skirmishes/egypt_3pv3p.xml:39
 msgid "Memphis"
 msgstr "멤피스"
 
-#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[5].Name:39
+#: maps/skirmishes/egypt_3pv3p.xml:39
 msgid "Cyrene"
 msgstr "키레네"
 
-#: maps/skirmishes/farmland_2p.xml:Description:39
+#: maps/skirmishes/farmland_2p.xml:39
 msgid "Farmland in Eastern Europe."
 msgstr "동유럽의 농지."
 
-#: maps/skirmishes/farmland_2p.xml:Name:39
+#: maps/skirmishes/farmland_2p.xml:39
 msgid "Farmland (2)"
 msgstr "농지 (2)"
 
-#: maps/skirmishes/forest_battle_4p.xml:Description:39
+#: maps/skirmishes/forest_battle_4p.xml:39
 msgid ""
 "A forest battle map where all players fight for supremacy and control over "
 "the middle."
 msgstr "모든 플레이어들이 중앙을 장악하고 패권을 차지하기 위해 싸우는 숲 전투 지도입니다."
 
-#: maps/skirmishes/forest_battle_4p.xml:Name:39
+#: maps/skirmishes/forest_battle_4p.xml:39
 msgid "Forest Battle (4)"
 msgstr "숲속 전투 (4)"
 
-#: maps/skirmishes/gallic_fields_3p.xml:Description:39
+#: maps/skirmishes/gallic_fields_3p.xml:39
 msgid ""
 "Defend your Gallic outpost against attacks from your treacherous neighbors!\n"
 "\n"
@@ -2811,100 +2760,100 @@ msgid ""
 "Watch out for Romans passing by!"
 msgstr "당신의 갈리아 전초기지를 당신의 위험한 이웃들의 공격으로부터 방어합니다!\n\n각 플레이어들은 낮은 제방 꼭대기에 있는 나무로 된 말뚝 울타리와 경비탑으로 시합을 시작합니다.\n\n지나가는 로마인들을 조심하세요!"
 
-#: maps/skirmishes/gallic_fields_3p.xml:Name:39
+#: maps/skirmishes/gallic_fields_3p.xml:39
 msgid "Gallic Fields (3)"
 msgstr "갈리아 들판 (3)"
 
-#: maps/skirmishes/gallic_highlands_2p.xml:Description:39
+#: maps/skirmishes/gallic_highlands_2p.xml:39
 msgid "The Highlands of central Gaul."
 msgstr "갈리아 중부의 고원."
 
-#: maps/skirmishes/gallic_highlands_2p.xml:Name:39
+#: maps/skirmishes/gallic_highlands_2p.xml:39
 msgid "Gallic Highlands (2)"
 msgstr "갈리아 고원 (2)"
 
-#: maps/skirmishes/gambia_river_3p.xml:Description:39
+#: maps/skirmishes/gambia_river_3p.xml:39
 msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
 "\n"
 "(Warning: Large map. Good computer specs recommended)"
 msgstr "모든 플레이어들은 수확할 수 있는 최소한의 금속으로 강의 한 둑에서 출발합니다. 감비아 강 건너편에는 많은 금속이 매장되어 있는 사바나가 있습니다.\n\n(경고: 큰 지도입니다. 좋은 컴퓨터 사양이 권장됩니다.)"
 
-#: maps/skirmishes/gambia_river_3p.xml:Name:39
+#: maps/skirmishes/gambia_river_3p.xml:39
 msgid "Gambia River (3)"
 msgstr "감비아 강 (3)"
 
-#: maps/skirmishes/golden_island_2p.xml:Description:39
+#: maps/skirmishes/golden_island_2p.xml:39
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
 "can access the center via a narrow strip of shallow water or via boat."
 msgstr "지중해의 자원이 풍부한 섬에 육지가 인접해 있습니다. 플레이어들은 얕은 물의 좁은 물줄기나 보트를 통해 중심에 접근할 수 있습니다."
 
-#: maps/skirmishes/golden_island_2p.xml:Name:39
+#: maps/skirmishes/golden_island_2p.xml:39
 msgid "Golden Island (2)"
 msgstr "황금 섬 (2)"
 
-#: maps/skirmishes/golden_oasis_2p.xml:Description:38
+#: maps/skirmishes/golden_oasis_2p.xml:38
 msgid ""
 "Players start around a small oasis in the center of the map which holds much of the available wood on the map.\n"
 "\n"
 "Elsewhere, in the hinterlands, lies great riches, in the form of large deposits of gold and other metals."
 msgstr "플레이어들은 지도의 중앙에 있는 작은 오아시스 주변에서 시작하는데, 이 오아시스는 지도에서 이용 가능한 많은 나무들을 가지고 있습니다.\n\n다른 곳에서는, 한겨울에, 많은 양의 금과 다른 금속들이 매장되어 있는 형태로 큰 부들이 있습니다."
 
-#: maps/skirmishes/golden_oasis_2p.xml:Name:38
+#: maps/skirmishes/golden_oasis_2p.xml:38
 msgid "Gold Oasis (2)"
 msgstr "황금 오아시스 (2)"
 
-#: maps/skirmishes/greek_acropolis_2p.xml:Description:38
-#: maps/skirmishes/greek_acropolis_night_2p.xml:Description:38
+#: maps/skirmishes/greek_acropolis_2p.xml:38
+msgid "Greek Acropolis (2)"
+msgstr "그리스 아크로폴리스 (2)"
+
+#: maps/skirmishes/greek_acropolis_2p.xml:38
+#: maps/skirmishes/greek_acropolis_night_2p.xml:38
 msgid ""
 "Two factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
 msgstr "두 번째 파벌이 큰 바위 고원 위에 안전하게 자리 잡고 있습니다.\n\n땅을 정찰하여 무료 보물을 찾고 새로운 자원을 확보합니다."
 
-#: maps/skirmishes/greek_acropolis_2p.xml:Name:38
-msgid "Greek Acropolis (2)"
-msgstr "그리스 아크로폴리스 (2)"
-
-#: maps/skirmishes/greek_acropolis_4p.xml:Description:39
+#: maps/skirmishes/greek_acropolis_4p.xml:39
 msgid ""
 "Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
 msgstr "세 번째 파벌은 큰 바위 평원 위에 안전하게 자리잡고 있는 반면, 네 번째 파벌은 강 가지에 의해 적과 분리되어 있습니다.\n\n땅을 정찰하여 무료 보물을 찾고 새로운 자원을 확보합니다."
 
-#: maps/skirmishes/greek_acropolis_4p.xml:Name:39
+#: maps/skirmishes/greek_acropolis_4p.xml:39
 msgid "Greek Acropolis (4)"
 msgstr "그리스 아크로폴리스 (2)"
 
-#: maps/skirmishes/greek_acropolis_night_2p.xml:Name:38
+#: maps/skirmishes/greek_acropolis_night_2p.xml:38
 msgid "Greek Acropolis Night (2)"
 msgstr "그리스 아크로폴리스의 밤 (2)"
 
-#: maps/skirmishes/hindu_kush_2p.xml:Description:39
+#: maps/skirmishes/hindu_kush_2p.xml:39
 msgid ""
 "The Hindu Kush mountains separate India from Bactria (modern day Afghanistan) and form a frontier between the Seleucid and Mauryan realms. This area was later under the control of the Greco-Bactrian and Indo-Greek kingdoms of the later Hellenistic period. \n"
 "\n"
 "The area is low on wood resources, but high on stone and metal. A trade route runs through the center of the map with Trade Depots that can be captured and used to gather resources via trade. "
 msgstr "힌두 쿠시 산맥은 인도와 박트리아(현대의 아프가니스탄)를 분리하고 셀레우코스와 마우리아인 영역 사이의 국경을 형성합니다. 이 지역은 후에 그리스-박트리아 왕국과 헬레니즘 후기의 인도-그리스 왕국의 지배하에 있었습니다.\n\n이 지역은 목재 자원이 부족하지만, 돌과 금속이 풍부합니다. 교역로는 교역을 통해 자원을 수집하기 위해 포획될 수 있는 교역 창고와 함께 지도 중앙을 통과합니다."
 
-#: maps/skirmishes/hindu_kush_2p.xml:Name:39
+#: maps/skirmishes/hindu_kush_2p.xml:39
 msgid "Hindu Kush (2)"
 msgstr "힌두 쿠시 (2)"
 
-#: maps/skirmishes/hydaspes_river_4p.xml:Description:39
+#: maps/skirmishes/hydaspes_river_4p.xml:39
 msgid ""
 "The Hydaspes, aka Jhelum, River in the Punjab of India. Here was the site of"
 " the great battle between the Macedonian forces under Alexander the Great "
 "and the Indian forces of the king Porus of Paurava."
 msgstr "히다스페스 강, 또는 젤럼 강은 인도 펀잡 지역에 있는 강입니다. 이 강은 알렉산더 대왕이 이끄는 마케도니아 군대와 파우라바 왕국의 포로스 왕이 이끄는 인도 군대 사이의 대회전이 벌어진 곳이기도 합니다."
 
-#: maps/skirmishes/hydaspes_river_4p.xml:Name:39
+#: maps/skirmishes/hydaspes_river_4p.xml:39
 msgid "Hydaspes River (4)"
 msgstr "히다스페스 강 (4)"
 
-#: maps/skirmishes/isthmus_of_corinth_2p.xml:Description:39
+#: maps/skirmishes/isthmus_of_corinth_2p.xml:39
 msgid ""
 "isth·mus\n"
 "/ˈis(TH)məs/\n"
@@ -2916,33 +2865,33 @@ msgid ""
 "Watch out for pirate ships and brigands, though, as war-torn Greece is not without its share of dangers. And the enemy, marshalling their forces across the isthmus on the opposing landmass, will be looking for opportunities to invade your lands and take the strategic Corinthian Isthmus for themselves!"
 msgstr "isth·mus\n/ˈis(TH)məs/\nnoun\n양쪽에 바다가 있는 좁은 띠 모양의 땅으로, 두 개의 더 큰 육지 지역을 연결합니다.\n\n그리스의 코린트에 있는 지협입니다. 이 땅은 천연자원과 보물이 풍부하고, 지협의 양쪽 바다에는 물고기가 풍부합니다. 용병 캠프와 대규모 금속 광산 매장지를 발견할 수 있습니다.\n\n하지만 전쟁으로 폐허가 된 그리스에는 위험 요소가 많으므로 해적선과 도적단을 조심하세요. 그리고 적들은 지협을 가로질러 반대편 육지에 병력을 집결시켜 여러분의 영토를 침략하고 전략적인 코린트 지협을 차지할 기회를 노리고 있을 것입니다!"
 
-#: maps/skirmishes/isthmus_of_corinth_2p.xml:Name:39
+#: maps/skirmishes/isthmus_of_corinth_2p.xml:39
 msgid "Isthmus of Corinth (2)"
 msgstr "코린트 지협 (2)"
 
-#: maps/skirmishes/libyan_oases_4p.xml:Description:38
+#: maps/skirmishes/libyan_oases_4p.xml:38
 msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
 "\n"
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt."
 msgstr "그렇지 않으면 넓고 평평한 사막지도가 중앙에 두 개의 무성한 오아시스가 뚫립니다.\n\n이것은 이집트의 나일강 서쪽의 사하라 사막의 일부인 리비아 사막을 나타냅니다."
 
-#: maps/skirmishes/libyan_oases_4p.xml:Name:38
+#: maps/skirmishes/libyan_oases_4p.xml:38
 msgid "Libyan Oases (4)"
 msgstr "리비아족 오아시스 (4)"
 
-#: maps/skirmishes/libyan_oasis_2p.xml:Description:39
+#: maps/skirmishes/libyan_oasis_2p.xml:39
 msgid ""
 "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.\n"
 "\n"
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt."
 msgstr "오래된 인기 지도입니다. 그 외에는 넓게 펼쳐진, 평평한 사막 지도는 두 개의 무성한 오아시스에 의해 중앙이 관통되었습니다.\n\n이집트 나일강 서쪽에 있는 사하라 사막의 일부인 리비아 사막을 나타냅니다."
 
-#: maps/skirmishes/libyan_oasis_2p.xml:Name:39
+#: maps/skirmishes/libyan_oasis_2p.xml:39
 msgid "Libyan Oasis (2 players)"
 msgstr "리비아의 오아시스 (2인용)"
 
-#: maps/skirmishes/lorraine_plain_2p.xml:Description:39
+#: maps/skirmishes/lorraine_plain_2p.xml:39
 msgid ""
 "The map is cut through the center by a river traversing east-west with some shallows.\n"
 "\n"
@@ -2951,59 +2900,63 @@ msgid ""
 "Civ Territories are divided by main river and tributaries (with necessary shallows for crossings)."
 msgstr "지도는 동 서쪽을 가로 지르는 강으로 약간 얕아 져 중심을 뚫고 나옵니다.\n\n상당히 열린 나무이며 기본적으로 평평합니다. 많은 건물 방. 균형 잡힌 자원.\n\nCiv 영토는 주요 강과 지류로 나뉩니다 (교차에 필요한 얕은 곳 포함)."
 
-#: maps/skirmishes/lorraine_plain_2p.xml:Name:39
+#: maps/skirmishes/lorraine_plain_2p.xml:39
 msgid "Lorraine Plain (2)"
 msgstr "로렌 평야 (2)"
 
-#: maps/skirmishes/magadha_2p.xml:Description:39
+#: maps/skirmishes/magadha_2p.xml:39
 msgid ""
 "Two of India's greatest empires, the Maurya Empire and Gupta Empire, originated in Magadha, a region in Northern India near the sacred River Ganges.\n"
 "\n"
 "This map was designed as a 1v1 map suitable for rated and tournament play."
 msgstr "인도의 가장 위대한 제국 중 두 곳인 마우리아 제국과 굽타 제국은 신성한 갠지스 강 주변의 북인도 지역 마가다에서 유래되었습니다.\n\n이 지도는 정격 및 토너먼트 플레이에 적합한 1v1 지도로 설계되었습니다."
 
-#: maps/skirmishes/magadha_2p.xml:Name:39
+#: maps/skirmishes/magadha_2p.xml:39
 msgid "Magadha (2)"
 msgstr "마가다 (2)"
 
-#: maps/skirmishes/median_oasis_2p.xml:Description:39
-#: maps/skirmishes/median_oasis_4p.xml:Description:38
+#: maps/skirmishes/median_oasis_2p.xml:39
+msgid "Median Oasis (2)"
+msgstr "중앙 오아시스 (2)"
+
+#: maps/skirmishes/median_oasis_2p.xml:39
+#: maps/skirmishes/median_oasis_4p.xml:38
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
 msgstr "큰 오아시스는 각 플레이어의 거주 지역을 나누는 산악 스포크의 허브 역할을합니다."
 
-#: maps/skirmishes/median_oasis_2p.xml:Name:39
-msgid "Median Oasis (2)"
-msgstr "중앙 오아시스 (2)"
-
-#: maps/skirmishes/median_oasis_4p.xml:Name:38
+#: maps/skirmishes/median_oasis_4p.xml:38
 msgid "Median Oasis (4)"
 msgstr "중앙 오아시스 (4)"
 
-#: maps/skirmishes/mediterranean_cove_2p.xml:Description:38
+#: maps/skirmishes/mediterranean_cove_2p.xml:38
 msgid ""
 "A sheltered natural harbour on the Mediterranean coast provides the "
 "resources for battle."
 msgstr "지중해 연안의 보호를 받는 자연 항구는 전투를 위한 자원을 제공합니다."
 
-#: maps/skirmishes/mediterranean_cove_2p.xml:Name:38
+#: maps/skirmishes/mediterranean_cove_2p.xml:38
 msgid "Mediterranean Coves (2)"
 msgstr "지중해 만 (2)"
 
-#: maps/skirmishes/miletus_peninsula_2p.xml:Description:39
+#: maps/skirmishes/miletus_peninsula_2p.xml:39
 msgid ""
 "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
 "\n"
 "To the East lies a large bay with fishing opportunities. To the West is an unclaimed acropolis overlooking the Aegean Sea."
 msgstr "각 플레이어는 아크로폴리스라고도 알려진 크고 평평한 고원 위에서 시합을 시작합니다.\n\n동쪽에는 낚시를 할 수 있는 큰 만이 있습니다. 서쪽에는 에게해가 내려다보이는 사람이 없는 대도시가 있습니다."
 
-#: maps/skirmishes/miletus_peninsula_2p.xml:Name:39
+#: maps/skirmishes/miletus_peninsula_2p.xml:39
 msgid "Miletus Peninsula (2)"
 msgstr "밀로투스 반도 (2)"
 
-#: maps/skirmishes/neareastern_badlands_2p.xml:Description:38
-#: maps/skirmishes/neareastern_badlands_4p.xml:Description:38
+#: maps/skirmishes/neareastern_badlands_2p.xml:38
+msgid "Neareastern Badlands (2)"
+msgstr "근동아시아의 황무지 (2)"
+
+#: maps/skirmishes/neareastern_badlands_2p.xml:38
+#: maps/skirmishes/neareastern_badlands_4p.xml:38
 msgid ""
 "The 'Cappadocia' region of Central-Eastern Anatolia.\n"
 "\n"
@@ -3012,128 +2965,124 @@ msgid ""
 "Stone and Metal resources are in abundance, especially Stone, but Wood is somewhat scarce."
 msgstr "중앙 동부 아나톨리아의 '카파도키아'지역.\n\n모든 플레이어들은 지도의 서쪽 끝에서 시작하여 정복과 멸종을 위해 익지 않은 광활한 광야가 펼쳐집니다.\n\n석재와 금속 자원, 특히 석재가 풍부하지만 목재는 다소 부족합니다."
 
-#: maps/skirmishes/neareastern_badlands_2p.xml:Name:38
-msgid "Neareastern Badlands (2)"
-msgstr "근동아시아의 황무지 (2)"
-
-#: maps/skirmishes/neareastern_badlands_4p.xml:Name:38
+#: maps/skirmishes/neareastern_badlands_4p.xml:38
 msgid "Neareastern Badlands (4)"
 msgstr "근동아시아의 황무지 (4)"
 
-#: maps/skirmishes/nile_river_4p.xml:Description:38
+#: maps/skirmishes/nile_river_4p.xml:38
 msgid ""
 "An Egyptian desert map bisected by the broad Nile River. Organic resources "
 "cluster near the river, while mineral resources can be found in the desert "
 "hinterlands."
 msgstr "넓은 나일강으로 양분된 이집트 사막 지도입니다. 강 근처에는 유기 자원이 밀집되어 있고, 사막 내륙에는 광물 자원이 있습니다."
 
-#: maps/skirmishes/nile_river_4p.xml:Name:38
+#: maps/skirmishes/nile_river_4p.xml:38
 msgid "Nile River (4)"
 msgstr "나일 강 (4)"
 
-#: maps/skirmishes/north_african_savanna_2p.xml:Description:39
+#: maps/skirmishes/north_african_savanna_2p.xml:39
 msgid ""
 "The Savanna is open and foreboding, chock full of animal, both huntable and hunter. \n"
 "\n"
 "Here we have an example of the two seasons prevelant on the savanna: The wet season and the dry season."
 msgstr "사바나는 개방적이고 불길한 느낌이 들며, 사냥할 수 있고 사냥꾼이 될 수 있는 동물로 가득 차 있습니다.\n\n여기 사바나에서 일반적인 두 계절의 예시를 가지고 있습니다: 우기와 건기입니다."
 
-#: maps/skirmishes/north_african_savanna_2p.xml:Name:39
+#: maps/skirmishes/north_african_savanna_2p.xml:39
 msgid "North African Savanna (2 players)"
 msgstr "북아프리카 사바나 (2인용)"
 
-#: maps/skirmishes/northern_island_2p.xml:Description:39
+#: maps/skirmishes/northern_island_2p.xml:39
 msgid ""
 "Stranded in the cold North, 2 players fight for supremacy over the Island. "
 "One player starts in the Mountains to the West, the other player starts near"
 " the Bay in the East."
 msgstr "추운 북부에 좌초된 2명의 플레이어들이 섬 패권을 놓고 싸웁니다. 한 플레이어는 서쪽의 산에서 시작하고, 다른 플레이어는 동쪽의 만 근처에서 시작합니다."
 
-#: maps/skirmishes/northern_island_2p.xml:Name:39
+#: maps/skirmishes/northern_island_2p.xml:39
 msgid "Northern Island (2)"
 msgstr "북부 섬 (2)"
 
-#: maps/skirmishes/nubian_frontier_2p.xml:Description:39
+#: maps/skirmishes/nubian_frontier_2p.xml:39
 msgid "The arid and treacherous frontier between Nubia and Egypt."
 msgstr "누비아와 이집트 사이의 건조하고 위험한 국경."
 
-#: maps/skirmishes/nubian_frontier_2p.xml:Name:39
+#: maps/skirmishes/nubian_frontier_2p.xml:39
 msgid "Nubian Frontier (2)"
 msgstr "누비안 국경 지방 (2)"
 
-#: maps/skirmishes/obedska_bog_4p.xml:Description:39
-#: maps/skirmishes/obedska_bog_night_4p.xml:Description:39
+#: maps/skirmishes/obedska_bog_4p.xml:39
+msgid "Obedska Bog (4)"
+msgstr "오베드스카 보그 (4)"
+
+#: maps/skirmishes/obedska_bog_4p.xml:39
+#: maps/skirmishes/obedska_bog_night_4p.xml:39
 msgid ""
 "A lazy river meanders through these Serbian wetlands. Stone is scarce, but many lumps of bog iron sit waiting to be found.\n"
 "\n"
 "*This map makes heavy use of grass actors which may adversely affect performance."
 msgstr "느리게 흐르는 강이 이 세르비아 습지를 굽이쳐 흐릅니다. 돌은 드물지만, 많은 보철 덩어리가 발견되기를 기다리고 있습니다.\n\n*이 지도는 성능에 부정적인 영향을 줄 수 있는 풀 행위자를 많이 사용합니다."
 
-#: maps/skirmishes/obedska_bog_4p.xml:Name:39
-msgid "Obedska Bog (4)"
-msgstr "오베드스카 보그 (4)"
-
-#: maps/skirmishes/obedska_bog_night_4p.xml:Name:39
+#: maps/skirmishes/obedska_bog_night_4p.xml:39
 msgid "Obedska Bog Night (4)"
 msgstr "오베드스카 보그 나이트 (4)"
 
-#: maps/skirmishes/oceanside_2p.xml:Description:39
+#: maps/skirmishes/oceanside_2p.xml:39
 msgid "A Lush temperate biome along an ocean. "
 msgstr "바다를 따라 흐르는 무성한 온대 생물군계입니다."
 
-#: maps/skirmishes/oceanside_2p.xml:Name:39
+#: maps/skirmishes/oceanside_2p.xml:39
 msgid "Oceanside (2)"
 msgstr "오션사이드 (2)"
 
-#: maps/skirmishes/persian_highlands_4p.xml:Description:38
+#: maps/skirmishes/persian_highlands_4p.xml:38
 msgid ""
 "A dry central basin rich in minerals surrounded by rocky hills and "
 "highlands."
 msgstr "바위가 많은 언덕과 고원으로 둘러싸인 광물이 풍부한 건조한 중앙 분지."
 
-#: maps/skirmishes/persian_highlands_4p.xml:Name:38
+#: maps/skirmishes/persian_highlands_4p.xml:38
 msgid "Persian Highlands (4)"
 msgstr "페르시아 고원 (4)"
 
-#: maps/skirmishes/punjab_2p.xml:Description:39
+#: maps/skirmishes/punjab_2p.xml:39
 msgid ""
 "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\n"
 "\n"
 "The rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight."
 msgstr "북서쪽 인도. 주변의 강은 몬순 비로 부풀어 몇 번의 위험한 교차로를 허용합니다.\n\n강은 숲이 짙고 초원은 주변 시골을 덮고 있습니다. 키 큰 잔디에서 호랑이를 조심하십시오! 아시아 코끼리도 흔한 광경입니다."
 
-#: maps/skirmishes/punjab_2p.xml:Name:39
+#: maps/skirmishes/punjab_2p.xml:39
 msgid "Punjab (2)"
 msgstr "펀자브 (2)"
 
-#: maps/skirmishes/saharan_oases_2p.xml:Description:39
-#: maps/skirmishes/saharan_oases_4p.xml:Description:39
+#: maps/skirmishes/saharan_oases_2p.xml:39
+msgid "Saharan Oases (2)"
+msgstr "사하라 오세스 (2)"
+
+#: maps/skirmishes/saharan_oases_2p.xml:39
+#: maps/skirmishes/saharan_oases_4p.xml:39
 msgid ""
 "In the deep Sahara Desert of Africa lies an  area of rocky outcrops and small oases. \n"
 "\n"
 "Large stone quarries can be found in the cliffs, while wood and animal resources can be found near the oases dotting the landscape. Nearby fruiting Date Palms give an nice initial burst of food."
 msgstr "아프리카의 깊은 사하라 사막에는 바위투성이의 광맥과 작은 오아시스가 있습니다.\n\n절벽에는 커다란 돌 채석장이 있으며, 풍경을 뒤덮은 오아시스 주변에는 나무와 동물 자원이 있습니다. 주변의 열매를 맺은 대추 야자는 초기에 좋은 음식을 제공합니다."
 
-#: maps/skirmishes/saharan_oases_2p.xml:Name:39
-msgid "Saharan Oases (2)"
-msgstr "사하라 오세스 (2)"
-
-#: maps/skirmishes/saharan_oases_4p.xml:Name:39
+#: maps/skirmishes/saharan_oases_4p.xml:39
 msgid "Saharan Oases (4)"
 msgstr "사하라 오아시스 (4)"
 
-#: maps/skirmishes/sahel_4p.xml:Description:38
+#: maps/skirmishes/sahel_4p.xml:38
 msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of animals and mineral resources, while wood is scarce."
 msgstr "북아프리카 아틀라스 산맥의 남쪽에 위치하고 있습니다.\n\n풍부한 동물과 광물 자원이있는 다소 개방 된지도, 나무는 부족합니다."
 
-#: maps/skirmishes/sahel_4p.xml:Name:38
+#: maps/skirmishes/sahel_4p.xml:38
 msgid "Sahel (4)"
 msgstr "사헬 (4)"
 
-#: maps/skirmishes/sahyadri_buttes_5p.xml:Description:39
+#: maps/skirmishes/sahyadri_buttes_5p.xml:39
 msgid ""
 "The diverse rainforests nestled in the Sahyadri mountain range of the west coast of India. It goes without saying, wood is abundant.\n"
 "\n"
@@ -3142,161 +3091,160 @@ msgid ""
 "WARNING: This map uses a lot of floral actors on account of being a rainforest. Expect a drop in framerate, this is taxing on most mid range computers."
 msgstr "인도 서부 해안의 사햐드리산맥에 다양한 열대 우림이 자리 잡고 있습니다. 나무가 풍부하다는 것은 말할 필요도 없습니다.\n\n이베리아 플레이어들은 전체 원형의 성벽을 갖추지 않고 전략적으로 배치된 5개의 벽 탑을 갖습니다.\n\n경고: 이 지도는 열대우림으로 인해 많은 꽃을 피우는 동작들을 사용합니다. 프레임 속도가 떨어질 것으로 예상됩니다. 이것은 대부분의 중급 컴퓨터에서 부담이 됩니다."
 
-#: maps/skirmishes/sahyadri_buttes_5p.xml:Name:39
+#: maps/skirmishes/sahyadri_buttes_5p.xml:39
 msgid "Sahyadri Buttes (5)"
 msgstr "사햐드리 붓테스 (5)"
 
-#: maps/skirmishes/savanna_river_2p.xml:Description:38
+#: maps/skirmishes/savanna_river_2p.xml:38
 msgid "A large savanna is bisected by a narrow jungle stream."
 msgstr "커다란 사바나는 좁은 정글의 물줄기에 의해 양분됩니다."
 
-#: maps/skirmishes/savanna_river_2p.xml:Name:38
+#: maps/skirmishes/savanna_river_2p.xml:38
 msgid "Savanna River (2)"
 msgstr "사바나 강 (2)"
 
-#: maps/skirmishes/scythia_4p.xml:Description:39
+#: maps/skirmishes/scythia_4p.xml:39
 msgid ""
 "The steppes of central Asia. A wide open grassland with few trees (about 90%"
 " fewer trees than on a temperate or Aegean map). Animal life is plentiful "
 "though, so take advantage of the hunting available. "
 msgstr "중앙 아시아의 대초원. 나무가 거의 없는 넓게 열린 초원 (온대 또는 에게해 지도보다 나무 수가 약 90 % 적음). 그러나 살아 있는 동물은 풍부하므로 사냥을 이용할 수 있습니다."
 
-#: maps/skirmishes/scythia_4p.xml:Name:39
+#: maps/skirmishes/scythia_4p.xml:39
 msgid "Scythian Steppes (4)"
 msgstr "스키티아 대초원 (4)"
 
-#: maps/skirmishes/sicilia_2p.xml:Description:39
+#: maps/skirmishes/sicilia_2p.xml:39
 msgid "The large Mediterranean island of Sicily is open for conquest."
 msgstr "지중해의 큰 섬 시칠리아는 정복을 위해 개방되어 있습니다."
 
-#: maps/skirmishes/sicilia_2p.xml:Name:39
+#: maps/skirmishes/sicilia_2p.xml:39
 msgid "Sicilia (2)"
 msgstr "시칠리아 (2)"
 
-#: maps/skirmishes/sicilia_nomad_2p.xml:Description:34
+#: maps/skirmishes/sicilia_nomad_2p.xml:34
 msgid ""
 "The large Mediterranean island of Sicily is open for conquest.\n"
 "[color=\"orange\"]Tip: docks are useful dropsite when you have no territory yet.[/color]"
 msgstr "지중해의 거대한 섬 시칠리아를 정복할 수 있는 기회가 열려 있습니다.\n[color=\"orange\"]팁: 부두는 아직 영토가 없을 때 유용한 상륙장소입니다.[/color]"
 
-#: maps/skirmishes/sicilia_nomad_2p.xml:Name:34
+#: maps/skirmishes/sicilia_nomad_2p.xml:34
 msgid "Sicilia Nomad (2)"
 msgstr "시칠리아 유목민 (2)"
 
-#: maps/skirmishes/skirmish_demo_2p.xml:Description:38
+#: maps/skirmishes/skirmish_demo_2p.xml:38
 msgid "A demo Skirmish map."
 msgstr "데모 전초전 지도입니다."
 
-#: maps/skirmishes/skirmish_demo_2p.xml:Name:38
+#: maps/skirmishes/skirmish_demo_2p.xml:38
 msgid "Skirmish Demo (2)"
 msgstr "전초전 데모 (2)"
 
-#: maps/skirmishes/sporades_islands_2p.xml:Description:39
+#: maps/skirmishes/sporades_islands_2p.xml:39
 msgid "An islands map designed for intense naval combat."
 msgstr "격렬한 해상 전투를 위해 설계된 섬 지도입니다."
 
-#: maps/skirmishes/sporades_islands_2p.xml:Name:39
+#: maps/skirmishes/sporades_islands_2p.xml:39
 msgid "Sporades Islands (2 player)"
 msgstr "스포라데스 제도 (2인용)"
 
-#: maps/skirmishes/syria_2p.xml:Description:39
+#: maps/skirmishes/syria_2p.xml:39
 msgid ""
 "A barren land with little wood and few animals. Treasures dot the landscape and will be essential to early growth.\n"
 "\n"
 "The player who sets up a profitable trade caravan earliest may gain a decisive advantage."
 msgstr "나무도 적고 동물도 거의 없는 척박한 땅입니다. 보물이 곳곳에 있으며 초기 성장에 필수적인 요소입니다.\n\n수익성 있는 교역 카라반을 가장 먼저 설치하는 플레이어는 결정적인 이득을 얻을 수 있습니다."
 
-#: maps/skirmishes/syria_2p.xml:Name:39
+#: maps/skirmishes/syria_2p.xml:39
 msgid "Coele-Syria (2)"
 msgstr "코일-시리아 (2)"
 
-#: maps/skirmishes/tarim_basin_2p.xml:Description:39
-#: maps/skirmishes/tarim_basin_4p.xml:Description:39
+#: maps/skirmishes/tarim_basin_2p.xml:39
+msgid "Tarim Basin (2)"
+msgstr "타림 분지 (2)"
+
+#: maps/skirmishes/tarim_basin_2p.xml:39 maps/skirmishes/tarim_basin_4p.xml:39
 msgid ""
 "A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han, and represents the furthest extent of their power.\n"
 "\n"
 "The basin itself is bereft of life  and offers little in the way of defensibility. The rugged mountain valleys harbor the only life, in the form of hearty shrub and tree species and some goats."
 msgstr "산악 계곡으로 둘러싸인 척박한 사막 분지, 타림 분지는 한족에 의해 \"서부 지역\"이라고도 불리며, 그들 세력의 가장 먼 범위를 나타냅니다.\n\n분지 자체는 생명이 없으며 방어에 있어 거의 도움이 되지 않습니다.험준한 계곡에는 무성한 관목과 다양한 나무들, 그리고 염소와 닮은 동물들이 있습니다."
 
-#: maps/skirmishes/tarim_basin_2p.xml:Name:39
-msgid "Tarim Basin (2)"
-msgstr "타림 분지 (2)"
-
-#: maps/skirmishes/tarim_basin_4p.xml:Name:39
+#: maps/skirmishes/tarim_basin_4p.xml:39
 msgid "Tarim Basin (4)"
 msgstr "타림 분지 (4)"
 
-#: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
+#: maps/skirmishes/team_oasis_2pv2p.xml:38
 msgid ""
 "An oasis surrounded by mountains and desert. Farmlands near the water's edge"
 " provide much-needed boost in farming, but foraging and hunting are in short"
 " supply."
 msgstr "산과 사막으로 둘러싸인 오아시스. 물가 주변의 농지는 농사에 큰 도움이되지만, 먹이와 사냥은 부족합니다."
 
-#: maps/skirmishes/team_oasis_2pv2p.xml:Name:38
+#: maps/skirmishes/team_oasis_2pv2p.xml:38
 msgid "Team Oasis (2v2)"
 msgstr "팀 오아시스 (2v2)"
 
-#: maps/skirmishes/temperate_roadway_2p.xml:Description:39
+#: maps/skirmishes/temperate_roadway_2p.xml:39
 msgid "Temperate zone map with plentiful resources. Map Size: Small"
 msgstr "자원이 풍부한 온대 지역 지도입니다. 지도 크기: 작음"
 
-#: maps/skirmishes/temperate_roadway_2p.xml:Name:39
+#: maps/skirmishes/temperate_roadway_2p.xml:39
 msgid "Temperate Roadway (2)"
 msgstr "온대 도로 (2)"
 
-#: maps/skirmishes/thessalian_plains_4p.xml:Description:38
+#: maps/skirmishes/thessalian_plains_4p.xml:38
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
 "starts the match safe atop a large plateau."
 msgstr "구불구불한 테살리아 평원에는 좁은 개울이 가로지르며 쉽게 건널 수 있습니다. 넓게 펼쳐진 공간에서 대규모 확장이 가능하며, 각 플레이어들은 넓은 고원 꼭대기에서 안전하게 시합을 시작합니다."
 
-#: maps/skirmishes/thessalian_plains_4p.xml:Name:38
+#: maps/skirmishes/thessalian_plains_4p.xml:38
 msgid "Thessalian Plains (4)"
 msgstr "테살리아 평야 (4)"
 
-#: maps/skirmishes/tuscan_acropolis_4p.xml:Description:39
+#: maps/skirmishes/tuscan_acropolis_4p.xml:39
 msgid ""
 "Four factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
 msgstr "네 개의 파벌은 큰 바위 평원 꼭대기에 안전하게 자리잡고 있다는 것을 발견합니다.\n\n땅을 정찰하여 무료 보물을 찾고 새로운 자원을 확보합니다."
 
-#: maps/skirmishes/tuscan_acropolis_4p.xml:Name:39
+#: maps/skirmishes/tuscan_acropolis_4p.xml:39
 msgid "Tuscan Acropolis (4)"
 msgstr "토스카나 아크로폴리스 (4)"
 
-#: maps/skirmishes/two_seas_6p.xml:Description:39
+#: maps/skirmishes/two_seas_6p.xml:39
 msgid ""
 "A large tropic map with two seas to the East and to the West. Good for two "
 "teams of three players or three teams of two players."
 msgstr "동쪽과 서쪽으로 두 개의 바다가 있는 커다란 열대 지도입니다. 3명의 플레이어들로 구성된 2팀이나 2명의 플레이어들로 구성된 3팀에 적합합니다."
 
-#: maps/skirmishes/two_seas_6p.xml:Name:39
+#: maps/skirmishes/two_seas_6p.xml:39
 msgid "Two Seas (6)"
 msgstr "두 개의 바다 (6)"
 
-#: maps/skirmishes/vesuvius_6p.xml:Description:39
+#: maps/skirmishes/vesuvius_6p.xml:39
 msgid ""
 "Skirmish as ash lightly falls around this recently erupted volcano. The "
 "scorched landscape offers little food, though the blasted forests are still "
 "laden with useful wood."
 msgstr "최근에 폭발한 이 화산 주위에 재들이 가볍게 떨어지면서 충돌이 일어납니다. 그을린 풍경은 비록 황폐한 숲이 여전히 유용한 목재로 가득 차 있지만, 음식을 거의 제공하지 않습니다."
 
-#: maps/skirmishes/vesuvius_6p.xml:Name:39
+#: maps/skirmishes/vesuvius_6p.xml:39
 msgid "Vesuvius (6)"
 msgstr "베수비오 (6)"
 
-#: maps/skirmishes/via_augusta_4p.xml:Description:39
+#: maps/skirmishes/via_augusta_4p.xml:39
 msgid "All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BC."
 msgstr "모든 길은 로마로 통한다. 비아 줄리아 아우구스타(Via Julia Augusta)는 기원전 13년에 건설된 로마의 도로입니다."
 
-#: maps/skirmishes/via_augusta_4p.xml:Name:39
+#: maps/skirmishes/via_augusta_4p.xml:39
 msgid "Via Augusta (4)"
 msgstr "로마 가도 (4)"
 
-#: maps/skirmishes/watering_holes_4p.xml:Description:39
+#: maps/skirmishes/watering_holes_4p.xml:39
 msgid ""
 "A small Savanna map with 4 watering holes. \n"
 "\n"
@@ -3305,11 +3253,11 @@ msgid ""
 "Wood is scattered, but comes in high-yield Baobab trees. The watering holes give life to clusters of trees and life to dangerous fauna, such as crocodiles and elephants."
 msgstr "4개의 물웅덩이가 있는 작은 사바나 지도입니다.\n\n모든 사바나 맵과 마찬가지로 사냥 가능한 동물과 채집 가능한 식물은 풍부하지만, 맵 전체에 농경지가 없어 농사를 짓기 어렵습니다.\n\n목재는 흩어져 있지만, 수확량이 많은 바오밥 나무에서 나옵니다. 물웅덩이는 나무 군락에 생명을 불어넣고 악어나 코끼리와 같은 위험한 동물군에 생존을 제공해 줍니다."
 
-#: maps/skirmishes/watering_holes_4p.xml:Name:39
+#: maps/skirmishes/watering_holes_4p.xml:39
 msgid "Watering Holes (4 players)"
 msgstr "물이 있는 웅덩이 (4인용)"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:Description:39
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:39
 msgid ""
 "Foreigners are invading Britannia. The native Britons must fight against a massive enemy invasion force to secure their homeland for the next generation!\n"
 "\n"
@@ -3320,35 +3268,35 @@ msgid ""
 "Assigned civilizations are merely suggestions, and the host should set starting resources to 1000 so that Civic Centers can be built at the start."
 msgstr "외국인들이 브리타니아를 침략하고 있습니다. 브리튼족들은 다음 세대를 위해 그들의 조국을 지키기 위해 거대한 적의 침략군과 싸워야 합니다!\n\n플레이어 1은 브리튼족입니다. 2-5명의 플레이어들은 침략군으로 도버의 백색 절벽에서 떨어진 해협에서 자신의 강력한 선박을 타고 주둔합니다.\n\n팀은 지도 스크립트에 의해 설정되지만, 디자이너가 정의한 시나리오와 반대로 지도를 플레이하려는 경우 설정에서 플레이어들이 변경할 수 있습니다. 이 경우 게임 호스트는 보트의 플레이어들이 평화롭게 착륙하고 첫 번째 정착지를 심을 적절한 장소를 찾을 수 있도록 휴전을 설정해야합니다.\n\n할당된 문명은 제안일 뿐이며, 호스트는 시작 자원을 1000으로 설정하여 시민 회관이 처음에 건설될 수 있도록 해야합니다."
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:Name:39
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:39
 msgid "White Cliffs of Dover (5)"
 msgstr "도버의 하얀 절벽 (5)"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:39
 msgid "Invader 1"
 msgstr "침략자 1"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[3].Name:39
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:39
 msgid "Invader 2"
 msgstr "침략자 2"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[4].Name:39
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:39
 msgid "Invader 3"
 msgstr "침략자 3"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[5].Name:39
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:39
 msgid "Invader 4"
 msgstr "침략자 4"
 
-#: maps/skirmishes/yangtze_2p.xml:Description:39
+#: maps/skirmishes/yangtze_2p.xml:39
 msgid "The Yangtze River in China. "
 msgstr "중국의 장강입니다."
 
-#: maps/skirmishes/yangtze_2p.xml:Name:39
+#: maps/skirmishes/yangtze_2p.xml:39
 msgid "Chang Jiang (2)"
 msgstr "장강 (2)"
 
-#: maps/skirmishes/zagros_mountains_2p.xml:Description:39
+#: maps/skirmishes/zagros_mountains_2p.xml:39
 msgid ""
 "The mountains buffering the Persian homeland, straddling Persis, Susiana, and Media. This map simulates the many valleys and choke points that criss cross the mountain range. \n"
 "\n"
@@ -3357,6 +3305,14 @@ msgid ""
 "The central valley is wide open for expansion, with an unclaimed Civic Center, farms, and Trading Posts. Cliffs along the valley's edge may offer vantage points for defensive or offensive fortifications."
 msgstr "페르시아의 고향과 맞닿아 있는 산들은 페르시스, 수시아나, 메디아에 걸쳐 있습니다. 이 지도는 산맥을 가로지르는 많은 계곡과 관문을 시뮬레이션합니다.\n\n플레이어들은 1개의 페르시아 사원이 있는 자신의 영토에서 경기를 시작합니다. 험준한 배후지에는 미개척 자원과 영토에 접근할 수 있지만, 아시아 곰과 카스피 호랑이와 같은 위험한 동물도 많이 있습니다.\n\n중앙 계곡은 개방되어 있으며, 중립적인 시민 회관, 농장 및 교역소가 있습니다. 계곡 가장자리를 따라 있는 절벽은 방어 또는 공격 요새를 위한 유리한 지점을 제공할 수 있습니다."
 
-#: maps/skirmishes/zagros_mountains_2p.xml:Name:39
+#: maps/skirmishes/zagros_mountains_2p.xml:39
 msgid "Zagros Mountains (2 players)"
 msgstr "자그로스 산맥 (2인용)"
+
+#: ⁨maps/scenarios/Ship Combat Demo.xml⁩:39
+msgid "Ship Combat Demo."
+msgstr "선박 전투 데모입니다."
+
+#: ⁨⁨maps/scenarios/Ship Combat Demo.xml⁩⁩:39
+msgid "Ship Combat Demo"
+msgstr "선박 전투 데모"

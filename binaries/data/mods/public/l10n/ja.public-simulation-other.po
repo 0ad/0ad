@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-09-11 07:08+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Photon “PHN” man, 2021\n"
 "Language-Team: Japanese (http://app.transifex.com/wildfire-games/0ad/language/ja/)\n"
@@ -410,16 +410,16 @@ msgid ""
 " to fight for our alliance."
 msgstr ""
 
-#: simulation/ai/petra/data.jsondescription
+#: simulation/ai/petra/data.json
+msgid "Petra Bot"
+msgstr "Petra Bot"
+
+#: simulation/ai/petra/data.json
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
 msgstr ""
-
-#: simulation/ai/petra/data.jsonname
-msgid "Petra Bot"
-msgstr "Petra Bot"
 
 #: simulation/components/BuildRestrictions.js:91
 #, javascript-format
@@ -632,280 +632,279 @@ msgstr "養成したユニットを配置する場所がありません"
 msgid "Entity is producing. Cannot start upgrading."
 msgstr "エンティティは生産中です。アップグレードを開始できません。"
 
-#: simulation/data/settings/game_speeds.jsonData[0].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Turtle (0.1×)"
 msgstr "Turtle (0.1×)"
 
-#: simulation/data/settings/game_speeds.jsonData[10].Title
-msgid "Fast Forward (20×)"
-msgstr "Fast Forward (20×)"
-
-#: simulation/data/settings/game_speeds.jsonData[1].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Slow (0.25×)"
 msgstr "Slow (0.25×)"
 
-#: simulation/data/settings/game_speeds.jsonData[2].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Leisurely (0.5×)"
 msgstr "Leisurely (0.5×)"
 
-#: simulation/data/settings/game_speeds.jsonData[3].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Relaxed (0.75×)"
 msgstr "Relaxed (0.75×)"
 
-#: simulation/data/settings/game_speeds.jsonData[4].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Normal (1×)"
 msgstr "Normal (1×)"
 
-#: simulation/data/settings/game_speeds.jsonData[5].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Fast (1.25×)"
 msgstr "Fast (1.25×)"
 
-#: simulation/data/settings/game_speeds.jsonData[6].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Very Fast (1.5×)"
 msgstr "Very Fast (1.5×)"
 
-#: simulation/data/settings/game_speeds.jsonData[7].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Insane (2×)"
 msgstr "Insane (2×)"
 
-#: simulation/data/settings/game_speeds.jsonData[8].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Fast Forward (5×)"
 msgstr "Fast Forward (5×)"
 
-#: simulation/data/settings/game_speeds.jsonData[9].Title
+#: simulation/data/settings/game_speeds.json
 msgid "Fast Forward (10×)"
 msgstr "Fast Forward (10×)"
 
-#: simulation/data/settings/map_sizes.jsonData[0].Name
+#: simulation/data/settings/game_speeds.json
+msgid "Fast Forward (20×)"
+msgstr "Fast Forward (20×)"
+
+#: simulation/data/settings/map_sizes.json
 msgid "Tiny"
 msgstr "極小"
 
-#: simulation/data/settings/map_sizes.jsonData[0].Tooltip
+#: simulation/data/settings/map_sizes.json
 msgid "This map size has barely any room for even the most basic resources."
 msgstr "このマップサイズには、基本的な資源でさえほとんど余裕がありません。"
 
-#: simulation/data/settings/map_sizes.jsonData[1].Name
+#: simulation/data/settings/map_sizes.json
 msgid "Small"
 msgstr "小"
 
-#: simulation/data/settings/map_sizes.jsonData[1].Tooltip
+#: simulation/data/settings/map_sizes.json
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
 msgstr "この小さなマップは１対１の対戦に適しています。プレイヤーは敵に素早く手を伸ばし、さらに拡大する余地があります。"
 
-#: simulation/data/settings/map_sizes.jsonData[2].Name
+#: simulation/data/settings/map_sizes.json
 msgid "Normal"
 msgstr "標準"
 
-#: simulation/data/settings/map_sizes.jsonData[2].Tooltip
+#: simulation/data/settings/map_sizes.json
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
 msgstr "このマップサイズは、2人でプレイしても十分な広さがありますが、8人までのプレイも可能です。"
 
-#: simulation/data/settings/map_sizes.jsonData[3].Tooltip
+#: simulation/data/settings/map_sizes.json
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
 msgstr "これは、4～8人のプレイヤーのための理想的なマップサイズです。拡張する空間が十分にあり、かつ隣人にはすばやく到達できるためです。"
 
-#: simulation/data/settings/map_sizes.jsonData[4].Name
+#: simulation/data/settings/map_sizes.json
 msgid "Large"
 msgstr "大"
 
-#: simulation/data/settings/map_sizes.jsonData[4].Tooltip
+#: simulation/data/settings/map_sizes.json
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
 msgstr "マップの大部分が水または近づけない山々で覆われている場合、大マップがお勧めです。"
 
-#: simulation/data/settings/map_sizes.jsonData[5].Name
+#: simulation/data/settings/map_sizes.json
 msgid "Very Large"
 msgstr "特大"
 
-#: simulation/data/settings/map_sizes.jsonData[5].Tooltip
-#: simulation/data/settings/map_sizes.jsonData[6].Tooltip
+#: simulation/data/settings/map_sizes.json
+msgid "Giant"
+msgstr "巨大"
+
+#: simulation/data/settings/map_sizes.json
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
 msgstr "特大マップは、敵に到達するまでには時間がかかり、ゲームのパフォーマンスを低下させるため、お勧めしません。"
 
-#: simulation/data/settings/map_sizes.jsonData[6].Name
-msgid "Giant"
-msgstr "巨大"
-
-#: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Gaia"
 msgstr "自然"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 1"
 msgstr "プレイヤー 1"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 2"
 msgstr "プレイヤー 2"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 3"
 msgstr "プレイヤー 3"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 4"
 msgstr "プレイヤー 4"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 5"
 msgstr "プレイヤー 5"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 6"
 msgstr "プレイヤー 6"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 7"
 msgstr "プレイヤー 7"
 
-#: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
+#: simulation/data/settings/player_defaults.json
 msgid "Player 8"
 msgstr "プレイヤー 8"
 
-#: simulation/data/settings/starting_resources.jsonData[0].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "Very Low"
 msgstr "非常に少ない"
 
-#: simulation/data/settings/starting_resources.jsonData[1].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "Low"
 msgstr "少ない"
 
-#: simulation/data/settings/starting_resources.jsonData[2].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "Medium"
 msgstr "中"
 
-#: simulation/data/settings/starting_resources.jsonData[3].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "High"
 msgstr "多い"
 
-#: simulation/data/settings/starting_resources.jsonData[4].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "Very High"
 msgstr "非常に多い"
 
-#: simulation/data/settings/starting_resources.jsonData[5].Title
+#: simulation/data/settings/starting_resources.json
 msgctxt "startingResources"
 msgid "Deathmatch"
 msgstr "デスマッチ"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Title
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Very Easy"
 msgstr "とても簡単"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Choose this difficulty if you are discovering 0 A.D."
 msgstr ""
 
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Title
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Easy"
 msgstr "簡単"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Choose this difficulty if you do not like being knocked down."
 msgstr "倒されるのが嫌な人はこの難易度を選んでください。"
 
-#: simulation/data/settings/map_sizes.jsonData[3].Name
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Title
-msgid "Medium"
-msgstr "中"
-
-#: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
+#: simulation/data/settings/trigger_difficulties.json
 msgid ""
 "Choose this difficulty if you have already a good experience with 0 A.D."
 msgstr ""
 
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Title
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Hard"
 msgstr "難しい"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[3].Tooltip
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Choose this difficulty if you want to be really challenged."
 msgstr "本格的に挑戦したい方は、この難易度を選んでください。"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Title
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Very Hard"
 msgstr "とても難しい"
 
-#: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
+#: simulation/data/settings/trigger_difficulties.json
 msgid "Choose this difficulty if you do not mind being swept out."
 msgstr "振り回されてもいいならば、この難易度を選んでください。"
 
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Description
+#: simulation/data/settings/map_sizes.json
+#: simulation/data/settings/trigger_difficulties.json
+msgid "Medium"
+msgstr "中"
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.json
+msgid "Capture the Relic"
+msgstr "聖遺物の確保"
+
+#: simulation/data/settings/victory_conditions/capture_the_relic.json
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
 msgstr "マップ上に散らばっているすべての棺台を占領し、一定の時間それらを確保すると勝利します。"
 
-#: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
-msgid "Capture the Relic"
-msgstr "聖遺物の確保"
+#: simulation/data/settings/victory_conditions/conquest.json
+msgid "Conquest"
+msgstr "征服"
 
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Description
+#: simulation/data/settings/victory_conditions/conquest.json
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
 msgstr "相手のユニットをすべて倒し、構造物をすべて破壊して相手を倒すと勝利します。"
 
-#: simulation/data/settings/victory_conditions/conquest.jsonData.Title
-msgid "Conquest"
-msgstr "征服"
-
-#: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Description
-msgid "Defeat opponents by destroying all their fully built civic centers."
-msgstr ""
-
-#: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Title
+#: simulation/data/settings/victory_conditions/conquest_civic_centers.json
 msgid "Conquest Civic Centers"
 msgstr ""
 
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
-msgid "Defeat opponents by destroying all their structures."
-msgstr "敵の建造物を全て破壊して倒すと勝利します。"
+#: simulation/data/settings/victory_conditions/conquest_civic_centers.json
+msgid "Defeat opponents by destroying all their fully built civic centers."
+msgstr ""
 
-#: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
+#: simulation/data/settings/victory_conditions/conquest_structures.json
 msgid "Conquest Structures"
 msgstr "建造物の征服"
 
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
-msgid "Defeat opponents by killing all their units."
-msgstr "相手のユニットを倒し、全滅させると勝利します。"
+#: simulation/data/settings/victory_conditions/conquest_structures.json
+msgid "Defeat opponents by destroying all their structures."
+msgstr "敵の建造物を全て破壊して倒すと勝利します。"
 
-#: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
+#: simulation/data/settings/victory_conditions/conquest_units.json
 msgid "Conquest Units"
 msgstr "ユニットの征服"
 
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Description
-msgid "Defeat opponents by killing their hero."
-msgstr "敵の英雄を倒して、敵を倒すと勝利します。"
+#: simulation/data/settings/victory_conditions/conquest_units.json
+msgid "Defeat opponents by killing all their units."
+msgstr "相手のユニットを倒し、全滅させると勝利します。"
 
-#: simulation/data/settings/victory_conditions/regicide.jsonData.Title
+#: simulation/data/settings/victory_conditions/regicide.json
 msgid "Regicide"
 msgstr "大逆罪"
 
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Description
+#: simulation/data/settings/victory_conditions/regicide.json
+msgid "Defeat opponents by killing their hero."
+msgstr "敵の英雄を倒して、敵を倒すと勝利します。"
+
+#: simulation/data/settings/victory_conditions/wonder.json
+msgid "Wonder"
+msgstr "象徴"
+
+#: simulation/data/settings/victory_conditions/wonder.json
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to "
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
 msgstr "象徴を最初に作るか確保して、一定時間キープすると勝利します。\n象徴が破壊または確保されると、タイマーはリセットされます。\n味方の勝利モードを有効にしている場合、象徴を確保している同盟が変わるとタイマーもリセットされます。"
-
-#: simulation/data/settings/victory_conditions/wonder.jsonData.Title
-msgid "Wonder"
-msgstr "象徴"
 
 #: simulation/helpers/Cheat.js:57
 #, javascript-format

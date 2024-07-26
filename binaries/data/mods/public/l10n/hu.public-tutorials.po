@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2024-06-24 07:08+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
 "Last-Translator: Szabó Lambert, 2024\n"
 "Language-Team: Hungarian (https://app.transifex.com/wildfire-games/teams/17418/hu/)\n"
@@ -284,22 +284,22 @@ msgstr "A női polgárok folytassák a nyersanyagok gyűjtését!"
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
 msgstr "Az ellenség legyőzetett. Teljesítetted az oktatójáték feladatait."
 
-#: maps/tutorials/introductory_tutorial.xml:Description:39
+#: maps/tutorials/introductory_tutorial.xml:39
 msgid "This is a basic tutorial to get you started playing 0 A.D."
 msgstr "Ez az oktatójáték megtanítja a 0 A.D alapjait."
 
-#: maps/tutorials/introductory_tutorial.xml:Name:39
+#: maps/tutorials/introductory_tutorial.xml:39
 msgid "Introductory Tutorial"
 msgstr "Bevezető oktatójáték"
 
-#: maps/tutorials/introductory_tutorial.xml:PlayerData[1].Name:39
-#: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
-msgid "Player 1"
-msgstr "1. játékos"
-
-#: maps/tutorials/introductory_tutorial.xml:PlayerData[2].Name:39
+#: maps/tutorials/introductory_tutorial.xml:39
 msgid "Player 2"
 msgstr "2. játékos"
+
+#: maps/tutorials/introductory_tutorial.xml:39
+#: maps/tutorials/starting_economy_walkthrough.xml:39
+msgid "Player 1"
+msgstr "1. játékos"
 
 #: maps/tutorials/starting_economy_walkthrough.js:4
 msgid ""
@@ -1003,7 +1003,7 @@ msgstr ""
 "Ez az oktatójáték vége. Ez elég információt kellett adjon ahhoz, hogy jó "
 "gazdaságot építs ki."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Description:39
+#: maps/tutorials/starting_economy_walkthrough.xml:39
 msgid ""
 "This map will give a rough guide for starting the game effectively. Early in"
 " the game the most important thing is to gather resources as fast as "
@@ -1013,6 +1013,6 @@ msgstr ""
 "Induláskor az a legfontosabb, hogy nyersanyagokat gyűjts olyan gyorsan, "
 "amennyire csak lehet, hogy később elég katonai csapatot tudj létrehozni."
 
-#: maps/tutorials/starting_economy_walkthrough.xml:Name:39
+#: maps/tutorials/starting_economy_walkthrough.xml:39
 msgid "Starting Economy Walkthrough"
 msgstr "Útmutató a gazdaság beindításához"

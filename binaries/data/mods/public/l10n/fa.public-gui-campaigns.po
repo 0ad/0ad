@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
 "Last-Translator: asdfgh asdfgh, 2024\n"
 "Language-Team: Persian (https://app.transifex.com/wildfire-games/teams/17418/fa/)\n"
@@ -23,7 +23,12 @@ msgstr ""
 "Language: fa\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: campaigns/new_maps.jsonDescription
+#: campaigns/new_maps.json
+msgctxt "Campaign Template"
+msgid "Demo campaign - new maps"
+msgstr "داستان آزمایشی - نقشه های جدید"
+
+#: campaigns/new_maps.json
 msgctxt "Campaign Template"
 msgid ""
 "Discover the new and improved maps in Alpha XXVII with a demo campaign, "
@@ -32,17 +37,32 @@ msgstr ""
 "همه ی نقشه های ارتقا یافته و جدید را در نگارش ۲۷ آلفا با بخش آزمایشی، "
 "بیازمایید."
 
-#: campaigns/new_maps.jsonName
+#: campaigns/tutorial.json
 msgctxt "Campaign Template"
-msgid "Demo campaign - new maps"
-msgstr "داستان آزمایشی - نقشه های جدید"
+msgid "Tutorial"
+msgstr "آموزش"
 
-#: campaigns/tutorial.jsonDescription
+#: campaigns/tutorial.json
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
 msgstr "یاموزید چگونه 0A.D را بازی کنید."
 
-#: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
+#: campaigns/tutorial.json
+msgctxt "Campaign Template"
+msgid "Introductory Tutorial"
+msgstr "آموزش مقدماتی"
+
+#: campaigns/tutorial.json
+msgctxt "Campaign Template"
+msgid "This is a basic tutorial to get you started playing 0 A.D."
+msgstr "این یک آموزش اولیه است تا شما بازی کردن 0A.D را آغاز کنید."
+
+#: campaigns/tutorial.json
+msgctxt "Campaign Template"
+msgid "Economy Walkthrough"
+msgstr "بررسی اقتصاد"
+
+#: campaigns/tutorial.json
 msgctxt "Campaign Template"
 msgid ""
 "This map will give a rough guide for starting the game effectively.  Early "
@@ -56,74 +76,54 @@ msgstr ""
 "بتوانید بعداً به اندازه کافی نیرو بسازید. هشدار: این در شروع بسیار سریع است،"
 " آماده باشید که بیت اولیه را چندین بار اجرا کنید."
 
-#: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
-msgctxt "Campaign Template"
-msgid "Economy Walkthrough"
-msgstr "بررسی اقتصاد"
-
-#: campaigns/tutorial.jsonLevels.introduction.Description
-msgctxt "Campaign Template"
-msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "این یک آموزش اولیه است تا شما بازی کردن 0A.D را آغاز کنید."
-
-#: campaigns/tutorial.jsonLevels.introduction.Name
-msgctxt "Campaign Template"
-msgid "Introductory Tutorial"
-msgstr "آموزش مقدماتی"
-
-#: campaigns/tutorial.jsonName
-msgctxt "Campaign Template"
-msgid "Tutorial"
-msgstr "آموزش"
-
-#: gui/campaigns/default_menu/CampaignMenu.js:155
+#: gui/campaigns/default_menu/CampaignMenu.js:185
 msgctxt "campaign status"
 msgid "Completed"
 msgstr "تکمیل شده"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:157
+#: gui/campaigns/default_menu/CampaignMenu.js:187
 msgctxt "campaign status"
 msgid "Available"
 msgstr "در دسترس"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:216
+#: gui/campaigns/default_menu/CampaignMenu.js:246
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
 msgstr "خطا در بارگیری اجرای کارزار %s : %s."
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
+#: gui/campaigns/default_menu/CampaignMenu.xml:14
 msgid "Campaign Name"
 msgstr "نام کمپین"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
-msgid "No scenario selected"
-msgstr "هیچ سناریو‌ای گزیده نشده"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
-msgid "Back to Main Menu"
-msgstr "بازگشت به فهرست اصلی"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
-msgid "Saved Games"
-msgstr "بازی‌های ذخیره شده"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
-msgid "Start Scenario"
-msgstr "آغاز سناریو"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
-msgid "Resume Saved Game"
-msgstr "بازگشت به بازی ذخیره شده"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
+#: gui/campaigns/default_menu/CampaignMenu.xml:27
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
 msgstr "نام سناریو"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
+#: gui/campaigns/default_menu/CampaignMenu.xml:31
 msgctxt "campaignLevelList"
 msgid "Status"
 msgstr "وضعیت"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:45
+msgid "No scenario selected"
+msgstr "هیچ سناریو‌ای گزیده نشده"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:58
+msgid "Back to Main Menu"
+msgstr "بازگشت به فهرست اصلی"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:62
+msgid "Saved Games"
+msgstr "بازی‌های ذخیره شده"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:66
+msgid "Start Scenario"
+msgstr "آغاز سناریو"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:69
+msgid "Resume Saved Game"
+msgstr "بازگشت به بازی ذخیره شده"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
@@ -147,38 +147,38 @@ msgstr "خیر"
 msgid "Yes"
 msgstr "بله"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):13
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):39
+#: gui/campaigns/load_modal/LoadModal.xml:13
+#: gui/campaigns/load_modal/LoadModal.xml:39
 msgid "Load Campaign"
 msgstr "بارگذاری کمپین"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):20
+#: gui/campaigns/load_modal/LoadModal.xml:20
 msgid "No ongoing campaigns."
 msgstr "هیچ کمپینی در حال انجام نیست."
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):24
+#: gui/campaigns/load_modal/LoadModal.xml:24
 msgid "Name of selected run:"
 msgstr "نام اجرا‌ی برگزیده:"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):31
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
+#: gui/campaigns/load_modal/LoadModal.xml:31
+#: gui/campaigns/new_modal/NewCampaignModal.xml:23
 msgid "Cancel"
 msgstr "لغو"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):35
+#: gui/campaigns/load_modal/LoadModal.xml:35
 msgid "Delete"
 msgstr "حذف"
 
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
+#: gui/campaigns/new_modal/NewCampaignModal.xml:12
 msgid "Start a campaign"
 msgstr "آغاز یک کمپین"
 
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
+#: gui/campaigns/new_modal/NewCampaignModal.xml:16
 msgid "Please enter the name of your new campaign run:"
 msgstr "لطفا نام کمپین جدیدتان را وارد کنید:"
 
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
+#: gui/campaigns/new_modal/NewCampaignModal.xml:27
+#: gui/campaigns/setup/CampaignSetupPage.xml:55
 msgid "Start Campaign"
 msgstr "آغاز کمپین"
 
@@ -186,22 +186,22 @@ msgstr "آغاز کمپین"
 msgid "No campaign selected."
 msgstr "هیچ کمپینی انتخاب نشده."
 
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
+#: gui/campaigns/setup/CampaignSetupPage.xml:10
 msgid "Campaigns"
 msgstr "کمپین ها"
 
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
-msgid "No Campaign selected"
-msgstr "هیچ کمپینی انتخاب نشده"
-
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
-msgid "Main Menu"
-msgstr "فهرست اصلی"
-
-#: gui/campaigns/setup/CampaignSetupPage.xml:(heading):26
+#: gui/campaigns/setup/CampaignSetupPage.xml:26
 msgctxt "campaignsetup"
 msgid "Name"
 msgstr "نام"
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:37
+msgid "No Campaign selected"
+msgstr "هیچ کمپینی انتخاب نشده"
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:50
+msgid "Main Menu"
+msgstr "فهرست اصلی"
 
 #: gui/common/campaigns/CampaignRun.js:115
 #, javascript-format

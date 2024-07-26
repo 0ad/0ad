@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-01-08 08:08+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Jonatan Nyberg, 2024\n"
 "Language-Team: Swedish (http://app.transifex.com/wildfire-games/0ad/language/sv/)\n"
@@ -26,125 +26,128 @@ msgstr ""
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: simulation/data/attack_effects/applystatus.jsondescription
+#: simulation/data/attack_effects/applystatus.json
 msgctxt "effect caused by an attack"
 msgid "Various (timed) effects."
 msgstr "Olika (tidsbaserade) effekter."
 
-#: simulation/data/attack_effects/applystatus.jsonname
+#: simulation/data/attack_effects/applystatus.json
 msgctxt "effect caused by an attack"
 msgid "Apply Status"
 msgstr "Applicera status"
 
-#: simulation/data/attack_effects/capture.jsondescription
+#: simulation/data/attack_effects/capture.json
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
 msgstr "Reducerar målets erövringspoäng."
 
-#: simulation/data/attack_effects/capture.jsonname
+#: simulation/data/attack_effects/capture.json
 msgctxt "effect caused by an attack"
 msgid "Capture"
 msgstr "Fånga"
 
-#: simulation/data/attack_effects/damage.jsondescription
+#: simulation/data/attack_effects/damage.json
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
 msgstr "Reducerar målets hälsa."
 
-#: simulation/data/attack_effects/damage.jsonname
+#: simulation/data/attack_effects/damage.json
 msgctxt "effect caused by an attack"
 msgid "Damage"
 msgstr "Skada"
 
-#: simulation/data/damage_types/crush.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "Skada som orsakas av ren kraft, som med en klubba eller tramp."
-
-#: simulation/data/damage_types/crush.jsonname
+#: simulation/data/damage_types/crush.json
 msgctxt "damage type"
 msgid "Crush"
 msgstr "Krossa"
 
-#: simulation/data/damage_types/fire.jsondescription
+#: simulation/data/damage_types/crush.json
 msgctxt "damage type"
-msgid "Damage caused by burning objects, like a torch or a flaming arrow."
-msgstr "Skada som orsakats av brinnande objekt, som en fackla eller en brinnande pil."
+msgid "Damage caused by sheer force, like with a club or by trampling."
+msgstr "Skada som orsakas av ren kraft, som med en klubba eller tramp."
 
-#: simulation/data/damage_types/fire.jsonname
+#: simulation/data/damage_types/fire.json
 msgctxt "damage type"
 msgid "Fire"
 msgstr "Eld"
 
-#: simulation/data/damage_types/hack.jsondescription
+#: simulation/data/damage_types/fire.json
+msgctxt "damage type"
+msgid "Damage caused by burning objects, like a torch or a flaming arrow."
+msgstr "Skada som orsakats av brinnande objekt, som en fackla eller en brinnande pil."
+
+#: simulation/data/damage_types/hack.json
+msgctxt "damage type"
+msgid "Hack"
+msgstr "Hacka"
+
+#: simulation/data/damage_types/hack.json
 msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
 msgstr "Skada som orsakas av vassa föremål som skär eller hugger, som med ett svärd eller en yxa."
 
-#: simulation/data/damage_types/hack.jsonname
-msgctxt "damage type"
-msgid "Hack"
-msgstr "Hacka"
-
-#: simulation/data/damage_types/pierce.jsondescription
-msgctxt "damage type"
-msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "Skada som orsakas av vassa, spetsiga föremål, som pilar eller spjut."
-
-#: simulation/data/damage_types/pierce.jsonname
+#: simulation/data/damage_types/pierce.json
 msgctxt "damage type"
 msgid "Pierce"
 msgstr "Sticka"
 
-#: simulation/data/damage_types/poison.jsondescription
+#: simulation/data/damage_types/pierce.json
+msgctxt "damage type"
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgstr "Skada som orsakas av vassa, spetsiga föremål, som pilar eller spjut."
+
+#: simulation/data/damage_types/poison.json
+msgctxt "damage type"
+msgid "Poison"
+msgstr "Gift"
+
+#: simulation/data/damage_types/poison.json
 msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
 msgstr "Skada som orsakats av giftiga objekt som en orm eller ett förgiftat vapen."
 
-#: simulation/data/damage_types/poison.jsonname
-msgctxt "damage type"
-msgid "Poison"
-msgstr "Gift"
-
-#: simulation/data/status_effects/burning.jsonapplierTooltip
+#: simulation/data/status_effects/burning.json
 msgctxt "status effect"
 msgid "This unit causes fire damage."
 msgstr "Enheten orsakar eldskada."
 
-#: simulation/data/status_effects/burning.jsonreceiverTooltip
-msgctxt "status effect"
-msgid "This unit is burning."
-msgstr "Enheten brinner."
-
-#: simulation/data/status_effects/burning.jsonstatusName
+#: simulation/data/status_effects/burning.json
 msgctxt "status effect"
 msgid "Burning"
 msgstr "Brinner"
 
-#: simulation/data/status_effects/poisoned.jsonapplierTooltip
+#: simulation/data/status_effects/burning.json
+msgctxt "status effect"
+msgid "This unit is burning."
+msgstr "Enheten brinner."
+
+#: simulation/data/status_effects/poisoned.json
 msgctxt "status effect"
 msgid "This unit causes poison damage."
 msgstr "Enheten orsakar giftskada."
 
-#: simulation/data/status_effects/poisoned.jsonreceiverTooltip
-msgctxt "status effect"
-msgid "This unit is poisoned."
-msgstr "Enheten är förgiftad."
-
-#: simulation/data/status_effects/poisoned.jsonstatusName
+#: simulation/data/status_effects/poisoned.json
 msgctxt "status effect"
 msgid "Poisoned"
 msgstr "Förgiftad"
+
+#: simulation/data/status_effects/poisoned.json
+msgctxt "status effect"
+msgid "This unit is poisoned."
+msgstr "Enheten är förgiftad."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
 msgstr "Alexander den Stores armé"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:25
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Army of Alexander the Great"
 msgstr "Alexander den Stores armé"
 
@@ -159,6 +162,9 @@ msgid "Army of Macedonia"
 msgstr "Makedoniens Armé"
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Army of Macedon"
 msgstr "Makedoniens Armé"
 
@@ -167,6 +173,9 @@ msgid "Army of Leonidas I."
 msgstr "Leonidas den Förstes Armé."
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:25
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Army of Leonidas I"
 msgstr "Leonidas den Förstes Armé"
 
@@ -181,6 +190,9 @@ msgid "Settlement"
 msgstr "Boplats"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:23
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Minor Greek Polis"
 msgstr "Liten Grekisk Stad"
 
@@ -189,6 +201,9 @@ msgid "This is a minor Greek city."
 msgstr "Detta är en liten grekisk stad"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:23
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Greek Polis"
 msgstr "Grekisk stad"
 
@@ -201,6 +216,9 @@ msgid "Religious Sanctuary"
 msgstr "Religiös Fristad"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Greek Religious Sanctuary"
 msgstr "Grekisk Religiös Fristad"
 
@@ -218,6 +236,9 @@ msgid "Black Bear"
 msgstr "Svartbjörn"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:25
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ursus americanus"
 msgstr "Ursus americanus"
 
@@ -226,6 +247,9 @@ msgid "Brown Bear"
 msgstr "Brunbjörn"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:25
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ursus arctos"
 msgstr "Ursus arctos"
 
@@ -234,6 +258,9 @@ msgid "Polar Bear"
 msgstr "Isbjörn"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:25
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ursus maritimus"
 msgstr "Ursus maritimus"
 
@@ -249,6 +276,9 @@ msgid "Wild Boar"
 msgstr "Vildsvin"
 
 #: simulation/templates/gaia/fauna_boar.xml:24
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Sus scrofa"
 msgstr "Sus scrofa"
 
@@ -257,6 +287,9 @@ msgid "Dromedary"
 msgstr "Dromedar"
 
 #: simulation/templates/gaia/fauna_camel.xml:15
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Camelus dromedarius"
 msgstr "Camelus dromedarius"
 
@@ -271,6 +304,9 @@ msgstr "Tjur"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:26
 #: simulation/templates/gaia/fauna_cattle_cow.xml:21
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Bos taurus taurus"
 msgstr "Bos taurus taurus"
 
@@ -283,6 +319,9 @@ msgid "Sanga Cattle"
 msgstr "Sangakor"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:21
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Bos taurus africanus"
 msgstr "Bos taurus africanus"
 
@@ -291,6 +330,9 @@ msgid "Zebu"
 msgstr "Zebu"
 
 #: simulation/templates/gaia/fauna_cattle_zebu.xml:21
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Bos taurus indicus"
 msgstr "Bos taurus indicus"
 
@@ -299,6 +341,9 @@ msgid "Chicken"
 msgstr "Kyckling"
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Gallus gallus domesticus"
 msgstr "Gallus gallus domesticus"
 
@@ -312,6 +357,9 @@ msgid "Nile Crocodile"
 msgstr "Nilkrokodil"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:24
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Crocodylus niloticus"
 msgstr "Crocodylus niloticus"
 
@@ -320,6 +368,9 @@ msgid "Red Deer"
 msgstr "Kronhjort"
 
 #: simulation/templates/gaia/fauna_deer.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Cervus elaphus"
 msgstr "Cervus Elaphus"
 
@@ -338,6 +389,9 @@ msgstr "Mastiff"
 
 #: simulation/templates/gaia/fauna_dog_mastiff.xml:25
 #: simulation/templates/gaia/fauna_dog_wolfhound.xml:25
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Canis lupus familiaris"
 msgstr "Canis lupus familiaris"
 
@@ -350,6 +404,9 @@ msgid "Donkey"
 msgstr "Åsna"
 
 #: simulation/templates/gaia/fauna_donkey.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Equus africanus asinus"
 msgstr "Equus africanus asinus"
 
@@ -366,6 +423,9 @@ msgstr "Savannelefant"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:26
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Loxodonta africana"
 msgstr "Loxodonta africana"
 
@@ -379,6 +439,9 @@ msgstr "Asiatisk elefant"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:26
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Elephas maximus"
 msgstr "Elephas maximus"
 
@@ -391,6 +454,9 @@ msgid "African Forest Elephant"
 msgstr "Afrikansk skogselefant"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:26
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Loxodonta cyclotis"
 msgstr "Loxodonta cyklotis"
 
@@ -399,6 +465,9 @@ msgid "Arctic Fox"
 msgstr "Fjällräv"
 
 #: simulation/templates/gaia/fauna_fox_arctic.xml:25
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Vulpes lagopus"
 msgstr "Vulpes lagopus"
 
@@ -407,6 +476,9 @@ msgid "Red Fox"
 msgstr "Röd räv"
 
 #: simulation/templates/gaia/fauna_fox_red.xml:25
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Vulpes vulpes"
 msgstr "Vulpes vulpes"
 
@@ -415,6 +487,9 @@ msgid "Thomson's Gazelle"
 msgstr "Thomsongasell"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Eudorcas thomsonii"
 msgstr "Eudorcas thomsonii"
 
@@ -424,6 +499,9 @@ msgstr "Giraff"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Giraffa camelopardalis"
 msgstr "Giraffa camelopardalis"
 
@@ -436,6 +514,9 @@ msgid "Goat"
 msgstr "Get"
 
 #: simulation/templates/gaia/fauna_goat.xml:21
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Capra aegagrus hircus"
 msgstr "Capra aegagrus hircus"
 
@@ -444,6 +525,9 @@ msgid "Hippopotamus"
 msgstr "Flodhäst"
 
 #: simulation/templates/gaia/fauna_hippopotamus.xml:25
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hippopotamus amphibius"
 msgstr "Hippopotamus amphibius"
 
@@ -452,6 +536,9 @@ msgid "Horse"
 msgstr "Häst"
 
 #: simulation/templates/gaia/fauna_horse.xml:15
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Equus ferus caballus"
 msgstr "Equus ferus caballus"
 
@@ -464,6 +551,9 @@ msgid "Lion"
 msgstr "Lejon"
 
 #: simulation/templates/gaia/fauna_lion.xml:24
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Panthera leo"
 msgstr "Panthera leo"
 
@@ -476,6 +566,9 @@ msgid "Muskox"
 msgstr "Myskoxe"
 
 #: simulation/templates/gaia/fauna_muskox.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ovibos moschatus"
 msgstr "Ovibos moschatus"
 
@@ -484,6 +577,9 @@ msgid "Peacock"
 msgstr "Påfågel"
 
 #: simulation/templates/gaia/fauna_peacock.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pavo cristatus"
 msgstr "Pavo cristatus"
 
@@ -492,6 +588,9 @@ msgid "Pig"
 msgstr "Gris"
 
 #: simulation/templates/gaia/fauna_pig.xml:21
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Sus scrofa domesticus"
 msgstr "Sus scrofa domesticus"
 
@@ -508,6 +607,9 @@ msgid "Rabbit"
 msgstr "Kanin"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Oryctolagus cuniculus"
 msgstr "Oryctolagus cuniculus"
 
@@ -521,6 +623,9 @@ msgid "White Rhinoceros"
 msgstr "Trubbnoshörning"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:25
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ceratotherium simum"
 msgstr "Ceratotherium simum"
 
@@ -529,6 +634,9 @@ msgid "Great White Shark"
 msgstr "Vithaj"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Carcharodon carcharias"
 msgstr "Carcharodon carcharias"
 
@@ -537,6 +645,9 @@ msgid "Sheep"
 msgstr "Får"
 
 #: simulation/templates/gaia/fauna_sheep.xml:21
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ovis aries"
 msgstr "Ovis aries"
 
@@ -545,6 +656,9 @@ msgid "Tiger"
 msgstr "Tiger"
 
 #: simulation/templates/gaia/fauna_tiger.xml:24
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Panthera tigris"
 msgstr "Panthera tigris"
 
@@ -553,6 +667,9 @@ msgid "Walrus"
 msgstr "Valross"
 
 #: simulation/templates/gaia/fauna_walrus.xml:25
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Odobenus rosmarus"
 msgstr "Odobenus rosmarus"
 
@@ -561,6 +678,9 @@ msgid "Fin Whale"
 msgstr "Sillval"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Balaenoptera physalus"
 msgstr "Balaenoptera physalus"
 
@@ -569,6 +689,9 @@ msgid "Humpback Whale"
 msgstr "Knölval"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Megaptera novaeangliae"
 msgstr "Megaptera novaeangliae"
 
@@ -577,6 +700,9 @@ msgid "Blue Wildebeest"
 msgstr "Strimmig gnu"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Connochaetes taurinus"
 msgstr "Connochaetes taurinus"
 
@@ -585,6 +711,9 @@ msgid "Wolf"
 msgstr "Varg"
 
 #: simulation/templates/gaia/fauna_wolf.xml:25
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Canis lupus"
 msgstr "Canis lupus"
 
@@ -597,22 +726,44 @@ msgid "Common Zebra"
 msgstr "Stäppzebra"
 
 #: simulation/templates/gaia/fauna_zebra.xml:12
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Equus quagga"
 msgstr "Equus quagga"
 
+#: simulation/templates/gaia/fish/generic.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Fish"
+msgstr "Fisk"
+
 #: simulation/templates/gaia/fish/tilapia.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Tilapia"
 msgstr "Tilapia"
 
 #: simulation/templates/gaia/fish/tuna.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Tuna"
 msgstr "Tonfisk"
 
 #: simulation/templates/gaia/fruit/apple.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Apple"
 msgstr "Äpple"
 
 #: simulation/templates/gaia/fruit/banana.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Banana"
 msgstr "Banan"
 
@@ -621,49 +772,93 @@ msgstr "Banan"
 #: simulation/templates/gaia/fruit/berry_03.xml:4
 #: simulation/templates/gaia/fruit/berry_04.xml:4
 #: simulation/templates/gaia/fruit/berry_05.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Berries"
 msgstr "Bär"
 
 #: simulation/templates/gaia/fruit/date.xml:8
 #: simulation/templates/gaia/tree/date_palm.xml:4
 #: simulation/templates/gaia/tree/date_palm_dead.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Date Palm"
 msgstr "Dadelpalm"
 
 #: simulation/templates/gaia/fruit/fig.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Fig"
 msgstr "Fikon"
 
 #: simulation/templates/gaia/fruit/grapes.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Grapes"
 msgstr "Druvor"
 
+#: simulation/templates/gaia/rock/aegean_cut.xml:8
+#: simulation/templates/gaia/rock/india_cut.xml:8
+#: simulation/templates/gaia/rock/nubia_cut.xml:8
+#: simulation/templates/gaia/rock/sahara_cut.xml:8
+#: simulation/templates/gaia/rock/temperate_cut.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
+msgid "Stone Quarry"
+msgstr "Stenbrott"
+
 #: simulation/templates/gaia/ruins/column_doric.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Doric Column"
 msgstr "Dorisk kolumn"
 
 #: simulation/templates/gaia/ruins/metal_statue_isis.xml:9
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Isis Cult Image"
 msgstr "Isis kult bild"
 
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Great Pyramid"
 msgstr "Stor Pyramid"
 
 #: simulation/templates/gaia/ruins/pyramid_minor.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Minor Pyramid"
 msgstr "Liten Pyramid"
 
 #: simulation/templates/gaia/ruins/standing_stone.xml:8
 #: simulation/templates/gaia/treasure/standing_stone.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Celtic Standing Stone"
 msgstr "Keltiskt Stående Sten"
 
 #: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Egyptian Statue"
 msgstr "Egyptisk staty"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Kushite Statue"
 msgstr "Kushitisk staty"
 
@@ -678,42 +873,72 @@ msgid "Stone Resource"
 msgstr "Sten-resurs"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Kushite Bird Statue"
 msgstr "Kushitefågelstaty"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Apademak Lion Statue"
 msgstr "Apademaklejons-staty"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ammon-Ra Ram Statue"
 msgstr "Ammon-Ra Bagge staty"
 
 #: simulation/templates/gaia/ruins/stone_statues_persian_lamassu.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Lamassu Statue"
 msgstr ""
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Roman Statue"
 msgstr "Romersk staty"
 
 #: simulation/templates/gaia/ruins/stone_structure_farmstead.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ruined Farmstead"
 msgstr ""
 
 #: simulation/templates/gaia/ruins/stone_structure_house.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ruined House"
 msgstr ""
 
 #: simulation/templates/gaia/ruins/stone_structure_small.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ruined Structure"
 msgstr ""
 
 #: simulation/templates/gaia/ruins/stone_structure_tower.xml:10
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ruined Tower"
 msgstr ""
 
 #: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Unfinished Greek Temple"
 msgstr "Ofärdigt Grekiskt Tempel"
 
@@ -721,42 +946,72 @@ msgstr "Ofärdigt Grekiskt Tempel"
 #: simulation/templates/gaia/treasure/food_bin.xml:8
 #: simulation/templates/gaia/treasure/food_crate.xml:8
 #: simulation/templates/gaia/treasure/food_jars.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Food Treasure"
 msgstr "Matskatt"
 
 #: simulation/templates/gaia/treasure/food_barrels_buried.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Half-buried Barrels"
 msgstr "Halv-nedgrävda tunnor"
 
 #: simulation/templates/gaia/treasure/food_persian_big.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Persian Food Stores"
 msgstr "Persiska Matlager"
 
 #: simulation/templates/gaia/treasure/food_persian_small.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Persian Food Treasure"
 msgstr "Persisk Matskatt"
 
 #: simulation/templates/gaia/treasure/golden_fleece.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Golden Fleece"
 msgstr "Gyllen Päls"
 
 #: simulation/templates/gaia/treasure/metal.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Secret Box"
 msgstr "Hemlig låda"
 
 #: simulation/templates/gaia/treasure/metal_persian_big.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Persian Wares"
 msgstr "Persiska Varor"
 
 #: simulation/templates/gaia/treasure/metal_persian_small.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Persian Rugs"
 msgstr "Persiska Mattor"
 
 #: simulation/templates/gaia/treasure/metal_weapons_small.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Iron Weapons"
 msgstr "Järnvapen"
 
 #: simulation/templates/gaia/treasure/pegasus.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pegasus"
 msgstr "Pegasus"
 
@@ -764,14 +1019,23 @@ msgstr "Pegasus"
 #: simulation/templates/gaia/treasure/shipwreck_ram_bow.xml:8
 #: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:8
 #: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Shipwreck"
 msgstr "Skeppsvrak"
 
 #: simulation/templates/gaia/treasure/shipwreck_debris.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Shipwreck Cargo"
 msgstr "Skeppsvrakslast"
 
 #: simulation/templates/gaia/treasure/special_argo.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "The Argo"
 msgstr ""
 
@@ -784,108 +1048,180 @@ msgid "The mythological ship of the hero Theseus and his Argonauts."
 msgstr ""
 
 #: simulation/templates/gaia/treasure/stone.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Stone Treasure"
 msgstr "Stenskatt"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Cut Granite"
 msgstr "Huggen granit"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite_large.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Cut Stone"
 msgstr "Huggen sten"
 
 #: simulation/templates/gaia/treasure/stone_pile_red.xml:8
 #: simulation/templates/gaia/treasure/stone_pile_sandstone.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Cut Sandstone"
 msgstr "Huggen sandsten"
 
 #: simulation/templates/gaia/treasure/wood.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Wood Treasure"
 msgstr "Träskatt"
 
 #: simulation/templates/gaia/treasure/wood_lumber.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Milled Lumber"
 msgstr "Fräst timmer"
 
 #: simulation/templates/gaia/tree/acacia.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Acacia"
 msgstr "Akacia"
 
 #: simulation/templates/gaia/tree/acacia_large.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Ancient Acacia"
 msgstr "Forntida akacia"
 
 #: simulation/templates/gaia/tree/aleppo_pine.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Aleppo Pine"
 msgstr "Aleppotall"
 
 #: simulation/templates/gaia/tree/bamboo.xml:4
 #: simulation/templates/gaia/tree/bamboo_single.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Bamboo"
 msgstr "Bambu"
 
 #: simulation/templates/gaia/tree/bamboo_dragon.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Dragon Bamboo"
 msgstr "Jättebambu"
 
 #: simulation/templates/gaia/tree/banyan.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Banyan"
 msgstr "Banjanträd"
 
 #: simulation/templates/gaia/tree/baobab.xml:8
 #: simulation/templates/gaia/tree/baobab_3_mature.xml:8
 #: simulation/templates/gaia/tree/baobab_4_dead.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Baobab"
 msgstr "Baobab"
 
 #: simulation/templates/gaia/tree/baobab_1_sapling.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Baobab Sapling"
 msgstr "Baobabplanta"
 
 #: simulation/templates/gaia/tree/baobab_2_young.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Young Baobab"
 msgstr "Ung baobab"
 
 #: simulation/templates/gaia/tree/bush_badlands.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hardy Bush"
 msgstr "Härdig Buske"
 
 #: simulation/templates/gaia/tree/bush_mediterranean.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Scrub"
 msgstr "Buske"
 
 #: simulation/templates/gaia/tree/bush_mediterranean_dry.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Dry Scrub"
 msgstr ""
 
 #: simulation/templates/gaia/tree/carob.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Carob"
 msgstr "Johannesbröd"
 
 #: simulation/templates/gaia/tree/cedar_atlas_1_sapling.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Atlas Cedar Sapling"
 msgstr "Atlascederplanta"
 
 #: simulation/templates/gaia/tree/cedar_atlas_2_young.xml:4
 #: simulation/templates/gaia/tree/cedar_atlas_3_mature.xml:4
 #: simulation/templates/gaia/tree/cedar_atlas_4_dead.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Atlas Cedar"
 msgstr "Atlasceder"
 
 #: simulation/templates/gaia/tree/cherry_blossom.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Cherry Blossom"
 msgstr "Körsbärsblom"
 
 #: simulation/templates/gaia/tree/cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/tree/cretan_date_palm_short.xml:4
 #: simulation/templates/gaia/tree/cretan_date_palm_tall.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Cretan Date Palm"
 msgstr "Kretensk Dadelpalm"
 
 #: simulation/templates/gaia/tree/cypress.xml:4
 #: simulation/templates/gaia/tree/cypress_wild.xml:4
 #: simulation/templates/gaia/tree/cypress_windswept.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Cypress"
 msgstr "Cypress"
 
@@ -893,46 +1229,76 @@ msgstr "Cypress"
 #: simulation/templates/gaia/tree/temperate.xml:4
 #: simulation/templates/gaia/tree/temperate_autumn.xml:4
 #: simulation/templates/gaia/tree/temperate_winter.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Deciduous Tree"
 msgstr "Lövträd"
 
 #: simulation/templates/gaia/tree/elm.xml:4
 #: simulation/templates/gaia/tree/elm_dead.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Elm"
 msgstr "Alm"
 
 #: simulation/templates/gaia/tree/euro_beech.xml:4
 #: simulation/templates/gaia/tree/euro_beech_aut.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "European Beech"
 msgstr "Europeisk bok"
 
 #: simulation/templates/gaia/tree/euro_birch.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Silver Birch"
 msgstr "Vårtbjörk"
 
 #: simulation/templates/gaia/tree/fir.xml:4
 #: simulation/templates/gaia/tree/fir_winter.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Fir"
 msgstr "Ädelgran"
 
 #: simulation/templates/gaia/tree/fir_sapling.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Fir Sapling"
 msgstr "Granplanta"
 
 #: simulation/templates/gaia/tree/juniper_prickly.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Prickly Juniper"
 msgstr "Stick-en"
 
 #: simulation/templates/gaia/tree/mangrove.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Mangrove"
 msgstr "Mangrove"
 
 #: simulation/templates/gaia/tree/maple.xml:4
 #: simulation/templates/gaia/tree/maple_autumn.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Maple"
 msgstr "Lönn"
 
 #: simulation/templates/gaia/tree/medit_fan_palm.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Mediterranean Fan Palm"
 msgstr "Europeisk Dvärgpalm"
 
@@ -941,98 +1307,164 @@ msgstr "Europeisk Dvärgpalm"
 #: simulation/templates/gaia/tree/oak_aut_new.xml:4
 #: simulation/templates/gaia/tree/oak_dead.xml:4
 #: simulation/templates/gaia/tree/oak_new.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Oak"
 msgstr "Ek"
 
 #: simulation/templates/gaia/tree/oak_holly.xml:4
 #: simulation/templates/gaia/tree/oak_holly_autumn.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Holly Oak"
 msgstr "Stenek"
 
 #: simulation/templates/gaia/tree/oak_hungarian.xml:4
 #: simulation/templates/gaia/tree/oak_hungarian_autumn.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Hungarian Oak"
 msgstr "Ungersk ek"
 
 #: simulation/templates/gaia/tree/oak_large.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Large Oak"
 msgstr "Stor ek"
 
 #: simulation/templates/gaia/tree/olive.xml:7
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Olive"
 msgstr "Oliv"
 
 #: simulation/templates/gaia/tree/palm_areca.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Areca Palm"
 msgstr "Betelpalm"
 
 #: simulation/templates/gaia/tree/palm_doum.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Doum Palm"
 msgstr "Doumpalm"
 
 #: simulation/templates/gaia/tree/palm_palmyra.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Palmyra Palm"
 msgstr "Palmyrapalm"
 
 #: simulation/templates/gaia/tree/palm_royal.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Royal Palm"
 msgstr ""
 
 #: simulation/templates/gaia/tree/palm_tropic.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Palm"
 msgstr "Palm"
 
 #: simulation/templates/gaia/tree/palm_tropical.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Tropical Palm"
 msgstr "Tropisk Palm"
 
 #: simulation/templates/gaia/tree/pine.xml:4
 #: simulation/templates/gaia/tree/pine_w.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Pine"
 msgstr "Tall"
 
 #: simulation/templates/gaia/tree/pine_black.xml:4
 #: simulation/templates/gaia/tree/pine_black_dead.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Black Pine"
 msgstr "Svarttall"
 
 #: simulation/templates/gaia/tree/pine_maritime.xml:4
 #: simulation/templates/gaia/tree/pine_maritime_short.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Maritime Pine"
 msgstr "Medelhavstall"
 
 #: simulation/templates/gaia/tree/poplar.xml:4
 #: simulation/templates/gaia/tree/poplar_dead.xml:4
 #: simulation/templates/gaia/tree/poplar_lombardy_autumn.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Poplar"
 msgstr "Poppel"
 
 #: simulation/templates/gaia/tree/poplar_lombardy.xml:4
 #: simulation/templates/gaia/tree/poplar_lombardy_dead.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Black Poplar"
 msgstr "Svartpoppel"
 
 #: simulation/templates/gaia/tree/senegal_date_palm.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Senegal Date Palm"
 msgstr "Senegalesisk Dadelpalm"
 
 #: simulation/templates/gaia/tree/strangler.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Strangler Fig"
 msgstr "Strypfikus"
 
 #: simulation/templates/gaia/tree/tamarix.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Tamarix"
 msgstr "Tamarisk"
 
 #: simulation/templates/gaia/tree/teak.xml:8
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Teak"
 msgstr "Teak"
 
 #: simulation/templates/gaia/tree/toona.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Toona"
 msgstr "Toona"
 
 #: simulation/templates/gaia/tree/tropic_rainforest.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Rainforest Tree"
 msgstr "Regnskogsträd"
 
@@ -1041,6 +1473,9 @@ msgid "Builder"
 msgstr "Byggare"
 
 #: simulation/templates/mixins/bush.xml:4
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Bush"
 msgstr "Buske"
 
@@ -1078,7 +1513,13 @@ msgid "Pirate"
 msgstr ""
 
 #: simulation/templates/mixins/rotary_mill.xml:17
+msgid "Rotary Mill"
+msgstr "Roterande kvarn"
+
 #: simulation/templates/mixins/rotary_mill.xml:18
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Rotary Mill"
 msgstr "Roterande kvarn"
 
@@ -1093,8 +1534,14 @@ msgid ""
 msgstr "Lager för skördad mat. Ta över en av dessa för att öka matproduktionen i närheten."
 
 #: simulation/templates/mixins/shrine.xml:12
-#: simulation/templates/mixins/shrine.xml:13
 #: simulation/templates/mixins/shrine.xml:14
+msgid "Shrine"
+msgstr "Skrin"
+
+#: simulation/templates/mixins/shrine.xml:13
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the "
+"civilization. Most translations don't need to modify this string."
 msgid "Shrine"
 msgstr "Skrin"
 
@@ -1333,7 +1780,6 @@ msgstr "Kräver minst 2 soldater eller belägringsvapen."
 msgid "Gaia"
 msgstr "Gaia"
 
-#: simulation/templates/gaia/fish/generic.xml:4
 #: simulation/templates/template_gaia_fish.xml:8
 msgid "Fish"
 msgstr "Fisk"
@@ -1358,11 +1804,6 @@ msgstr "Metallgruva"
 msgid "Mine ore for metal."
 msgstr "Bryt malm för metall."
 
-#: simulation/templates/gaia/rock/aegean_cut.xml:8
-#: simulation/templates/gaia/rock/india_cut.xml:8
-#: simulation/templates/gaia/rock/nubia_cut.xml:8
-#: simulation/templates/gaia/rock/sahara_cut.xml:8
-#: simulation/templates/gaia/rock/temperate_cut.xml:8
 #: simulation/templates/template_gaia_rock.xml:8
 msgid "Stone Quarry"
 msgstr "Stenbrott"
