@@ -86,19 +86,19 @@ class Extractor(object):
                     for filemask in self.includeMasks:
                         if pathmatch(filemask, filename):
                             filepath = os.path.join(directoryAbsolutePath, filename)
-                            for message, plural, context, breadcrumb, position, comments in self.extractFromFile(filepath):
+                            for message, plural, context, position, comments in self.extractFromFile(filepath):
                                 if empty_string_pattern.match(message):
                                     continue
 
-                                # Replace spaces in filenames by non-breaking spaces so that word
-                                # wrapping in po files does not split up our paths
-                                yield message, plural, context, (filename.replace(' ', u"\xa0") + (":"+breadcrumb if breadcrumb else ""), position), comments
+                                if " " in filename or "\t" in filename:
+                                    filename = "\u2068" + filename + "\u2069"
+                                yield message, plural, context, (filename, position), comments
 
 
     def extractFromFile(self, filepath):
         """ Extracts messages from a specific file.
 
-        :return:    An iterator over ``(message, plural, context, breadcrumb, position, comments)`` tuples.
+        :return:    An iterator over ``(message, plural, context, position, comments)`` tuples.
         :rtype:     ``iterator``
         """
         pass
@@ -276,7 +276,7 @@ class javascript(Extractor):
                 if len(messages) == 2:
                     plural = messages[1]
 
-                yield message, plural, context, None, lineno, comments
+                yield message, plural, context, lineno, comments
 
 
 
@@ -293,11 +293,11 @@ class txt(Extractor):
 
     def extractFromFile(self, filepath):
         with codecs.open(filepath, "r", encoding='utf-8-sig') as fileObject:
-            lineCount = 0
+            lineno = 0
             for line in [line.strip("\n\r") for line in fileObject.readlines()]:
-                lineCount += 1
+                lineno += 1
                 if line:
-                    yield line, None, None, None, lineCount, []
+                    yield line, None, None, lineno, []
 
 
 
@@ -307,7 +307,6 @@ class json(Extractor):
 
     def __init__(self, directoryPath=None, filemasks=[], options={}):
         super(json, self).__init__(directoryPath, filemasks, options)
-        self.breadcrumbs = []
         self.keywords = self.options.get("keywords", {})
         self.context = self.options.get("context", None)
         self.comments = self.options.get("comments", [])
@@ -318,73 +317,58 @@ class json(Extractor):
         self.context = self.options.get("context", None)
         self.comments = self.options.get("comments", [])
 
-    @staticmethod
-    def formatBreadcrumbs(breadcrumbs):
-        firstPiece = breadcrumbs[0]
-        if isinstance(firstPiece, int): outputString = "[" + str(firstPiece) + "]"
-        else: outputString = firstPiece
-        for piece in breadcrumbs[1:]:
-            if isinstance(piece, int): outputString += "[" + str(piece) + "]"
-            else: outputString += "." + piece
-        return outputString
-
     def extractFromFile(self, filepath):
         with codecs.open(filepath, "r", 'utf-8') as fileObject:
-            for message, context, breadcrumbs in self.extractFromString(fileObject.read()):
-                yield message, None, context, self.formatBreadcrumbs(breadcrumbs), None, self.comments
+            for message, context in self.extractFromString(fileObject.read()):
+                yield message, None, context, None, self.comments
 
     def extractFromString(self, string):
-        self.breadcrumbs = []
         jsonDocument = jsonParser.loads(string)
         if isinstance(jsonDocument, list):
-            for message, context, breadcrumbs in self.parseList(jsonDocument):
+            for message, context in self.parseList(jsonDocument):
                 if message: # Skip empty strings.
-                    yield message, context, breadcrumbs
+                    yield message, context
         elif isinstance(jsonDocument, dict):
-            for message, context, breadcrumbs in self.parseDictionary(jsonDocument):
+            for message, context in self.parseDictionary(jsonDocument):
                 if message: # Skip empty strings.
-                    yield message, context, breadcrumbs
+                    yield message, context
         else:
             raise Exception("Unexpected JSON document parent structure (not a list or a dictionary). You must extend the JSON extractor to support it.")
 
     def parseList(self, itemsList):
         index = 0
         for listItem in itemsList:
-            self.breadcrumbs.append(index)
             if isinstance(listItem, list):
-                for message, context, breadcrumbs in self.parseList(listItem):
-                    yield message, context, breadcrumbs
+                for message, context in self.parseList(listItem):
+                    yield message, context
             elif isinstance(listItem, dict):
-                for message, context, breadcrumbs in self.parseDictionary(listItem):
-                    yield message, context, breadcrumbs
-            del self.breadcrumbs[-1]
+                for message, context in self.parseDictionary(listItem):
+                    yield message, context
             index += 1
 
     def parseDictionary(self, dictionary):
         for keyword in dictionary:
-            self.breadcrumbs.append(keyword)
             if keyword in self.keywords:
                 if isinstance(dictionary[keyword], str):
                     yield self.extractString(dictionary[keyword], keyword)
                 elif isinstance(dictionary[keyword], list):
-                    for message, context, breadcrumbs in self.extractList(dictionary[keyword], keyword):
-                        yield message, context, breadcrumbs
+                    for message, context in self.extractList(dictionary[keyword], keyword):
+                        yield message, context
                 elif isinstance(dictionary[keyword], dict):
                     extract = None
                     if "extractFromInnerKeys" in self.keywords[keyword] and self.keywords[keyword]["extractFromInnerKeys"]:
-                        for message, context, breadcrumbs in self.extractDictionaryInnerKeys(dictionary[keyword], keyword):
-                            yield message, context, breadcrumbs
+                        for message, context in self.extractDictionaryInnerKeys(dictionary[keyword], keyword):
+                            yield message, context
                     else:
                         extract = self.extractDictionary(dictionary[keyword], keyword)
                         if extract:
                             yield extract
             elif isinstance(dictionary[keyword], list):
-                for message, context, breadcrumbs in self.parseList(dictionary[keyword]):
-                    yield message, context, breadcrumbs
+                for message, context in self.parseList(dictionary[keyword]):
+                    yield message, context
             elif isinstance(dictionary[keyword], dict):
-                for message, context, breadcrumbs in self.parseDictionary(dictionary[keyword]):
-                    yield message, context, breadcrumbs
-            del self.breadcrumbs[-1]
+                for message, context in self.parseDictionary(dictionary[keyword]):
+                    yield message, context
 
     def extractString(self, string, keyword):
         context = None
@@ -394,24 +378,21 @@ class json(Extractor):
             context = self.keywords[keyword]["customContext"]
         else:
             context = self.context
-        return string, context, self.breadcrumbs
+        return string, context
 
     def extractList(self, itemsList, keyword):
         index = 0
         for listItem in itemsList:
-            self.breadcrumbs.append(index)
             if isinstance(listItem, str):
                 yield self.extractString(listItem, keyword)
             elif isinstance(listItem, dict):
                 extract = self.extractDictionary(dictionary[keyword], keyword)
                 if extract:
                     yield extract
-            del self.breadcrumbs[-1]
             index += 1
 
     def extractDictionary(self, dictionary, keyword):
         message = dictionary.get("_string", None)
-        self.breadcrumbs.append("_string")
         if message and isinstance(message, str):
             context = None
             if "context" in dictionary:
@@ -422,24 +403,20 @@ class json(Extractor):
                 context = self.keywords[keyword]["customContext"]
             else:
                 context = self.context
-            return message, context, self.breadcrumbs
-        del self.breadcrumbs[-1]
+            return message, context
         return None
 
     def extractDictionaryInnerKeys(self, dictionary, keyword):
         for innerKeyword in dictionary:
-            self.breadcrumbs.append(innerKeyword)
             if isinstance(dictionary[innerKeyword], str):
                 yield self.extractString(dictionary[innerKeyword], keyword)
             elif isinstance(dictionary[innerKeyword], list):
-                for message, context, breadcrumbs in self.extractList(dictionary[innerKeyword], keyword):
-                    yield message, context, breadcrumbs
+                for message, context in self.extractList(dictionary[innerKeyword], keyword):
+                    yield message, context
             elif isinstance(dictionary[innerKeyword], dict):
                 extract = self.extractDictionary(dictionary[innerKeyword], keyword)
                 if extract:
                     yield extract
-            del self.breadcrumbs[-1]
-
 
 
 class xml(Extractor):
@@ -462,20 +439,16 @@ class xml(Extractor):
             xmlDocument = etree.parse(fileObject)
             for keyword in self.keywords:
                 for element in xmlDocument.iter(keyword):
-                    position = element.sourceline
+                    lineno = element.sourceline
                     if element.text is not None:
                         comments = []
                         if "extractJson" in self.keywords[keyword]:
                             jsonExtractor = self.getJsonExtractor()
                             jsonExtractor.setOptions(self.keywords[keyword]["extractJson"])
-                            for message, context, breadcrumbs in jsonExtractor.extractFromString(element.text):
-                                yield message, None, context, json.formatBreadcrumbs(breadcrumbs), position, comments
+                            for message, context in jsonExtractor.extractFromString(element.text):
+                                yield message, None, context, lineno, comments
                         else:
                             context = None
-                            breadcrumb = None
-                            if "locationAttributes" in self.keywords[keyword]:
-                                attributes = [element.get(attribute) for attribute in self.keywords[keyword]["locationAttributes"] if attribute in element.attrib]
-                                breadcrumb = "({attributes})".format(attributes=", ".join(attributes))
                             if "context" in element.attrib:
                                 context = str(element.get("context"))
                             elif "tagAsContext" in self.keywords[keyword]:
@@ -490,9 +463,9 @@ class xml(Extractor):
                                 for splitText in element.text.split():
                                     # split on whitespace is used for token lists, there, a leading '-' means the token has to be removed, so it's not to be processed here either
                                     if splitText[0] != "-":
-                                        yield str(splitText), None, context, breadcrumb, position, comments
+                                        yield str(splitText), None, context, lineno, comments
                             else:
-                                yield str(element.text), None, context, breadcrumb, position, comments
+                                yield str(element.text), None, context, lineno, comments
 
 
 # Hack from http://stackoverflow.com/a/2819788
@@ -524,6 +497,5 @@ class ini(Extractor):
         for keyword in self.keywords:
             message = config.get("root", keyword).strip('"').strip("'")
             context = None
-            position = " ({})".format(keyword)
             comments = []
-            yield message, None, context, None, position, comments
+            yield message, None, context, None, comments
