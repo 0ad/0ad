@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-07-15 07:19+0000\n"
-"PO-Revision-Date: 2024-07-15 07:19+0000\n"
+"POT-Creation-Date: 2024-07-26 07:18+0000\n"
+"PO-Revision-Date: 2024-07-26 07:18+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -296,17 +296,9 @@ msgstr "Модификации от „mod.io“"
 msgid "Available Mods"
 msgstr "Խաղի հասանելի ձևափոխություներ"
 
-msgid "Filter valid mods"
-msgstr "Филтриране на изправните модификации"
-
-msgid "Back"
-msgstr "Повернутися"
-
-msgid "Refresh List"
-msgstr "Actualizare l repertorio"
-
-msgid "Download"
-msgstr "Luchdaich a-nuas"
+msgctxt "placeholder text for input field to filter mods"
+msgid "Filter"
+msgstr "Filtreering"
 
 msgid "Name"
 msgstr "სახელი"
@@ -323,9 +315,17 @@ msgstr "Fitxategiaren tamaina"
 msgid "Dependencies"
 msgstr "დამოკიდებულებები"
 
-msgctxt "placeholder text for input field to filter mods"
-msgid "Filter"
-msgstr "Filtreering"
+msgid "Filter valid mods"
+msgstr "Филтриране на изправните модификации"
+
+msgid "Back"
+msgstr "Повернутися"
+
+msgid "Refresh List"
+msgstr "Actualizare l repertorio"
+
+msgid "Download"
+msgstr "Luchdaich a-nuas"
 
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of .pyromod "
@@ -405,6 +405,9 @@ msgstr "Cuir an comas an tuilleadan 0ad air a char as lugha"
 msgid "Modifications"
 msgstr "Pozměněné verze"
 
+msgid "Filter"
+msgstr "Filtreering"
+
 msgid "Negate"
 msgstr "Selectie omkeren"
 
@@ -414,8 +417,30 @@ msgstr "nach kompatiblen Mods filtern"
 msgid "Description"
 msgstr "Նկարագրություն"
 
+msgid "(Folder)"
+msgstr "(Subdirectorio)"
+
+msgid "Website"
+msgstr "Situs Interretialis"
+
 msgid "Enabled Mods"
 msgstr "Միացնել խաղի ձևափոխություները"
+
+msgid ""
+"Enabled mods are loaded from top to bottom. Mods loaded later might overwrite settings "
+"of mods loaded earlier. It is advisable to have more complex mods loaded last. Use the "
+"arrows on the right to change the loading order."
+msgstr ""
+"Tèid na tuilleadain a tha an comas a luchdadh on bhàrr gun bhonn. Dh’fhaoidte gun "
+"sgrìobh tuilleadain a thèid a luchdadh nas anmoiche thar roghainnean nan tuilleadan a "
+"chaidh a luchdadh romhpa-san. Mholamaid gun luchdaich thu na tuilleadain as iom-fhillte"
+" aig an deireadh. Cleachd na saighdean taobh deas airson òrdugh an luchdaidh "
+"atharrachadh."
+
+msgid "Change the order in which mods are launched. This should match the mods dependencies."
+msgstr ""
+"Verander de volgorde waarin modificaties opgestart worden. Dit moet overeenkomen met de"
+" afhankelijkheden van de modificaties."
 
 msgid "Visit Website"
 msgstr "Navštívit internetovou stránku"
@@ -434,31 +459,6 @@ msgstr "Enregistrer la configuration"
 
 msgid "Save and Restart"
 msgstr "Qeyd bike û ji nû ve dest pê bike."
-
-msgid "(Folder)"
-msgstr "(Subdirectorio)"
-
-msgid "Website"
-msgstr "Situs Interretialis"
-
-msgid "Filter"
-msgstr "Filtreering"
-
-msgid ""
-"Enabled mods are loaded from top to bottom. Mods loaded later might overwrite settings "
-"of mods loaded earlier. It is advisable to have more complex mods loaded last. Use the "
-"arrows on the right to change the loading order."
-msgstr ""
-"Tèid na tuilleadain a tha an comas a luchdadh on bhàrr gun bhonn. Dh’fhaoidte gun "
-"sgrìobh tuilleadain a thèid a luchdadh nas anmoiche thar roghainnean nan tuilleadan a "
-"chaidh a luchdadh romhpa-san. Mholamaid gun luchdaich thu na tuilleadain as iom-fhillte"
-" aig an deireadh. Cleachd na saighdean taobh deas airson òrdugh an luchdaidh "
-"atharrachadh."
-
-msgid "Change the order in which mods are launched. This should match the mods dependencies."
-msgstr ""
-"Verander de volgorde waarin modificaties opgestart worden. Dit moet overeenkomen met de"
-" afhankelijkheden van de modificaties."
 
 msgid "Disclaimer"
 msgstr "Descargo de responsabilidade"

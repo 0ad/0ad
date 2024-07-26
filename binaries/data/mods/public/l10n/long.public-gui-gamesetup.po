@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-07-15 07:19+0000\n"
-"PO-Revision-Date: 2024-07-15 07:19+0000\n"
+"POT-Creation-Date: 2024-07-26 07:18+0000\n"
+"PO-Revision-Date: 2024-07-26 07:18+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -664,6 +664,9 @@ msgstr "Nombre del anfitrión o IP del servidor:"
 msgid "Server Port:"
 msgstr "Přípojka (port) serveru:"
 
+msgid "Leave blank to use the default port."
+msgstr "Оставите празно поље како би сте користили подразумевани порт."
+
 msgid "Set up your server to host."
 msgstr "Konfiguratu zure zerbitzaria jokaldia ostatatzeko."
 
@@ -672,6 +675,9 @@ msgstr "Ainm an fhrithealaiche:"
 
 msgid "Server Password:"
 msgstr "Facal-faire an fhrithealaiche:"
+
+msgid "Leave blank to not require it."
+msgstr "Laisser vide pour utiliser le port par défaut."
 
 msgid "Use STUN to work around firewalls"
 msgstr "Χρησιμοποίησε το STUN για να λειτουργήσει με τα τείχη προστασίας"
@@ -687,12 +693,6 @@ msgstr "დათქმული სიტყვა:"
 
 msgid "Confirm"
 msgstr "Потвърждение"
-
-msgid "Leave blank to use the default port."
-msgstr "Оставите празно поље како би сте користили подразумевани порт."
-
-msgid "Leave blank to not require it."
-msgstr "Laisser vide pour utiliser le port par défaut."
 
 #, python-format
 msgctxt "loading screen progress"

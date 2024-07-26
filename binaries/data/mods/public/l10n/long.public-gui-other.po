@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-07-22 07:17+0000\n"
-"PO-Revision-Date: 2024-07-22 07:17+0000\n"
+"POT-Creation-Date: 2024-07-26 07:18+0000\n"
+"PO-Revision-Date: 2024-07-26 07:18+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1028,6 +1028,9 @@ msgstr "%(nick)s — %(name)s "
 msgid "0 A.D. Credits"
 msgstr "Přispěvatelé do 0 A.D."
 
+msgid "Art"
+msgstr "Diseinu grafikoa"
+
 msgid "Art lead"
 msgstr "Diseinu grafikoen zuzendaria"
 
@@ -1037,8 +1040,11 @@ msgstr "Καλλιτέχνης δισδιάστατων"
 msgid "3D Art"
 msgstr "Καλλιτέχνης τρισδιάστατων"
 
-msgid "Art"
-msgstr "Diseinu grafikoa"
+msgid "Audio"
+msgstr "Dźwięk"
+
+msgid "Audio managers"
+msgstr "Manaidsearan nam fuaimean"
 
 msgid "Sound Manager"
 msgstr "Manaidsear nam fuaimean"
@@ -1046,32 +1052,8 @@ msgstr "Manaidsear nam fuaimean"
 msgid "Lead Composer"
 msgstr "Prìomh cheòl-sgrìobhaiche"
 
-msgid "Audio managers"
-msgstr "Manaidsearan nam fuaimean"
-
-msgid "Frame drum, darbuka, riq, toms"
-msgstr "Frame drum, bęben kielichowy (darbuka), bęben obręczowy (riq), bębny (toms)"
-
-msgid "Guitar"
-msgstr "Guitarra"
-
-msgid "Handpan"
-msgstr "Ручная сковорода"
-
-msgid "Harp"
-msgstr "Harppu"
-
-msgid "Shruti Box"
-msgstr "Шкатулка для Шрути"
-
-msgid "Tin whistles"
-msgstr " Ιρλανδικές φλογέρες"
-
-msgid "Trumpet"
-msgstr "Trumpetti"
-
-msgid "Viola, violin"
-msgstr "Biola eta bibolina "
+msgid "Music"
+msgstr "Musiikki"
 
 msgid "Additional music, percussion, djembe, sampling"
 msgstr "Πρόσθετη μουσική, κρουστά, αφρικάνικα κρουστά, δειγματοληψία"
@@ -1100,17 +1082,35 @@ msgstr "Hakkebord"
 msgid "Flute"
 msgstr "Frauta traveseira"
 
-msgid "Music"
-msgstr "Musiikki"
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "Frame drum, bęben kielichowy (darbuka), bęben obręczowy (riq), bębny (toms)"
 
-msgid "Sound"
-msgstr "Èifeachdan fuaime"
+msgid "Guitar"
+msgstr "Guitarra"
+
+msgid "Handpan"
+msgstr "Ручная сковорода"
+
+msgid "Harp"
+msgstr "Harppu"
+
+msgid "Shruti Box"
+msgstr "Шкатулка для Шрути"
+
+msgid "Tin whistles"
+msgstr " Ιρλανδικές φλογέρες"
+
+msgid "Trumpet"
+msgstr "Trumpetti"
+
+msgid "Viola, violin"
+msgstr "Biola eta bibolina "
+
+msgid "Voices"
+msgstr "Beszédhangok"
 
 msgid "Greek"
 msgstr "Kreikkalainen"
-
-msgid "Latin"
-msgstr "Latinalainen"
 
 msgid "Napatan"
 msgstr "Napatalainen"
@@ -1118,20 +1118,23 @@ msgstr "Napatalainen"
 msgid "Persian"
 msgstr "Persialainen"
 
-msgid "Voices"
-msgstr "Beszédhangok"
+msgid "Latin"
+msgstr "Latinalainen"
 
-msgid "Audio"
-msgstr "Dźwięk"
-
-msgid "Head"
-msgstr "Vadovaujantis"
+msgid "Sound"
+msgstr "Èifeachdan fuaime"
 
 msgid "Balancing"
 msgstr "Εξισορρόπηση παιχνιδιού"
 
+msgid "Head"
+msgstr "Vadovaujantis"
+
 msgid "Community and Management"
 msgstr "Komunikazio eta komunitate arduraduna"
+
+msgid "Donors"
+msgstr "Пожертвували кошти"
 
 msgid "Pledgie Drive 1"
 msgstr "Movimento de angariação de fundos 1"
@@ -1146,11 +1149,11 @@ msgstr ""
 "2013 ko Indiegogoren kanpaina⏎\n"
 "1000 baino gehiago partaideekin (!), hauek barne:"
 
-msgid "Donors"
-msgstr "Пожертвували кошти"
-
 msgid "History References"
 msgstr "Iomraidhean eachdraidheil"
+
+msgid "Maps"
+msgstr "Geographíɐs"
 
 msgid "Map Making"
 msgstr "Déantóirí Léarscáileanna"
@@ -1158,8 +1161,8 @@ msgstr "Déantóirí Léarscáileanna"
 msgid "Random Map Scripts"
 msgstr "Sgrìobtaichean tuaireamach nam mapaichean"
 
-msgid "Maps"
-msgstr "Geographíɐs"
+msgid "Programming"
+msgstr "Программирование"
 
 msgid "Programming managers"
 msgstr "Manaidsearan a’ phrògramachaidh"
@@ -1167,11 +1170,14 @@ msgstr "Manaidsearan a’ phrògramachaidh"
 msgid "Special thanks to"
 msgstr "Remerciements particuliers envers"
 
-msgid "Programming"
-msgstr "Программирование"
+msgid "Special Credits"
+msgstr "Spesielle æreshenvisninger"
 
 msgid "In Memoriam"
 msgstr "Mar chuimhneachan"
+
+msgid "Special thanks to:"
+msgstr "Remerciements particuliers envers :"
 
 msgid "0 A.D. Founder"
 msgstr "Fondatore di 0 A.D."
@@ -1182,9 +1188,6 @@ msgstr "Directores de l proiectu"
 msgid "Co-Lead Designers"
 msgstr "PROGETTISTI co-responsabili"
 
-msgid "Special thanks to:"
-msgstr "Remerciements particuliers envers :"
-
 msgid "And thanks to the entire community for making 0 A.D. possible."
 msgstr "A děkujeme celému společenství. Bez pospolitosti by vznik 0 A.D. nebyl možný."
 
@@ -1193,11 +1196,227 @@ msgstr ""
 "Er is tijdens de uitvoering van dit project geen letsel toegebracht aan "
 "geschiedkundigen."
 
-msgid "Special Credits"
-msgstr "Spesielle æreshenvisninger"
-
 msgid "Translators"
 msgstr "Eadar-theangadairean"
+
+msgid "Afrikaans"
+msgstr "Afrikaans"
+
+msgid "الدارجة (Arabic)"
+msgstr "الدارجة (Arabic)"
+
+msgid "Asturianu"
+msgstr "Asturianu"
+
+msgid "Azərbaycan dili"
+msgstr "Azərbaycan dili"
+
+msgid "Bairisch"
+msgstr "Bairisch"
+
+msgid "Беларуская мова (Belarusian)"
+msgstr "Беларуская мова (Belarusian)"
+
+msgid "Български (Bulgarian)"
+msgstr "Български (Bulgarian)"
+
+msgid "বাংলা (Bengali)"
+msgstr "বাংলা (Bengali)"
+
+msgid "Brezhoneg"
+msgstr "Brezhoneg"
+
+msgid "Català"
+msgstr "Català"
+
+msgid "Čeština "
+msgstr "Čeština "
+
+msgid "Cymraeg"
+msgstr "Cymraeg"
+
+msgid "Dansk"
+msgstr "Dansk"
+
+msgid "Deutsch"
+msgstr "Deutsch"
+
+msgid "Ελληνικά (Greek)"
+msgstr "Ελληνικά (Greek)"
+
+msgid "English (United Kingdom)"
+msgstr "English (United Kingdom)"
+
+msgid "Esperanto"
+msgstr "Esperanto"
+
+msgid "Español"
+msgstr "Español"
+
+msgid "Español (Argentina)"
+msgstr "Español (Argentina)"
+
+msgid "Español (Chile)"
+msgstr "Español (Chile)"
+
+msgid "Español (Mexico)"
+msgstr "Español (Mexico)"
+
+msgid "Eesti keel"
+msgstr "Eesti keel"
+
+msgid "Euskara"
+msgstr "Euskara"
+
+msgid "فارسی (Farsi)"
+msgstr "فارسی (Farsi)"
+
+msgid "Suomi"
+msgstr "Suomi"
+
+msgid "Français"
+msgstr "Français"
+
+msgid "Français (Canada)"
+msgstr "Français (Canada)"
+
+msgid "Franco-Provençal (Arpitan)"
+msgstr "Franco-Provençal (Arpitan)"
+
+msgid "Gaeilge"
+msgstr "Gaeilge"
+
+msgid "Gàidhlig"
+msgstr "Gàidhlig"
+
+msgid "Galego"
+msgstr "Galego"
+
+msgid "עברית (Hebrew)"
+msgstr "עברית (Hebrew)"
+
+msgid "हिन्दी (Hindi)"
+msgstr "हिन्दी (Hindi)"
+
+msgid "Croatian"
+msgstr "Croatian"
+
+msgid "Magyar"
+msgstr "Magyar"
+
+msgid "Հայերէն (Armenian)"
+msgstr "Հայերէն (Armenian)"
+
+msgid "Bahasa Indonesia"
+msgstr "Bahasa Indonesia"
+
+msgid "Italiano"
+msgstr "Italiano"
+
+msgid "日本語 (Japanese)"
+msgstr "日本語 (Japanese)"
+
+msgid "Lojban"
+msgstr "Lojban"
+
+msgid "ქართული ენა (Georgian)"
+msgstr "ქართული ენა (Georgian)"
+
+msgid "한국어 (Korean)"
+msgstr "한국어 (Korean)"
+
+msgid "Karjalan kieli"
+msgstr "Karjalan kieli"
+
+msgid "کوردی (Kurdish)"
+msgstr "کوردی (Kurdish)"
+
+msgid "Lietuvių kalba"
+msgstr "Lietuvių kalba"
+
+msgid "Latviešu valoda"
+msgstr "Latviešu valoda"
+
+msgid "македонски (Macedonian)"
+msgstr "македонски (Macedonian)"
+
+msgid "മലയാളം (Malayalam)"
+msgstr "മലയാളം (Malayalam)"
+
+msgid "मराठी (Marathi)"
+msgstr "मराठी (Marathi)"
+
+msgid "بهاس ملايو (Malay)"
+msgstr "بهاس ملايو (Malay)"
+
+msgid "Norsk Bokmål"
+msgstr "Norsk Bokmål"
+
+msgid "Nederlands"
+msgstr "Nederlands"
+
+msgid "Polski"
+msgstr "Polski"
+
+msgid "Português (Brazil)"
+msgstr "Português (Brazil)"
+
+msgid "Português (Portugal)"
+msgstr "Português (Portugal)"
+
+msgid "Românește"
+msgstr "Românește"
+
+msgid "Русский язык (Russian)"
+msgstr "Русский язык (Russian)"
+
+msgid "Slovenčina"
+msgstr "Slovenčina"
+
+msgid "Slovenščina"
+msgstr "Slovenščina"
+
+msgid "Shqip"
+msgstr "Shqip"
+
+msgid "Cрпски (Serbian)"
+msgstr "Cрпски (Serbian)"
+
+msgid "Svenska"
+msgstr "Svenska"
+
+msgid "ślōnskŏ gŏdka"
+msgstr "ślōnskŏ gŏdka"
+
+msgid "தமிழ் (India)"
+msgstr "தமிழ் (India)"
+
+msgid "తెలుగు (Telugu)"
+msgstr "తెలుగు (Telugu)"
+
+msgid "ภาษาไทย (Thai)"
+msgstr "ภาษาไทย (Thai)"
+
+msgid "Tagalog"
+msgstr "Tagalog"
+
+msgid "Türkçe (Turkish)"
+msgstr "Türkçe (Turkish)"
+
+msgid "Українська (Ukrainian)"
+msgstr "Українська (Ukrainian)"
+
+msgid "Ўзбек тили (Uzbek)"
+msgstr "Ўзбек тили (Uzbek)"
+
+msgid "Tiếng Việt (Vietnamese)"
+msgstr "Tiếng Việt (Vietnamese)"
+
+msgid "中文, 汉语, 漢語 (Chinese)"
+msgstr "中文, 汉语, 漢語 (Chinese)"
+
+msgid "臺灣話 Chinese (Taiwan)"
+msgstr "臺灣話 Chinese (Taiwan)"
 
 msgid ""
 "Although reasonably easy for an experienced player, the default AI level is quite "
@@ -1258,8 +1477,25 @@ msgstr "Roinn-seòrsa:"
 msgid "Filter:"
 msgstr "Criathrag:"
 
+msgctxt "hotkey list"
+msgid "Name"
+msgstr "Nombre"
+
+msgctxt "hotkey list"
+msgid "Mapping"
+msgstr "Création de cartes"
+
 msgid "Reset"
 msgstr "Nastavit znovu"
+
+msgid "Resets user settings to their game default"
+msgstr "Ath-shuidhichidh seo roghainnean a’ chleachdaiche air bun-roghainnean a’ gheama"
+
+msgid "Saves changes"
+msgstr "Sàbhailidh seo na dh’atharraich thu"
+
+msgid "Unsaved changes will be lost"
+msgstr "Caillidh tu atharrachadh sam bith nach deach a shàbhaladh"
 
 msgid "Hotkey"
 msgstr "Πλήκτρο αυτόματης επιλογής"
@@ -1272,31 +1508,14 @@ msgstr ""
 "Briog air mapadh sam bith gus atharrachadh.\\n Faodaidh suas ri 4 grad-iuchraichean "
 "eadar-dhealaichte a bhith agad."
 
-msgid "Accept"
-msgstr "Aktsepteeri"
-
-msgctxt "hotkey list"
-msgid "Name"
-msgstr "Nombre"
-
-msgctxt "hotkey list"
-msgid "Mapping"
-msgstr "Création de cartes"
-
-msgid "Resets user settings to their game default"
-msgstr "Ath-shuidhichidh seo roghainnean a’ chleachdaiche air bun-roghainnean a’ gheama"
-
-msgid "Saves changes"
-msgstr "Sàbhailidh seo na dh’atharraich thu"
-
-msgid "Unsaved changes will be lost"
-msgstr "Caillidh tu atharrachadh sam bith nach deach a shàbhaladh"
-
 msgid "Click to set the hotkey"
 msgstr "Clicca per impostare il tasto di scelta rapida"
 
 msgid "Click to delete the hotkey"
 msgstr "Clicca per eliminare il tasto di scelta rapida"
+
+msgid "Accept"
+msgstr "Aktsepteeri"
 
 msgid "Change the hotkeys and close"
 msgstr "Gyorsbillentyűváltások mentése és bezárás"
@@ -1305,194 +1524,100 @@ msgid "The hotkeys will not be modified"
 msgstr "I tasti di scelta rapida non verranno modificati"
 
 msgctxt "hotkey metadata"
-msgid "Camera-related hotkeys."
-msgstr "Tasti di scelta rapida relativi alla telecamera."
-
-msgctxt "hotkey metadata"
 msgid "Camera"
 msgstr "Camera"
 
 msgctxt "hotkey metadata"
-msgid "Scroll backwards or rotate down."
-msgstr "Faire défiler vers l'arrière ou faire pivoter vers le bas."
-
-msgctxt "hotkey metadata"
-msgid "Scroll/Rotate down"
-msgstr "Μετακίνηση ροδέλας ποντικού/Περιστροφή κάτω."
-
-msgctxt "hotkey metadata"
-msgid "Follow the first unit in the selection."
-msgstr "Seguir a la primeira unidá de la escolleiꞇha."
-
-msgctxt "hotkey metadata"
-msgid "Follow Unit"
-msgstr "Ακολουθήστε τη Μονάδα"
-
-msgctxt "hotkey metadata"
-msgid "Jump to camera position 1 (see “Set camera jump 1”)."
-msgstr "Vai alla posizione 1 della telecamera (vedere \"Imposta vai alla telecamera 1\")."
-
-msgctxt "hotkey metadata"
-msgid "Jump to camera 1"
-msgstr "Переміститися до камери 1"
-
-msgctxt "hotkey metadata"
-msgid "Jump to camera position 2 (see “Set camera jump 2”)."
-msgstr "Vai alla posizione 2 della telecamera (vedere \"Imposta vai alla telecamera 2\")."
-
-msgctxt "hotkey metadata"
-msgid "Jump to camera 2"
-msgstr "Переміститися до камери 2"
-
-msgctxt "hotkey metadata"
-msgid "Jump to camera position 3 (see “Set camera jump 3”)."
-msgstr "Vai alla posizione 3 della telecamera (vedere \"Imposta vai alla telecamera 3\")."
-
-msgctxt "hotkey metadata"
-msgid "Jump to camera 3"
-msgstr "Переміститися до камери 3"
-
-msgctxt "hotkey metadata"
-msgid "Jump to camera position 4 (see “Set camera jump 4”)."
-msgstr "Vai alla posizione 4 della telecamera (vedere \"Imposta vai alla telecamera 4\")."
-
-msgctxt "hotkey metadata"
-msgid "Jump to camera 4"
-msgstr "Переміститися до камери 4"
-
-msgctxt "hotkey metadata"
-msgid "Set camera jump position 1."
-msgstr "Imposta la posizione di salto della telecamera 1."
-
-msgctxt "hotkey metadata"
-msgid "Set camera jump 1"
-msgstr "Imposta il vai alla telecamera 1"
-
-msgctxt "hotkey metadata"
-msgid "Set camera jump position 2."
-msgstr "Estableix la posició 2 per al salt de la càmera."
-
-msgctxt "hotkey metadata"
-msgid "Set camera jump 2"
-msgstr "Imposta il vai alla telecamera 2"
-
-msgctxt "hotkey metadata"
-msgid "Set camera jump position 3."
-msgstr "Estableix la posició 3 per al salt de la càmera."
-
-msgctxt "hotkey metadata"
-msgid "Set camera jump 3"
-msgstr "Imposta il vai alla telecamera 3"
-
-msgctxt "hotkey metadata"
-msgid "Set camera jump position 4."
-msgstr "Estableix la posició 4 per al salt de la càmera."
-
-msgctxt "hotkey metadata"
-msgid "Set camera jump 4"
-msgstr "Imposta il vai alla telecamera 4"
-
-msgctxt "hotkey metadata"
-msgid "Focus the camera on the position of the last attack notification."
-msgstr "Fokussiere die Kamera auf die Position der letzten Angriffsbenachrichtigung."
-
-msgctxt "hotkey metadata"
-msgid "Focus on last attack notification"
-msgstr "Εστίαση κάμερας στη τελευταίας ειδοποίηση επίθεσης."
-
-msgctxt "hotkey metadata"
-msgid "Scroll or rotate left."
-msgstr "Κύλιση ροδέλας ποντικιού ή περιστροφή αριστερά. "
-
-msgctxt "hotkey metadata"
-msgid "Scroll/Rotate left"
-msgstr "Μετακίνηση ροδέλας ποντικού/Περιστροφή αριστερά"
-
-msgctxt "hotkey metadata"
-msgid "Enable scrolling by moving the mouse."
-msgstr "Ενεργοποίηση σκρολαρίσματος ροδέλας με μετακίνηση του ποντικιού."
-
-msgctxt "hotkey metadata"
-msgid "Pan camera"
-msgstr "Pásztázás a kamerával"
-
-msgctxt "hotkey metadata"
-msgid "Focus the camera on the rally point of the selected building."
-msgstr "Cuir fòcas a’ chamara air ceann-cruinneachaidh an togalaich a thagh thu."
-
-msgctxt "hotkey metadata"
-msgid "Focus on rallypoint"
-msgstr "Összpontosítás a gyülekezési pontra"
-
-msgctxt "hotkey metadata"
-msgid "Reset camera rotation to default."
-msgstr "Ripristina la rotazione della telecamera alle impostazioni predefinite."
+msgid "Camera-related hotkeys."
+msgstr "Tasti di scelta rapida relativi alla telecamera."
 
 msgctxt "hotkey metadata"
 msgid "Reset Camera"
 msgstr "Скинути налаштування камери"
 
 msgctxt "hotkey metadata"
-msgid "Scroll or rotate right."
-msgstr "Faire défiler ou pivoter vers la droite."
+msgid "Reset camera rotation to default."
+msgstr "Ripristina la rotazione della telecamera alle impostazioni predefinite."
 
 msgctxt "hotkey metadata"
-msgid "Scroll/Rotate right"
-msgstr "Faire défiler / pivoter vers la droite"
+msgid "Follow Unit"
+msgstr "Ακολουθήστε τη Μονάδα"
 
 msgctxt "hotkey metadata"
-msgid "Rotate camera counterclockwise around terrain."
-msgstr "Rotar la cámara en el sentido contrario a las agujas del reloj alrededor del terreno."
+msgid "Follow the first unit in the selection."
+msgstr "Seguir a la primeira unidá de la escolleiꞇha."
 
 msgctxt "hotkey metadata"
-msgid "Rotate counterclockwise"
-msgstr "Forgatás az óramutató járásával ellentétes irányban"
+msgid "Focus on rallypoint"
+msgstr "Összpontosítás a gyülekezési pontra"
 
 msgctxt "hotkey metadata"
-msgid "Rotate camera clockwise around terrain."
-msgstr "Rotar la cámara en el sentido de las agujas del reloj alrededor del terreno."
+msgid "Focus the camera on the rally point of the selected building."
+msgstr "Cuir fòcas a’ chamara air ceann-cruinneachaidh an togalaich a thagh thu."
 
 msgctxt "hotkey metadata"
-msgid "Rotate clockwise"
-msgstr "Περιστροφή σύμφωνα με τη φορά του ρολογιού (δεξιόστροφα)"
+msgid "Focus on last attack notification"
+msgstr "Εστίαση κάμερας στη τελευταίας ειδοποίηση επίθεσης."
 
 msgctxt "hotkey metadata"
-msgid "Rotate camera to look downwards."
-msgstr "Faire pivoter la caméra pour regarder vers le bas."
+msgid "Focus the camera on the position of the last attack notification."
+msgstr "Fokussiere die Kamera auf die Position der letzten Angriffsbenachrichtigung."
 
 msgctxt "hotkey metadata"
-msgid "Rotate Down"
-msgstr "Faire pivoter vers le bas"
+msgid "Zoom in"
+msgstr "Aproximar câmera"
 
 msgctxt "hotkey metadata"
-msgid "Decrease camera rotation speed."
-msgstr "Diminuire la velocità di rotazione della telecamera."
+msgid "Zoom camera in."
+msgstr "Breng de camera dichterbij."
 
 msgctxt "hotkey metadata"
-msgid "Decrease rotation speed"
-msgstr "Disminueix la velocitat de rotació."
+msgid "Zoom out"
+msgstr "Ζούμ κάμερας πίσω"
 
 msgctxt "hotkey metadata"
-msgid "Increase camera rotation speed."
-msgstr "Aumenta la velocità di rotazione della telecamera."
+msgid "Zoom camera out."
+msgstr "Breng de camera verder weg."
 
 msgctxt "hotkey metadata"
-msgid "Increase rotation speed"
-msgstr "Incrementar la velocidad de rotación"
+msgid "Zoom in (step-by-step)"
+msgstr "Aumenta zoom (un passo alla volta)"
 
 msgctxt "hotkey metadata"
-msgid "Rotate camera to look upwards."
-msgstr "Faire pivoter la caméra pour regarder vers le haut."
+msgid "Zoom camera in - the effect depends on FPS."
+msgstr "Approximare la vista - l effectu depende de la freqüencia de quadros."
+
+msgctxt "hotkey metadata"
+msgid "Zoom out (step-by-step)"
+msgstr "Riduci lo zoom (un passo alla volta)"
+
+msgctxt "hotkey metadata"
+msgid "Zoom camera out - the effect depends on FPS."
+msgstr "Rola a câmera para longe - o efeito depende dos quadros por segundo."
 
 msgctxt "hotkey metadata"
 msgid "Rotate up"
 msgstr "Faire pivoter vers le haut"
 
 msgctxt "hotkey metadata"
-msgid "Rotate camera counterclockwise around terrain - the effect depends on FPS."
-msgstr ""
-"Roda a câmara no sentido inverso dos ponteiros do relógio ao redor do terreno - o "
-"efeito depende dos fotogramas por segundo."
+msgid "Rotate camera to look upwards."
+msgstr "Faire pivoter la caméra pour regarder vers le haut."
+
+msgctxt "hotkey metadata"
+msgid "Rotate Down"
+msgstr "Faire pivoter vers le bas"
+
+msgctxt "hotkey metadata"
+msgid "Rotate camera to look downwards."
+msgstr "Faire pivoter la caméra pour regarder vers le bas."
+
+msgctxt "hotkey metadata"
+msgid "Rotate camera clockwise around terrain."
+msgstr "Rotar la cámara en el sentido de las agujas del reloj alrededor del terreno."
+
+msgctxt "hotkey metadata"
+msgid "Rotate camera counterclockwise around terrain."
+msgstr "Rotar la cámara en el sentido contrario a las agujas del reloj alrededor del terreno."
 
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain - the effect depends on FPS."
@@ -1501,132 +1626,272 @@ msgstr ""
 "depende dos fotogramas por segundo."
 
 msgctxt "hotkey metadata"
-msgid "Decrease camera scroll speed."
-msgstr "Disminuir la velocidad de desplazamiento de la cámara."
+msgid "Rotate camera counterclockwise around terrain - the effect depends on FPS."
+msgstr ""
+"Roda a câmara no sentido inverso dos ponteiros do relógio ao redor do terreno - o "
+"efeito depende dos fotogramas por segundo."
 
 msgctxt "hotkey metadata"
-msgid "Decrease scroll speed"
-msgstr "Disminuir la velocidad de desplazamiento"
+msgid "Pan camera"
+msgstr "Pásztázás a kamerával"
 
 msgctxt "hotkey metadata"
-msgid "Increase camera scroll speed."
-msgstr "Incrementar la velocidad de desplazamiento de la cámara."
+msgid "Enable scrolling by moving the mouse."
+msgstr "Ενεργοποίηση σκρολαρίσματος ροδέλας με μετακίνηση του ποντικιού."
 
 msgctxt "hotkey metadata"
-msgid "Increase scroll speed"
-msgstr "Incrementar la velocidad de desplazamiento"
+msgid "Scroll/Rotate left"
+msgstr "Μετακίνηση ροδέλας ποντικού/Περιστροφή αριστερά"
 
 msgctxt "hotkey metadata"
-msgid "Scroll forwards or rotate up."
-msgstr "Faire défiler vers l'avant ou faire pivoter vers le haut."
+msgid "Scroll or rotate left."
+msgstr "Κύλιση ροδέλας ποντικιού ή περιστροφή αριστερά. "
+
+msgctxt "hotkey metadata"
+msgid "Scroll/Rotate right"
+msgstr "Faire défiler / pivoter vers la droite"
+
+msgctxt "hotkey metadata"
+msgid "Scroll or rotate right."
+msgstr "Faire défiler ou pivoter vers la droite."
 
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate up"
 msgstr "Faire défiler / pivoter vers le haut"
 
 msgctxt "hotkey metadata"
-msgid "Zoom camera in."
-msgstr "Breng de camera dichterbij."
+msgid "Scroll forwards or rotate up."
+msgstr "Faire défiler vers l'avant ou faire pivoter vers le haut."
 
 msgctxt "hotkey metadata"
-msgid "Zoom in"
-msgstr "Aproximar câmera"
+msgid "Scroll/Rotate down"
+msgstr "Μετακίνηση ροδέλας ποντικού/Περιστροφή κάτω."
 
 msgctxt "hotkey metadata"
-msgid "Zoom camera out."
-msgstr "Breng de camera verder weg."
+msgid "Scroll backwards or rotate down."
+msgstr "Faire défiler vers l'arrière ou faire pivoter vers le bas."
 
 msgctxt "hotkey metadata"
-msgid "Zoom out"
-msgstr "Ζούμ κάμερας πίσω"
+msgid "Increase scroll speed"
+msgstr "Incrementar la velocidad de desplazamiento"
 
 msgctxt "hotkey metadata"
-msgid "Decrease camera zoom speed."
-msgstr "Diminui a velocidade de aproximação e afastamento da câmara."
+msgid "Increase camera scroll speed."
+msgstr "Incrementar la velocidad de desplazamiento de la cámara."
 
 msgctxt "hotkey metadata"
-msgid "Decrease zoom speed"
-msgstr "Reducir a velocidade de achegado da cámara"
+msgid "Decrease scroll speed"
+msgstr "Disminuir la velocidad de desplazamiento"
 
 msgctxt "hotkey metadata"
-msgid "Increase camera zoom speed."
-msgstr "Aumenta a velocidade de aproximação e afastamento da câmara."
+msgid "Decrease camera scroll speed."
+msgstr "Disminuir la velocidad de desplazamiento de la cámara."
+
+msgctxt "hotkey metadata"
+msgid "Increase rotation speed"
+msgstr "Incrementar la velocidad de rotación"
+
+msgctxt "hotkey metadata"
+msgid "Increase camera rotation speed."
+msgstr "Aumenta la velocità di rotazione della telecamera."
+
+msgctxt "hotkey metadata"
+msgid "Decrease rotation speed"
+msgstr "Disminueix la velocitat de rotació."
+
+msgctxt "hotkey metadata"
+msgid "Decrease camera rotation speed."
+msgstr "Diminuire la velocità di rotazione della telecamera."
 
 msgctxt "hotkey metadata"
 msgid "Increase zoom speed"
 msgstr "Incrementar a velocidade de achegado da cámara"
 
 msgctxt "hotkey metadata"
-msgid "Zoom camera in - the effect depends on FPS."
-msgstr "Approximare la vista - l effectu depende de la freqüencia de quadros."
+msgid "Increase camera zoom speed."
+msgstr "Aumenta a velocidade de aproximação e afastamento da câmara."
 
 msgctxt "hotkey metadata"
-msgid "Zoom in (step-by-step)"
-msgstr "Aumenta zoom (un passo alla volta)"
+msgid "Decrease zoom speed"
+msgstr "Reducir a velocidade de achegado da cámara"
 
 msgctxt "hotkey metadata"
-msgid "Zoom camera out - the effect depends on FPS."
-msgstr "Rola a câmera para longe - o efeito depende dos quadros por segundo."
+msgid "Decrease camera zoom speed."
+msgstr "Diminui a velocidade de aproximação e afastamento da câmara."
 
 msgctxt "hotkey metadata"
-msgid "Zoom out (step-by-step)"
-msgstr "Riduci lo zoom (un passo alla volta)"
+msgid "Jump to camera 1"
+msgstr "Переміститися до камери 1"
 
 msgctxt "hotkey metadata"
-msgid "General hotkeys."
-msgstr "Tasti di scelta rapida generali."
+msgid "Jump to camera position 1 (see “Set camera jump 1”)."
+msgstr "Vai alla posizione 1 della telecamera (vedere \"Imposta vai alla telecamera 1\")."
+
+msgctxt "hotkey metadata"
+msgid "Jump to camera 2"
+msgstr "Переміститися до камери 2"
+
+msgctxt "hotkey metadata"
+msgid "Jump to camera position 2 (see “Set camera jump 2”)."
+msgstr "Vai alla posizione 2 della telecamera (vedere \"Imposta vai alla telecamera 2\")."
+
+msgctxt "hotkey metadata"
+msgid "Jump to camera 3"
+msgstr "Переміститися до камери 3"
+
+msgctxt "hotkey metadata"
+msgid "Jump to camera position 3 (see “Set camera jump 3”)."
+msgstr "Vai alla posizione 3 della telecamera (vedere \"Imposta vai alla telecamera 3\")."
+
+msgctxt "hotkey metadata"
+msgid "Jump to camera 4"
+msgstr "Переміститися до камери 4"
+
+msgctxt "hotkey metadata"
+msgid "Jump to camera position 4 (see “Set camera jump 4”)."
+msgstr "Vai alla posizione 4 della telecamera (vedere \"Imposta vai alla telecamera 4\")."
+
+msgctxt "hotkey metadata"
+msgid "Set camera jump 1"
+msgstr "Imposta il vai alla telecamera 1"
+
+msgctxt "hotkey metadata"
+msgid "Set camera jump position 1."
+msgstr "Imposta la posizione di salto della telecamera 1."
+
+msgctxt "hotkey metadata"
+msgid "Set camera jump 2"
+msgstr "Imposta il vai alla telecamera 2"
+
+msgctxt "hotkey metadata"
+msgid "Set camera jump position 2."
+msgstr "Estableix la posició 2 per al salt de la càmera."
+
+msgctxt "hotkey metadata"
+msgid "Set camera jump 3"
+msgstr "Imposta il vai alla telecamera 3"
+
+msgctxt "hotkey metadata"
+msgid "Set camera jump position 3."
+msgstr "Estableix la posició 3 per al salt de la càmera."
+
+msgctxt "hotkey metadata"
+msgid "Set camera jump 4"
+msgstr "Imposta il vai alla telecamera 4"
+
+msgctxt "hotkey metadata"
+msgid "Set camera jump position 4."
+msgstr "Estableix la posició 4 per al salt de la càmera."
+
+msgctxt "hotkey metadata"
+msgid "Rotate clockwise"
+msgstr "Περιστροφή σύμφωνα με τη φορά του ρολογιού (δεξιόστροφα)"
+
+msgctxt "hotkey metadata"
+msgid "Rotate counterclockwise"
+msgstr "Forgatás az óramutató járásával ellentétes irányban"
 
 msgctxt "hotkey metadata"
 msgid "General"
 msgstr "Pagrindiniai"
 
 msgctxt "hotkey metadata"
-msgid "Take large BMP screenshot."
-msgstr "Tomar unha captura de pantalla en formato BMP de gran tamaño."
-
-msgctxt "hotkey metadata"
-msgid "Big screenshot"
-msgstr "Μεγάλο Στιγμιότυπο εικόνας."
-
-msgctxt "hotkey metadata"
-msgid "Close or cancel the current dialog box/popup."
-msgstr "Tanca o cancel·la la caixa de diàleg o finestra emergent actuals."
+msgid "General hotkeys."
+msgstr "Tasti di scelta rapida generali."
 
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
 msgstr "Schließen/Abbrechen"
 
 msgctxt "hotkey metadata"
-msgid "Confirm the current command."
-msgstr "Επιβεβαιώστε τη συγκεκριμένη εντολή."
+msgid "Close or cancel the current dialog box/popup."
+msgstr "Tanca o cancel·la la caixa de diàleg o finestra emergent actuals."
 
 msgctxt "hotkey metadata"
 msgid "Confirm"
 msgstr "Потвърждение"
 
 msgctxt "hotkey metadata"
-msgid "Toggle the console."
-msgstr "Ativa ou desativa a consola de comandos."
+msgid "Confirm the current command."
+msgstr "Επιβεβαιώστε τη συγκεκριμένη εντολή."
 
 msgctxt "hotkey metadata"
-msgid "Toggle Console"
-msgstr "Afficher / masquer la Console"
+msgid "Pause/Unpause"
+msgstr "Mettre en pause / Remettre en pause"
 
 msgctxt "hotkey metadata"
-msgid "Copy to clipboard."
-msgstr "Copia para a área de transferência."
+msgid "Pause/Unpause the game."
+msgstr "Megállítja vagy újból elindítja a játékot."
+
+msgctxt "hotkey metadata"
+msgid "Screenshot"
+msgstr "Στιγμιότυπο εικόνας."
+
+msgctxt "hotkey metadata"
+msgid "Take PNG screenshot."
+msgstr "Realiza una captura de pantalla en formato PNG."
+
+msgctxt "hotkey metadata"
+msgid "Big screenshot"
+msgstr "Μεγάλο Στιγμιότυπο εικόνας."
+
+msgctxt "hotkey metadata"
+msgid "Take large BMP screenshot."
+msgstr "Tomar unha captura de pantalla en formato BMP de gran tamaño."
+
+msgctxt "hotkey metadata"
+msgid "Toggle Fullscreen"
+msgstr "Activer / désactiver l'affichage plein écran"
+
+msgctxt "hotkey metadata"
+msgid "Toggle fullscreen/windowed mode."
+msgstr "Attiva/Disattiva la modalità schermo intero/finestra."
+
+msgctxt "hotkey metadata"
+msgid "Toggle watermark"
+msgstr "Afficher/masquer le tatouage numérique"
+
+msgctxt "hotkey metadata"
+msgid "Toggle product/company watermark for official screenshots."
+msgstr ""
+"Afficher / masquer le tatouage numérique du produit/de l'entreprise pour les captures "
+"d'écran officielles."
+
+msgctxt "hotkey metadata"
+msgid "Toggle wireframe mode"
+msgstr "Activer / désactiver le mode maquette fonctionnelle"
+
+msgctxt "hotkey metadata"
+msgid "Toggle wireframe mode."
+msgstr "Ativa ou desativa os vários modos de visualização dos modelos 3D em linhas."
 
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard"
 msgstr "Copiar para a área de transferência"
 
 msgctxt "hotkey metadata"
-msgid "Cut selected text and copy to the clipboard."
-msgstr "Geàrr às an teacsa a thagh tu is cuir lethbhreac dheth air an stòr-bhòrd."
+msgid "Copy to clipboard."
+msgstr "Copia para a área de transferência."
+
+msgctxt "hotkey metadata"
+msgid "Paste from clipboard"
+msgstr "Colar da a área de transferência"
+
+msgctxt "hotkey metadata"
+msgid "Paste from clipboard."
+msgstr "Coller à partir du presse-papier."
 
 msgctxt "hotkey metadata"
 msgid "Cut to clipboard"
 msgstr "Recortar para a área de transferência"
+
+msgctxt "hotkey metadata"
+msgid "Cut selected text and copy to the clipboard."
+msgstr "Geàrr às an teacsa a thagh tu is cuir lethbhreac dheth air an stòr-bhòrd."
+
+msgctxt "hotkey metadata"
+msgid "Custom exit to desktop"
+msgstr "Saída personalizada para a área de trabalho"
 
 msgctxt "hotkey metadata"
 msgid ""
@@ -1637,24 +1902,24 @@ msgstr ""
 " γενή πλήκτρα συντόμευσης (Alt+F4 / Cmd+Q / etc.) είναι πάντα ενεργά."
 
 msgctxt "hotkey metadata"
-msgid "Custom exit to desktop"
-msgstr "Saída personalizada para a área de trabalho"
+msgid "Toggle Console"
+msgstr "Afficher / masquer la Console"
 
 msgctxt "hotkey metadata"
-msgid "Paste from clipboard."
-msgstr "Coller à partir du presse-papier."
+msgid "Toggle the console."
+msgstr "Ativa ou desativa a consola de comandos."
 
 msgctxt "hotkey metadata"
-msgid "Paste from clipboard"
-msgstr "Colar da a área de transferência"
+msgid "Toggle profiler"
+msgstr "Ativar / desativar analisador de perfil"
 
 msgctxt "hotkey metadata"
-msgid "Pause/Unpause the game."
-msgstr "Megállítja vagy újból elindítja a játékot."
+msgid "Toggle the real-time profiler."
+msgstr "Ativa ou desativa o analisador de perfil em tempo real."
 
 msgctxt "hotkey metadata"
-msgid "Pause/Unpause"
-msgstr "Mettre en pause / Remettre en pause"
+msgid "Save profile"
+msgstr "Сохранить данные профилировщика"
 
 msgctxt "hotkey metadata"
 msgid "Save current profiler data to logs/profile.txt."
@@ -1663,130 +1928,172 @@ msgstr ""
 "fájlba."
 
 msgctxt "hotkey metadata"
-msgid "Save profile"
-msgstr "Сохранить данные профилировщика"
-
-msgctxt "hotkey metadata"
-msgid "Toggle the real-time profiler."
-msgstr "Ativa ou desativa o analisador de perfil em tempo real."
-
-msgctxt "hotkey metadata"
-msgid "Toggle profiler"
-msgstr "Ativar / desativar analisador de perfil"
+msgid "Toggle profiler2"
+msgstr "Ativar / desativar analisador de perfil2"
 
 msgctxt "hotkey metadata"
 msgid "Toggle HTTP/GPU modes for new profiler."
 msgstr "HTTP/GPU-tilojen ottaminen käyttöön tai poistaminen käytöstä uudessa profiloijassa."
 
 msgctxt "hotkey metadata"
-msgid "Toggle profiler2"
-msgstr "Ativar / desativar analisador de perfil2"
-
-msgctxt "hotkey metadata"
-msgid "Take PNG screenshot."
-msgstr "Realiza una captura de pantalla en formato PNG."
-
-msgctxt "hotkey metadata"
-msgid "Screenshot"
-msgstr "Στιγμιότυπο εικόνας."
-
-msgctxt "hotkey metadata"
-msgid "Toggle product/company watermark for official screenshots."
-msgstr ""
-"Afficher / masquer le tatouage numérique du produit/de l'entreprise pour les captures "
-"d'écran officielles."
-
-msgctxt "hotkey metadata"
-msgid "Toggle watermark"
-msgstr "Afficher/masquer le tatouage numérique"
+msgid "Next tab"
+msgstr "Llingüeta seguiente"
 
 msgctxt "hotkey metadata"
 msgid "Show the next tab."
 msgstr "Amostrare la llingüeta seguiente."
 
 msgctxt "hotkey metadata"
-msgid "Next tab"
-msgstr "Llingüeta seguiente"
+msgid "Previous tab"
+msgstr "Edellinen välilehti"
 
 msgctxt "hotkey metadata"
 msgid "Show the previous tab."
 msgstr "Εμφάνιση της προηγούμενης καρτέλας."
 
 msgctxt "hotkey metadata"
-msgid "Previous tab"
-msgstr "Edellinen välilehti"
+msgid "Delete before cursor"
+msgstr "Effacer ce qui est avant le curseur"
 
 msgctxt "hotkey metadata"
 msgid "Delete word to the left of cursor."
 msgstr "Esmemorecere la palhabra a la esquierda de l cursor."
 
 msgctxt "hotkey metadata"
-msgid "Delete before cursor"
-msgstr "Effacer ce qui est avant le curseur"
+msgid "Delete after cursor"
+msgstr "Effacer ce qui est après le curseur"
 
 msgctxt "hotkey metadata"
 msgid "Delete word to the right of cursor."
 msgstr "Esmemorecere la palhabra a la direiꞇha de l cursor."
 
 msgctxt "hotkey metadata"
-msgid "Delete after cursor"
-msgstr "Effacer ce qui est après le curseur"
+msgid "Move cursor to left word"
+msgstr "Μετακινείστε τον κέρσορα στην αριστερή λέξη."
 
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the left of cursor."
 msgstr "Μετακίνηση  του κέρσορα στην αρχή της λέξης που βρίσκεται στα αριστερά του."
 
 msgctxt "hotkey metadata"
-msgid "Move cursor to left word"
-msgstr "Μετακινείστε τον κέρσορα στην αριστερή λέξη."
+msgid "Move cursor to right word"
+msgstr " Przenieś kursor do słowa po prawej stronie"
 
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the right of cursor."
 msgstr "Μετακίνηση  του κέρσορα στην αρχή της λέξης που βρίσκεται στα δεξιά του."
 
 msgctxt "hotkey metadata"
-msgid "Move cursor to right word"
-msgstr " Przenieś kursor do słowa po prawej stronie"
-
-msgctxt "hotkey metadata"
-msgid "Toggle fullscreen/windowed mode."
-msgstr "Attiva/Disattiva la modalità schermo intero/finestra."
-
-msgctxt "hotkey metadata"
-msgid "Toggle Fullscreen"
-msgstr "Activer / désactiver l'affichage plein écran"
-
-msgctxt "hotkey metadata"
-msgid "Toggle wireframe mode."
-msgstr "Ativa ou desativa os vários modos de visualização dos modelos 3D em linhas."
-
-msgctxt "hotkey metadata"
-msgid "Toggle wireframe mode"
-msgstr "Activer / désactiver le mode maquette fonctionnelle"
+msgid "Game Setup"
+msgstr "Configuración de partida"
 
 msgctxt "hotkey metadata"
 msgid "Hotkeys active in the game setup screen."
 msgstr "Tasti di scelta rapida attivi nella schermata di impostazioni di gioco."
 
 msgctxt "hotkey metadata"
-msgid "Game Setup"
-msgstr "Configuración de partida"
+msgid "Open map browser"
+msgstr "Fosgail brabhsair nam mapaichean"
 
 msgctxt "hotkey metadata"
 msgid "Open the map browser."
 msgstr "Fosgail brabhsair nam mapaichean."
 
 msgctxt "hotkey metadata"
-msgid "Open map browser"
-msgstr "Fosgail brabhsair nam mapaichean"
+msgid "In-game"
+msgstr "Durante la partida"
 
 msgctxt "hotkey metadata"
 msgid "In-game hotkeys."
 msgstr "Grad-iuchraichean am broinn a’ gheama."
 
 msgctxt "hotkey metadata"
-msgid "In-game"
-msgstr "Durante la partida"
+msgid "Destroy selected units"
+msgstr "Destruír as unidades seleccionadas"
+
+msgctxt "hotkey metadata"
+msgid "Destroy selected units."
+msgstr "Elimina as unidades que estejam selecionadas."
+
+msgctxt "hotkey metadata"
+msgid "Destroy without confirmation"
+msgstr "Megsemmisítés megerősítés nélkül"
+
+msgctxt "hotkey metadata"
+msgid "Do not ask confirmation when deleting a building/unit."
+msgstr "Ne pas demander confirmation lors de la suppression d'un bâtiment / une unité."
+
+msgctxt "hotkey metadata"
+msgid "Stop units"
+msgstr "Cuir stad air aonadan"
+
+msgctxt "hotkey metadata"
+msgid "Stop the current action."
+msgstr "Σταματείστε την τρέχουσα δράση."
+
+msgctxt "hotkey metadata"
+msgid "Back to Work"
+msgstr "తిరిగి పనిలోకి వెళ్ళు"
+
+msgctxt "hotkey metadata"
+msgid "The unit will go back to work."
+msgstr "No pedir confirmación al borrar un edificio/unidad"
+
+msgctxt "hotkey metadata"
+msgid "Unload"
+msgstr "Ausquartieren"
+
+msgctxt "hotkey metadata"
+msgid "Unload garrisoned units when a building/mechanical unit is selected."
+msgstr ""
+"Falbhaidh na h-aonadan a tha ’nan gearastan ann nuair a thèid togalach/aonad "
+"meacanaigeach a thaghadh."
+
+msgctxt "hotkey metadata"
+msgid "Unload Turrets"
+msgstr "Каравыч манаралардан бушату"
+
+msgctxt "hotkey metadata"
+msgid "Unload turreted units."
+msgstr "Dì-luchdaich na h-aonadan a tha sna turaidean."
+
+msgctxt "hotkey metadata"
+msgid "Leave Turret Point"
+msgstr "Quitter le point d'observation d'une tourelle."
+
+msgctxt "hotkey metadata"
+msgid "Order an entity to leave a turret point."
+msgstr "Διατάξτε μια οντότητα να αφήσει το σημείο του πυργίσκου."
+
+msgctxt "hotkey metadata"
+msgid "Unload unit type"
+msgstr "Вывести из гарнизона определенный тип юнитов"
+
+msgctxt "hotkey metadata"
+msgid "Modifier to unload all units of type."
+msgstr "Speciale toets om alle eenheden van een bepaald type naar buiten te sturen."
+
+msgctxt "hotkey metadata"
+msgid "Force move"
+msgstr "Forza lo spostamento"
+
+msgctxt "hotkey metadata"
+msgid "Modifier to move to a point instead of another action (e.g. gather)."
+msgstr ""
+"Modificateur permettant de se déplacer vers un point au lieu d'une autre action (par "
+"exemple, cueillir)."
+
+msgctxt "hotkey metadata"
+msgid "Force capture"
+msgstr "Kényszerített elfoglalás"
+
+msgctxt "hotkey metadata"
+msgid "Modifier to capture instead of another action (e.g. attack)."
+msgstr "Speciale toets om te veroveren in plaats van een andere actie (bijvoorbeeld aanvallen)."
+
+msgctxt "hotkey metadata"
+msgid "Force attack"
+msgstr "Принудительно атаковать"
 
 msgctxt "hotkey metadata"
 msgid "Modifier to attack instead of another action (e.g. capture)."
@@ -1795,8 +2102,8 @@ msgstr ""
 "geçirmek)."
 
 msgctxt "hotkey metadata"
-msgid "Force attack"
-msgstr "Принудительно атаковать"
+msgid "Attack Move"
+msgstr "Movimentação de ataque"
 
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove when clicking on a point."
@@ -1806,8 +2113,8 @@ msgstr ""
 "wanneer ze die onderweg tegenkomen. "
 
 msgctxt "hotkey metadata"
-msgid "Attack Move"
-msgstr "Movimentação de ataque"
+msgid "Attack Move (unit only)"
+msgstr "Movimentação de ataque (somente unidades)"
 
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove targeting only units when clicking on a point."
@@ -1817,8 +2124,24 @@ msgstr ""
 "eenheden aanvallen wanneer ze die onderweg tegenkomen."
 
 msgctxt "hotkey metadata"
-msgid "Attack Move (unit only)"
-msgstr "Movimentação de ataque (somente unidades)"
+msgid "Garrison"
+msgstr "Rach ’nad ghearastan"
+
+msgctxt "hotkey metadata"
+msgid "Modifier to garrison when clicking on building."
+msgstr "Zusatztaste, um Einheiten einzuquartieren, wenn man auf ein Gebäude klickt."
+
+msgctxt "hotkey metadata"
+msgid "Occupy Turret Point"
+msgstr "Occuper le point d'observation d'une tourelle"
+
+msgctxt "hotkey metadata"
+msgid "Modifier to occupy a turret when clicking on a turret holder."
+msgstr "Модификатор принуждает юнита занять место в гарнизоне при клике на  подходящий объект."
+
+msgctxt "hotkey metadata"
+msgid "Auto-rally point"
+msgstr "Ceann-cruinneachaidh fèin-obrachail"
 
 msgctxt "hotkey metadata"
 msgid "Modifier to set the rally point on the building itself."
@@ -1827,178 +2150,32 @@ msgstr ""
 "гарнизона."
 
 msgctxt "hotkey metadata"
-msgid "Auto-rally point"
-msgstr "Ceann-cruinneachaidh fèin-obrachail"
-
-msgctxt "hotkey metadata"
-msgid "The unit will go back to work."
-msgstr "No pedir confirmación al borrar un edificio/unidad"
-
-msgctxt "hotkey metadata"
-msgid "Back to Work"
-msgstr "తిరిగి పనిలోకి వెళ్ళు"
-
-msgctxt "hotkey metadata"
-msgid "Modifier to train units in batches."
-msgstr "Τροποποίηση προκειμένου οι μονάδες να εκπαιδεύονται σε παρτίδες."
-
-msgctxt "hotkey metadata"
-msgid "Batch production"
-msgstr "Saothrachadh ’nan grunnan"
-
-msgctxt "hotkey metadata"
-msgid ""
-"Send the selected units on attack move to the specified location after dropping "
-"resources."
-msgstr ""
-"Beveel de geselecteerde eenheden op aanvalstocht te gaan naar de aangewezen locatie "
-"nadat ze hun grondstoffen hebben afgeleverd."
-
-msgctxt "hotkey metadata"
-msgid "Call to arms"
-msgstr "Egységek fegyverbe szólítása"
-
-msgctxt "hotkey metadata"
-msgid "Modifier to capture instead of another action (e.g. attack)."
-msgstr "Speciale toets om te veroveren in plaats van een andere actie (bijvoorbeeld aanvallen)."
-
-msgctxt "hotkey metadata"
-msgid "Force capture"
-msgstr "Kényszerített elfoglalás"
-
-msgctxt "hotkey metadata"
-msgid "Modifier to deselect units when clicking group icon, instead of selecting."
-msgstr ""
-"Speciale toets om eenheden te deselecteren in plaats van te selecteren wanneer u op het"
-" icoon van de groep klikt."
-
-msgctxt "hotkey metadata"
-msgid "Deselect unit type"
-msgstr "Apartar de la escolleiꞇha un typu d’unidá"
-
-msgctxt "hotkey metadata"
-msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr "Define o cursor para a ação de sinalizar enquanto esta tecla de atalho for premida."
-
-msgctxt "hotkey metadata"
-msgid "Flare (hold)"
-msgstr "Hätäsoihtu (pidä painettuna)"
-
-msgctxt "hotkey metadata"
-msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr "Imposta il cursore su Segnale. Non serve tener premuto il tasto scelta rapida."
-
-msgctxt "hotkey metadata"
-msgid "Flare (toggle)"
-msgstr "Ativar / desativar sinalização"
-
-msgctxt "hotkey metadata"
-msgid "Modifier to put the desired trade resource to 100%."
-msgstr "Speciale toets om de handel in de gewenste grondstof naar 100% te brengen."
-
-msgctxt "hotkey metadata"
-msgid "Set trade to 100%"
-msgstr "Afitar l artículu commercial a l 100%"
-
-msgctxt "hotkey metadata"
-msgid "Modifier to garrison when clicking on building."
-msgstr "Zusatztaste, um Einheiten einzuquartieren, wenn man auf ein Gebäude klickt."
-
-msgctxt "hotkey metadata"
-msgid "Garrison"
-msgstr "Rach ’nad ghearastan"
+msgid "Guard"
+msgstr "Охороняти"
 
 msgctxt "hotkey metadata"
 msgid "Modifier to escort/guard when clicking on unit/building."
 msgstr "Zusatztaste, um eine Einheit/ein Gebäude beim Anklicken zu eskortieren/zu bewachen."
 
 msgctxt "hotkey metadata"
-msgid "Guard"
-msgstr "Охороняти"
-
-msgctxt "hotkey metadata"
-msgid "Destroy selected units."
-msgstr "Elimina as unidades que estejam selecionadas."
-
-msgctxt "hotkey metadata"
-msgid "Destroy selected units"
-msgstr "Destruír as unidades seleccionadas"
-
-msgctxt "hotkey metadata"
-msgid "Order an entity to leave a turret point."
-msgstr "Διατάξτε μια οντότητα να αφήσει το σημείο του πυργίσκου."
-
-msgctxt "hotkey metadata"
-msgid "Leave Turret Point"
-msgstr "Quitter le point d'observation d'une tourelle."
-
-msgctxt "hotkey metadata"
-msgid "Modifier to barter bunch of resources."
-msgstr "Speciale toets om een grote hoeveelheid grondstoffen te ruilen."
-
-msgctxt "hotkey metadata"
-msgid "Mass barter"
-msgstr "Suurilukuinen vaihtokauppa"
-
-msgctxt "hotkey metadata"
-msgid "Modifier to tribute bunch of resources."
-msgstr "Modificateur pour réaliser le tribut d'un ensemble de ressources."
-
-msgctxt "hotkey metadata"
-msgid "Mass tribute"
-msgstr "Suurilukuinen kunnianosoitus"
-
-msgctxt "hotkey metadata"
-msgid "Modifier to move to a point instead of another action (e.g. gather)."
-msgstr ""
-"Modificateur permettant de se déplacer vers un point au lieu d'une autre action (par "
-"exemple, cueillir)."
-
-msgctxt "hotkey metadata"
-msgid "Force move"
-msgstr "Forza lo spostamento"
-
-msgctxt "hotkey metadata"
-msgid "Do not ask confirmation when deleting a building/unit."
-msgstr "Ne pas demander confirmation lors de la suppression d'un bâtiment / une unité."
-
-msgctxt "hotkey metadata"
-msgid "Destroy without confirmation"
-msgstr "Megsemmisítés megerősítés nélkül"
-
-msgctxt "hotkey metadata"
-msgid "Modifier to occupy a turret when clicking on a turret holder."
-msgstr "Модификатор принуждает юнита занять место в гарнизоне при клике на  подходящий объект."
-
-msgctxt "hotkey metadata"
-msgid "Occupy Turret Point"
-msgstr "Occuper le point d'observation d'une tourelle"
-
-msgctxt "hotkey metadata"
-msgid "Modifier to order only one entity in selection."
-msgstr "Modyfikator umożliwiający wydanie rozkazu tylko jednej jednostce w zaznaczeniu."
-
-msgctxt "hotkey metadata"
-msgid "Order one unit"
-msgstr "Wydaj rozkaz jednej jednostce"
+msgid "Patrol"
+msgstr "Cuairteachan"
 
 msgctxt "hotkey metadata"
 msgid "Modifier to patrol a unit."
 msgstr "Speciale toets om een eenheid te laten patrouilleren."
 
 msgctxt "hotkey metadata"
-msgid "Patrol"
-msgstr "Cuairteachan"
+msgid "Repair"
+msgstr "Відремонтувати"
 
 msgctxt "hotkey metadata"
-msgid "Modifier to execute this order, then go back to the current order."
-msgstr ""
-"Speciale toets om dit bevel uit te voeren en daarna terug te gaan naar de "
-"oorspronkelijke opdracht."
+msgid "Modifier to repair when clicking on building/mechanical unit."
+msgstr "Modificador para reparar quando estiver clicando sobre um edifício / unidade mecânica."
 
 msgctxt "hotkey metadata"
-msgid "Push order in front"
-msgstr "Σπρώξτε την εντολή στη πρώτη θέση"
+msgid "Queue order"
+msgstr "Προσθήκη εντολής σε  ουρά αναμονής."
 
 msgctxt "hotkey metadata"
 msgid "Modifier to queue unit orders instead of replacing."
@@ -2007,112 +2184,84 @@ msgstr ""
 "αντικαθιστούνται."
 
 msgctxt "hotkey metadata"
-msgid "Queue order"
-msgstr "Προσθήκη εντολής σε  ουρά αναμονής."
+msgid "Push order in front"
+msgstr "Σπρώξτε την εντολή στη πρώτη θέση"
 
 msgctxt "hotkey metadata"
-msgid "Add first unit type to queue."
-msgstr "Den ersten Einheitentyp der Warteschlange hinzufügen."
+msgid "Modifier to execute this order, then go back to the current order."
+msgstr ""
+"Speciale toets om dit bevel uit te voeren en daarna terug te gaan naar de "
+"oorspronkelijke opdracht."
 
 msgctxt "hotkey metadata"
-msgid "Queue 1st unit"
-msgstr "Προσθήκης 1ης μονάδας σε ουρά αναμονής."
+msgid "Order one unit"
+msgstr "Wydaj rozkaz jednej jednostce"
 
 msgctxt "hotkey metadata"
-msgid "Add second unit type to queue."
-msgstr "Den zweiten Einheitentyp der Warteschlange hinzufügen."
+msgid "Modifier to order only one entity in selection."
+msgstr "Modyfikator umożliwiający wydanie rozkazu tylko jednej jednostce w zaznaczeniu."
 
 msgctxt "hotkey metadata"
-msgid "Queue 2nd unit"
-msgstr "Προσθήκη 2ης μονάδας σε ουρά αναμονής."
+msgid "Batch production"
+msgstr "Saothrachadh ’nan grunnan"
 
 msgctxt "hotkey metadata"
-msgid "Add third unit type to queue."
-msgstr "Den dritten Einheitentyp der Warteschlange hinzufügen."
+msgid "Modifier to train units in batches."
+msgstr "Τροποποίηση προκειμένου οι μονάδες να εκπαιδεύονται σε παρτίδες."
 
 msgctxt "hotkey metadata"
-msgid "Queue 3rd unit"
-msgstr "Προσθήκη 3ης μονάδας σε ουρά αναμονής."
+msgid "Mass barter"
+msgstr "Suurilukuinen vaihtokauppa"
 
 msgctxt "hotkey metadata"
-msgid "Add fourth unit type to queue."
-msgstr "Den vierten Einheitentyp der Warteschlange hinzufügen."
+msgid "Modifier to barter bunch of resources."
+msgstr "Speciale toets om een grote hoeveelheid grondstoffen te ruilen."
 
 msgctxt "hotkey metadata"
-msgid "Queue 4th unit"
-msgstr "Προσθήκης 4ης μονάδας σε ουρά αναμονής."
+msgid "Mass tribute"
+msgstr "Suurilukuinen kunnianosoitus"
 
 msgctxt "hotkey metadata"
-msgid "Add fivth unit type to queue."
-msgstr "Den fünften Einheitentyp der Warteschlange hinzufügen."
+msgid "Modifier to tribute bunch of resources."
+msgstr "Modificateur pour réaliser le tribut d'un ensemble de ressources."
 
 msgctxt "hotkey metadata"
-msgid "Queue 5th unit"
-msgstr "Προσθήκης 5ης μονάδας σε ουρά αναμονής."
+msgid "Set trade to 100%"
+msgstr "Afitar l artículu commercial a l 100%"
 
 msgctxt "hotkey metadata"
-msgid "Add sixth unit type to queue."
-msgstr "Den sechsten Einheitentyp der Warteschlange hinzufügen."
+msgid "Modifier to put the desired trade resource to 100%."
+msgstr "Speciale toets om de handel in de gewenste grondstof naar 100% te brengen."
 
 msgctxt "hotkey metadata"
-msgid "Queue 6th unit"
-msgstr "Προσθήκης 6ης μονάδας σε ουρά αναμονής."
+msgid "Deselect unit type"
+msgstr "Apartar de la escolleiꞇha un typu d’unidá"
 
 msgctxt "hotkey metadata"
-msgid "Add seventh unit type to queue."
-msgstr "Cuir an t-seachdamh seòrsa de dh’aonad ris a’ chiutha."
+msgid "Modifier to deselect units when clicking group icon, instead of selecting."
+msgstr ""
+"Speciale toets om eenheden te deselecteren in plaats van te selecteren wanneer u op het"
+" icoon van de groep klikt."
 
 msgctxt "hotkey metadata"
-msgid "Queue 7th unit"
-msgstr "Προσθήκης 7ης μονάδας σε ουρά αναμονής."
-
-msgctxt "hotkey metadata"
-msgid "Add eighth unit type to queue."
-msgstr "Den achten Einheitentyp der Warteschlange hinzufügen."
-
-msgctxt "hotkey metadata"
-msgid "Queue 8th unit"
-msgstr "Προσθήκης 8ης μονάδας σε ουρά αναμονής."
-
-msgctxt "hotkey metadata"
-msgid "Turn off Auto-Queue for selected structures."
-msgstr "Kytke automaattinen jonotus pois käytöstä valittujen rakenteiden osalta."
-
-msgctxt "hotkey metadata"
-msgid "Deactivate auto-queue"
-msgstr "Désactiver la mise automatique en file d'attente"
-
-msgctxt "hotkey metadata"
-msgid "Turn on Auto-Queue for selected structures."
-msgstr "Ενεργοποιήστε την Αυτόματη Σειρά Αναμονής για επιλεγμένες κατασκευές."
-
-msgctxt "hotkey metadata"
-msgid "Activate auto-queue"
-msgstr "Cuir an ciutha fèin-obrachail an gnìomh"
-
-msgctxt "hotkey metadata"
-msgid "Modifier to repair when clicking on building/mechanical unit."
-msgstr "Modificador para reparar quando estiver clicando sobre um edifício / unidade mecânica."
-
-msgctxt "hotkey metadata"
-msgid "Repair"
-msgstr "Відремонтувати"
-
-msgctxt "hotkey metadata"
-msgid "Rotate building placement preview anticlockwise."
-msgstr "Rotation de l'aperçu du bâtiment dans le sens inverse des aiguilles d'une montre."
-
-msgctxt "hotkey metadata"
-msgid "Rotate building counterclockwise"
-msgstr "Rotation du bâtiment dans le sens inverse des aigulles d'une montre"
+msgid "Rotate building clockwise"
+msgstr "Épület elforgatása az óramutató járásával megegyező irányban"
 
 msgctxt "hotkey metadata"
 msgid "Rotate building placement preview clockwise."
 msgstr "Elforgatja az elhelyezendő épületet az óramutató járásával megegyező irányban."
 
 msgctxt "hotkey metadata"
-msgid "Rotate building clockwise"
-msgstr "Épület elforgatása az óramutató járásával megegyező irányban"
+msgid "Rotate building counterclockwise"
+msgstr "Rotation du bâtiment dans le sens inverse des aigulles d'une montre"
+
+msgctxt "hotkey metadata"
+msgid "Rotate building placement preview anticlockwise."
+msgstr "Rotation de l'aperçu du bâtiment dans le sens inverse des aiguilles d'une montre."
+
+msgctxt "hotkey metadata"
+msgid "Toggle snap-to-edge"
+msgstr "Kytke reunaan kiinnittäminen päälle/pois"
 
 msgctxt "hotkey metadata"
 msgid "Modifier to align new structures with nearby existing structure."
@@ -2121,16 +2270,8 @@ msgstr ""
 "κατασκευή."
 
 msgctxt "hotkey metadata"
-msgid "Toggle snap-to-edge"
-msgstr "Kytke reunaan kiinnittäminen päälle/pois"
-
-msgctxt "hotkey metadata"
-msgid "Stop the current action."
-msgstr "Σταματείστε την τρέχουσα δράση."
-
-msgctxt "hotkey metadata"
-msgid "Stop units"
-msgstr "Cuir stad air aonadan"
+msgid "Toggle default formation"
+msgstr "Attiva/Disattiva la formazione predefinita."
 
 msgctxt "hotkey metadata"
 msgid ""
@@ -2141,102 +2282,124 @@ msgstr ""
 "σχηματισμου που χρησιμοποιήθηκε (προκαθορισμένο σε 'κουτί')."
 
 msgctxt "hotkey metadata"
-msgid "Toggle default formation"
-msgstr "Attiva/Disattiva la formazione predefinita."
+msgid "Queue 1st unit"
+msgstr "Προσθήκης 1ης μονάδας σε ουρά αναμονής."
 
 msgctxt "hotkey metadata"
-msgid "Unload garrisoned units when a building/mechanical unit is selected."
+msgid "Add first unit type to queue."
+msgstr "Den ersten Einheitentyp der Warteschlange hinzufügen."
+
+msgctxt "hotkey metadata"
+msgid "Queue 2nd unit"
+msgstr "Προσθήκη 2ης μονάδας σε ουρά αναμονής."
+
+msgctxt "hotkey metadata"
+msgid "Add second unit type to queue."
+msgstr "Den zweiten Einheitentyp der Warteschlange hinzufügen."
+
+msgctxt "hotkey metadata"
+msgid "Queue 3rd unit"
+msgstr "Προσθήκη 3ης μονάδας σε ουρά αναμονής."
+
+msgctxt "hotkey metadata"
+msgid "Add third unit type to queue."
+msgstr "Den dritten Einheitentyp der Warteschlange hinzufügen."
+
+msgctxt "hotkey metadata"
+msgid "Queue 4th unit"
+msgstr "Προσθήκης 4ης μονάδας σε ουρά αναμονής."
+
+msgctxt "hotkey metadata"
+msgid "Add fourth unit type to queue."
+msgstr "Den vierten Einheitentyp der Warteschlange hinzufügen."
+
+msgctxt "hotkey metadata"
+msgid "Queue 5th unit"
+msgstr "Προσθήκης 5ης μονάδας σε ουρά αναμονής."
+
+msgctxt "hotkey metadata"
+msgid "Add fivth unit type to queue."
+msgstr "Den fünften Einheitentyp der Warteschlange hinzufügen."
+
+msgctxt "hotkey metadata"
+msgid "Queue 6th unit"
+msgstr "Προσθήκης 6ης μονάδας σε ουρά αναμονής."
+
+msgctxt "hotkey metadata"
+msgid "Add sixth unit type to queue."
+msgstr "Den sechsten Einheitentyp der Warteschlange hinzufügen."
+
+msgctxt "hotkey metadata"
+msgid "Queue 7th unit"
+msgstr "Προσθήκης 7ης μονάδας σε ουρά αναμονής."
+
+msgctxt "hotkey metadata"
+msgid "Add seventh unit type to queue."
+msgstr "Cuir an t-seachdamh seòrsa de dh’aonad ris a’ chiutha."
+
+msgctxt "hotkey metadata"
+msgid "Queue 8th unit"
+msgstr "Προσθήκης 8ης μονάδας σε ουρά αναμονής."
+
+msgctxt "hotkey metadata"
+msgid "Add eighth unit type to queue."
+msgstr "Den achten Einheitentyp der Warteschlange hinzufügen."
+
+msgctxt "hotkey metadata"
+msgid "Activate auto-queue"
+msgstr "Cuir an ciutha fèin-obrachail an gnìomh"
+
+msgctxt "hotkey metadata"
+msgid "Turn on Auto-Queue for selected structures."
+msgstr "Ενεργοποιήστε την Αυτόματη Σειρά Αναμονής για επιλεγμένες κατασκευές."
+
+msgctxt "hotkey metadata"
+msgid "Deactivate auto-queue"
+msgstr "Désactiver la mise automatique en file d'attente"
+
+msgctxt "hotkey metadata"
+msgid "Turn off Auto-Queue for selected structures."
+msgstr "Kytke automaattinen jonotus pois käytöstä valittujen rakenteiden osalta."
+
+msgctxt "hotkey metadata"
+msgid "Flare (hold)"
+msgstr "Hätäsoihtu (pidä painettuna)"
+
+msgctxt "hotkey metadata"
+msgid "Set the cursor to Flare while this hotkey is pressed."
+msgstr "Define o cursor para a ação de sinalizar enquanto esta tecla de atalho for premida."
+
+msgctxt "hotkey metadata"
+msgid "Flare (toggle)"
+msgstr "Ativar / desativar sinalização"
+
+msgctxt "hotkey metadata"
+msgid "Set the cursor to Flare. The hotkey can be released."
+msgstr "Imposta il cursore su Segnale. Non serve tener premuto il tasto scelta rapida."
+
+msgctxt "hotkey metadata"
+msgid "Call to arms"
+msgstr "Egységek fegyverbe szólítása"
+
+msgctxt "hotkey metadata"
+msgid ""
+"Send the selected units on attack move to the specified location after dropping "
+"resources."
 msgstr ""
-"Falbhaidh na h-aonadan a tha ’nan gearastan ann nuair a thèid togalach/aonad "
-"meacanaigeach a thaghadh."
-
-msgctxt "hotkey metadata"
-msgid "Unload"
-msgstr "Ausquartieren"
-
-msgctxt "hotkey metadata"
-msgid "Unload turreted units."
-msgstr "Dì-luchdaich na h-aonadan a tha sna turaidean."
-
-msgctxt "hotkey metadata"
-msgid "Unload Turrets"
-msgstr "Каравыч манаралардан бушату"
-
-msgctxt "hotkey metadata"
-msgid "Modifier to unload all units of type."
-msgstr "Speciale toets om alle eenheden van een bepaald type naar buiten te sturen."
-
-msgctxt "hotkey metadata"
-msgid "Unload unit type"
-msgstr "Вывести из гарнизона определенный тип юнитов"
-
-msgctxt "hotkey metadata"
-msgid "Hotkeys for the in-game user interface."
-msgstr "Grad-iuchraichean air eadar-aghaidh a’ chleachdaiche am broinn geama."
+"Beveel de geselecteerde eenheden op aanvalstocht te gaan naar de aangewezen locatie "
+"nadat ze hun grondstoffen hebben afgeleverd."
 
 msgctxt "hotkey metadata"
 msgid "In-game GUI"
 msgstr "Εμφάνιση περιβάλλον χρήστη εντός παιχνιδιού."
 
 msgctxt "hotkey metadata"
-msgid "Toggle ceasefire counter."
-msgstr "Attiva/Disattiva il contatore del cessate il fuoco."
+msgid "Hotkeys for the in-game user interface."
+msgstr "Grad-iuchraichean air eadar-aghaidh a’ chleachdaiche am broinn geama."
 
 msgctxt "hotkey metadata"
-msgid "Toggle ceasefire counter"
-msgstr "Attiva/Disattiva il contatore del cessate il fuoco."
-
-msgctxt "hotkey metadata"
-msgid "Toggle chat window."
-msgstr "Megjeleníti vagy elrejti a csevegőablakot."
-
-msgctxt "hotkey metadata"
-msgid "Toggle chat"
-msgstr "Εμφάνιση/Απόκρυψη συνομιλίας ( τσατ )"
-
-msgctxt "hotkey metadata"
-msgid "Toggle the civilization info."
-msgstr "Afficher les informations sur la civilisation."
-
-msgctxt "hotkey metadata"
-msgid "Toggle civ info"
-msgstr "Mostrar / ocultar informação da civilização"
-
-msgctxt "hotkey metadata"
-msgid "Toggle “frames per second” counter."
-msgstr "Megjeleníti vagy elrejti a „képkocka per másodperc” (FPS) számlálót."
-
-msgctxt "hotkey metadata"
-msgid "Toggle FPS counter"
-msgstr "FPS-számláló megjelenítése / elrejtése"
-
-msgctxt "hotkey metadata"
-msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Mostrar a sala de espera para partidas de varios xogadores nunha xanela de diálogo."
-
-msgctxt "hotkey metadata"
-msgid "Toggle MP lobby"
-msgstr "Mostrar / ocultar sala de espera multijogador"
-
-msgctxt "hotkey metadata"
-msgid "Toggle chat window and select the previous private chat partner."
-msgstr ""
-"Toglaich uinneag na cabadaich agus tagh an neach leis an do rinn thu cabadaich "
-"phrìobhaideach roimhe."
-
-msgctxt "hotkey metadata"
-msgid "Toggle private chat"
-msgstr "Εμφάνιση/Απόκρυψη προσωπικής  συνομιλίας "
-
-msgctxt "hotkey metadata"
-msgid "Load the latest quicksaved game. Does nothing if no quicksaves exist."
-msgstr ""
-"Luchdaich an geama mu dheireadh air a ghrad-shàbhaladh. Cha dèan seo dad mura deach "
-"grad-shàbhaladh a dhèanamh."
-
-msgctxt "hotkey metadata"
-msgid "Quickload"
-msgstr "Rýchle načítanie (quickload)"
+msgid "Quicksave"
+msgstr "Rýchle uloženie (quicksave)"
 
 msgctxt "hotkey metadata"
 msgid ""
@@ -2248,112 +2411,172 @@ msgstr ""
 "Η Γρήγορη Αποθήκευση (quicksave) πάντα αντικαθιστά την προηγούμενη αποθήκευση."
 
 msgctxt "hotkey metadata"
-msgid "Quicksave"
-msgstr "Rýchle uloženie (quicksave)"
+msgid "Quickload"
+msgstr "Rýchle načítanie (quickload)"
 
 msgctxt "hotkey metadata"
-msgid "Toggle current display of computer time."
-msgstr "Attiva/Disattiva la visualizzazione attuale dell'ora del computer."
-
-msgctxt "hotkey metadata"
-msgid "Toggle real-time overlay"
-msgstr "Εμφάνιση/Απόκρυψη παραθύρου επικάλυψης  πραγματικού χρόνου"
-
-msgctxt "hotkey metadata"
-msgid "Toggle developer commands panel."
-msgstr "Attiva/Disattiva il pannello dei comandi per gli sviluppatori."
-
-msgctxt "hotkey metadata"
-msgid "Toggle dev overlay"
-msgstr "Εναλλαγή επικάλυψης προγραμματιστή/τριας."
-
-msgctxt "hotkey metadata"
-msgid "Toggle diplomacy colors."
-msgstr "Afficher / masquer les couleurs diplomatiques."
-
-msgctxt "hotkey metadata"
-msgid "Toggle diplomacy colors"
-msgstr "Afficher / masquer les couleurs diplomatiques"
-
-msgctxt "hotkey metadata"
-msgid "Toggle in-game barter/trade page."
-msgstr "Εμφάνιση / Απόκρυψη του παραθύρου παζαρέματος / εμπορίκων συναλλαγών"
-
-msgctxt "hotkey metadata"
-msgid "Toggle barter"
-msgstr "Kereskedelmi ablak megnyitása / bezárása"
-
-msgctxt "hotkey metadata"
-msgid "Toggle in-game diplomacy page."
-msgstr "Mostra ou oculta a página de diplomacia durante um jogo."
-
-msgctxt "hotkey metadata"
-msgid "Toggle diplomacy"
-msgstr "Diplomáciai ablak megnyitása / bezárása"
-
-msgctxt "hotkey metadata"
-msgid "Toggle in-game menu."
-msgstr "Toglaich an clàr-taice am broinn a’ gheama."
-
-msgctxt "hotkey metadata"
-msgid "Toggle in-game menu"
-msgstr "Mostrar / ocultar menu durante o jogo"
-
-msgctxt "hotkey metadata"
-msgid "Toggle in-game objectives page."
-msgstr "Ativa ou desativa a página de objetivos dentro do jogo."
-
-msgctxt "hotkey metadata"
-msgid "Toggle objectives"
-msgstr "Afficher / masquer les objectifs"
-
-msgctxt "hotkey metadata"
-msgid "Toggle visibility of the in-game user interface."
-msgstr "Toglaich am faic thu eadar-aghaidh a’ chleachdaiche am broinn geama gus nach fhaic."
+msgid "Load the latest quicksaved game. Does nothing if no quicksaves exist."
+msgstr ""
+"Luchdaich an geama mu dheireadh air a ghrad-shàbhaladh. Cha dèan seo dad mura deach "
+"grad-shàbhaladh a dhèanamh."
 
 msgctxt "hotkey metadata"
 msgid "Toggle GUI visibility"
 msgstr "Grafiksel Kullanıcı Arayüzünün (GUI) görünülebilirliğini açma/kapama."
 
 msgctxt "hotkey metadata"
-msgid "Toggle in-game tutorial panel."
-msgstr "Εμφάνιση /Απόκρυψη του  του παραθύρου εκμάθησης εντός παιχνιδιού."
+msgid "Toggle visibility of the in-game user interface."
+msgstr "Toglaich am faic thu eadar-aghaidh a’ chleachdaiche am broinn geama gus nach fhaic."
+
+msgctxt "hotkey metadata"
+msgid "Toggle chat"
+msgstr "Εμφάνιση/Απόκρυψη συνομιλίας ( τσατ )"
+
+msgctxt "hotkey metadata"
+msgid "Toggle chat window."
+msgstr "Megjeleníti vagy elrejti a csevegőablakot."
+
+msgctxt "hotkey metadata"
+msgid "Toggle team chat"
+msgstr "Csapatcsevegés megjelenítése / elrejtése"
+
+msgctxt "hotkey metadata"
+msgid "Toggle chat window in team chat mode."
+msgstr "Přepnout na okno pro vedení rozhovoru v režimu skupinového vedení rozhovoru."
+
+msgctxt "hotkey metadata"
+msgid "Toggle private chat"
+msgstr "Εμφάνιση/Απόκρυψη προσωπικής  συνομιλίας "
+
+msgctxt "hotkey metadata"
+msgid "Toggle chat window and select the previous private chat partner."
+msgstr ""
+"Toglaich uinneag na cabadaich agus tagh an neach leis an do rinn thu cabadaich "
+"phrìobhaideach roimhe."
+
+msgctxt "hotkey metadata"
+msgid "Toggle summary"
+msgstr "Összesítés megjelenítése / elrejtése"
+
+msgctxt "hotkey metadata"
+msgid "Toggle in-game summary."
+msgstr "Megjeleníti vagy elrejti a játékon belüli összesítést."
+
+msgctxt "hotkey metadata"
+msgid "Toggle MP lobby"
+msgstr "Mostrar / ocultar sala de espera multijogador"
+
+msgctxt "hotkey metadata"
+msgid "Show the multiplayer lobby in a dialog window."
+msgstr "Mostrar a sala de espera para partidas de varios xogadores nunha xanela de diálogo."
+
+msgctxt "hotkey metadata"
+msgid "Toggle structure tree"
+msgstr "Afficher / masquer l'arbre des bâtiments."
+
+msgctxt "hotkey metadata"
+msgid "Toggle the structure tree."
+msgstr "Attiva/Disattiva l'albero delle costruzioni."
+
+msgctxt "hotkey metadata"
+msgid "Toggle civ info"
+msgstr "Mostrar / ocultar informação da civilização"
+
+msgctxt "hotkey metadata"
+msgid "Toggle the civilization info."
+msgstr "Afficher les informations sur la civilisation."
+
+msgctxt "hotkey metadata"
+msgid "Toggle in-game menu"
+msgstr "Mostrar / ocultar menu durante o jogo"
+
+msgctxt "hotkey metadata"
+msgid "Toggle in-game menu."
+msgstr "Toglaich an clàr-taice am broinn a’ gheama."
+
+msgctxt "hotkey metadata"
+msgid "Toggle diplomacy"
+msgstr "Diplomáciai ablak megnyitása / bezárása"
+
+msgctxt "hotkey metadata"
+msgid "Toggle in-game diplomacy page."
+msgstr "Mostra ou oculta a página de diplomacia durante um jogo."
+
+msgctxt "hotkey metadata"
+msgid "Toggle barter"
+msgstr "Kereskedelmi ablak megnyitása / bezárása"
+
+msgctxt "hotkey metadata"
+msgid "Toggle in-game barter/trade page."
+msgstr "Εμφάνιση / Απόκρυψη του παραθύρου παζαρέματος / εμπορίκων συναλλαγών"
+
+msgctxt "hotkey metadata"
+msgid "Toggle objectives"
+msgstr "Afficher / masquer les objectifs"
+
+msgctxt "hotkey metadata"
+msgid "Toggle in-game objectives page."
+msgstr "Ativa ou desativa a página de objetivos dentro do jogo."
 
 msgctxt "hotkey metadata"
 msgid "Toggle tutorial"
 msgstr "Εμφάνιση/Απόκρυψη οδηγού εκμάθησης"
 
 msgctxt "hotkey metadata"
-msgid "Toggle highlight of guarded units."
-msgstr "Attiva/Disattiva l'evidenziazione delle unità sorvegliate."
+msgid "Toggle in-game tutorial panel."
+msgstr "Εμφάνιση /Απόκρυψη του  του παραθύρου εκμάθησης εντός παιχνιδιού."
 
 msgctxt "hotkey metadata"
-msgid "Toggle guarded highlight"
-msgstr "Εμφάνιση/Απόκρυψη επισήμανσης μονάδα; που προστατέυεται."
+msgid "Toggle FPS counter"
+msgstr "FPS-számláló megjelenítése / elrejtése"
 
 msgctxt "hotkey metadata"
-msgid "Toggle highlight of guarding units."
-msgstr "Attiva/Disattiva l'evidenziazione delle unità di guardia."
+msgid "Toggle “frames per second” counter."
+msgstr "Megjeleníti vagy elrejti a „képkocka per másodperc” (FPS) számlálót."
 
 msgctxt "hotkey metadata"
-msgid "Toggle guarding highlight"
-msgstr "Attiva/Disattiva l'evidenziazione della protezione"
+msgid "Toggle real-time overlay"
+msgstr "Εμφάνιση/Απόκρυψη παραθύρου επικάλυψης  πραγματικού χρόνου"
 
 msgctxt "hotkey metadata"
-msgid "Delete the saved game (in the save/load windows)."
-msgstr "Διαγραφή του αποθηκευμένου παιχνιδιού( στο παράθυρο αποθήκευση/φόρτωση)."
+msgid "Toggle current display of computer time."
+msgstr "Attiva/Disattiva la visualizzazione attuale dell'ora del computer."
 
 msgctxt "hotkey metadata"
-msgid "Delete saved game"
-msgstr "Διαγραφή  αποθηκευμένου παιχνιδιού"
+msgid "Toggle game-time overlay"
+msgstr "Εναλλαγή παραθύρου επικάλυψης του χρόνου διάκρειας παιχνιδιού"
 
 msgctxt "hotkey metadata"
-msgid "Don't ask for confirmation when deleting a saved game."
-msgstr "Ne pas demander de confirmation à la suppression d'une parte sauvegardée."
+msgid "Shows the game time elapsed since the game started."
+msgstr "Εμφανίζει τον χρόνο παιχνιδιού που έχει περάσει απο όταν ξεκινήσατε το παιχνίδι."
 
 msgctxt "hotkey metadata"
-msgid "Delete without confirmation"
-msgstr "Esmemorecer in sin confirmacion"
+msgid "Toggle ceasefire counter"
+msgstr "Attiva/Disattiva il contatore del cessate il fuoco."
+
+msgctxt "hotkey metadata"
+msgid "Toggle ceasefire counter."
+msgstr "Attiva/Disattiva il contatore del cessate il fuoco."
+
+msgctxt "hotkey metadata"
+msgid "Toggle diplomacy colors"
+msgstr "Afficher / masquer les couleurs diplomatiques"
+
+msgctxt "hotkey metadata"
+msgid "Toggle diplomacy colors."
+msgstr "Afficher / masquer les couleurs diplomatiques."
+
+msgctxt "hotkey metadata"
+msgid "Toggle unit silhouettes"
+msgstr "Afficher / masquer les silhouettes des unités. "
+
+msgctxt "hotkey metadata"
+msgid "Toggle unit silhouettes."
+msgstr "Megjeleníti vagy elrejti az egységek sziluettjét."
+
+msgctxt "hotkey metadata"
+msgid "Toggle status bars"
+msgstr "Állapotsávok megjelenítése / elrejtése"
 
 msgctxt "hotkey metadata"
 msgid ""
@@ -2365,26 +2588,24 @@ msgstr ""
 "thaghadh)."
 
 msgctxt "hotkey metadata"
-msgid "Toggle status bars"
-msgstr "Állapotsávok megjelenítése / elrejtése"
+msgid "Toggle guarding highlight"
+msgstr "Attiva/Disattiva l'evidenziazione della protezione"
 
 msgctxt "hotkey metadata"
-msgid "Activate fast-forward mode. Must have activated timewarp."
-msgstr ""
-"Hızlı ileri alma modunu etkinleştirme. Etkinleştirilmiş bir zaman akış değiştiricisinin"
-" olması gerekiyor. "
+msgid "Toggle highlight of guarding units."
+msgstr "Attiva/Disattiva l'evidenziazione delle unità di guardia."
 
 msgctxt "hotkey metadata"
-msgid "Fast-forward (timewarp)"
-msgstr "Przewijanie do przodu (przesunięcie w czasie)"
+msgid "Toggle guarded highlight"
+msgstr "Εμφάνιση/Απόκρυψη επισήμανσης μονάδα; που προστατέυεται."
 
 msgctxt "hotkey metadata"
-msgid "Rewind time. Must have activated timewarp."
-msgstr "Rebobina o tempo. Tem de se ter ativada a opção \"Modo de viagem no tempo\"."
+msgid "Toggle highlight of guarded units."
+msgstr "Attiva/Disattiva l'evidenziazione delle unità sorvegliate."
 
 msgctxt "hotkey metadata"
-msgid "Rewind (timewarp)"
-msgstr "Przewijanie do tyłu (przesunięcie w czasie)"
+msgid "Toggle attack ranges"
+msgstr "Mostrar / ocultar alcance de ataque"
 
 msgctxt "hotkey metadata"
 msgid "Toggle display of attack range overlays of selected defensive structures."
@@ -2393,8 +2614,8 @@ msgstr ""
 "togalaichean dìonadach a thagh thu."
 
 msgctxt "hotkey metadata"
-msgid "Toggle attack ranges"
-msgstr "Mostrar / ocultar alcance de ataque"
+msgid "Toggle aura ranges"
+msgstr "Aura hatótávolságának megjelenítése / elrejtése"
 
 msgctxt "hotkey metadata"
 msgid "Toggle display of aura range overlays of selected units and structures."
@@ -2403,8 +2624,8 @@ msgstr ""
 "togalaichean a thagh thu."
 
 msgctxt "hotkey metadata"
-msgid "Toggle aura ranges"
-msgstr "Aura hatótávolságának megjelenítése / elrejtése"
+msgid "Toggle heal ranges"
+msgstr "Gyógyítás hatótávolságának megjelenítése / elrejtése"
 
 msgctxt "hotkey metadata"
 msgid "Toggle display of heal range overlays of selected units."
@@ -2413,400 +2634,398 @@ msgstr ""
 "sélectionnées. "
 
 msgctxt "hotkey metadata"
-msgid "Toggle heal ranges"
-msgstr "Gyógyítás hatótávolságának megjelenítése / elrejtése"
+msgid "Toggle dev overlay"
+msgstr "Εναλλαγή επικάλυψης προγραμματιστή/τριας."
 
 msgctxt "hotkey metadata"
-msgid "Toggle unit silhouettes."
-msgstr "Megjeleníti vagy elrejti az egységek sziluettjét."
+msgid "Toggle developer commands panel."
+msgstr "Attiva/Disattiva il pannello dei comandi per gli sviluppatori."
 
 msgctxt "hotkey metadata"
-msgid "Toggle unit silhouettes"
-msgstr "Afficher / masquer les silhouettes des unités. "
+msgid "Fast-forward (timewarp)"
+msgstr "Przewijanie do przodu (przesunięcie w czasie)"
 
 msgctxt "hotkey metadata"
-msgid "Toggle the structure tree."
-msgstr "Attiva/Disattiva l'albero delle costruzioni."
+msgid "Activate fast-forward mode. Must have activated timewarp."
+msgstr ""
+"Hızlı ileri alma modunu etkinleştirme. Etkinleştirilmiş bir zaman akış değiştiricisinin"
+" olması gerekiyor. "
 
 msgctxt "hotkey metadata"
-msgid "Toggle structure tree"
-msgstr "Afficher / masquer l'arbre des bâtiments."
+msgid "Rewind (timewarp)"
+msgstr "Przewijanie do tyłu (przesunięcie w czasie)"
 
 msgctxt "hotkey metadata"
-msgid "Toggle in-game summary."
-msgstr "Megjeleníti vagy elrejti a játékon belüli összesítést."
+msgid "Rewind time. Must have activated timewarp."
+msgstr "Rebobina o tempo. Tem de se ter ativada a opção \"Modo de viagem no tempo\"."
 
 msgctxt "hotkey metadata"
-msgid "Toggle summary"
-msgstr "Összesítés megjelenítése / elrejtése"
+msgid "Delete saved game"
+msgstr "Διαγραφή  αποθηκευμένου παιχνιδιού"
 
 msgctxt "hotkey metadata"
-msgid "Toggle chat window in team chat mode."
-msgstr "Přepnout na okno pro vedení rozhovoru v režimu skupinového vedení rozhovoru."
+msgid "Delete the saved game (in the save/load windows)."
+msgstr "Διαγραφή του αποθηκευμένου παιχνιδιού( στο παράθυρο αποθήκευση/φόρτωση)."
 
 msgctxt "hotkey metadata"
-msgid "Toggle team chat"
-msgstr "Csapatcsevegés megjelenítése / elrejtése"
+msgid "Delete without confirmation"
+msgstr "Esmemorecer in sin confirmacion"
 
 msgctxt "hotkey metadata"
-msgid "Shows the game time elapsed since the game started."
-msgstr "Εμφανίζει τον χρόνο παιχνιδιού που έχει περάσει απο όταν ξεκινήσατε το παιχνίδι."
-
-msgctxt "hotkey metadata"
-msgid "Toggle game-time overlay"
-msgstr "Εναλλαγή παραθύρου επικάλυψης του χρόνου διάκρειας παιχνιδιού"
-
-msgctxt "hotkey metadata"
-msgid "Hotkeys relating to modifying unit selection."
-msgstr "Tasti di scelta rapida relativi alla modifica della selezione delle unità."
+msgid "Don't ask for confirmation when deleting a saved game."
+msgstr "Ne pas demander de confirmation à la suppression d'une parte sauvegardée."
 
 msgctxt "hotkey metadata"
 msgid "Selecting Units"
 msgstr "Selecionando Unidades"
 
 msgctxt "hotkey metadata"
-msgid "Add units to selection."
-msgstr "További egységek hozzáadása a kijelöléshez"
-
-msgctxt "hotkey metadata"
-msgid "Add to selection"
-msgstr "Aggregar a la escolleiꞇha"
-
-msgctxt "hotkey metadata"
-msgid "Un-select all units and cancel building placement."
-msgstr "Apartar de la escolleiꞇha a todɐlɐs unidades ou incaboxar l assentamiento d’un edificio."
+msgid "Hotkeys relating to modifying unit selection."
+msgstr "Tasti di scelta rapida relativi alla modifica della selezione delle unità."
 
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
 msgstr "Incaboxare la escolleiꞇha"
 
 msgctxt "hotkey metadata"
-msgid "Add Control Group 1 to the current selection."
-msgstr "Hozzáadja az 1. irányítható csoportot az aktuális kijelöléshez."
+msgid "Un-select all units and cancel building placement."
+msgstr "Apartar de la escolleiꞇha a todɐlɐs unidades ou incaboxar l assentamiento d’un edificio."
 
 msgctxt "hotkey metadata"
-msgid "Add Control Group 1"
-msgstr "Az 1. irányítható csoport hozzáadása"
+msgid "Add to selection"
+msgstr "Aggregar a la escolleiꞇha"
 
 msgctxt "hotkey metadata"
-msgid "Add Control Group 10 to the current selection."
-msgstr "Hozzáadja a 10. irányítható csoportot az aktuális kijelöléshez."
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 10"
-msgstr "A 10. irányítható csoport hozzáadása"
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 2 to the current selection."
-msgstr "Hozzáadja a 2. irányítható csoportot az aktuális kijelöléshez."
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 2"
-msgstr "A 2. irányítható csoport hozzáadása"
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 3 to the current selection."
-msgstr "Hozzáadja a 3. irányítható csoportot az aktuális kijelöléshez."
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 3"
-msgstr "A 3. irányítható csoport hozzáadása"
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 4 to the current selection."
-msgstr "Hozzáadja a 4. irányítható csoportot az aktuális kijelöléshez."
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 4"
-msgstr "A 4. irányítható csoport hozzáadása"
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 5 to the current selection."
-msgstr "Hozzáadja az 5. irányítható csoportot az aktuális kijelöléshez."
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 5"
-msgstr "Az 5. irányítható csoport hozzáadása"
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 6 to the current selection."
-msgstr "Hozzáadja a 6. irányítható csoportot az aktuális kijelöléshez."
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 6"
-msgstr "A 6. irányítható csoport hozzáadása"
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 7 to the current selection."
-msgstr "Hozzáadja a 7. irányítható csoportot az aktuális kijelöléshez."
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 7"
-msgstr "A 7. irányítható csoport hozzáadása"
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 8 to the current selection."
-msgstr "Hozzáadja a 8. irányítható csoportot az aktuális kijelöléshez."
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 8"
-msgstr "A 8. irányítható csoport hozzáadása"
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 9 to the current selection."
-msgstr "Hozzáadja a 9. irányítható csoportot az aktuális kijelöléshez."
-
-msgctxt "hotkey metadata"
-msgid "Add Control Group 9"
-msgstr "A 9. irányítható csoport hozzáadása"
-
-msgctxt "hotkey metadata"
-msgid "Save current selection as Control Group 1."
-msgstr "Az aktuális kijelölés elmentésével létrehozza az 1. irányítható csoportot."
-
-msgctxt "hotkey metadata"
-msgid "Set Control Group 1"
-msgstr "Az 1. irányítható csoport létrehozása"
-
-msgctxt "hotkey metadata"
-msgid "Save current selection as Control Group 10."
-msgstr "Az aktuális kijelölés elmentésével létrehozza a 10. irányítható csoportot."
-
-msgctxt "hotkey metadata"
-msgid "Set Control Group 10"
-msgstr "A 10. irányítható csoport létrehozása"
-
-msgctxt "hotkey metadata"
-msgid "Save current selection as Control Group 2."
-msgstr "Az aktuális kijelölés elmentésével létrehozza a 2. irányítható csoportot."
-
-msgctxt "hotkey metadata"
-msgid "Set Control Group 2"
-msgstr "A 2. irányítható csoport létrehozása"
-
-msgctxt "hotkey metadata"
-msgid "Save current selection as Control Group 3."
-msgstr "Az aktuális kijelölés elmentésével létrehozza a 3. irányítható csoportot."
-
-msgctxt "hotkey metadata"
-msgid "Set Control Group 3"
-msgstr "A 3. irányítható csoport létrehozása"
-
-msgctxt "hotkey metadata"
-msgid "Save current selection as Control Group 4."
-msgstr "Az aktuális kijelölés elmentésével létrehozza a 4. irányítható csoportot."
-
-msgctxt "hotkey metadata"
-msgid "Set Control Group 4"
-msgstr "A 4. irányítható csoport létrehozása"
-
-msgctxt "hotkey metadata"
-msgid "Save current selection as Control Group 5."
-msgstr "Az aktuális kijelölés elmentésével létrehozza az 5. irányítható csoportot."
-
-msgctxt "hotkey metadata"
-msgid "Set Control Group 5"
-msgstr "Az 5. irányítható csoport létrehozása"
-
-msgctxt "hotkey metadata"
-msgid "Save current selection as Control Group 6."
-msgstr "Az aktuális kijelölés elmentésével létrehozza a 6. irányítható csoportot."
-
-msgctxt "hotkey metadata"
-msgid "Set Control Group 6"
-msgstr "A 6. irányítható csoport létrehozása"
-
-msgctxt "hotkey metadata"
-msgid "Save current selection as Control Group 7."
-msgstr "Az aktuális kijelölés elmentésével létrehozza a 7. irányítható csoportot."
-
-msgctxt "hotkey metadata"
-msgid "Set Control Group 7"
-msgstr "A 7. irányítható csoport létrehozása"
-
-msgctxt "hotkey metadata"
-msgid "Save current selection as Control Group 8."
-msgstr "Az aktuális kijelölés elmentésével létrehozza a 8. irányítható csoportot."
-
-msgctxt "hotkey metadata"
-msgid "Set Control Group 8"
-msgstr "A 8. irányítható csoport létrehozása"
-
-msgctxt "hotkey metadata"
-msgid "Save current selection as Control Group 9."
-msgstr "Az aktuális kijelölés elmentésével létrehozza a 9. irányítható csoportot."
-
-msgctxt "hotkey metadata"
-msgid "Set Control Group 9"
-msgstr "A 9. irányítható csoport létrehozása"
-
-msgctxt "hotkey metadata"
-msgid "Change the current selection to Control Group 1."
-msgstr "Cambia la selezione corrente al Gruppo di Controllo 1."
-
-msgctxt "hotkey metadata"
-msgid "Select Control Group 1"
-msgstr "Selezionare il Gruppo di controllo 1"
-
-msgctxt "hotkey metadata"
-msgid "Change the current selection to Control Group 10."
-msgstr "Cambia la selezione corrente in Gruppo di controllo 10."
-
-msgctxt "hotkey metadata"
-msgid "Select Control Group 10"
-msgstr "A 10. irányítható csoport kijelölése"
-
-msgctxt "hotkey metadata"
-msgid "Change the current selection to Control Group 2."
-msgstr "Cambia la selezione corrente al Gruppo di Controllo 2."
-
-msgctxt "hotkey metadata"
-msgid "Select Control Group 2"
-msgstr "Selezionare il Gruppo di controllo 2"
-
-msgctxt "hotkey metadata"
-msgid "Change the current selection to Control Group 3."
-msgstr "Cambia la selezione corrente al Gruppo di Controllo 3."
-
-msgctxt "hotkey metadata"
-msgid "Select Control Group 3"
-msgstr "Selezionare il Gruppo di controllo 3"
-
-msgctxt "hotkey metadata"
-msgid "Change the current selection to Control Group 4."
-msgstr "Cambia la selezione corrente al Gruppo di Controllo 4."
-
-msgctxt "hotkey metadata"
-msgid "Select Control Group 4"
-msgstr "Selezionare il Gruppo di controllo 4"
-
-msgctxt "hotkey metadata"
-msgid "Change the current selection to Control Group 5."
-msgstr "Cambia la selezione corrente al Gruppo di Controllo 5."
-
-msgctxt "hotkey metadata"
-msgid "Select Control Group 5"
-msgstr "Selezionare il Gruppo di controllo 5"
-
-msgctxt "hotkey metadata"
-msgid "Change the current selection to Control Group 6."
-msgstr "Cambia la selezione corrente al Gruppo di Controllo 6."
-
-msgctxt "hotkey metadata"
-msgid "Select Control Group 6"
-msgstr "Selezionare il Gruppo di controllo 6"
-
-msgctxt "hotkey metadata"
-msgid "Change the current selection to Control Group 7."
-msgstr "Cambia la selezione corrente al Gruppo di Controllo 7."
-
-msgctxt "hotkey metadata"
-msgid "Select Control Group 7"
-msgstr "Selezionare il Gruppo di controllo 7"
-
-msgctxt "hotkey metadata"
-msgid "Change the current selection to Control Group 8."
-msgstr "Cambia la selezione corrente al Gruppo di Controllo 8."
-
-msgctxt "hotkey metadata"
-msgid "Select Control Group 8"
-msgstr "Selezionare il Gruppo di controllo 8"
-
-msgctxt "hotkey metadata"
-msgid "Change the current selection to Control Group 9."
-msgstr "Cambia la selezione corrente al Gruppo di Controllo 9."
-
-msgctxt "hotkey metadata"
-msgid "Select Control Group 9"
-msgstr "Selezionare il Gruppo di controllo 9"
-
-msgctxt "hotkey metadata"
-msgid "Select next idle builder."
-msgstr "Seleciona o próximo construtor sem uma tarefa ativa."
-
-msgctxt "hotkey metadata"
-msgid "Select next idle builder"
-msgstr "Hautatu egonean dagoen hurrengo eraikitzailea"
-
-msgctxt "hotkey metadata"
-msgid "Select only idle units."
-msgstr "Sélectionner uniquement les unités inactives."
-
-msgctxt "hotkey metadata"
-msgid "Select only idle units"
-msgstr "Sélectionner uniquement les unités inactives"
-
-msgctxt "hotkey metadata"
-msgid "Select next idle unit."
-msgstr "Seleccionar la siguiente unidad inactiva."
-
-msgctxt "hotkey metadata"
-msgid "Select next idle unit"
-msgstr "Selezionare l'unità inattiva successiva."
-
-msgctxt "hotkey metadata"
-msgid "Select next idle warrior."
-msgstr "Seleciona a próxima unidade de combate ociosa."
-
-msgctxt "hotkey metadata"
-msgid "Select next idle warrior"
-msgstr "Selecionar a próxima unidade de combate parada"
-
-msgctxt "hotkey metadata"
-msgid "Select next idle worker."
-msgstr "Selezionare il prossimo lavoratore inattivo."
-
-msgctxt "hotkey metadata"
-msgid "Select next idle worker"
-msgstr "Selezionare il prossimo lavoratore inattivo."
-
-msgctxt "hotkey metadata"
-msgid "Add only military units to the selection."
-msgstr "Ajouter uniquement les unités militaires à la sélection."
+msgid "Add units to selection."
+msgstr "További egységek hozzáadása a kijelöléshez"
 
 msgctxt "hotkey metadata"
 msgid "Select military only"
 msgstr "Sélectionner uniquement les unités militaires"
 
 msgctxt "hotkey metadata"
-msgid "Add only non-military units to the selection."
-msgstr "Ajouter uniquement les unités non militaires à la sélection."
+msgid "Add only military units to the selection."
+msgstr "Ajouter uniquement les unités militaires à la sélection."
 
 msgctxt "hotkey metadata"
 msgid "Select non-military only"
 msgstr "Sélectionner uniquement les unités non militaires"
 
 msgctxt "hotkey metadata"
-msgid "Include offscreen units in selection."
-msgstr "Einheiten, die nicht im aktuellen Bildausschnitt sind, in die Auswahl einschließen."
+msgid "Add only non-military units to the selection."
+msgstr "Ajouter uniquement les unités non militaires à la sélection."
 
 msgctxt "hotkey metadata"
-msgid "Include offscreen"
-msgstr "Gabh a-steach aonadan taobh a-muigh na sgrìn"
+msgid "Select only idle units"
+msgstr "Sélectionner uniquement les unités inactives"
 
 msgctxt "hotkey metadata"
-msgid "Remove units from selection."
-msgstr "Eltávolítja az egységet a kijelölésből."
+msgid "Select only idle units."
+msgstr "Sélectionner uniquement les unités inactives."
 
 msgctxt "hotkey metadata"
-msgid "Remove units from selection"
-msgstr "Απομάκρυνση μονάδων απο την  επιλογή"
-
-msgctxt "hotkey metadata"
-msgid "Modifier to select units individually, opposed to per formation."
-msgstr "Modifier afin de sélectionner les unités individuellement, contrairement par formation."
-
-msgctxt "hotkey metadata"
-msgid "Single selection"
-msgstr "Seleção individual"
+msgid "Select only wounded units"
+msgstr "Sélectionner seulement les unités blessées"
 
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
 msgstr "Csak a sebesült egységek kerülnek kijelölésre."
 
 msgctxt "hotkey metadata"
-msgid "Select only wounded units"
-msgstr "Sélectionner seulement les unités blessées"
+msgid "Remove units from selection"
+msgstr "Απομάκρυνση μονάδων απο την  επιλογή"
+
+msgctxt "hotkey metadata"
+msgid "Remove units from selection."
+msgstr "Eltávolítja az egységet a kijelölésből."
+
+msgctxt "hotkey metadata"
+msgid "Select next idle worker"
+msgstr "Selezionare il prossimo lavoratore inattivo."
+
+msgctxt "hotkey metadata"
+msgid "Select next idle worker."
+msgstr "Selezionare il prossimo lavoratore inattivo."
+
+msgctxt "hotkey metadata"
+msgid "Select next idle warrior"
+msgstr "Selecionar a próxima unidade de combate parada"
+
+msgctxt "hotkey metadata"
+msgid "Select next idle warrior."
+msgstr "Seleciona a próxima unidade de combate ociosa."
+
+msgctxt "hotkey metadata"
+msgid "Select next idle unit"
+msgstr "Selezionare l'unità inattiva successiva."
+
+msgctxt "hotkey metadata"
+msgid "Select next idle unit."
+msgstr "Seleccionar la siguiente unidad inactiva."
+
+msgctxt "hotkey metadata"
+msgid "Select next idle builder"
+msgstr "Hautatu egonean dagoen hurrengo eraikitzailea"
+
+msgctxt "hotkey metadata"
+msgid "Select next idle builder."
+msgstr "Seleciona o próximo construtor sem uma tarefa ativa."
+
+msgctxt "hotkey metadata"
+msgid "Include offscreen"
+msgstr "Gabh a-steach aonadan taobh a-muigh na sgrìn"
+
+msgctxt "hotkey metadata"
+msgid "Include offscreen units in selection."
+msgstr "Einheiten, die nicht im aktuellen Bildausschnitt sind, in die Auswahl einschließen."
+
+msgctxt "hotkey metadata"
+msgid "Single selection"
+msgstr "Seleção individual"
+
+msgctxt "hotkey metadata"
+msgid "Modifier to select units individually, opposed to per formation."
+msgstr "Modifier afin de sélectionner les unités individuellement, contrairement par formation."
+
+msgctxt "hotkey metadata"
+msgid "Set Control Group 1"
+msgstr "Az 1. irányítható csoport létrehozása"
+
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 1."
+msgstr "Az aktuális kijelölés elmentésével létrehozza az 1. irányítható csoportot."
+
+msgctxt "hotkey metadata"
+msgid "Set Control Group 2"
+msgstr "A 2. irányítható csoport létrehozása"
+
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 2."
+msgstr "Az aktuális kijelölés elmentésével létrehozza a 2. irányítható csoportot."
+
+msgctxt "hotkey metadata"
+msgid "Set Control Group 3"
+msgstr "A 3. irányítható csoport létrehozása"
+
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 3."
+msgstr "Az aktuális kijelölés elmentésével létrehozza a 3. irányítható csoportot."
+
+msgctxt "hotkey metadata"
+msgid "Set Control Group 4"
+msgstr "A 4. irányítható csoport létrehozása"
+
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 4."
+msgstr "Az aktuális kijelölés elmentésével létrehozza a 4. irányítható csoportot."
+
+msgctxt "hotkey metadata"
+msgid "Set Control Group 5"
+msgstr "Az 5. irányítható csoport létrehozása"
+
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 5."
+msgstr "Az aktuális kijelölés elmentésével létrehozza az 5. irányítható csoportot."
+
+msgctxt "hotkey metadata"
+msgid "Set Control Group 6"
+msgstr "A 6. irányítható csoport létrehozása"
+
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 6."
+msgstr "Az aktuális kijelölés elmentésével létrehozza a 6. irányítható csoportot."
+
+msgctxt "hotkey metadata"
+msgid "Set Control Group 7"
+msgstr "A 7. irányítható csoport létrehozása"
+
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 7."
+msgstr "Az aktuális kijelölés elmentésével létrehozza a 7. irányítható csoportot."
+
+msgctxt "hotkey metadata"
+msgid "Set Control Group 8"
+msgstr "A 8. irányítható csoport létrehozása"
+
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 8."
+msgstr "Az aktuális kijelölés elmentésével létrehozza a 8. irányítható csoportot."
+
+msgctxt "hotkey metadata"
+msgid "Set Control Group 9"
+msgstr "A 9. irányítható csoport létrehozása"
+
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 9."
+msgstr "Az aktuális kijelölés elmentésével létrehozza a 9. irányítható csoportot."
+
+msgctxt "hotkey metadata"
+msgid "Set Control Group 10"
+msgstr "A 10. irányítható csoport létrehozása"
+
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 10."
+msgstr "Az aktuális kijelölés elmentésével létrehozza a 10. irányítható csoportot."
+
+msgctxt "hotkey metadata"
+msgid "Select Control Group 1"
+msgstr "Selezionare il Gruppo di controllo 1"
+
+msgctxt "hotkey metadata"
+msgid "Change the current selection to Control Group 1."
+msgstr "Cambia la selezione corrente al Gruppo di Controllo 1."
+
+msgctxt "hotkey metadata"
+msgid "Select Control Group 2"
+msgstr "Selezionare il Gruppo di controllo 2"
+
+msgctxt "hotkey metadata"
+msgid "Change the current selection to Control Group 2."
+msgstr "Cambia la selezione corrente al Gruppo di Controllo 2."
+
+msgctxt "hotkey metadata"
+msgid "Select Control Group 3"
+msgstr "Selezionare il Gruppo di controllo 3"
+
+msgctxt "hotkey metadata"
+msgid "Change the current selection to Control Group 3."
+msgstr "Cambia la selezione corrente al Gruppo di Controllo 3."
+
+msgctxt "hotkey metadata"
+msgid "Select Control Group 4"
+msgstr "Selezionare il Gruppo di controllo 4"
+
+msgctxt "hotkey metadata"
+msgid "Change the current selection to Control Group 4."
+msgstr "Cambia la selezione corrente al Gruppo di Controllo 4."
+
+msgctxt "hotkey metadata"
+msgid "Select Control Group 5"
+msgstr "Selezionare il Gruppo di controllo 5"
+
+msgctxt "hotkey metadata"
+msgid "Change the current selection to Control Group 5."
+msgstr "Cambia la selezione corrente al Gruppo di Controllo 5."
+
+msgctxt "hotkey metadata"
+msgid "Select Control Group 6"
+msgstr "Selezionare il Gruppo di controllo 6"
+
+msgctxt "hotkey metadata"
+msgid "Change the current selection to Control Group 6."
+msgstr "Cambia la selezione corrente al Gruppo di Controllo 6."
+
+msgctxt "hotkey metadata"
+msgid "Select Control Group 7"
+msgstr "Selezionare il Gruppo di controllo 7"
+
+msgctxt "hotkey metadata"
+msgid "Change the current selection to Control Group 7."
+msgstr "Cambia la selezione corrente al Gruppo di Controllo 7."
+
+msgctxt "hotkey metadata"
+msgid "Select Control Group 8"
+msgstr "Selezionare il Gruppo di controllo 8"
+
+msgctxt "hotkey metadata"
+msgid "Change the current selection to Control Group 8."
+msgstr "Cambia la selezione corrente al Gruppo di Controllo 8."
+
+msgctxt "hotkey metadata"
+msgid "Select Control Group 9"
+msgstr "Selezionare il Gruppo di controllo 9"
+
+msgctxt "hotkey metadata"
+msgid "Change the current selection to Control Group 9."
+msgstr "Cambia la selezione corrente al Gruppo di Controllo 9."
+
+msgctxt "hotkey metadata"
+msgid "Select Control Group 10"
+msgstr "A 10. irányítható csoport kijelölése"
+
+msgctxt "hotkey metadata"
+msgid "Change the current selection to Control Group 10."
+msgstr "Cambia la selezione corrente in Gruppo di controllo 10."
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 1"
+msgstr "Az 1. irányítható csoport hozzáadása"
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 1 to the current selection."
+msgstr "Hozzáadja az 1. irányítható csoportot az aktuális kijelöléshez."
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 2"
+msgstr "A 2. irányítható csoport hozzáadása"
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 2 to the current selection."
+msgstr "Hozzáadja a 2. irányítható csoportot az aktuális kijelöléshez."
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 3"
+msgstr "A 3. irányítható csoport hozzáadása"
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 3 to the current selection."
+msgstr "Hozzáadja a 3. irányítható csoportot az aktuális kijelöléshez."
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 4"
+msgstr "A 4. irányítható csoport hozzáadása"
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 4 to the current selection."
+msgstr "Hozzáadja a 4. irányítható csoportot az aktuális kijelöléshez."
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 5"
+msgstr "Az 5. irányítható csoport hozzáadása"
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 5 to the current selection."
+msgstr "Hozzáadja az 5. irányítható csoportot az aktuális kijelöléshez."
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 6"
+msgstr "A 6. irányítható csoport hozzáadása"
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 6 to the current selection."
+msgstr "Hozzáadja a 6. irányítható csoportot az aktuális kijelöléshez."
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 7"
+msgstr "A 7. irányítható csoport hozzáadása"
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 7 to the current selection."
+msgstr "Hozzáadja a 7. irányítható csoportot az aktuális kijelöléshez."
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 8"
+msgstr "A 8. irányítható csoport hozzáadása"
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 8 to the current selection."
+msgstr "Hozzáadja a 8. irányítható csoportot az aktuális kijelöléshez."
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 9"
+msgstr "A 9. irányítható csoport hozzáadása"
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 9 to the current selection."
+msgstr "Hozzáadja a 9. irányítható csoportot az aktuális kijelöléshez."
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 10"
+msgstr "A 10. irányítható csoport hozzáadása"
+
+msgctxt "hotkey metadata"
+msgid "Add Control Group 10 to the current selection."
+msgstr "Hozzáadja a 10. irányítható csoportot az aktuális kijelöléshez."
 
 #, python-format
 msgid "Delete the selected savegame using %(hotkey)s."
@@ -2883,6 +3102,22 @@ msgstr ""
 msgid "OVERWRITE SAVE"
 msgstr "SGRÌOBH THAIRIS AIR AN T‑SÀBHALADH"
 
+msgctxt "replay"
+msgid "Date / Time"
+msgstr "التّاريخ / الوقت"
+
+msgctxt "replay"
+msgid "Map Type"
+msgstr "Cineál Léarscáile"
+
+msgctxt "replay"
+msgid "Map Name"
+msgstr "Žemėlapio pavadinimas"
+
+msgctxt "replay"
+msgid "Description"
+msgstr "Նկարագրություն"
+
 msgid "No saved games found."
 msgstr "N'eo ket bet kavet c'hoari enrollet ebet."
 
@@ -2906,22 +3141,6 @@ msgstr "Dimensione della Mappa"
 
 msgid "Victory:"
 msgstr "Segervillkor:"
-
-msgctxt "replay"
-msgid "Date / Time"
-msgstr "التّاريخ / الوقت"
-
-msgctxt "replay"
-msgid "Map Type"
-msgstr "Cineál Léarscáile"
-
-msgctxt "replay"
-msgid "Map Name"
-msgstr "Žemėlapio pavadinimas"
-
-msgctxt "replay"
-msgid "Description"
-msgstr "Նկարագրություն"
 
 msgid "Language:"
 msgstr "Hizkuntza:"
@@ -2948,8 +3167,18 @@ msgstr "Herrialdea:"
 msgid "Script:"
 msgstr "Komut dosyası:"
 
+msgid ""
+"Optional four-letter script code part following the language code (as listed in ISO "
+"15924)"
+msgstr ""
+"Códigu de scriptura optativu compuöstu de lɐs quatro lletrɐs que siguen a l códigu "
+"lingüísticu (talu cumo s’arrecuölye na norma ISO 15924)"
+
 msgid "Variant (unused):"
 msgstr "Eug-samhail (cha dèan seo dad):"
+
+msgid "Not implemented yet."
+msgstr "Esta funcionalidade aínda non está lista para usarse."
 
 msgid "Keywords (unused):"
 msgstr "Названия кнопок (не используется) :"
@@ -2962,16 +3191,6 @@ msgstr "Verwendete Übersetzungsverzeichnisse:"
 
 msgid "Auto detect"
 msgstr "Detectar Automaticamente"
-
-msgid ""
-"Optional four-letter script code part following the language code (as listed in ISO "
-"15924)"
-msgstr ""
-"Códigu de scriptura optativu compuöstu de lɐs quatro lletrɐs que siguen a l códigu "
-"lingüísticu (talu cumo s’arrecuölye na norma ISO 15924)"
-
-msgid "Not implemented yet."
-msgstr "Esta funcionalidade aínda non está lista para usarse."
 
 msgctxt "map selection"
 msgid "Random"
@@ -3199,6 +3418,9 @@ msgstr "Affiche l'heure à laquelle un message de discussion a été posté."
 msgid "Naming of entities."
 msgstr "Egységek és építmények megnevezése"
 
+msgid "How to show entity names."
+msgstr "Így lesznek megjelenítve az egységek és az építmények nevei."
+
 msgid "Specific names first"
 msgstr "Συγκεκριμένα ονόματα πρώτα."
 
@@ -3223,17 +3445,99 @@ msgstr "Seulement les noms génériques"
 msgid "Display only generic names for entities."
 msgstr "Afficher uniquement les noms génériques des entités. "
 
-msgid "How to show entity names."
-msgstr "Így lesznek megjelenítve az egységek és az építmények nevei."
-
 msgid "Graphics (general)"
 msgstr "Algemene grafische instellingen"
+
+msgid "Set the balance between performance and visual appearance."
+msgstr "Az egyensúly beállítása a teljesítmény és a vizuális megjelenés között."
 
 msgid "Windowed mode"
 msgstr "Εκτέλεση σε παράθυρο"
 
 msgid "Start 0 A.D. in a window."
 msgstr "0 A.D. 'yi bir pencere içinde başlat."
+
+msgid "Resolution scale"
+msgstr "Scala di risoluzione"
+
+msgid ""
+"A smaller scale makes rendering faster but produces a more blurry picture, a large "
+"scale makes rendering slower but produces a better picture."
+msgstr ""
+"Unha escala máis pequena fai a renderización máis rápida pero produce unha imaxe máis "
+"borrosa, unha escala grande fai que a renderización sexa máis lenta pero produce unha "
+"imaxe mellor."
+
+msgid "50%"
+msgstr "50 %"
+
+msgid "87.5%"
+msgstr "87.5 %"
+
+msgid "Upscale technique"
+msgstr "Técnica de aumento da escala"
+
+msgid "Technique defines performance and quality of upscaling process."
+msgstr "A técnica define o desempenho e a qualidade do processo de aumento da escala."
+
+msgid "FidelityFX Super Resolution 1.0"
+msgstr "FidelityFX Super Resolution 1.0"
+
+msgid ""
+"Advanced upscale technique. For better results, use FSR with antialiasing enabled. "
+"Using it with the OpenGL backend may have some issues, consider using Vulkan backend "
+"instead."
+msgstr ""
+"Erweitertes Hochskalierungsverfahren. Nutze FSR mit aktiviertem Antialiasing für "
+"bessere Ergebnisse. Bei der Nutzung mit dem OpenGL-Backend kann es dabei zu Problemen "
+"kommen, erwäge in diesem Fall stattdessen das Vulkan-Backend zu nutzen."
+
+msgid "Bilinear"
+msgstr "Bilineárna"
+
+msgid "Bilinear upscale technique. Produces a slightly blurry picture depending on the scale."
+msgstr ""
+"Técnica de aumento da escala bilinear. Produz uma imagem ligeiramente desfocada, "
+"dependendo da escala."
+
+msgid "Pixelated"
+msgstr "Gepixeleerd"
+
+msgid "Simplest upscale technique. Used mostly for stylized effect."
+msgstr ""
+"A técnica mais simples de aumento da escala. Utilizada sobretudo para efeitos "
+"estilizados."
+
+msgid "Unit silhouettes"
+msgstr "Sgàil-riochdan nan aonadan"
+
+msgid "Show outlines of units behind structures."
+msgstr "Seall sgàil-riochdan de dh’aonadan a tha air cùlaibh thogalaichean."
+
+msgid "Particles"
+msgstr "Efekty cząsteczkowe"
+
+msgid "Enable particles."
+msgstr "Abilita effetti particellari."
+
+msgid "VSync"
+msgstr "Вертикальная синхронизация"
+
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr ""
+"Usa sincronización vertical para evitar que aparezan ao mesmo tempo imaxes de distintos"
+" fotogramas na pantalla. Para que a opción xurda efecto é necesario reiniciar o xogo."
+
+msgid "FPS throttling in menus"
+msgstr "Επιτάχυνση ρυθμού ανανέωσης γραφικών στα μενού"
+
+msgid ""
+"To save CPU workload, throttle render frequency in all menus. Set to maximum to disable"
+" throttling."
+msgstr ""
+"Puedes limitar la velocidad de dibujado en los menús para gastar menos recursos del "
+"procesador y reducir la temperatura y el gasto energético. Ponlo al máximo para "
+"desactivar el limitador."
 
 msgid "FPS throttling in games"
 msgstr "Επιτάχυνση ρυθμού ανανέωσης γραφικών στα παιχνίδια"
@@ -3245,9 +3549,6 @@ msgstr ""
 "Puedes limitar la velocidad de dibujado durante la partida para gastar menos recursos "
 "del procesador y reducir la temperatura y el gasto energético. Ponlo al máximo para "
 "desactivar el limitador."
-
-msgid "GUI scale"
-msgstr "Skalierung der grafischen Benutzeroberfläche"
 
 msgid "225%"
 msgstr "225 %"
@@ -3282,134 +3583,21 @@ msgstr ""
 "Mantiene el cursor del ratón dentro de los límites de la ventana cuando se encuentra en"
 " modo ventana."
 
-msgid "Fog"
-msgstr "Nebbia di Guerra"
-
-msgid "Enable fog."
-msgstr "Activer le brouillard."
-
-msgid "Post-processing"
-msgstr "Pròiseasadh an dèidh làimh"
-
-msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr ""
-"Usar penheirɐs de post-tratamiento n synthetizando l spacio de l visorio (HDR, Bloom, "
-"FDC, etc.)."
-
-msgid "Resolution scale"
-msgstr "Scala di risoluzione"
-
-msgid "50%"
-msgstr "50 %"
-
-msgid "75%"
-msgstr "75 %"
-
-msgid "87.5%"
-msgstr "87.5 %"
-
-msgid "100%"
-msgstr "100 %"
-
-msgid "125%"
-msgstr "125 %"
-
-msgid "150%"
-msgstr "150 %"
-
-msgid "175%"
-msgstr "175 %"
-
-msgid "200%"
-msgstr "200 %"
-
-msgid ""
-"A smaller scale makes rendering faster but produces a more blurry picture, a large "
-"scale makes rendering slower but produces a better picture."
-msgstr ""
-"Unha escala máis pequena fai a renderización máis rápida pero produce unha imaxe máis "
-"borrosa, unha escala grande fai que a renderización sexa máis lenta pero produce unha "
-"imaxe mellor."
-
-msgid "Upscale technique"
-msgstr "Técnica de aumento da escala"
-
-msgid "FidelityFX Super Resolution 1.0"
-msgstr "FidelityFX Super Resolution 1.0"
-
-msgid ""
-"Advanced upscale technique. For better results, use FSR with antialiasing enabled. "
-"Using it with the OpenGL backend may have some issues, consider using Vulkan backend "
-"instead."
-msgstr ""
-"Erweitertes Hochskalierungsverfahren. Nutze FSR mit aktiviertem Antialiasing für "
-"bessere Ergebnisse. Bei der Nutzung mit dem OpenGL-Backend kann es dabei zu Problemen "
-"kommen, erwäge in diesem Fall stattdessen das Vulkan-Backend zu nutzen."
-
-msgid "Bilinear"
-msgstr "Bilineárna"
-
-msgid "Bilinear upscale technique. Produces a slightly blurry picture depending on the scale."
-msgstr ""
-"Técnica de aumento da escala bilinear. Produz uma imagem ligeiramente desfocada, "
-"dependendo da escala."
-
-msgid "Pixelated"
-msgstr "Gepixeleerd"
-
-msgid "Simplest upscale technique. Used mostly for stylized effect."
-msgstr ""
-"A técnica mais simples de aumento da escala. Utilizada sobretudo para efeitos "
-"estilizados."
-
-msgid "Technique defines performance and quality of upscaling process."
-msgstr "A técnica define o desempenho e a qualidade do processo de aumento da escala."
-
-msgid "Shadows"
-msgstr "Schaduwen"
-
-msgid "Enable shadows."
-msgstr "Habilitare lɐs solombrɐs."
-
-msgid "Unit silhouettes"
-msgstr "Sgàil-riochdan nan aonadan"
-
-msgid "Show outlines of units behind structures."
-msgstr "Seall sgàil-riochdan de dh’aonadan a tha air cùlaibh thogalaichean."
-
-msgid "Particles"
-msgstr "Efekty cząsteczkowe"
-
-msgid "Enable particles."
-msgstr "Abilita effetti particellari."
-
-msgid "VSync"
-msgstr "Вертикальная синхронизация"
-
-msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr ""
-"Usa sincronización vertical para evitar que aparezan ao mesmo tempo imaxes de distintos"
-" fotogramas na pantalla. Para que a opción xurda efecto é necesario reiniciar o xogo."
-
-msgid "FPS throttling in menus"
-msgstr "Επιτάχυνση ρυθμού ανανέωσης γραφικών στα μενού"
-
-msgid ""
-"To save CPU workload, throttle render frequency in all menus. Set to maximum to disable"
-" throttling."
-msgstr ""
-"Puedes limitar la velocidad de dibujado en los menús para gastar menos recursos del "
-"procesador y reducir la temperatura y el gasto energético. Ponlo al máximo para "
-"desactivar el limitador."
-
-msgid "Set the balance between performance and visual appearance."
-msgstr "Az egyensúly beállítása a teljesítmény és a vizuális megjelenés között."
-
 msgid "Graphics (advanced)"
 msgstr "Geavanceerde grafische instellingen"
 
+msgid "More specific rendering settings."
+msgstr "Configurações de renderização mais específicas."
+
 msgid "Renderer backend"
 msgstr "Renderöijän taustaohjelma"
+
+msgid ""
+"Choose the renderer's backend. It's recommended to use Vulkan if supported. REQUIRES "
+"GAME RESTART"
+msgstr ""
+"Wähle das Renderer-Backend. Es wird empfohlen Vulkan zu verwenden, wenn es von deinem "
+"Computer unterstützt wird. ERFORDERT NEUSTART DES SPIELS"
 
 msgid "OpenGL"
 msgstr "ओपनजीएल"
@@ -3437,18 +3625,11 @@ msgstr ""
 "Современное API, требуются обновленные драйвера для видеокарты. ТРЕБУЕТСЯ ПЕРЕЗАПУСК "
 "ИГРЫ"
 
-msgid ""
-"Choose the renderer's backend. It's recommended to use Vulkan if supported. REQUIRES "
-"GAME RESTART"
-msgstr ""
-"Wähle das Renderer-Backend. Es wird empfohlen Vulkan zu verwenden, wenn es von deinem "
-"Computer unterstützt wird. ERFORDERT NEUSTART DES SPIELS"
-
 msgid "Antialiasing"
 msgstr "Εξομάλυνση γραφικών."
 
-msgid "Disabled"
-msgstr "Απενεργοποιήθηκε"
+msgid "Reduce aliasing effect on edges."
+msgstr "Уменьшает ступенчатость изображения на границах объектов."
 
 msgid "Do not use antialiasing."
 msgstr "Μη χρησιμοποιήσετε την εξομάλυνση γραφικών."
@@ -3493,11 +3674,11 @@ msgstr ""
 "Antialiasing motelak baina kalitate handikoak, pixel bakoitzeko hamasei lagin "
 "erabiltzen ditu. GL3.3 + bertsiorako onartzen da."
 
-msgid "Reduce aliasing effect on edges."
-msgstr "Уменьшает ступенчатость изображения на границах объектов."
-
 msgid "Sharpening"
 msgstr "Millora de la nitidesa"
+
+msgid "Reduce blurry effects."
+msgstr "Уменьшает эффект размытия, в том числе после сглаживания."
 
 msgid "Do not use sharpening."
 msgstr "Не використовувати підвищення чіткості."
@@ -3510,9 +3691,6 @@ msgstr ""
 "Geurachadh a cho-fhreagras ris an iomsgaradh. Seo ceum geurachaidh luath stèidhichte "
 "air an iomsgaradh."
 
-msgid "Reduce blurry effects."
-msgstr "Уменьшает эффект размытия, в том числе после сглаживания."
-
 msgid "Sharpness factor"
 msgstr "Модифікатор підвищення чіткості"
 
@@ -3521,6 +3699,9 @@ msgstr "Степень повышения резкости выбранного 
 
 msgid "Model quality"
 msgstr "Càileachd nam modailean"
+
+msgid "Model quality setting."
+msgstr "Impostazione della qualità del modello."
 
 msgctxt "Option for the meshes' level of detail."
 msgid "Low"
@@ -3546,6 +3727,11 @@ msgstr "Velmi dobře zpracované modely."
 msgid "Model appearance randomization"
 msgstr "Рандомізація зовнішнього вигляду моделей"
 
+msgid "Randomize the appearance of entities. Disabling gives a small performance improvement."
+msgstr ""
+"Поведение случайной генерации внешнего вида сущностей на карте. Отключение дает "
+"небольшое улучшение производительности. "
+
 msgctxt "Option for the meshes' amount of variety."
 msgid "None"
 msgstr "Gun chumadh"
@@ -3553,8 +3739,35 @@ msgstr "Gun chumadh"
 msgid "Entities will all look the same."
 msgstr "Todas las entidades tendrán la misma apariencia."
 
+msgctxt "Option for the meshes' amount of variety."
+msgid "Limited"
+msgstr "Περιορισμένο"
+
+msgid "Entities will be less diverse."
+msgstr "Οι οντότητες θα είναι λιγότερο διαφοροποιημένες."
+
+msgctxt "Option for the meshes' amount of variety."
+msgid "Normal"
+msgstr "Àbhaisteach"
+
+msgid "Entities appearance is randomized normally."
+msgstr "Thèid coltas tuaireamach a chur air na nithean gu h-àbhaisteach."
+
+msgid "Shader effects"
+msgstr "Effectos d’assolombramiento"
+
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr "Àireamh nan èifeachdan sgàileadair. FEUMAIDH TU AN GEAMA A THÒISEACHADH ÀS ÙR"
+
 msgid "Quality"
 msgstr "Qualidade"
+
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics card with "
+"low memory!"
+msgstr ""
+"Résolution des ombres des cartes. Utiliser des valeurs élevées avec une carte graphique"
+" possédant peu de mémoire peut entraîner l'arrêt inopiné du jeu  !"
 
 msgctxt "Option for the shadow quality."
 msgid "Low"
@@ -3563,6 +3776,14 @@ msgstr "Alacsony"
 msgctxt "Option for the shadow quality."
 msgid "Medium"
 msgstr "Keskinkertainen"
+
+msgctxt "Option for the shadow quality."
+msgid "High"
+msgstr "ഉയര്‍ന്നത്"
+
+msgctxt "Option for the shadow quality."
+msgid "Very High"
+msgstr "വളരെ ഉയര്‍ന്നത്"
 
 msgid "Filtering"
 msgstr "Φιλτράρισμα"
@@ -3630,6 +3851,11 @@ msgstr "Използване на истинската дълбочина на �
 msgid "Texture quality"
 msgstr "Qualidá de lɐs texturɐs"
 
+msgid "Decrease texture quality making them blurrier but increases game performance."
+msgstr ""
+"Aminorgare la qualidá de lɐs texturɐs, fazhiendo-llɐs más diffusɐs & augmentando la "
+"efficiencia de l juögu."
+
 msgctxt "Option for the texture quality."
 msgid "Low"
 msgstr "Alacsony"
@@ -3654,21 +3880,6 @@ msgstr "Ridicat"
 msgid "Texture anisotropic filter"
 msgstr "Φίλτρο ανισότροπης υφής (anisotropic filter texture)"
 
-msgid "1x"
-msgstr "1x"
-
-msgid "2x"
-msgstr "2x"
-
-msgid "4x"
-msgstr "4x"
-
-msgid "8x"
-msgstr "8x"
-
-msgid "16x"
-msgstr "16x"
-
 msgid ""
 "Makes textures look better, especially terrain. If the anisotropic filter value is "
 "unsupported it will be set to the max supported value."
@@ -3677,10 +3888,8 @@ msgstr ""
 "anisotropique n'est pas supportée, elle sera positionnée à la valeur maximale "
 "supportée."
 
-msgid "Decrease texture quality making them blurrier but increases game performance."
-msgstr ""
-"Aminorgare la qualidá de lɐs texturɐs, fazhiendo-llɐs más diffusɐs & augmentando la "
-"efficiencia de l juögu."
+msgid "1x"
+msgstr "1x"
 
 msgid "Master volume"
 msgstr "Maighstir àirde na fuaime"
@@ -3756,6 +3965,9 @@ msgstr ""
 msgid "Default AI difficulty"
 msgstr "Forvalgt maskinspiller-vanskelighetsgrad:"
 
+msgid "Default difficulty of the AI."
+msgstr "Ο προκαθορισμένος βαθμός δυσκολίας της Τεχνητής Νοημοσύνης."
+
 msgctxt "Option for the AI difficulty."
 msgid "Sandbox"
 msgstr "Probetarako jokalekua"
@@ -3772,12 +3984,19 @@ msgctxt "Option for the AI difficulty."
 msgid "Medium"
 msgstr "Keskinkertainen"
 
-msgid "Default AI behavior"
-msgstr "Προκαθορισμένη συμπεριφορά Τεχνητής Νοημοσύνης"
-
 msgctxt "Option for the AI difficulty."
 msgid "Hard"
 msgstr "Difficilis"
+
+msgctxt "Option for the AI difficulty."
+msgid "Very Hard"
+msgstr "Difficilis Maximus"
+
+msgid "Default AI behavior"
+msgstr "Προκαθορισμένη συμπεριφορά Τεχνητής Νοημοσύνης"
+
+msgid "Default behavior of the AI."
+msgstr "Comportamiento predeterminado de la inteligencia artificial."
 
 msgid "Random"
 msgstr "Véletlenszerű"
@@ -3791,26 +4010,18 @@ msgstr "Atitude agressiva"
 msgid "Defensive"
 msgstr "Actitude defensiva"
 
-msgid "Default behavior of the AI."
-msgstr "Comportamiento predeterminado de la inteligencia artificial."
-
-msgctxt "Option for the AI difficulty."
-msgid "Very Hard"
-msgstr "Difficilis Maximus"
-
 msgid "Assign players"
 msgstr "Iomruin cluicheadairean"
 
-msgid "Everyone"
-msgstr "A h-uile duine"
+msgid "Automatically assign joining clients to free player slots during the match setup."
+msgstr ""
+"Automáticamente se asigna a los clientes que se unen a las partidas con jugadores "
+"libres durante la configuración de la partida."
 
 msgid "Players joining the match will be assigned if there is a free slot."
 msgstr ""
 "Thèid slot falamh iomruineadh do chluicheadairean a thig a-steach dhan geama ma tha gin"
 " ann."
-
-msgid "Buddies"
-msgstr "Csak a haverokat"
 
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the host and if "
@@ -3824,13 +4035,11 @@ msgstr ""
 "Les joueurs ne reçoivent un emplacement que lorsque l'hôte le leur assigne "
 "explicitement."
 
-msgid "Automatically assign joining clients to free player slots during the match setup."
-msgstr ""
-"Automáticamente se asigna a los clientes que se unen a las partidas con jugadores "
-"libres durante la configuración de la partida."
-
 msgid "Networking / Lobby"
 msgstr "Δικτύωση/\"αίθουσα αναμονής\""
+
+msgid "These settings only affect the multiplayer."
+msgstr "Cha bidh buaidh aig na roghainnean seo ach air geamannan ioma-chluicheadair."
 
 msgid "TLS encryption"
 msgstr "TLS-Verschlüsselung"
@@ -3899,11 +4108,11 @@ msgstr ""
 "Οταν παρακολουθείτε ένα παιχνίδι, αυτόματα επιταχύνετεοταν ξεκινάτε να κολλάτε (αργό "
 "δίκτυο), για να προλάβετε  τη προβολή του παιχνιδιού σε ζωντανή απόδοση."
 
-msgid "These settings only affect the multiplayer."
-msgstr "Cha bidh buaidh aig na roghainnean seo ach air geamannan ioma-chluicheadair."
-
 msgid "Game Session"
 msgstr "Συνεδρίαση Παιχνιδιού"
+
+msgid "Change options regarding the in-game settings."
+msgstr "Altera as opções que se referem às configurações durante um jogo."
 
 msgid "Wounded unit health"
 msgstr "Gewonde eenheid gezondheidspercentage"
@@ -3915,173 +4124,11 @@ msgstr ""
 "Юніт вважається пораненим і буде обраний при натисканні гарячої клавіші вибору "
 "поранених юнітів, якщо відсоток здоров'я, що залишився у нього, буде нижче цього рівня."
 
-msgid "Aura range visualization"
-msgstr "Illustracion de l algame d’influencia"
-
-msgid ""
-"Display the range of auras of selected units and structures. (It can also be toggled "
-"with the hotkey during a game)."
-msgstr ""
-"Εμφανίζει το εύρος της αύρας των επιλεγμένων μονάδων και κατασκευών. (Μπορεί επίσης να "
-"γίνει εναλλαγή με πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)"
-
-msgid "Heal range visualization"
-msgstr "Отображение радиуса действия ауры лечения"
-
-msgid ""
-"Display the healing range of selected units. (It can also be toggled with the hotkey "
-"during a game)."
-msgstr ""
-"Εμφανίζει το εύρος της θεραπείας  αύρας των επιλεγμένων μονάδων και κατασκευών. (Μπορεί"
-" επίσης να γίνει εναλλαγή με πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)."
-
-msgid "Rank icon above status bar"
-msgstr "Εικονίδιο κατάταξης πάνω από την μπάρα κατάστασης."
-
-msgid "Show rank icons above status bars."
-msgstr "Mostrar ícones da patente da unidade por cima das barras de estado."
-
-msgid "Experience status bar"
-msgstr "Stavový riadok so zobrazením skúseností"
-
-msgid "Show an experience status bar above each selected unit."
-msgstr "Afficher une barre d'état de l'expérience au-dessus de chaque unité sélectionnée."
-
-msgid "Detailed tooltips"
-msgstr "Yksityiskohtaiset työkaluvihjeet"
-
-msgid "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
-"Mostrar información detallada sobre herramientas para unidades entrenables en "
-"estructuras de producción de unidades."
-
-msgid "Sort resources and population tooltip"
-msgstr "Подреждане в изскачащите прозорчета за ресурсите и населението"
-
-msgid "Unordered"
-msgstr "Без определен ред"
-
-msgid "Ascending"
-msgstr "По возрастанию"
-
-msgid "Descending"
-msgstr "Φθίνουσα σειρά"
-
-msgid "Dynamically sort players in the resources and population tooltip by value."
-msgstr ""
-"Seòrsaich na cluicheadairean a-rèir an luachan gu h-innsginneach ann an gliocasan-sgrìn"
-" nan stòrasan is an t-sluaigh."
-
-msgid "Diplomacy colors: self"
-msgstr "Couleurs diplomatiques : Soi-même"
-
-msgid "Color of your units when diplomacy colors are enabled."
-msgstr "Χρωματισμός των μονάδων σου όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
-
-msgid "Diplomacy colors: ally"
-msgstr "Dathan dioplòmasachd: caidreabhach"
-
-msgid "Color of allies when diplomacy colors are enabled."
-msgstr "Χρωματισμός των συμμάχων σου όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
-
-msgid "Diplomacy colors: neutral"
-msgstr "Dathan dioplòmasachd: neo-phàirteach"
-
-msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr "Χρωματισμός των ουδέτερων παιχτών όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
-
-msgid "Diplomacy colors: enemy"
-msgstr "Diplomatické farby: nepriateľské"
-
-msgid "Color of enemies when diplomacy colors are enabled."
-msgstr "Χρωματισμός των εχθρών σου όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
-
 msgid "Batch training size"
 msgstr "Tamaño del grupo al reclutar por lotes"
 
 msgid "Number of units trained per batch by default."
 msgstr "Αριθμός των μονάδων που θα εκπαιδεύονται ανά παρτίδα από προεπιλογή."
-
-msgid "Snap to edges"
-msgstr "Greimich ris na h-oirean"
-
-msgid "Hotkey to enable snapping"
-msgstr "Πλήκτρο συντόμευσης για ενεργοποίηση προσκόλλησης"
-
-msgid "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr ""
-"Thèid togalaichean ùra a cho-thaobhadh le togalaichean am fagas fhad ’s a bhios tu a’ "
-"brùthadh air a’ ghad-iuchair."
-
-msgid "Hotkey to disable snapping"
-msgstr "Πλήκτρο συντόμευσης για απενεργοποίηση προσκόλλησης"
-
-msgid "New structures are aligned with nearby structures unless the hotkey is pressed."
-msgstr ""
-"Thèid togalaichean ùra a cho-thaobhadh le togalaichean faisg orra ach ma bhios tu a’ "
-"brùthadh air a’ ghad-iuchair."
-
-msgid "This option allows to align new structures with nearby structures."
-msgstr ""
-"Cette option permet d'aligner les nouvelles structures avec les structures voisines "
-"existante"
-
-msgid "Control group membership"
-msgstr "Appartenance au groupe de contrôle"
-
-msgid "Single"
-msgstr "Yksinkertainen"
-
-msgid ""
-"When adding a Unit or Structure to a control group, they are removed from other control"
-" groups. Use this choice if you want control groups to refer to distinct armies."
-msgstr ""
-"Nuair a chuireas tu aonad no togalach ri buidheann-smachd, thèid a thoirt air falbh o "
-"bhuidheann-smachd sam bith eile. Cleachd an roghainn seo ma tha thu airson feachdan fa "
-"leth a stiùireadh leis na biuidhnean-smachd."
-
-msgid "Multiple"
-msgstr "Moninkertainen"
-
-msgid ""
-"Units and Structures can be part of multiple control groups. This is useful to keep "
-"control groups for distinct armies and a control group for the entire army "
-"simultaneously."
-msgstr ""
-"Οι μονάδες και τα Κτίρια μπορούν να είναι μέρος πολλών ομάδων ελέγχου. Αυτό είναι "
-"χρήσιμο για να διατηρήσετε ομάδες ελέγχου για διαφορετικά στρατεύματα και μια ομάδα "
-"ελέγχου για ολόκληρο τον στρατό ταυτόχρονα."
-
-msgid "Decide whether units can be part of multiple control groups."
-msgstr ""
-"Cuir romhad am faod aonadan a bhith nam ball de dh’iomadh buidheann-smachd gus nach "
-"fhaod."
-
-msgid "Formation control"
-msgstr "Управление боевыми порядками"
-
-msgid "Walk/Patrol Only"
-msgstr "Coiseachd/Cuairteachan a-mhàin"
-
-msgid "Other orders will disband existing formations."
-msgstr "Beste agindu batzuek aurrez zeuden formazioak desegingo dituzte."
-
-msgid "No override"
-msgstr "Nessuna sovrascrittura"
-
-msgid "Units in formations stay in formations."
-msgstr "Các đơn vị trong đội hình tiếp tục trong trạng thái đội hình."
-
-msgid "Decide whether formations are enabled for all orders or only 'Walk' and 'Patrol'."
-msgstr ""
-"Askeri formasyonların sadece yürüme ve devriye gezme komutlarında mı yoksa bütün "
-"emirlerde mı açık olup olmadığına karar ver. "
-
-msgid "Battalion-style formations"
-msgstr "Cumaidhean ann an stoidhle còrachaidh"
-
-msgid "Whether formations are selected as a whole."
-msgstr "Co-dhiù an dèid cumaidhean a thaghadh gu slàn gus nach dèid."
 
 msgid "Scroll batch increment ratio"
 msgstr "Přírůstkové číslo (koeficient) pro měnění stavu skupiny"
@@ -4133,6 +4180,14 @@ msgstr ""
 msgid "Chat notification phase"
 msgstr "Повідомлення в чаті про перехід на нову фазу"
 
+msgid ""
+"Show a chat notification if you or an ally have started, aborted or completed a new "
+"phase, and phases of all players in observer mode."
+msgstr ""
+"نشان دادن یک اطلاع رسان در چت، اگرشما و یا یکی از هم پیمانان تمدن خود را به یک سطح "
+"بالاتر ارتقا دهد یا شروع ارتقا کند و یا از آن خارج شود. در حالت نظاره گر این اطلاع رسان"
+" از تمام بازیکن ها برای ناظرها نمایش داده می شوند"
+
 msgid "Disable"
 msgstr "Poista käytöstä"
 
@@ -4141,14 +4196,6 @@ msgstr "Mudanciɐs de phase"
 
 msgid "All displayed"
 msgstr "Wszystko wyświetlone"
-
-msgid ""
-"Show a chat notification if you or an ally have started, aborted or completed a new "
-"phase, and phases of all players in observer mode."
-msgstr ""
-"نشان دادن یک اطلاع رسان در چت، اگرشما و یا یکی از هم پیمانان تمدن خود را به یک سطح "
-"بالاتر ارتقا دهد یا شروع ارتقا کند و یا از آن خارج شود. در حالت نظاره گر این اطلاع رسان"
-" از تمام بازیکن ها برای ناظرها نمایش داده می شوند"
 
 msgid "Attack range visualization"
 msgstr "Visualisierung der Angriffsreichweite"
@@ -4160,57 +4207,229 @@ msgstr ""
 "Εμφάνιση εμβέλειας επίθεσης των επιλεγμένων αμυντικών κατασκευών. (Μπορεί επίσης να "
 "εναλλαχτεί με το πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)."
 
-msgid "Change options regarding the in-game settings."
-msgstr "Altera as opções que se referem às configurações durante um jogo."
-
-msgid "Default difficulty of the AI."
-msgstr "Ο προκαθορισμένος βαθμός δυσκολίας της Τεχνητής Νοημοσύνης."
-
-msgctxt "Option for the shadow quality."
-msgid "High"
-msgstr "ഉയര്‍ന്നത്"
-
-msgctxt "Option for the shadow quality."
-msgid "Very High"
-msgstr "വളരെ ഉയര്‍ന്നത്"
+msgid "Aura range visualization"
+msgstr "Illustracion de l algame d’influencia"
 
 msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics card with "
-"low memory!"
+"Display the range of auras of selected units and structures. (It can also be toggled "
+"with the hotkey during a game)."
 msgstr ""
-"Résolution des ombres des cartes. Utiliser des valeurs élevées avec une carte graphique"
-" possédant peu de mémoire peut entraîner l'arrêt inopiné du jeu  !"
+"Εμφανίζει το εύρος της αύρας των επιλεγμένων μονάδων και κατασκευών. (Μπορεί επίσης να "
+"γίνει εναλλαγή με πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)"
 
-msgctxt "Option for the meshes' amount of variety."
-msgid "Limited"
-msgstr "Περιορισμένο"
+msgid "Heal range visualization"
+msgstr "Отображение радиуса действия ауры лечения"
 
-msgid "Entities will be less diverse."
-msgstr "Οι οντότητες θα είναι λιγότερο διαφοροποιημένες."
-
-msgctxt "Option for the meshes' amount of variety."
-msgid "Normal"
-msgstr "Àbhaisteach"
-
-msgid "Entities appearance is randomized normally."
-msgstr "Thèid coltas tuaireamach a chur air na nithean gu h-àbhaisteach."
-
-msgid "Shader effects"
-msgstr "Effectos d’assolombramiento"
-
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "Àireamh nan èifeachdan sgàileadair. FEUMAIDH TU AN GEAMA A THÒISEACHADH ÀS ÙR"
-
-msgid "Randomize the appearance of entities. Disabling gives a small performance improvement."
+msgid ""
+"Display the healing range of selected units. (It can also be toggled with the hotkey "
+"during a game)."
 msgstr ""
-"Поведение случайной генерации внешнего вида сущностей на карте. Отключение дает "
-"небольшое улучшение производительности. "
+"Εμφανίζει το εύρος της θεραπείας  αύρας των επιλεγμένων μονάδων και κατασκευών. (Μπορεί"
+" επίσης να γίνει εναλλαγή με πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)."
 
-msgid "Model quality setting."
-msgstr "Impostazione della qualità del modello."
+msgid "Rank icon above status bar"
+msgstr "Εικονίδιο κατάταξης πάνω από την μπάρα κατάστασης."
 
-msgid "More specific rendering settings."
-msgstr "Configurações de renderização mais específicas."
+msgid "Show rank icons above status bars."
+msgstr "Mostrar ícones da patente da unidade por cima das barras de estado."
+
+msgid "Experience status bar"
+msgstr "Stavový riadok so zobrazením skúseností"
+
+msgid "Show an experience status bar above each selected unit."
+msgstr "Afficher une barre d'état de l'expérience au-dessus de chaque unité sélectionnée."
+
+msgid "Detailed tooltips"
+msgstr "Yksityiskohtaiset työkaluvihjeet"
+
+msgid "Show detailed tooltips for trainable units in unit-producing structures."
+msgstr ""
+"Mostrar información detallada sobre herramientas para unidades entrenables en "
+"estructuras de producción de unidades."
+
+msgid "Sort resources and population tooltip"
+msgstr "Подреждане в изскачащите прозорчета за ресурсите и населението"
+
+msgid "Dynamically sort players in the resources and population tooltip by value."
+msgstr ""
+"Seòrsaich na cluicheadairean a-rèir an luachan gu h-innsginneach ann an gliocasan-sgrìn"
+" nan stòrasan is an t-sluaigh."
+
+msgid "Unordered"
+msgstr "Без определен ред"
+
+msgid "Ascending"
+msgstr "По возрастанию"
+
+msgid "Descending"
+msgstr "Φθίνουσα σειρά"
+
+msgid "Diplomacy colors: self"
+msgstr "Couleurs diplomatiques : Soi-même"
+
+msgid "Color of your units when diplomacy colors are enabled."
+msgstr "Χρωματισμός των μονάδων σου όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
+
+msgid "Diplomacy colors: ally"
+msgstr "Dathan dioplòmasachd: caidreabhach"
+
+msgid "Color of allies when diplomacy colors are enabled."
+msgstr "Χρωματισμός των συμμάχων σου όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
+
+msgid "Diplomacy colors: neutral"
+msgstr "Dathan dioplòmasachd: neo-phàirteach"
+
+msgid "Color of neutral players when diplomacy colors are enabled."
+msgstr "Χρωματισμός των ουδέτερων παιχτών όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
+
+msgid "Diplomacy colors: enemy"
+msgstr "Diplomatické farby: nepriateľské"
+
+msgid "Color of enemies when diplomacy colors are enabled."
+msgstr "Χρωματισμός των εχθρών σου όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
+
+msgid "Snap to edges"
+msgstr "Greimich ris na h-oirean"
+
+msgid "This option allows to align new structures with nearby structures."
+msgstr ""
+"Cette option permet d'aligner les nouvelles structures avec les structures voisines "
+"existante"
+
+msgid "Hotkey to enable snapping"
+msgstr "Πλήκτρο συντόμευσης για ενεργοποίηση προσκόλλησης"
+
+msgid "New structures are aligned with nearby structures while pressing the hotkey."
+msgstr ""
+"Thèid togalaichean ùra a cho-thaobhadh le togalaichean am fagas fhad ’s a bhios tu a’ "
+"brùthadh air a’ ghad-iuchair."
+
+msgid "Hotkey to disable snapping"
+msgstr "Πλήκτρο συντόμευσης για απενεργοποίηση προσκόλλησης"
+
+msgid "New structures are aligned with nearby structures unless the hotkey is pressed."
+msgstr ""
+"Thèid togalaichean ùra a cho-thaobhadh le togalaichean faisg orra ach ma bhios tu a’ "
+"brùthadh air a’ ghad-iuchair."
+
+msgid "Control group membership"
+msgstr "Appartenance au groupe de contrôle"
+
+msgid "Decide whether units can be part of multiple control groups."
+msgstr ""
+"Cuir romhad am faod aonadan a bhith nam ball de dh’iomadh buidheann-smachd gus nach "
+"fhaod."
+
+msgid "Single"
+msgstr "Yksinkertainen"
+
+msgid ""
+"When adding a Unit or Structure to a control group, they are removed from other control"
+" groups. Use this choice if you want control groups to refer to distinct armies."
+msgstr ""
+"Nuair a chuireas tu aonad no togalach ri buidheann-smachd, thèid a thoirt air falbh o "
+"bhuidheann-smachd sam bith eile. Cleachd an roghainn seo ma tha thu airson feachdan fa "
+"leth a stiùireadh leis na biuidhnean-smachd."
+
+msgid "Multiple"
+msgstr "Moninkertainen"
+
+msgid ""
+"Units and Structures can be part of multiple control groups. This is useful to keep "
+"control groups for distinct armies and a control group for the entire army "
+"simultaneously."
+msgstr ""
+"Οι μονάδες και τα Κτίρια μπορούν να είναι μέρος πολλών ομάδων ελέγχου. Αυτό είναι "
+"χρήσιμο για να διατηρήσετε ομάδες ελέγχου για διαφορετικά στρατεύματα και μια ομάδα "
+"ελέγχου για ολόκληρο τον στρατό ταυτόχρονα."
+
+msgid "Formation control"
+msgstr "Управление боевыми порядками"
+
+msgid "Decide whether formations are enabled for all orders or only 'Walk' and 'Patrol'."
+msgstr ""
+"Askeri formasyonların sadece yürüme ve devriye gezme komutlarında mı yoksa bütün "
+"emirlerde mı açık olup olmadığına karar ver. "
+
+msgid "Walk/Patrol Only"
+msgstr "Coiseachd/Cuairteachan a-mhàin"
+
+msgid "Other orders will disband existing formations."
+msgstr "Beste agindu batzuek aurrez zeuden formazioak desegingo dituzte."
+
+msgid "No override"
+msgstr "Nessuna sovrascrittura"
+
+msgid "Units in formations stay in formations."
+msgstr "Các đơn vị trong đội hình tiếp tục trong trạng thái đội hình."
+
+msgid "Battalion-style formations"
+msgstr "Cumaidhean ann an stoidhle còrachaidh"
+
+msgid "Whether formations are selected as a whole."
+msgstr "Co-dhiù an dèid cumaidhean a thaghadh gu slàn gus nach dèid."
+
+msgid "Fog"
+msgstr "Nebbia di Guerra"
+
+msgid "Enable fog."
+msgstr "Activer le brouillard."
+
+msgid "Post-processing"
+msgstr "Pròiseasadh an dèidh làimh"
+
+msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
+msgstr ""
+"Usar penheirɐs de post-tratamiento n synthetizando l spacio de l visorio (HDR, Bloom, "
+"FDC, etc.)."
+
+msgid "75%"
+msgstr "75 %"
+
+msgid "100%"
+msgstr "100 %"
+
+msgid "125%"
+msgstr "125 %"
+
+msgid "150%"
+msgstr "150 %"
+
+msgid "175%"
+msgstr "175 %"
+
+msgid "200%"
+msgstr "200 %"
+
+msgid "Shadows"
+msgstr "Schaduwen"
+
+msgid "Enable shadows."
+msgstr "Habilitare lɐs solombrɐs."
+
+msgid "GUI scale"
+msgstr "Skalierung der grafischen Benutzeroberfläche"
+
+msgid "2x"
+msgstr "2x"
+
+msgid "4x"
+msgstr "4x"
+
+msgid "8x"
+msgstr "8x"
+
+msgid "16x"
+msgstr "16x"
+
+msgid "Everyone"
+msgstr "A h-uile duine"
+
+msgid "Buddies"
+msgstr "Csak a haverokat"
+
+msgid "Disabled"
+msgstr "Απενεργοποιήθηκε"
 
 msgid "Game Options"
 msgstr "விளையாட்டு விருப்பங்கள்"
@@ -4790,23 +5009,8 @@ msgstr "yyyy-MM"
 msgid "Replay Games"
 msgstr "Adsell ouzh ar c'hoariadennoù "
 
-msgid "Filter compatible replays"
-msgstr "Filtrovat slučitelná opakování záznamu hry"
-
-msgid "Spoiler"
-msgstr "Разкриване на резултатите"
-
-msgid "Main Menu"
-msgstr "A’ phrìomh chlàr-taice"
-
-msgid "Rebuild Cache"
-msgstr "Επαναδημιουργία Προσωρινής Μνήμης"
-
-msgid "Summary"
-msgstr "Zusammenfassung"
-
-msgid "Start Replay"
-msgstr "Tòisich air ath-chluiche"
+msgid "Search for Player"
+msgstr "Αναζήτηση για Παίκτη/τρια"
 
 msgctxt "replay"
 msgid "Players"
@@ -4824,16 +5028,31 @@ msgctxt "replay"
 msgid "Duration"
 msgstr "Intervallum temporis"
 
-msgid "Search for Player"
-msgstr "Αναζήτηση για Παίκτη/τρια"
-
 msgid "File path for the currently selected replay."
 msgstr "Caminho de ficheiros para a repetição atualmente selecionada."
+
+msgid "Filter compatible replays"
+msgstr "Filtrovat slučitelná opakování záznamu hry"
+
+msgid "Spoiler"
+msgstr "Разкриване на резултатите"
+
+msgid "Main Menu"
+msgstr "A’ phrìomh chlàr-taice"
+
+msgid "Rebuild Cache"
+msgstr "Επαναδημιουργία Προσωρινής Μνήμης"
 
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr ""
 "Postavit vyrovnávací paměť pro opakované přehrání záznamu hry znovu od začátku. Může "
 "být pomalé!"
+
+msgid "Summary"
+msgstr "Zusammenfassung"
+
+msgid "Start Replay"
+msgstr "Tòisich air ath-chluiche"
 
 msgid "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
 msgstr ""
@@ -5155,12 +5374,24 @@ msgid "Category:"
 msgstr "Roinn-seòrsa:"
 
 msgctxt "summary chart"
+msgid "Category"
+msgstr "Roinn-seòrsa"
+
+msgctxt "summary chart"
 msgid "Value:"
 msgstr "Значення:"
 
 msgctxt "summary chart"
+msgid "Value"
+msgstr "Значення"
+
+msgctxt "summary chart"
 msgid "Type:"
 msgstr "Dosah aury"
+
+msgctxt "summary chart"
+msgid "Type"
+msgstr "Seòrsa"
 
 msgid "Group by team"
 msgstr "Csoportosítás csapat szerint"
@@ -5170,18 +5401,6 @@ msgstr "Titta på återuppspelningen"
 
 msgid "Continue"
 msgstr "Lean air adhart"
-
-msgctxt "summary chart"
-msgid "Category"
-msgstr "Roinn-seòrsa"
-
-msgctxt "summary chart"
-msgid "Value"
-msgstr "Значення"
-
-msgctxt "summary chart"
-msgid "Type"
-msgstr "Seòrsa"
 
 msgid "ROMAN ARMY CAMP"
 msgstr "ERROMATAR ARMADAREN KANPAMENDUA"
@@ -5934,20 +6153,8 @@ msgctxt "firstWord"
 msgid "Food"
 msgstr "Nourriture"
 
-#. Translation: Word as used in the middle of a sentence (which may require using lowercase
-#. for your language).
-msgctxt "withinSentence"
-msgid "Food"
-msgstr "nourriture"
-
 #. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
 msgctxt "firstWord"
-msgid "Fish"
-msgstr "Arrainkia"
-
-#. Translation: Word as used in the middle of a sentence (which may require using lowercase
-#. for your language).
-msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Arrainkia"
 
@@ -5956,20 +6163,8 @@ msgctxt "firstWord"
 msgid "Fruit"
 msgstr "buah-buahan"
 
-#. Translation: Word as used in the middle of a sentence (which may require using lowercase
-#. for your language).
-msgctxt "withinSentence"
-msgid "Fruit"
-msgstr "buah-buahan"
-
 #. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
 msgctxt "firstWord"
-msgid "Grain"
-msgstr "Padi-padian"
-
-#. Translation: Word as used in the middle of a sentence (which may require using lowercase
-#. for your language).
-msgctxt "withinSentence"
 msgid "Grain"
 msgstr "Padi-padian"
 
@@ -5977,6 +6172,30 @@ msgstr "Padi-padian"
 msgctxt "firstWord"
 msgid "Meat"
 msgstr "Fleisch"
+
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
+msgctxt "withinSentence"
+msgid "Food"
+msgstr "nourriture"
+
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
+msgctxt "withinSentence"
+msgid "Fish"
+msgstr "Arrainkia"
+
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
+msgctxt "withinSentence"
+msgid "Fruit"
+msgstr "buah-buahan"
+
+#. Translation: Word as used in the middle of a sentence (which may require using lowercase
+#. for your language).
+msgctxt "withinSentence"
+msgid "Grain"
+msgstr "Padi-padian"
 
 #. Translation: Word as used in the middle of a sentence (which may require using lowercase
 #. for your language).
@@ -5992,16 +6211,16 @@ msgctxt "firstWord"
 msgid "Metal"
 msgstr "Meatailt"
 
+#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+msgctxt "firstWord"
+msgid "Ore"
+msgstr "Clach-mheatailt"
+
 #. Translation: Word as used in the middle of a sentence (which may require using lowercase
 #. for your language).
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "meatailte"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-msgctxt "firstWord"
-msgid "Ore"
-msgstr "Clach-mheatailt"
 
 #. Translation: Word as used in the middle of a sentence (which may require using lowercase
 #. for your language).
@@ -6028,16 +6247,16 @@ msgctxt "firstWord"
 msgid "Stone"
 msgstr "Камінь"
 
+#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+msgctxt "firstWord"
+msgid "Rock"
+msgstr "Stenbumling"
+
 #. Translation: Word as used in the middle of a sentence (which may require using lowercase
 #. for your language).
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "cloiche"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-msgctxt "firstWord"
-msgid "Rock"
-msgstr "Stenbumling"
 
 #. Translation: Word as used in the middle of a sentence (which may require using lowercase
 #. for your language).
@@ -6053,16 +6272,16 @@ msgctxt "firstWord"
 msgid "Wood"
 msgstr "மரக்கட்டை"
 
+#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+msgctxt "firstWord"
+msgid "Tree"
+msgstr "Zuhaitza"
+
 #. Translation: Word as used in the middle of a sentence (which may require using lowercase
 #. for your language).
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "மரக்கட்டை"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-msgctxt "firstWord"
-msgid "Tree"
-msgstr "Zuhaitza"
 
 #. Translation: Word as used in the middle of a sentence (which may require using lowercase
 #. for your language).

@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-07-15 07:19+0000\n"
-"PO-Revision-Date: 2024-07-15 07:19+0000\n"
+"POT-Creation-Date: 2024-07-26 07:18+0000\n"
+"PO-Revision-Date: 2024-07-26 07:18+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -395,6 +395,9 @@ msgstr ""
 "Meine Zivilisation ist aus der Asche wiederauferstanden. Meine Armeen sind nun stärker "
 "und versessen darauf für unsere Allianz zu kämpfen."
 
+msgid "Petra Bot"
+msgstr "Robotas Petra"
+
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the "
 "link in the main menu).\n"
@@ -413,9 +416,6 @@ msgstr ""
 "±0%, Nehézen +25%, Nagyon nehézen +56%). A könnyebb szinteken ezen felül lassabban "
 "zajlanak a kutatások, a kiképzések és az építkezések is, Homokozón pedig mellőzi mind a"
 " támadást, mind a terjeszkedést."
-
-msgid "Petra Bot"
-msgstr "Robotas Petra"
 
 #, python-format
 msgid "%(name)s cannot be built due to unknown error"
@@ -599,9 +599,6 @@ msgstr "Η Οντότητα είναι σε διαδικασία παραγωγ�
 msgid "Turtle (0.1×)"
 msgstr "По-черепашьи (0.1×)"
 
-msgid "Fast Forward (20×)"
-msgstr "Baya Bi Hızlı İleri  (20×)"
-
 msgid "Slow (0.25×)"
 msgstr "Pomalá rýchlosť (0,25x)"
 
@@ -628,6 +625,9 @@ msgstr "Avanzar rapidamente (×5)"
 
 msgid "Fast Forward (10×)"
 msgstr "Avanzar rapidamente (×10)"
+
+msgid "Fast Forward (20×)"
+msgstr "Baya Bi Hızlı İleri  (20×)"
 
 msgid "Tiny"
 msgstr "Μικροσκοπικός"
@@ -675,15 +675,15 @@ msgstr ""
 msgid "Very Large"
 msgstr "Erittäin laaja"
 
+msgid "Giant"
+msgstr "Jättiläismäinen"
+
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy and the "
 "game performance can be reduced."
 msgstr ""
 "Sehr große Karten werden nicht empfohlen, da es sehr lange dauert, um den Feind zu "
 "erreichen und sich die Kartengröße negativ auf die Spielleistung auswirken kann."
-
-msgid "Giant"
-msgstr "Jättiläismäinen"
 
 msgid "Gaia"
 msgstr "Moder Natur"
@@ -748,9 +748,6 @@ msgstr "Makkelijk"
 msgid "Choose this difficulty if you do not like being knocked down."
 msgstr "Wähle diesen Schwierigkeitsgrad, wenn du nicht überrannt werden möchtest."
 
-msgid "Medium"
-msgstr "Vidutiniškai"
-
 msgid "Choose this difficulty if you have already a good experience with 0 A.D."
 msgstr "Wähle diesen Schwierigkeitsgrad, wenn du bereits gute Erfahrung mit 0 A.D. hast."
 
@@ -768,6 +765,12 @@ msgstr "Difficilis Maximus"
 msgid "Choose this difficulty if you do not mind being swept out."
 msgstr "Wähle diesen Schwierigkeitsgrad, wenn es dir nichts ausmacht, überrannt zu werden."
 
+msgid "Medium"
+msgstr "Vidutiniškai"
+
+msgid "Capture the Relic"
+msgstr "Szerezd meg az ereklyéket"
+
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to win the "
 "game."
@@ -775,42 +778,42 @@ msgstr ""
 "Κατέλαβε όλα τα ιερά κειμήλια που είναι διασκορπισμένα στο χάρτη και κράτησέ τα για "
 "ορισμένο χρόνο ώστε να κερδηθεί το παιχνίδι."
 
-msgid "Capture the Relic"
-msgstr "Szerezd meg az ereklyéket"
+msgid "Conquest"
+msgstr "Pilnīga uzvara"
 
 msgid "Defeat opponents by killing all their units and destroying all their structures."
 msgstr ""
 "Đánh bại đối thủ bằng cách tận diệt tất cả các công trình và phá hủy hết tất cả các "
 "công trình của họ."
 
-msgid "Conquest"
-msgstr "Pilnīga uzvara"
+msgid "Conquest Civic Centers"
+msgstr "Завладяване на селищни центрове"
 
 msgid "Defeat opponents by destroying all their fully built civic centers."
 msgstr ""
 "Derrota os teus opoñentes destruíndo todos os seus centros cívicos totalmente "
 "construídos."
 
-msgid "Conquest Civic Centers"
-msgstr "Завладяване на селищни центрове"
+msgid "Conquest Structures"
+msgstr "Estructuras de conquista."
 
 msgid "Defeat opponents by destroying all their structures."
 msgstr "Đánh bại đối thủ bằng cách phá hủy hết tất cả các công trình của họ."
 
-msgid "Conquest Structures"
-msgstr "Estructuras de conquista."
+msgid "Conquest Units"
+msgstr "Alouberezh an Unanennoù"
 
 msgid "Defeat opponents by killing all their units."
 msgstr "Kalahkan semua pihak lawan dengan membunuh semnua unit mereka."
 
-msgid "Conquest Units"
-msgstr "Alouberezh an Unanennoù"
+msgid "Regicide"
+msgstr "Karaliaus nužudymas"
 
 msgid "Defeat opponents by killing their hero."
 msgstr "Kalahkan semua pihak lawan dengan membunuh adiwira mereka."
 
-msgid "Regicide"
-msgstr "Karaliaus nužudymas"
+msgid "Wonder"
+msgstr "Keajaiban Dunia"
 
 msgid ""
 "Be the first to build or capture a Wonder and keep it for a certain time to win the "
@@ -822,9 +825,6 @@ msgstr ""
 "dalam waktu tertentu untuk memenangkan permainan. Hitungan mundur akan diatur ulang "
 "ketika Keajaiban Dunia dihancurkan atau direbut. Jika kemenangan sekutu diaktifkan, "
 "hitungan mundur juga akan diatur ulang ketika persekutuan pemiliknya berubah."
-
-msgid "Wonder"
-msgstr "Keajaiban Dunia"
 
 #, python-format
 msgid "%(player)s has been defeated (cheat)."

@@ -2,12 +2,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-07-22 07:17+0000\n"
-"PO-Revision-Date: 2024-07-22 07:17+0000\n"
+"POT-Creation-Date: 2024-07-26 07:18+0000\n"
+"PO-Revision-Date: 2024-07-26 07:18+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit"
+
+msgid "The Agoge"
+msgstr "Agóigé: Oideachas na Spartaigh"
 
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors and to "
@@ -17,30 +20,30 @@ msgstr ""
 "guerreiros superiores, e para facerlle fronte a calquera dificultade que se lles "
 "presentase durante a súa vida militar."
 
-msgid "The Agoge"
-msgstr "Agóigé: Oideachas na Spartaigh"
+#, python-format
+msgid "Champion Hoplites +25% health, but +5% training time."
+msgstr "Kampioen Hoplieten krijgen +25% gezondheid, maar kosten +5% meer rekruteringstijd."
 
 msgid "Unlocked in City Phase."
 msgstr "A nagyvárosi szakaszban válik elérhetővé."
 
-#, python-format
-msgid "Champion Hoplites +25% health, but +5% training time."
-msgstr "Kampioen Hoplieten krijgen +25% gezondheid, maar kosten +5% meer rekruteringstijd."
+msgid "Archery Training"
+msgstr "Treinamento de Tiro com Arco"
 
 msgid "Encouraging soldiers to practice archery improves their accuracy."
 msgstr ""
 "Ma bhrosnaicheas tu na saighdearan agad ach an cleachd iad an cuid boghadaireachd, thig"
 " piseach air am pongalachd."
 
-msgid "Archery Training"
-msgstr "Treinamento de Tiro com Arco"
+#, python-format
+msgid "Archers −20% ranged attack spread."
+msgstr "Les archers ont -20% de dispersion lors des attaques à distance."
 
 msgid "Unlocked in Town Phase."
 msgstr "Divorailhet e-barzh e Pazenn ar C'herioù."
 
-#, python-format
-msgid "Archers −20% ranged attack spread."
-msgstr "Les archers ont -20% de dispersion lors des attaques à distance."
+msgid "Archery Tradition"
+msgstr "Tradição de tiro com arco"
 
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and a penchant"
@@ -49,14 +52,11 @@ msgstr ""
 "De Indiase, Iraanse en Koesjitische volkeren hadden een traditie van hoog ontwikkelde "
 "boogschutterij en zetten bij voorkeur grote groepen boogschutters in bij het gevecht."
 
-msgid "Archery Tradition"
-msgstr "Tradição de tiro com arco"
+msgid "Archers +10 attack range."
+msgstr "Gheibh boghadairean +10 air an astar ionnsaighe."
 
 msgid "Unlocked in Village Phase."
 msgstr "Divorailhet e Pazenn ar C'hêriadennoù ."
-
-msgid "Archers +10 attack range."
-msgstr "Gheibh boghadairean +10 air an astar ionnsaighe."
 
 msgid "Monumental Architecture"
 msgstr "Հուշարձանային ճարտարապետություն"
@@ -66,6 +66,9 @@ msgid "Civic Structures +20% build time, +20% health, and +20% capture points."
 msgstr ""
 "Gheibh togalaichean sìobhalta +20% air an ùine togail, +20% air an slàinte agus +20% de"
 " phuingean glacaidh."
+
+msgid "Achaemenid Architecture"
+msgstr "Achaemenidische architectuur"
 
 msgid ""
 "The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to Susa; "
@@ -77,14 +80,14 @@ msgstr ""
 "Persépole. Ciro o Grande mellorou de forma considerábel Ecbatana e practicamente "
 "reconstruíu a vella capital elamita de Susa."
 
-msgid "Achaemenid Architecture"
-msgstr "Achaemenidische architectuur"
-
 #, python-format
 msgid "Structures +25% health and capture points, but also +20% build time."
 msgstr ""
 "Buannaichidh na togalaichean +25% de shlàinte is puingean glacaidh ach bheir e +20% a "
 "bharrachd de dh’ùine cuideachd."
+
+msgid "Arsenal of Philon"
+msgstr "Skeuothek des Philon"
 
 msgid ""
 "The arsenal was mainly used as a warehouse for materials and instruments for the "
@@ -93,14 +96,20 @@ msgstr ""
 "L'arsenal était principalement utilisé comme entrepôt pour les matériaux et instruments"
 " nécessaire pour équiper les navires de guerre."
 
-msgid "Arsenal of Philon"
-msgstr "Skeuothek des Philon"
+msgid "Warships +1 health/second self-repair rate."
+msgstr "Barcos de guerra +1 velocidade de autorreparação de vida por segundo."
 
 msgid "Unlocked in City Phase. Requires “Shipwrights.”"
 msgstr "A nagyvárosi szakaszban válik elérhetővé. Szükséges hozzá a Hajóácsok."
 
-msgid "Warships +1 health/second self-repair rate."
-msgstr "Barcos de guerra +1 velocidade de autorreparação de vida por segundo."
+msgid "Sun Tzu's \"The Art of War\""
+msgstr "\"De kunst van het oorlogvoeren\" door Sun Tzu"
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Sūnzǐ BīngFǎ"
+msgstr "Sūnzǐ BīngFǎ"
 
 msgid ""
 "This famous and most important work of the Seven Military Classics teaches Han "
@@ -111,29 +120,26 @@ msgstr ""
 "bevelhebbers alles wat ze moeten weten over het voorbereiden van een veldslag, de "
 "instandhouding van een leger en hoe de vijand te verslaan."
 
-msgid "Sun Tzu's \"The Art of War\""
-msgstr "\"De kunst van het oorlogvoeren\" door Sun Tzu"
-
-msgid "Sūnzǐ BīngFǎ"
-msgstr "Tôn Tử Binh Pháp"
-
 #, python-format
 msgid "All Citizen-Soldiers −20% required promotion experience."
 msgstr "Všichni občanští vojáci −20% se vyžaduje ke zkušenostem pro zvýšení úrovně."
+
+msgid "Will to Fight"
+msgstr "Volontà di Combattere"
 
 msgid "The will to fight is crucial to victory. Inspire your troops with higher pay."
 msgstr ""
 "Semangat tempur sangat penting untuk kemenangan. Kobarkan semangat pasukan Anda dengan "
 "gaji lebih tinggi."
 
-msgid "Will to Fight"
-msgstr "Volontà di Combattere"
-
-msgid "Dynamis"
-msgstr "Potansiyel güç"
-
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
 msgstr "+25% a dhochann ionnsaighe airson saighdearan, innealan-sèiste ’s longan."
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Dynamis"
+msgstr "Dynamis"
 
 msgid ""
 "Decreases training time of infantry if they are trained in batches or companies. Large "
@@ -145,30 +151,33 @@ msgstr ""
 "En términos matemáticos, el tiempo de adiestramiento de un grupo, es el resultado de "
 "dividir el tamaño del grupo por 'tamaño^0.1'."
 
-msgid "Conscription"
-msgstr "Serviciu militar obligatoriu"
-
 msgid "Decreases batch training time of units trained in Barracks."
 msgstr "Verringert die Gruppen-Ausbildungszeit für Einheiten, die in Kasernen ausgebildet werden"
 
-msgid "Selectively breed better war horses."
-msgstr "A szelektív tenyésztés jobb harci lovakat eredményez."
+msgid "Conscription"
+msgstr "Serviciu militar obligatoriu"
 
 msgid "Horse Breeding"
 msgstr "Paarden fokprogramma"
+
+msgid "Selectively breed better war horses."
+msgstr "A szelektív tenyésztés jobb harci lovakat eredményez."
 
 #, python-format
 msgid "Cavalry +10% health."
 msgstr "Gheibh a h-uile eachraidh +10% de shlàinte."
 
-msgid "Train your horses to move faster."
-msgstr "Dressiere deine Pferde, damit diese sich schneller bewegen."
-
 msgid "Horse Racing"
 msgstr "Carreiras de cabalos"
 
+msgid "Train your horses to move faster."
+msgstr "Dressiere deine Pferde, damit diese sich schneller bewegen."
+
 msgid "Cavalry +10% walk speed."
 msgstr "Cavalleria +10% velocità di manovra della cavalleria."
+
+msgid "Woad Warriors"
+msgstr "Guerreros de Vexetal Índigo"
 
 msgid ""
 "Britons paint their bodies with Woad, which produces a blue color and gives them a "
@@ -177,13 +186,13 @@ msgstr ""
 "Britonnen bemalen ihre Körper mit Färberwaid, welcher eine blaue Farbe produziert und "
 "Ihnen in der Schlacht ein erbittertes Aussehen gibt."
 
-msgid "Woad Warriors"
-msgstr "Guerreros de Vexetal Índigo"
-
 msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
 msgstr ""
 "Tutte le unità di fanteria aumentano la velocità di movimento del 5% e guadagnano un "
 "bottino di +1."
+
+msgid "Triple Walls"
+msgstr "Ballachan trìoblaichte"
 
 msgid ""
 "Carthaginians built their city walls in three concentric circuits. These walls were "
@@ -196,28 +205,28 @@ msgstr ""
 "cartagineses possuem 3x mais pontos de vida que as versões comuns, mas também custam o "
 "dobro e demoram duas vezes mais para construir."
 
-msgid "Triple Walls"
-msgstr "Ballachan trìoblaichte"
-
 #, python-format
 msgid "City Walls +100% build time, +100% stone cost, and +200% health."
 msgstr ""
 "Gheibh ballachan baile +100% air an ùine togail, +100% air cosgais cloiche agus +200% "
 "air an slàinte."
 
+msgid "Wooden Construction"
+msgstr "Construcciones de madera"
+
 msgid "Celtic structures were mostly made of wood with rubble foundations."
 msgstr ""
 "Les structures Celtes sont pour la plus grande partie faites de bois avec des "
 "fondations de pierre."
-
-msgid "Wooden Construction"
-msgstr "Construcciones de madera"
 
 #, python-format
 msgid "Structures −20% build time, −20% health, and −20% capture points."
 msgstr ""
 "Gheibh togalaichean −20% air an ùine togail, −20% air an slàinte agus –20% de phuingean"
 " glacaidh."
+
+msgid "Delian League"
+msgstr "Atiško-delska pomorska zveza"
 
 msgid ""
 "Shortly after the great naval victories at Salamis and Mykale, the Greek city-states "
@@ -231,12 +240,12 @@ msgstr ""
 "contribuíron con embarcacións e cartos, mentres que os atenienses ofreceron a "
 "totalidade da súa flota."
 
-msgid "Delian League"
-msgstr "Atiško-delska pomorska zveza"
-
 #, python-format
 msgid "Ships −25% construction time."
 msgstr "Barcos (Tiempo de construcción: −25%)."
+
+msgid "Superior Cavalry"
+msgstr "Ylivoimainen ratsuväki"
 
 msgid ""
 "The Gauls were well-known for their effective cavalry. Celtic mercenaries were in "
@@ -245,23 +254,23 @@ msgstr ""
 "Bha eachraidh muinntir na Gaille cliùiteach. Bhiodh fèill mhòr air saighdearan-duaise "
 "Gallach air feadh nan dùthchannan Meadhan-tìreach."
 
-msgid "Superior Cavalry"
-msgstr "Ylivoimainen ratsuväki"
-
 msgid "Cavalry +10% melee attack damage."
 msgstr "Jízda získá +10% přídavek k poškození při boji na blízko."
+
+msgid "Hellenic Architecture"
+msgstr "Hellenistische architectuur"
 
 msgid "The Greeks used stone construction from early Mycenaean times."
 msgstr ""
 "De Grieken gebruikten al steen voor de constructie van gebouwen sinds de vroege "
 "Mycenische tijd."
 
-msgid "Hellenic Architecture"
-msgstr "Hellenistische architectuur"
-
 #, python-format
 msgid "Structures +10% health and +10% capture points."
 msgstr "Gheibh togalaichean +10% air an slàinte agus +10% de phuingean glacaidh."
+
+msgid "Federated States"
+msgstr "Dewletên Federasyon"
 
 msgid ""
 "By uniting China under one emperor, the Han Dynasty ruled over 40 million people, one "
@@ -271,11 +280,11 @@ msgstr ""
 "Millionen Menschen und war damit an der Bevölkerungszahl gemessen eines der größten "
 "Reiche des Altertums."
 
-msgid "Federated States"
-msgstr "Dewletên Federasyon"
-
 msgid "+10% maximum population limit."
 msgstr "Augmente la limite de population maximale de +10%."
+
+msgid "Great Wall"
+msgstr "Chinesische Mauer"
 
 msgid ""
 "The Han built massive walls made from rammed earth. These were gigantic fortifications "
@@ -285,24 +294,24 @@ msgstr ""
 "fortifications gigantesques épaisses de plusieurs mètres et qui s'étendaient sur des "
 "kilomètres."
 
-msgid "Great Wall"
-msgstr "Chinesische Mauer"
-
 #, python-format
 msgid "City Walls +50% health."
 msgstr "Aumenta a vida dos muros da cidade un +50%"
+
+msgid "Resource-Rich Economy"
+msgstr "Economía rica en recursos naturales"
 
 msgid "The Macedonian economy relied greatly on their vast natural resources."
 msgstr ""
 "Die makedonische Wirtschaft stützte sich in großem Maße auf ihre enormen natürlichen "
 "Ressourcen."
 
-msgid "Resource-Rich Economy"
-msgstr "Economía rica en recursos naturales"
-
 #, python-format
 msgid "Storehouse technologies −100% research time."
 msgstr "Tecnologías de almacén (Tiempo de investigación: −100%)."
+
+msgid "Elephant Tradition"
+msgstr "Традиция использования слонов"
 
 msgid ""
 "India is the land of the elephants. Elephant warfare originated in India and continued "
@@ -315,11 +324,17 @@ msgstr ""
 "ses éléphants. Les monarques indiens étaient en mesure de déployer quantité d'éléphants"
 " de guerre sur le champ de bataille."
 
-msgid "Elephant Tradition"
-msgstr "Традиция использования слонов"
-
 msgid "Elephants −30% training time."
 msgstr "Redueix en un 30% el temps de reclutament dels elefants."
+
+msgid "Emperor of Emperors"
+msgstr "Αυτοκράτορας των Αυτοκρατόρων"
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Chakravarti Samrāt"
+msgstr "Chakravarti Samrāt"
 
 msgid ""
 "The Mauryan Empire encompassed dozens of formerly independent kingdoms over an area of "
@@ -335,23 +350,20 @@ msgstr ""
 "y una caballería formada por 30.000 hombres, lo que lo convierte en el ejército más "
 "grande de su tiempo."
 
-msgid "Emperor of Emperors"
-msgstr "Αυτοκράτορας των Αυτοκρατόρων"
-
-msgid "Chakravarti Samrāt"
-msgstr "Μεγάλος Αυτοκράτορας"
+msgid "Wooden Walls"
+msgstr "Murallas de madeira"
 
 msgid "The Mauryas built their city walls out of wood, an abundant natural resource in India."
 msgstr ""
 "Die Maurya bauten ihre Stadtmauern aus Holz, einer in Indien reichlich vorkommenden "
 "natürlichen Ressource."
 
-msgid "Wooden Walls"
-msgstr "Murallas de madeira"
-
 #, python-format
 msgid "City Walls −20% build time and −20% health."
 msgstr "Les muralles es construeixen un 20% més ràpid, però són un 20% menys resistents."
+
+msgid "Great King's Levy"
+msgstr "Didžio Karaliaus Neprofesionali Kariomenė"
 
 msgid ""
 "The Persians could and did levy a large number of infantry during wartime due to the "
@@ -368,8 +380,8 @@ msgstr ""
 "ήταν φτωχοί πολεμιστές για μάχες σώμα με σώμα. Επίσης, με εξαίρεση τα επίλεκτα "
 "συντάγματα, το περσικό πεζικό δεν ήταν μια μόνιμη επαγγελματική δύναμη."
 
-msgid "Great King's Levy"
-msgstr "Didžio Karaliaus Neprofesionali Kariomenė"
+msgid "Sun-dried Mud Bricks"
+msgstr "Güneşte kurutulmuş kerpiç tuğlalar"
 
 msgid ""
 "Sun-dried mud bricks were a common building material in hot and dry areas, especially "
@@ -383,9 +395,6 @@ msgstr ""
 "lluvias constantes y las fuertes inundaciones, los ladrillos de barro tienen la ventaja"
 " de que son baratos y fáciles de producir."
 
-msgid "Sun-dried Mud Bricks"
-msgstr "Güneşte kurutulmuş kerpiç tuğlalar"
-
 msgid ""
 "Houses and Economic Structures −40% wood cost, health, and capture points as well as "
 "+50% build time."
@@ -393,17 +402,20 @@ msgstr ""
 "Дома и экономические здания требуют для строительства на 40% меньше древесины, получают"
 " на 40% меньше здоровья и очков захвата, и строятся на 50% дольше."
 
-msgid "Soldiers were well Trained to Operate Siege Engines."
-msgstr "Soldados perfectamente entrenados en el manejo de las máquinas de asedio."
-
 msgid "Legionary Engineers"
 msgstr "Innleadairean lèigiunach"
+
+msgid "Soldiers were well Trained to Operate Siege Engines."
+msgstr "Soldados perfectamente entrenados en el manejo de las máquinas de asedio."
 
 #, python-format
 msgid "Siege Catapults and Onagers 10% faster fire rate and +20% movement speed."
 msgstr ""
 "Le catapulte d'assedio e gli Onagri hanno una cadenza di fuoco più veloce del 10% e una"
 " velocità di movimento del +20%."
+
+msgid "Fertile Crescent"
+msgstr "Плодородный полумесяц"
 
 msgid ""
 "The Seleucid empire was located in a highly fertile region with productive soils. Farms"
@@ -412,21 +424,21 @@ msgstr ""
 "A Szeleukida Birodalom egy igencsak termékeny, kiváló talajjal rendelkező térségen "
 "terült el. – Kevesebb időre és nyersanyagra lesz szükség a tanyák felépítéséhez."
 
-msgid "Fertile Crescent"
-msgstr "Плодородный полумесяц"
-
 msgid "Farms −25% wood cost and −75% build time."
 msgstr "Maatilat -25 % halvempia puun suhteen ja niiden rakentamisaika on -75 % lyhyempi."
 
 msgid "Improved Construction"
 msgstr "Konstruksi yang Lebih Baik"
 
-msgid "Gōngchéng"
-msgstr "İnşaat Mühendisliği - Seviye 1"
-
 #, python-format
 msgid "All structures −10% build time and −10% cost."
 msgstr "Tous les bâtiments : -10% de temps de construction et -10% de coût."
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Gōngchéng"
+msgstr "Gōngchéng"
 
 msgid "Robust Architecture"
 msgstr "Wytrzymała architektura"
@@ -438,11 +450,14 @@ msgstr "Todas las estructuras (Resistencia: +20%)."
 msgid "Efficient Bureaucracy"
 msgstr "Bộ máy quan liêu Hiệu quả"
 
-msgid "Guānliáo"
-msgstr "Kamu Hizmeti - Seviye 2"
-
 msgid "Ministers −50% train time."
 msgstr "Время обучения министров сокращается на 50%."
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Guānliáo"
+msgstr "Guānliáo"
 
 msgid "Intensive Training"
 msgstr "Addestramento Intensivo"
@@ -450,6 +465,9 @@ msgstr "Addestramento Intensivo"
 #, python-format
 msgid "Ministers +50% health."
 msgstr "Министры получают на 50% больше здоровья."
+
+msgid "Colonization"
+msgstr "Deductio Coloniarum"
 
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately held dominion"
@@ -459,13 +477,13 @@ msgstr ""
 "dont da vezañ mestr e fin ar gont war muioc'h evit 300 kêr ha kêriadenn hepken en "
 "Afrika an Hanternoz."
 
-msgid "Colonization"
-msgstr "Deductio Coloniarum"
-
 msgid "Civic Structures (Civic Center, Temples, and Houses) −25% build time and resource costs."
 msgstr ""
 "−25% építési idő és nyersanyagigény a polgári építményeknek (vagyis a városházáknak, a "
 "templomoknak és a házaknak)"
+
+msgid "Sacrificial Ritual"
+msgstr "Ritual de sacrificio"
 
 msgid ""
 "Sacrificial rituals were quite common in ancient times, whether to satisfy the gods, "
@@ -475,36 +493,28 @@ msgstr ""
 "deuses, quer para acalmar as catástrofes naturais, quer ainda para melhorar as "
 "colheitas."
 
-msgid "Sacrificial Ritual"
-msgstr "Ritual de sacrificio"
-
 msgid "Healers –40% training time, and the metal cost is removed."
 msgstr "Guaritori -40% di tempo di allenamento e il costo del metallo è rimosso."
+
+msgid "Crossbow Training"
+msgstr "Addestramento con la Balestra"
 
 msgid "The Han had a penchant for using massed crossbowmen in battle."
 msgstr ""
 "Os han tinham uma tradição de tiro com arco e uma propensão para usar muitos besteiros "
 "em batalha."
 
-msgid "Crossbow Training"
-msgstr "Addestramento con la Balestra"
-
 msgid "Crossbow Infantry −20% train time."
 msgstr "-20% di tempo d'addestramento per la fanteria balestrieri."
-
-msgid "Employ skilled shipwrights with specialized tools to speed up ship construction."
-msgstr ""
-"Emplear carpinteros de barcos cualificados con herramientas especializadas para "
-"acelerar la construcción de barcos."
 
 msgid "Shipwrights"
 msgstr "Shipwrights (Carpinteros de barcos)"
 
-msgid "Naupēgoi"
-msgstr "Naupegoi (Carpinteros de barcos)"
-
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Faber Navalis"
-msgstr "Faber Navalis (Carpinteros de barcos)"
+msgstr "Faber Navalis"
 
 #, python-format
 msgid ""
@@ -513,6 +523,20 @@ msgid ""
 msgstr ""
 "Le banchine funzionano il 20% più velocemente (Navi -20% tempo di costruzione; "
 "Tecnologie -20% tempo di ricerca) e vengono costruite il 20% più velocemente."
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Naupēgoi"
+msgstr "Naupēgoi"
+
+msgid "Employ skilled shipwrights with specialized tools to speed up ship construction."
+msgstr ""
+"Emplear carpinteros de barcos cualificados con herramientas especializadas para "
+"acelerar la construcción de barcos."
+
+msgid "Equine Transports"
+msgstr "Транспортировка лошадей"
 
 msgid ""
 "Early Achaemenid rulers acted towards making Persia the first great Asian empire to "
@@ -531,11 +555,11 @@ msgstr ""
 "Σύμφωνα με τον Ηρόδοτο, περίπου 300 πλοία του Περσικού ναυτικού είχαν κατασκευαστεί για"
 " να μεταφέρουν τα άλογα και τους αναβάτες τους."
 
-msgid "Equine Transports"
-msgstr "Транспортировка лошадей"
-
 msgid "Phoenician Triremes gain the ability to train Cavalry."
 msgstr "Phönizische Trieren erhalten die einzigartige Fähigkeit Kavallerieeinheiten auszubilden."
+
+msgid "Exploration"
+msgstr "Tutkimusmatkailu"
 
 msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they were going "
@@ -548,20 +572,17 @@ msgstr ""
 "parte, los chinos eran reconocidos exploradores que llegaron a enviar flotas de barcos "
 "al océano índico para expandir su conocimiento y abrir nuevas rutas comerciales."
 
-msgid "Exploration"
-msgstr "Tutkimusmatkailu"
-
 msgid "Unlocked in Village Phase. Requires “Lookouts.”"
 msgstr "Si sblocca nella fase Villaggio. Richiede le \"Vedette\".\""
 
 msgid "Traders and Ships +20% vision range."
 msgstr "O alcance de visão de todos os mercadores e embarcações aumenta +20%."
 
-msgid "Salting allows to preserve fish longer."
-msgstr "A salgadeira permite preservar os peixes durante mais tempo."
-
 msgid "Salt Curing"
 msgstr "Stagionatura al sale"
+
+msgid "Salting allows to preserve fish longer."
+msgstr "A salgadeira permite preservar os peixes durante mais tempo."
 
 msgid "Unlocked in Village Phase. Requires “Fishing Nets.”"
 msgstr "Se desbloquea en la fase intermedia. Requiere «redes de pesca»."
@@ -569,24 +590,27 @@ msgstr "Se desbloquea en la fase intermedia. Requiere «redes de pesca»."
 msgid "Fishing Boats +20 food capacity."
 msgstr "Aumenta a capacidade de almacenamendo de comida dos pesqueiros en +20."
 
-msgid "Use nets to improve the productivity of fishing boats."
-msgstr "Χρησιμοποίησε δίκτυα για να βελτιώσεις την παραγωγικότητα των αλιευτικών σκαφών."
-
 msgid "Fishing Nets"
 msgstr "मासेमारीची जाळे"
+
+msgid "Use nets to improve the productivity of fishing boats."
+msgstr "Χρησιμοποίησε δίκτυα για να βελτιώσεις την παραγωγικότητα των αλιευτικών σκαφών."
 
 #, python-format
 msgid "Fishing Boats +30% fish gather rate. Unlocks “Salt Curing.”"
 msgstr "Barcos de pesca +30% de taxa de recollida de peixe. Desbloquea “Curado con Sal.”"
 
-msgid "Units regain health over time while garrisoned."
-msgstr "As unidades ganham pontos de vida ao longo do tempo enquanto estiverem aquarteladas."
-
 msgid "Living Conditions"
 msgstr "Conditionsertên jiyanê"
 
+msgid "Units regain health over time while garrisoned."
+msgstr "As unidades ganham pontos de vida ao longo do tempo enquanto estiverem aquarteladas."
+
 msgid "Structures +1 garrison heal rate."
 msgstr "+1 a la velocitat de curació d'unitats refugiades a les estructures."
+
+msgid "Ahimsa"
+msgstr "Ahimsa"
 
 msgid ""
 "Ahimsa is the ancient Indian principle of nonviolence which applies to actions towards "
@@ -597,114 +621,111 @@ msgstr ""
 "Handlungen gegenüber sämtlichen Lebewesen bezieht. Es ist eine der zentralen Tugenden "
 "in indischen Religionen wie Janismus, Buddhismus, Hinduismus und Sikhismus."
 
-msgid "Ahimsa"
-msgstr "Ahimsa"
-
 #, python-format
 msgid "Units +100% fruit gather rate, but −80% meat and fish gather."
 msgstr ""
 "Einheiten bekommen +100 % Sammelrate für Früchte, aber −80 % Sammelrate für Fleisch und"
 " Fisch."
 
-msgid "Breed livestock to slaughter for meat."
-msgstr "Állatok tenyésztése, hogy le lehessen őket vágni élelemért."
-
 msgid "Stockbreeding"
 msgstr "Mėsinių gyvūnų veisimas."
 
+msgid "Breed livestock to slaughter for meat."
+msgstr "Állatok tenyésztése, hogy le lehessen őket vágni élelemért."
+
 msgid "Domestic Animals −25% breeding time."
 msgstr "Animales domésticos (Tiempo de reproducción: −25%)."
+
+msgid "Baskets"
+msgstr "Rieten manden"
 
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
 msgstr ""
 "Cleachdaidh an luchd-obrach basgaidean. Beiridh na h‑aonadan eallach nas motha de na "
 "h-uile stòras."
 
-msgid "Baskets"
-msgstr "Rieten manden"
-
 msgid "Workers +5 resource capacity."
 msgstr "Els treballadors guanyen +5 de capacitat de portar recursos."
+
+msgid "Horse-drawn Carts"
+msgstr "گاری هایی که توسط اسب کشیده می شوند"
 
 msgid "Workers use horse-drawn carts. Increases shuttling capacity for all resources."
 msgstr ""
 "Les travailleurs utilisent des charrettes tirées par des chevaux. Augmente la capacité "
 "de transport pour toutes les ressources. "
 
-msgid "Horse-drawn Carts"
-msgstr "گاری هایی که توسط اسب کشیده می شوند"
+msgid "Wheelbarrow"
+msgstr "Carretilla de mano"
 
 msgid "Workers use wheelbarrows. Increases shuttling capacity for all resources."
 msgstr ""
 "Cleachdaidh an luchd-obrach barachan-cuibhle. Beiridh na h‑aonadan eallach nas motha de"
 " na h‑uile stòras."
 
-msgid "Wheelbarrow"
-msgstr "Carretilla de mano"
+msgid "Chain Pump"
+msgstr "Zincirli su tulumbası"
 
 msgid "Install a chain pump for improved irrigation."
 msgstr ""
 "Установка цепного насоса улучшит орошение полей и позволит работникам добывать рис "
 "быстрее."
 
-msgid "Chain Pump"
-msgstr "Zincirli su tulumbası"
-
 #, python-format
 msgid "Workers +20% grain gather rate."
 msgstr "Trabajadores (Velocidad de recolección de grano: +20%)."
 
+msgid "Fertilizer"
+msgstr "Fertilizzante"
+
 msgid "Extra nutrients for farms."
 msgstr "Επιπλέον θρεπτικά συστατικά για τα αγροκτήματα."
 
-msgid "Fertilizer"
-msgstr "Fertilizzante"
+msgid "Harvesting Machine"
+msgstr "Derliaus rinkimo mašina"
 
 msgid "The Gauls invented an harvesting machine, making it much easier to harvest grain."
 msgstr ""
 "Os Gauleses inventaram uma colheitadeira, fazendo com que a colheita de grãos fossem "
 "muito mais fácil. "
 
-msgid "Harvesting Machine"
-msgstr "Derliaus rinkimo mašina"
-
 #, python-format
 msgid "Workers +10% grain gather rate."
 msgstr "Trabajadores (Velocidad de recolección del grano: +10%)."
+
+msgid "Iron Plow"
+msgstr "An crann-treabhaidh iarainn"
 
 msgid "Equip your workers with iron plows, animal-drawn instruments to turn the sod."
 msgstr ""
 "Uidheamaich na h-obraichean agad le crann-treabhaidh iarainn, seo innealan a thèid a "
 "shlaodadh le beathaichean airson an ùir a thionndadh."
 
-msgid "Iron Plow"
-msgstr "An crann-treabhaidh iarainn"
+msgid "Seed Drill"
+msgstr "Penugal Benih"
 
 msgid "Equip your workers with seed drills."
 msgstr "Equipa aos teus traballadores con sementadoras."
 
-msgid "Seed Drill"
-msgstr "Penugal Benih"
+msgid "Gather Training"
+msgstr "Обучение в събиране на реколтата"
 
 msgid "Training for workers to increase farm gathering speed."
 msgstr "Entrena a tus trabajadores para incrementar la velocidad de recoleccion en cultivos."
 
-msgid "Gather Training"
-msgstr "Обучение в събиране на реколтата"
+msgid "Water Weeding"
+msgstr "Eliminação de ervas daninhas"
 
 msgid "Remove water weeds to preserve nutrients for the rice plants."
 msgstr ""
 "Премахване на плевелите във водата, с цел опазване на хранителните вещества за "
 "оризовите растения."
 
-msgid "Water Weeding"
-msgstr "Eliminação de ervas daninhas"
+msgid "Iron Axe Heads"
+msgstr "Machadas con cabezas de ferro"
 
 msgid "Increases wood gathering rates for trees."
 msgstr "Augmenta la velocitat de recollida de fusta dels arbres."
-
-msgid "Iron Axe Heads"
-msgstr "Machadas con cabezas de ferro"
 
 msgid "Workers +25% wood gather rate."
 msgstr "Augmente le taux de récolte du bois par les ouvriers de +25%."
@@ -715,93 +736,114 @@ msgstr "Κοφτερές Κεφαλές Τσεκουριών"
 msgid "Stronger Axe"
 msgstr "Machado mais resistente"
 
+msgid "Serfs"
+msgstr "Livegne (\"slaver\")"
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Heilōtes"
+msgstr "Heilōtes"
+
 msgid "Compel serfs to help your workers quarry stone. Increases stone gathering rates."
 msgstr ""
 "Принуждаване на крепостниците да помагат на работниците при събирането на камък. "
 "Увеличава скоростта на събиране на камък."
 
-msgid "Serfs"
-msgstr "Livegne (\"slaver\")"
-
-msgid "Heilōtes"
-msgstr "Spartalı Köleler"
-
 #, python-format
 msgid "Workers +25% stone gather rate."
 msgstr "Augmente le taux de récolte de la pierre par les ouvriers de +25%."
+
+msgid "Servants"
+msgstr "Zerbitzariak"
 
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
 msgstr ""
 "Contractar servientes para sacar piedra de lɐs canteirɐs. Augmenta la taxa de recaldu "
 "de piedra."
 
-msgid "Servants"
-msgstr "Zerbitzariak"
-
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Douloi"
-msgstr "Douloi (otroci)"
-
-msgid "Develop shaft mining. Increases metal gathering rates."
-msgstr "Разработване на технологии за копаене на мини. Увеличава скоростта на събиране на метал."
+msgstr "Douloi"
 
 msgid "Shaft Mining"
 msgstr "Šachtinis Kasinėjimas."
 
+msgid "Develop shaft mining. Increases metal gathering rates."
+msgstr "Разработване на технологии за копаене на мини. Увеличава скоростта на събиране на метал."
+
 msgid "Workers +25% metal gather rate."
 msgstr "Augmente le taux de récolte du métal par les ouvriers de +25%."
-
-msgid "Strike a vein of precious silver. Increases metal gathering rates."
-msgstr "Χτύπησες μια φλέβα από πολύτιμο ασήμι. Αυξάνει τα ποσοστά συγκέντρωσης μετάλλων."
 
 msgid "Silver Mining"
 msgstr "Extraction de l'argent"
 
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Mines of Laureion"
-msgstr "Laureioni kaevandused"
+msgstr "Mines of Laureion"
 
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Mines of Krenides"
-msgstr "Mianaigh Chréinaodacha"
+msgstr "Mines of Krenides"
+
+msgid "Strike a vein of precious silver. Increases metal gathering rates."
+msgstr "Χτύπησες μια φλέβα από πολύτιμο ασήμι. Αυξάνει τα ποσοστά συγκέντρωσης μετάλλων."
+
+msgid "Slaves"
+msgstr "selbapselfu"
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Servi"
+msgstr "Servi"
 
 msgid "Buy slaves to help your workers quarry stone. Increases stone gathering rates."
 msgstr ""
 "Купуване на роби, които да помагат на работниците при събирането на камък. Увеличава "
 "скоростта на събиране на камък."
 
-msgid "Slaves"
-msgstr "selbapselfu"
-
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Andrapoda"
-msgstr "Andrapoda (váleční zajatci)"
+msgstr "Andrapoda"
 
-msgid "Servi"
-msgstr "Servi (otroci)"
+msgid "Wedge and Mallet"
+msgstr "Martiellos & punteiros"
 
 msgid "Equip your workers with helpful tools. Increases metal gathering rates."
 msgstr ""
 "Uidheamaich na h-obraichean agad le acainnean feumail. Thèid meatailt a chruinneachadh "
 "nas luaithe."
 
-msgid "Wedge and Mallet"
-msgstr "Martiellos & punteiros"
+msgid "Wicker Baskets"
+msgstr "Canastas de mimbre"
 
 msgid "Equip your foragers with wicker baskets for foraging."
 msgstr "Εξοπλίστε τους συλλέκτες τροφής σας με ψάθινα καλάθια για το μάζεμα της τροφής."
-
-msgid "Wicker Baskets"
-msgstr "Canastas de mimbre"
 
 #, python-format
 msgid "Workers +50% fruit gather rate."
 msgstr "Työntekijöille +50% marjojen ja hedelmien keräysnopeus."
 
-msgid "Increases the healing and vision range of all healers."
-msgstr "Augmente la portée de guérison et le champ de vision de tous les guérisseurs."
-
 msgid "Healing Range"
 msgstr "Atingodistanco de kuracado"
 
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Olympic Pantheon"
-msgstr "Pan-diadhachd Oilimpeach"
+msgstr "Olympic Pantheon"
+
+msgid "Increases the healing and vision range of all healers."
+msgstr "Augmente la portée de guérison et le champ de vision de tous les guérisseurs."
 
 msgid "Healers +5 healing range."
 msgstr "Целители получают +5 к дальности исцеления."
@@ -809,17 +851,23 @@ msgstr "Целители получают +5 к дальности исцеле�
 msgid "Healing Range 2"
 msgstr "Atingodistanco de kuracado 2"
 
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Akadēmeia"
 msgstr "Akadēmeia"
-
-msgid "Increases the healing rate of all healers."
-msgstr "Augmenta la velocitat de curació de tots els guaridors."
 
 msgid "Healing Rate"
 msgstr "Velocidade de sandación"
 
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Sphagia"
-msgstr "Krwawa ofiara"
+msgstr "Sphagia"
+
+msgid "Increases the healing rate of all healers."
+msgstr "Augmenta la velocitat de curació de tots els guaridors."
 
 #, python-format
 msgid "Healers −20% healing time."
@@ -828,8 +876,14 @@ msgstr "El temps de curació dels guaridors es redueix un 20%."
 msgid "Healing Rate 2"
 msgstr "Velocidade de sandación 2"
 
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Hippocratic Oath"
-msgstr "Iusiurandum Hippocraticum"
+msgstr "Hippocratic Oath"
+
+msgid "The Loom"
+msgstr "നെയ്‌ത്തുയന്ത്രം"
 
 msgid ""
 "The loom allowed the creation of finer clothing for settlers. Women of the household "
@@ -841,23 +895,23 @@ msgstr ""
 "età a tessere sul telaio, e conseguentemente trascorrevano gran parte della loro vita "
 "lavorando con esso."
 
-msgid "The Loom"
-msgstr "നെയ്‌ത്തുയന്ത്രം"
-
 #, python-format
 msgid "Female Citizens +100% health."
 msgstr "+100% de shlàinte airson shaoranach boireann."
+
+msgid "Battlefield Medicine"
+msgstr "Medicina del Campo de Batalla"
 
 msgid "Organic units will slowly regenerate health over time when idle."
 msgstr ""
 "Οι οργανικές μονάδες θα αναγεννηθούν την υγεία του σιγά-σιγά με την πάροδο του χρόνου "
 "όταν είναι σε αδράνεια."
 
-msgid "Battlefield Medicine"
-msgstr "Medicina del Campo de Batalla"
-
 msgid "Idle Organic units +0.5 health regeneration rate."
 msgstr "Gheibh aonadan fàs-bheartach +0.5 air an slànachadh fhad ’s a bhios iad ’nan tàmh."
+
+msgid "Hellenistic Metropolis"
+msgstr "Эллинистическая метрополия"
 
 msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities throughout their"
@@ -868,14 +922,14 @@ msgstr ""
 "Imperium, in denen sich die griechische Kunst und Kultur mit den lokalen Gewohnheiten "
 "vermischten und die kunterbunte hellenistische Zivilisation bildete."
 
-msgid "Hellenistic Metropolis"
-msgstr "Эллинистическая метрополия"
-
 #, python-format
 msgid "Civic Centers +100% health and capture points, double default arrows."
 msgstr ""
 "Городские центры получают +100% к прочности и очкам захвата, а также удваивают базовое "
 "количество выпускаемых ими стрел."
+
+msgid "Helot Economy"
+msgstr "Helotische Ökonomie"
 
 msgid ""
 "Helots were the servants of Greece. Unlike slaves, helots were owned by the state, "
@@ -887,26 +941,26 @@ msgstr ""
 "contribuir con una parte considerable de su cosecha como para mantener a un guerrero y "
 "a su familia o a su viuda."
 
-msgid "Helot Economy"
-msgstr "Helotische Ökonomie"
-
 #, python-format
 msgid "Infantry Javelineers +100% grain gather rate, but −10% ranged attack pierce damage."
 msgstr ""
 "Giavellottisti +100% di velocità di raccolta del grano, ma -10% di danni da "
 "perforazione negli attacchi a distanza."
 
-msgid "Hoplite soldiers constituted most of the armies of Greece."
-msgstr "Bhiodh a’ mhòrchuid dhe na saighdearan sna feachdan Greugach ’nan hoplaidean."
-
 msgid "Hoplite Tradition"
 msgstr "Mızraklı Ağır Piyade Geleneği"
+
+msgid "Hoplite soldiers constituted most of the armies of Greece."
+msgstr "Bhiodh a’ mhòrchuid dhe na saighdearan sna feachdan Greugach ’nan hoplaidean."
 
 #, python-format
 msgid "Hoplites −25% training time, −50% promotion experience, and +10% health."
 msgstr ""
 "Hopliten −25 % Ausbildungszeit, −50 % Erfahrungspunkte für eine Beförderung und +10 % "
 "Gesundheit."
+
+msgid "Immortals"
+msgstr "Lèintean-crios neo-bhàsmhor"
 
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as Athanatoi "
@@ -915,19 +969,16 @@ msgstr ""
 "Les Perses achéménides entretenaient une force armée d'élite de 10 000 soldats que "
 "certains auteurs grecs nommèrent Athanatoi (“les Immortels”)."
 
-msgid "Immortals"
-msgstr "Lèintean-crios neo-bhàsmhor"
-
 msgid "Immortals −50% training time."
 msgstr "Время обучения бессмертных сокращается на 50%."
+
+msgid "Iphicratean Reforms"
+msgstr "Ath-leasachaidhean Iphiocratas"
 
 msgid "Athenian gymnasium, docks and triremes can train Marines (Epibates Athenaikos)."
 msgstr ""
 "Los trirremes atenienses, el muelle y el Gymnasion ateniense pueden reclutar infantería"
 " de marina (Epibates Athenaikos)."
-
-msgid "Iphicratean Reforms"
-msgstr "Ath-leasachaidhean Iphiocratas"
 
 msgid "Athenian Docks and Triremes can train Marines and Cretan Mercenary Archers."
 msgstr ""
@@ -937,12 +988,18 @@ msgstr ""
 msgid "Juggernauts"
 msgstr "Juggernauts (Megamaquinas)"
 
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Tessarakonterēs"
-msgstr "तेस्साराकोन्तेरेस"
+msgstr "Tessarakonterēs"
 
 #, python-format
 msgid "Siege Ships +50% health, +25% more projectiles, but −25% speed."
 msgstr "Belagerungsschiffe +50 % Gesundheit, +25 % mehr Projektile, aber −25 % Geschwindigkeit."
+
+msgid "Krypteia"
+msgstr "क्रिप्टेइआ"
 
 msgid ""
 "Krypteia was an Agoge rite of passage, during which soldiers learned how to camouflage "
@@ -957,15 +1014,15 @@ msgstr ""
 "matarlos. Durante esta iniciación, los jóvenes dormían durante el día y salían por la "
 "noche, asesinando a cualquier ilota que encontrasen en su camino."
 
-msgid "Krypteia"
-msgstr "क्रिप्टेइआ"
-
 msgid ""
 "Champion Hoplites +10% melee attack damage, but Citizen Infantry Javelineers +30% "
 "training time."
 msgstr ""
 "Hoplitas Campións +10% de dano de ataque corpo a corpo, pero Lanceiros de Infantería "
 "Cidadá +30% de tempo de adestramento."
+
+msgid "Athenian Long Walls"
+msgstr "Grandes murallas atenienses"
 
 msgid ""
 "The Long Walls of Athens were constructed under the auspices of the wily Themistocles "
@@ -977,11 +1034,17 @@ msgstr ""
 "subministracións por mar á cidade, e impediu que os inimigos conseguisen que a cidade "
 "quedase sen abastecementos durante os asedios."
 
-msgid "Athenian Long Walls"
-msgstr "Grandes murallas atenienses"
-
 msgid "Build Walls in own or neutral territory."
 msgstr "Construisez des murs dans votre propre territoire ou dans le territoire neutre."
+
+msgid "Nisean War Horses"
+msgstr "Cavalos de guerra da espécie Nisean."
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Nisioi"
+msgstr "Nisioi"
 
 msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust horses of "
@@ -993,17 +1056,14 @@ msgstr ""
 "seléucidas e mailos persas a medida que o peso da armadura do xinete, así como a da "
 "propia montura, aumentaba co paso do tempo."
 
-msgid "Nisean War Horses"
-msgstr "Cavalos de guerra da espécie Nisean."
-
-msgid "Nisioi"
-msgstr "Niszaioi"
-
 #, python-format
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
 msgstr ""
 "Els llancers campions de cavalleria guanyen un 20% de salut, però triguen un 10% més a "
 "reclutar-se."
+
+msgid "Ostracism"
+msgstr "Cserépszavazás"
 
 msgid ""
 "In ancient Athens, ostracism was the process by which any citizen, including political "
@@ -1013,18 +1073,15 @@ msgstr ""
 " ciudad-estado durante diez años a cualquier ciudadano, incluidos los líderes "
 "políticos."
 
-msgid "Ostracism"
-msgstr "Cserépszavazás"
-
 #, python-format
 msgid "Citizen soldiers +5% health, but Heroes −40% health."
 msgstr "Os soldados cidadáns +5% de saúde, pero os Heroes -40% de saúde."
 
-msgid "Increases outpost vision."
-msgstr "Aumenta el alcance de visión de los puestos de avanzada."
-
 msgid "Carrier Pigeons"
 msgstr "Ταχυδρομικά περιστέρια"
+
+msgid "Increases outpost vision."
+msgstr "Aumenta el alcance de visión de los puestos de avanzada."
 
 msgid "Outposts +33% vision range."
 msgstr "Les avant-postes ont un champs de vision étendu de +33%."
@@ -1044,6 +1101,9 @@ msgstr "Öffentlicher Dienst"
 msgid "Cult"
 msgstr "Kultusz"
 
+msgid "Parade of Daphne"
+msgstr "Военный парад в Антиохии-на-Оронте"
+
 msgid ""
 "The festival at Daphne was a major event of the Seleucid Empire: tens of thousands of "
 "well-equipped troops participated in the opening procession."
@@ -1052,11 +1112,11 @@ msgstr ""
 "bhiodh deichean de mhìltean a shaighdearan le deagh armachd a’ gabhail pàirt san "
 "imreachadh fosglaidh."
 
-msgid "Parade of Daphne"
-msgstr "Военный парад в Антиохии-на-Оронте"
-
 msgid "Champions −20% training time."
 msgstr "Unités championnes : -20% de temps d'entrainement."
+
+msgid "Pharaonic Cult"
+msgstr "Culte pharaonique "
 
 msgid ""
 "The Pharaohs were worshipped as living gods. Their word was sacrosanct and beyond "
@@ -1066,9 +1126,6 @@ msgstr ""
 "Die Pharaonen wurden wie lebende Götter verehrt. Ihr Wort war unantastbar und über "
 "jeden Zweifel erhaben, zumindest für das gemeine Volk. The ptolemäische Dynastie nutzte"
 " diesen altertümlichen Brauch aus, mit unterschiedlichen Graden von Erfolg."
-
-msgid "Pharaonic Cult"
-msgstr "Culte pharaonique "
 
 msgid "Heroes +2 health/second self-regen rate."
 msgstr "Kahramanlar +2 sağlık/ikinci kendini yenileme oranı."
@@ -1093,12 +1150,6 @@ msgstr ""
 "ποσοστά συλλογής μετάλλων ενισχύθηκαν λόγω του μπόνους από τις \"Ασημένιες "
 "Κουκουβάγιες\"."
 
-msgid "Requires three Town Structures."
-msgstr "Требуется три постройки этапа небольшого города."
-
-msgid "Megalopolis"
-msgstr "Megalopolis"
-
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic Centers +25%"
 " territory influence radius. Structures +1 capture points regeneration rate for "
@@ -1109,15 +1160,27 @@ msgstr ""
 "пленителна точка според броя на единиците на гарнизон в тях. Работниците получават +10%"
 " скорост на събиране на метал."
 
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Megalopolis"
+msgstr "Megalopolis"
+
+msgid "Requires three Town Structures."
+msgstr "Требуется три постройки этапа небольшого города."
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Jùn"
+msgstr "Jùn"
+
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders of modern "
 "technology."
 msgstr ""
 "Εξελίσσετε από μια πολυσύχναστη κωμόπολη σε μια πραγματική μητρόπολη, γεμάτη από τα "
 "θαύματα της σύγχρονης τεχνολογίας."
-
-msgid "Jùn"
-msgstr "Цзюнь"
 
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic Centers +25%"
@@ -1171,12 +1234,6 @@ msgstr ""
 "ταχείς ρυθμούς. Αυτή είναι η φάση τη Αθηναϊκής πόλης, όπου τα ποσοστά συλλογής μετάλλων"
 " ενισχύθηκαν λόγω του μπόνους από τις \"Ασημένιες Κουκουβάγιες\"."
 
-msgid "Requires five Village Structures."
-msgstr "Требует наличия пяти строений деревенского этапа."
-
-msgid "Kōmopolis"
-msgstr "Kōmopolis"
-
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic Centers +25%"
 " territory influence radius. Structures +0.5 capture points regeneration rate for "
@@ -1187,13 +1244,25 @@ msgstr ""
 "+0.5 au taux de régénération des points de capture pour chaque unité en garnison. "
 "Ouvriers : +10% au taux de récolte du métal."
 
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Kōmopolis"
+msgstr "Kōmopolis"
+
+msgid "Requires five Village Structures."
+msgstr "Требует наличия пяти строений деревенского этапа."
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Xìan"
+msgstr "Xìan"
+
 msgid "Advances from a small village to a bustling town, ready to expand rapidly."
 msgstr ""
 "Steige von einem kleinen Dorf zu einer betriebsamen Ansiedlung auf, bereit, sich "
 "schnell zu entfalten."
-
-msgid "Xìan"
-msgstr "Сиань "
 
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic Centers +25%"
@@ -1231,6 +1300,9 @@ msgstr ""
 msgid "Village Phase"
 msgstr "Pazenn ar C'hêriadennoù ."
 
+msgid "Pheidian Workshop"
+msgstr "Работилницата на Фидий"
+
 msgid ""
 "Pheidias was a Greek sculptor, painter and architect, who lived in the 5th century BC, "
 "and is commonly regarded as one of the greatest of all sculptors of Classical Greece: "
@@ -1248,9 +1320,6 @@ msgstr ""
 " de bronce de Atenea que se alzaba entre el Partenón y los Propileos, una entrada "
 "monumental que servía de acceso a la Acrópolis de Atenas."
 
-msgid "Pheidian Workshop"
-msgstr "Работилницата на Фидий"
-
 #, python-format
 msgid "Temples and Wonder −50% stone cost and build time."
 msgstr "Templos e Maravilha têm -50% menor custo de pedra e tempo de construção."
@@ -1267,6 +1336,21 @@ msgstr "Cuiꞇhiellɐs invenenadɐs"
 msgid "Melee Soldiers +20% attack damage."
 msgstr "Soldados de ataque corpo a corpo +20% dano de ataque."
 
+msgid "Home Garden"
+msgstr "Giardino Domestico"
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Paradaidām"
+msgstr "Paradaidām"
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Peristylium"
+msgstr "Peristylium"
+
 msgid ""
 "Home gardens ranged from simple fenced-in areas to large manicured and colonnaded "
 "enclosures."
@@ -1274,40 +1358,40 @@ msgstr ""
 "Les jardins domestiques pouvaient n'être que de simples zones clôturées ou s'étendre à "
 "de larges enceintes entretenues et traversées de colonnes."
 
-msgid "Home Garden"
-msgstr "Giardino Domestico"
-
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Peristylon"
-msgstr "Peristil -Sütunlu koridorlar ile çevrelenmiş dikdörtgen biçimli üstü açık bir avlu"
-
-msgid "Paradaidām"
-msgstr "Cennet Bahçesi"
-
-msgid "Peristylium"
-msgstr "Peristil -Sütunlu koridorlar ile çevrelenmiş dikdörtgen biçimli üstü açık bir avlu"
+msgstr "Peristylon"
 
 msgid "Houses +20% population bonus."
 msgstr "Gheibh thu buannachd dhe +20% air an tomhas-shluaigh le gach taigh."
+
+msgid "Manors"
+msgstr "Taighean-maineir"
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Insulae"
+msgstr "Insulae"
 
 msgid "Homes tended to expand as the wealth and population of a settlement grew."
 msgstr ""
 "À medida que a riqueza e a população de uma povoação crescem, os seus habitantes tendem"
 " expandir as suas casas."
 
-msgid "Manors"
-msgstr "Taighean-maineir"
-
-msgid "Insulae"
-msgstr "Obrovský činžák"
+msgid "Reform Army"
+msgstr "Feachd an ath-leasachaidh"
 
 msgid "The Roman-style core of the Seleucid army."
 msgstr "Le noyau de l'armée séleucide inspirée des troupes romaines."
 
-msgid "Reform Army"
-msgstr "Feachd an ath-leasachaidh"
-
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr "Desbloquea los primeros espadas de infantería de élite."
+
+msgid "Marian Reforms"
+msgstr "Marianische Heeresreform"
 
 msgid ""
 "Regularize the army into a professional, organized force. The Marian reforms were a "
@@ -1321,9 +1405,6 @@ msgstr ""
 "cambios en el equipamiento y la estandarización de la unidad de infantería pesada: el "
 "legionario."
 
-msgid "Marian Reforms"
-msgstr "Marianische Heeresreform"
-
 msgid ""
 "Convert Infantry to Marian Legionaries, Cavalry to Auxiliary Cavalry, unlock Onagers "
 "and Centurions, but lose access to Spear Cavalry and Italic Heavy Infantry."
@@ -1332,17 +1413,23 @@ msgstr ""
 " desbloquea onagros y centuriones. Sin embargo se pierde el acceso a los lanceros a "
 "caballo y a la infantería pesada itálica."
 
-msgid "All roads lead to Rome."
-msgstr "Wszystkie drogi prowadzą do Rzymu."
-
 msgid "Roman Roads"
 msgstr "Römische Straßen"
 
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Viae Romanum"
-msgstr "व्हिआए रोमानुम"
+msgstr "Viae Romanum"
+
+msgid "All roads lead to Rome."
+msgstr "Wszystkie drogi prowadzą do Rzymu."
 
 msgid "All Land Units +5% movement speed."
 msgstr "Wszystkie jednostki naziemne +5% do prędkości poruszania się."
+
+msgid "Serapis Cult"
+msgstr "Culto aos serafines"
 
 msgid ""
 "The cult of Serapis was introduced during the 3rd century BC on the orders of Ptolemy I"
@@ -1362,24 +1449,24 @@ msgstr ""
 "ptoloemäischen Könige verbreitet, die außerdem ein riesiges Serapeum in Alexandria "
 "bauen ließen."
 
-msgid "Serapis Cult"
-msgstr "Culto aos serafines"
-
 msgid "+2.0 metal trickle per second."
 msgstr "+2 recebimento de metal por segundo ao longo do tempo."
-
-msgid "Marines were a vital part of ship defense and offense."
-msgstr "Marinesoldaten waren ein lebenswichtiger Teil der Defensive und Offensive eines Schiffs."
 
 msgid "Marines"
 msgstr "Infantería de marina"
 
-msgid "Epibatai"
-msgstr "Epibatai"
+msgid "Marines were a vital part of ship defense and offense."
+msgstr "Marinesoldaten waren ein lebenswichtiger Teil der Defensive und Offensive eines Schiffs."
 
 #, python-format
 msgid "All Warships +40% capture resistance."
 msgstr "Tutte le navi da guerra +40% di resistenza alla cattura."
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Epibatai"
+msgstr "Epibatai"
 
 msgid "Naval Architects"
 msgstr "Военноморски архитекти"
@@ -1388,26 +1475,29 @@ msgstr "Военноморски архитекти"
 msgid "Ships −20% construction time."
 msgstr "Itsasontziak %20- gutxiago eraikitze-denboran."
 
-msgid "Wooden reinforcement beams for ship hulls."
-msgstr "Refuerzos de cuadernas de madera para los cascos de tus barcos. "
-
 msgid "Reinforced Hull"
 msgstr "Verstärkter Schiffsrumpf"
+
+msgid "Wooden reinforcement beams for ship hulls."
+msgstr "Refuerzos de cuadernas de madera para los cascos de tus barcos. "
 
 #, python-format
 msgid "Ships +25% health, but −10% speed."
 msgstr "Schiffe +25 % Gesundheit, aber −10 % Geschwindigkeit."
+
+msgid "Experienced Crews"
+msgstr "Eskarmentu handiko tripulazioak"
 
 msgid "Train your oarsmen and sailors to move more efficiently and speed up your ships."
 msgstr ""
 "Treinar seus remadores e marinheiros para se mover com mais eficiência e aumentando a "
 "velocidade de seus navios."
 
-msgid "Experienced Crews"
-msgstr "Eskarmentu handiko tripulazioak"
-
 msgid "Ships +10% movement speed."
 msgstr "+10% de vitesse de déplacement pour les navires."
+
+msgid "Lookouts"
+msgstr "Miradoiros"
 
 msgid ""
 "Lookouts aboard ship were important for sighting land, spotting navigational hazards, "
@@ -1416,12 +1506,6 @@ msgstr ""
 "La cofa de un barco es un importante lugar para divisar tierra, así como otros peligros"
 " propios de la navegación, o también para dirigir el fuego en la batalla. "
 
-msgid "Lookouts"
-msgstr "Miradoiros"
-
-msgid "Prōratēs"
-msgstr "प्रोराटेस"
-
 msgid ""
 "Ships and Boats +10% vision range; Scout Ships an additional +25% vision range. Unlocks"
 " “Exploration” for the Carthaginians and Han Chinese."
@@ -1429,52 +1513,58 @@ msgstr ""
 "Barcos e embarcacións +10% de alcance de visión; Barcos de Exploración +25% adicional "
 "de alcance de visión. Destraba “Exploración” para os cartaxineses e os chineses Han."
 
-msgid "Advanced technologies improve siege efficiency."
-msgstr "Fortschrittliche Technologien zur Verbesserung der Belagerungseffizienz."
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Prōratēs"
+msgstr "Prōratēs"
 
 msgid "Advanced Siege"
 msgstr "Fortschrittlichere Belagerungswaffen"
 
+msgid "Advanced technologies improve siege efficiency."
+msgstr "Fortschrittliche Technologien zur Verbesserung der Belagerungseffizienz."
+
 msgid "Siege Engines +25% attack crush damage."
 msgstr "Gheibh innealan-sèiste +25% de dhochann brùillidh air an ionnsaighean."
 
-msgid "Improvement to projectile accuracy."
-msgstr "Подобрение в точността на метателните оръжия."
-
 msgid "Bolt Accuracy"
 msgstr "Los tornillos son mas precisos"
+
+msgid "Improvement to projectile accuracy."
+msgstr "Подобрение в точността на метателните оръжия."
 
 #, python-format
 msgid "Bolt Shooters −20% ranged attack spread."
 msgstr "Εκσφενδονιστής Στουπιών -20% στη διάσπαση της επίθεσης εξ αποστάσεως."
 
-msgid "The science or craft of laying or carrying out sieges."
-msgstr "Науката или занаятът на разполагането и осъществяването на обсади."
-
 msgid "Siegecraft"
 msgstr "Vedení boje při obléhání"
+
+msgid "The science or craft of laying or carrying out sieges."
+msgstr "Науката или занаятът на разполагането и осъществяването на обсади."
 
 #, python-format
 msgid "Siege Engines −20% construction time."
 msgstr "les engins de siège ont -20% de temps de construction."
+
+msgid "Armor Plating"
+msgstr "Panssarin metallipinnoitus"
 
 msgid "Cover the exterior with iron plates to protect against fire and projectiles."
 msgstr ""
 "Cubierta exterior con planchas de hierro como protección contra el fuego y los "
 "proyectiles."
 
-msgid "Armor Plating"
-msgstr "Panssarin metallipinnoitus"
-
 #, python-format
 msgid "Battering Rams and Siege Towers +25% health."
 msgstr "Стенобитные орудия и осадные башни получают на 25% больше прочности."
 
-msgid "Military engineers are responsible for improvements in siege engines."
-msgstr "Οι Στρατιωτεςί Μηχανικοί είναι υπέυθυνοι για  βελτιώσεις των πολιορκητικών μηχανών."
-
 msgid "Military Engineers"
 msgstr "Στρατιωτικοί Μηχανικοί"
+
+msgid "Military engineers are responsible for improvements in siege engines."
+msgstr "Οι Στρατιωτεςί Μηχανικοί είναι υπέυθυνοι για  βελτιώσεις των πολιορκητικών μηχανών."
 
 msgid "Siege Engines –40% pack and unpack time."
 msgstr "Πολιορκητικές Μηχανές -40% στο χρόνο συναρμολόγησης και αποσυναρμολόγησης."
@@ -1486,6 +1576,9 @@ msgstr "Δρόμος του Μεταξιού"
 msgid "Traders +20% international trade bonus."
 msgstr "Торговцы приносят на 20% больше ресурсов при международной торговле"
 
+msgid "Silver Shields Regiment"
+msgstr "Regjimenti i Mburojave të Argjendta"
+
 msgid ""
 "The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of the "
 "Macedonian army."
@@ -1493,15 +1586,21 @@ msgstr ""
 "Scuti Argentei, vel Argyraspes in Lingua Latina, vel Argyraspidai, robores pedites "
 "graves erant Macedoniensis exercitus."
 
-msgid "Silver Shields Regiment"
-msgstr "Regjimenti i Mburojave të Argjendta"
-
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health and attack "
 "damage."
 msgstr ""
 "Àrdaich laoich coisridh nan giùlanairean-sgèithe gu sgiathan airgid aig a bheil "
 "barrachd slàinte ’s dochann ionnsaighe."
+
+msgid "Side Arms"
+msgstr "Вспомогательное оружие"
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Pugio"
+msgstr "Pugio"
 
 msgid ""
 "Often, a soldier would carry a secondary weapon in addition to his primary weapon of "
@@ -1511,25 +1610,25 @@ msgstr ""
 "son arme principale, qu'il utilisait lorsque son arme principale défaillait ou se "
 "brisait."
 
-msgid "Side Arms"
-msgstr "Вспомогательное оружие"
-
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Xiphos"
-msgstr "Düz kısa kılıç"
-
-msgid "Pugio"
-msgstr "Sztylet Pugio"
+msgstr "Xiphos"
 
 msgid "Soldiers +15% melee attack damage."
 msgstr "+15% air dochann ionnsaighean dlùtha nan saighdearan."
+
+msgid "Iron Weapons"
+msgstr "Geležiniai Ginklai"
 
 msgid "Using iron instead of bronze gave weapons additional power."
 msgstr ""
 "El uso del hierro en lugar de bronce proporciona daño adicional, mejorando la robustez "
 "de las armas."
 
-msgid "Iron Weapons"
-msgstr "Geležiniai Ginklai"
+msgid "Carburization"
+msgstr "Θερμική επεξεργασία"
 
 msgid ""
 "By adding a small amount of carbon during the iron smelting process, a stronger "
@@ -1538,11 +1637,23 @@ msgstr ""
 "Ao engadir unha pequena cantidade de carbono durante o proceso de fundición de ferro, "
 "pódese forxar un material máis resistente, o aceiro."
 
-msgid "Carburization"
-msgstr "Θερμική επεξεργασία"
-
 msgid "Soldiers +20% melee attack damage."
 msgstr "+20% air dochann ionnsaighean dlùtha nan saighdearan."
+
+msgid "Steel Working"
+msgstr "Lavorazione dell'Acciaio"
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Wootz Steel"
+msgstr "Wootz Steel"
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Toledo Steel"
+msgstr "Toledo Steel"
 
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful markings. "
@@ -1552,19 +1663,13 @@ msgstr ""
 "espadas una hermosa marca distintiva. No sólo eso, también la dureza del acero no tiene"
 " comparación."
 
-msgid "Steel Working"
-msgstr "Lavorazione dell'Acciaio"
-
-msgid "Toledo Steel"
-msgstr "Ferrum Duratum Toleti"
-
-msgid "Wootz Steel"
-msgstr "Ferrum Duratum Wootz"
-
 msgid "Soldiers +20% melee attack damage. Swordsmen get an additional +20% bonus."
 msgstr ""
 "+20% air dochann ionnsaighean dlùtha nan saighdearan. Gheibh claidheamhairean buannachd"
 " a bharrachd de +20%."
+
+msgid "Improved Fletching"
+msgstr "Emplumado de flechas mejorado"
 
 msgid ""
 "Improving the fletching of arrows increases their stability and speed, and thus their "
@@ -1573,28 +1678,25 @@ msgstr ""
 "Подобряване на перата в задната част на стрелите увеличава тяхната скорост и подобрява "
 "стабилността им, а така и пронизващата им сила."
 
-msgid "Improved Fletching"
-msgstr "Emplumado de flechas mejorado"
-
 #, python-format
 msgid "Soldiers +15% ranged attack damage."
 msgstr "Nì ionnsaighean nan saighdearan +15% a dhochann astair."
+
+msgid "Iron Arrowheads"
+msgstr "Puntas de frecha de ferro."
 
 msgid "Projectile points made of iron enable missiles to penetrate deeper."
 msgstr ""
 "Οι άκρες των βλημάτων φτιαγμένες απο σίδηρο ,επιτρέπουν σε πυραύλους να διεισδύουν "
 "βαθύτερα. "
 
-msgid "Iron Arrowheads"
-msgstr "Puntas de frecha de ferro."
+msgid "Trilobate Arrowheads"
+msgstr "Pointes de flèches à trois côtés."
 
 msgid "Arrowheads with three lobes instead of two inflict larger wounds."
 msgstr ""
 "Les têtes de flèches avec trois lobes au lieu de deux infligent de plus larges "
 "blessures."
-
-msgid "Trilobate Arrowheads"
-msgstr "Pointes de flèches à trois côtés."
 
 #, python-format
 msgid "Soldiers +20% ranged attack damage."
@@ -1603,35 +1705,44 @@ msgstr "Nì ionnsaighean nan saighdearan +20% a dhochann astair."
 msgid "Ranged Soldiers +25% promotion experience."
 msgstr "Wojownicy walczący na dystans otrzymują +25% doświadczenia do awansu."
 
-msgid "Body armor made from quilted wool, linen, cotton, or leather."
-msgstr "Tikatusta villasta, pellavasta, puuvillasta tai nahasta valmistettu vartalopanssari."
-
 msgid "Quilted Body Armor"
 msgstr "Armadura para o corpo acolchoada"
 
+msgid "Body armor made from quilted wool, linen, cotton, or leather."
+msgstr "Tikatusta villasta, pellavasta, puuvillasta tai nahasta valmistettu vartalopanssari."
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Spolas"
-msgstr "Δερμάτινος Θώρακας"
+msgstr "Spolas"
 
 msgid "Soldiers +1 hack resistance."
 msgstr "Les soldats gagnent +1 d'armure contre les attaques tranchantes ."
 
-msgid "Body armor made from laminated linen."
-msgstr "Laminoidusta pellavasta valmistettu vartalopanssari."
-
 msgid "Laminated Linen Body Armor"
 msgstr "Armadura para o corpo de linho laminado"
 
-msgid "Linothōrax"
-msgstr "Keten göğüs zırhı"
+msgid "Body armor made from laminated linen."
+msgstr "Laminoidusta pellavasta valmistettu vartalopanssari."
 
-msgid "Body armor made of small metal rings linked together."
-msgstr "Πανοπλία σώματος φτιαγμένη από μικρούς μεταλλικούς κρίκους ,συνδεδεμένους μεταξύ τους."
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Linothōrax"
+msgstr "Linothōrax"
 
 msgid "Mail Body Armor"
 msgstr "Armadura corporal de cota de malla"
 
+msgid "Body armor made of small metal rings linked together."
+msgstr "Πανοπλία σώματος φτιαγμένη από μικρούς μεταλλικούς κρίκους ,συνδεδεμένους μεταξύ τους."
+
 msgid "Soldiers +2 hack resistance."
 msgstr "Gheibh saighdearan +2 a chomas-seasaimh an aghaidh spealgadh."
+
+msgid "Wooden Shield"
+msgstr "Scudos de madeira"
 
 msgid ""
 "Wooden shields are heavier but much better able to resist projectiles and blows than "
@@ -1640,32 +1751,29 @@ msgstr ""
 "Οι Ξύλινες ασπίδες είναι βαρύτερες αλλα πολύ καλύτερα ικανές  για αντίσταση ενάντια σε "
 "βλήματα και χτυπήματα απο ασπίδες με ψάθινη επίστρωση. "
 
-msgid "Wooden Shield"
-msgstr "Scudos de madeira"
-
 msgid "Soldiers +1 pierce resistance."
 msgstr "Les soldats gagnent +1 d'armure contre les attaques perçantes."
-
-msgid "Strengthen shields with a metal rim or spine."
-msgstr "Renforce les boucliers avec un cerclage métallique et une bosse."
 
 msgid "Metal Rim"
 msgstr "Металлический обод"
 
-msgid "Strengthen shields further with stronger metal alloys."
-msgstr "Renforce davantage les boucliers avec des alliages métalliques plus résistants."
+msgid "Strengthen shields with a metal rim or spine."
+msgstr "Renforce les boucliers avec un cerclage métallique et une bosse."
 
 msgid "Improved Shield Alloys"
 msgstr "Co-mheatailtean sgèithe leasaichte"
 
+msgid "Strengthen shields further with stronger metal alloys."
+msgstr "Renforce davantage les boucliers avec des alliages métalliques plus résistants."
+
 msgid "Soldiers +2 pierce resistance."
 msgstr "Gheibh saighdearan +2 a chomas-seasaimh an aghaidh bioradh."
 
-msgid "Recruit a network of informants to watch over your people."
-msgstr "Προσλαμβάνει ένα δίκτυο πληροφοριοδοτών για να παρακολουθήσουν τους ανθρώπους σας."
-
 msgid "Counterintelligence"
 msgstr "Frith-bheachdaireachd"
+
+msgid "Recruit a network of informants to watch over your people."
+msgstr "Προσλαμβάνει ένα δίκτυο πληροφοριοδοτών για να παρακολουθήσουν τους ανθρώπους σας."
 
 msgid "Make your units 50% more expensive to bribe."
 msgstr "Spraw, by twoje jednostki były o 50% droższe przy próbie przekupstwa."
@@ -1683,97 +1791,109 @@ msgstr ""
 msgid "Decrease batch training time of units trained in Stables."
 msgstr "Reduziere die Gruppen-Trainingszeit für Einheiten die in Ställen ausgebildet werden."
 
+msgid "Subterranean Aqueducts"
+msgstr "Unterirdische Wasserleitungen"
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Kārēz"
+msgstr "Kārēz"
+
 msgid "Qanāt or Kārēz, a network of underground aqueducts connected to the yakhchal ice house."
 msgstr ""
 "Qanāt oder Kārēz, ein Netzwerk aus unterirdischen Wasserleitungen, das mit dem "
 "Yachtschal-Eishaus verbunden ist."
 
-msgid "Subterranean Aqueducts"
-msgstr "Unterirdische Wasserleitungen"
-
-msgid "Kārēz"
-msgstr "Kārēz"
-
 msgid "Ice House +1 trickle food rate per second."
 msgstr "Edifício climatizador por evaporação +1 recebimento de alimentos ao longo do tempo."
+
+msgid "Crenellations"
+msgstr "Muurin vetoketjuaukot"
 
 msgid "Crenellations on the battlements allow soldiers wider range of fire in defending a keep."
 msgstr ""
 "Las almenas y aspilleras en las fortificaciones proporcionan a los soldados una mayor "
 "distancia de tiro a la hora de defender la estructura."
 
-msgid "Crenellations"
-msgstr "Muurin vetoketjuaukot"
-
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
 msgstr ""
 "Gheibh tùir freiceadain is cloiche +40% saighead a bharrachd air gach saighdear a tha "
 "’na ghearastan annta."
 
-msgid "Reinforce the foundations in preparation of an attack."
-msgstr "Prepara lɐs torres par’ incursiones fortificando lɐs suɐs muruöcɐs."
-
 msgid "Sturdy Foundations"
 msgstr "Infraestrutura resistente"
+
+msgid "Reinforce the foundations in preparation of an attack."
+msgstr "Prepara lɐs torres par’ incursiones fortificando lɐs suɐs muruöcɐs."
 
 #, python-format
 msgid "Towers +25% health."
 msgstr "Les torres són un 25% més resistents."
+
+msgid "Murder Holes"
+msgstr "Orificios para proxectís"
 
 msgid "Murder holes allow hitting enemies at the foot of the tower."
 msgstr ""
 "Kanoi zuloek dorrearen azpian dauden etsaiei ziurtasunez tiro egin eta jaurtigaiak "
 "botatzeko aukera ematen dute."
 
-msgid "Murder Holes"
-msgstr "Orificios para proxectís"
-
 msgid "Sentry and Stone Towers have 0 minimum attack range."
 msgstr ""
 "Žvalgybiniai ir Akmeniniai Bokštai gali gintis nuo prie bokšto prigludusių priešų "
 "(įgyja 0 minimalų atakos atstumą)."
 
-msgid "Arrow shooters increase the maximum range of the fire arrows."
-msgstr "Disparadores de flechas incrementan el rango maximo de las flechas disparadas."
-
 msgid "Arrow Shooters"
 msgstr "Lanzadores de proxectís"
+
+msgid "Arrow shooters increase the maximum range of the fire arrows."
+msgstr "Disparadores de flechas incrementan el rango maximo de las flechas disparadas."
 
 msgid "Sentry and Stone Towers +8 attack range."
 msgstr "Les tours sentinelles et les tours de pierre ont +8 de portée d'attaque."
 
-msgid "A night's watch increases vigilance."
-msgstr "La vista notturna consente di aumentare la vigilanza."
-
 msgid "Sentries"
 msgstr "ავტომატური სასროლი"
 
-msgid "Nyktophylakes"
-msgstr "Nyktophylakes"
-
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Shàobīng"
-msgstr "Gözetleme kulesi"
+msgstr "Shàobīng"
 
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Vigiles"
-msgstr "Nočné stráže"
+msgstr "Vigiles"
+
+msgid "A night's watch increases vigilance."
+msgstr "La vista notturna consente di aumentare la vigilanza."
 
 msgid "Sentry and Stone Towers +1 default arrow count."
 msgstr "Сторожевые и каменные башни получают +1 к базовому количеству выпускаемых стрел."
 
-msgid "Improve the international trading profit."
-msgstr "Augmenta los beneficios de l commercio internacional."
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Nyktophylakes"
+msgstr "Nyktophylakes"
 
 msgid "Commercial Treaty"
 msgstr "Merkataritza Hitzarmena"
 
+msgid "Improve the international trading profit."
+msgstr "Augmenta los beneficios de l commercio internacional."
+
 msgid "Traders +10% trade profit between allies."
 msgstr "+10% haszon a kereskedőknek szövetségesekkel való üzletelés esetén"
 
-msgid "The progress in handicraft improves the trading profit."
-msgstr "Le leasachadh na làimh-cheàird, fhuaradh barrachd prothaid às a’ mhalart."
-
 msgid "Handicraft"
 msgstr "Keterampilan Tangan"
+
+msgid "The progress in handicraft improves the trading profit."
+msgstr "Le leasachadh na làimh-cheàird, fhuaradh barrachd prothaid às a’ mhalart."
 
 msgid "Traders +15% trade gain."
 msgstr "Buannaichidh luchd-malairt +15% air a’ mhalart."
@@ -1781,24 +1901,27 @@ msgstr "Buannaichidh luchd-malairt +15% air a’ mhalart."
 msgid "Advanced Handicraft"
 msgstr "Geavanceerde Handvaardigheid"
 
-msgid "Traders traveling together in caravans are less vulnerable."
-msgstr "Les Marchands voyageant ensemble en convois sont moins vulnérables aux attaques."
-
 msgid "Trade Caravan"
 msgstr "Commeados commerciales"
+
+msgid "Traders traveling together in caravans are less vulnerable."
+msgstr "Les Marchands voyageant ensemble en convois sont moins vulnérables aux attaques."
 
 #, python-format
 msgid "Land Traders +50% health."
 msgstr "Сухопутные торговцы получают на 50% больше здоровья."
 
-msgid "The Macedonian-style core of the Seleucid army."
-msgstr "Le noyau de l'armée séleucide inspirée des troupes macédoniennes."
-
 msgid "Traditional Army"
 msgstr "Esercito Tradizionale"
 
+msgid "The Macedonian-style core of the Seleucid army."
+msgstr "Le noyau de l'armée séleucide inspirée des troupes macédoniennes."
+
 msgid "Unlock the Champion Infantry Pikeman."
 msgstr "Ξεκλειδώστε τους Πρωταθλητές Πεζικού  Ακοντιστές."
+
+msgid "Tyrtean Paeans"
+msgstr "Türtaiosz paeanjai"
 
 msgid ""
 "Paeans were battle hymns that were sung by the Hoplites when they charged the enemy "
@@ -1808,9 +1931,6 @@ msgstr ""
 "Paians waren Kriegsgesänge, die von Hopliten gesungen wurden, während sie feindliche "
 "Linien angriffen. Einer der ersten bekannten Paiane wurde von Tirteus, einem "
 "Kriegspoeten aus Sparta, während des ersten messenischen Krieges komponiert."
-
-msgid "Tyrtean Paeans"
-msgstr "Türtaiosz paeanjai"
 
 msgid "Champion Hoplites +10% movement speed."
 msgstr "+10% de vitesse de déplacement pour les Champions Hoplites."
@@ -1839,18 +1959,18 @@ msgstr ""
 "aonadan dlùtha +1 air an comas-seasaimh ’s +20% de dhochann ionnsaighe; gheibh aonadan "
 "astair −20% air sgapadh an ionnsaighean."
 
+msgid "Unlock Champion Cavalry"
+msgstr "Disbloquiare l Caballeiru campiador"
+
+msgid "Unlock Champion Cavalry at the Stable."
+msgstr "Thoir a’ ghlas far laoich eachraidh aig an stàball."
+
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and have the best "
 "training."
 msgstr ""
 "დამცველი ერთეულები (ფალავნები) არიან პროფესიონალები რომელთაც უპყრიათ საუკეთესო იარაღი "
 "და არიან ყველაზე კარგად გაწვრთნილები."
-
-msgid "Unlock Champion Cavalry"
-msgstr "Disbloquiare l Caballeiru campiador"
-
-msgid "Unlock Champion Cavalry at the Stable."
-msgstr "Thoir a’ ghlas far laoich eachraidh aig an stàball."
 
 msgid "Unlock Champion Chariots"
 msgstr "Desbloqueja els carros de guerra campions"
@@ -1861,31 +1981,46 @@ msgstr "Thoir a’ ghlas far laoich feuna-chogaidh aig an stàball."
 msgid "Unlock Champion Infantry"
 msgstr "Disbloquiare los peones campiadores"
 
-msgid "Agēma"
-msgstr "Özel Birlik"
-
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
 msgid "Regio Cohors"
-msgstr "Συγκρότημα της Χώρας"
+msgstr "Regio Cohors"
 
 msgid "Unlock Champions Infantry at the Barracks."
 msgstr "Sprístupni možnosť trénovania šampiónskej pechoty v kasárniach."
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Agēma"
+msgstr "Agēma"
+
+msgid "Fertility Festival"
+msgstr "Festival de la Fertilidad"
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Bona Dea"
+msgstr "Bona Dea"
 
 msgid "A festival attended by women-only, to celebrate female fertility."
 msgstr ""
 "Un festival organizado exclusivamente para las mujeres, donde se festejaba la "
 "fertilidad femenina."
 
-msgid "Fertility Festival"
-msgstr "Festival de la Fertilidad"
-
-msgid "Thesmophoria"
-msgstr "Thesmophorien"
-
-msgid "Bona Dea"
-msgstr "Bogini Bona Dea"
-
 msgid "Unlock the ability to train women from houses."
 msgstr "Thoir a’ ghlas far a’ chomais gus boireannaich oideachadh sna taighean."
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Thesmophoria"
+msgstr "Thesmophoria"
+
+msgid "Unlock Neodamodes"
+msgstr "Отключване на неодамодите"
 
 msgid ""
 "In ancient Sparta, the Helots who were freed by the state in reward for military "
@@ -1894,11 +2029,11 @@ msgstr ""
 "Nell'antica Sparta, gli Eloti che venivano liberati dallo Stato come ricompensa per il "
 "servizio militare erano conosciuti come Neodamodi."
 
-msgid "Unlock Neodamodes"
-msgstr "Отключване на неодамодите"
-
 msgid "Unlock the ability to train Spearman Neodamodes at the Barracks."
 msgstr "Ontgrendel de mogelijkheid om Neodamodes Speervechters te rekruteren in de Kazerne."
+
+msgid "Diaspora"
+msgstr "Diaspora (rozptýlení příslušníci národa)"
 
 msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers and their "
@@ -1908,14 +2043,14 @@ msgstr ""
 "ihren Familien in fremden Ländern, was es ihnen erlaubt, den Wohlstand dieser Länder "
 "auszuschöpfen."
 
-msgid "Diaspora"
-msgstr "Diaspora (rozptýlení příslušníci národa)"
-
 msgid "Requires three Traders"
 msgstr "तीन व्यापार्‍यांची आवश्यकता आहे"
 
 msgid "Allows using allied dropsites."
 msgstr "Позволява използването на съюзническите места за събиране на ресурси."
+
+msgid "Cartography"
+msgstr "علم رسم الخرائط"
 
 msgid ""
 "By means of trading and travelling people explored beyond the boundaries of their lands"
@@ -1925,15 +2060,15 @@ msgstr ""
 "wilayah mereka dan menggambar peta mengenai wilayah luar dengan tujuan untuk membagikan"
 " dan mengingat apa yang ditemukan mereka."
 
-msgid "Cartography"
-msgstr "علم رسم الخرائط"
-
 msgid ""
 "See what your allies see, browse their summary and check their resources and population"
 " count in the top panel."
 msgstr ""
 "Вы можете видеть то, что видят Ваши союзники, просматривать в верхней панели их сводки,"
 " контролировать количество ресурсов, которым они обладают, а также размер населения."
+
+msgid "Espionage"
+msgstr "Beachdaireachd"
 
 msgid ""
 "Merchants' first goal was trading, but they also gathered information about the "
@@ -1942,33 +2077,33 @@ msgstr ""
 "Le rôle premier des marchands est le commerce, mais ils récupèrent aussi des "
 "informations sur les régions par lesquelles ils voyagent."
 
-msgid "Espionage"
-msgstr "Beachdaireachd"
-
 msgid "Allows bribing the units of other players in order to share their vision."
 msgstr ""
 "Diğer oyuncuların birliklerine görüş alanlarını paylaşmaları için rüşvet vermeye olanak"
 " sağlar."
 
-msgid "Hire professional mercenaries to fight in your army."
-msgstr "Нанимайте профессиональных наёмников, чтобы они сражались в Вашей армии."
-
 msgid "Expertise In War"
 msgstr "Спеціальні знання на війні"
 
+msgid "Hire professional mercenaries to fight in your army."
+msgstr "Нанимайте профессиональных наёмников, чтобы они сражались в Вашей армии."
+
 msgid "Mercenaries start at Advanced rank."
 msgstr "Tòisichidh na saighdearan-duaise air rang adhartach."
+
+msgid "Naval Oxybeles"
+msgstr "Námorný Oxybeles"
 
 msgid "Mounting bolt shooters onto ships helped give added firepower."
 msgstr ""
 "L'installazione di lancia proiettili sulle navi contribuì a dare una maggiore potenza "
 "di fuoco."
 
-msgid "Naval Oxybeles"
-msgstr "Námorný Oxybeles"
-
 msgid "Arrow Ships +10 crush attack damage and +10% attack range."
 msgstr "Barcos de frechas +10 de dano de ataque esmagador e +10% de alcance de ataque."
+
+msgid "Burning Pitch"
+msgstr "Brennendes Pech"
 
 msgid ""
 "Pitch can be made from petroleum, coal tar, or pine tar. It can be used to help seal "
@@ -1978,9 +2113,6 @@ msgstr ""
 "utilizado para ajudar a selar os cascos dos barcos, bem como para ajudar a incendiar os"
 " navios inimigos."
 
-msgid "Burning Pitch"
-msgstr "Brennendes Pech"
-
 msgid "Unlocked in City Phase. Requires “Naval Construction.”"
 msgstr "Desbloqueado na fase de cidade. Necessita de “construção naval”."
 
@@ -1988,38 +2120,47 @@ msgstr "Desbloqueado na fase de cidade. Necessita de “construção naval”."
 msgid "Fire Ships +25% health and +25% attack damage."
 msgstr "Navi incendiarie +25% di salute e +25% di danni d'attacco."
 
-msgid "The hypozomata brace the structure of a ship."
-msgstr "La hypozomata asegura la estructura del casco de la nave."
-
 msgid "Undergirding Cables"
 msgstr "Cavi di collegamento"
+
+msgid "The hypozomata brace the structure of a ship."
+msgstr "La hypozomata asegura la estructura del casco de la nave."
 
 msgid "Unlocked in City Phase. Requires “Ship Cladding.”"
 msgstr "Desbloqueado na fase de cidade. Necessita de “revestimento de barco”."
 
-msgid "Hypozomata"
-msgstr "Hypozomata"
-
 #, python-format
 msgid "Arrow Ships and Ramming Ships +25% health."
 msgstr "Buques con flechas y naves de embestida (Resistencia: +25%)."
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Hypozomata"
+msgstr "Hypozomata"
+
+msgid "Bronze Ram"
+msgstr "Bronzener Rammbock"
 
 msgid "A bronze beak at the prow of the ship, used for ramming enemy ships."
 msgstr ""
 "Prolongación de la proa del buque, realizada en bronce, y que se usaba para abordar "
 "naves enemigas."
 
-msgid "Bronze Ram"
-msgstr "Bronzener Rammbock"
-
 msgid "Unlocked in City Phase. Requires “Flanking Maneuvers.”"
 msgstr "Si sblocca nella Fase Città. Richiede \"Manovre di fiancheggiamento\"."
 
-msgid "Embolon"
-msgstr "Rammsporn"
-
 msgid "Ramming Ships +30% attack damage."
 msgstr "Navi speronatrici +30% di danni d'attacco."
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Embolon"
+msgstr "Embolon"
+
+msgid "Flanking Maneuvers"
+msgstr "Manovre di fiancheggiamento"
 
 msgid ""
 "The flanking maneuver was attempted in order to position the ship for a successful ram."
@@ -2030,23 +2171,23 @@ msgstr ""
 "ottenere un'incursione di successo. Per riuscirci nel caos di una battaglia navale, "
 "l'equipaggio di una nave doveva essere altamente addestrato e ben motivato."
 
-msgid "Flanking Maneuvers"
-msgstr "Manovre di fiancheggiamento"
-
-msgid "Periplous"
-msgstr "पेरिप्लोउस"
-
 #, python-format
 msgid "Ramming Ships +25% speed and acceleration. Unlocks “Bronze Rams.”"
 msgstr ""
 "Rammschiffe +25 % Geschwindigkeit und Beschleunigung. Schaltet “Bronzener Rammbock” "
 "frei."
 
-msgid "Flaming munitions were very useful against wooden targets such as ships."
-msgstr "Brennende Munition ist sehr hilfreich gegen hölzerne Ziele, wie zum Beispiel Schiffe."
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Periplous"
+msgstr "Periplous"
 
 msgid "Flaming Projectiles"
 msgstr "Proyectiles inflamables."
+
+msgid "Flaming munitions were very useful against wooden targets such as ships."
+msgstr "Brennende Munition ist sehr hilfreich gegen hölzerne Ziele, wie zum Beispiel Schiffe."
 
 msgid "Unlocked in City Phase. Requires “Naval Ballistae.”"
 msgstr "Freigeschaltet in der Großstadtphase. Benötigt „Schiffsballisten“."
@@ -2054,11 +2195,11 @@ msgstr "Freigeschaltet in der Großstadtphase. Benötigt „Schiffsballisten“.
 msgid "Ranged Warships +10% attack damage."
 msgstr "Barcos de guerra de ataque à distância +10% dano de ataque."
 
-msgid "Armor for the flanks of a warship."
-msgstr "Bepantsering voor de zijkanten van een oorlogsschip."
-
 msgid "Ship Cladding"
 msgstr "Revestimento de buques"
+
+msgid "Armor for the flanks of a warship."
+msgstr "Bepantsering voor de zijkanten van een oorlogsschip."
 
 msgid ""
 "Warships +1 pierce and crush armor. Unlocks “Undergirding Cables” for some "
@@ -2067,28 +2208,31 @@ msgstr ""
 "Barcos de guerra +1 poder perfurante e esmagamento de armaduras. Desbloqueia “Cabos de "
 "sustentação” em algumas civilizações."
 
+msgid "Naval Ballistae"
+msgstr "Schiffsballisten"
+
 msgid "Mounting stronger catapults onto ships helped give added firepower."
 msgstr ""
 "L'installazione di catapulte più potenti sulle navi contribuì ad aumentare la potenza "
 "di fuoco."
 
-msgid "Naval Ballistae"
-msgstr "Schiffsballisten"
-
 msgid "Siege Ships +20% attack range and vision range."
 msgstr "Barcos de cerco +20% distância de ataque e distância de visão."
-
-msgid "The wonder attracts many more people to your civilization."
-msgstr "Το θαύμα προσελκύει πολλούς περισσότερους ανθρώπους στον πολιτισμό σας."
 
 msgid "Glorious Expansion"
 msgstr "Kunniallinen laajentuminen"
 
-msgid "Peristasis"
-msgstr "Peripteros plânlı bir tapınağın etrafını çevreleyen sütun sırası."
+msgid "The wonder attracts many more people to your civilization."
+msgstr "Το θαύμα προσελκύει πολλούς περισσότερους ανθρώπους στον πολιτισμό σας."
 
 msgid "Enable the “Glorious Expansion” aura: +20% maximum population limit per Wonder owned."
 msgstr ""
 "Active l'aura d'expansion glorieuse. Accorde un supplément de +20% à la limite de "
 "population pour chaque Merveille détenue."
+
+msgctxt ""
+"Meant to be the closest name in the ancient native language of the civilization. Most "
+"translations don't need to modify this string."
+msgid "Peristasis"
+msgstr "Peristasis"
 

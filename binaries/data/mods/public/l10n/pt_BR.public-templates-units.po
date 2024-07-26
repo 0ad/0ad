@@ -20,6 +20,7 @@
 # lecalam, 2022,2024
 # Leonardo, 2014-2015
 # Leonardo Barcihello, 2014
+# Lucas Ribel, 2024
 # mac.edgar, 2014
 # Marcelo Augusto Kniss, 2016
 # Matheus Clemente, 2014-2015
@@ -46,7 +47,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2024-05-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: lecalam, 2022,2024\n"
+"Last-Translator: Lucas Ribel, 2024\n"
 "Language-Team: Portuguese (Brazil) (http://app.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -675,7 +676,7 @@ msgstr "Brulote"
 
 #: simulation/templates/template_unit_ship_fire.xml:19
 msgid "Unrepairable. Gradually loses health after ignition."
-msgstr ""
+msgstr "Irreparável. Perde vida gradualmente após a ignição."
 
 #: simulation/templates/template_unit_ship_fire.xml:20
 msgid "Fireship"
@@ -693,7 +694,7 @@ msgstr "Navio de Guerra"
 
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Ignite the Fire Ship to damage nearby enemy Ships."
-msgstr ""
+msgstr "Incendeie o Barco de Fogo para danificar barcos inimigos próximos."
 
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -773,11 +774,11 @@ msgstr ""
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:23
 msgid "Scout Ship"
-msgstr ""
+msgstr "Navio Explorador"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:24
 msgid "ScoutShip"
-msgstr ""
+msgstr "NavioExplorador"
 
 #: simulation/templates/template_unit_ship_warship_scout.xml:26
 msgid "Scout for coastlines. Garrison units for transport across water."
@@ -792,7 +793,7 @@ msgstr "Pedra"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:59
 msgid "Siege Ship"
-msgstr ""
+msgstr "Navio de Cerco"
 
 #: simulation/templates/template_unit_ship_warship_siege.xml:60
 msgid ""
@@ -1204,7 +1205,7 @@ msgstr "Toxótēs Skythikós"
 #: simulation/templates/units/athen/hero_hippocrates.xml:12
 #: simulation/templates/units/athen/hero_hippocrates.xml:13
 msgid "Hippocrates"
-msgstr ""
+msgstr "Hipócrates"
 
 #: simulation/templates/units/athen/hero_iphicrates.xml:8
 msgid "Iphicrates"
@@ -1461,7 +1462,7 @@ msgstr "Pontos"
 
 #: simulation/templates/units/brit/ship_fire.xml:5
 msgid "Briton Fire Ship"
-msgstr ""
+msgstr "Barco de Fogo Bretão"
 
 #: simulation/templates/units/brit/ship_fishing.xml:9
 #: simulation/templates/units/gaul/ship_fishing.xml:9
@@ -1757,7 +1758,7 @@ msgstr "Britomaros"
 
 #: simulation/templates/units/gaul/ship_fire.xml:5
 msgid "Gallic Fire Ship"
-msgstr ""
+msgstr "Barco de Fogo Gálico"
 
 #: simulation/templates/units/han/catafalque.xml:9
 msgid "Han Catafalque"
@@ -2818,11 +2819,11 @@ msgstr ""
 
 #: simulation/templates/units/pirates/ship_merchant.xml:10
 msgid "Treasure Ship"
-msgstr ""
+msgstr "Barco do Tesouro"
 
 #: simulation/templates/units/pirates/ship_merchant.xml:11
 msgid "Destroy this ship to loot its large amount of treasure."
-msgstr ""
+msgstr "Destrua este navio para saquear seu grande tesouro."
 
 #: simulation/templates/units/pirates/ship_scout.xml:8
 msgid "Cilician Pirate Ship"
@@ -3001,7 +3002,7 @@ msgstr "Lūcius Iūnius Brūtus"
 
 #: simulation/templates/units/rome/cavalry_auxiliary_b.xml:6
 msgid "Auxiliary Cavalry"
-msgstr ""
+msgstr "Cavalaria Auxiliar"
 
 #: simulation/templates/units/rome/cavalry_auxiliary_b.xml:7
 msgid "Eques Alaris"
@@ -3009,7 +3010,7 @@ msgstr ""
 
 #: simulation/templates/units/rome/cavalry_auxiliary_b.xml:8
 msgid "Auxiliary"
-msgstr ""
+msgstr "Auxiliar"
 
 #: simulation/templates/units/rome/cavalry_javelineer_b.xml:6
 msgid "Allied Cavalry"
@@ -3121,7 +3122,7 @@ msgstr "Pūblius Cornēlius Scīpiō Āfricānus"
 
 #: simulation/templates/units/rome/infantry_antesignanus.xml:21
 msgid "Legionary Skirmisher"
-msgstr ""
+msgstr "Escaramuçador Legionário"
 
 #: simulation/templates/units/rome/infantry_antesignanus.xml:22
 msgid "Antesignānus"
@@ -3130,7 +3131,7 @@ msgstr ""
 #: simulation/templates/units/rome/infantry_antesignanus.xml:23
 #: simulation/templates/units/rome/infantry_legionary.xml:25
 msgid "Legionary"
-msgstr ""
+msgstr "Legionário"
 
 #: simulation/templates/units/rome/infantry_javelineer_b.xml:13
 msgid "Roman Skirmisher"
@@ -3448,7 +3449,7 @@ msgstr "Spartiátēs"
 
 #: simulation/templates/units/spart/champion_infantry_spear_olympian.xml:15
 msgid "Spartan Olympic Hoplite"
-msgstr ""
+msgstr "Hoplita Olímpico Espartano"
 
 #: simulation/templates/units/spart/champion_infantry_swordsman.xml:18
 msgid "Skiritai Commando"

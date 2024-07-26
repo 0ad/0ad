@@ -2,12 +2,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-06-10 07:18+0000\n"
-"PO-Revision-Date: 2024-06-10 07:18+0000\n"
+"POT-Creation-Date: 2024-07-26 07:18+0000\n"
+"PO-Revision-Date: 2024-07-26 07:18+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit"
+
+msgctxt "Campaign Template"
+msgid "Demo campaign - new maps"
+msgstr "Demonstratie veldtocht - nieuwe landkaarten"
 
 msgctxt "Campaign Template"
 msgid ""
@@ -18,12 +22,24 @@ msgstr ""
 "кампаниясы белән, кайсысы сезне бөтенесе аша үткәрә."
 
 msgctxt "Campaign Template"
-msgid "Demo campaign - new maps"
-msgstr "Demonstratie veldtocht - nieuwe landkaarten"
+msgid "Tutorial"
+msgstr "Навчальне керівництво"
 
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
 msgstr "0A.D കളിക്കുന്നത് എങ്ങനെയെന്ന് അറിയുക."
+
+msgctxt "Campaign Template"
+msgid "Introductory Tutorial"
+msgstr "Εισαγωγικός Οδηγός Εκμάθησης"
+
+msgctxt "Campaign Template"
+msgid "This is a basic tutorial to get you started playing 0 A.D."
+msgstr "Tämä on perusopas, jonka avulla pääset aloittamaan 0 A.D.:n pelaamisen."
+
+msgctxt "Campaign Template"
+msgid "Economy Walkthrough"
+msgstr "Einführung in die Wirtschaft"
 
 msgctxt "Campaign Template"
 msgid ""
@@ -37,22 +53,6 @@ msgstr ""
 "δυνατόν γρηγορότερα, ώστε να είσαι σε θέση να αναπτύξεις αρκετά στρατεύματα αργότερα. "
 "Προειδοποίηση: Αυτό γίνεται πολύ γρήγορα στο ξεκίνημα, προετοιμάσου να περάσεις μέσα "
 "από αυτό το αρχικό στάδιο αρκετές φορές."
-
-msgctxt "Campaign Template"
-msgid "Economy Walkthrough"
-msgstr "Einführung in die Wirtschaft"
-
-msgctxt "Campaign Template"
-msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "Tämä on perusopas, jonka avulla pääset aloittamaan 0 A.D.:n pelaamisen."
-
-msgctxt "Campaign Template"
-msgid "Introductory Tutorial"
-msgstr "Εισαγωγικός Οδηγός Εκμάθησης"
-
-msgctxt "Campaign Template"
-msgid "Tutorial"
-msgstr "Навчальне керівництво"
 
 msgctxt "campaign status"
 msgid "Completed"
@@ -69,6 +69,14 @@ msgstr "Грешка при зареждане на разиграването �
 msgid "Campaign Name"
 msgstr "முனைப்பியக்கத்தின் பெயர்"
 
+msgctxt "campaignLevelList"
+msgid "Scenario Name"
+msgstr "Scenarijaus pavadinimas"
+
+msgctxt "campaignLevelList"
+msgid "Status"
+msgstr "მდგომარეობა"
+
 msgid "No scenario selected"
 msgstr "Non hai ningún escenario seleccionado"
 
@@ -83,14 +91,6 @@ msgstr "Tòisich air cnàmh-sgeul"
 
 msgid "Resume Saved Game"
 msgstr "Συνέχεια Αποθηκευμένου Παιχνιδιού"
-
-msgctxt "campaignLevelList"
-msgid "Scenario Name"
-msgstr "Scenarijaus pavadinimas"
-
-msgctxt "campaignLevelList"
-msgid "Status"
-msgstr "მდგომარეობა"
 
 msgid "file cannot be loaded"
 msgstr "não foi possível carregar o ficheiro"
@@ -140,15 +140,15 @@ msgstr "எந்த முனைப்பியக்கமும் தேர�
 msgid "Campaigns"
 msgstr "முனைப்பியக்கங்கள்"
 
+msgctxt "campaignsetup"
+msgid "Name"
+msgstr "Kromnomo"
+
 msgid "No Campaign selected"
 msgstr "எந்த முனைப்பியக்கமும் தேர்வுசெய்யப்படவில்லை"
 
 msgid "Main Menu"
 msgstr "A’ phrìomh chlàr-taice"
-
-msgctxt "campaignsetup"
-msgid "Name"
-msgstr "Kromnomo"
 
 #, python-format
 msgid "%(userDesc)s - %(templateName)s"
