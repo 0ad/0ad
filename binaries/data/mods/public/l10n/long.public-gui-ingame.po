@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-07-22 07:17+0000\n"
-"PO-Revision-Date: 2024-07-22 07:17+0000\n"
+"POT-Creation-Date: 2024-07-26 07:18+0000\n"
+"PO-Revision-Date: 2024-07-26 07:18+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -357,8 +357,16 @@ msgid "Filter:"
 msgstr "Iragazkia:"
 
 msgctxt "chat input"
+msgid "Filter the chat history."
+msgstr "Penheirare la historia de lɐs conversɐs."
+
+msgctxt "chat input"
 msgid "To:"
 msgstr "Címzett:"
+
+msgctxt "chat input"
+msgid "Select chat addressee."
+msgstr "Seleziona il destinatario del messaggio."
 
 msgctxt "chat input"
 msgid "Text:"
@@ -373,14 +381,6 @@ msgstr "Geschiedenis"
 
 msgid "Send"
 msgstr "Надіслати"
-
-msgctxt "chat input"
-msgid "Filter the chat history."
-msgstr "Penheirare la historia de lɐs conversɐs."
-
-msgctxt "chat input"
-msgid "Select chat addressee."
-msgstr "Seleziona il destinatario del messaggio."
 
 msgid "The Developer Overlay was opened."
 msgstr "Dreistgwiskad an diorroerien a zo bet digoret warni."
@@ -1148,11 +1148,11 @@ msgstr "కార్యక్రమపట్టిక"
 msgid "Observer"
 msgstr "Pozorovateľ"
 
-msgid "Observer Mode"
-msgstr "Λειτουργία Παρατηρητή"
-
 msgid "Choose player to view"
 msgstr "Tagh cluicheadair airson a shealltainn"
+
+msgid "Observer Mode"
+msgstr "Λειτουργία Παρατηρητή"
 
 #, python-format
 msgid "Buy %(resource)s"

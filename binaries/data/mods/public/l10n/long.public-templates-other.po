@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2024-07-22 07:17+0000\n"
-"PO-Revision-Date: 2024-07-22 07:17+0000\n"
+"POT-Creation-Date: 2024-07-26 13:51+0000\n"
+"PO-Revision-Date: 2024-07-26 13:51+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -34,12 +34,16 @@ msgid "Damage"
 msgstr "Daya Serang"
 
 msgctxt "damage type"
+msgid "Crush"
+msgstr "Aplastamiento"
+
+msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
 msgstr "Пошкодження, спричинені прямовисною силою, подібною до удару палицею або витоптування."
 
 msgctxt "damage type"
-msgid "Crush"
-msgstr "Aplastamiento"
+msgid "Fire"
+msgstr "Khai hoả"
 
 msgctxt "damage type"
 msgid "Damage caused by burning objects, like a torch or a flaming arrow."
@@ -48,8 +52,8 @@ msgstr ""
 "theine."
 
 msgctxt "damage type"
-msgid "Fire"
-msgstr "Khai hoả"
+msgid "Hack"
+msgstr "ముక్కలుగా నరుకు"
 
 msgctxt "damage type"
 msgid "Damage caused by sharp objects cutting or chopping, like with a sword or an axe."
@@ -58,16 +62,16 @@ msgstr ""
 "Schwert oder einer Axt."
 
 msgctxt "damage type"
-msgid "Hack"
-msgstr "ముక్కలుగా నరుకు"
+msgid "Pierce"
+msgstr "రంధ్రము చేయు"
 
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
 msgstr "Seo dochann a dh’adhbharaicheas nithean geura biorach, can saighdean no sleaghan."
 
 msgctxt "damage type"
-msgid "Pierce"
-msgstr "రంధ్రము చేయు"
+msgid "Poison"
+msgstr "Δηλητήριο"
 
 msgctxt "damage type"
 msgid "Damage caused by venomous or poisoned objects, like a snake or a poisoned weapon."
@@ -75,39 +79,35 @@ msgstr ""
 "Seo dochann a dh’adhbhraicheas nithean puinnseanach no a chaidh a phuinnseanachadh, can"
 " nathair no arm puinnseanaichte."
 
-msgctxt "damage type"
-msgid "Poison"
-msgstr "Δηλητήριο"
-
 msgctxt "status effect"
 msgid "This unit causes fire damage."
 msgstr "Adhbharaichidh an t-aonad seo dochann teine."
-
-msgctxt "status effect"
-msgid "This unit is burning."
-msgstr "Aquesta unitat està en flames."
 
 msgctxt "status effect"
 msgid "Burning"
 msgstr "બળી રહ્યું છે"
 
 msgctxt "status effect"
-msgid "This unit causes poison damage."
-msgstr "Adhbharaichidh an t-aonad seo dochann puinnsein."
+msgid "This unit is burning."
+msgstr "Aquesta unitat està en flames."
 
 msgctxt "status effect"
-msgid "This unit is poisoned."
-msgstr "Aquesta unitat ha estat enverinada."
+msgid "This unit causes poison damage."
+msgstr "Adhbharaichidh an t-aonad seo dochann puinnsein."
 
 msgctxt "status effect"
 msgid "Poisoned"
 msgstr "Pod wpływem trucizny"
 
+msgctxt "status effect"
+msgid "This unit is poisoned."
+msgstr "Aquesta unitat ha estat enverinada."
+
 msgid "Army of Alexander the Great."
 msgstr "Aleksandro Makedoniečio Kariuomenė."
 
 msgid "Army of Alexander the Great"
-msgstr "మహనియ్యుడు అలెగ్జాండర్ యొక్క సైన్యం"
+msgstr "Army of Alexander the Great"
 
 msgid "This is what an army would look like on the Strat Map."
 msgstr "Seo mar a bhiodh feachd coltach air mapa nan iomairtean ro-innleachd."
@@ -116,13 +116,13 @@ msgid "Army of Macedonia"
 msgstr "మసిడోనియా యొక్క సైన్యం"
 
 msgid "Army of Macedon"
-msgstr "Exército de Macedonia"
+msgstr "Army of Macedon"
 
 msgid "Army of Leonidas I."
 msgstr "ലിയോണിദാസ് ഒന്നാമന്റെ സൈന്യം"
 
 msgid "Army of Leonidas I"
-msgstr "ലിയോണിദാസ് ഒന്നാമന്റെ സൈന്യം"
+msgstr "Army of Leonidas I"
 
 msgid "Market"
 msgstr "Viktualienmarkt"
@@ -131,13 +131,13 @@ msgid "Settlement"
 msgstr "మానవ సముదాయాలు"
 
 msgid "Minor Greek Polis"
-msgstr "Vähäpätöinen kreikkalainen kaupunki"
+msgstr "Minor Greek Polis"
 
 msgid "This is a minor Greek city."
 msgstr "Tämä on vähäpätöinen kreikkalainen kaupunki."
 
 msgid "Greek Polis"
-msgstr "Kreikkalainen kaupunki"
+msgstr "Greek Polis"
 
 msgid "This is a major Greek city."
 msgstr "Is cathair mhór na Gréige an chathair seo."
@@ -146,7 +146,7 @@ msgid "Religious Sanctuary"
 msgstr "θρησκευτικό καταφύγειο"
 
 msgid "Greek Religious Sanctuary"
-msgstr "Kreikkalainen uskonnollinen pyhäkkö"
+msgstr "Greek Religious Sanctuary"
 
 msgctxt "Name of an attack, usually the weapon."
 msgid "Paws"
@@ -156,19 +156,19 @@ msgid "Black Bear"
 msgstr "Medvěd černý (baribal)"
 
 msgid "Ursus americanus"
-msgstr "Αμερικανική μαύρη αρκούδα"
+msgstr "Ursus americanus"
 
 msgid "Brown Bear"
 msgstr "Niedźwiedź brunatny"
 
 msgid "Ursus arctos"
-msgstr "ఉర్సస్ ఆర్క్టోస్"
+msgstr "Ursus arctos"
 
 msgid "Polar Bear"
 msgstr "Niedźwiedź polarny"
 
 msgid "Ursus maritimus"
-msgstr "ఉర్సస్ మారిటిమస్"
+msgstr "Ursus maritimus"
 
 msgctxt "Name of an attack, usually the weapon."
 msgid "Tusks"
@@ -178,13 +178,13 @@ msgid "Wild Boar"
 msgstr "Divočák (divoký kanec)"
 
 msgid "Sus scrofa"
-msgstr "అడవి పంది యొక్క మొదటి జాతి"
+msgstr "Sus scrofa"
 
 msgid "Dromedary"
 msgstr "Yksikyttyräinen kameli"
 
 msgid "Camelus dromedarius"
-msgstr "कामेलुस ड्रॉमेडारिउस"
+msgstr "Camelus dromedarius"
 
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horns"
@@ -203,7 +203,7 @@ msgid "Sanga Cattle"
 msgstr "Αφρικάνικος Ούρος"
 
 msgid "Bos taurus africanus"
-msgstr "బోస్ వృషభం ఆఫ్రికానస్"
+msgstr "Bos taurus africanus"
 
 msgid "Zebu"
 msgstr "పెద్ద మూపురము కలిగిన ఎద్దు"
@@ -215,7 +215,7 @@ msgid "Chicken"
 msgstr "കോഴിക്കുഞ്ഞ്"
 
 msgid "Gallus gallus domesticus"
-msgstr "गाल्लुस गाल्लुस दोमेस्तिकुस"
+msgstr "Gallus gallus domesticus"
 
 msgctxt "Name of an attack, usually the weapon."
 msgid "Teeth"
@@ -225,13 +225,13 @@ msgid "Nile Crocodile"
 msgstr "Coccodrillo del Nilo"
 
 msgid "Crocodylus niloticus"
-msgstr "Κροκόδειλος του Νείλου"
+msgstr "Crocodylus niloticus"
 
 msgid "Red Deer"
 msgstr "Благородный олень"
 
 msgid "Cervus elaphus"
-msgstr "सेर्व्हुस एलाफुस"
+msgstr "Cervus elaphus"
 
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fangs"
@@ -260,7 +260,7 @@ msgid "African Bush Elephant"
 msgstr "Olifant eus ar Savanenn Afrikan"
 
 msgid "Loxodonta africana"
-msgstr "Αφρικάνικος Λοξόδοντας"
+msgstr "Loxodonta africana"
 
 msgid "African Bush Elephant Calf"
 msgstr "Cucciolo d'Elefante dei Cespugli Africani"
@@ -269,7 +269,7 @@ msgid "Asian Elephant"
 msgstr "Asiatischer Elefant"
 
 msgid "Elephas maximus"
-msgstr "Ελέφαντας ο Μέγιστος"
+msgstr "Elephas maximus"
 
 msgid "Asian Elephant Calf"
 msgstr "Kalb eines Asiatischen Elefanten"
@@ -278,31 +278,31 @@ msgid "African Forest Elephant"
 msgstr "Elefante della foresta Africana"
 
 msgid "Loxodonta cyclotis"
-msgstr "లోక్సోడోంటా సైక్లోటిస్"
+msgstr "Loxodonta cyclotis"
 
 msgid "Arctic Fox"
 msgstr "Sionnach an t-sneachda"
 
 msgid "Vulpes lagopus"
-msgstr "व्हुलपेस लागोपुस"
+msgstr "Vulpes lagopus"
 
 msgid "Red Fox"
 msgstr "Raposa-vermelha"
 
 msgid "Vulpes vulpes"
-msgstr "व्हुलपेस व्हुलपेस"
+msgstr "Vulpes vulpes"
 
 msgid "Thomson's Gazelle"
 msgstr "छोटा सुन्दर बारहसिंघ"
 
 msgid "Eudorcas thomsonii"
-msgstr "యుడోర్కాస్ థామ్సోని"
+msgstr "Eudorcas thomsonii"
 
 msgid "Giraffe"
 msgstr "Camelopardalis"
 
 msgid "Giraffa camelopardalis"
-msgstr "जिराफ्फा कामेलोपार्दालिस"
+msgstr "Giraffa camelopardalis"
 
 msgid "Juvenile Giraffe"
 msgstr "Iuvena Camelopardalis"
@@ -311,7 +311,7 @@ msgid "Goat"
 msgstr "κατσίκα"
 
 msgid "Capra aegagrus hircus"
-msgstr "कापरा आएगाग्रुस हिर्कुस"
+msgstr "Capra aegagrus hircus"
 
 msgid "Hippopotamus"
 msgstr "Hippopotamus"
@@ -332,7 +332,7 @@ msgid "Lion"
 msgstr "Λιοντάρι"
 
 msgid "Panthera leo"
-msgstr "Πάνθηρ ο λέων"
+msgstr "Panthera leo"
 
 msgid "Lioness"
 msgstr "Nőstény oroszlán"
@@ -341,19 +341,19 @@ msgid "Muskox"
 msgstr "Մուսկունյան ցուլ"
 
 msgid "Ovibos moschatus"
-msgstr "Μοσχοφόρος μόσχος"
+msgstr "Ovibos moschatus"
 
 msgid "Peacock"
 msgstr "Burung Merak"
 
 msgid "Pavo cristatus"
-msgstr "Kristasus Indioilarra"
+msgstr "Pavo cristatus"
 
 msgid "Pig"
 msgstr "Schwein"
 
 msgid "Sus scrofa domesticus"
-msgstr "सुस स्क्रोफा दोमेस्तिकुस"
+msgstr "Sus scrofa domesticus"
 
 msgid "Flaming Pig"
 msgstr "యుద్ధానికి ఉపయోగించే పంది"
@@ -375,19 +375,19 @@ msgid "White Rhinoceros"
 msgstr "Szélesszájú orrszarvú"
 
 msgid "Ceratotherium simum"
-msgstr "Νότιος λευκός ρινόκερος"
+msgstr "Ceratotherium simum"
 
 msgid "Great White Shark"
 msgstr "Peshkaqeni i madh i bardhë"
 
 msgid "Carcharodon carcharias"
-msgstr "Büyük beyaz Köpekbalığı"
+msgstr "Carcharodon carcharias"
 
 msgid "Sheep"
 msgstr "ചെമ്മരിയാട്"
 
 msgid "Ovis aries"
-msgstr "Πρόβατον ο κριός"
+msgstr "Ovis aries"
 
 msgid "Tiger"
 msgstr "Tiikeri"
@@ -405,19 +405,19 @@ msgid "Fin Whale"
 msgstr "Muc-mhara dhruim-iteach"
 
 msgid "Balaenoptera physalus"
-msgstr "Plejtvák myšok též jako plejtvák tmavý"
+msgstr "Balaenoptera physalus"
 
 msgid "Humpback Whale"
 msgstr "Megaptera novaeangliae"
 
 msgid "Megaptera novaeangliae"
-msgstr "Plejtvák dlouhoploutvý, hrboun dlouhoploutvý, velryba hrbatá, plejtvák keporkak"
+msgstr "Megaptera novaeangliae"
 
 msgid "Blue Wildebeest"
 msgstr "Κοννοχαίτης ο Ταυρίσιος"
 
 msgid "Connochaetes taurinus"
-msgstr "Κοννοχαίτης ο ταυρίσιος"
+msgstr "Connochaetes taurinus"
 
 msgid "Wolf"
 msgstr "Madadh-allaidh"
@@ -432,123 +432,121 @@ msgid "Common Zebra"
 msgstr "Paprastasis Zebras"
 
 msgid "Equus quagga"
-msgstr "Ζέβρα η κοινή"
+msgstr "Equus quagga"
 
 msgid "Tilapia"
-msgstr "IkanTalapia"
+msgstr "Tilapia"
 
 msgid "Tuna"
-msgstr "Ikan Tongkol"
+msgstr "Tuna"
 
 msgid "Apple"
-msgstr "సీమ రేగి పండు"
+msgstr "Apple"
 
 msgid "Banana"
-msgstr "Bananeboom"
+msgstr "Banana"
 
 msgid "Berries"
-msgstr "Frutos silvestres"
+msgstr "Berries"
 
 msgid "Date Palm"
-msgstr "Palmeira dactylífera"
+msgstr "Date Palm"
 
 msgid "Fig"
-msgstr "Vijgenboom"
+msgstr "Fig"
 
 msgid "Grapes"
-msgstr "Fìon-dhearcan"
+msgstr "Grapes"
 
 msgid "Doric Column"
-msgstr "Doorilainen pylväs"
+msgstr "Doric Column"
 
 msgid "Isis Cult Image"
-msgstr "Immagine del culto di Iside"
+msgstr "Isis Cult Image"
 
 msgid "Great Pyramid"
-msgstr "Den Store Pyramide"
+msgstr "Great Pyramid"
 
 msgid "Minor Pyramid"
-msgstr "Vähäpätöinen pyramidi"
+msgstr "Minor Pyramid"
 
 msgid "Celtic Standing Stone"
-msgstr "Кельтський стоячий камінь"
+msgstr "Celtic Standing Stone"
 
 msgid "Egyptian Statue"
-msgstr "Egyptisch standbeeld"
+msgstr "Egyptian Statue"
 
 msgid "Kushite Statue"
-msgstr ""
-"Kushite Heykeli (Mısır ve Sudan da kurulmuş olan Kushite Krallığı'nın krallarının "
-"heykelleri)"
+msgstr "Kushite Statue"
 
 msgid "Stone Resource"
 msgstr "Ressource de pierre"
 
 msgid "Kushite Bird Statue"
-msgstr "Estàtua de l’ocell cuixita"
+msgstr "Kushite Bird Statue"
 
 msgid "Apademak Lion Statue"
-msgstr "Estátua do leão de Apedemak"
+msgstr "Apademak Lion Statue"
 
 msgid "Ammon-Ra Ram Statue"
-msgstr "Estátua do carneiro de Ámon-Rá"
+msgstr "Ammon-Ra Ram Statue"
 
 msgid "Lamassu Statue"
-msgstr "Estátua de Lamassu"
+msgstr "Lamassu Statue"
 
 msgid "Roman Statue"
-msgstr "Romeins standbeeld"
+msgstr "Roman Statue"
 
 msgid "Ruined Farmstead"
-msgstr "Casa de labranza en ruínas"
+msgstr "Ruined Farmstead"
 
 msgid "Ruined House"
-msgstr "Verwoeste woning"
+msgstr "Ruined House"
 
 msgid "Ruined Structure"
-msgstr "Structura esgorrotada"
+msgstr "Ruined Structure"
 
 msgid "Ruined Tower"
-msgstr "Torreta en Ruínas"
+msgstr "Ruined Tower"
 
 msgid "Unfinished Greek Temple"
-msgstr "Valmistumaton kreikkalainen temppeli"
+msgstr "Unfinished Greek Temple"
 
 msgid "Food Treasure"
-msgstr "Poklad s potravinami"
+msgstr "Food Treasure"
 
 msgid "Half-buried Barrels"
-msgstr "Baraillean le an dàrna leth san ùir"
+msgstr "Half-buried Barrels"
 
 msgid "Persian Food Stores"
-msgstr "Magasins d'alimentation perses"
+msgstr "Persian Food Stores"
 
 msgid "Persian Food Treasure"
-msgstr "Персидские съедобные сокровища"
+msgstr "Persian Food Treasure"
 
 msgid "Golden Fleece"
-msgstr "Zelta Aitas Vilna"
+msgstr "Golden Fleece"
 
 msgid "Secret Box"
-msgstr "Caja de los secretos"
+msgstr "Secret Box"
 
 msgid "Persian Wares"
-msgstr "Marc'hadourezhioù Persian"
+msgstr "Persian Wares"
 
 msgid "Persian Rugs"
-msgstr "buklolgai be loi kulnfarsi"
+msgstr "Persian Rugs"
 
 msgid "Iron Weapons"
-msgstr "Geležiniai Ginklai"
+msgstr "Iron Weapons"
 
 msgid "Pegasus"
-msgstr "اسب بالدار پگاسوس"
+msgstr "Pegasus"
 
 msgid "Shipwreck"
-msgstr "Afundimento de barco"
+msgstr "Shipwreck"
 
 msgid "Shipwreck Cargo"
-msgstr "Cargamento dun barco afundido"
+msgstr "Shipwreck Cargo"
 
 msgid "The Argo"
 msgstr "The Argo"
@@ -560,178 +558,178 @@ msgid "The mythological ship of the hero Theseus and his Argonauts."
 msgstr "El barco que según el mito perteneció al héroe Teseo y sus argonautas."
 
 msgid "Stone Treasure"
-msgstr "Değerli Taş Hazinesi"
+msgstr "Stone Treasure"
 
 msgid "Cut Granite"
-msgstr "Piedra de grano curtada"
+msgstr "Cut Granite"
 
 msgid "Cut Stone"
-msgstr "Clach air a gearradh"
+msgstr "Cut Stone"
 
 msgid "Cut Sandstone"
-msgstr "Clach-ghainmhich air a gearradh"
+msgstr "Cut Sandstone"
 
 msgid "Wood Treasure"
-msgstr "Tesouro de madeira"
+msgstr "Wood Treasure"
 
 msgid "Milled Lumber"
-msgstr " Επεξεργασμένη Ξυλεία"
+msgstr "Milled Lumber"
 
 msgid "Acacia"
-msgstr "Akaasia"
+msgstr "Acacia"
 
 msgid "Ancient Acacia"
-msgstr "Arabische gom-acacia"
+msgstr "Ancient Acacia"
 
 msgid "Aleppo Pine"
-msgstr "Syrische denneboom"
+msgstr "Aleppo Pine"
 
 msgid "Bamboo"
-msgstr "Cuilc-Fhrangach"
+msgstr "Bamboo"
 
 msgid "Dragon Bamboo"
-msgstr "Cuilc-Fhrangach dràgoin"
+msgstr "Dragon Bamboo"
 
 msgid "Banyan"
-msgstr "Figueira-de-bengala"
+msgstr "Banyan"
 
 msgid "Baobab"
-msgstr "Baoab (opičji kruhovec)"
+msgstr "Baobab"
 
 msgid "Baobab Sapling"
-msgstr "Pullascu de Calabaceira"
+msgstr "Baobab Sapling"
 
 msgid "Young Baobab"
-msgstr " Δενδρύλλιο Μπάομπαμπ"
+msgstr "Young Baobab"
 
 msgid "Hardy Bush"
-msgstr "بوته با ساقه‌های چوبی"
+msgstr "Hardy Bush"
 
 msgid "Scrub"
-msgstr "Macchia mediterranea"
+msgstr "Scrub"
 
 msgid "Dry Scrub"
-msgstr "Broussailles Sèches"
+msgstr "Dry Scrub"
 
 msgid "Carob"
-msgstr "Johanneksenleipäpuu"
+msgstr "Carob"
 
 msgid "Atlas Cedar Sapling"
-msgstr "Alberello di Cedro dell'Atlante"
+msgstr "Atlas Cedar Sapling"
 
 msgid "Atlas Cedar"
-msgstr "Cedro dell'Atlante"
+msgstr "Atlas Cedar"
 
 msgid "Cherry Blossom"
-msgstr "Floraison des cerisiers"
+msgstr "Cherry Blossom"
 
 msgid "Cretan Date Palm"
-msgstr "Palmera de dátiles de Creta"
+msgstr "Cretan Date Palm"
 
 msgid "Cypress"
-msgstr "Cyprus vždyzelený"
+msgstr "Cypress"
 
 msgid "Deciduous Tree"
-msgstr "Árvore de folha caduca"
+msgstr "Deciduous Tree"
 
 msgid "Elm"
-msgstr "Pohon Elm"
+msgstr "Elm"
 
 msgid "European Beech"
-msgstr "Europietiškas beržas"
+msgstr "European Beech"
 
 msgid "Silver Birch"
-msgstr "Σημύδα η κρεμοκλαδής"
+msgstr "Silver Birch"
 
 msgid "Fir"
-msgstr "Pohon Cemara"
+msgstr "Fir"
 
 msgid "Fir Sapling"
-msgstr "Pullascu d’abetu commun"
+msgstr "Fir Sapling"
 
 msgid "Prickly Juniper"
-msgstr "Stacheliger Wacholder"
+msgstr "Prickly Juniper"
 
 msgid "Mangrove"
-msgstr "Мангрово дърво"
+msgstr "Mangrove"
 
 msgid "Maple"
-msgstr "Pohon Mapel"
+msgstr "Maple"
 
 msgid "Mediterranean Fan Palm"
-msgstr "Pailm gaotharain mheadhan-thìreach"
+msgstr "Mediterranean Fan Palm"
 
 msgid "Oak"
-msgstr "Βελανιδιά"
+msgstr "Oak"
 
 msgid "Holly Oak"
-msgstr "Quercia d'Agrifoglio"
+msgstr "Holly Oak"
 
 msgid "Hungarian Oak"
-msgstr "Πλατύφυλλη Βελανιδιά"
+msgstr "Hungarian Oak"
 
 msgid "Large Oak"
-msgstr "Μεγάλη Βελανιδιά."
+msgstr "Large Oak"
 
 msgid "Olive"
-msgstr "Drzewko oliwne"
+msgstr "Olive"
 
 msgid "Areca Palm"
-msgstr "Areková palma (palma areka)"
+msgstr "Areca Palm"
 
 msgid "Doum Palm"
-msgstr "Palmeira da Tebaida"
+msgstr "Doum Palm"
 
 msgid "Palmyra Palm"
-msgstr "Φοίνικας της Παλμύρας"
+msgstr "Palmyra Palm"
 
 msgid "Royal Palm"
-msgstr "Palmeira-real-de-cuba"
+msgstr "Royal Palm"
 
 msgid "Palm"
-msgstr "Gwezenn Palm"
+msgstr "Palm"
 
 msgid "Tropical Palm"
-msgstr "Gwezenn Palm Trovanek"
+msgstr "Tropical Palm"
 
 msgid "Pine"
-msgstr "Pinheiro"
+msgstr "Pine"
 
 msgid "Black Pine"
-msgstr "Сосна чорна європейська"
+msgstr "Black Pine"
 
 msgid "Maritime Pine"
-msgstr "Παραθαλάσσιο Πεύκο"
+msgstr "Maritime Pine"
 
 msgid "Poplar"
-msgstr "Pollancre"
+msgstr "Poplar"
 
 msgid "Black Poplar"
-msgstr "Craobh-phobaill dhubh"
+msgstr "Black Poplar"
 
 msgid "Senegal Date Palm"
-msgstr "Palmera de dátiles senegalesa"
+msgstr "Senegal Date Palm"
 
 msgid "Strangler Fig"
-msgstr "Figueira estranguladora"
+msgstr "Strangler Fig"
 
 msgid "Tamarix"
-msgstr "Craobh-sheudair salainn"
+msgstr "Tamarix"
 
 msgid "Teak"
-msgstr "Тикове дерево"
+msgstr "Teak"
 
 msgid "Toona"
-msgstr "Craobh-sheudair dhearg"
+msgstr "Toona"
 
 msgid "Rainforest Tree"
-msgstr "Arbres de la forêt tropicale."
+msgstr "Rainforest Tree"
 
 msgid "Builder"
 msgstr "Eraikitzailea"
 
 msgid "Bush"
-msgstr "കുറ്റിച്ചെടി"
+msgstr "Bush"
 
 msgid "Cataphract Cavalry"
 msgstr "Cavalaria catafractária"

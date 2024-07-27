@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
 "Last-Translator: astroajay, 2024\n"
 "Language-Team: Malayalam (https://app.transifex.com/wildfire-games/teams/17418/ml/)\n"
@@ -18,7 +18,12 @@ msgstr ""
 "Language: ml\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: campaigns/new_maps.jsonDescription
+#: campaigns/new_maps.json
+msgctxt "Campaign Template"
+msgid "Demo campaign - new maps"
+msgstr "ഡെമോ കാമ്പെയ്ൻ - പുതിയ മാപ്പുകൾ"
+
+#: campaigns/new_maps.json
 msgctxt "Campaign Template"
 msgid ""
 "Discover the new and improved maps in Alpha XXVII with a demo campaign, "
@@ -27,17 +32,32 @@ msgstr ""
 "ഒരു ഡെമോ കാമ്പെയ്‌നിലൂടെ ആൽഫ XXVII-ൽ പുതിയതും മെച്ചപ്പെടുത്തിയതുമായ മാപ്പുകൾ"
 " കണ്ടെത്തൂ, അവയെല്ലാം നിങ്ങളെ കൊണ്ടുപോകുന്നു."
 
-#: campaigns/new_maps.jsonName
+#: campaigns/tutorial.json
 msgctxt "Campaign Template"
-msgid "Demo campaign - new maps"
-msgstr "ഡെമോ കാമ്പെയ്ൻ - പുതിയ മാപ്പുകൾ"
+msgid "Tutorial"
+msgstr "ട്യൂട്ടോറിയൽ"
 
-#: campaigns/tutorial.jsonDescription
+#: campaigns/tutorial.json
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
 msgstr "0A.D കളിക്കുന്നത് എങ്ങനെയെന്ന് അറിയുക."
 
-#: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
+#: campaigns/tutorial.json
+msgctxt "Campaign Template"
+msgid "Introductory Tutorial"
+msgstr "ആമുഖ ട്യൂട്ടോറിയൽ"
+
+#: campaigns/tutorial.json
+msgctxt "Campaign Template"
+msgid "This is a basic tutorial to get you started playing 0 A.D."
+msgstr "0A.D കളിക്കാൻ തുടങ്ങുന്നതിനുള്ള അടിസ്ഥാന ട്യൂട്ടോറിയലാണിത്."
+
+#: campaigns/tutorial.json
+msgctxt "Campaign Template"
+msgid "Economy Walkthrough"
+msgstr "സാമ്പത്തിക വാക്ക്ത്രൂ "
+
+#: campaigns/tutorial.json
 msgctxt "Campaign Template"
 msgid ""
 "This map will give a rough guide for starting the game effectively.  Early "
@@ -52,74 +72,54 @@ msgstr ""
 "നിർമ്മിക്കാൻ കഴിയും. മുന്നറിയിപ്പ്: ഇത് തുടക്കത്തിൽ വളരെ വേഗതയുള്ളതാണ്, "
 "പ്രാരംഭ ഭാഗത്തിലൂടെ നിരവധി തവണ ഓടാൻ തയ്യാറാകുക"
 
-#: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
-msgctxt "Campaign Template"
-msgid "Economy Walkthrough"
-msgstr "സാമ്പത്തിക വാക്ക്ത്രൂ "
-
-#: campaigns/tutorial.jsonLevels.introduction.Description
-msgctxt "Campaign Template"
-msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "0A.D കളിക്കാൻ തുടങ്ങുന്നതിനുള്ള അടിസ്ഥാന ട്യൂട്ടോറിയലാണിത്."
-
-#: campaigns/tutorial.jsonLevels.introduction.Name
-msgctxt "Campaign Template"
-msgid "Introductory Tutorial"
-msgstr "ആമുഖ ട്യൂട്ടോറിയൽ"
-
-#: campaigns/tutorial.jsonName
-msgctxt "Campaign Template"
-msgid "Tutorial"
-msgstr "ട്യൂട്ടോറിയൽ"
-
-#: gui/campaigns/default_menu/CampaignMenu.js:155
+#: gui/campaigns/default_menu/CampaignMenu.js:185
 msgctxt "campaign status"
 msgid "Completed"
 msgstr "പൂർത്തിയാക്കി"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:157
+#: gui/campaigns/default_menu/CampaignMenu.js:187
 msgctxt "campaign status"
 msgid "Available"
 msgstr "ലഭ്യമാണ്"
 
-#: gui/campaigns/default_menu/CampaignMenu.js:216
+#: gui/campaigns/default_menu/CampaignMenu.js:246
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
 msgstr "കാമ്പെയ്ൻ റൺ ലോഡ് ചെയ്യുന്നതിൽ പിശക് %s:%s"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
+#: gui/campaigns/default_menu/CampaignMenu.xml:14
 msgid "Campaign Name"
 msgstr "പ്രചാരണ നാമം"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
-msgid "No scenario selected"
-msgstr "ഒരു രംഗം തിരഞ്ഞെടുത്തിട്ടില്ല"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
-msgid "Back to Main Menu"
-msgstr "പ്രധാന മെനുവിലേക്ക് മടങ്ങുക"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
-msgid "Saved Games"
-msgstr "സംരക്ഷിച്ച ഗെയിമുകൾ"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
-msgid "Start Scenario"
-msgstr "രംഗം ആരംഭിക്കുക"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
-msgid "Resume Saved Game"
-msgstr "സംരക്ഷിച്ച ഗെയിം പുനരാരംഭിക്കുക"
-
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
+#: gui/campaigns/default_menu/CampaignMenu.xml:27
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
 msgstr "രംഗത്തിൻ്റെ പേര്"
 
-#: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
+#: gui/campaigns/default_menu/CampaignMenu.xml:31
 msgctxt "campaignLevelList"
 msgid "Status"
 msgstr "പദവി"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:45
+msgid "No scenario selected"
+msgstr "ഒരു രംഗം തിരഞ്ഞെടുത്തിട്ടില്ല"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:58
+msgid "Back to Main Menu"
+msgstr "പ്രധാന മെനുവിലേക്ക് മടങ്ങുക"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:62
+msgid "Saved Games"
+msgstr "സംരക്ഷിച്ച ഗെയിമുകൾ"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:66
+msgid "Start Scenario"
+msgstr "രംഗം ആരംഭിക്കുക"
+
+#: gui/campaigns/default_menu/CampaignMenu.xml:69
+msgid "Resume Saved Game"
+msgstr "സംരക്ഷിച്ച ഗെയിം പുനരാരംഭിക്കുക"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
@@ -142,38 +142,38 @@ msgstr "അല്ല"
 msgid "Yes"
 msgstr "അതെ"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):13
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):39
+#: gui/campaigns/load_modal/LoadModal.xml:13
+#: gui/campaigns/load_modal/LoadModal.xml:39
 msgid "Load Campaign"
 msgstr "രംഗം ലോഡ് ചെയുക"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):20
+#: gui/campaigns/load_modal/LoadModal.xml:20
 msgid "No ongoing campaigns."
 msgstr "തുടർച്ചയായി രംഗങ്ങൾ ഒന്നുമില്ല"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):24
+#: gui/campaigns/load_modal/LoadModal.xml:24
 msgid "Name of selected run:"
 msgstr "തിരഞ്ഞെടുത്ത റണ്ണിൻ്റെ പേര്:"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):31
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
+#: gui/campaigns/load_modal/LoadModal.xml:31
+#: gui/campaigns/new_modal/NewCampaignModal.xml:23
 msgid "Cancel"
 msgstr "റദ്ദാക്കൂ"
 
-#: gui/campaigns/load_modal/LoadModal.xml:(caption):35
+#: gui/campaigns/load_modal/LoadModal.xml:35
 msgid "Delete"
 msgstr "ഇല്ലാതാക്കുക"
 
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
+#: gui/campaigns/new_modal/NewCampaignModal.xml:12
 msgid "Start a campaign"
 msgstr "ഒരു രംഗം ആരംഭിക്കുക"
 
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
+#: gui/campaigns/new_modal/NewCampaignModal.xml:16
 msgid "Please enter the name of your new campaign run:"
 msgstr "നിങ്ങളുടെ പുതിയ രംഗം റണ്ണിൻ്റെ പേര് നൽകുക:"
 
-#: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
+#: gui/campaigns/new_modal/NewCampaignModal.xml:27
+#: gui/campaigns/setup/CampaignSetupPage.xml:55
 msgid "Start Campaign"
 msgstr "രംഗം ആരംഭിക്കുക"
 
@@ -181,22 +181,22 @@ msgstr "രംഗം ആരംഭിക്കുക"
 msgid "No campaign selected."
 msgstr "രംഗങ്ങളോന്നും തിരഞ്ഞെടുത്തിട്ടില്ല."
 
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
+#: gui/campaigns/setup/CampaignSetupPage.xml:10
 msgid "Campaigns"
 msgstr "രംഗങ്ങൾ"
 
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
-msgid "No Campaign selected"
-msgstr "രംഗങ്ങളോന്നും തിരഞ്ഞെടുത്തിട്ടില്ല."
-
-#: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
-msgid "Main Menu"
-msgstr "പ്രധാന മെനു"
-
-#: gui/campaigns/setup/CampaignSetupPage.xml:(heading):26
+#: gui/campaigns/setup/CampaignSetupPage.xml:26
 msgctxt "campaignsetup"
 msgid "Name"
 msgstr "പേര്"
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:37
+msgid "No Campaign selected"
+msgstr "രംഗങ്ങളോന്നും തിരഞ്ഞെടുത്തിട്ടില്ല."
+
+#: gui/campaigns/setup/CampaignSetupPage.xml:50
+msgid "Main Menu"
+msgstr "പ്രധാന മെനു"
 
 #: gui/common/campaigns/CampaignRun.js:115
 #, javascript-format

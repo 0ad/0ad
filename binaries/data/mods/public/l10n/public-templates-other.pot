@@ -5,121 +5,121 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2024-01-08 08:08+0000\n"
-"PO-Revision-Date: 2024-01-08 08:08+0000\n"
+"POT-Creation-Date: 2024-07-26 13:41+0000\n"
+"PO-Revision-Date: 2024-07-26 13:41+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit"
 
-#: simulation/data/attack_effects/applystatus.json:description
+#: simulation/data/attack_effects/applystatus.json
 msgctxt "effect caused by an attack"
 msgid "Various (timed) effects."
 msgstr ""
 
-#: simulation/data/attack_effects/applystatus.json:name
+#: simulation/data/attack_effects/applystatus.json
 msgctxt "effect caused by an attack"
 msgid "Apply Status"
 msgstr ""
 
-#: simulation/data/attack_effects/capture.json:description
+#: simulation/data/attack_effects/capture.json
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
 msgstr ""
 
-#: simulation/data/attack_effects/capture.json:name
+#: simulation/data/attack_effects/capture.json
 msgctxt "effect caused by an attack"
 msgid "Capture"
 msgstr ""
 
-#: simulation/data/attack_effects/damage.json:description
+#: simulation/data/attack_effects/damage.json
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
 msgstr ""
 
-#: simulation/data/attack_effects/damage.json:name
+#: simulation/data/attack_effects/damage.json
 msgctxt "effect caused by an attack"
 msgid "Damage"
 msgstr ""
 
-#: simulation/data/damage_types/crush.json:description
-msgctxt "damage type"
-msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr ""
-
-#: simulation/data/damage_types/crush.json:name
+#: simulation/data/damage_types/crush.json
 msgctxt "damage type"
 msgid "Crush"
 msgstr ""
 
-#: simulation/data/damage_types/fire.json:description
+#: simulation/data/damage_types/crush.json
 msgctxt "damage type"
-msgid "Damage caused by burning objects, like a torch or a flaming arrow."
+msgid "Damage caused by sheer force, like with a club or by trampling."
 msgstr ""
 
-#: simulation/data/damage_types/fire.json:name
+#: simulation/data/damage_types/fire.json
 msgctxt "damage type"
 msgid "Fire"
 msgstr ""
 
-#: simulation/data/damage_types/hack.json:description
+#: simulation/data/damage_types/fire.json
 msgctxt "damage type"
-msgid "Damage caused by sharp objects cutting or chopping, like with a sword or an axe."
+msgid "Damage caused by burning objects, like a torch or a flaming arrow."
 msgstr ""
 
-#: simulation/data/damage_types/hack.json:name
+#: simulation/data/damage_types/hack.json
 msgctxt "damage type"
 msgid "Hack"
 msgstr ""
 
-#: simulation/data/damage_types/pierce.json:description
+#: simulation/data/damage_types/hack.json
 msgctxt "damage type"
-msgid "Damage caused by sharp pointy objects, like arrows or spears."
+msgid "Damage caused by sharp objects cutting or chopping, like with a sword or an axe."
 msgstr ""
 
-#: simulation/data/damage_types/pierce.json:name
+#: simulation/data/damage_types/pierce.json
 msgctxt "damage type"
 msgid "Pierce"
 msgstr ""
 
-#: simulation/data/damage_types/poison.json:description
+#: simulation/data/damage_types/pierce.json
 msgctxt "damage type"
-msgid "Damage caused by venomous or poisoned objects, like a snake or a poisoned weapon."
+msgid "Damage caused by sharp pointy objects, like arrows or spears."
 msgstr ""
 
-#: simulation/data/damage_types/poison.json:name
+#: simulation/data/damage_types/poison.json
 msgctxt "damage type"
 msgid "Poison"
 msgstr ""
 
-#: simulation/data/status_effects/burning.json:applierTooltip
+#: simulation/data/damage_types/poison.json
+msgctxt "damage type"
+msgid "Damage caused by venomous or poisoned objects, like a snake or a poisoned weapon."
+msgstr ""
+
+#: simulation/data/status_effects/burning.json
 msgctxt "status effect"
 msgid "This unit causes fire damage."
 msgstr ""
 
-#: simulation/data/status_effects/burning.json:receiverTooltip
-msgctxt "status effect"
-msgid "This unit is burning."
-msgstr ""
-
-#: simulation/data/status_effects/burning.json:statusName
+#: simulation/data/status_effects/burning.json
 msgctxt "status effect"
 msgid "Burning"
 msgstr ""
 
-#: simulation/data/status_effects/poisoned.json:applierTooltip
+#: simulation/data/status_effects/burning.json
+msgctxt "status effect"
+msgid "This unit is burning."
+msgstr ""
+
+#: simulation/data/status_effects/poisoned.json
 msgctxt "status effect"
 msgid "This unit causes poison damage."
 msgstr ""
 
-#: simulation/data/status_effects/poisoned.json:receiverTooltip
-msgctxt "status effect"
-msgid "This unit is poisoned."
-msgstr ""
-
-#: simulation/data/status_effects/poisoned.json:statusName
+#: simulation/data/status_effects/poisoned.json
 msgctxt "status effect"
 msgid "Poisoned"
+msgstr ""
+
+#: simulation/data/status_effects/poisoned.json
+msgctxt "status effect"
+msgid "This unit is poisoned."
 msgstr ""
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24

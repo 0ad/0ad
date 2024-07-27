@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-06-17 07:08+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: Junghee Lee, 2020-2024\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -29,974 +29,966 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: simulation/data/civs/athen.jsonAINames[0]
-msgid "Cimon"
-msgstr "키몬"
+#: simulation/data/civs/athen.json
+msgid "Silver Owls"
+msgstr "올빼미 은화"
 
-#: simulation/data/civs/athen.jsonAINames[10]
-msgid "Thrasybulus"
-msgstr "트라쉬불로스"
-
-#: simulation/data/civs/athen.jsonAINames[11]
-msgid "Demosthenes"
-msgstr "데모스테네스"
-
-#: simulation/data/civs/athen.jsonAINames[1]
-msgid "Aristides"
-msgstr "아리스테이데스"
-
-#: simulation/data/civs/athen.jsonAINames[2]
-msgid "Xenophon"
-msgstr "크세노폰"
-
-#: simulation/data/civs/athen.jsonAINames[3]
-msgid "Hippias"
-msgstr "히피아스"
-
-#: simulation/data/civs/athen.jsonAINames[4]
-msgid "Cleisthenes"
-msgstr "클레이스테네스"
-
-#: simulation/data/civs/athen.jsonAINames[5]
-msgid "Thucydides"
-msgstr "투키디데스"
-
-#: simulation/data/civs/athen.jsonAINames[6]
-msgid "Alcibiades"
-msgstr "알키비아데스"
-
-#: simulation/data/civs/athen.jsonAINames[7]
-msgid "Miltiades"
-msgstr "밀티아데스"
-
-#: simulation/data/civs/athen.jsonAINames[8]
-msgid "Cleon"
-msgstr "클레온"
-
-#: simulation/data/civs/athen.jsonAINames[9]
-msgid "Cleophon"
-msgstr "클레오폰"
-
-#: simulation/data/civs/athen.jsonCivBonuses[0].Description
-msgid "Workers +10% metal gather rate per phase advance."
-msgstr "일꾼의 금속 채집율이 오르는 단계별로 +10% 증가합니다."
-
-#: simulation/data/civs/athen.jsonCivBonuses[0].History
+#: simulation/data/civs/athen.json
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
 msgstr "아티카 지방의 라우리온 광산에서 생산하는 은은 아테네에 부를 가져 왔습니다. 이 은으로 주조된 유명 귀중한 동전이 아테네 올빼미 은화입니다."
 
-#: simulation/data/civs/athen.jsonCivBonuses[0].Name
-msgid "Silver Owls"
-msgstr "올빼미 은화"
+#: simulation/data/civs/athen.json
+msgid "Workers +10% metal gather rate per phase advance."
+msgstr "일꾼의 금속 채집율이 오르는 단계별로 +10% 증가합니다."
 
-#: simulation/data/civs/athen.jsonCivBonuses[1].Description
-msgid "Elite Hoplites can promote to Champion Spearmen."
-msgstr "정예 장갑보병은 챔피언 창병으로 승급할 수 있습니다."
+#: simulation/data/civs/athen.json
+msgid "Epilektoi Infantry"
+msgstr "에필렉토이 보병"
 
-#: simulation/data/civs/athen.jsonCivBonuses[1].History
+#: simulation/data/civs/athen.json
 msgid ""
 "The best of the hoplites were chosen to form a group of elite professional "
 "soldiers."
 msgstr "최고의 장갑보병들이 정예 전문 병사들의 그룹을 구성하기 위해 선택되었습니다."
 
-#: simulation/data/civs/athen.jsonCivBonuses[1].Name
-msgid "Epilektoi Infantry"
-msgstr "에필렉토이 보병"
+#: simulation/data/civs/athen.json
+msgid "Elite Hoplites can promote to Champion Spearmen."
+msgstr "정예 장갑보병은 챔피언 창병으로 승급할 수 있습니다."
 
-#: simulation/data/civs/brit.jsonAINames[0]
-msgid "Prasutagus"
-msgstr "프라수타구스"
+#: simulation/data/civs/athen.json
+msgid "Cimon"
+msgstr "키몬"
 
-#: simulation/data/civs/brit.jsonAINames[1]
-msgid "Venutius"
-msgstr "베누티우스"
+#: simulation/data/civs/athen.json
+msgid "Aristides"
+msgstr "아리스테이데스"
 
-#: simulation/data/civs/brit.jsonAINames[2]
-msgid "Cogidubnus"
-msgstr "코기두부누스"
+#: simulation/data/civs/athen.json
+msgid "Xenophon"
+msgstr "크세노폰"
 
-#: simulation/data/civs/brit.jsonAINames[3]
-msgid "Commius"
-msgstr "콤미우스"
+#: simulation/data/civs/athen.json
+msgid "Hippias"
+msgstr "히피아스"
 
-#: simulation/data/civs/brit.jsonAINames[4]
-msgid "Comux"
-msgstr "코묵스"
+#: simulation/data/civs/athen.json
+msgid "Cleisthenes"
+msgstr "클레이스테네스"
 
-#: simulation/data/civs/brit.jsonAINames[5]
-msgid "Adminius"
-msgstr "아드미니우스"
+#: simulation/data/civs/athen.json
+msgid "Thucydides"
+msgstr "투키디데스"
 
-#: simulation/data/civs/brit.jsonAINames[6]
-msgid "Dubnovellaunus"
-msgstr "두브노벨라우누스"
+#: simulation/data/civs/athen.json
+msgid "Alcibiades"
+msgstr "알키비아데스"
 
-#: simulation/data/civs/brit.jsonAINames[7]
-msgid "Vosenius"
-msgstr "보세니우스"
+#: simulation/data/civs/athen.json
+msgid "Miltiades"
+msgstr "밀티아데스"
 
-#: simulation/data/civs/brit.jsonCivBonuses[0].Description
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Description
-msgid "Druids increase attack rates of soldiers near them by 5%."
-msgstr "드루이드는 주변에 있는 병사의 공격 속도를 5% 증가시킵니다."
+#: simulation/data/civs/athen.json
+msgid "Cleon"
+msgstr "클레온"
 
-#: simulation/data/civs/brit.jsonCivBonuses[0].History
-#: simulation/data/civs/gaul.jsonCivBonuses[0].History
-msgid "Celtic religion and druidry inspired their warlike mindset."
-msgstr "켈트족의 종교와 드루이드는 이들의 호전적인 사고방식에 영감을 주었습니다."
+#: simulation/data/civs/athen.json
+msgid "Cleophon"
+msgstr "클레오폰"
 
-#: simulation/data/civs/brit.jsonCivBonuses[0].Name
-#: simulation/data/civs/gaul.jsonCivBonuses[0].Name
-msgid "Deas Celtica"
-msgstr "데아스 켈티카"
+#: simulation/data/civs/athen.json
+msgid "Thrasybulus"
+msgstr "트라쉬불로스"
 
-#: simulation/data/civs/brit.jsonCivBonuses[1].Description
-msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
-msgstr "모든 보병 유닛의 이동 속도가 +5% 증가하고, 전리품 획득량이 +1 증가합니다."
+#: simulation/data/civs/athen.json
+msgid "Demosthenes"
+msgstr "데모스테네스"
 
-#: simulation/data/civs/brit.jsonCivBonuses[1].History
+#: simulation/data/civs/brit.json
+msgid "Woad Warriors"
+msgstr "워드 전사"
+
+#: simulation/data/civs/brit.json
 msgid ""
 "Britons paint their bodies with Woad, which produces a blue color and gives "
 "them a fiercesome appearance in battle."
 msgstr "브리튼인들이 몸에 푸른색을 내는 워드(Woad)를 칠해 전투에서 맹렬한 모습을 보여줍니다."
 
-#: simulation/data/civs/brit.jsonCivBonuses[1].Name
-msgid "Woad Warriors"
-msgstr "워드 전사"
+#: simulation/data/civs/brit.json
+msgid "All Infantry Units +5% movement speed, and gain +1 loot taking."
+msgstr "모든 보병 유닛의 이동 속도가 +5% 증가하고, 전리품 획득량이 +1 증가합니다."
 
-#: simulation/data/civs/cart.jsonAINames[0]
-msgid "Hasdrubal Barca"
-msgstr "하스드루발 바르카"
+#: simulation/data/civs/brit.json
+msgid "Prasutagus"
+msgstr "프라수타구스"
 
-#: simulation/data/civs/cart.jsonAINames[10]
-msgid "Xanthippus"
-msgstr "크산티포스"
+#: simulation/data/civs/brit.json
+msgid "Venutius"
+msgstr "베누티우스"
 
-#: simulation/data/civs/cart.jsonAINames[11]
-msgid "Himilco Phameas"
-msgstr "히멜코 파메아스"
+#: simulation/data/civs/brit.json
+msgid "Cogidubnus"
+msgstr "코기두부누스"
 
-#: simulation/data/civs/cart.jsonAINames[12]
-msgid "Hasdrubal the Boetharch"
-msgstr "하스드루발 드 보에타르크"
+#: simulation/data/civs/brit.json
+msgid "Commius"
+msgstr "콤미우스"
 
-#: simulation/data/civs/cart.jsonAINames[1]
-msgid "Hasdrubal Gisco"
-msgstr "하스두르발 지스코"
+#: simulation/data/civs/brit.json
+msgid "Comux"
+msgstr "코묵스"
 
-#: simulation/data/civs/cart.jsonAINames[2]
-msgid "Hanno the Elder"
-msgstr "한노 디 엘더"
+#: simulation/data/civs/brit.json
+msgid "Adminius"
+msgstr "아드미니우스"
 
-#: simulation/data/civs/cart.jsonAINames[3]
-msgid "Mago Barca"
-msgstr "마고 바르카"
+#: simulation/data/civs/brit.json
+msgid "Dubnovellaunus"
+msgstr "두브노벨라우누스"
 
-#: simulation/data/civs/cart.jsonAINames[4]
-msgid "Hasdrubal the Fair"
-msgstr "하스드루발 디 페어"
+#: simulation/data/civs/brit.json
+msgid "Vosenius"
+msgstr "보세니우스"
 
-#: simulation/data/civs/cart.jsonAINames[5]
-msgid "Hanno the Great"
-msgstr "한노 디 그레이트"
+#: simulation/data/civs/brit.json simulation/data/civs/gaul.json
+msgid "Deas Celtica"
+msgstr "데아스 켈티카"
 
-#: simulation/data/civs/cart.jsonAINames[6]
-msgid "Himilco"
-msgstr "히멜코"
+#: simulation/data/civs/brit.json simulation/data/civs/gaul.json
+msgid "Celtic religion and druidry inspired their warlike mindset."
+msgstr "켈트족의 종교와 드루이드는 이들의 호전적인 사고방식에 영감을 주었습니다."
 
-#: simulation/data/civs/cart.jsonAINames[7]
-msgid "Hampsicora"
-msgstr "함프시코라"
+#: simulation/data/civs/brit.json simulation/data/civs/gaul.json
+msgid "Druids increase attack rates of soldiers near them by 5%."
+msgstr "드루이드는 주변에 있는 병사의 공격 속도를 5% 증가시킵니다."
 
-#: simulation/data/civs/cart.jsonAINames[8]
-msgid "Hannibal Gisco"
-msgstr "한니발 지스코"
-
-#: simulation/data/civs/cart.jsonAINames[9]
-msgid "Dido"
-msgstr "디도"
-
-#: simulation/data/civs/cart.jsonCivBonuses[0].Description
-msgid "Merchant Ships +25% trade gain."
-msgstr "상선의 교역 이득이 +25% 증가합니다."
-
-#: simulation/data/civs/cart.jsonCivBonuses[0].Name
+#: simulation/data/civs/cart.json
 msgid "Commercial Acumen"
 msgstr "상업적 안목"
 
-#: simulation/data/civs/cart.jsonCivBonuses[1].Description
-msgid "Docks and Markets +10% international trade bonus."
-msgstr "부두 및 시장의 국제 교역 보너스가 +10% 증가합니다."
+#: simulation/data/civs/cart.json
+msgid "Merchant Ships +25% trade gain."
+msgstr "상선의 교역 이득이 +25% 증가합니다."
 
-#: simulation/data/civs/cart.jsonCivBonuses[1].Name
+#: simulation/data/civs/cart.json
 msgid "Desirable Products"
 msgstr "선호하는 상품"
 
-#: simulation/data/civs/gaul.jsonAINames[0]
+#: simulation/data/civs/cart.json
+msgid "Docks and Markets +10% international trade bonus."
+msgstr "부두 및 시장의 국제 교역 보너스가 +10% 증가합니다."
+
+#: simulation/data/civs/cart.json
+msgid "Hasdrubal Barca"
+msgstr "하스드루발 바르카"
+
+#: simulation/data/civs/cart.json
+msgid "Hasdrubal Gisco"
+msgstr "하스두르발 지스코"
+
+#: simulation/data/civs/cart.json
+msgid "Hanno the Elder"
+msgstr "한노 디 엘더"
+
+#: simulation/data/civs/cart.json
+msgid "Mago Barca"
+msgstr "마고 바르카"
+
+#: simulation/data/civs/cart.json
+msgid "Hasdrubal the Fair"
+msgstr "하스드루발 디 페어"
+
+#: simulation/data/civs/cart.json
+msgid "Hanno the Great"
+msgstr "한노 디 그레이트"
+
+#: simulation/data/civs/cart.json
+msgid "Himilco"
+msgstr "히멜코"
+
+#: simulation/data/civs/cart.json
+msgid "Hampsicora"
+msgstr "함프시코라"
+
+#: simulation/data/civs/cart.json
+msgid "Hannibal Gisco"
+msgstr "한니발 지스코"
+
+#: simulation/data/civs/cart.json
+msgid "Dido"
+msgstr "디도"
+
+#: simulation/data/civs/cart.json
+msgid "Xanthippus"
+msgstr "크산티포스"
+
+#: simulation/data/civs/cart.json
+msgid "Himilco Phameas"
+msgstr "히멜코 파메아스"
+
+#: simulation/data/civs/cart.json
+msgid "Hasdrubal the Boetharch"
+msgstr "하스드루발 드 보에타르크"
+
+#: simulation/data/civs/gaul.json
 msgid "Cativolcus"
 msgstr "카티볼커스"
 
-#: simulation/data/civs/gaul.jsonAINames[1]
+#: simulation/data/civs/gaul.json
 msgid "Cingetorix"
 msgstr "씬제토릭스"
 
-#: simulation/data/civs/gaul.jsonAINames[2]
+#: simulation/data/civs/gaul.json
 msgid "Divico"
 msgstr "디비코"
 
-#: simulation/data/civs/gaul.jsonAINames[3]
+#: simulation/data/civs/gaul.json
 msgid "Ambiorix"
 msgstr "암비오릭스"
 
-#: simulation/data/civs/gaul.jsonAINames[4]
+#: simulation/data/civs/gaul.json
 msgid "Liscus"
 msgstr "리스쿠스"
 
-#: simulation/data/civs/gaul.jsonAINames[5]
+#: simulation/data/civs/gaul.json
 msgid "Orgetorix"
 msgstr "오르제토릭스"
 
-#: simulation/data/civs/gaul.jsonAINames[6]
+#: simulation/data/civs/gaul.json
 msgid "Valetiacus"
 msgstr "발레티아쿠스"
 
-#: simulation/data/civs/gaul.jsonAINames[7]
+#: simulation/data/civs/gaul.json
 msgid "Viridovix"
 msgstr "비리도빅스"
 
-#: simulation/data/civs/han.jsonAINames[0]
+#: simulation/data/civs/han.json
 msgid "Liu Ying"
 msgstr "전한 혜제 유영"
 
-#: simulation/data/civs/han.jsonAINames[10]
-msgid "Liu Ao"
-msgstr "전한 성제 유오"
-
-#: simulation/data/civs/han.jsonAINames[11]
-msgid "Liu Xin"
-msgstr "전한 애제 유흔"
-
-#: simulation/data/civs/han.jsonAINames[12]
-msgid "Liu Kan"
-msgstr "전한 평제 유강"
-
-#: simulation/data/civs/han.jsonAINames[13]
-msgid "Liu Xuan"
-msgstr "후한 경시제 유현"
-
-#: simulation/data/civs/han.jsonAINames[14]
-msgid "Liu Xiu"
-msgstr "후한 광무제 유수"
-
-#: simulation/data/civs/han.jsonAINames[15]
-msgid "Liu Zhuang"
-msgstr "후한 명제 유장"
-
-#: simulation/data/civs/han.jsonAINames[16]
-msgid "Liu Da"
-msgstr "후한 장제 유달"
-
-#: simulation/data/civs/han.jsonAINames[17]
-msgid "Liu Zhao"
-msgstr "후한 화제 유조"
-
-#: simulation/data/civs/han.jsonAINames[18]
-msgid "Liu Long"
-msgstr "후한 상제 유륭"
-
-#: simulation/data/civs/han.jsonAINames[19]
-msgid "Liu Hu"
-msgstr "후한 안제 유호"
-
-#: simulation/data/civs/han.jsonAINames[1]
+#: simulation/data/civs/han.json
 msgid "Liu Gong"
 msgstr "서한 전소제 유공"
 
-#: simulation/data/civs/han.jsonAINames[20]
-msgid "Liu Yi"
-msgstr "동한 전소제 유의"
-
-#: simulation/data/civs/han.jsonAINames[21]
-msgid "Liu Bao"
-msgstr "후한 순제 유보"
-
-#: simulation/data/civs/han.jsonAINames[22]
-msgid "Liu Bing"
-msgstr "후한 충제 유병"
-
-#: simulation/data/civs/han.jsonAINames[23]
-msgid "Liu Zuan"
-msgstr "후한 질제 유찬"
-
-#: simulation/data/civs/han.jsonAINames[24]
-msgid "Liu Zhi"
-msgstr "후한 환제 유지"
-
-#: simulation/data/civs/han.jsonAINames[26]
-msgid "Liu Bian"
-msgstr "동한 후소제 유변"
-
-#: simulation/data/civs/han.jsonAINames[27]
-msgid "Liu Xie"
-msgstr "후한 헌제 유협"
-
-#: simulation/data/civs/han.jsonAINames[25]
-#: simulation/data/civs/han.jsonAINames[2]
-msgid "Liu Hong"
-msgstr "서한 후소제 유홍"
-
-#: simulation/data/civs/han.jsonAINames[3]
+#: simulation/data/civs/han.json
 msgid "Liu Heng"
 msgstr "전한 문제 유항"
 
-#: simulation/data/civs/han.jsonAINames[4]
+#: simulation/data/civs/han.json
 msgid "Liu Qi"
 msgstr "전한 경제 유계"
 
-#: simulation/data/civs/han.jsonAINames[5]
+#: simulation/data/civs/han.json
 msgid "Liu Che"
 msgstr "전한 무제 유철"
 
-#: simulation/data/civs/han.jsonAINames[6]
+#: simulation/data/civs/han.json
 msgid "Liu Fuling"
 msgstr "전한 소제 유불릉"
 
-#: simulation/data/civs/han.jsonAINames[7]
+#: simulation/data/civs/han.json
 msgid "Liu He"
 msgstr "서한 폐제 유하"
 
-#: simulation/data/civs/han.jsonAINames[8]
+#: simulation/data/civs/han.json
 msgid "Liu Bingyi"
 msgstr "전한 선제 유순"
 
-#: simulation/data/civs/han.jsonAINames[9]
+#: simulation/data/civs/han.json
 msgid "Liu Shi"
 msgstr "전한 원제 유석"
 
-#: simulation/data/civs/iber.jsonAINames[0]
-msgid "Audax"
-msgstr "아우닥스"
+#: simulation/data/civs/han.json
+msgid "Liu Ao"
+msgstr "전한 성제 유오"
 
-#: simulation/data/civs/iber.jsonAINames[1]
-msgid "Calcus"
-msgstr "캬루쿠스"
+#: simulation/data/civs/han.json
+msgid "Liu Xin"
+msgstr "전한 애제 유흔"
 
-#: simulation/data/civs/iber.jsonAINames[2]
-msgid "Ditalcus"
-msgstr "디딸쿠스"
+#: simulation/data/civs/han.json
+msgid "Liu Kan"
+msgstr "전한 평제 유강"
 
-#: simulation/data/civs/iber.jsonAINames[3]
-msgid "Minurus"
-msgstr "미누루스"
+#: simulation/data/civs/han.json
+msgid "Liu Xuan"
+msgstr "후한 경시제 유현"
 
-#: simulation/data/civs/iber.jsonAINames[4]
-msgid "Olyndicus"
-msgstr "올린디쿠스"
+#: simulation/data/civs/han.json
+msgid "Liu Xiu"
+msgstr "후한 광무제 유수"
 
-#: simulation/data/civs/iber.jsonAINames[5]
-msgid "Orison"
-msgstr "오리손"
+#: simulation/data/civs/han.json
+msgid "Liu Zhuang"
+msgstr "후한 명제 유장"
 
-#: simulation/data/civs/iber.jsonAINames[6]
-msgid "Tanginus"
-msgstr "딴지누스"
+#: simulation/data/civs/han.json
+msgid "Liu Da"
+msgstr "후한 장제 유달"
 
-#: simulation/data/civs/iber.jsonAINames[7]
-msgid "Tautalus"
-msgstr "따우딸루스"
+#: simulation/data/civs/han.json
+msgid "Liu Zhao"
+msgstr "후한 화제 유조"
 
-#: simulation/data/civs/iber.jsonCivBonuses[0].Description
-msgid "Iberians start with City Walls around their base on most maps."
-msgstr "이베리아인은 대부분의 지도에서 그들의 근거지 주변의 성벽으로 시작합니다."
+#: simulation/data/civs/han.json
+msgid "Liu Long"
+msgstr "후한 상제 유륭"
 
-#: simulation/data/civs/iber.jsonCivBonuses[0].History
+#: simulation/data/civs/han.json
+msgid "Liu Hu"
+msgstr "후한 안제 유호"
+
+#: simulation/data/civs/han.json
+msgid "Liu Yi"
+msgstr "동한 전소제 유의"
+
+#: simulation/data/civs/han.json
+msgid "Liu Bao"
+msgstr "후한 순제 유보"
+
+#: simulation/data/civs/han.json
+msgid "Liu Bing"
+msgstr "후한 충제 유병"
+
+#: simulation/data/civs/han.json
+msgid "Liu Zuan"
+msgstr "후한 질제 유찬"
+
+#: simulation/data/civs/han.json
+msgid "Liu Zhi"
+msgstr "후한 환제 유지"
+
+#: simulation/data/civs/han.json
+msgid "Liu Bian"
+msgstr "동한 후소제 유변"
+
+#: simulation/data/civs/han.json
+msgid "Liu Xie"
+msgstr "후한 헌제 유협"
+
+#: simulation/data/civs/han.json
+msgid "Liu Hong"
+msgstr "서한 후소제 유홍"
+
+#: simulation/data/civs/iber.json
+msgid "Starting Walls"
+msgstr "성벽 시작하기"
+
+#: simulation/data/civs/iber.json
 msgid ""
 "With exception to alluvial plains and river valleys, stone is abundant in "
 "the Iberian Peninsula and was greatly used in construction of structures of "
 "all types."
 msgstr "충적 평야와 강 계곡을 제외하면, 이베리아 반도는 석재가 풍부하여 다양한 종류의 건축물들에 많이 사용됩니다."
 
-#: simulation/data/civs/iber.jsonCivBonuses[0].Name
-msgid "Starting Walls"
-msgstr "성벽 시작하기"
+#: simulation/data/civs/iber.json
+msgid "Iberians start with City Walls around their base on most maps."
+msgstr "이베리아인은 대부분의 지도에서 그들의 근거지 주변의 성벽으로 시작합니다."
 
-#: simulation/data/civs/iber.jsonCivBonuses[1].Description
+#: simulation/data/civs/iber.json
+msgid "Massive Towers"
+msgstr "대형 화살탑"
+
+#: simulation/data/civs/iber.json
 msgid ""
 "Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
 " +3 garrison capacity, and +1 default arrow count."
 msgstr "돌 탑의 목재 비용이 -50% 감소하고, 석재 비용이 +150%, 건설 시간이 +33%, 내구력이 +60%, 주둔지 수용량이 +3, 기본 화살 수가 +1 증가합니다."
 
-#: simulation/data/civs/iber.jsonCivBonuses[1].Name
-msgid "Massive Towers"
-msgstr "대형 화살탑"
+#: simulation/data/civs/iber.json
+msgid "Audax"
+msgstr "아우닥스"
 
-#: simulation/data/civs/kush.jsonAINames[0]
+#: simulation/data/civs/iber.json
+msgid "Calcus"
+msgstr "캬루쿠스"
+
+#: simulation/data/civs/iber.json
+msgid "Ditalcus"
+msgstr "디딸쿠스"
+
+#: simulation/data/civs/iber.json
+msgid "Minurus"
+msgstr "미누루스"
+
+#: simulation/data/civs/iber.json
+msgid "Olyndicus"
+msgstr "올린디쿠스"
+
+#: simulation/data/civs/iber.json
+msgid "Orison"
+msgstr "오리손"
+
+#: simulation/data/civs/iber.json
+msgid "Tanginus"
+msgstr "딴지누스"
+
+#: simulation/data/civs/iber.json
+msgid "Tautalus"
+msgstr "따우딸루스"
+
+#: simulation/data/civs/kush.json
 msgid "Kashta"
 msgstr "카슈타"
 
-#: simulation/data/civs/kush.jsonAINames[10]
-msgid "Malewiebamani"
-msgstr "말레뱌파마니"
-
-#: simulation/data/civs/kush.jsonAINames[11]
-msgid "Shanakdakhete"
-msgstr "샤나크다케테"
-
-#: simulation/data/civs/kush.jsonAINames[12]
-msgid "Amanishakheto"
-msgstr "아마니샤케도"
-
-#: simulation/data/civs/kush.jsonAINames[1]
+#: simulation/data/civs/kush.json
 msgid "Alara"
 msgstr "알라라"
 
-#: simulation/data/civs/kush.jsonAINames[2]
+#: simulation/data/civs/kush.json
 msgid "Pebatjma"
 msgstr "펩바즈마"
 
-#: simulation/data/civs/kush.jsonAINames[3]
+#: simulation/data/civs/kush.json
 msgid "Shabaka"
 msgstr "샤바카"
 
-#: simulation/data/civs/kush.jsonAINames[4]
+#: simulation/data/civs/kush.json
 msgid "Shebitku"
 msgstr "셰빗쿠"
 
-#: simulation/data/civs/kush.jsonAINames[5]
+#: simulation/data/civs/kush.json
 msgid "Qalhata"
 msgstr "칼하타"
 
-#: simulation/data/civs/kush.jsonAINames[6]
+#: simulation/data/civs/kush.json
 msgid "Takahatenamun"
 msgstr "타가테나문"
 
-#: simulation/data/civs/kush.jsonAINames[7]
+#: simulation/data/civs/kush.json
 msgid "Tantamani"
 msgstr "탄타마니"
 
-#: simulation/data/civs/kush.jsonAINames[8]
+#: simulation/data/civs/kush.json
 msgid "Atlanersa"
 msgstr "아틀나르자"
 
-#: simulation/data/civs/kush.jsonAINames[9]
+#: simulation/data/civs/kush.json
 msgid "Nasalsa"
 msgstr "나살사"
 
-#: simulation/data/civs/kush.jsonCivBonuses[0].Description
-#: simulation/data/civs/pers.jsonCivBonuses[1].Description
-msgid "Battering Rams +20% attack damage and +2 garrison capacity."
-msgstr "파성퇴의 공격 피해량이 +20%, 주둔지 수용량이 +2 증가합니다."
+#: simulation/data/civs/kush.json
+msgid "Malewiebamani"
+msgstr "말레뱌파마니"
 
-#: simulation/data/civs/kush.jsonCivBonuses[0].Name
-#: simulation/data/civs/pers.jsonCivBonuses[1].Name
+#: simulation/data/civs/kush.json
+msgid "Shanakdakhete"
+msgstr "샤나크다케테"
+
+#: simulation/data/civs/kush.json
+msgid "Amanishakheto"
+msgstr "아마니샤케도"
+
+#: simulation/data/civs/kush.json simulation/data/civs/pers.json
 msgid "Large Rams"
 msgstr "대형 파성퇴"
 
-#: simulation/data/civs/mace.jsonAINames[0]
+#: simulation/data/civs/kush.json simulation/data/civs/pers.json
+msgid "Battering Rams +20% attack damage and +2 garrison capacity."
+msgstr "파성퇴의 공격 피해량이 +20%, 주둔지 수용량이 +2 증가합니다."
+
+#: simulation/data/civs/mace.json
 msgid "Antipater"
 msgstr "안티파토루스"
 
-#: simulation/data/civs/mace.jsonAINames[10]
-msgid "Meleager"
-msgstr "멜레아그로스"
-
-#: simulation/data/civs/mace.jsonAINames[1]
+#: simulation/data/civs/mace.json
 msgid "Philip IV"
 msgstr "필리포스 4세"
 
-#: simulation/data/civs/mace.jsonAINames[2]
-#: simulation/data/civs/spart.jsonAINames[3]
-msgid "Lysander"
-msgstr "뤼잔드로스"
-
-#: simulation/data/civs/mace.jsonAINames[3]
+#: simulation/data/civs/mace.json
 msgid "Lysimachus"
 msgstr "뤼시마코스"
 
-#: simulation/data/civs/mace.jsonAINames[4]
+#: simulation/data/civs/mace.json
 msgid "Pyrrhus of Epirus"
 msgstr "에피루스의 피로스"
 
-#: simulation/data/civs/mace.jsonAINames[5]
+#: simulation/data/civs/mace.json
 msgid "Antigonus II Gonatas"
 msgstr "안티고누스 2세 고나타스"
 
-#: simulation/data/civs/mace.jsonAINames[6]
+#: simulation/data/civs/mace.json
 msgid "Demetrius II Aetolicus"
 msgstr "데메트리우스 2세 에톨리쿠스"
 
-#: simulation/data/civs/mace.jsonAINames[7]
+#: simulation/data/civs/mace.json
 msgid "Philip V"
 msgstr "필리포스 5세"
 
-#: simulation/data/civs/mace.jsonAINames[8]
+#: simulation/data/civs/mace.json
 msgid "Perseus"
 msgstr "페르세우스"
 
-#: simulation/data/civs/mace.jsonAINames[9]
+#: simulation/data/civs/mace.json
 msgid "Craterus"
 msgstr "크라테로스"
 
-#: simulation/data/civs/maur.jsonAINames[0]
+#: simulation/data/civs/mace.json
+msgid "Meleager"
+msgstr "멜레아그로스"
+
+#: simulation/data/civs/mace.json simulation/data/civs/spart.json
+msgid "Lysander"
+msgstr "뤼잔드로스"
+
+#: simulation/data/civs/maur.json
 msgid "Bindusara Maurya"
 msgstr "빈두사라 마우리아"
 
-#: simulation/data/civs/maur.jsonAINames[1]
+#: simulation/data/civs/maur.json
 msgid "Brihadratha Maurya"
 msgstr "브리하드라타 마우리아"
 
-#: simulation/data/civs/maur.jsonAINames[2]
+#: simulation/data/civs/maur.json
 msgid "Dasharatha Maurya"
 msgstr "다샤라타 마우리아"
 
-#: simulation/data/civs/maur.jsonAINames[3]
+#: simulation/data/civs/maur.json
 msgid "Devavarman Maurya"
 msgstr "데바바르만 마우리아"
 
-#: simulation/data/civs/maur.jsonAINames[4]
+#: simulation/data/civs/maur.json
 msgid "Kunala Maurya"
 msgstr "쿠날라 마우리아"
 
-#: simulation/data/civs/maur.jsonAINames[5]
+#: simulation/data/civs/maur.json
 msgid "Samprati Maurya"
 msgstr "삼프라티 마우리아"
 
-#: simulation/data/civs/maur.jsonAINames[6]
+#: simulation/data/civs/maur.json
 msgid "Shalishuka Maurya"
 msgstr "샬리슈카 마우리아"
 
-#: simulation/data/civs/maur.jsonAINames[7]
+#: simulation/data/civs/maur.json
 msgid "Shatadhanvan Maurya"
 msgstr "샤타단반 마우리아"
 
-#: simulation/data/civs/maur.jsonAINames[8]
+#: simulation/data/civs/maur.json
 msgid "Tivala Maurya"
 msgstr "티발라 마우리아"
 
-#: simulation/data/civs/pers.jsonAINames[0]
-msgid "Cambyses II"
-msgstr "캄비세스 2세"
-
-#: simulation/data/civs/pers.jsonAINames[1]
-msgid "Bardiya"
-msgstr "바르디야"
-
-#: simulation/data/civs/pers.jsonAINames[2]
-msgid "Artaxshacha I"
-msgstr "아르탁샤하 1세"
-
-#: simulation/data/civs/pers.jsonAINames[3]
-msgid "Darayavahush II"
-msgstr "다라야바후쉬 2세"
-
-#: simulation/data/civs/pers.jsonAINames[4]
-msgid "Darayavahush III"
-msgstr "다라야바후쉬 3세"
-
-#: simulation/data/civs/pers.jsonAINames[5]
-msgid "Artaxshacha II"
-msgstr "아르탁샤하 2세"
-
-#: simulation/data/civs/pers.jsonAINames[6]
-msgid "Artaxshacha III"
-msgstr "아르탁샤하 3세"
-
-#: simulation/data/civs/pers.jsonAINames[7]
-msgid "Haxamanish"
-msgstr "학사마니쉬"
-
-#: simulation/data/civs/pers.jsonAINames[8]
-msgid "Xsayarsa II"
-msgstr "크사야르사 2세"
-
-#: simulation/data/civs/pers.jsonCivBonuses[0].Description
-msgid "Land Traders +25% trade gain."
-msgstr "육로 상인의 교역 이득이 +25% 증가합니다."
-
-#: simulation/data/civs/pers.jsonCivBonuses[0].Name
+#: simulation/data/civs/pers.json
 msgid "Darics"
 msgstr "다리우스 금화"
 
-#: simulation/data/civs/pers.jsonCivBonuses[2].Description
+#: simulation/data/civs/pers.json
+msgid "Land Traders +25% trade gain."
+msgstr "육로 상인의 교역 이득이 +25% 증가합니다."
+
+#: simulation/data/civs/pers.json
+msgid "Times of War"
+msgstr "전쟁의 시대"
+
+#: simulation/data/civs/pers.json
+msgid "The Persians were known for their large cavalry contingent."
+msgstr "페르시아인들은 대규모 기병 부대로 유명했습니다."
+
+#: simulation/data/civs/pers.json
 msgid ""
 "The batch training time of units trained in Stables decreases each phase "
 "advance."
 msgstr "사육장에서 훈련된 유닛의 일괄 훈련 시간은 단계가 진행될 때마다 감소합니다."
 
-#: simulation/data/civs/pers.jsonCivBonuses[2].History
-msgid "The Persians were known for their large cavalry contingent."
-msgstr "페르시아인들은 대규모 기병 부대로 유명했습니다."
+#: simulation/data/civs/pers.json
+msgid "Satrapy Tribute"
+msgstr "사트라피 공물"
 
-#: simulation/data/civs/pers.jsonCivBonuses[2].Name
-msgid "Times of War"
-msgstr "전쟁의 시대"
-
-#: simulation/data/civs/pers.jsonCivBonuses[3].Description
-msgid ""
-"Upgrade the Throne Hall to receive a free trickle of a desired resource."
-msgstr "왕좌의 전당을 업그레이드하면 원하는 자원을 무료로 받을 수 있습니다."
-
-#: simulation/data/civs/pers.jsonCivBonuses[3].History
+#: simulation/data/civs/pers.json
 msgid ""
 "The empire was divided into provinces, called “Satrapies,” that sent yearly "
 "tribute to the ruling Persian dynasty in Persepolis as a form of tax."
 msgstr "제국은 '사트라피'라고 불리는 지방으로 나뉘었고, 페르세폴리스의 지배자인 페르시아 왕조에 매년 세금의 형태로 공물을 보냈습니다."
 
-#: simulation/data/civs/pers.jsonCivBonuses[3].Name
-msgid "Satrapy Tribute"
-msgstr "사트라피 공물"
+#: simulation/data/civs/pers.json
+msgid ""
+"Upgrade the Throne Hall to receive a free trickle of a desired resource."
+msgstr "왕좌의 전당을 업그레이드하면 원하는 자원을 무료로 받을 수 있습니다."
 
-#: simulation/data/civs/ptol.jsonAINames[0]
-msgid "Ptolemy Philadelphus"
-msgstr "톨레미 필라델포스"
+#: simulation/data/civs/pers.json
+msgid "Cambyses II"
+msgstr "캄비세스 2세"
 
-#: simulation/data/civs/ptol.jsonAINames[10]
-msgid "Cleopatra Tryphaena"
-msgstr "클레오파트라 트뤼파이나"
+#: simulation/data/civs/pers.json
+msgid "Bardiya"
+msgstr "바르디야"
 
-#: simulation/data/civs/ptol.jsonAINames[11]
-msgid "Berenice Epiphaneia"
-msgstr "베레니케 에피파네이아"
+#: simulation/data/civs/pers.json
+msgid "Artaxshacha I"
+msgstr "아르탁샤하 1세"
 
-#: simulation/data/civs/ptol.jsonAINames[12]
-msgid "Cleopatra Philopater"
-msgstr "클레오파트라 필로파테르"
+#: simulation/data/civs/pers.json
+msgid "Darayavahush II"
+msgstr "다라야바후쉬 2세"
 
-#: simulation/data/civs/ptol.jsonAINames[13]
-msgid "Cleopatra Selene"
-msgstr "클레오파트라 셀레네"
+#: simulation/data/civs/pers.json
+msgid "Darayavahush III"
+msgstr "다라야바후쉬 3세"
 
-#: simulation/data/civs/ptol.jsonAINames[14]
-msgid "Cleopatra II Philometora Soteira"
-msgstr "클레오파트라 2세 필로메토라 소테이라"
+#: simulation/data/civs/pers.json
+msgid "Artaxshacha II"
+msgstr "아르탁샤하 2세"
 
-#: simulation/data/civs/ptol.jsonAINames[15]
-msgid "Arsinoe IV"
-msgstr "아르시노에 4세"
+#: simulation/data/civs/pers.json
+msgid "Artaxshacha III"
+msgstr "아르탁샤하 3세"
 
-#: simulation/data/civs/ptol.jsonAINames[16]
-msgid "Arsinoe II"
-msgstr "아르시노에 2세"
+#: simulation/data/civs/pers.json
+msgid "Haxamanish"
+msgstr "학사마니쉬"
 
-#: simulation/data/civs/ptol.jsonAINames[1]
-msgid "Ptolemy Epigone"
-msgstr "톨레미 에피고네"
+#: simulation/data/civs/pers.json
+msgid "Xsayarsa II"
+msgstr "크사야르사 2세"
 
-#: simulation/data/civs/ptol.jsonAINames[2]
-msgid "Ptolemy Eurgetes"
-msgstr "톨레미 에우에르게테스"
-
-#: simulation/data/civs/ptol.jsonAINames[3]
-msgid "Ptolemy Epiphanes"
-msgstr "톨레미 에피파네스"
-
-#: simulation/data/civs/ptol.jsonAINames[4]
-msgid "Ptolemy Philometor"
-msgstr "톨레미 필로메토르"
-
-#: simulation/data/civs/ptol.jsonAINames[5]
-msgid "Ptolemy Eupator"
-msgstr "톨레미 유파토르"
-
-#: simulation/data/civs/ptol.jsonAINames[6]
-msgid "Ptolemy Alexander"
-msgstr "톨레미 알렉산더"
-
-#: simulation/data/civs/ptol.jsonAINames[7]
-msgid "Ptolemy Neos Dionysos"
-msgstr "톨레미 네오스 디오니소스"
-
-#: simulation/data/civs/ptol.jsonAINames[8]
-msgid "Ptolemy Neos Philopater"
-msgstr "톨레미 네오스 필로파테르"
-
-#: simulation/data/civs/ptol.jsonAINames[9]
-msgid "Berenice Philopater"
-msgstr "베레니케 필로파테르"
-
-#: simulation/data/civs/ptol.jsonCivBonuses[0].Description
-msgid "Bolt Shooters −33% attack damage and −33% attack time."
-msgstr "쇠뇌의 공격 피해량과 공격 시간이 -33% 감소합니다."
-
-#: simulation/data/civs/ptol.jsonCivBonuses[0].Name
+#: simulation/data/civs/ptol.json
 msgid "Polybolos"
 msgstr "그리스식 연노"
 
-#: simulation/data/civs/ptol.jsonCivBonuses[1].Description
-msgid "The three farming technologies are available in Village Phase."
-msgstr "마을 단계에서는 세 가지 농업 기술을 사용할 수 있습니다."
+#: simulation/data/civs/ptol.json
+msgid "Bolt Shooters −33% attack damage and −33% attack time."
+msgstr "쇠뇌의 공격 피해량과 공격 시간이 -33% 감소합니다."
 
-#: simulation/data/civs/ptol.jsonCivBonuses[1].History
+#: simulation/data/civs/ptol.json
+msgid "Nile Delta"
+msgstr "나일 삼각주"
+
+#: simulation/data/civs/ptol.json
 msgid ""
 "The Nile Delta is a region where the Nile River divides into several "
 "branches to flow into the Mediterranean Sea, in northern Egypt."
 msgstr "나일강 삼각주는 이집트 북부에 있는 나일강이 여러 지류로 갈라져 지중해로 흘러가는 지역입니다."
 
-#: simulation/data/civs/ptol.jsonCivBonuses[1].Name
-msgid "Nile Delta"
-msgstr "나일 삼각주"
+#: simulation/data/civs/ptol.json
+msgid "The three farming technologies are available in Village Phase."
+msgstr "마을 단계에서는 세 가지 농업 기술을 사용할 수 있습니다."
 
-#: simulation/data/civs/rome.jsonAINames[0]
-msgid "Lucius Junius Brutus"
-msgstr "루키우스 유니우스 브루투스"
+#: simulation/data/civs/ptol.json
+msgid "Ptolemy Philadelphus"
+msgstr "톨레미 필라델포스"
 
-#: simulation/data/civs/rome.jsonAINames[10]
-msgid "Marcus Cornelius Cethegus"
-msgstr "마르쿠스 코르넬리우스 케테구스"
+#: simulation/data/civs/ptol.json
+msgid "Ptolemy Epigone"
+msgstr "톨레미 에피고네"
 
-#: simulation/data/civs/rome.jsonAINames[11]
-msgid "Quintus Caecilius Metellus Pius"
-msgstr "퀸투스 카이킬리우스 메텔루스 피우스"
+#: simulation/data/civs/ptol.json
+msgid "Ptolemy Eurgetes"
+msgstr "톨레미 에우에르게테스"
 
-#: simulation/data/civs/rome.jsonAINames[12]
-msgid "Marcus Licinius Crassus"
-msgstr "마르쿠스 리키니우스 크라수스"
+#: simulation/data/civs/ptol.json
+msgid "Ptolemy Epiphanes"
+msgstr "톨레미 에피파네스"
 
-#: simulation/data/civs/rome.jsonAINames[1]
-msgid "Lucius Tarquinius Collatinus"
-msgstr "루키우스 타르퀴니우스 콜라티누스"
+#: simulation/data/civs/ptol.json
+msgid "Ptolemy Philometor"
+msgstr "톨레미 필로메토르"
 
-#: simulation/data/civs/rome.jsonAINames[2]
-msgid "Gaius Julius Caesar Octavianus"
-msgstr "가이우스 율리우스 카이사르 옥타비아누스"
+#: simulation/data/civs/ptol.json
+msgid "Ptolemy Eupator"
+msgstr "톨레미 유파토르"
 
-#: simulation/data/civs/rome.jsonAINames[3]
-msgid "Marcus Vipsanius Agrippa"
-msgstr "마르쿠스 빕사니우스 아그리파"
+#: simulation/data/civs/ptol.json
+msgid "Ptolemy Alexander"
+msgstr "톨레미 알렉산더"
 
-#: simulation/data/civs/rome.jsonAINames[4]
-msgid "Gaius Iulius Iullus"
-msgstr "가이우스 율리우스 아울루스"
+#: simulation/data/civs/ptol.json
+msgid "Ptolemy Neos Dionysos"
+msgstr "톨레미 네오스 디오니소스"
 
-#: simulation/data/civs/rome.jsonAINames[5]
-msgid "Gaius Servilius Structus Ahala"
-msgstr "가이우스 세르빌리우스 스트루쿠투스 아할라"
+#: simulation/data/civs/ptol.json
+msgid "Ptolemy Neos Philopater"
+msgstr "톨레미 네오스 필로파테르"
 
-#: simulation/data/civs/rome.jsonAINames[6]
-msgid "Publius Cornelius Rufinus"
-msgstr "푸블리우스 코넬리우스 루피누스"
+#: simulation/data/civs/ptol.json
+msgid "Berenice Philopater"
+msgstr "베레니케 필로파테르"
 
-#: simulation/data/civs/rome.jsonAINames[7]
-msgid "Lucius Papirius Cursor"
-msgstr "루키우스 파피리우스 쿠르소르"
+#: simulation/data/civs/ptol.json
+msgid "Cleopatra Tryphaena"
+msgstr "클레오파트라 트뤼파이나"
 
-#: simulation/data/civs/rome.jsonAINames[8]
-msgid "Aulus Manlius Capitolinus"
-msgstr "아울루스 만리우스 카피톨리누스"
+#: simulation/data/civs/ptol.json
+msgid "Berenice Epiphaneia"
+msgstr "베레니케 에피파네이아"
 
-#: simulation/data/civs/rome.jsonAINames[9]
-msgid "Publius Sempronius Tuditanus"
-msgstr "푸블리우스 셈프로니우스 투디타누스"
+#: simulation/data/civs/ptol.json
+msgid "Cleopatra Philopater"
+msgstr "클레오파트라 필로파테르"
 
-#: simulation/data/civs/rome.jsonCivBonuses[0].Description
+#: simulation/data/civs/ptol.json
+msgid "Cleopatra Selene"
+msgstr "클레오파트라 셀레네"
+
+#: simulation/data/civs/ptol.json
+msgid "Cleopatra II Philometora Soteira"
+msgstr "클레오파트라 2세 필로메토라 소테이라"
+
+#: simulation/data/civs/ptol.json
+msgid "Arsinoe IV"
+msgstr "아르시노에 4세"
+
+#: simulation/data/civs/ptol.json
+msgid "Arsinoe II"
+msgstr "아르시노에 2세"
+
+#: simulation/data/civs/rome.json
+msgid "Fertility"
+msgstr "출생률"
+
+#: simulation/data/civs/rome.json
+msgid "Rome was one of the most populous cities in the ancient world."
+msgstr "로마는 고대 세계에서 가장 인구가 많은 도시 중 하나였습니다."
+
+#: simulation/data/civs/rome.json
 msgid ""
 "Women train from houses without the need to research Fertility Festival."
 msgstr "여성들은 집에서 훈련을 하며 다산 축제에 대한 연구가 필요하지 않습니다."
 
-#: simulation/data/civs/rome.jsonCivBonuses[0].History
-msgid "Rome was one of the most populous cities in the ancient world."
-msgstr "로마는 고대 세계에서 가장 인구가 많은 도시 중 하나였습니다."
+#: simulation/data/civs/rome.json
+msgid "Testudo Formation"
+msgstr "귀갑 대형"
 
-#: simulation/data/civs/rome.jsonCivBonuses[0].Name
-msgid "Fertility"
-msgstr "출생률"
-
-#: simulation/data/civs/rome.jsonCivBonuses[1].Description
-msgid "Roman Legionaries can form a Testudo."
-msgstr "로마 군대는 테스투도 진법을 짤 수 있습니다."
-
-#: simulation/data/civs/rome.jsonCivBonuses[1].History
+#: simulation/data/civs/rome.json
 msgid ""
 "The Romans commonly used the Testudo or 'turtle' formation for defense: "
 "Legionaries were formed into hollow squares with twelve men on each side, "
 "standing so close together that their shields overlapped like fish scales."
 msgstr "로마인들은 일반적으로 방어를 위해 테스투도 또는 '거북이' 대형을 사용했습니다. 군단병은 양쪽에 12명의 병사가 있는 속이 빈 사각형으로 형성되어, 서로 나란히 서서 방패를 물고기 비늘처럼 겹치게 합니다."
 
-#: simulation/data/civs/rome.jsonCivBonuses[1].Name
-msgid "Testudo Formation"
-msgstr "귀갑 대형"
+#: simulation/data/civs/rome.json
+msgid "Roman Legionaries can form a Testudo."
+msgstr "로마 군대는 테스투도 진법을 짤 수 있습니다."
 
-#: simulation/data/civs/rome.jsonCivBonuses[2].Description
-msgid "Promote Elite Rank Spearmen or Swordsmen to Champion Centurions."
-msgstr "정예 등급 창병 또는 검병을 챔피언 100인 대장으로 승급합니다."
+#: simulation/data/civs/rome.json
+msgid "Centurions"
+msgstr "100인 대장"
 
-#: simulation/data/civs/rome.jsonCivBonuses[2].History
+#: simulation/data/civs/rome.json
 msgid ""
 "Centurions were the officers responsible for a centuria, a group of 100 "
 "soldiers."
 msgstr "100인 대장은 100명의 병사로 이루어진 부대인 센츄리아를 책임지는 장수였습니다."
 
-#: simulation/data/civs/rome.jsonCivBonuses[2].Name
-msgid "Centurions"
-msgstr "100인 대장"
+#: simulation/data/civs/rome.json
+msgid "Promote Elite Rank Spearmen or Swordsmen to Champion Centurions."
+msgstr "정예 등급 창병 또는 검병을 챔피언 100인 대장으로 승급합니다."
 
-#: simulation/data/civs/sele.jsonAINames[0]
+#: simulation/data/civs/rome.json
+msgid "Lucius Junius Brutus"
+msgstr "루키우스 유니우스 브루투스"
+
+#: simulation/data/civs/rome.json
+msgid "Lucius Tarquinius Collatinus"
+msgstr "루키우스 타르퀴니우스 콜라티누스"
+
+#: simulation/data/civs/rome.json
+msgid "Gaius Julius Caesar Octavianus"
+msgstr "가이우스 율리우스 카이사르 옥타비아누스"
+
+#: simulation/data/civs/rome.json
+msgid "Marcus Vipsanius Agrippa"
+msgstr "마르쿠스 빕사니우스 아그리파"
+
+#: simulation/data/civs/rome.json
+msgid "Gaius Iulius Iullus"
+msgstr "가이우스 율리우스 아울루스"
+
+#: simulation/data/civs/rome.json
+msgid "Gaius Servilius Structus Ahala"
+msgstr "가이우스 세르빌리우스 스트루쿠투스 아할라"
+
+#: simulation/data/civs/rome.json
+msgid "Publius Cornelius Rufinus"
+msgstr "푸블리우스 코넬리우스 루피누스"
+
+#: simulation/data/civs/rome.json
+msgid "Lucius Papirius Cursor"
+msgstr "루키우스 파피리우스 쿠르소르"
+
+#: simulation/data/civs/rome.json
+msgid "Aulus Manlius Capitolinus"
+msgstr "아울루스 만리우스 카피톨리누스"
+
+#: simulation/data/civs/rome.json
+msgid "Publius Sempronius Tuditanus"
+msgstr "푸블리우스 셈프로니우스 투디타누스"
+
+#: simulation/data/civs/rome.json
+msgid "Marcus Cornelius Cethegus"
+msgstr "마르쿠스 코르넬리우스 케테구스"
+
+#: simulation/data/civs/rome.json
+msgid "Quintus Caecilius Metellus Pius"
+msgstr "퀸투스 카이킬리우스 메텔루스 피우스"
+
+#: simulation/data/civs/rome.json
+msgid "Marcus Licinius Crassus"
+msgstr "마르쿠스 리키니우스 크라수스"
+
+#: simulation/data/civs/sele.json
 msgid "Antiochus I Soter"
 msgstr "안티오쿠스 1세 소테르"
 
-#: simulation/data/civs/sele.jsonAINames[10]
-msgid "Diodotus Tryphon"
-msgstr "디오도토스 트리폰"
-
-#: simulation/data/civs/sele.jsonAINames[11]
-msgid "Antiochus VII Sidetes"
-msgstr "안티오쿠스 7세 시데테스"
-
-#: simulation/data/civs/sele.jsonAINames[13]
-msgid "Alexander II Zabinas"
-msgstr "알렉산더 2세 자비나스"
-
-#: simulation/data/civs/sele.jsonAINames[14]
-msgid "Cleopatra Thea"
-msgstr "클레오파트라 테아"
-
-#: simulation/data/civs/sele.jsonAINames[15]
-msgid "Seleucus V Philometor"
-msgstr "셀레우쿠스 5세 필로메토르"
-
-#: simulation/data/civs/sele.jsonAINames[16]
-msgid "Antiochus VIII Grypus"
-msgstr "안티오쿠스 8세 그리푸스"
-
-#: simulation/data/civs/sele.jsonAINames[17]
-msgid "Antiochus IX Cyzicenus"
-msgstr "안티오쿠스 9세 키지케노스"
-
-#: simulation/data/civs/sele.jsonAINames[18]
-msgid "Seleucus VI Epiphanes"
-msgstr "셀레우쿠스 6세 에피파네스"
-
-#: simulation/data/civs/sele.jsonAINames[19]
-msgid "Antiochus X Eusebes"
-msgstr "안티오쿠스 10세 유세비우스"
-
-#: simulation/data/civs/sele.jsonAINames[1]
+#: simulation/data/civs/sele.json
 msgid "Antiochus II Theos"
 msgstr "안티오쿠스 2세 테오스"
 
-#: simulation/data/civs/sele.jsonAINames[20]
-msgid "Demetrius III Eucaerus"
-msgstr "데메트리우스 3세 에우카에로스"
-
-#: simulation/data/civs/sele.jsonAINames[21]
-msgid "Antiochus XI Epiphanes"
-msgstr "안티오쿠스 11세 에피파네스"
-
-#: simulation/data/civs/sele.jsonAINames[22]
-msgid "Philip I Philadelphus"
-msgstr "필리포스 1세 필라델포스"
-
-#: simulation/data/civs/sele.jsonAINames[23]
-msgid "Antiochus XII Dionysus"
-msgstr "안티오쿠스 12세 디오니소스"
-
-#: simulation/data/civs/sele.jsonAINames[24]
-msgid "Seleucus VII Kybiosaktes"
-msgstr "셀레우쿠스 7세 퀴비오사크테스"
-
-#: simulation/data/civs/sele.jsonAINames[25]
-msgid "Antiochus XIII Asiaticus"
-msgstr "안티오쿠스 13세 아시아티쿠스"
-
-#: simulation/data/civs/sele.jsonAINames[26]
-msgid "Philip II Philoromaeus"
-msgstr "필리포스 2세 필로로마에우스"
-
-#: simulation/data/civs/sele.jsonAINames[2]
+#: simulation/data/civs/sele.json
 msgid "Seleucus II Callinicus"
 msgstr "셀레우쿠스 2세 칼리니쿠스"
 
-#: simulation/data/civs/sele.jsonAINames[3]
+#: simulation/data/civs/sele.json
 msgid "Seleucus III Ceraunus"
 msgstr "셀레우쿠스 3세 케라우누스"
 
-#: simulation/data/civs/sele.jsonAINames[4]
+#: simulation/data/civs/sele.json
 msgid "Seleucus IV Philopator"
 msgstr "셀레우쿠스 4세 필로파토르"
 
-#: simulation/data/civs/sele.jsonAINames[5]
+#: simulation/data/civs/sele.json
 msgid "Antiochus V Eupator"
 msgstr "안티오쿠스 5세 에우파토르"
 
-#: simulation/data/civs/sele.jsonAINames[6]
+#: simulation/data/civs/sele.json
 msgid "Demetrius I Soter"
 msgstr "데메트리우스 1세 소테르"
 
-#: simulation/data/civs/sele.jsonAINames[7]
+#: simulation/data/civs/sele.json
 msgid "Alexander I Balas"
 msgstr "알렉산더 1세 발라스"
 
-#: simulation/data/civs/sele.jsonAINames[12]
-#: simulation/data/civs/sele.jsonAINames[8]
-msgid "Demetrius II Nicator"
-msgstr "데메트리우스 2세 니카토르"
-
-#: simulation/data/civs/sele.jsonAINames[9]
+#: simulation/data/civs/sele.json
 msgid "Antiochus VI Dionysus"
 msgstr "안티오쿠스 6세 디오니소스"
 
-#: simulation/data/civs/spart.jsonAINames[0]
-msgid "Dienekes"
-msgstr "디에네케스"
+#: simulation/data/civs/sele.json
+msgid "Diodotus Tryphon"
+msgstr "디오도토스 트리폰"
 
-#: simulation/data/civs/spart.jsonAINames[1]
-msgid "Agis II"
-msgstr "아기스 2세"
+#: simulation/data/civs/sele.json
+msgid "Antiochus VII Sidetes"
+msgstr "안티오쿠스 7세 시데테스"
 
-#: simulation/data/civs/spart.jsonAINames[2]
-msgid "Archidamus"
-msgstr "아르키다모스"
+#: simulation/data/civs/sele.json
+msgid "Alexander II Zabinas"
+msgstr "알렉산더 2세 자비나스"
 
-#: simulation/data/civs/spart.jsonAINames[4]
-msgid "Pausanias"
-msgstr "파우사니아스"
+#: simulation/data/civs/sele.json
+msgid "Cleopatra Thea"
+msgstr "클레오파트라 테아"
 
-#: simulation/data/civs/spart.jsonAINames[5]
-msgid "Agesilaus"
-msgstr "아게실라우스"
+#: simulation/data/civs/sele.json
+msgid "Seleucus V Philometor"
+msgstr "셀레우쿠스 5세 필로메토르"
 
-#: simulation/data/civs/spart.jsonAINames[6]
-msgid "Echestratus"
-msgstr "에케스트라투스"
+#: simulation/data/civs/sele.json
+msgid "Antiochus VIII Grypus"
+msgstr "안티오쿠스 8세 그리푸스"
 
-#: simulation/data/civs/spart.jsonAINames[7]
-msgid "Eurycrates"
-msgstr "에우리크라테스"
+#: simulation/data/civs/sele.json
+msgid "Antiochus IX Cyzicenus"
+msgstr "안티오쿠스 9세 키지케노스"
 
-#: simulation/data/civs/spart.jsonAINames[8]
-msgid "Eucleidas"
-msgstr "에우클레이데스"
+#: simulation/data/civs/sele.json
+msgid "Seleucus VI Epiphanes"
+msgstr "셀레우쿠스 6세 에피파네스"
 
-#: simulation/data/civs/spart.jsonAINames[9]
-msgid "Agesipolis"
-msgstr "아게시폴리스"
+#: simulation/data/civs/sele.json
+msgid "Antiochus X Eusebes"
+msgstr "안티오쿠스 10세 유세비우스"
 
-#: simulation/data/civs/spart.jsonCivBonuses[0].Description
-msgid "Female Citizens +40% health and +50% melee attack hack damage."
-msgstr "여성 주민의 체력이 +40%, 근접 공격 난도질 피해량이 +50% 증가합니다."
+#: simulation/data/civs/sele.json
+msgid "Demetrius III Eucaerus"
+msgstr "데메트리우스 3세 에우카에로스"
 
-#: simulation/data/civs/spart.jsonCivBonuses[0].Name
+#: simulation/data/civs/sele.json
+msgid "Antiochus XI Epiphanes"
+msgstr "안티오쿠스 11세 에피파네스"
+
+#: simulation/data/civs/sele.json
+msgid "Philip I Philadelphus"
+msgstr "필리포스 1세 필라델포스"
+
+#: simulation/data/civs/sele.json
+msgid "Antiochus XII Dionysus"
+msgstr "안티오쿠스 12세 디오니소스"
+
+#: simulation/data/civs/sele.json
+msgid "Seleucus VII Kybiosaktes"
+msgstr "셀레우쿠스 7세 퀴비오사크테스"
+
+#: simulation/data/civs/sele.json
+msgid "Antiochus XIII Asiaticus"
+msgstr "안티오쿠스 13세 아시아티쿠스"
+
+#: simulation/data/civs/sele.json
+msgid "Philip II Philoromaeus"
+msgstr "필리포스 2세 필로로마에우스"
+
+#: simulation/data/civs/sele.json
+msgid "Demetrius II Nicator"
+msgstr "데메트리우스 2세 니카토르"
+
+#: simulation/data/civs/spart.json
 msgid "Spartan Women"
 msgstr "스파르타 여성"
 
-#: simulation/data/civs/spart.jsonCivBonuses[1].Description
-msgid ""
-"Champion Hoplites are available in village phase, and can promote to highly "
-"experienced Olympic Champions."
-msgstr "챔피언 장갑보병은 마을 단계에서 사용할 수 있으며 고도로 숙련된 올림픽 챔피언으로 승급할 수 있습니다."
+#: simulation/data/civs/spart.json
+msgid "Female Citizens +40% health and +50% melee attack hack damage."
+msgstr "여성 주민의 체력이 +40%, 근접 공격 난도질 피해량이 +50% 증가합니다."
 
-#: simulation/data/civs/spart.jsonCivBonuses[1].History
+#: simulation/data/civs/spart.json
+msgid "Laws of Lycurgus"
+msgstr "리쿠르고스의 법률"
+
+#: simulation/data/civs/spart.json
 msgid ""
 "Under the constitution written by the mythical lawgiver Lycurgus, the "
 "institution of the Agoge was established, where Spartans were trained from "
 "the age of 6 to be superior warriors in defense of the Spartan state."
 msgstr "신화적인 입법자 리쿠르고스가 쓴 헌법에 따라 아고게라는 기관이 설립되었으며, 스파르타인들은  6살부터 스파르타 국가를 지키는 뛰어난 전사가 되기 위한 훈련을 받았습니다."
 
-#: simulation/data/civs/spart.jsonCivBonuses[1].Name
-msgid "Laws of Lycurgus"
-msgstr "리쿠르고스의 법률"
+#: simulation/data/civs/spart.json
+msgid ""
+"Champion Hoplites are available in village phase, and can promote to highly "
+"experienced Olympic Champions."
+msgstr "챔피언 장갑보병은 마을 단계에서 사용할 수 있으며 고도로 숙련된 올림픽 챔피언으로 승급할 수 있습니다."
+
+#: simulation/data/civs/spart.json
+msgid "Dienekes"
+msgstr "디에네케스"
+
+#: simulation/data/civs/spart.json
+msgid "Agis II"
+msgstr "아기스 2세"
+
+#: simulation/data/civs/spart.json
+msgid "Archidamus"
+msgstr "아르키다모스"
+
+#: simulation/data/civs/spart.json
+msgid "Pausanias"
+msgstr "파우사니아스"
+
+#: simulation/data/civs/spart.json
+msgid "Agesilaus"
+msgstr "아게실라우스"
+
+#: simulation/data/civs/spart.json
+msgid "Echestratus"
+msgstr "에케스트라투스"
+
+#: simulation/data/civs/spart.json
+msgid "Eurycrates"
+msgstr "에우리크라테스"
+
+#: simulation/data/civs/spart.json
+msgid "Eucleidas"
+msgstr "에우클레이데스"
+
+#: simulation/data/civs/spart.json
+msgid "Agesipolis"
+msgstr "아게시폴리스"
 
 #: simulation/templates/special/players/athen.xml:8
 msgid "Athenians"

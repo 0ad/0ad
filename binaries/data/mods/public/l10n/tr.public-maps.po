@@ -33,7 +33,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-06-17 07:08+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: 9d4282795e87ad099e39d98812f1a822_ade2f01, 2014-2018,2021-2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
@@ -43,73 +43,77 @@ msgstr ""
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: maps/random/aegean_sea.jsonsettings.Description
-msgid "Players start on two sides of a sea with scattered islands."
-msgstr "Oyuncular denizdeki ada parçalarının iki tarafında başlar."
-
-#: maps/random/aegean_sea.jsonsettings.Name
+#: maps/random/aegean_sea.json
 msgid "Aegean Sea"
 msgstr "Ege Denizi"
 
-#: maps/random/african_plains.jsonsettings.Description
+#: maps/random/aegean_sea.json
+msgid "Players start on two sides of a sea with scattered islands."
+msgstr "Oyuncular denizdeki ada parçalarının iki tarafında başlar."
+
+#: maps/random/african_plains.json
+msgid "African Plains"
+msgstr "Afrika Ovaları"
+
+#: maps/random/african_plains.json
 msgid ""
 "The central region of the vast continent of Africa, birthplace of humanity. "
 "Players start in a lush area teeming with vegetation and wildlife."
 msgstr "Afrika'nın geniş kıtasının merkezi bölgesi, insanlığın doğduğu yer. Oyuncular, bitki örtüsü ve vahşi yaşamla dolup yemyeşil bir alanda başlıyor."
 
-#: maps/random/african_plains.jsonsettings.Name
-msgid "African Plains"
-msgstr "Afrika Ovaları"
+#: maps/random/alpine_lakes.json
+msgid "Alpine Lakes"
+msgstr "Alp Gölleri"
 
-#: maps/random/alpine_lakes.jsonsettings.Description
+#: maps/random/alpine_lakes.json
 msgid ""
 "High Alpine mountains surrounding deep valleys strung with mountain streams "
 "and finger-like lakes."
 msgstr "Yüksek Alp Dağları yabani dereli ve parmaksı göllü sıralı derin vadileri çevreler."
 
-#: maps/random/alpine_lakes.jsonsettings.Name
-msgid "Alpine Lakes"
-msgstr "Alp Gölleri"
-
-#: maps/random/alpine_valley.jsonsettings.Description
-msgid "High Alpine mountains bordering deep valleys."
-msgstr "Yüksek Alp Dağları derin vadilerle sınırdaştır."
-
-#: maps/random/alpine_valley.jsonsettings.Name
+#: maps/random/alpine_valley.json
 msgid "Alpine Valley"
 msgstr "Alp Vadisi"
 
-#: maps/random/ambush.jsonsettings.Description
+#: maps/random/alpine_valley.json
+msgid "High Alpine mountains bordering deep valleys."
+msgstr "Yüksek Alp Dağları derin vadilerle sınırdaştır."
+
+#: maps/random/ambush.json
+msgid "Ambush"
+msgstr "Pusu"
+
+#: maps/random/ambush.json
 msgid ""
 "High bluffs overlook the terrain below. Bountiful resources await on the "
 "cliffs, but beware of enemies planning an ambush."
 msgstr "Yüksek riskli araziler sana doğru bakmaktadır. Bol kaynaklar seni bekliyor, ama herhangi bir düşman pususunada düşebilirsin."
 
-#: maps/random/ambush.jsonsettings.Name
-msgid "Ambush"
-msgstr "Pusu"
+#: maps/random/anatolian_plateau.json
+msgid "Anatolian Plateau"
+msgstr "Anadolu Platosu"
 
-#: maps/random/anatolian_plateau.jsonsettings.Description
+#: maps/random/anatolian_plateau.json
 msgid ""
 "An indefensible open land with little wood and stone, representing the "
 "central basin of Asia Minor."
 msgstr "Anadolu'nun merkez havzasını temsil eden, biraz odun ve taşlı savunulması zor açık bir kara parçası."
 
-#: maps/random/anatolian_plateau.jsonsettings.Name
-msgid "Anatolian Plateau"
-msgstr "Anadolu Platosu"
+#: maps/random/archipelago.json
+msgid "Archipelago"
+msgstr "Takımada"
 
-#: maps/random/archipelago.jsonsettings.Description
+#: maps/random/archipelago.json
 msgid ""
 "A maze of islands of different sizes and shapes. Players start with more "
 "wood than normal."
 msgstr "Farklı boy ve şekillerden bir adalar labirenti. Oyuncular normalden daha fazla odun ile başlar."
 
-#: maps/random/archipelago.jsonsettings.Name
-msgid "Archipelago"
-msgstr "Takımada"
+#: maps/random/arctic_summer.json
+msgid "Arctic Summer"
+msgstr "Kutup Yazı"
 
-#: maps/random/arctic_summer.jsonsettings.Description
+#: maps/random/arctic_summer.json
 msgid ""
 "Summer has arrived to the cold regions of the north and with it have many "
 "animals, profiting from its milder climate. Wolves, ever present, have shed "
@@ -117,32 +121,32 @@ msgid ""
 "traces of winter are rapidly disappearing, only to reappear very soon."
 msgstr "Yaz kuzeyin soğuk bölgelerine varmış ve onun daha yumuşak ikliminden faydalanan birçok hayvan var. Kurtlar, şimdiye kadar, kış kıyafetlerini döker; Geyik, karanfil ve muskoks ovaları doldurur. Son kış izleri hızla yok oluyor, sadece çok yakında yeniden ortaya çıkmak üzere."
 
-#: maps/random/arctic_summer.jsonsettings.Name
-msgid "Arctic Summer"
-msgstr "Kutup Yazı"
+#: maps/random/ardennes_forest.json
+msgid "Ardennes Forest"
+msgstr "Ardenler Ormanı"
 
-#: maps/random/ardennes_forest.jsonsettings.Description
+#: maps/random/ardennes_forest.json
 msgid ""
 "Each player starts deep in the forest.\n"
 "\n"
 "The Ardennes is a region of extensive forests, rolling hills and ridges formed within the Givetian Ardennes mountain range, primarily in modern day Belgium and Luxembourg. The region took its name from the ancient Silva, a vast forest in Roman times called Arduenna Silva."
 msgstr "Her oyuncu ormanın derinliklerinde başlar.\n\nÇoğunlukla bugünkü Belçika ve Lüksemburg'da yer alan Ardenler bölgesi, Givensiyen Ardenler Sıradağlarının içerisinde ormanlarla kaplı, engebeli arazi, inişli çıkışlı tepeler ve sırtlardan oluşur, Bu bölge adını antik Silva'dan almaktadır, Roma döneminde muazzam bir orman olan Arduenna Silva."
 
-#: maps/random/ardennes_forest.jsonsettings.Name
-msgid "Ardennes Forest"
-msgstr "Ardenler Ormanı"
+#: maps/random/atlas_mountains.json
+msgid "Atlas Mountains"
+msgstr "Atlas Dağları"
 
-#: maps/random/atlas_mountains.jsonsettings.Description
+#: maps/random/atlas_mountains.json
 msgid ""
 "A rugged land with small room for buildings with scarce wood. Represents the"
 " mountain range in the Northwest Africa."
 msgstr " Kıt odunlu, binalar için küçük alanı olan engebeli bir arazi. Kuzeybatı Afrikada'ki dağlık alanları betimler."
 
-#: maps/random/atlas_mountains.jsonsettings.Name
-msgid "Atlas Mountains"
-msgstr "Atlas Dağları"
+#: maps/random/bahrain.json
+msgid "Bahrain"
+msgstr "Bahreyn"
 
-#: maps/random/bahrain.jsonsettings.Description
+#: maps/random/bahrain.json
 msgid ""
 "Bahrain, centre of the Dilmun civilization which fell in 800 BC, was in turn"
 " controlled by Sumerians, Assyrians, Babylonians, Persians and other later "
@@ -153,22 +157,22 @@ msgid ""
 "Bahrain?"
 msgstr ""
 
-#: maps/random/bahrain.jsonsettings.Name
-msgid "Bahrain"
-msgstr "Bahreyn"
+#: maps/random/belgian_uplands.json
+msgid "Belgian Uplands"
+msgstr "Belçika Arazileri"
 
-#: maps/random/belgian_uplands.jsonsettings.Description
+#: maps/random/belgian_uplands.json
 msgid ""
 "An experimental map with its heightmap generated by erosion to look more "
 "natural. Not all seeds will be fair though! Tiny maps with 8 players may "
 "take a while to generate."
 msgstr "Erozyon tarafından oluşturulmuş yüksek bir harita daha doğal görünümlü deneysel bir harita. Tüm kaynaklar olmasada adil bi şekilde olacak! 8 oyunculu küçük haritanın oluşturulması zaman alabilir."
 
-#: maps/random/belgian_uplands.jsonsettings.Name
-msgid "Belgian Uplands"
-msgstr "Belçika Arazileri"
+#: maps/random/botswanan_haven.json
+msgid "Botswanan Haven"
+msgstr "Botswana Barınağı"
 
-#: maps/random/botswanan_haven.jsonsettings.Description
+#: maps/random/botswanan_haven.json
 msgid ""
 "Botswanan Africa during the wet season, a land which was arid and "
 "inhospitable just weeks before has come to life totally transformed. Herds "
@@ -176,98 +180,80 @@ msgid ""
 "while in the shallow pools lurk fearsome crocodiles."
 msgstr "Islak mevsiminde Botswana Afrikası, sadece birkaç hafta önce kurak ve rahatsız edici olan bir ülke tamamen değişime uğramıştır. Zebralar sürüleri, aslanların beklediği uzun boylu otların arasından sıyrılarak sığ göllerde korkunç timsahlar gizleniyorlar."
 
-#: maps/random/botswanan_haven.jsonsettings.Name
-msgid "Botswanan Haven"
-msgstr "Botswana Barınağı"
+#: maps/random/caledonian_meadows.json
+msgid "Caledonian Meadows"
+msgstr "Kaledonya Çayırları"
 
-#: maps/random/caledonian_meadows.jsonsettings.Description
+#: maps/random/caledonian_meadows.json
 msgid ""
 "Fertile lands surrounded by harsh terrain.\n"
 "Remains of recent snowfalls still haunt the forests, and torrential rivers from the snowmelt have barely died away.\n"
 "Aiming at a realistic terrain, this map might not always be balanced."
 msgstr "Bereketli topraklar sert arazilerle çevrilidir.\nSon zamanlarda meydana gelen kar yağışı halen ormanları zor durumda bırakıyor ve kar erimesinden oluşan sağanak nehirleri zorla öldürüyor\nGerçekçi bir arazide hedefleyenler için bu harita dengeli olmayabilir."
 
-#: maps/random/caledonian_meadows.jsonsettings.Name
-msgid "Caledonian Meadows"
-msgstr "Kaledonya Çayırları"
+#: maps/random/cantabrian_highlands.json
+msgid "Cantabrian Highlands"
+msgstr "Kantabria Dağlık arazileri"
 
-#: maps/random/cantabrian_highlands.jsonsettings.Description
+#: maps/random/cantabrian_highlands.json
 msgid ""
 "Each player starts on a hill surrounded by steep cliffs. Inspired by "
 "Cantabria, a mountainous region in the north of the Iberian peninsula."
 msgstr "Her oyuncu sarp kayalıklarla çevrili bir tepede başlar. Kantabria'dan ilham alındı, İber yarımadasının kuzeyindeki bir dağlık bölge."
 
-#: maps/random/cantabrian_highlands.jsonsettings.Name
-msgid "Cantabrian Highlands"
-msgstr "Kantabria Dağlık arazileri"
-
-#: maps/random/canyon.jsonsettings.Description
-msgid "Players start around the map in deep canyons."
-msgstr "Oyuncular derin kanyon civarındaki haritada başlarlar."
-
-#: maps/random/canyon.jsonsettings.Name
+#: maps/random/canyon.json
 msgid "Canyon"
 msgstr "Kanyon"
 
-#: maps/random/continent.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[0].Description
-msgid "All players starts on a continent surrounded by water."
-msgstr "Tüm oyuncular suyla çevirilmiş bir kıtada başlar."
+#: maps/random/canyon.json
+msgid "Players start around the map in deep canyons."
+msgstr "Oyuncular derin kanyon civarındaki haritada başlarlar."
 
-#: maps/random/continent.jsonsettings.Name
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[0].Name
+#: maps/random/continent.json maps/random/unknown.json
 msgid "Continent"
 msgstr "Kıta"
 
-#: maps/random/corinthian_isthmus.jsonsettings.Description
+#: maps/random/continent.json maps/random/unknown.json
+msgid "All players starts on a continent surrounded by water."
+msgstr "Tüm oyuncular suyla çevirilmiş bir kıtada başlar."
+
+#: maps/random/corinthian_isthmus.json
+msgid "Corinthian Isthmus"
+msgstr "Korint Kıstağı"
+
+#: maps/random/corinthian_isthmus.json
 msgid ""
 "Two land masses connected by a narrow spit of land, called an 'Isthmus', "
 "inspired by the eponymous area in Greece. Most of the stone on the map is in"
 " the isthmus itself, making it vital to fight for its control."
 msgstr "Yunanistan'daki aynı adı taşıyan bölgeden esinlenerek, 'Isthmus' adı verilen dar bir kara parçasıyla birbirine bağlanan iki kara kütlesi. Haritadaki taşın çoğu Isthmus içindedir, bu da kontrolü için savaşmayı hayati kılıyor."
 
-#: maps/random/corinthian_isthmus.jsonsettings.Name
-msgid "Corinthian Isthmus"
-msgstr "Korint Kıstağı"
+#: maps/random/corsica.json
+msgid "Corsica vs Sardinia"
+msgstr "Korsika ve Sardunya"
 
-#: maps/random/corsica.jsonsettings.Description
+#: maps/random/corsica.json
 msgid ""
 "The players start on two opposing islands, both with a very jagged relief "
 "that will make landing difficult."
 msgstr "Oyuncular iki karşı adada başlayacak, hem çok sarp hemde inişi zor bir alan olacak."
 
-#: maps/random/corsica.jsonsettings.Name
-msgid "Corsica vs Sardinia"
-msgstr "Korsika ve Sardunya"
+#: maps/random/cycladic_archipelago.json
+msgid "Cycladic Archipelago"
+msgstr "Kiklad Takımadaları"
 
-#: maps/random/cycladic_archipelago.jsonsettings.Description
+#: maps/random/cycladic_archipelago.json
 msgid ""
 "Each player starts on an island surrounded by water.\n"
 "\n"
 "The Cyclades is an island group in the Aegean Sea, south-east of the mainland of Greece. They are one of the island groups which constitute the Aegean archipelago. The name refers to the islands around  the sacred island of Delos. The Cyclades comprise about 220 islands. The islands are peaks of a submerged mountainous terrain, with the exception of two volcanic islands, Milos and Santorini. The climate is generally dry and mild, but with the exception of Naxos the soil is not very fertile."
 msgstr "Her oyuncu sularla çevrili bir adada başlar.\n\nKiklad adaları Ege Denizinde bir ada grubudur, Yunanistan ana karasının güney doğusunda yer alır. Onlar Ege takımadalarını oluşturan ada gruplarından biridir. Adını çevredeki adalardan biri olan Delostan alır. Kiklad adaları yaklaşık 220 adayı kapsar. Bu adalar batık sualtı dağ zirveridir, ancak iki volkanik ada olan Milos ve Santorini hariçtir. İklim genellikle kurak ve ılımandır, ama Naxos adası hariç toprakları çok verimli değildir."
 
-#: maps/random/cycladic_archipelago.jsonsettings.Name
-msgid "Cycladic Archipelago"
-msgstr "Kiklad Takımadaları"
+#: maps/random/danubius.json
+msgid "Danubius"
+msgstr "Danubius"
 
-#: maps/random/danubius.jsonsettings.Daytime[0].Description
-msgid "Bright daylight illuminates the scene."
-msgstr "Parlak gün ışığı manzarayı aydınlatır."
-
-#: maps/random/danubius.jsonsettings.Daytime[0].Name
-msgid "Day"
-msgstr "Gün"
-
-#: maps/random/danubius.jsonsettings.Daytime[1].Description
-msgid "Attackers are covered by the darkness of the night."
-msgstr "Saldırganlar gecenin karanlığıyla kaplıdır."
-
-#: maps/random/danubius.jsonsettings.Daytime[1].Name
-msgid "Night"
-msgstr "Gece"
-
-#: maps/random/danubius.jsonsettings.Description
+#: maps/random/danubius.json
 msgid ""
 "Players start along the banks of the river Danube in the period following "
 "the expansion into Pannonia by the Celtic Boii tribe. Seeking to consolidate"
@@ -278,19 +264,35 @@ msgid ""
 "the reemergence of the Geto-Dacian Confederation under King Burebista."
 msgstr "Oyuncular Celtic Boii kabilesi tarafından Pannonia'ya doğru genişlemeyi takip eden dönemde Tuna nehrinin kıyılarında başlıyor. Bu topraklardaki tutumlarını pekiştirmek isteyen Kelt takviyesi geri kalan yabancı kültürleri kök salmak üzere gönderildi. Oyuncular sadece aralarında güç uğruna kavuşmakla kalmayıp aynı zamanda bu acımasız istilacıları da geri çekerler. Nihayetinde Boii, Dacians'ın yükselen gücü tarafından yenildi, bu nedenle Geto-Dacian Konfederasyonu'nun Kral Burebista tarafından yeniden doğmasına yol açtı."
 
-#: maps/random/danubius.jsonsettings.Name
-msgid "Danubius"
-msgstr "Danubius"
+#: maps/random/danubius.json
+msgid "Day"
+msgstr "Gün"
 
-#: maps/random/deep_forest.jsonsettings.Description
-msgid "A deep dark forest in Germania."
-msgstr "Cermenya'da derin karanlık bir orman."
+#: maps/random/danubius.json
+msgid "Bright daylight illuminates the scene."
+msgstr "Parlak gün ışığı manzarayı aydınlatır."
 
-#: maps/random/deep_forest.jsonsettings.Name
+#: maps/random/danubius.json
+msgid "Night"
+msgstr "Gece"
+
+#: maps/random/danubius.json
+msgid "Attackers are covered by the darkness of the night."
+msgstr "Saldırganlar gecenin karanlığıyla kaplıdır."
+
+#: maps/random/deep_forest.json
 msgid "Deep Forest"
 msgstr "Derin Orman"
 
-#: maps/random/dodecanese.jsonsettings.Description
+#: maps/random/deep_forest.json
+msgid "A deep dark forest in Germania."
+msgstr "Cermenya'da derin karanlık bir orman."
+
+#: maps/random/dodecanese.json
+msgid "Dodecanese"
+msgstr "On İki Ada"
+
+#: maps/random/dodecanese.json
 msgid ""
 "Controlling access to the Aegean Sea from the east, the Dodecanese have been"
 " subject to numerous yet short-lived invasions. Ultimately consolidating "
@@ -298,11 +300,11 @@ msgid ""
 "maritime, commercial and cultural centers. Will you achieve the same?"
 msgstr "Ege denizine doğudan geçişi kontrol eden On İki Adalar sayısız ama kısa süreli işgalere sahne oldu. En sonunda Rodos önderliğinde gücü pekişen bu adalar deniz, ticaret ve kültür merkezine dönüştü. Sen de aynısını başara bilecek misin?"
 
-#: maps/random/dodecanese.jsonsettings.Name
-msgid "Dodecanese"
-msgstr "On İki Ada"
+#: maps/random/elephantine.json
+msgid "Elephantine"
+msgstr "Asvan Adası"
 
-#: maps/random/elephantine.jsonsettings.Description
+#: maps/random/elephantine.json
 msgid ""
 "Forming the traditional frontier between ancient Kush and Egypt, the "
 "fortified Island of Elephantine was situated on the Nile River at the first "
@@ -312,40 +314,36 @@ msgid ""
 "the Nile, and boasted an impressive temple complex."
 msgstr "Kush ve Mısır arasındaki geleneksel sınırı oluşturan, Nil Nehrinin ilk şelalesinde bulunan sağlamlaştırılmış Asvan Adası, Yukarı Mısır ve Aşağı Nubia arasındaki sınır olarak, Asvan fildişi ve diğer ürünlerin ticaretinde önemli bir durak noktası oldu. Burası tanrı Khnum'un ana bölgesi olduğu düşünülen, Nil Nehrinin kaynağı, iftihar edilen etkileyici tapınak sitesiydi."
 
-#: maps/random/elephantine.jsonsettings.Name
-msgid "Elephantine"
-msgstr "Asvan Adası"
+#: maps/random/empire.json
+msgid "Empire"
+msgstr "İmparatorluk"
 
-#: maps/random/empire.jsonsettings.Description
+#: maps/random/empire.json
 msgid ""
 "A neighboring province has pledged alegiance to your rule. It's up to you to command them to victory.\n"
 "[color=\"yellow\"]Caution! If nomad mode is disabled, each player will start with two civic centers.[/color]"
 msgstr "Komşu bir eyalet, yönetiminize bağlılık sözü verdi. Onlara zafere taşımak size kalmış.\n[color=\"yellow\"]Dikkat! Eğer göçebe modu devre dışı bırakılırsa, her oyuncu iki şehir merkeziyle başlayacaktır.[/color]"
 
-#: maps/random/empire.jsonsettings.Name
-msgid "Empire"
-msgstr "İmparatorluk"
+#: maps/random/english_channel.json
+msgid "English Channel"
+msgstr "Manş Denizi"
 
-#: maps/random/english_channel.jsonsettings.Description
+#: maps/random/english_channel.json
 msgid ""
 "Players start in either northern France or southern Britain while the "
 "English channel separates them."
 msgstr "Oyunculardan herhangi biri kuzey Fransada veya güney İngilterede Manş denizi sınırı ayıracak şekilde karşı karşıya gelir."
 
-#: maps/random/english_channel.jsonsettings.Name
-msgid "English Channel"
-msgstr "Manş Denizi"
+#: maps/random/extinct_volcano.json
+msgid "Extinct Volcano"
+msgstr "Sönmüş Volkan"
 
-#: maps/random/extinct_volcano.jsonsettings.Description
+#: maps/random/extinct_volcano.json
 msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "A once fertile valley, desolated by the eruption of the long-dormant volcano in the heart of the region. Following years of empty, scorched deadness, signs of life started reappearing and spreading. Now the land is half-way to the full lushness of its former era. Alas, it is not to be: following a long stretch of drought, interminable rains have set in in the higher regions to the north. Water levels are rising at drastic levels, slowly forcing players to seek the high ground of the lesser, extinct volcanoes or the now again dormant great cone."
 msgstr "[color=\"red\"]ÖNEMLİ NOT: YAPAY ZEKA OYUNCULARI BU HARİTADA ÇALIŞMIYOR[/color]\n\nBir zamanlar verimli bir vadi, bölgenin kalbindeki uzun uyuyan volkanın patlamasıyla ıssızlaştı. Yıllar süren boş, kavurucu ölümü takiben yaşam belirtileri yeniden ortaya çıkmaya ve yayılmaya başladı. Şimdi, toprak eski çağın tam aydınlığına giden yolun yarısında. Ne yazık ki, öyle değil: uzun bir kuraklık süresinin ardından kuzeydeki yüksek bölgelerde içilebilir yağmurlar oluştu. Su seviyeleri şiddetli seviyelerde artmakta, oyuncuları daha küçük, sönmüş yanardağları veya şimdi tekrar uykuda olan büyük koniyi bulmak için zorluyor."
-
-#: maps/random/extinct_volcano.jsonsettings.Name
-msgid "Extinct Volcano"
-msgstr "Sönmüş Volkan"
 
 #: maps/random/extinct_volcano_triggers.js:59
 msgid "It keeps on raining, we will have to evacuate soon!"
@@ -363,7 +361,11 @@ msgstr "Kuru alan bulmak zorundayız, topraklarımız sudan boğulacak!"
 msgid "The lakes start swallowing the land, we have to find shelter!"
 msgstr "Göller yutmaya başlıyor, barınak bulmak zorundayız!"
 
-#: maps/random/fields_of_meroe.jsonsettings.Description
+#: maps/random/fields_of_meroe.json
+msgid "Fields of Meroë"
+msgstr "Meroë Ovası"
+
+#: maps/random/fields_of_meroe.json
 msgid ""
 "The “Island of Meroë”, a vast peninsula flanked by the Nile and Atbarah "
 "rivers, formed the heartland of ancient Kush. Where the harsh deserts start "
@@ -372,45 +374,41 @@ msgid ""
 "life, but grave threats loom on the opposite riverbank."
 msgstr "Nil ve Atbarah nehirlerinin kuşattığı muazzam bir yarımada olan \"Meroe Adası\", antik Kush'un kalbini oluşturdu. Sert çöllerin yarı kurak savanalara geçiş yapmaya başladığı ve küçük akasya ormanlarının manzarayı süslediği yer. Bu bölge kaynaklar bakımından zengindir ve hep var olan Nil Nehri hayat verir, ancak diğer nehir kıyısındaki ciddi tehditler aşikardır."
 
-#: maps/random/fields_of_meroe.jsonsettings.Name
-msgid "Fields of Meroë"
-msgstr "Meroë Ovası"
+#: maps/random/flood.json
+msgid "Flood"
+msgstr "Sel"
 
-#: maps/random/flood.jsonsettings.Description
+#: maps/random/flood.json
 msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DON'T WORK WITH RISING WATER[/color]\n"
 "\n"
 "A great flood moves across the valley. At some point you have to evacuate your units and use ships to reach the mainland and the other players."
 msgstr ""
 
-#: maps/random/flood.jsonsettings.Name
-msgid "Flood"
-msgstr "Sel"
-
-#: maps/random/flood.jsonsettings.WaterLevels[0].Description
-msgid "The water rises. The homeislands will become uninhabitable."
-msgstr ""
-
-#: maps/random/flood.jsonsettings.WaterLevels[0].Name
+#: maps/random/flood.json
 msgid "Rising"
 msgstr ""
 
-#: maps/random/flood.jsonsettings.WaterLevels[1].Description
+#: maps/random/flood.json
+msgid "The water rises. The homeislands will become uninhabitable."
+msgstr ""
+
+#: maps/random/flood.json
+msgid "Shallow"
+msgstr ""
+
+#: maps/random/flood.json
 msgid ""
 "The water doesn't rise. Ships and troops can battle in chest deep waters."
 msgstr ""
 
-#: maps/random/flood.jsonsettings.WaterLevels[1].Name
-msgid "Shallow"
+#: maps/random/flood.json
+msgid "Deep"
 msgstr ""
 
-#: maps/random/flood.jsonsettings.WaterLevels[2].Description
+#: maps/random/flood.json
 msgid ""
 "The water doesn't rise. You have to use ships to travel to the mainland."
-msgstr ""
-
-#: maps/random/flood.jsonsettings.WaterLevels[2].Name
-msgid "Deep"
 msgstr ""
 
 #: maps/random/flood_triggers.js:11
@@ -419,53 +417,57 @@ msgid ""
 "evacuate the units."
 msgstr ""
 
-#: maps/random/fortress.jsonsettings.Description
-msgid "Players start in a ready-made fortress with piles of resources."
-msgstr "Oyuncular yığınla kaynak olan hazır yapılmış bir hisarda başlar."
-
-#: maps/random/fortress.jsonsettings.Name
+#: maps/random/fortress.json
 msgid "Fortress"
 msgstr "Hisar"
 
-#: maps/random/frontier.jsonsettings.Description
-msgid "A wild, unknown landscape awaits rival explorers."
-msgstr "Vahşi, bilinmeyen bir bölge rakip kaşifleri bekliyor."
+#: maps/random/fortress.json
+msgid "Players start in a ready-made fortress with piles of resources."
+msgstr "Oyuncular yığınla kaynak olan hazır yapılmış bir hisarda başlar."
 
-#: maps/random/frontier.jsonsettings.Name
+#: maps/random/frontier.json
 msgid "Frontier"
 msgstr "Sınır"
 
-#: maps/random/gear.jsonsettings.Description
-msgid "A land with waterways decorated in a manner similar to spider web."
-msgstr "Örümcek ağlarını andıran su yolları ile örülmüş bir kara parçası."
+#: maps/random/frontier.json
+msgid "A wild, unknown landscape awaits rival explorers."
+msgstr "Vahşi, bilinmeyen bir bölge rakip kaşifleri bekliyor."
 
-#: maps/random/gear.jsonsettings.Name
+#: maps/random/gear.json
 msgid "Gear"
 msgstr "Dişli"
 
-#: maps/random/guadalquivir_river.jsonsettings.Description
+#: maps/random/gear.json
+msgid "A land with waterways decorated in a manner similar to spider web."
+msgstr "Örümcek ağlarını andıran su yolları ile örülmüş bir kara parçası."
+
+#: maps/random/guadalquivir_river.json
+msgid "Guadalquivir River"
+msgstr "Guadalquivir Nehiri"
+
+#: maps/random/guadalquivir_river.json
 msgid ""
 "Players start in the shores of the Mediterranean Sea with a river flowing between them.\n"
 "\n"
 "The Guadalquivir is the fifth longest river in the Iberian peninsula and the second longest river with its entire length in Spain. The Guadalquivir river is the only great navigable river in Spain. Currently it is navigable to Seville, but in Roman times it was navigable to Cordoba. The ancient city of Tartessos was said to have been located at the mouth of the Guadalquivir, although its site has not yet been found."
 msgstr "Oyuncular Akdeniz kıyısında aralarında akan bir nehir olan bir yerde başlar.\n\nGuadalquivir İber yarımadasındaki beşinci en uzun nehirdir ve İspanya'da tüm uzunluğu ile en uzun ikinci nehirdir. Guadalquivir nehri İspanya'da tek büyük gezilebilir nehirdir. Şu anda Sevilla gezilebilir, ama Roma döneminde bu yer Kordoba'dan beri gezilebilir bir yer. Tartessos antik kent alanı henüz bulunamamasına rağmen, Guadalquivir ağzında olduğu söylenmektedir."
 
-#: maps/random/guadalquivir_river.jsonsettings.Name
-msgid "Guadalquivir River"
-msgstr "Guadalquivir Nehiri"
+#: maps/random/gulf_of_bothnia.json
+msgid "Gulf of Bothnia"
+msgstr "Botni Körfezi"
 
-#: maps/random/gulf_of_bothnia.jsonsettings.Description
+#: maps/random/gulf_of_bothnia.json
 msgid ""
 "Players start around a gulf dotted with small islands.\n"
 "\n"
 "The Gulf of Bothnia is the northernmost arm of the Baltic Sea."
 msgstr "Oyuncular küçük adalar ile bezenmiş bir körfez çevresinde başlar.\n\nBothnia Körfezi Baltık Denizinin kuzeydeki koludur."
 
-#: maps/random/gulf_of_bothnia.jsonsettings.Name
-msgid "Gulf of Bothnia"
-msgstr "Botni Körfezi"
+#: maps/random/harbor.json
+msgid "Harbor"
+msgstr "Liman"
 
-#: maps/random/harbor.jsonsettings.Description
+#: maps/random/harbor.json
 msgid ""
 "Players start with some light fishing opportunities in the calm waters of a "
 "sheltered harbor. A large bounty of seafood lays beyond the protective "
@@ -474,11 +476,11 @@ msgid ""
 "narrow passageways or take to the sea?"
 msgstr "Oyuncular korunaklı bir limanın sakin sularında hafif hafif balık tutma fırsatlarıyla başlarlar. Büyük bir deniz ürünü ödülü, derin okyanustaki koruyucu uçurumların ötesine uzanır. Uçurumların tabanındaki küçük pasajlar sıkı dövüş ve kolay takviye yapmaktadır. Dar geçiş yollarıyla savaşacak mısınız ya da denize mi çıkacaksınız?"
 
-#: maps/random/harbor.jsonsettings.Name
-msgid "Harbor"
-msgstr "Liman"
+#: maps/random/hellas.json
+msgid "Hellas"
+msgstr "Hellas"
 
-#: maps/random/hellas.jsonsettings.Description
+#: maps/random/hellas.json
 msgid ""
 "Hellas, home to the Greeks and through them birthplace to the foundation of "
 "western civilization. Yet the land lacks unity, countless city-states vie "
@@ -486,11 +488,11 @@ msgid ""
 "fall into oblivion, erased from the histories?"
 msgstr "Hellas, Yunanlıların anayurdu ve batı medeniyetinin içinden doğduğu yer. Hala yurt birlik olarak zayıf, sayısız şehir devletleri hakimiyet için yarışıyor. Şehrinin şeref ve büyüklüğe götürecek misin ya da unutulup gidecek ve tarihten silinecek mi?"
 
-#: maps/random/hellas.jsonsettings.Name
-msgid "Hellas"
-msgstr "Hellas"
+#: maps/random/hells_pass.json
+msgid "Hell's Pass"
+msgstr "Cehennem Geçidi"
 
-#: maps/random/hells_pass.jsonsettings.Description
+#: maps/random/hells_pass.json
 msgid ""
 "A narrow pass between steep mountains promotes tight, defensive combat. With"
 " bountiful resources far from the front lines, teams may choose to support "
@@ -498,22 +500,22 @@ msgid ""
 "defensible ground."
 msgstr "Oyuncuların korunaklılığına bir limanın sakin sularında hafif hafif balık tutma fırsatlarıyla uygurlar. Büyük bir deniz ürünü ödülü, derin okyanustaki koruyucu uçurumların ötesine uzanır. Uçurumların tabanındaki küçük pasajlar sıkı dövüş ve kolay takviye yapmaktadır. Dar geçişler yollarıyla savaşacak mısınız da denize mi çıkacaksınız?"
 
-#: maps/random/hells_pass.jsonsettings.Name
-msgid "Hell's Pass"
-msgstr "Cehennem Geçidi"
+#: maps/random/hyrcanian_shores.json
+msgid "Hyrcanian Shores"
+msgstr "Hyrcanian Kıyıları"
 
-#: maps/random/hyrcanian_shores.jsonsettings.Description
+#: maps/random/hyrcanian_shores.json
 msgid ""
 "Each player starts in a coastal area between forested hills and the Sea. "
 "Inspired by the southern regions of the Caspian Sea known in Antiquity as "
 "Hyrcania."
 msgstr "Her oyuncu deniz ve ormanlık bir tepe arasındaki bir kıyı bölgeden başlar. Hazar Denizi kıyılarının güneyini içine alan antik adı Hyrkania olan tarihi bölgeden ilham alındı."
 
-#: maps/random/hyrcanian_shores.jsonsettings.Name
-msgid "Hyrcanian Shores"
-msgstr "Hyrcanian Kıyıları"
+#: maps/random/india.json
+msgid "India"
+msgstr "Hindistan"
 
-#: maps/random/india.jsonsettings.Description
+#: maps/random/india.json
 msgid ""
 "Central India just before the monsoon season - a parched land awaits the "
 "life-bringing rain which is already two months late. Due to the extended "
@@ -521,29 +523,29 @@ msgid ""
 "which have survived the climate are spread out, yet not too scarce."
 msgstr "Orta Hindistan, muson mevsiminden hemen önce - iki ay geç olan yağmur yağan yağışlı bir araziyi bekliyor. Uzun kuraklık ve artan ısı nedeniyle, sadece en büyük göl kalır. İklimden sağ kurtulan sert ağaçlar yayılır, ancak çok az kerelik değildir."
 
-#: maps/random/india.jsonsettings.Name
-msgid "India"
-msgstr "Hindistan"
+#: maps/random/island_stronghold.json
+msgid "Island Stronghold"
+msgstr "Ada Kalesi"
 
-#: maps/random/island_stronghold.jsonsettings.Description
+#: maps/random/island_stronghold.json
 msgid ""
 "Teams start off with nearly adjacent civic centers on a small island, "
 "offering a fortified base from which to expand."
 msgstr "Takımlar, küçük bir adada neredeyse bitişik şehir merkezleriyle başlayıp, genişleyebilecekleri kuvvetlendirilmiş bir üs öneriyor."
 
-#: maps/random/island_stronghold.jsonsettings.Name
-msgid "Island Stronghold"
-msgstr "Ada Kalesi"
-
-#: maps/random/islands.jsonsettings.Description
-msgid "Players start in small islands while there are many others around."
-msgstr "Oyunlar etrafta diğer bir çok ada olan küçük bir adada başlarlar."
-
-#: maps/random/islands.jsonsettings.Name
+#: maps/random/islands.json
 msgid "Islands"
 msgstr "Adalar"
 
-#: maps/random/jebel_barkal.jsonsettings.Description
+#: maps/random/islands.json
+msgid "Players start in small islands while there are many others around."
+msgstr "Oyunlar etrafta diğer bir çok ada olan küçük bir adada başlarlar."
+
+#: maps/random/jebel_barkal.json
+msgid "Jebel Barkal"
+msgstr "Gebel Barkal"
+
+#: maps/random/jebel_barkal.json
 msgid ""
 "Starting near the fertile banks of the Nile, the players besiege the heavily"
 " defended city Napata, which lies at the foot of the hill Jebel Barkal, the "
@@ -554,10 +556,6 @@ msgid ""
 "from the Fourth Cataract, this area became the breadbasket of ancient Kush."
 msgstr "Nil'in bereketli kıyılarının yakınında başlayan oyuncular, adı \"Saf Dağ\" olan Jebel Barkal tepesinin eteğinde yer alan ağır bir şekilde korunuan Napata'yı kuşatıyor. Amon'un güneydeki evi, hem Kushlular'a hem de Mısırlılar'a göre, insanın doğduğu yer. \"İki Ülkenin Tahtı\" olarak bilinen Napata'nın antik dini başkenti onun gölgesinde yatıyordu. Burası kralların yapıldığı – ve yok edildiği yer! Dördüncü Katarakt'tan aşağı doğrui zengin bir taşkın yatağına bitişik olan bu bölge, eski Kush'un ekmek sepeti haline geldi."
 
-#: maps/random/jebel_barkal.jsonsettings.Name
-msgid "Jebel Barkal"
-msgstr "Gebel Barkal"
-
 #: maps/random/jebel_barkal_triggers.js:605
 msgid "Napata is attacking!"
 msgstr "Napata saldırıyor!"
@@ -567,56 +565,60 @@ msgstr "Napata saldırıyor!"
 msgid "Napata will attack in %(time)s!"
 msgstr "Napata %(time)s dakikada saldıracak!"
 
-#: maps/random/kerala.jsonsettings.Description
+#: maps/random/kerala.json
+msgid "Kerala"
+msgstr "Kerala"
+
+#: maps/random/kerala.json
 msgid ""
 "Players start in the southwestern shores of India between a sea and "
 "mountains."
 msgstr "Oyuncular Hindistan'ın deniz ve dağlar arasındaki güneybatı sahillerinden başlarlar."
 
-#: maps/random/kerala.jsonsettings.Name
-msgid "Kerala"
-msgstr "Kerala"
-
-#: maps/random/lake.jsonsettings.Description
-msgid "Players start around a lake in the center of the map."
-msgstr "Oyuncular haritanın ortasındaki göl civarında başlarlar."
-
-#: maps/random/lake.jsonsettings.Name
+#: maps/random/lake.json
 msgid "Lake"
 msgstr "Göl"
 
-#: maps/random/latium.jsonsettings.Description
+#: maps/random/lake.json
+msgid "Players start around a lake in the center of the map."
+msgstr "Oyuncular haritanın ortasındaki göl civarında başlarlar."
+
+#: maps/random/latium.json
+msgid "Latium"
+msgstr "Latium"
+
+#: maps/random/latium.json
 msgid ""
 "The Italian peninsula \n"
 "\n"
 " Latium is the region of central western Italy in which the city of Rome was founded and grew to be the capital city of the Roman Empire. Latium was originally a small triangle of fertile, volcanic soil on which resided the tribe of the Latins. It was located on the left bank (east and south) of the Tiber river, extending northward to the Anio river (a left-bank tributary of the Tiber) and southeastward to the Pomptina Palus (Pontine Marshes, now the Pontine Fields) as far south as the Circeian promontory. The right bank of the Tiber was occupied by the Etruscan city of Veii, and the other borders were occupied by Italic tribes. Subsequently Rome defeated Veii and then its Italic neighbors, expanding Latium to the Apennine Mountains in the northeast and to the opposite end of the marsh in the southeast. The modern descendant, the Italian Regione of Lazio, also called Latium in Latin, and occasionally in modern English, is somewhat larger still, but not as much as double the original Latium."
 msgstr "İtalyan yarımadası\n\nLazio merkez batı İtalya bölgedesinde, bir Roma şehri olarak kuruldu ve Roma imparatorluğunun başkenti olarak büyüdü. Lazio başlangıçta bereketli bir üçgenimsi bir yerdi, volkanik topraklar üzerinde Latin kabileler yaşardı.Tiber nehrinin sol kıyısında(doğu ve güney) yer alıyor, Anio nehirinin kuzeyine uzanan (Tiberin sol kıyısının bir kolu) ve güneydoğuya Pomptina Palus (Pontine Bataklıkları, şimdiki Pontine Tarlaları) güneye kadar Circeian burnu olarak yer alıyordu. Tiberin sağ kıyısı Veii Etrüsk kenti tarafından işgal edildi, ve diğer sınırlarıda italyan kabileler tarafından işgal edildi. Daha sonra Roma, Veii ve daha sonraki kendi İtalyan komşularını mağlup etti, kuzeydoğu ve güneydoğuya doğru bataklıkların karşı ucundaki Apennine Dağları ile Lazio genişledi. Modern soyundan gelen, Lazionun İtalyan bölgesi, latincedede Lazio bölgesi,bazen modern İngilizce'de aynı şekilde söylenir, eskisi kadar büyük olmasada, hala büyük bir yerdir."
 
-#: maps/random/latium.jsonsettings.Name
-msgid "Latium"
-msgstr "Latium"
+#: maps/random/lions_den.json
+msgid "Lion's Den"
+msgstr "Aslan'ın Mağarası"
 
-#: maps/random/lions_den.jsonsettings.Description
+#: maps/random/lions_den.json
 msgid ""
 "High cliffs protect each player's main base. Venturing into the unknown can "
 "be risky, but necessary."
 msgstr "Yüksek kayalıklarla her oyuncunun ana üssü korunmaktadır. Bilinmeyenlerin içine girmek riskli olabilir, ancak gerekli olabilir."
 
-#: maps/random/lions_den.jsonsettings.Name
-msgid "Lion's Den"
-msgstr "Aslan'ın Mağarası"
+#: maps/random/lorraine_plain.json
+msgid "Lorraine Plain"
+msgstr "Lorraine Ovası"
 
-#: maps/random/lorraine_plain.jsonsettings.Description
+#: maps/random/lorraine_plain.json
 msgid ""
 "Players start in a nearly flat Gallic plain divided by a river and its "
 "tributaries."
 msgstr "Oyuncular bir nehir ve kolları tarafından bölünmüş neredeyse düz Galya ovasında başlayacak."
 
-#: maps/random/lorraine_plain.jsonsettings.Name
-msgid "Lorraine Plain"
-msgstr "Lorraine Ovası"
+#: maps/random/lower_nubia.json
+msgid "Lower Nubia"
+msgstr "Aşağı Nubiya"
 
-#: maps/random/lower_nubia.jsonsettings.Description
+#: maps/random/lower_nubia.json
 msgid ""
 "Known in the Greco-Roman world as the Triakontaschoinos, Lower Nubia was the"
 " area between the first and second cataracts of the Nile and formed the "
@@ -627,21 +629,19 @@ msgid ""
 "access to the rich goldfields of the Nubian desert."
 msgstr "Greko-Romen dünyasında Triakontaschoinos olarak bilinen Alt Nubia, Nil'in birinci ve ikinci kataraktları arasındaki bölgedir ve Kush ile Mısır arasındaki geleneksel sınır bölgesini oluşturmuştur. Kavurucu çöl, dik vadiler ve bölgenin yükselen uçurumları burayı yaşanmayacak bir yer haline getiriyor, ancak bu eski koridorun kontrolü Nil'deki karlı ticaret yollarını kontrol etmek için her türlü güç için hayati önem taşıyor ve zengin altın alanlarına erişim sağlıyor. Nubya çölü."
 
-#: maps/random/lower_nubia.jsonsettings.Name
-msgid "Lower Nubia"
-msgstr "Aşağı Nubiya"
-
-#: maps/random/mainland.jsonsettings.Description
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[8].Description
-msgid "A typical map without any water."
-msgstr "Susuz özgün bir harita."
-
-#: maps/random/mainland.jsonsettings.Name
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[8].Name
+#: maps/random/mainland.json maps/random/unknown.json
 msgid "Mainland"
 msgstr "Anakara"
 
-#: maps/random/marmara.jsonsettings.Description
+#: maps/random/mainland.json maps/random/unknown.json
+msgid "A typical map without any water."
+msgstr "Susuz özgün bir harita."
+
+#: maps/random/marmara.json
+msgid "Marmara"
+msgstr "Marmara"
+
+#: maps/random/marmara.json
 msgid ""
 "The Propontis (Sea of Marmara) connects the Pontus Euxinus (Black Sea) to "
 "the Aegean Sea, and seperates Asia Minor from Thrace. To the south-west lies"
@@ -653,11 +653,11 @@ msgid ""
 "resources."
 msgstr "Propontis (Marmara Denizi) Pontus Euxinus'u (Karadeniz) Ege Denizi'ne bağlar ve Küçük Asya'yı Trakya'dan ayırır. Güneybatıda, bir zamanlar İlyum antik kenti Troia(Troy)'nın girişinde bulunan Hellespont (Çanakkale) bulunur. Kuzeydoğuda, İstanbul'un yeni adı altında büyük Bizans İmparatorluğu'nun başkenti haline gelecek olan Yunan Bizans kentinin zamanında kurulacağı Boğaz Trakya'sı (Boğaz Boğazı) yatıyor. Oyuncular verimli topraklara yeterli kaynaklara sahipler."
 
-#: maps/random/marmara.jsonsettings.Name
-msgid "Marmara"
-msgstr "Marmara"
+#: maps/random/mediterranean.json
+msgid "Mediterranean"
+msgstr "Akdeniz"
 
-#: maps/random/mediterranean.jsonsettings.Description
+#: maps/random/mediterranean.json
 msgid ""
 "The Mediterranean, home to the Phoenicians, Greeks, Egyptians and later on "
 "Romans. They took the rudimentary knowledge and principles of organisation "
@@ -671,41 +671,40 @@ msgid ""
 "preferred the term 'Mare Internum' or even 'Mare Nostrum'."
 msgstr "Akdeniz, Fenikeliler, Rumlar, Mısırlılar ve daha sonra Romalılar'ın evi. İlkel bilgi ve ilkeleri örgütlendiklerini Mezopotamya'dan aldılar ve bir şeyler daha geliştirdiler, böylece öğrenme ve bilginin merkezini Akdeniz Kıyısı'na kaydırdık ve bugün bildiğimiz şekliyle medeniyetin temellerini attılar. Akdeniz neredeyse tamamen karayla kaplıdır: Kuzeyde Gallia Transalpina (Transalpine Gaul), Italia, Yunanistan (Graecia) ve Anadolu, doğusunda Suriye, güneyde Libya ve Moritanya, batıda Iberia . Akdeniz ismi Latince'den türemiştir, ancak Romalılar kendileri 'Mare Internum' veya hatta 'Mare Nostrum' terimini tercih ettiler."
 
-#: maps/random/mediterranean.jsonsettings.Name
-msgid "Mediterranean"
-msgstr "Akdeniz"
-
-#: maps/random/migration.jsonsettings.Description
+#: maps/random/migration.json
 msgid ""
 "Players start in small islands in the eastern part of the map. There is a "
 "big continent in the west ready for expansion."
 msgstr "Oyuncular haritanın doğu bölümündeki küçük adalarda başlarlar. Batıda genişlemek için hazır bir kıta bulunmaktadır."
 
-#: maps/random/migration.jsonsettings.Name
-#: maps/scenarios/migration.xml:Name:26
+#: maps/random/migration.json maps/scenarios/migration.xml:26
 msgid "Migration"
 msgstr "Göç"
 
-#: maps/random/neareastern_badlands.jsonsettings.Description
+#: maps/random/neareastern_badlands.json
+msgid "Neareastern Badlands"
+msgstr "Yakındoğu Çorak arazileri"
+
+#: maps/random/neareastern_badlands.json
 msgid ""
 "A jumbled maze of cliffs, canyons, and rugged terrain with an oasis in the center\n"
 "\n"
 "Cappadocia is a historical region in Central Anatolia. In the time of Herodotus, the Cappadocians were reported as occupying the whole region from Mount Taurus to the vicinity of the the Black Sea. Cappadocia, in this sense, was bounded in the south by the chain of the Taurus Mountains that separate it from Cilicia, to the east by the upper Euphrates and the Armenian Highland, to the north by Pontus, and to the west by Lycaonia and eastern Galatia. Cappadocia lies in eastern Anatolia. The relief consists of a high plateau over 1000 m in altitude that is pierced by volcanic peaks. Due to its inland location and high altitude, Cappadocia has a markedly continental climate, with hot dry summers and cold snowy winters. Rainfall is sparse and the region is largely semi-arid."
 msgstr "Merkezinde bir vaha bulunan, falez, kanyon ve engebelı araziden oluşan dağınık bir labirent\n\nKapadokya, Merkezi Anadolu'nun tarihi bir bölgesidir. Herodot zamanında, Kapadokyalılar'ın Toros Dağları'ndan Karadeniz bölgesini tamamıyla fethettikleri bildirildi. Kapadokya, bu deyişle, Güney'de Kilikya'dan ayıran Toros Dağları zinciri ile çevrelenmiştir. Doğu'da ise yukarı Fırat nehri ve Ermeni dağlık arazileri, Kuzey'de Pontus ve Batı'da Likaonya ile Galatya. Kapadokya, Doğu Anadolu'da yer almaktadır. Kabartmalar, volkanik tepeler tarafından delinen 1000 m'den fazla uzunluğa sahiptir. Karasal konumu ve yüksek rakımı sebebiyle, büyük ölçüde Kapadokya, sıcak kuru yaz ve soğuk karlı kışlara sahip karasal iklimin etkisi altındadır. Yağmur seyrek olur ve bölge büyük ölçüde yarı kuraktır."
 
-#: maps/random/neareastern_badlands.jsonsettings.Name
-msgid "Neareastern Badlands"
-msgstr "Yakındoğu Çorak arazileri"
-
-#: maps/random/new_rms_test.jsonsettings.Description
-msgid "A basic test of the random map generator - not playable."
-msgstr "Bir rastgele harita üreteci temel testi - oynanabilir değil."
-
-#: maps/random/new_rms_test.jsonsettings.Name
+#: maps/random/new_rms_test.json
 msgid "New RMS Test"
 msgstr "Yeni RMS Test"
 
-#: maps/random/ngorongoro.jsonsettings.Description
+#: maps/random/new_rms_test.json
+msgid "A basic test of the random map generator - not playable."
+msgstr "Bir rastgele harita üreteci temel testi - oynanabilir değil."
+
+#: maps/random/ngorongoro.json
+msgid "Ngorongoro"
+msgstr "Ngorongoro"
+
+#: maps/random/ngorongoro.json
 msgid ""
 "Ngorongoro Crater is the world's largest intact volcanic caldera and is one "
 "of the Seven Natural Wonders of Africa. Due to it's climate, biodiversity "
@@ -713,68 +712,52 @@ msgid ""
 "and the birthplace of mankind."
 msgstr "Ngorongoro Krater, dünyanın en büyük volkanik kalderasıdır ve Afrika'nın Yedi Doğal Harikası'ndan biridir. İklim, biyoçeşitlilik ve tarih nedeniyle, Ngorongoro'ya göre bazıları Afrika'nın Cennet Bahçesi ve insanlığın doğduğu yer olarak düşünülür."
 
-#: maps/random/ngorongoro.jsonsettings.Name
-msgid "Ngorongoro"
-msgstr "Ngorongoro"
+#: maps/random/northern_lights.json
+msgid "Northern Lights"
+msgstr "Kuzey Işığı"
 
-#: maps/random/northern_lights.jsonsettings.Description
+#: maps/random/northern_lights.json
 msgid ""
 "Players start in a tough map to play with scarce wood and dangerous polar "
 "animals."
 msgstr "Oyuncular kıt odun ve tehlikeli kutup hayvanları ile zor bir haritada oynamaya başlayacak."
 
-#: maps/random/northern_lights.jsonsettings.Name
-msgid "Northern Lights"
-msgstr "Kuzey Işığı"
+#: maps/random/oasis.json
+msgid "Oasis"
+msgstr "Vaha"
 
-#: maps/random/oasis.jsonsettings.Description
+#: maps/random/oasis.json
 msgid ""
 "Players start around a small oasis in the center of the map which holds much"
 " of the available wood on the map."
 msgstr "Oyuncular küçük bir vaha etrafında haritanın merkezinde yeteri kadar olan odunla başlar."
 
-#: maps/random/oasis.jsonsettings.Name
-msgid "Oasis"
-msgstr "Vaha"
+#: maps/random/persian_highlands.json
+msgid "Persian Highlands"
+msgstr "Pers Dağları"
 
-#: maps/random/persian_highlands.jsonsettings.Description
+#: maps/random/persian_highlands.json
 msgid ""
 "A dry central plateau rich in minerals surrounded by rocky hills\n"
 "\n"
 "The southern parts of Zagros Mountains were the heart of the Persian empires and population. Although the altitude is high, the southern parts are drier that the northern Zagros, leading to a semi-arid climate. Still there are some sparse oak forests in the higher grounds."
 msgstr "Kayalık tepelerle çevrili, merkezi, yağışsız ve mineraller açısından zengin bir platodur\n\nZagros dağlarının güney kısımları Pers imparatorluğu ve nüfusunun kalbidir. Rakım yüksek olmasına rağmen, güney kısımları kuzey Zagros'tan daha az yağış alır ve bu durum yarı kurak iklime sebep olur. Yine de yükseklerde yer yer meşe ormanları vardır. "
 
-#: maps/random/persian_highlands.jsonsettings.Name
-msgid "Persian Highlands"
-msgstr "Pers Dağları"
+#: maps/random/phoenician_levant.json
+msgid "Phoenician Levant"
+msgstr "Fenike Levant"
 
-#: maps/random/phoenician_levant.jsonsettings.Description
+#: maps/random/phoenician_levant.json
 msgid ""
 "Players start in the eastern part of the map while a great sea is located to"
 " the west."
 msgstr "Oyuncular batısında harika bir deniz olan haritanın doğusunda başlarlar."
 
-#: maps/random/phoenician_levant.jsonsettings.Name
-msgid "Phoenician Levant"
-msgstr "Fenike Levant"
+#: maps/random/polar_sea.json
+msgid "Polar Sea"
+msgstr "Kutup Denizi"
 
-#: maps/random/polar_sea.jsonsettings.Daytime[0].Description
-msgid "Scattered sunlight illuminates the scenery in a vivid red tone."
-msgstr "Dağınık güneş ışığı, sahneyi canlı bir kırmızı tonda aydınlatır."
-
-#: maps/random/polar_sea.jsonsettings.Daytime[0].Name
-msgid "Dawn"
-msgstr "Şafak Vakti"
-
-#: maps/random/polar_sea.jsonsettings.Daytime[1].Description
-msgid "The scenery is illuminated by direct or indirect sunlight."
-msgstr "Manzara doğrudan veya dolaylı güneş ışığı ile aydınlatılır."
-
-#: maps/random/polar_sea.jsonsettings.Daytime[1].Name
-msgid "Daylight"
-msgstr "Gündüz"
-
-#: maps/random/polar_sea.jsonsettings.Description
+#: maps/random/polar_sea.json
 msgid ""
 "Players start in a cold polar region barren of vegetation. In the sea fish "
 "and whales abound, while the fragile icy land teems with huntable walruses "
@@ -787,11 +770,27 @@ msgid ""
 "recommended for inexperienced players.[/color]"
 msgstr "Oyuncular, bitki örtüsünün kısır bir soğuk kutup bölgesi başlar. Denizde balıklar ve balinalar bol, kırılgan buz gibi topraklarda avlanmış kırlangıçlar ve ölümcül kurtlar var. Yırtıcı kokular tarafından çekilen sert ve yasak iklim tarafından yağmalanmış olan bu kurtlar korkunç sayılarda ortaya çıkmaya başladı. Bilge ve güçlü hükümdar yalnızca düşmanlarına karşı zafer kazanmakla kalmayıp, bu hayvanların sayısını korumaktadır, çünkü ekonomisini zayıflatmakta ve çöküşüne neden olmaktadırlar. [color=\"red\"] Uyarı: Hazineleri devre dışı bırakmak uygun değildir, çünkü toplayıcı bir tahta yoktur. Deneyimsiz oyuncular için önerilmez. [/color]"
 
-#: maps/random/polar_sea.jsonsettings.Name
-msgid "Polar Sea"
-msgstr "Kutup Denizi"
+#: maps/random/polar_sea.json
+msgid "Dawn"
+msgstr "Şafak Vakti"
 
-#: maps/random/pompeii.jsonsettings.Description
+#: maps/random/polar_sea.json
+msgid "Scattered sunlight illuminates the scenery in a vivid red tone."
+msgstr "Dağınık güneş ışığı, sahneyi canlı bir kırmızı tonda aydınlatır."
+
+#: maps/random/polar_sea.json
+msgid "Daylight"
+msgstr "Gündüz"
+
+#: maps/random/polar_sea.json
+msgid "The scenery is illuminated by direct or indirect sunlight."
+msgstr "Manzara doğrudan veya dolaylı güneş ışığı ile aydınlatılır."
+
+#: maps/random/pompeii.json
+msgid "Pompeii"
+msgstr "Pompeii"
+
+#: maps/random/pompeii.json
 msgid ""
 "Pompeii was an ancient Roman coastal city, in the Campania region of Italy. "
 "Pompeii, along with much of the surrounding area, was mostly destroyed and "
@@ -799,22 +798,22 @@ msgid ""
 "Mount Vesuvius in AD 79."
 msgstr "Pompeii, İtalya'nın Campania bölgesinde eski bir Roma kıyı kenti idi. Pompeii, çevredeki alanların çoğuyla birlikte, çoğunlukla MS 79 yılında Vezüv Dağı'nın patlaması sonucu 4 ila 6 metre uzunluğundaki volkanik kül ve pomza altında gömülmüş ve gömülmüştü."
 
-#: maps/random/pompeii.jsonsettings.Name
-msgid "Pompeii"
-msgstr "Pompeii"
+#: maps/random/pyrenean_sierra.json
+msgid "Pyrenean Sierra"
+msgstr "Pyrenean Sierra"
 
-#: maps/random/pyrenean_sierra.jsonsettings.Description
+#: maps/random/pyrenean_sierra.json
 msgid ""
 "High mountains separating the enemies.\n"
 "\n"
 "The Pyrenees is a great mountain range located between modern France and Spain."
 msgstr "Düşmanları engelleyen yüksek dağlar.\n\nBu Pyrenees büyük dağları günümüz Fransa ve İspanya sınırında yer almaktadır."
 
-#: maps/random/pyrenean_sierra.jsonsettings.Name
-msgid "Pyrenean Sierra"
-msgstr "Pyrenean Sierra"
+#: maps/random/ratumacos.json
+msgid "Ratumacos"
+msgstr "Ratumacos"
 
-#: maps/random/ratumacos.jsonsettings.Description
+#: maps/random/ratumacos.json
 msgid ""
 "Players start on the banks of the River Sequana (Seine) in Northern Gaul "
 "near the settlement of Ratumacos. Destined to become one of the largest and "
@@ -823,101 +822,102 @@ msgid ""
 "land - but not for long."
 msgstr "Oyuncular, Ratumacos yerleşim bölgesinin yakınındaki Kuzey Galya'daki Sequana Nehri kıyılarında (Seine) başlarlar. Ortaçağ Avrupa'nın en büyük ve en müreffeh şehirlerinden biri haline gelmeyi ve Rouen'in yeni adı altında Anglo-Norman hanedanının başkentlerinden biri olmayı hedefleyen Ratumacos hâlâ sakin bir ülkedir - ancak uzun sürmez."
 
-#: maps/random/ratumacos.jsonsettings.Name
-msgid "Ratumacos"
-msgstr "Ratumacos"
+#: maps/random/red_sea.json
+msgid "Red Sea"
+msgstr "Kızıl deniz"
 
-#: maps/random/red_sea.jsonsettings.Description
+#: maps/random/red_sea.json
 msgid ""
 "Historically, the Red Sea was a sea of many nations. Ideally situated for "
 "trade with the Far East, it was coveted by all. Although dry, this land is "
 "by no means inhospitable, and is amply provided with all resources."
 msgstr "Tarihsel olarak Kızıldeniz pek çok ulusun deniziydi. Uzakdoğu ile ticaret için ideal bir konumdadır, herkes tarafından coveted. Kurak olmasına rağmen, bu arazi hiçbir şekilde rahatsızlık verici değildir ve tüm kaynaklarla yeterince sağlanmıştır."
 
-#: maps/random/red_sea.jsonsettings.Name
-msgid "Red Sea"
-msgstr "Kızıl deniz"
+#: maps/random/rhine_marshlands.json
+msgid "Rhine Marshlands"
+msgstr "Rhine Marshlands"
 
-#: maps/random/rhine_marshlands.jsonsettings.Description
+#: maps/random/rhine_marshlands.json
 msgid ""
 "Shallow, passable wetlands with little room for building. Represents the "
 "lowlands of the Rhine basin in Europe."
 msgstr "Sığ, yapılar için küçük bir oda ile yeterli sulak alan. Avrupa'da Ren havzasının ovalarını temsil eder."
 
-#: maps/random/rhine_marshlands.jsonsettings.Name
-msgid "Rhine Marshlands"
-msgstr "Rhine Marshlands"
+#: maps/random/river_archipelago.json
+msgid "River Archipelago"
+msgstr "Nehir takımadaları"
 
-#: maps/random/river_archipelago.jsonsettings.Description
+#: maps/random/river_archipelago.json
 msgid ""
 "Narrow strips of lands are separated by waterways, leaving few and shallow "
 "landbridges between them. Tropical wetlands provide plenty of game, but "
 "beware of Mauryan tribesmen when exploring the outermost islands."
 msgstr "Dar şeritler, su yolları ile ayrılır ve aralarında çok az ve sığ kara köprü bırakır. Tropikal sulak alanlar bol miktarda oyun alanı sağlar, ancak en dıştaki adaları keşfederken Mauryan kabilelerinden sakının."
 
-#: maps/random/river_archipelago.jsonsettings.Name
-msgid "River Archipelago"
-msgstr "Nehir takımadaları"
+#: maps/random/rivers.json
+msgid "Rivers"
+msgstr "Nehirler"
 
-#: maps/random/rivers.jsonsettings.Description
+#: maps/random/rivers.json
 msgid ""
 "Rivers flow between players and join each other in the center of the map."
 msgstr "Nehirler oyuncular arasında akar ve haritanın merkezinde birleşirler."
 
-#: maps/random/rivers.jsonsettings.Name
-msgid "Rivers"
-msgstr "Nehirler"
+#: maps/random/rmbiome/alpine/late_spring.json
+msgctxt "biome definition"
+msgid "Late Spring"
+msgstr "Bahar Sonu"
 
-#: maps/random/rmbiome/alpine/late_spring.jsonDescription.Description
+#: maps/random/rmbiome/alpine/late_spring.json
 msgctxt "biome definition"
 msgid ""
 "A blend of lingering snow and emerging grass, marking a quiet transition "
 "from winter to summer."
 msgstr ""
 
-#: maps/random/rmbiome/alpine/late_spring.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Late Spring"
-msgstr "Bahar Sonu"
-
-#: maps/random/rmbiome/alpine/winter.jsonDescription.Description
+#: maps/random/rmbiome/alpine/winter.json
 msgctxt "biome definition"
 msgid ""
 "Snow-capped trees loom through the mist. The ground is blanketed in a layer "
 "of snow."
 msgstr ""
 
-#: maps/random/rmbiome/alpine/winter.jsonDescription.Title
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
+#: maps/random/rmbiome/alpine/winter.json
+#: maps/random/rmbiome/gulf_of_bothnia/winter.json
 msgctxt "biome definition"
 msgid "Winter"
 msgstr "Kış"
 
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Description
+#: maps/random/rmbiome/fields_of_meroe/dry.json
+msgctxt "biome definition"
+msgid "Dry Season"
+msgstr "Kuru Sezon"
+
+#: maps/random/rmbiome/fields_of_meroe/dry.json
 msgctxt "biome definition"
 msgid ""
 "The vitalizing waters of the Nile sustain life along its banks, while the "
 "long dry season scorches the land."
 msgstr "Uzun kurak dönem toprağı yakarken, Nil'in canlandırıcı suyu çevresine yaşam veriyor."
 
-#: maps/random/rmbiome/fields_of_meroe/dry.jsonDescription.Title
+#: maps/random/rmbiome/fields_of_meroe/rainy.json
 msgctxt "biome definition"
-msgid "Dry Season"
-msgstr "Kuru Sezon"
+msgid "Rainy Season"
+msgstr "Yağmurlu Sezon"
 
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Description
+#: maps/random/rmbiome/fields_of_meroe/rainy.json
 msgctxt "biome definition"
 msgid ""
 "Revelling in the much awaited rain, the baked land transforms into a lush "
 "haven for both man and beast."
 msgstr "Çok beklenen yağmurda eğlenirken, pişmiş toprak insanlar ve hayvanlar için bereketli bir barınağa dönüşüyor."
 
-#: maps/random/rmbiome/fields_of_meroe/rainy.jsonDescription.Title
+#: maps/random/rmbiome/generic/aegean.json
 msgctxt "biome definition"
-msgid "Rainy Season"
-msgstr "Yağmurlu Sezon"
+msgid "Aegean-Anatolian"
+msgstr "Ege-Anadolulu"
 
-#: maps/random/rmbiome/generic/aegean.jsonDescription.Description
+#: maps/random/rmbiome/generic/aegean.json
 msgctxt "biome definition"
 msgid ""
 "Start in a region blessed with the Mediterranean climate, a warm and "
@@ -925,12 +925,12 @@ msgid ""
 "fan palms while deer graze in their shadows, blissfully unaware."
 msgstr "Akdeniz iklimiyle şenlenmiş bir bölgede başla, sıcak ve davetkar yerde. Geyikler gölgelerde bihaber otlanırken,Akdeniz servileri baskın palmiyelerle daimi bir mücadele içinde."
 
-#: maps/random/rmbiome/generic/aegean.jsonDescription.Title
+#: maps/random/rmbiome/generic/alpine.json
 msgctxt "biome definition"
-msgid "Aegean-Anatolian"
-msgstr "Ege-Anadolulu"
+msgid "Subalpine"
+msgstr "Sulapin kuşak"
 
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Description
+#: maps/random/rmbiome/generic/alpine.json
 msgctxt "biome definition"
 msgid ""
 "Between the high summits of the Alps, the valleys are filled with fog in the"
@@ -939,12 +939,12 @@ msgid ""
 "goats."
 msgstr "Alplerin yüksek zirveleri arasındaki vadiler sabahın erken saatlerinde sisle doluyor. Zemin çakıl ve kayalarla dolu, ancak aralarında gümüş köknar ve ladin ağaçları büyüyor, geyikler ve dağ keçileri için barınak sağlıyor."
 
-#: maps/random/rmbiome/generic/alpine.jsonDescription.Title
+#: maps/random/rmbiome/generic/arctic.json
 msgctxt "biome definition"
-msgid "Subalpine"
-msgstr "Sulapin kuşak"
+msgid "Arctic"
+msgstr "Arktik"
 
-#: maps/random/rmbiome/generic/arctic.jsonDescription.Description
+#: maps/random/rmbiome/generic/arctic.json
 msgctxt "biome definition"
 msgid ""
 "A region in the high snowy mountains. Biting winds sweep through the "
@@ -952,12 +952,12 @@ msgid ""
 "goats shiver."
 msgstr "Yüksek karlı dağlarda bir bölge. Keskin rüzgarlar en dayanıklı geyikler ve dağ keçilerinin titreterek bol çam ormanlarının arasından geçiyor."
 
-#: maps/random/rmbiome/generic/arctic.jsonDescription.Title
+#: maps/random/rmbiome/generic/autumn.json
 msgctxt "biome definition"
-msgid "Arctic"
-msgstr "Arktik"
+msgid "Rhine Valley (Fall)"
+msgstr "Ren Vadisi (Sonbahar)"
 
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Description
+#: maps/random/rmbiome/generic/autumn.json
 msgctxt "biome definition"
 msgid ""
 "The first leaves have fallen. The landscape is a dazzling dash of colors "
@@ -966,12 +966,12 @@ msgid ""
 "approaching winter."
 msgstr "İlk yapraklar düşmüştü. Manzara sanki bir göz kamaştırıcı bir renk cümbüşüydü. Hayvanlar yaklaşan kışa hazırlanmaya çalışırken, bu ılıman bölgenin yerli ağaçlarından olan kayın ve meşe ağaçlarının rengarenk yaprakları gözüküyordu."
 
-#: maps/random/rmbiome/generic/autumn.jsonDescription.Title
+#: maps/random/rmbiome/generic/india.json
 msgctxt "biome definition"
-msgid "Rhine Valley (Fall)"
-msgstr "Ren Vadisi (Sonbahar)"
+msgid "India"
+msgstr "Hindistan"
 
-#: maps/random/rmbiome/generic/india.jsonDescription.Description
+#: maps/random/rmbiome/generic/india.json
 msgctxt "biome definition"
 msgid ""
 "Explore the mysterious tropics. An extremely green, but also extremely humid"
@@ -980,12 +980,12 @@ msgid ""
 "their territory at all costs."
 msgstr "Gizemli tropikleri keşfet. Oldukça yeşil, ama oldukça da nemli ortam bekliyor. Uzun kızılsedirler özellerinin işgal edilmesine hoşgörüsüz bakıyorlar ve vahşi kaplanlar bölgelerini her şeyi göze alarak savunmak için kararlı."
 
-#: maps/random/rmbiome/generic/india.jsonDescription.Title
+#: maps/random/rmbiome/generic/nubia.json
 msgctxt "biome definition"
-msgid "India"
-msgstr "Hindistan"
+msgid "Nubia"
+msgstr "Nübye"
 
-#: maps/random/rmbiome/generic/nubia.jsonDescription.Description
+#: maps/random/rmbiome/generic/nubia.json
 msgctxt "biome definition"
 msgid ""
 "Nubia, a dry climate in which only the hardy Baobab trees thrive. Solitary "
@@ -993,12 +993,12 @@ msgid ""
 " or elephants roam the wild in search of food."
 msgstr "Nübye; sadece güçlü Baobab ağaçlarının gelişebildiği kuru bir iklim. Zebra sürüleri, antiloplar, zürafalar ya da filler yiyecek aramak için tenhada geziniyorken, yalnız ceylanlar seyrek otlarda otlanıyor."
 
-#: maps/random/rmbiome/generic/nubia.jsonDescription.Title
+#: maps/random/rmbiome/generic/sahara.json
 msgctxt "biome definition"
-msgid "Nubia"
-msgstr "Nübye"
+msgid "Sahara"
+msgstr "Sahra"
 
-#: maps/random/rmbiome/generic/sahara.jsonDescription.Description
+#: maps/random/rmbiome/generic/sahara.json
 msgctxt "biome definition"
 msgid ""
 "A semi-desert area that boasts numerous clumps of date palms and acacia "
@@ -1006,12 +1006,12 @@ msgid ""
 "fright at being disturbed."
 msgstr "Çok sayıda hurma ve akasya ağacı kümeleriyle meşhur bir yarı çöl alanı. Deve sürüleri vahşi doğada dolaşır ve ara sıra ceylanlar rahatsız oldukları için korkarak sıçrar."
 
-#: maps/random/rmbiome/generic/sahara.jsonDescription.Title
+#: maps/random/rmbiome/generic/savanna.json
 msgctxt "biome definition"
-msgid "Sahara"
-msgstr "Sahra"
+msgid "Sudanian Savanna"
+msgstr "Sudan Savana"
 
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Description
+#: maps/random/rmbiome/generic/savanna.json
 msgctxt "biome definition"
 msgid ""
 "The transition between the dry Sahara to the north and the tropical forests "
@@ -1020,12 +1020,12 @@ msgid ""
 " elephants roam."
 msgstr "Kuzeyde kuru Sahra ile güneyde tropikal ormanlar arasındaki geçiş. Güneş ışığı, açık gölgelikten süzülerek zebra, antilop, zürafa ve fil sürülerinin dolaştığı ağaçların arasındaki otlakları aydınlatır."
 
-#: maps/random/rmbiome/generic/savanna.jsonDescription.Title
+#: maps/random/rmbiome/generic/steppe.json
 msgctxt "biome definition"
-msgid "Sudanian Savanna"
-msgstr "Sudan Savana"
+msgid "Eurasian Steppe"
+msgstr "Avrasya Bozkırı"
 
-#: maps/random/rmbiome/generic/steppe.jsonDescription.Description
+#: maps/random/rmbiome/generic/steppe.json
 msgctxt "biome definition"
 msgid ""
 "Wide grasslands stretching to the horizon, without any trees blocking the "
@@ -1033,12 +1033,12 @@ msgid ""
 "peacefully on the empty land, but flee quickly if you try to catch them."
 msgstr "Manzarayı engelleyen ağaçların olmadığı, ufka kadar uzanan geniş çayırlar. Bozkır, boş arazide huzur içinde otlayan, ancak onları yakalamaya çalışırsanız hızla kaçan büyük vahşi at sürülerine ev sahipliği yapar."
 
-#: maps/random/rmbiome/generic/steppe.jsonDescription.Title
+#: maps/random/rmbiome/generic/temperate.json
 msgctxt "biome definition"
-msgid "Eurasian Steppe"
-msgstr "Avrasya Bozkırı"
+msgid "Temperate"
+msgstr "Ilıman"
 
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Description
+#: maps/random/rmbiome/generic/temperate.json
 msgctxt "biome definition"
 msgid ""
 "Lush grasslands carpet the land, in places giving way to magnificent and "
@@ -1047,12 +1047,12 @@ msgid ""
 "dot the land, deer and sheep gorge themselves on this years fallen fruit."
 msgstr "Çeşitli ve geniş yapraklı muhteşem ormanlarda yer buldukça bol otlaklar yeri örtüyor,  Tüm kavaklar, çamlar, kayınlar ve meşeler üstünlük için yarışıyor ama bu kök savaşları asla bitmeyen bir mücadele. Görkemli elma ağaçları toprağa yayılmış, geyik ve koyun bu yılın düşmüş meyveleriyle tıkınıyor."
 
-#: maps/random/rmbiome/generic/temperate.jsonDescription.Title
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.json
 msgctxt "biome definition"
-msgid "Temperate"
-msgstr "Ilıman"
+msgid "Frozen Lake"
+msgstr "Donmuş Göl"
 
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
+#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.json
 msgctxt "biome definition"
 msgid ""
 "Thick ice has formed on the gulf which is capable of withstanding any "
@@ -1060,12 +1060,7 @@ msgid ""
 "migrating deer who try to find some food under the snow."
 msgstr "Körfezde herhangi bir ağırlığa dayanabilecek kalın buz tabakası oluştu. Tüm bitkiler karla kaplandı, ancak karın altında yiyecek bulmaya çalışan göç eden büyük geyik sürüleri var."
 
-#: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Frozen Lake"
-msgstr "Donmuş Göl"
-
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Description
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.json
 msgctxt "biome definition"
 msgid ""
 "A late spring breeze ripples through the conifer forests of the Gulf of "
@@ -1073,20 +1068,20 @@ msgid ""
 "opportunities."
 msgstr "Geç bir bahar esintisi, Botni Körfezi'nin kozalaklı ormanlarında dalgalanıyor. Yılın bu zamanında körfez harika balık avlama fırsatları sunar."
 
-#: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
+#: maps/random/rmbiome/gulf_of_bothnia/late_spring.json
+#: maps/random/rmbiome/persian_highlands/spring.json
 msgctxt "biome definition"
 msgid "Spring"
 msgstr "Bahar"
 
-#: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Description
+#: maps/random/rmbiome/gulf_of_bothnia/winter.json
 msgctxt "biome definition"
 msgid ""
 "Winter has set in, carpeting the land with its first snow, but the landscape"
 " is still dotted with colorful berry bushes."
 msgstr "Kış, ilk karla toprağı kaplayarak geldi, ancak manzara hala rengarenk yemiş çalılarıyla dolu."
 
-#: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Description
+#: maps/random/rmbiome/persian_highlands/spring.json
 msgctxt "biome definition"
 msgid ""
 "Spring in the highlands, yet the heat has already begun making itself felt. "
@@ -1094,57 +1089,60 @@ msgid ""
 "scorching summer."
 msgstr "Yaylalarda bahar var, ama hala sıcaklık yeni düşmeye başladı. Az yaşayan yeşil çayırlar çekiliyor, yakıcı yaz için yol açıyor."
 
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Description
+#: maps/random/rmbiome/persian_highlands/summer.json
+msgctxt "biome definition"
+msgid "Summer"
+msgstr "Yaz"
+
+#: maps/random/rmbiome/persian_highlands/summer.json
 msgctxt "biome definition"
 msgid ""
 "An arid, hostile land. The blistering heat has baked the ground to a sickly "
 "brown and the remaining trees struggle for survival."
 msgstr "Kurak ve düşmanca bir toprak. Kabartan sıcak yeri pişirip iğrenç kahverengiye çevirdi ve kalan ağaçlar kurtulmaya çalışıyor."
 
-#: maps/random/rmbiome/persian_highlands/summer.jsonDescription.Title
-msgctxt "biome definition"
-msgid "Summer"
-msgstr "Yaz"
-
-#: maps/random/saharan_oases.jsonsettings.Description
+#: maps/random/saharan_oases.json
 msgid "Each players starts near a lush oasis in a large, desolate desert."
 msgstr "Her oyuncu büyük, ıssız çölde bir yemyeşil vahaya yakın bir yerde başlar."
 
-#: maps/random/saharan_oases.jsonsettings.Name
-#: maps/scenarios/saharan_oases.xml:Name:39
+#: maps/random/saharan_oases.json maps/scenarios/saharan_oases.xml:39
 msgid "Saharan Oases"
 msgstr "Sahra Vahası"
 
-#: maps/random/sahel.jsonsettings.Description
+#: maps/random/sahel.json
 msgid ""
 "A somewhat open map with an abundance of food and mineral resources, while "
 "wood is somewhat scarce."
 msgstr "Besin ve maden kaynaklarının bol olduğu yerde odun kıtlığı vardır."
 
-#: maps/random/sahel.jsonsettings.Name maps/scenarios/sahel.xml:Name:38
+#: maps/random/sahel.json maps/scenarios/sahel.xml:38
 msgid "Sahel"
 msgstr "Sahel"
 
-#: maps/random/sahel_watering_holes.jsonsettings.Description
+#: maps/random/sahel_watering_holes.json
+msgid "Sahel Watering Holes"
+msgstr "Sahel Sulama Delikleri"
+
+#: maps/random/sahel_watering_holes.json
 msgid ""
 "Players start around the map with lines of water between them\n"
 "\n"
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up."
 msgstr "Oyuncular aralarında su hatları bulunan bir yerde başlar\n\nAfrika savannası avcılık için hayvanlarla çevrilidir, yakınlarında bol maden yatağı vardır. Kurak sezon yaklaşıyor ve sulama delikleri kuruyor."
 
-#: maps/random/sahel_watering_holes.jsonsettings.Name
-msgid "Sahel Watering Holes"
-msgstr "Sahel Sulama Delikleri"
-
-#: maps/random/schwarzwald.jsonsettings.Description
-msgid "A forest heavy map with a lake in the middle and plenty of resources."
-msgstr "Orta boy bir göl ve bol kaynaklarla ağır bir orman haritası."
-
-#: maps/random/schwarzwald.jsonsettings.Name
+#: maps/random/schwarzwald.json
 msgid "Schwarzwald"
 msgstr "Kara Orman"
 
-#: maps/random/scythian_rivulet.jsonsettings.Description
+#: maps/random/schwarzwald.json
+msgid "A forest heavy map with a lake in the middle and plenty of resources."
+msgstr "Orta boy bir göl ve bol kaynaklarla ağır bir orman haritası."
+
+#: maps/random/scythian_rivulet.json
+msgid "Scythian Rivulet"
+msgstr "İskit Deresi"
+
+#: maps/random/scythian_rivulet.json
 msgid ""
 "Carpeted in snow, the land slumbers in repose, but this fragile peace is "
 "destined to be shattered - and not by spring. Large packs of wolves lurk in "
@@ -1153,39 +1151,35 @@ msgid ""
 "conquered."
 msgstr "Karla kaplı, uykuya kavuşan topraklar sakinleşir, ancak bu kırılgan barış paramparça olur - ilkbahardan ötürü değil. Büyük kurt sürüleri vahşi bir ortamda avlanır, yalnız bir kutup tilkisi gizlenir. Görünüşe göre bu düşmanca arazide başlayarak, oyuncular fethetmeli - ya da fethedilmeli."
 
-#: maps/random/scythian_rivulet.jsonsettings.Name
-msgid "Scythian Rivulet"
-msgstr "İskit Deresi"
-
-#: maps/random/snowflake_searocks.jsonsettings.Description
-msgid "Many small islands connected to each other by narrow passages."
-msgstr "Birçok küçük ada birbirine dar geçitler ile bağlanmıştır."
-
-#: maps/random/snowflake_searocks.jsonsettings.Name
+#: maps/random/snowflake_searocks.json
 msgid "Snowflake Searocks"
 msgstr "Kartanesi Deniz kayaları"
 
-#: maps/random/stronghold.jsonsettings.Description
+#: maps/random/snowflake_searocks.json
+msgid "Many small islands connected to each other by narrow passages."
+msgstr "Birçok küçük ada birbirine dar geçitler ile bağlanmıştır."
+
+#: maps/random/stronghold.json
+msgid "Stronghold"
+msgstr "Kale"
+
+#: maps/random/stronghold.json
 msgid ""
 "Teams start off with nearly adjacent civic centers, offering easy military "
 "and construction cooperation. With slivers of personal territory, teammates "
 "must rely on each other to defend their rear."
 msgstr "Takımlar, kolay askeri ve inşaat işbirliği sunan, hemen hemen bitişik şehir merkezleri ile başlıyor. Kişisel toprakları olan şeritlerle, takım arkadaşları arkalarını savunmak için birbirlerine güvenmelidir."
 
-#: maps/random/stronghold.jsonsettings.Name
-msgid "Stronghold"
-msgstr "Kale"
+#: maps/random/survivalofthefittest.json
+msgid "Survival of the Fittest"
+msgstr "Güçlü onalın Hayatta Kaldığı"
 
-#: maps/random/survivalofthefittest.jsonsettings.Description
+#: maps/random/survivalofthefittest.json
 msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to collect the treasures at the center of the map before others do, and try to build your base up. The last player remaining will be the winner!"
 msgstr "[color=\"red\"]ÖNEMLİ NOT: YAPAY ZEKA KULLANICILARI BU HARİTA İLE ÇALIŞMAZ[/color]\n\nÜssünüzü ardı arkası kesilmeyen düşman saldırılarına karşı koruyun. Kadın vatandaşları, haritanın ortasındaki kaynakları diğerlerinden önce toplamak için kullanın ve üssünüzü inşa etmeye çalışın. En son ayakta kalan oyuncu kazanacaktır!"
-
-#: maps/random/survivalofthefittest.jsonsettings.Name
-msgid "Survival of the Fittest"
-msgstr "Güçlü onalın Hayatta Kaldığı"
 
 #: maps/random/survivalofthefittest_triggers.js:160
 #, javascript-format
@@ -1201,418 +1195,385 @@ msgstr "Düşman dalgası saldırıyor"
 msgid "%(player)s has been defeated (lost civic center)."
 msgstr "%(player)s Yenildi (şehir merkezi kaybedildi)."
 
-#: maps/random/syria.jsonsettings.Description
-msgid "Players start in a plains with slightly rolling highlands."
-msgstr "Oyuncular hafifce engebeli bir yaylada başlarlar."
-
-#: maps/random/syria.jsonsettings.Name
+#: maps/random/syria.json
 msgid "Syria"
 msgstr "Suriye"
 
-#: maps/random/the_nile.jsonsettings.Description
+#: maps/random/syria.json
+msgid "Players start in a plains with slightly rolling highlands."
+msgstr "Oyuncular hafifce engebeli bir yaylada başlarlar."
+
+#: maps/random/the_nile.json
+msgid "The Nile"
+msgstr "Nil Nehri"
+
+#: maps/random/the_nile.json
 msgid ""
 "A calm wide river, representing the Nile River in Egypt, divides the map "
 "into western and eastern parts."
 msgstr "Sakin geniş nehir, Mısırdaki Nil nehridir, harita doğu ve batı bölümü olarak ayrılmıştır."
 
-#: maps/random/the_nile.jsonsettings.Name
-msgid "The Nile"
-msgstr "Nil Nehri"
+#: maps/random/unknown.json
+msgid "Unknown"
+msgstr "Bilinmeyen"
 
-#: maps/random/unknown.jsonsettings.Description
+#: maps/random/unknown.json
 msgid "The unknown."
 msgstr "Bilinmeyen."
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Description
+#: maps/random/unknown.json
+msgid "Random Land"
+msgstr "Rastgele Yer"
+
+#: maps/random/unknown.json
 msgid "Choose a random land landscape"
 msgstr "Rastgele bir kara yer şekilleri seç."
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:39
-#: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
-msgid ""
-"Two Mediterranean land masses connected by a narrow spit of land, called an "
-"'Isthmus'."
-msgstr "Akdenizde iki kara parçasını başlayan bağlantıya \"Kıstağ\" denir."
-
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Name
+#: maps/random/unknown.json
 msgid "Isthmus"
 msgstr "Kanal"
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[2].Description
-msgid "A small central river."
-msgstr "Küçük bir merkezî ırmak"
-
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[2].Name
+#: maps/random/unknown.json
 msgid "Central River"
 msgstr "Merkezî Irmak"
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[3].Description
+#: maps/random/unknown.json
+msgid "A small central river."
+msgstr "Küçük bir merkezî ırmak"
+
+#: maps/random/unknown.json
+msgid "Edge Seas"
+msgstr "Kıyı Denizleri"
+
+#: maps/random/unknown.json
 msgid ""
 "Players are aligned on a strip of land with seas bordering on one or both "
 "sides that may hold islands."
 msgstr "Oyuncular, adaları tutabilen bir veya her iki tarafta denizlerle çevrili bir arazi şeridine hizalanır."
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[3].Name
-msgid "Edge Seas"
-msgstr "Kıyı Denizleri"
-
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[4].Description
-msgid "Land shaped like a concrescent moon around a central lake."
-msgstr "Merkezi bir gölün etrafında yoğun bir ay şeklinde arazi."
-
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[4].Name
+#: maps/random/unknown.json
 msgid "Gulf"
 msgstr "Körfez"
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[5].Description
-msgid "Mainland style with some small random lakes."
-msgstr "Anakara tarzı bazı küçük rastgele göller."
+#: maps/random/unknown.json
+msgid "Land shaped like a concrescent moon around a central lake."
+msgstr "Merkezi bir gölün etrafında yoğun bir ay şeklinde arazi."
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[5].Name
+#: maps/random/unknown.json
 msgid "Lakes"
 msgstr "Göller"
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[6].Description
+#: maps/random/unknown.json
+msgid "Mainland style with some small random lakes."
+msgstr "Anakara tarzı bazı küçük rastgele göller."
+
+#: maps/random/unknown.json
+msgid "Passes"
+msgstr "Geçit"
+
+#: maps/random/unknown.json
 msgid ""
 "A large hill encompasses the map and leaves players only a small passage to "
 "the two neighboring players."
 msgstr "Büyük bir tepe haritayı kapsıyor ve oyunculara komşu iki oyuncuya sadece küçük bir geçit bırakıyor."
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[6].Name
-msgid "Passes"
-msgstr "Geçit"
+#: maps/random/unknown.json
+msgid "Lowlands"
+msgstr "Ovalar"
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[7].Description
+#: maps/random/unknown.json
 msgid ""
 "The land is enclosed by a hill that leaves a small area per player connected"
 " to the large central place."
 msgstr "Arazi, büyük merkezi yere bağlı oyuncu başına küçük bir alan bırakan bir tepeyle çevrilidir."
 
-#: maps/random/unknown.jsonsettings.Landscapes[0].Items[7].Name
-msgid "Lowlands"
-msgstr "Ovalar"
-
-#: maps/random/unknown.jsonsettings.Landscapes[0].Name
-msgid "Random Land"
-msgstr "Rastgele Yer"
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Description
-msgid "Choose a random naval landscape"
-msgstr "Rastgele bir deniz yer şekilleri seç"
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Description
-msgid "A huge sea is dividing the map into two halves."
-msgstr "Büyük bir deniz haritayı iki yarıya bölüyor."
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Name
-msgid "Naval: Central Sea"
-msgstr "Deniz: Merkezî Deniz"
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Description
-msgid "Players are scattered across island chains and disconnected islands."
-msgstr "Oyuncular ada zincirlerine ve bağlantısız adalara dağılmış durumdalar."
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Name
-msgid "Naval: Archipelago"
-msgstr "Deniz: Takım adalar"
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Description
-msgid "A central lake with rivers possibly separating neighboring players."
-msgstr "Muhtemelen komşu oyuncuları ayıran nehirlere sahip merkezi bir göl."
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Name
-msgid "Naval: Lake and rivers"
-msgstr "Deniz: Göl ve ırmaklar"
-
-#: maps/random/unknown.jsonsettings.Landscapes[1].Name
+#: maps/random/unknown.json
 msgid "Random Naval"
 msgstr "Rastgele Deniz"
 
-#: maps/random/unknown.jsonsettings.Name
-msgid "Unknown"
-msgstr "Bilinmeyen"
+#: maps/random/unknown.json
+msgid "Choose a random naval landscape"
+msgstr "Rastgele bir deniz yer şekilleri seç"
 
-#: maps/random/volcanic_lands.jsonsettings.Description
-msgid "A charred dead land where players start around a smoking volcano."
-msgstr "Oyuncular kömürleşmiş ölü bir arazide aktif bir volkanın çevresinde başlar."
+#: maps/random/unknown.json
+msgid "Naval: Central Sea"
+msgstr "Deniz: Merkezî Deniz"
 
-#: maps/random/volcanic_lands.jsonsettings.Name
+#: maps/random/unknown.json
+msgid "A huge sea is dividing the map into two halves."
+msgstr "Büyük bir deniz haritayı iki yarıya bölüyor."
+
+#: maps/random/unknown.json
+msgid "Naval: Archipelago"
+msgstr "Deniz: Takım adalar"
+
+#: maps/random/unknown.json
+msgid "Players are scattered across island chains and disconnected islands."
+msgstr "Oyuncular ada zincirlerine ve bağlantısız adalara dağılmış durumdalar."
+
+#: maps/random/unknown.json
+msgid "Naval: Lake and rivers"
+msgstr "Deniz: Göl ve ırmaklar"
+
+#: maps/random/unknown.json
+msgid "A central lake with rivers possibly separating neighboring players."
+msgstr "Muhtemelen komşu oyuncuları ayıran nehirlere sahip merkezi bir göl."
+
+#: maps/random/unknown.json maps/skirmishes/corinthian_isthmus_2p.xml:39
+#: maps/skirmishes/corinthian_isthmus_4p.xml:39
+msgid ""
+"Two Mediterranean land masses connected by a narrow spit of land, called an "
+"'Isthmus'."
+msgstr "Akdenizde iki kara parçasını başlayan bağlantıya \"Kıstağ\" denir."
+
+#: maps/random/volcanic_lands.json
 msgid "Volcanic Lands"
 msgstr "Volkanik Araziler"
 
-#: maps/random/wall_demo.jsonsettings.Description
+#: maps/random/volcanic_lands.json
+msgid "A charred dead land where players start around a smoking volcano."
+msgstr "Oyuncular kömürleşmiş ölü bir arazide aktif bir volkanın çevresinde başlar."
+
+#: maps/random/wall_demo.json
+msgid "Wall Demo"
+msgstr "Duvar Denemesi"
+
+#: maps/random/wall_demo.json
 msgid ""
 "A demonstration of wall placement methods/code in random maps. Giant map "
 "size is recommended!"
 msgstr "Rastgele haritalarda duvar yerleştirme yöntemleri/kodları gösterisi. Dev harita büyüklüğü önerilir!"
 
-#: maps/random/wall_demo.jsonsettings.Name
-msgid "Wall Demo"
-msgstr "Duvar Denemesi"
-
-#: maps/random/wild_lake.jsonsettings.Description
-msgid "A lake surrounded by hills."
-msgstr "Tepelerle çevrili bir göl."
-
-#: maps/random/wild_lake.jsonsettings.Name
+#: maps/random/wild_lake.json
 msgid "Wild Lake"
 msgstr "Yabani Göl"
 
-#: maps/scenarios/Ship Combat Demo.xml:Description:39
-msgid "Ship Combat Demo."
-msgstr ""
+#: maps/random/wild_lake.json
+msgid "A lake surrounded by hills."
+msgstr "Tepelerle çevrili bir göl."
 
-#: maps/scenarios/Ship Combat Demo.xml:Name:39
-msgid "Ship Combat Demo"
-msgstr ""
-
-#: maps/scenarios/_default.xml:Description:27
-#: maps/scenarios/temperate_map.xml:Description:26
-#: maps/scenarios/walltest.xml:Description:26
-msgid "Give an interesting description of your map."
-msgstr "Haritan ilgiç bir açıklama verecek."
-
-#: maps/scenarios/_default.xml:Name:27
+#: maps/scenarios/_default.xml:27
 msgid "Unnamed map"
 msgstr "İsimsiz harita"
 
-#: maps/scenarios/arcadia.xml:Description:38
+#: maps/scenarios/_default.xml:27 maps/scenarios/temperate_map.xml:26
+#: maps/scenarios/walltest.xml:26
+msgid "Give an interesting description of your map."
+msgstr "Haritan ilgiç bir açıklama verecek."
+
+#: maps/scenarios/arcadia.xml:38
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "Arcadia, Yunanistan'da ilkbahar zamanı. İlbahar yağmurları yılın geri kalanında taşlık, kuru dere yatağı olan bu alanları suya boğdu ve toprakları savaşan iki kabile arasında böldü.\n\nOyuncular kaynaklar açısından zengin dağlık bölgenin herhangi bir tarafında oyuna başlar. Ekstra başlangıç binaları yeni kolonilerini hızlıca kurmada oyunculara yardım eder."
 
-#: maps/scenarios/arcadia.xml:Name:38
+#: maps/scenarios/arcadia.xml:38
 msgid "Arcadia"
 msgstr "Arcadia"
 
-#: maps/scenarios/arcadia.xml:PlayerData[0].Name:38
-#: maps/scenarios/belgian_bog_night.xml:PlayerData[0].Name:38
-#: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[0].Name:38
-#: maps/scenarios/demo_trading.xml:PlayerData[0].Name:26
-#: maps/scenarios/eire_and_albion.xml:PlayerData[0].Name:26
-#: maps/scenarios/fast_oasis.xml:PlayerData[0].Name:26
-#: maps/scenarios/flight_demo.xml:PlayerData[1].Name:39
-#: maps/scenarios/gold_rush.xml:PlayerData[0].Name:26
-#: maps/scenarios/laconia.xml:PlayerData[0].Name:26
-#: maps/scenarios/migration.xml:PlayerData[0].Name:26
-#: maps/scenarios/necropolis.xml:PlayerData[0].Name:38
-#: maps/scenarios/reservoir.xml:PlayerData[0].Name:26
-#: maps/scenarios/saharan_oases.xml:PlayerData[1].Name:39
-#: maps/scenarios/sandbox_britons.xml:PlayerData[1].Name:39
-#: maps/scenarios/sandbox_gauls.xml:PlayerData[1].Name:39
-#: maps/scenarios/sandbox_iberians.xml:PlayerData[0].Name:38
-#: maps/scenarios/siwa_oasis.xml:PlayerData[0].Name:26
-#: maps/scenarios/the_massacre_of_delphi.xml:PlayerData[0].Name:38
-#: maps/scenarios/treasure_islands.xml:PlayerData[0].Name:38
-#: maps/scenarios/tropical_island.xml:PlayerData[0].Name:38
-#: maps/scenarios/walls.xml:PlayerData[0].Name:26
-#: maps/scenarios/walltest.xml:PlayerData[0].Name:26
-#: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/sporades_islands_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[1].Name:39
+#: maps/scenarios/arcadia.xml:38 maps/scenarios/belgian_bog_night.xml:38
+#: maps/scenarios/death_canyon_invasion_force.xml:38
+#: maps/scenarios/demo_trading.xml:26 maps/scenarios/eire_and_albion.xml:26
+#: maps/scenarios/fast_oasis.xml:26 maps/scenarios/flight_demo.xml:39
+#: maps/scenarios/gold_rush.xml:26 maps/scenarios/laconia.xml:26
+#: maps/scenarios/migration.xml:26 maps/scenarios/necropolis.xml:38
+#: maps/scenarios/reservoir.xml:26 maps/scenarios/saharan_oases.xml:39
+#: maps/scenarios/sandbox_britons.xml:39 maps/scenarios/sandbox_gauls.xml:39
+#: maps/scenarios/sandbox_iberians.xml:38 maps/scenarios/siwa_oasis.xml:26
+#: maps/scenarios/the_massacre_of_delphi.xml:38
+#: maps/scenarios/treasure_islands.xml:38
+#: maps/scenarios/tropical_island.xml:38 maps/scenarios/walls.xml:26
+#: maps/scenarios/walltest.xml:26 maps/skirmishes/acropolis_bay_2p.xml:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:39
+#: maps/skirmishes/deccan_plateau_2p.xml:39
+#: maps/skirmishes/sporades_islands_2p.xml:39
+#: maps/skirmishes/zagros_mountains_2p.xml:39
 msgid "Player 1"
 msgstr "Oyuncu 1"
 
-#: maps/scenarios/arcadia.xml:PlayerData[1].Name:38
-#: maps/scenarios/belgian_bog_night.xml:PlayerData[1].Name:38
-#: maps/scenarios/demo_trading.xml:PlayerData[1].Name:26
-#: maps/scenarios/eire_and_albion.xml:PlayerData[1].Name:26
-#: maps/scenarios/fast_oasis.xml:PlayerData[1].Name:26
-#: maps/scenarios/flight_demo.xml:PlayerData[2].Name:39
-#: maps/scenarios/gold_rush.xml:PlayerData[1].Name:26
-#: maps/scenarios/laconia.xml:PlayerData[1].Name:26
-#: maps/scenarios/migration.xml:PlayerData[1].Name:26
-#: maps/scenarios/necropolis.xml:PlayerData[1].Name:38
-#: maps/scenarios/saharan_oases.xml:PlayerData[2].Name:39
-#: maps/scenarios/sandbox_britons.xml:PlayerData[2].Name:39
-#: maps/scenarios/sandbox_gauls.xml:PlayerData[2].Name:39
-#: maps/scenarios/sandbox_iberians.xml:PlayerData[1].Name:38
-#: maps/scenarios/siwa_oasis.xml:PlayerData[1].Name:26
-#: maps/scenarios/the_massacre_of_delphi.xml:PlayerData[1].Name:38
-#: maps/scenarios/treasure_islands.xml:PlayerData[1].Name:38
-#: maps/scenarios/tropical_island.xml:PlayerData[1].Name:38
-#: maps/scenarios/walls.xml:PlayerData[1].Name:26
-#: maps/scenarios/walltest.xml:PlayerData[1].Name:26
-#: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/cycladic_archipelago_2p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/sporades_islands_2p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[2].Name:39
+#: maps/scenarios/arcadia.xml:38 maps/scenarios/belgian_bog_night.xml:38
+#: maps/scenarios/demo_trading.xml:26 maps/scenarios/eire_and_albion.xml:26
+#: maps/scenarios/fast_oasis.xml:26 maps/scenarios/flight_demo.xml:39
+#: maps/scenarios/gold_rush.xml:26 maps/scenarios/laconia.xml:26
+#: maps/scenarios/migration.xml:26 maps/scenarios/necropolis.xml:38
+#: maps/scenarios/saharan_oases.xml:39 maps/scenarios/sandbox_britons.xml:39
+#: maps/scenarios/sandbox_gauls.xml:39 maps/scenarios/sandbox_iberians.xml:38
+#: maps/scenarios/siwa_oasis.xml:26
+#: maps/scenarios/the_massacre_of_delphi.xml:38
+#: maps/scenarios/treasure_islands.xml:38
+#: maps/scenarios/tropical_island.xml:38 maps/scenarios/walls.xml:26
+#: maps/scenarios/walltest.xml:26 maps/skirmishes/acropolis_bay_2p.xml:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:39
+#: maps/skirmishes/deccan_plateau_2p.xml:39
+#: maps/skirmishes/sporades_islands_2p.xml:39
+#: maps/skirmishes/zagros_mountains_2p.xml:39
 msgid "Player 2"
 msgstr "Oyuncu 2"
 
-#: maps/scenarios/azure_coast_2p.xml:Description:26
-#: maps/scenarios/azure_coast_4p.xml:Description:26
-#: maps/scenarios/azure_coast_8p.xml:Description:38
-msgid "Help the young Massilia to settle or expel the Greeks from Gaul."
-msgstr "Genç Marsilya Galyadan Yunanlıları yerleşmek için veya sınır dışı etmek için yardım edecek."
-
-#: maps/scenarios/azure_coast_2p.xml:Name:26
+#: maps/scenarios/azure_coast_2p.xml:26
 msgid "Azure Coast 2"
 msgstr "Masmavi Sahil 2"
 
-#: maps/scenarios/azure_coast_2p.xml:PlayerData[0].Name:26
+#: maps/scenarios/azure_coast_2p.xml:26
 msgid "Greeks"
 msgstr "Yunanlılar"
 
-#: maps/scenarios/azure_coast_2p.xml:PlayerData[1].Name:26
+#: maps/scenarios/azure_coast_2p.xml:26
 msgid "Celts"
 msgstr "Keltler"
 
-#: maps/scenarios/azure_coast_4p.xml:Name:26
+#: maps/scenarios/azure_coast_2p.xml:26 maps/scenarios/azure_coast_4p.xml:26
+#: maps/scenarios/azure_coast_8p.xml:38
+msgid "Help the young Massilia to settle or expel the Greeks from Gaul."
+msgstr "Genç Marsilya Galyadan Yunanlıları yerleşmek için veya sınır dışı etmek için yardım edecek."
+
+#: maps/scenarios/azure_coast_4p.xml:26
 msgid "Azure Coast 3"
 msgstr "Masmavi Sahil 3"
 
-#: maps/scenarios/azure_coast_4p.xml:PlayerData[0].Name:26
+#: maps/scenarios/azure_coast_4p.xml:26
 msgid "East"
 msgstr "Doğu"
 
-#: maps/scenarios/azure_coast_4p.xml:PlayerData[1].Name:26
+#: maps/scenarios/azure_coast_4p.xml:26
 msgid "West"
 msgstr "Batı"
 
-#: maps/scenarios/azure_coast_4p.xml:PlayerData[2].Name:26
+#: maps/scenarios/azure_coast_4p.xml:26
 msgid "South"
 msgstr "Güney"
 
-#: maps/scenarios/azure_coast_4p.xml:PlayerData[3].Name:26
+#: maps/scenarios/azure_coast_4p.xml:26
 msgid "North"
 msgstr "Kuzey"
 
-#: maps/scenarios/azure_coast_8p.xml:Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Azure Coast 1"
 msgstr "Masmavi Sahil 1"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[0].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Antipolis"
 msgstr "Antibes"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[1].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Nikaia"
 msgstr "İznik"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[2].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Massalia"
 msgstr "Marsilya"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[3].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Olbia"
 msgstr "Olbia"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[4].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Deciates"
 msgstr "Desiates"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[5].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Salluvii"
 msgstr "Salyes"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[6].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Cavares"
 msgstr "Savares"
 
-#: maps/scenarios/azure_coast_8p.xml:PlayerData[7].Name:38
+#: maps/scenarios/azure_coast_8p.xml:38
 msgid "Verguni"
 msgstr "Verguni"
 
-#: maps/scenarios/battle_for_the_tiber.xml:Description:26
+#: maps/scenarios/battle_for_the_tiber.xml:26
 msgid ""
 "Rome battles against the Etruscan city of Veii for control of the Tiber "
 "River basin."
 msgstr "Roma Tiber Nehri havzasının kontrolü için Veii Etrüsk kentine karşı savaşıyor."
 
-#: maps/scenarios/battle_for_the_tiber.xml:Name:26
+#: maps/scenarios/battle_for_the_tiber.xml:26
 msgid "Battle for the Tiber"
 msgstr "Tiber Savaşı"
 
-#: maps/scenarios/battle_for_the_tiber.xml:PlayerData[0].Name:26
+#: maps/scenarios/battle_for_the_tiber.xml:26
 msgid "Rome"
 msgstr "Roma"
 
-#: maps/scenarios/battle_for_the_tiber.xml:PlayerData[1].Name:26
+#: maps/scenarios/battle_for_the_tiber.xml:26
 msgid "Veii"
 msgstr "Veii"
 
-#: maps/scenarios/battle_for_the_tiber.xml:PlayerData[2].Name:26
-#: maps/scenarios/battle_for_the_tiber.xml:PlayerData[3].Name:26
+#: maps/scenarios/battle_for_the_tiber.xml:26
 msgid "Gallic Invaders"
 msgstr "Galyalı işgalciler"
 
-#: maps/scenarios/belgian_bog_night.xml:Description:38
+#: maps/scenarios/belgian_bog_night.xml:38
 msgid "Two Celtic tribes face off across a large bog at night."
 msgstr "İki kelt kabilesi gece bir bataklık boyunca karşı karşıya gelir."
 
-#: maps/scenarios/belgian_bog_night.xml:Name:38
+#: maps/scenarios/belgian_bog_night.xml:38
 msgid "Belgian Bog Night"
 msgstr "Belçika Turbalık Gecesi"
 
-#: maps/scenarios/bridge_demo.xml:Description:26
+#: maps/scenarios/bridge_demo.xml:26
 msgid "Demo map showing how to simulate bridges in the Atlas map editor."
 msgstr "Köprülerin nasıl simüle edildiği deneme haritası içinde Atlas harita düzenleyici içerisinde gösterilir."
 
-#: maps/scenarios/bridge_demo.xml:Name:26
+#: maps/scenarios/bridge_demo.xml:26
 msgid "Bridge demo"
 msgstr "Bridge denemesi"
 
-#: maps/scenarios/bridge_demo.xml:PlayerData[0].Name:26
+#: maps/scenarios/bridge_demo.xml:26
 msgid "Bridge Demo"
 msgstr "Köprü Deneme"
 
-#: maps/scenarios/bridge_demo.xml:PlayerData[1].Name:26
+#: maps/scenarios/bridge_demo.xml:26
 msgid "Other"
 msgstr "Diğer"
 
-#: maps/scenarios/campaign_test_map.xml:Description:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "A test map for potential Strategic Campaigns."
 msgstr "Potansiyel Stratejik Mücadeleler için bir deneme haritası."
 
-#: maps/scenarios/campaign_test_map.xml:Name:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "Strategic Campaign Proof of Concept"
 msgstr "Stratejik Savunma Kavramının Kanıtı"
 
-#: maps/scenarios/campaign_test_map.xml:PlayerData[0].Name:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "Delian League"
 msgstr "Delos Birliği"
 
-#: maps/scenarios/campaign_test_map.xml:PlayerData[1].Name:38
-#: maps/scenarios/peloponnese.xml:PlayerData[4].Name:39
-#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[1].Name:39
-msgid "Thebes"
-msgstr "Thebes"
-
-#: maps/scenarios/campaign_test_map.xml:PlayerData[2].Name:38
-#: maps/scenarios/peloponnese.xml:PlayerData[6].Name:39
-msgid "Thessaly"
-msgstr "Thessaly"
-
-#: maps/scenarios/campaign_test_map.xml:PlayerData[3].Name:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "Megara"
 msgstr "Megara"
 
-#: maps/scenarios/campaign_test_map.xml:PlayerData[4].Name:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "Eretria"
 msgstr "Eretria"
 
-#: maps/scenarios/campaign_test_map.xml:PlayerData[5].Name:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "Chalcis"
 msgstr "Halkida"
 
-#: maps/scenarios/campaign_test_map.xml:PlayerData[6].Name:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "Peloponnesian League"
 msgstr "Peloponez Birliği"
 
-#: maps/scenarios/campaign_test_map.xml:PlayerData[7].Name:38
+#: maps/scenarios/campaign_test_map.xml:38
 msgid "Religious Institutions"
 msgstr "Dini Kuruluşlar"
 
-#: maps/scenarios/campaign_test_map_2_heightmap.xml:Name:38
+#: maps/scenarios/campaign_test_map.xml:38 maps/scenarios/peloponnese.xml:39
+msgid "Thessaly"
+msgstr "Thessaly"
+
+#: maps/scenarios/campaign_test_map.xml:38 maps/scenarios/peloponnese.xml:39
+#: maps/skirmishes/egypt_3pv3p.xml:39
+msgid "Thebes"
+msgstr "Thebes"
+
+#: maps/scenarios/campaign_test_map_2_heightmap.xml:38
 msgid "Campaign Map - Test"
 msgstr "Mücadele Haritası - Deneme"
 
@@ -1620,608 +1581,596 @@ msgstr "Mücadele Haritası - Deneme"
 msgid "Cutscene starts after 5 seconds"
 msgstr "Ara video 5 saniye sonra başlayacak"
 
-#: maps/scenarios/cinema_demo.xml:Description:39
+#: maps/scenarios/cinema_demo.xml:39
 msgid "Demo map for cinematic camera movements."
 msgstr "Sinematik kamera haraketleri için demo haritası"
 
-#: maps/scenarios/cinema_demo.xml:Name:39
+#: maps/scenarios/cinema_demo.xml:39
 msgid "Cinema Demo"
 msgstr "Sinema Demo"
 
-#: maps/scenarios/cinema_demo.xml:PlayerData[1].Name:39
+#: maps/scenarios/cinema_demo.xml:39
 msgid "Xerxes I"
 msgstr "Xerxes I"
 
-#: maps/scenarios/cinema_demo.xml:PlayerData[2].Name:39
+#: maps/scenarios/cinema_demo.xml:39
 msgid "You"
 msgstr "Sen"
 
-#: maps/scenarios/combat_demo.xml:Description:26
+#: maps/scenarios/combat_demo.xml:26
+msgid "Combat Demo"
+msgstr "Muharebe Denemesi"
+
+#: maps/scenarios/combat_demo.xml:26
 msgid ""
 "A combat demonstration between a small number of ranged and melee infantry "
 "units."
 msgstr "Az sayıda yakın dövüş piyade birimleri ve menzilli birim arasındaki mücadele bir demoda gösterilir."
 
-#: maps/scenarios/combat_demo.xml:Name:26
-msgid "Combat Demo"
-msgstr "Muharebe Denemesi"
-
-#: maps/scenarios/combat_demo_huge.xml:Description:73
-msgid "1296 units. Extremely slow (we need more optimisation)."
-msgstr "1296 birim. Son derece yavaş (daha fazla iyileştirmeye ihtiyaçımız var)."
-
-#: maps/scenarios/combat_demo_huge.xml:Name:73
+#: maps/scenarios/combat_demo_huge.xml:73
 msgid "Combat Demo (Huge)"
 msgstr "Muharebe Deneme (Büyük)"
 
-#: maps/scenarios/death_canyon_invasion_force.xml:Description:38
+#: maps/scenarios/combat_demo_huge.xml:73
+msgid "1296 units. Extremely slow (we need more optimisation)."
+msgstr "1296 birim. Son derece yavaş (daha fazla iyileştirmeye ihtiyaçımız var)."
+
+#: maps/scenarios/death_canyon_invasion_force.xml:38
 msgid ""
 "A deep rocky canyon slicing through the desert. Good for multiplayer.\n"
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
 msgstr "Çölü ikiye bölen derin ve kayalık bir kanyon. Çok oyunculu oyunlar için ideal.\n\n2 oyunculu 2 takım. Her takımdaki bir oyuncu, bir üs ve kaynaklarla başlar. Diğer oyucu ise arkadaşına yardım etmek için büyük bir ordu ile başlar."
 
-#: maps/scenarios/death_canyon_invasion_force.xml:Name:38
+#: maps/scenarios/death_canyon_invasion_force.xml:38
 msgid "Death Canyon - Invasion Force"
 msgstr "Ölüm kanyonu - İstila Kuvveti "
 
-#: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[1].Name:38
-#: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[3].Name:38
+#: maps/scenarios/death_canyon_invasion_force.xml:38
 msgid "Invasion Force"
 msgstr "İstila Kuvveti"
 
-#: maps/scenarios/death_canyon_invasion_force.xml:PlayerData[2].Name:38
-#: maps/scenarios/demo_trading.xml:PlayerData[2].Name:26
-#: maps/scenarios/fast_oasis.xml:PlayerData[2].Name:26
-#: maps/scenarios/gold_rush.xml:PlayerData[2].Name:26
-#: maps/scenarios/migration.xml:PlayerData[2].Name:26
-#: maps/scenarios/necropolis.xml:PlayerData[2].Name:38
-#: maps/scenarios/saharan_oases.xml:PlayerData[3].Name:39
-#: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:39
-#: maps/scenarios/sandbox_gauls.xml:PlayerData[3].Name:39
-#: maps/scenarios/siwa_oasis.xml:PlayerData[2].Name:26
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[3].Name:39
+#: maps/scenarios/death_canyon_invasion_force.xml:38
+#: maps/scenarios/demo_trading.xml:26 maps/scenarios/fast_oasis.xml:26
+#: maps/scenarios/gold_rush.xml:26 maps/scenarios/migration.xml:26
+#: maps/scenarios/necropolis.xml:38 maps/scenarios/saharan_oases.xml:39
+#: maps/scenarios/sandbox_britons.xml:39 maps/scenarios/sandbox_gauls.xml:39
+#: maps/scenarios/siwa_oasis.xml:26
+#: maps/skirmishes/cycladic_archipelago_3p.xml:39
 msgid "Player 3"
 msgstr "Oyuncu 3"
 
-#: maps/scenarios/demo_trading.xml:Description:26
+#: maps/scenarios/demo_trading.xml:26
 msgid "A demonstration of the new trading feature."
 msgstr "Yeni ticaret özelliğinin bir gösterimi."
 
-#: maps/scenarios/demo_trading.xml:Name:26
+#: maps/scenarios/demo_trading.xml:26
 msgid "Trading Demo"
 msgstr "Ticaret Denemesi"
 
-#: maps/scenarios/eire_and_albion.xml:Description:26
+#: maps/scenarios/eire_and_albion.xml:26
 msgid ""
 "A demo map of the British Isles, created with the assistance of a height "
 "map."
 msgstr "Bir yüksek harita yardımı ile oluşturulan İngiliz Adaları demo haritası."
 
-#: maps/scenarios/eire_and_albion.xml:Name:26
+#: maps/scenarios/eire_and_albion.xml:26
 msgid "Eire and Albion (British Isles)"
 msgstr "İrlanda ve Albiyon (Britanya Adaları)"
 
-#: maps/scenarios/fast_oasis.xml:Description:26
+#: maps/scenarios/fast_oasis.xml:26
 msgid ""
 "A small desert map. Each player starts near an oasis spotted about an otherwise bleak and sandy desert that is wide open to assault and depredation.\n"
 "\n"
 "Gameplay is tight and fast, with no time to stop and smell the roses."
 msgstr "Küçük bir çöl haritası. Her oyuncu saldırı ve yağmaya açık kasvetli ve kumlu bir çölde bir vaha kenarında başlar.\n\nOynanış çok sıkı ve hızlıdır, durup gülleri koklamak için zaman yoktur."
 
-#: maps/scenarios/fast_oasis.xml:Name:26
+#: maps/scenarios/fast_oasis.xml:26
 msgid "Fast Oasis"
 msgstr "Hızlı Vaha"
 
-#: maps/scenarios/fast_oasis.xml:PlayerData[3].Name:26
-#: maps/scenarios/gold_rush.xml:PlayerData[3].Name:26
-#: maps/scenarios/necropolis.xml:PlayerData[3].Name:38
-#: maps/scenarios/saharan_oases.xml:PlayerData[4].Name:39
-#: maps/scenarios/siwa_oasis.xml:PlayerData[3].Name:26
+#: maps/scenarios/fast_oasis.xml:26 maps/scenarios/gold_rush.xml:26
+#: maps/scenarios/necropolis.xml:38 maps/scenarios/saharan_oases.xml:39
+#: maps/scenarios/siwa_oasis.xml:26
 msgid "Player 4"
 msgstr "Oyuncu 4"
 
-#: maps/scenarios/fishing_demo.xml:Description:26
-msgid "Test out fishing with a fishing boat. Still in development."
-msgstr "Bir balıkçı teknesi ile balıkçılık testi. Hala geliştirmede."
-
-#: maps/scenarios/fishing_demo.xml:Name:26
+#: maps/scenarios/fishing_demo.xml:26
 msgid "Fishing Demo"
 msgstr "Balık tutma Denemesi"
 
-#: maps/scenarios/flight_demo.xml:Description:39
+#: maps/scenarios/fishing_demo.xml:26
+msgid "Test out fishing with a fishing boat. Still in development."
+msgstr "Bir balıkçı teknesi ile balıkçılık testi. Hala geliştirmede."
+
+#: maps/scenarios/flight_demo.xml:39
 msgid "Fly some Mustangs."
 msgstr "Uçan bazı yaban atları"
 
-#: maps/scenarios/flight_demo.xml:Name:39
+#: maps/scenarios/flight_demo.xml:39
 msgid "Flight Demo"
 msgstr "Uçuş Denemesi"
 
-#: maps/scenarios/gold_rush.xml:Description:26
+#: maps/scenarios/gold_rush.xml:26
 msgid ""
 "A wide-open map with a central rocky region rich in Minerals (Metal "
 "Resource). This map may be played if the other more detailed maps cause "
 "uncomfortable lag."
 msgstr "Mineraller bakımından zengin bir merkez kayalık bölge ile geniş bir açık harita (Metal Kaynağı). Bu harita belki oynanan diğer detaylı haritalardan daha rahatsız edici bir gecikmeye sebep olabilir."
 
-#: maps/scenarios/gold_rush.xml:Name:26
+#: maps/scenarios/gold_rush.xml:26
 msgid "Gold Rush"
 msgstr "Altına Hücum"
 
-#: maps/scenarios/gorge.xml:Description:26
+#: maps/scenarios/gorge.xml:26
 msgid "A riparian gorge meanders its way through the South lands of Gaul."
 msgstr "Bir kıyıdaş geçit Galya Güney toprakları üzerinden doğru ilerlerler."
 
-#: maps/scenarios/gorge.xml:Name:26
+#: maps/scenarios/gorge.xml:26
 msgid "Gorge"
 msgstr "Kanyon"
 
-#: maps/scenarios/laconia.xml:Description:26
+#: maps/scenarios/laconia.xml:26
 msgid ""
 "The Peloponnesian valley of Laconia, homeland of the Spartans.\n"
 "\n"
 "The Macedonians are encroaching into Spartan lands. After losing a pitched battle against the invaders, the Spartans must rebuild their army quickly before the Macedonians overrun the entire valley."
 msgstr "Spartalıların vatanı, Laconia'nın Peloponnezyalı vadisi.\n\nMakedonyalılar Spartalılar'ın topraklarına göz koydular. İşgalcilere karşı büyük bir savaşı kaybeden Spartalılar, Makedonyalılar bütün vadiyi fethetmeden önce ordularını hızlıca yeniden oluşturmalılar."
 
-#: maps/scenarios/laconia.xml:Name:26
+#: maps/scenarios/laconia.xml:26
 msgid "Laconia"
 msgstr "Lakonia"
 
-#: maps/scenarios/migration.xml:Description:26
+#: maps/scenarios/migration.xml:26
 msgid ""
 "Multiplayer map. Each player starts out on a small island with minimal resources situated off the coast of a large land mass.\n"
 "\n"
 "This is a WFG community-designed map by: SMST, NOXAS1, and Yodaspirine."
 msgstr "Çok oyunculu harita. Her oyuncu küçük bir adada, kıyının hemen gerisinde yer alan büyükçe bir kara parçasındaki minimum kaynaklarla oyuna başlar.\n\nBu; WFG topluluğundan SMST, NOXAS1 ve Yodaspirine tarafından tasarlanmışbir haritadır."
 
-#: maps/scenarios/miletus.xml:Description:39
+#: maps/scenarios/miletus.xml:39
 msgid "A sandbox scenario for one player."
 msgstr "Bir oyuncu için kum havuzu senaryosu."
 
-#: maps/scenarios/miletus.xml:Name:39
-#: maps/scenarios/miletus.xml:PlayerData[0].Name:39
+#: maps/scenarios/miletus.xml:39
 msgid "Miletus"
 msgstr "Milet"
 
-#: maps/scenarios/miletus.xml:PlayerData[1].Name:39
-#: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[1].Name:38
+#: maps/scenarios/miletus.xml:39 maps/scenarios/sandbox_ptolemies_02.xml:38
 msgid "Romans"
 msgstr "Roma"
 
-#: maps/scenarios/multiplayer_demo.xml:Description:26
+#: maps/scenarios/multiplayer_demo.xml:26
+msgid "Multiplayer Demo"
+msgstr "Çok Oyunculu Demo"
+
+#: maps/scenarios/multiplayer_demo.xml:26
 msgid ""
 "Small map with lots of resources and some water, for testing gameplay in "
 "non-competitive multiplayer matches."
 msgstr "Rekabetçi olmayan çok oyunculu maçlarda test oyunu için birçok kaynakla biraz su ile küçük bir haritada oynanır."
 
-#: maps/scenarios/multiplayer_demo.xml:Name:26
-msgid "Multiplayer Demo"
-msgstr "Çok Oyunculu Demo"
+#: maps/scenarios/napata_reconstruction.xml:39
+msgid "Napata Reconstruction"
+msgstr "Napata Tamirat"
 
-#: maps/scenarios/napata_reconstruction.xml:Description:39
+#: maps/scenarios/napata_reconstruction.xml:39
 msgid ""
 "This map displays a reconstruction of the ancient city Napata. "
 "[color=\"red\"]Note:[/color] The map is not intended to be playable."
 msgstr "Bu harita antik şehir Napata'nın yeniden inşa edilişini gösterir. [color=\"red\"]Note:[/color] Harita oynamaya yönelik değil."
 
-#: maps/scenarios/napata_reconstruction.xml:Name:39
-msgid "Napata Reconstruction"
-msgstr "Napata Tamirat"
-
-#: maps/scenarios/necropolis.xml:Description:38
+#: maps/scenarios/necropolis.xml:38
 msgid ""
 "Four players duke it out over the vast Nile Delta. Each city starts out nestled atop a large plateau, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
 msgstr "Dört oyuncu onu büyük Nil Deltası'na atılırlar. Her şehir geniş bir platoda yuvalanmış olarak başlar, ancak kaynaklar azdır ve her oyuncuyu kaynak işlemlerini çevre alanlara genişletmeye zorlar.\n\nİzciler, Nil Nehri'nin yakındaki kollarının çok sayıda yerde sığ ve zorlanabilir olduğunu, bu nedenle düşman hizipleri arasında sadece küçük bir engel görevi görmesi gerektiğini söyledi."
 
-#: maps/scenarios/necropolis.xml:Name:38
+#: maps/scenarios/necropolis.xml:38
 msgid "Necropolis"
 msgstr "Necropolis"
 
-#: maps/scenarios/pathfinding_demo.xml:Description:38
+#: maps/scenarios/pathfinding_demo.xml:38
 msgid "A map for testing unit movement algorithms."
 msgstr "Birim hareket testi için bir harita."
 
-#: maps/scenarios/pathfinding_demo.xml:Name:38
+#: maps/scenarios/pathfinding_demo.xml:38
 msgid "Pathfinding Demo"
 msgstr "Yol bulma Denemesi"
 
-#: maps/scenarios/pathfinding_terrain_demo.xml:Description:26
+#: maps/scenarios/pathfinding_terrain_demo.xml:26
+msgid "Pathfinding Terrain Demo"
+msgstr "Arazide Yol bulma Deneme"
+
+#: maps/scenarios/pathfinding_terrain_demo.xml:26
 msgid ""
 "A map for testing movement costs and terrain properties in the A* "
 "pathfinder."
 msgstr "Hareket maliyeti ve arazi  A* yolgösterici özellikleri için bir deneme haritası."
 
-#: maps/scenarios/pathfinding_terrain_demo.xml:Name:26
-msgid "Pathfinding Terrain Demo"
-msgstr "Arazide Yol bulma Deneme"
-
-#: maps/scenarios/peloponnese.xml:Description:39
+#: maps/scenarios/peloponnese.xml:39
 msgid "A real-world map of the Greek homeland."
 msgstr "Yunan anavatanı gerçek dünya haritası."
 
-#: maps/scenarios/peloponnese.xml:Name:39
+#: maps/scenarios/peloponnese.xml:39
 msgid "Peloponnesian Wars"
 msgstr "Peloponnez Savaşları"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[1].Name:39
+#: maps/scenarios/peloponnese.xml:39
 msgid "Athens"
 msgstr "Atina"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[2].Name:39
+#: maps/scenarios/peloponnese.xml:39
 msgid "Sparta"
 msgstr "Sparta"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[3].Name:39
+#: maps/scenarios/peloponnese.xml:39
 msgid "Elis"
 msgstr "Elis"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[5].Name:39
+#: maps/scenarios/peloponnese.xml:39
 msgid "Corinth"
 msgstr "Korint"
 
-#: maps/scenarios/pickup_test_map.xml:Description:39
+#: maps/scenarios/pickup_test_map.xml:39
 msgid ""
 "Test map for picking units up, with sea and two islands. Trigger points are "
 "placed."
 msgstr "Deniz ve iki adayla birlikte toplama birimleri için test haritası. Tetikleme noktaları yerleştirildi."
 
-#: maps/scenarios/pickup_test_map.xml:Name:39
+#: maps/scenarios/pickup_test_map.xml:39
 msgid "Pickup test map"
 msgstr "Test haritası kap."
 
-#: maps/scenarios/polynesia.xml:Description:39
+#: maps/scenarios/polynesia.xml:39
 msgid "Demo map for new fancy water effects."
 msgstr "Alacalı yeni su efektleri için deneme haritası."
 
-#: maps/scenarios/polynesia.xml:Name:39
+#: maps/scenarios/polynesia.xml:39
 msgid "Polynesia"
 msgstr "Polonezya"
 
-#: maps/scenarios/polynesia.xml:PlayerData[0].Name:39
+#: maps/scenarios/polynesia.xml:39
 msgid "Samoa"
 msgstr "Samoa"
 
-#: maps/scenarios/polynesia.xml:PlayerData[1].Name:39
+#: maps/scenarios/polynesia.xml:39
 msgid "Vanuatu"
 msgstr "Vanuatu"
 
-#: maps/scenarios/reservoir.xml:Description:26
+#: maps/scenarios/reservoir.xml:26
 msgid "A demo showing water planes."
 msgstr "Su düzlemlerini gösteren bir deneme."
 
-#: maps/scenarios/reservoir.xml:Name:26
+#: maps/scenarios/reservoir.xml:26
 msgid "Reservoir"
 msgstr "Baraj gölü"
 
-#: maps/scenarios/resource_demo.xml:Description:26
-msgid "Demo map for resource gathering."
-msgstr "Kaynak toplamak için deneme haritası."
-
-#: maps/scenarios/resource_demo.xml:Name:26
+#: maps/scenarios/resource_demo.xml:26
 msgid "Resource demo"
 msgstr "Kaynak denemesi"
 
-#: maps/scenarios/road_demo.xml:Description:26
+#: maps/scenarios/resource_demo.xml:26
+msgid "Demo map for resource gathering."
+msgstr "Kaynak toplamak için deneme haritası."
+
+#: maps/scenarios/road_demo.xml:26
 msgid "Demo map showcasing Temperate Road decals."
 msgstr "Sıcak Yol baskısı deneme harita gösterimi."
 
-#: maps/scenarios/road_demo.xml:Name:26
+#: maps/scenarios/road_demo.xml:26
 msgid "Road Decals Demo"
 msgstr "Yol Çıkarmaları Deneme"
 
-#: maps/scenarios/saharan_oases.xml:Description:39
+#: maps/scenarios/saharan_oases.xml:39
 msgid ""
 "A desert biome map where each player has founded their colony at their own "
 "lush oasis. The rest of the map is generally wide-open and barren."
 msgstr "Her oyuncu ısısız bir çölde kendi kolonisi için gür yeşil bir vahası olur. Haritanın geri kalanı genellikle geniş, açık ve boştur."
 
-#: maps/scenarios/sahel.xml:Description:38
+#: maps/scenarios/sahel.xml:38
 msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of food and mineral resources, while wood is somewhat scarce."
 msgstr "Kuzey Afrika'da Atlas dağ sıralarının kuzey tarafında yer alır.\n\nGıda ve maden kaynaklarının bolluğu ile oldukça açık bir harita, ahşap oldukça azdır."
 
-#: maps/scenarios/sahel.xml:PlayerData[0].Name:38
+#: maps/scenarios/sahel.xml:38
 msgid "Aulus Manlius Capitolinus"
 msgstr "Aulus Manlius Capitolinus"
 
-#: maps/scenarios/sahel.xml:PlayerData[1].Name:38
+#: maps/scenarios/sahel.xml:38
 msgid "Hasdrubal the Fair"
 msgstr "Adil Hasdrubal"
 
-#: maps/scenarios/sahel.xml:PlayerData[2].Name:38
+#: maps/scenarios/sahel.xml:38
 msgid "Artaxshacha II"
 msgstr "Artaxshacha II"
 
-#: maps/scenarios/sahel.xml:PlayerData[3].Name:38
+#: maps/scenarios/sahel.xml:38
 msgid "Tautalus"
 msgstr "Tantalos"
 
-#: maps/scenarios/sandbox_athenians.xml:Description:38
+#: maps/scenarios/sandbox_athenians.xml:38
 msgid ""
 "Play with the Athenians faction in a non-threatening sandbox environment."
 msgstr "Tehdit edici olmayan bir sanal ortamda Atinalılar ile oynayın."
 
-#: maps/scenarios/sandbox_athenians.xml:Name:38
+#: maps/scenarios/sandbox_athenians.xml:38
 msgid "Sandbox - The Athenians"
 msgstr "Kum Havuzu - Atinalılar"
 
-#: maps/scenarios/sandbox_athenians.xml:PlayerData[0].Name:38
+#: maps/scenarios/sandbox_athenians.xml:38
 msgid "The Athenians"
 msgstr "Atinalılar"
 
-#: maps/scenarios/sandbox_athenians.xml:PlayerData[1].Name:38
-#: maps/scenarios/sandbox_macedonians.xml:PlayerData[1].Name:38
+#: maps/scenarios/sandbox_athenians.xml:38
+#: maps/scenarios/sandbox_macedonians.xml:38
 msgid "The Spartans"
 msgstr "Spartalılar"
 
-#: maps/scenarios/sandbox_athenians.xml:PlayerData[2].Name:38
-#: maps/scenarios/sandbox_macedonians.xml:PlayerData[2].Name:38
+#: maps/scenarios/sandbox_athenians.xml:38
+#: maps/scenarios/sandbox_macedonians.xml:38
 msgid "The Persians"
 msgstr "Persler"
 
-#: maps/scenarios/sandbox_athenians.xml:PlayerData[3].Name:38
-#: maps/scenarios/sandbox_macedonians.xml:PlayerData[3].Name:38
+#: maps/scenarios/sandbox_athenians.xml:38
+#: maps/scenarios/sandbox_macedonians.xml:38
 msgid "The Gauls"
 msgstr "Galyalılar"
 
-#: maps/scenarios/sandbox_britons.xml:Description:39
-#: maps/scenarios/sandbox_gauls.xml:Description:39
-msgid "Play around with the Gallic faction in an idyllic sandbox setting."
-msgstr "Pastoral bir ortamda Galya ile oynayın."
-
-#: maps/scenarios/sandbox_britons.xml:Name:39
+#: maps/scenarios/sandbox_britons.xml:39
 msgid "Sandbox - The Britons"
 msgstr "Kum Havuzu - Britonlar"
 
-#: maps/scenarios/sandbox_britons.xml:PlayerData[4].Name:39
-#: maps/scenarios/sandbox_gauls.xml:PlayerData[4].Name:39
+#: maps/scenarios/sandbox_britons.xml:39 maps/scenarios/sandbox_gauls.xml:39
+msgid "Play around with the Gallic faction in an idyllic sandbox setting."
+msgstr "Pastoral bir ortamda Galya ile oynayın."
+
+#: maps/scenarios/sandbox_britons.xml:39 maps/scenarios/sandbox_gauls.xml:39
 msgid "Roman Interlopers"
 msgstr "Romalı Karışmalar"
 
-#: maps/scenarios/sandbox_carthaginians.xml:Description:38
+#: maps/scenarios/sandbox_carthaginians.xml:38
 msgid "Explore the Carthaginian Buildings and Units."
 msgstr "Kartacalı Yapıları ve Birlikleri Keşfet."
 
-#: maps/scenarios/sandbox_carthaginians.xml:Name:38
+#: maps/scenarios/sandbox_carthaginians.xml:38
 msgid "Sandbox - The Carthaginians"
 msgstr "Kum Havuzu - Kartacalılar"
 
-#: maps/scenarios/sandbox_carthaginians.xml:PlayerData[0].Name:38
-#: maps/scenarios/serengeti.xml:PlayerData[0].Name:26
-msgid "Carthage"
-msgstr "Kartaca"
-
-#: maps/scenarios/sandbox_carthaginians.xml:PlayerData[1].Name:38
+#: maps/scenarios/sandbox_carthaginians.xml:38
 msgid "Creeps"
 msgstr "Sürüngenler"
 
-#: maps/scenarios/sandbox_gauls.xml:Name:39
+#: maps/scenarios/sandbox_carthaginians.xml:38 maps/scenarios/serengeti.xml:26
+msgid "Carthage"
+msgstr "Kartaca"
+
+#: maps/scenarios/sandbox_gauls.xml:39
 msgid "Sandbox - The Gauls"
 msgstr "Kum Havuzu - Galyalılar"
 
-#: maps/scenarios/sandbox_han.xml:Description:39
+#: maps/scenarios/sandbox_han.xml:39
 msgid "A simple map showcasing the Han civilization's assets in the game."
 msgstr "Oyunda Han uygarlığının varlıklarını gösteren basit bir harita."
 
-#: maps/scenarios/sandbox_han.xml:Name:39
+#: maps/scenarios/sandbox_han.xml:39
 msgid "Sandbox - The Han"
 msgstr "Serbest mod - The Han"
 
-#: maps/scenarios/sandbox_iberians.xml:Description:38
+#: maps/scenarios/sandbox_iberians.xml:38
 msgid "A demo map for the Iberians."
 msgstr "İberyalılar için deneme haritası."
 
-#: maps/scenarios/sandbox_iberians.xml:Name:38
+#: maps/scenarios/sandbox_iberians.xml:38
 msgid "Sandbox - The Iberians"
 msgstr "Kum Havuzu - İberyalılar"
 
-#: maps/scenarios/sandbox_kushites.xml:Description:39
+#: maps/scenarios/sandbox_kushites.xml:39
 msgid "A simple map showcasing the Kushite civilization's assets in the game."
 msgstr "Oyundaki Kuş uygarlığının varlıklarını gösteren basit bir harita."
 
-#: maps/scenarios/sandbox_kushites.xml:Name:39
+#: maps/scenarios/sandbox_kushites.xml:39
 msgid "Sandbox - The Kushites"
 msgstr "Kum Havuzu - Kuşitler"
 
-#: maps/scenarios/sandbox_macedonians.xml:Description:38
+#: maps/scenarios/sandbox_macedonians.xml:38
 msgid ""
 "Play with the Macedonians faction in a non-threatening sandbox environment."
 msgstr "Tehdit edici olmayan bir sanal ortamda Makedonlar ile oynayın."
 
-#: maps/scenarios/sandbox_macedonians.xml:Name:38
+#: maps/scenarios/sandbox_macedonians.xml:38
 msgid "Sandbox - The Macedonians"
 msgstr "Kum Havuzu - Makedonyalılar"
 
-#: maps/scenarios/sandbox_macedonians.xml:PlayerData[0].Name:38
+#: maps/scenarios/sandbox_macedonians.xml:38
 msgid "The Macedonians"
 msgstr "Makedonyalılar"
 
-#: maps/scenarios/sandbox_mauryas.xml:Description:39
+#: maps/scenarios/sandbox_mauryas.xml:39
 msgid "A simple map showcasing the Maurya civilization's assets in the game."
 msgstr "Oyundaki Maurya uygarlığının varlıklarını gösteren basit bir harita."
 
-#: maps/scenarios/sandbox_mauryas.xml:Name:39
+#: maps/scenarios/sandbox_mauryas.xml:39
 msgid "Sandbox - The Maurya Indians"
 msgstr "Kum Havuzu - Mauryalı Hintliler"
 
-#: maps/scenarios/sandbox_persians.xml:Description:39
+#: maps/scenarios/sandbox_persians.xml:39
 msgid "A simple map showcasing the Persian civilization's assets in the game."
 msgstr "Oyundaki Pers uygarlığının varlıklarını gösteren basit bir harita."
 
-#: maps/scenarios/sandbox_persians.xml:Name:39
+#: maps/scenarios/sandbox_persians.xml:39
 msgid "Sandbox - The Achaemenid Persians"
 msgstr "Kum Havuzu - Ahamenişli Persler"
 
-#: maps/scenarios/sandbox_ptolemies.xml:Description:38
+#: maps/scenarios/sandbox_ptolemies.xml:38
 msgid "An islands map good for intense naval combat."
 msgstr "Bir adalar yoğun deniz mücadeleleri için iyi bir haritadır."
 
-#: maps/scenarios/sandbox_ptolemies.xml:Name:38
+#: maps/scenarios/sandbox_ptolemies.xml:38
 msgid "Sandbox - The Ptolemaic Egyptians"
 msgstr "Kum Havuzu - Ptolemaioslu Mısırlılar"
 
-#: maps/scenarios/sandbox_ptolemies.xml:PlayerData[0].Name:38
+#: maps/scenarios/sandbox_ptolemies.xml:38
 msgid "Ptolemaios A' Soter"
 msgstr "I. Ptolemaios Soter"
 
-#: maps/scenarios/sandbox_ptolemies.xml:PlayerData[1].Name:38
+#: maps/scenarios/sandbox_ptolemies.xml:38
 msgid "Kautilya"
 msgstr "Çanakya"
 
-#: maps/scenarios/sandbox_ptolemies_02.xml:Description:38
+#: maps/scenarios/sandbox_ptolemies_02.xml:38
 msgid ""
 "Play with the Ptolemaic Egyptians in a non-threatening sandbox setting."
 msgstr "Tehdit edici olmayan bir sanal ortamda Mısırlılar ile oynayın."
 
-#: maps/scenarios/sandbox_ptolemies_02.xml:Name:38
+#: maps/scenarios/sandbox_ptolemies_02.xml:38
 msgid "Sandbox - The Ptolemaic Egyptians 2"
 msgstr "Kum Havuzu - Ptolemaioslu Mısırlılar 2"
 
-#: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[0].Name:38
+#: maps/scenarios/sandbox_ptolemies_02.xml:38
 msgid "Ptolemy \"Savior\""
 msgstr "Ptolemy  \"Kurtarıcı\""
 
-#: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[2].Name:38
+#: maps/scenarios/sandbox_ptolemies_02.xml:38
 msgid "Seleucids"
 msgstr "Selekos"
 
-#: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[3].Name:38
+#: maps/scenarios/sandbox_ptolemies_02.xml:38
 msgid "Libyans"
 msgstr "Libyalılar"
 
-#: maps/scenarios/sandbox_romans.xml:Description:39
+#: maps/scenarios/sandbox_romans.xml:39
 msgid ""
 "A simple map showcasing the Republican Roman civilization's assets in the "
 "game."
 msgstr "Oyundaki Cumhuriyetci Roma uygarlığının varlıklarını gösteren basit bir harita."
 
-#: maps/scenarios/sandbox_romans.xml:Name:39
+#: maps/scenarios/sandbox_romans.xml:39
 msgid "Sandbox - The Romans"
 msgstr "Kum Havuzu - Romalılar"
 
-#: maps/scenarios/sandbox_seleucids.xml:Description:38
+#: maps/scenarios/sandbox_seleucids.xml:38
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
 msgstr "Selevkos medeniyetini denemek için bir senaryo."
 
-#: maps/scenarios/sandbox_seleucids.xml:Name:38
+#: maps/scenarios/sandbox_seleucids.xml:38
 msgid "Sandbox - The Seleucids"
 msgstr "Kum Havuzu -  Selevkoslar"
 
-#: maps/scenarios/sandbox_seleucids.xml:PlayerData[0].Name:38
+#: maps/scenarios/sandbox_seleucids.xml:38
 msgid "The Seleucids"
 msgstr " Selevkoslar"
 
-#: maps/scenarios/sandbox_seleucids.xml:PlayerData[1].Name:38
+#: maps/scenarios/sandbox_seleucids.xml:38
 msgid "The Ptolemies"
 msgstr "Ptolemaioslar"
 
-#: maps/scenarios/sandbox_spartans.xml:Description:39
+#: maps/scenarios/sandbox_spartans.xml:39
 msgid "A simple map showcasing the Spartan civilization's assets in the game."
 msgstr "Oyundaki Sparta uygarlığının varlıklarını gösteren basit bir harita."
 
-#: maps/scenarios/sandbox_spartans.xml:Name:39
+#: maps/scenarios/sandbox_spartans.xml:39
 msgid "Sandbox - The Spartans"
 msgstr "Kum Havuzu - Spartalılar"
 
-#: maps/scenarios/savanna_ravine.xml:Description:38
+#: maps/scenarios/savanna_ravine.xml:38
+msgid "Savanna Ravine"
+msgstr "Savana Dağ geçidi"
+
+#: maps/scenarios/savanna_ravine.xml:38
 msgid ""
 "A wide-open Savanna map with a small ravine running down the center, which "
 "is easily forded."
 msgstr "Kolayca geçilebilen, merkeze doğru inen küçük bir dağ geçidi ile geniş ve açık bir Savana haritası."
 
-#: maps/scenarios/savanna_ravine.xml:Name:38
-msgid "Savanna Ravine"
-msgstr "Savana Dağ geçidi"
-
-#: maps/scenarios/serengeti.xml:Description:26
+#: maps/scenarios/serengeti.xml:26
 msgid ""
 "The African serengeti has herds of animals criss crossing the plain. Mineral"
 " wealth is bountiful and wood is in full supply."
 msgstr "Afrika serengeti hayvan sürülerinde çapraz değişim planı vardır. Mineral zengini ve bol odun kaynağı bulunmaktadır."
 
-#: maps/scenarios/serengeti.xml:Name:26
+#: maps/scenarios/serengeti.xml:26
 msgid "Serengeti 1"
 msgstr "Serengeti 1"
 
-#: maps/scenarios/serengeti.xml:PlayerData[1].Name:26
+#: maps/scenarios/serengeti.xml:26
 msgid "Iberia"
 msgstr "İberya"
 
-#: maps/scenarios/serengeti.xml:PlayerData[2].Name:26
+#: maps/scenarios/serengeti.xml:26
 msgid "Greece"
 msgstr "Yunanistan"
 
-#: maps/scenarios/serengeti.xml:PlayerData[3].Name:26
+#: maps/scenarios/serengeti.xml:26
 msgid "Persia"
 msgstr "Pers"
 
-#: maps/scenarios/ship_formations.xml:Description:26
+#: maps/scenarios/ship_formations.xml:26
 msgid "Ship formations mockup."
 msgstr "Gemi dizilişi modeli."
 
-#: maps/scenarios/ship_formations.xml:Name:26
+#: maps/scenarios/ship_formations.xml:26
 msgid "Ship Formations"
 msgstr "Gemi Dizilişi"
 
-#: maps/scenarios/ship_formations.xml:PlayerData[0].Name:26
+#: maps/scenarios/ship_formations.xml:26
 msgid "Ships"
 msgstr "Gemiler"
 
-#: maps/scenarios/shipattacks.xml:Description:26
+#: maps/scenarios/shipattacks.xml:26
 msgid "Move ships around. Attack other ships."
 msgstr "Gemileri etrafından götür. Diğer gemilere saldır."
 
-#: maps/scenarios/shipattacks.xml:Name:26
+#: maps/scenarios/shipattacks.xml:26
 msgid "Ships Demo"
 msgstr "Gemi Denemesi"
 
-#: maps/scenarios/siwa_oasis.xml:Description:26
+#: maps/scenarios/siwa_oasis.xml:26
 msgid ""
 "Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of"
 " mountainous spokes that divide the home territories of each player."
 msgstr "Kartacalılara karşı Makedonlar karşı Perslere karşı İberler! Büyük bir vaha dağ merkezi ile çevrilidir ve bölgeleri ikiye ayırır."
 
-#: maps/scenarios/siwa_oasis.xml:Name:26
+#: maps/scenarios/siwa_oasis.xml:26
 msgid "Siwa Oasis"
 msgstr "Siwa Vahası"
 
-#: maps/scenarios/temperate_map.xml:Name:26
+#: maps/scenarios/temperate_map.xml:26
 msgid "Base Temperate Map"
 msgstr "Ilıman Tabanlı Harita"
 
-#: maps/scenarios/territory_demo.xml:Description:26
+#: maps/scenarios/territory_demo.xml:26
 msgid "A demo map showing the territory effects of each type of structure."
 msgstr "Her tür yapının bölgesel etkilerini gösteren bir deneme haritası."
 
-#: maps/scenarios/territory_demo.xml:Name:26
+#: maps/scenarios/territory_demo.xml:26
 msgid "Territory Demo"
 msgstr "Bölge Denemesi"
 
-#: maps/scenarios/test_foundation.xml:Description:39
+#: maps/scenarios/test_foundation.xml:39
 msgid ""
 "This map is designed to help artists and modders find the adequate "
 "foundation for a specific building. This map is not meant to be playable."
 msgstr "Bu harita, sanatçıların ve modcuların belirli bir bina için yeterli temeli bulmasına yardımcı olmak için tasarlanmıştır. Bu haritanın oynanabilir olması amaçlanmadı."
 
-#: maps/scenarios/test_foundation.xml:Name:39
+#: maps/scenarios/test_foundation.xml:39
 msgid "Foundation Testing Map"
 msgstr "Temel Test Haritası"
 
-#: maps/scenarios/the_massacre_of_delphi.xml:Description:38
+#: maps/scenarios/the_massacre_of_delphi.xml:38
 msgid ""
 "The Celts invade Greece. Fight through the central valley or cut through the"
 " rich highlands in order to secure the lands around Delphi!"
 msgstr "Keltlerin Yunanistan'ı istilası. Delphi çevresindeki toprakları güvence altına almak için zengin yayla ile merkezi vadi boyunca savaşın veya bırakıp gidin!"
 
-#: maps/scenarios/the_massacre_of_delphi.xml:Name:38
+#: maps/scenarios/the_massacre_of_delphi.xml:38
 msgid "Massacre of Delphi"
 msgstr "Delphi Katliamı"
 
-#: maps/scenarios/the_persian_gates.xml:Description:26
+#: maps/scenarios/the_persian_gates.xml:26
 msgid ""
 "\"It has always been the Greek Dream to go East.\"\n"
 "\n"
@@ -2230,45 +2179,45 @@ msgid ""
 "Will Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?"
 msgstr "\"Doğuya gitmek her zaman Yunan Rüyası olmuştur.\"\n\n\"Böylesi kibirden kaçın. Doğu kanan adamların ve onların hayallerinin yoludur.\"\n\nİskender Pers Kapılarını zorlayacak ve alın yazısını yerine getirecek mi, yoksa Pontuslar engebeli Pers topraklarını yabancı bir işgalciye karşı savunacak mı?"
 
-#: maps/scenarios/the_persian_gates.xml:Name:26
+#: maps/scenarios/the_persian_gates.xml:26
 msgid "The Persian Gates"
 msgstr "Pers Geçitleri"
 
-#: maps/scenarios/the_persian_gates.xml:PlayerData[0].Name:26
+#: maps/scenarios/the_persian_gates.xml:26
 msgid "Alexandros Megas"
 msgstr "III. Aleksandros"
 
-#: maps/scenarios/the_persian_gates.xml:PlayerData[1].Name:26
+#: maps/scenarios/the_persian_gates.xml:26
 msgid "Krateros"
 msgstr "Kraterus"
 
-#: maps/scenarios/the_persian_gates.xml:PlayerData[2].Name:26
+#: maps/scenarios/the_persian_gates.xml:26
 msgid "Ariobarzanes"
 msgstr "Ariobarzanes"
 
-#: maps/scenarios/the_persian_gates.xml:PlayerData[3].Name:26
+#: maps/scenarios/the_persian_gates.xml:26
 msgid "Persians"
 msgstr "Pers"
 
-#: maps/scenarios/third_macedonian_war.xml:Description:26
+#: maps/scenarios/third_macedonian_war.xml:26
 msgid ""
 "The Romans encroach upon Macedonian lands for the third and final time. Can "
 "the once-proud Macedonians prevail against the Roman juggernaut?"
 msgstr "Romalılar üçüncü ve son kez Makedon topraklarına saldırdı. Bir zamanlar gururlu Makedonlar, Roma yıkımlarına karşı galip mi gelecek?"
 
-#: maps/scenarios/third_macedonian_war.xml:Name:26
+#: maps/scenarios/third_macedonian_war.xml:26
 msgid "Third Macedonian War"
 msgstr "Üçüncü Makedonya Savaşı"
 
-#: maps/scenarios/third_macedonian_war.xml:PlayerData[0].Name:26
+#: maps/scenarios/third_macedonian_war.xml:26
 msgid "Lucius Aemilius Paullus"
 msgstr "Lucius Aemilius Paullus"
 
-#: maps/scenarios/third_macedonian_war.xml:PlayerData[1].Name:26
+#: maps/scenarios/third_macedonian_war.xml:26
 msgid "Perseus of Macedon"
 msgstr "Makedon persusu"
 
-#: maps/scenarios/third_macedonian_war.xml:PlayerData[2].Name:26
+#: maps/scenarios/third_macedonian_war.xml:26
 msgid "Greek Allies"
 msgstr "Yunan Müttefikler"
 
@@ -2320,13 +2269,13 @@ msgid_plural ""
 msgstr[0] "%(lastPlayer)s Yenildi (hazine toplandı)."
 msgstr[1] "%(players)s ve %(lastPlayer)s Yenildi (hazine toplandı)."
 
-#: maps/scenarios/treasure_islands.xml:Description:38
+#: maps/scenarios/treasure_islands.xml:38
 msgid ""
 "Search treasures on small islands and on the water. Collect more treasures "
 "than your opponent to win."
 msgstr "Hazineleri küçük adalarda ve suda ara. Kazanmak için düşmanından daha fazla hazine topla."
 
-#: maps/scenarios/treasure_islands.xml:Name:38
+#: maps/scenarios/treasure_islands.xml:38
 msgid "Treasure Islands"
 msgstr "Hazine Adaları"
 
@@ -2350,43 +2299,43 @@ msgstr "Daha iyisi yok"
 msgid "Say rather not"
 msgstr "Daha iyisi yok de"
 
-#: maps/scenarios/triggers_demo.xml:Description:38
+#: maps/scenarios/triggers_demo.xml:38
 msgid ""
 "Demo map listening to various triggers and printing warning messages about "
 "them"
 msgstr "Onların çıkan çeşitli uyarı mesajlarını ve haraket ettiricilerini dinleyebileceğiniz bir deneme haritası."
 
-#: maps/scenarios/triggers_demo.xml:Name:38
+#: maps/scenarios/triggers_demo.xml:38
 msgid "Triggers Demo"
 msgstr "Tetikleyici Denemesi"
 
-#: maps/scenarios/tropical_island.xml:Description:38
+#: maps/scenarios/tropical_island.xml:38
 msgid "Multiplayer map. A tropical paradise."
 msgstr "Çok oyunculu harita. Tropik bir cennet."
 
-#: maps/scenarios/tropical_island.xml:Name:38
+#: maps/scenarios/tropical_island.xml:38
 msgid "Tropical Island"
 msgstr "Tropik Ada"
 
-#: maps/scenarios/unit_chasing_test.xml:Description:40
+#: maps/scenarios/unit_chasing_test.xml:40
 msgid ""
 "This map is designed to test a few different cases of units chasing each "
 "other."
 msgstr "Bu harita birbirini kovalayan birimlerin birkaç farklı senaryoyu test etmek amaçlı tasarlanmıştır."
 
-#: maps/scenarios/unit_chasing_test.xml:Name:40
+#: maps/scenarios/unit_chasing_test.xml:40
 msgid "Unit Chasing test"
 msgstr "Birim Kovalama Testi"
 
-#: maps/scenarios/unit_dancing_test.xml:Description:40
+#: maps/scenarios/unit_dancing_test.xml:40
 msgid "This map is designed to test a few different cases of 'Dancing'."
 msgstr "Bu harita, birkaç farklı 'Dans' durumunu test etmek için tasarlanmıştır."
 
-#: maps/scenarios/unit_dancing_test.xml:Name:40
+#: maps/scenarios/unit_dancing_test.xml:40
 msgid "Unit Dancing test"
 msgstr "Birim Dans testi"
 
-#: maps/scenarios/unit_motion_integration_test.xml:Description:39
+#: maps/scenarios/unit_motion_integration_test.xml:39
 msgid ""
 "This map is designed to test some basic unit movement cases. It will involve"
 " unitAI, unitMotion and the relevant pathfinders and thus acts as an "
@@ -2394,47 +2343,47 @@ msgid ""
 "and weird pathing."
 msgstr "Bu harita, bazı temel birim hareketi durumlarını test etmek için tasarlanmıştır. UnitAI, unitMotion ve ilgili yol göstericileri içerecek ve böylece entegre bir test haritası gibi davranacaktır. Sıkışmış birimler, yanlış animasyonlar ve garip yamalar gibi şeyleri arayın."
 
-#: maps/scenarios/unit_motion_integration_test.xml:Name:39
+#: maps/scenarios/unit_motion_integration_test.xml:39
 msgid "Unit Motion Integration Test"
 msgstr "Birim Hareketi Uyum Testi"
 
-#: maps/scenarios/unit_pushing_test.xml:Description:40
+#: maps/scenarios/unit_pushing_test.xml:40
 msgid ""
 "This map is designed to test the performance & functionality of unit "
 "pushing."
 msgstr "Bu harita birim itme işlevselliğini ve performansını test etmek amaçlı tasarlanmıştır."
 
-#: maps/scenarios/unit_pushing_test.xml:Name:40
+#: maps/scenarios/unit_pushing_test.xml:40
 msgid "Unit Pushing test"
 msgstr "Birim İtme Testi"
 
-#: maps/scenarios/units_demo.xml:Description:27
-msgid "Every unit in the game."
-msgstr "Oyundaki tüm birlikler."
-
-#: maps/scenarios/units_demo.xml:Name:27
+#: maps/scenarios/units_demo.xml:27
 msgid "Units Demo"
 msgstr "Birim Denemeleri"
 
-#: maps/scenarios/walls.xml:Description:26
+#: maps/scenarios/units_demo.xml:27
+msgid "Every unit in the game."
+msgstr "Oyundaki tüm birlikler."
+
+#: maps/scenarios/walls.xml:26
 msgid "Walls."
 msgstr "Duvarlar."
 
-#: maps/scenarios/walls.xml:Name:26
+#: maps/scenarios/walls.xml:26
 msgid "Walls"
 msgstr "Duvarlar"
 
-#: maps/scenarios/walltest.xml:Name:26
+#: maps/scenarios/walltest.xml:26
 msgid "WallTest"
 msgstr "DuvarTesti"
 
-#: maps/scenarios/we_are_legion.xml:Description:26
-msgid "A quick battle demo map using Roman legionaries."
-msgstr "Romalı lejyonerleri tanıtan hızlı bir savaş haritası."
-
-#: maps/scenarios/we_are_legion.xml:Name:26
+#: maps/scenarios/we_are_legion.xml:26
 msgid "We Are Legion"
 msgstr "Biz lejyonuz"
+
+#: maps/scenarios/we_are_legion.xml:26
+msgid "A quick battle demo map using Roman legionaries."
+msgstr "Romalı lejyonerleri tanıtan hızlı bir savaş haritası."
 
 #: maps/scripts/CaptureTheRelic.js:144
 #, javascript-format
@@ -2557,71 +2506,71 @@ msgid_plural ""
 msgstr[0] "%(lastPlayer)s yenildi (Dünya Harikası zaferi)."
 msgstr[1] "%(players)s ve%(lastPlayer)syenildiler (Dünya Harikası zaferi)"
 
-#: maps/skirmishes/acropolis_bay_2p.xml:Description:39
+#: maps/skirmishes/acropolis_bay_2p.xml:39
 msgid ""
 "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
 "\n"
 "To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below."
 msgstr "Her oyuncu büyük bir plato üzerinde başlar, aksitakdirde bilinen bir akropoliste.\n\nDoğuda balıkçılık olanakları ile büyük bir koy bulunmaktadır. Batıdaki yokuşlu merkez ile sahipsiz aşşağı vadideki akropolise hakimdir."
 
-#: maps/skirmishes/acropolis_bay_2p.xml:Name:39
+#: maps/skirmishes/acropolis_bay_2p.xml:39
 msgid "Acropolis Bay (2)"
 msgstr "Akropolis Bay (2)"
 
-#: maps/skirmishes/alpine_mountains_3p.xml:Description:39
+#: maps/skirmishes/alpine_mountains_3p.xml:39
 msgid ""
 "A map filled with impassable mountains and a great number of natural "
 "resources."
 msgstr "Harita geçilmez dağlarla ve bir hayli sayıda doğal kaynaklarla dolu."
 
-#: maps/skirmishes/alpine_mountains_3p.xml:Name:39
+#: maps/skirmishes/alpine_mountains_3p.xml:39
 msgid "Alpine Mountains (3)"
 msgstr "Alp Dağları (3)"
 
-#: maps/skirmishes/alpine_valleys_2p.xml:Description:39
+#: maps/skirmishes/alpine_valleys_2p.xml:39
 msgid ""
 "The high peaks and valleys of the Alps.\n"
 "\n"
 "Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
 msgstr "Yüksek zirveleri ve Alpler vadileri.\n\nHer oyuncu karşılaşmaya eğimli ve güvenli bir vadi içinde başlar. İkisinin arasında hain Alp dağ sıraları yatmaktadır."
 
-#: maps/skirmishes/alpine_valleys_2p.xml:Name:39
+#: maps/skirmishes/alpine_valleys_2p.xml:39
 msgid "Alpine Valleys (2)"
 msgstr "Alp Vadileri (2)"
 
-#: maps/skirmishes/arabian_oases_2p.xml:Description:39
+#: maps/skirmishes/arabian_oases_2p.xml:39
 msgid ""
 "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
 "\n"
 "This represents the Arabian Desert, South of Mesopotamia."
 msgstr "Eski bir favori. İlk bakışta geniş, açık ve düz bir çöl haritası, merkezinden iki taze ve yeşil vaha tarafından kesilir. Bu, Mezopotamya'nın güneyindeki Arabistan Çölü'nü temsil eder."
 
-#: maps/skirmishes/arabian_oases_2p.xml:Name:39
+#: maps/skirmishes/arabian_oases_2p.xml:39
 msgid "Arabian Oases (2 players)"
 msgstr "Arap Vahaları (2 oyuncu)"
 
-#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/arabian_oases_2p.xml:39
+#: maps/skirmishes/libyan_oasis_2p.xml:39
 msgid "Northeast Player"
 msgstr "Kuzeydoğu Oyuncu"
 
-#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/arabian_oases_2p.xml:39
+#: maps/skirmishes/libyan_oasis_2p.xml:39
 msgid "Southwest Player"
 msgstr "Güneybatı Oyuncu"
 
-#: maps/skirmishes/atlas_valleys_8p.xml:Description:39
+#: maps/skirmishes/atlas_valleys_8p.xml:39
 msgid ""
 "Skirmish high in the Atlas mountains, where snowcapped mountains loom over "
 "desert oases. A wild landscape awaits; every player will experience "
 "different advantages and challenges based on their location."
 msgstr "Zirveleri karlı kaplı dağların çöl vahalarını izlediği yüksek Atlas dağlarında çatış. Vahşi bir manzara sizi bekliyor; her oyuncu bulundukları yere göre farklı avantajlar ve zorluklar yaşayacaktır."
 
-#: maps/skirmishes/atlas_valleys_8p.xml:Name:39
+#: maps/skirmishes/atlas_valleys_8p.xml:39
 msgid "Atlas Valleys (8)"
 msgstr "Atlas Vadileri (8)"
 
-#: maps/skirmishes/bactria_2p.xml:Description:39
+#: maps/skirmishes/bactria_2p.xml:39
 msgid ""
 "In the Eastern land of Bactria lies the rich valley carved by the Oxus River.\n"
 "\n"
@@ -2630,11 +2579,15 @@ msgid ""
 "Within the mountains can be found riches as well as danger. The player who can exploit the mountainous area the best will have a significant advantage over their adversary."
 msgstr "Doğu Bactria topraklarında, Oxus Nehri tarafından oyulmuş zengin vadi bulunur.\n\nNehrin güneyinde zengin ekilebilir araziler, bol odun ve yem bulunmaktadır. Nehrin kuzeyinde, geniş dağ geçitleriyle delinmiş ve doğal savunma pozisyonlarıyla korunan bir dağ silsilesi bulunmaktadır.\n\nDağların içinde tehlike kadar zenginlik de bulunabilir. Dağlık bölgeyi en iyi şekilde kullanabilen oyuncu, rakiplerine karşı önemli bir avantaja sahip olur."
 
-#: maps/skirmishes/bactria_2p.xml:Name:39
+#: maps/skirmishes/bactria_2p.xml:39
 msgid "Bactriana (2)"
 msgstr "Baktriya (2)"
 
-#: maps/skirmishes/barcania_3p.xml:Description:26
+#: maps/skirmishes/barcania_3p.xml:26
+msgid "Barcania (3)"
+msgstr "Barkanya (3)"
+
+#: maps/skirmishes/barcania_3p.xml:26
 msgid ""
 "A wild and wooded isle, full of forests, gold, and mystery. Mountains, seas,"
 " and thick forests make for a very dynamic and fast-paced 3-player map with "
@@ -2642,108 +2595,104 @@ msgid ""
 "defensive fighting or aggressive maneuvers."
 msgstr "Ormanlarla, altınla ve gizemle dolu vahşi ve odunlu bir ada. Dağlar, denizler ve sık ormanlar çok dinamik, hızlı gelişen muharebeler, gerilla savaşları ya da savunma savaşları ve saldırgan hamleler için bir çok olanak barındıran 3 oyuncu haritası."
 
-#: maps/skirmishes/barcania_3p.xml:Name:26
-msgid "Barcania (3)"
-msgstr "Barkanya (3)"
-
-#: maps/skirmishes/belgian_bog_2p.xml:Description:39
+#: maps/skirmishes/belgian_bog_2p.xml:39
 msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
 "Wood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
 msgstr "İki oyuncu Ren ovalarda bataklık genelinde büyük bir yerde karşı karşıya gelir.\n\nOdun bol, ama Metal ve Taş bulmak ve çıkarmak zordur. Avcılık ve toplayıcı bol miktarda yapılabilir."
 
-#: maps/skirmishes/belgian_bog_2p.xml:Name:39
+#: maps/skirmishes/belgian_bog_2p.xml:39
 msgid "Belgian Bog (2)"
 msgstr "Belçika Turbalıkları (2)"
 
-#: maps/skirmishes/butana_steppe_2p.xml:Description:39
+#: maps/skirmishes/butana_steppe_2p.xml:39
 msgid ""
 "South of the Sahara, East of the Nile, lies a semi-arid region today known "
 "as the Butana Steppe."
 msgstr "Sahra'nın Güneyi, Nil'in Doğusu, günümüzde Butana Bozkırı olarak bilinen bir yarı-kuru bölgede bulunmaktadır."
 
-#: maps/skirmishes/butana_steppe_2p.xml:Name:39
+#: maps/skirmishes/butana_steppe_2p.xml:39
 msgid "Island of Meroë (2)"
 msgstr "Meroe Adası"
 
-#: maps/skirmishes/caspian_sea_2pv2p.xml:Description:39
+#: maps/skirmishes/caspian_sea_2pv2p.xml:39
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
 msgstr "İki takım uzun, geniş bir tuzlusu gölünde karşılaşır.\n\nOrta gölde balıkçılık yapılabilir. Ayrıca gelişmiş Taş ve Metal yatakları bulunmaktadır."
 
-#: maps/skirmishes/caspian_sea_2pv2p.xml:Name:39
+#: maps/skirmishes/caspian_sea_2pv2p.xml:39
 msgid "Caspian Sea (2v2)"
 msgstr "Hazar Denizi (2 ye 2)"
 
-#: maps/skirmishes/cisalpine_winter_2p.xml:Description:39
+#: maps/skirmishes/cisalpine_winter_2p.xml:39
 msgid ""
 "Northern Italy near the Alps is called Cisalpine Gaul by the Romans. It's a fertile area contested by the Gauls, Etruscans, and Romans alike. \n"
 "\n"
 "CAUTION: Map has a lot of snow particles that could affect graphics performance on low-end hardware."
 msgstr "Alpler yakınlarındaki Kuzey İtalya'ya Romalılar tarafından Cisalpine Gaul denir. Bu verimli bölge Galyalılar, Etrüskler ve Romalılar tarafından çokça istenmiştir.\n\nDİKKAT: Harita, düşük seviyeli cihazlarda grafik performansını etkileyebilecek, çok sayıda kar taneciği vardır."
 
-#: maps/skirmishes/cisalpine_winter_2p.xml:Name:39
+#: maps/skirmishes/cisalpine_winter_2p.xml:39
 msgid "Cisalpine Winter (2)"
 msgstr "Cisalpin Kış (2)"
 
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:39
+#: maps/skirmishes/corinthian_isthmus_2p.xml:39
 msgid "Corinthian Isthmus (2)"
 msgstr "Korint Kıstağı (2)"
 
-#: maps/skirmishes/corinthian_isthmus_4p.xml:Name:39
+#: maps/skirmishes/corinthian_isthmus_4p.xml:39
 msgid "Corinthian Isthmus (4)"
 msgstr "Korint Kıstağı (4)"
 
-#: maps/skirmishes/corsica_and_sardinia_4p.xml:Description:38
+#: maps/skirmishes/corsica_and_sardinia_4p.xml:38
 msgid ""
 "The players start on two opposing islands, both with a very jagged relief that will make landing difficult.\n"
 "\n"
 "Originally occupied by the Torreans, then marginally settled by Etruscans, Phocaeans and Syracusans. Rome conquered these two islands from Carthage during the First Punic War and in 238 BC created the \"Corsica et Sardinia\" province. The Corsicans regularly revolted and over the course of a century, the island lost two thirds of its Corsican population."
 msgstr "Oyuncular karşıt iki adada başlayacak, çok engebeli zor bir adaya iniş olacak.\n\nBaşlangıçta Torensler tarafından işgal edildi, sonra marjinal Etrüskler,Phokaialar ve Siraküzalılar tarafından kuruldu. Roma Birinci Pön Savaşı sırasında Kartacadan bu iki adayı fethetti ve 238 M.Ö. \"Korsika Sardunya\" eyaleti olarak adlandırdı.Korsikalılar her sene ayaklandı ve bir yüzyıl boyunca, ada Korsikalı nüfusunun üçte ikisini kaybetti."
 
-#: maps/skirmishes/corsica_and_sardinia_4p.xml:Name:38
+#: maps/skirmishes/corsica_and_sardinia_4p.xml:38
 msgid "Corsica and Sardinia (4)"
 msgstr "Korsika ve Sardunya (4)"
 
-#: maps/skirmishes/crocodilopolis_4p.xml:Description:39
+#: maps/skirmishes/crocodilopolis_4p.xml:39
 msgid ""
 "The ancient lake of Moeris near the Nile River in the Libyan Desert has been settled and used by the Egyptians since prehistoric times. \n"
 "\n"
 "The surrounding lands are dotted with ancient and new monuments and temples, while the lake itself is stocked full of Tilapia, ready for fishing.  "
 msgstr "Libya çölünde Nil Nehri yakınında bulunan antik Moeris gölü, tarih öncesi çağlardan beri Mısırlılar tarafından yerleşim yeri olarak kullanılmış.\n\nÇevredeki araziler eski-yeni anıtlar ve tapınaklarla doluyken, gölün kendisi balık tutmaya hazır Tilapia ile dolup taşar."
 
-#: maps/skirmishes/crocodilopolis_4p.xml:Name:39
+#: maps/skirmishes/crocodilopolis_4p.xml:39
 msgid "Crocodilopolis (4)"
 msgstr "Timsah Şehri (4)"
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:39
-#: maps/skirmishes/cycladic_archipelago_3p.xml:Description:39
-msgid "A \"small island\"-style map set in the Aegean Sea."
-msgstr "Ege denizinde \"küçük ada\" harita stilindedir."
-
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:39
 msgid "Cycladic Archipelago (2 players)"
 msgstr ""
 
-#: maps/skirmishes/cycladic_archipelago_3p.xml:Name:39
+#: maps/skirmishes/cycladic_archipelago_2p.xml:39
+#: maps/skirmishes/cycladic_archipelago_3p.xml:39
+msgid "A \"small island\"-style map set in the Aegean Sea."
+msgstr "Ege denizinde \"küçük ada\" harita stilindedir."
+
+#: maps/skirmishes/cycladic_archipelago_3p.xml:39
 msgid "Cycladic Archipelago (3 players)"
 msgstr ""
 
-#: maps/skirmishes/death_canyon_2p.xml:Description:38
+#: maps/skirmishes/death_canyon_2p.xml:38
 msgid ""
 "A deep rocky canyon slicing through the desert.\n"
 "\n"
 "Each player starts their colony on a plateau on either side of the ravine."
 msgstr "Çölde yarılmış derin kayalık kanyonlar.\n\nHer oyuncu uçurumun iki tarafında bir plato üzerinde kendi kolonisinde başlar."
 
-#: maps/skirmishes/death_canyon_2p.xml:Name:38
+#: maps/skirmishes/death_canyon_2p.xml:38
 msgid "Death Canyon (2)"
 msgstr "Ölüm Kanyonu (2)"
 
-#: maps/skirmishes/deccan_plateau_2p.xml:Description:39
+#: maps/skirmishes/deccan_plateau_2p.xml:39
 msgid ""
 "Two players square off across the heavily forested Deccan Plateau of central India.\n"
 "\n"
@@ -2752,22 +2701,26 @@ msgid ""
 "Virgin resources lie to the lowlands on either side of the plateau. The lowlands also offer opportunity for expansion and strategic maneuvering."
 msgstr "İki oyuncu, merkezi Hindistan'ın yoğun ormanlık Deccan düzlüğünde arasında kapışır.\n\nHer oyuncu ücretsiz bir çiftlik ve ücretsiz depo ile mücadeleye başlar.\n\nVirgin kaynakları platonun iki tarafında bulunmaktadır. Ovalar ayrıca genişleme ve stratejik manevra için fırsat sunar."
 
-#: maps/skirmishes/deccan_plateau_2p.xml:Name:39
+#: maps/skirmishes/deccan_plateau_2p.xml:39
 msgid "Deccan Plateau (2)"
 msgstr "Deccan Düzlüğü (2)"
 
-#: maps/skirmishes/dueling_cliffs_3pv3p.xml:Description:39
+#: maps/skirmishes/dueling_cliffs_3pv3p.xml:39
 msgid ""
 "A foggy alpine landscape becomes a battleground as each team has an ally "
 "squashed precariously between two enemies. Two forest cliffs overlook the "
 "center lake, accessible from the sides of the map."
 msgstr "Her takımın iki düşman arasında tehlikeli bir şekilde ezilmiş bir müttefik olduğu sisli bir dağ manzarası bir savaş alanı haline gelir. İki orman kayalıkları, merkezdeki göle bakar ve haritanın kenarlarından erişilebilir."
 
-#: maps/skirmishes/dueling_cliffs_3pv3p.xml:Name:39
+#: maps/skirmishes/dueling_cliffs_3pv3p.xml:39
 msgid "Dueling Cliffs (3v3)"
 msgstr "Duello dağları (3v3)"
 
-#: maps/skirmishes/egypt_3pv3p.xml:Description:39
+#: maps/skirmishes/egypt_3pv3p.xml:39
+msgid "Egypt (3v3)"
+msgstr "Mısır (3'e 3)"
+
+#: maps/skirmishes/egypt_3pv3p.xml:39
 msgid ""
 "Fight for the remains of ancient Egypt!\n"
 "\n"
@@ -2784,49 +2737,45 @@ msgid ""
 "- Western desert: Oasis Charga and Siwa, Qattara Depression\n"
 msgstr "Antik Mısır'ın kalıntıları için savaşın!\n\nOyuncular, her birinin farklı avantajları ve dezavantajları olan, tamamen gelişmiş şehirler ve küçük ordularla başlar. Dikkatli olun, 7 güçlü kale ve yağmacı haydutlar var!\n\nBu, 0 A.D. den geçen yüzyıldan önceki Mısır, dahili olarak Helenistik (Seleukoslar tarafından temsil edilen İskenderiye) ve geleneksel etkiler (Ptolemaioslar tarafından temsil edilen Memfis) arasında bölünmüştür. Nil Nehri'nin güney iklimindeki Thebes, şimdiden Kush'un eline geçti. Akdeniz'deki Cyrene kentinin bulunduğu kuzeybatı Al-Dschabal al-Achdar'da Romalılar istilaya hazırlanıyor. Düşmanlar (Persler tarafından temsil edilen) doğudaki Tih çölünden ve Sina Dağı'ndan Siwa vahasına doğru ilerliyor. Güney batı çölündeki Charga (Kartaca tarafından temsil ediliyor) da pastadan pay almaya çalışıyor. \nKonumlar:\n- İskenderiye: kütüphane, liman \n- Memphis: Nekropol, piramitler, Apis tapınağı \n- Thebes: tapınak bölgesi, Krallar Vadisi \n- Cyrene: Akdeniz Macchie'si, zeytinlikler \n- Fayyum: timsah tapınağı, Nil Barajı \n- Doğu çölü: Sina Dağı, derin Wadi, Kızıldeniz resifleri \n- Batı çölü: Oasis Charga ve Siwa, Qattara Çöküntüsü\n"
 
-#: maps/skirmishes/egypt_3pv3p.xml:Name:39
-msgid "Egypt (3v3)"
-msgstr "Mısır (3'e 3)"
-
-#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[0].Name:39
+#: maps/skirmishes/egypt_3pv3p.xml:39
 msgid "Alexandria"
 msgstr "İskenderiye"
 
-#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/egypt_3pv3p.xml:39
 msgid "Siwa"
 msgstr "Siva"
 
-#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[3].Name:39
+#: maps/skirmishes/egypt_3pv3p.xml:39
 msgid "Sinai"
 msgstr "Sina"
 
-#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[4].Name:39
+#: maps/skirmishes/egypt_3pv3p.xml:39
 msgid "Memphis"
 msgstr "Memfis"
 
-#: maps/skirmishes/egypt_3pv3p.xml:PlayerData[5].Name:39
+#: maps/skirmishes/egypt_3pv3p.xml:39
 msgid "Cyrene"
 msgstr "Kirene"
 
-#: maps/skirmishes/farmland_2p.xml:Description:39
+#: maps/skirmishes/farmland_2p.xml:39
 msgid "Farmland in Eastern Europe."
 msgstr "Doğu Avrupada Tarım Arazisi."
 
-#: maps/skirmishes/farmland_2p.xml:Name:39
+#: maps/skirmishes/farmland_2p.xml:39
 msgid "Farmland (2)"
 msgstr "Tarım Arazisi (2)"
 
-#: maps/skirmishes/forest_battle_4p.xml:Description:39
+#: maps/skirmishes/forest_battle_4p.xml:39
 msgid ""
 "A forest battle map where all players fight for supremacy and control over "
 "the middle."
 msgstr "Tüm oyuncuların orta yerinden üstünlüğü ve kontrolü için mücadele ettiği bir orman savaşı haritasi."
 
-#: maps/skirmishes/forest_battle_4p.xml:Name:39
+#: maps/skirmishes/forest_battle_4p.xml:39
 msgid "Forest Battle (4)"
 msgstr "Orman Savaşı (4)"
 
-#: maps/skirmishes/gallic_fields_3p.xml:Description:39
+#: maps/skirmishes/gallic_fields_3p.xml:39
 msgid ""
 "Defend your Gallic outpost against attacks from your treacherous neighbors!\n"
 "\n"
@@ -2835,100 +2784,100 @@ msgid ""
 "Watch out for Romans passing by!"
 msgstr "Senin hain komşularından gelen saldırılara karşı Galya karakolunu savun!\n\nHer oyuncu düşük bir setin üstünde ahşap bir çit ve bazı nöbetçi kuleleri ile mücadeleye başlar.\n\nGeçen Romalılara dikkatle bakın!"
 
-#: maps/skirmishes/gallic_fields_3p.xml:Name:39
+#: maps/skirmishes/gallic_fields_3p.xml:39
 msgid "Gallic Fields (3)"
 msgstr "Galya Yerleri (3)"
 
-#: maps/skirmishes/gallic_highlands_2p.xml:Description:39
+#: maps/skirmishes/gallic_highlands_2p.xml:39
 msgid "The Highlands of central Gaul."
 msgstr "Orta Galya'nın Yaylaları."
 
-#: maps/skirmishes/gallic_highlands_2p.xml:Name:39
+#: maps/skirmishes/gallic_highlands_2p.xml:39
 msgid "Gallic Highlands (2)"
 msgstr "Galya Yaylaları (2)"
 
-#: maps/skirmishes/gambia_river_3p.xml:Description:39
+#: maps/skirmishes/gambia_river_3p.xml:39
 msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
 "\n"
 "(Warning: Large map. Good computer specs recommended)"
 msgstr "Tüm oyuncular en az bir toplama metal ile, nehrin bir kıyısında başlar. Gambiya Nehri üzerinde istenen birçok metal bulunan bir savana mevcuttur.\n\n(Uyarı: Büyük harita. İyi bilgisayar özellikleri önerilir)"
 
-#: maps/skirmishes/gambia_river_3p.xml:Name:39
+#: maps/skirmishes/gambia_river_3p.xml:39
 msgid "Gambia River (3)"
 msgstr "Gambiya Nehri (3)"
 
-#: maps/skirmishes/golden_island_2p.xml:Description:39
+#: maps/skirmishes/golden_island_2p.xml:39
 msgid ""
 "A ring of land borders a resource-rich island in the Mediterranean. Players "
 "can access the center via a narrow strip of shallow water or via boat."
 msgstr "Bir kara halkası, Akdeniz'deki kaynak bakımından zengin bir adayı sınırlar. Oyuncular merkeze dar bir sığ su şeridi veya tekne ile erişebilirler."
 
-#: maps/skirmishes/golden_island_2p.xml:Name:39
+#: maps/skirmishes/golden_island_2p.xml:39
 msgid "Golden Island (2)"
 msgstr "Altın Adası (2)"
 
-#: maps/skirmishes/golden_oasis_2p.xml:Description:38
+#: maps/skirmishes/golden_oasis_2p.xml:38
 msgid ""
 "Players start around a small oasis in the center of the map which holds much of the available wood on the map.\n"
 "\n"
 "Elsewhere, in the hinterlands, lies great riches, in the form of large deposits of gold and other metals."
 msgstr "Oyuncular harita üzerinde mevcut odun çok tutan haritanın ortasında küçük bir vaha etrafında başlar.\n\nBaşka bir yerde, iç bölgelerinde, altın ve diğer metallerin büyük mevduat şeklinde, büyük zenginlikleri yatmaktadır."
 
-#: maps/skirmishes/golden_oasis_2p.xml:Name:38
+#: maps/skirmishes/golden_oasis_2p.xml:38
 msgid "Gold Oasis (2)"
 msgstr "Altın Vahası (2)"
 
-#: maps/skirmishes/greek_acropolis_2p.xml:Description:38
-#: maps/skirmishes/greek_acropolis_night_2p.xml:Description:38
+#: maps/skirmishes/greek_acropolis_2p.xml:38
+msgid "Greek Acropolis (2)"
+msgstr "Yunan Akropolis (2)"
+
+#: maps/skirmishes/greek_acropolis_2p.xml:38
+#: maps/skirmishes/greek_acropolis_night_2p.xml:38
 msgid ""
 "Two factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
 msgstr "İki grup kendilerini büyük kayalık platoların tepesinde güvenli bir şekilde tünemiş bulmaktadır.\n\nÖzgür hazineler bulmak ve yeni kaynakları güvence altına almak için arazileri araştırın."
 
-#: maps/skirmishes/greek_acropolis_2p.xml:Name:38
-msgid "Greek Acropolis (2)"
-msgstr "Yunan Akropolis (2)"
-
-#: maps/skirmishes/greek_acropolis_4p.xml:Description:39
+#: maps/skirmishes/greek_acropolis_4p.xml:39
 msgid ""
 "Three factions find themselves perched safely atop large rocky plateaus, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
 msgstr "Üç grup kendilerini büyük kayalık platoların üzerine güvenli bir şekilde tünemiş bulurken, dördüncüsü düşmanlarından bir nehir dalı ile ayrılıyor.\n\nÜcretsiz hazineler bulmak ve yeni kaynakları güvence altına almak için arazileri araştırın."
 
-#: maps/skirmishes/greek_acropolis_4p.xml:Name:39
+#: maps/skirmishes/greek_acropolis_4p.xml:39
 msgid "Greek Acropolis (4)"
 msgstr "Yunan Akropolis (4)"
 
-#: maps/skirmishes/greek_acropolis_night_2p.xml:Name:38
+#: maps/skirmishes/greek_acropolis_night_2p.xml:38
 msgid "Greek Acropolis Night (2)"
 msgstr "Yunan Akropolis Gece (2)"
 
-#: maps/skirmishes/hindu_kush_2p.xml:Description:39
+#: maps/skirmishes/hindu_kush_2p.xml:39
 msgid ""
 "The Hindu Kush mountains separate India from Bactria (modern day Afghanistan) and form a frontier between the Seleucid and Mauryan realms. This area was later under the control of the Greco-Bactrian and Indo-Greek kingdoms of the later Hellenistic period. \n"
 "\n"
 "The area is low on wood resources, but high on stone and metal. A trade route runs through the center of the map with Trade Depots that can be captured and used to gather resources via trade. "
 msgstr "Hindukuş dağları, Hindistan'ı Baktriya'dan (günümüz Afganistan'ı) ayırır ve Selevkos ve Mauryan krallıkları arasında bir sınır oluşturur. Bu bölge daha sonra Helenistik dönemin Greko-Bactrian ve Hint-Yunan krallıklarının kontrolü altındaydı.\n\nBölge odun kaynakları bakımından düşük, ancak taş ve metal bakımından yüksek. Haritanın ortasındang geçen, ele geçirilebilen ve ticaret yoluyla kaynak toplamak için kullanılan ticaret depolarına sahip bir ticaret rotası bulunmakta."
 
-#: maps/skirmishes/hindu_kush_2p.xml:Name:39
+#: maps/skirmishes/hindu_kush_2p.xml:39
 msgid "Hindu Kush (2)"
 msgstr "Hindukuş (2)"
 
-#: maps/skirmishes/hydaspes_river_4p.xml:Description:39
+#: maps/skirmishes/hydaspes_river_4p.xml:39
 msgid ""
 "The Hydaspes, aka Jhelum, River in the Punjab of India. Here was the site of"
 " the great battle between the Macedonian forces under Alexander the Great "
 "and the Indian forces of the king Porus of Paurava."
 msgstr "Hydaspes, diğer adıyla Jhelum, Hindistan'ın Pencap bölgesindeki Nehir. Burası Büyük İskender komutasındaki Makedon kuvvetleri ile Paurava kralı Porus'un Hint kuvvetleri arasındaki büyük savaşın yapıldığı yerdi."
 
-#: maps/skirmishes/hydaspes_river_4p.xml:Name:39
+#: maps/skirmishes/hydaspes_river_4p.xml:39
 msgid "Hydaspes River (4)"
 msgstr "Hydaspes Nehri (4)"
 
-#: maps/skirmishes/isthmus_of_corinth_2p.xml:Description:39
+#: maps/skirmishes/isthmus_of_corinth_2p.xml:39
 msgid ""
 "isth·mus\n"
 "/ˈis(TH)məs/\n"
@@ -2940,33 +2889,33 @@ msgid ""
 "Watch out for pirate ships and brigands, though, as war-torn Greece is not without its share of dangers. And the enemy, marshalling their forces across the isthmus on the opposing landmass, will be looking for opportunities to invade your lands and take the strategic Corinthian Isthmus for themselves!"
 msgstr "isth·mus\n/ˈis(TH)məs/\nisim\niki büyük kara alanı arasında bağlantı oluşturan, her iki tarafında deniz bulunan dar bir kara şeridi.\n\nBu Yunanistan'daki Korint'teki Itmus. Arazi, ham kaynaklar ve hazine açısından zengindir ve kıstağın her iki tarafındaki denizler balıkla doludur. Paralı Asker Kamplarının yanı sıra büyük Metal Madeni yatakları da bulunabilir.\n\nAncak korsan gemilerine ve haydutlara karşı dikkatli olun, çünkü savaştan zarar gören Yunanistan da tehlikelerden nasibini alıyor. Ve kuvvetlerini karşı karadaki kıstak boyunca yönlendiren düşman, topraklarınızı istila etmek ve stratejik Korint Kıstağı'nı kendisi için ele geçirmek için fırsatlar arayacak!"
 
-#: maps/skirmishes/isthmus_of_corinth_2p.xml:Name:39
+#: maps/skirmishes/isthmus_of_corinth_2p.xml:39
 msgid "Isthmus of Corinth (2)"
 msgstr "Korint Kıstağı (2)"
 
-#: maps/skirmishes/libyan_oases_4p.xml:Description:38
+#: maps/skirmishes/libyan_oases_4p.xml:38
 msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
 "\n"
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt."
 msgstr "Bu açık, düz çöl haritası üzerinde iki yemyeşil vaha bulunmaktadır.\n\nBu Libya Çölü, Mısır'da Nil Nehri Sahra Çölü parçasında, Mısırın Batı kısmını temsil eder."
 
-#: maps/skirmishes/libyan_oases_4p.xml:Name:38
+#: maps/skirmishes/libyan_oases_4p.xml:38
 msgid "Libyan Oases (4)"
 msgstr "Libya Vahası (4)"
 
-#: maps/skirmishes/libyan_oasis_2p.xml:Description:39
+#: maps/skirmishes/libyan_oasis_2p.xml:39
 msgid ""
 "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.\n"
 "\n"
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt."
 msgstr "Eski bir favori. Genellikle geniş, açık ve düz bir çöl haritası, merkezinden yemyeşil bir vaha ile kesintiye uğrar. Bu, Mısır'ın Nil Nehri'nin batısında yer alan Sahra Çölü'nün bir parçası olan Libya Çölü'nü temsil eder. Libya Çölü, görkemli bir vaha ile ortasından delinerek haritanın canlı bir noktasını oluşturur."
 
-#: maps/skirmishes/libyan_oasis_2p.xml:Name:39
+#: maps/skirmishes/libyan_oasis_2p.xml:39
 msgid "Libyan Oasis (2 players)"
 msgstr "Libya Vahası (2 oyuncu)"
 
-#: maps/skirmishes/lorraine_plain_2p.xml:Description:39
+#: maps/skirmishes/lorraine_plain_2p.xml:39
 msgid ""
 "The map is cut through the center by a river traversing east-west with some shallows.\n"
 "\n"
@@ -2975,59 +2924,63 @@ msgid ""
 "Civ Territories are divided by main river and tributaries (with necessary shallows for crossings)."
 msgstr "Harita, doğu-batı yönünde geçen bir nehir tarafından kesilir.\n\nOldukça ağaçlık açık ve temelde düz. Bina Bol. Dengeli kaynaklar.\n\nUygarlığı Toprakları ana nehir ve kolları tarafından ikiye ayrılır (geçişler için sığ yerler gerekli)."
 
-#: maps/skirmishes/lorraine_plain_2p.xml:Name:39
+#: maps/skirmishes/lorraine_plain_2p.xml:39
 msgid "Lorraine Plain (2)"
 msgstr "Lorraine Ovası (2)"
 
-#: maps/skirmishes/magadha_2p.xml:Description:39
+#: maps/skirmishes/magadha_2p.xml:39
 msgid ""
 "Two of India's greatest empires, the Maurya Empire and Gupta Empire, originated in Magadha, a region in Northern India near the sacred River Ganges.\n"
 "\n"
 "This map was designed as a 1v1 map suitable for rated and tournament play."
 msgstr "Hindistan'ın en büyük imparatorluklarından ikisi, Maurya İmparatorluğu ve Gupta İmparatorluğu, Kuzey Hindistan'da kutsal Ganj Nehri yakınında bir bölge olan Magadha'da doğdu.\n\nBu harita, dereceli ve turnuva oyunlarına uygun 1v1 bir harita olarak tasarlanmıştır."
 
-#: maps/skirmishes/magadha_2p.xml:Name:39
+#: maps/skirmishes/magadha_2p.xml:39
 msgid "Magadha (2)"
 msgstr "Magadha (2)"
 
-#: maps/skirmishes/median_oasis_2p.xml:Description:39
-#: maps/skirmishes/median_oasis_4p.xml:Description:38
+#: maps/skirmishes/median_oasis_2p.xml:39
+msgid "Median Oasis (2)"
+msgstr "Medyan Vahası (2)"
+
+#: maps/skirmishes/median_oasis_2p.xml:39
+#: maps/skirmishes/median_oasis_4p.xml:38
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
 msgstr "Büyük bir vaha her oyuncunun kendi topraklarını böler, vaha merkez olarak görülür."
 
-#: maps/skirmishes/median_oasis_2p.xml:Name:39
-msgid "Median Oasis (2)"
-msgstr "Medyan Vahası (2)"
-
-#: maps/skirmishes/median_oasis_4p.xml:Name:38
+#: maps/skirmishes/median_oasis_4p.xml:38
 msgid "Median Oasis (4)"
 msgstr "Medyan Vahası (4)"
 
-#: maps/skirmishes/mediterranean_cove_2p.xml:Description:38
+#: maps/skirmishes/mediterranean_cove_2p.xml:38
 msgid ""
 "A sheltered natural harbour on the Mediterranean coast provides the "
 "resources for battle."
 msgstr "Akdeniz kıyısında korunaklı doğal liman savaş için kaynak sağlar."
 
-#: maps/skirmishes/mediterranean_cove_2p.xml:Name:38
+#: maps/skirmishes/mediterranean_cove_2p.xml:38
 msgid "Mediterranean Coves (2)"
 msgstr "Akdeniz Koyları (2)"
 
-#: maps/skirmishes/miletus_peninsula_2p.xml:Description:39
+#: maps/skirmishes/miletus_peninsula_2p.xml:39
 msgid ""
 "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
 "\n"
 "To the East lies a large bay with fishing opportunities. To the West is an unclaimed acropolis overlooking the Aegean Sea."
 msgstr "Her oyuncu karşılaşmaya akropolis olarakta bilinen büyük bir düz plato üzerinde karşılaşmaya başlar, \n\nDoğuda balıkçılık olanakları ile büyük bir koy bulunmaktadır. Batıda Ege Denizi'ne bakan sahiplenilmemiş bir akropolis yer almaktadır."
 
-#: maps/skirmishes/miletus_peninsula_2p.xml:Name:39
+#: maps/skirmishes/miletus_peninsula_2p.xml:39
 msgid "Miletus Peninsula (2)"
 msgstr "Milet Yarımadası (2)"
 
-#: maps/skirmishes/neareastern_badlands_2p.xml:Description:38
-#: maps/skirmishes/neareastern_badlands_4p.xml:Description:38
+#: maps/skirmishes/neareastern_badlands_2p.xml:38
+msgid "Neareastern Badlands (2)"
+msgstr "Yakındoğu Çorak arazileri (2)"
+
+#: maps/skirmishes/neareastern_badlands_2p.xml:38
+#: maps/skirmishes/neareastern_badlands_4p.xml:38
 msgid ""
 "The 'Cappadocia' region of Central-Eastern Anatolia.\n"
 "\n"
@@ -3036,128 +2989,124 @@ msgid ""
 "Stone and Metal resources are in abundance, especially Stone, but Wood is somewhat scarce."
 msgstr "'Kapadokya' Anadolunun merkez-doğusunda yer alır.\n\nTüm oyuncular haritanın batı ucunda başlayacak, geniş ve sahipsiz alanlarda fetih ve şeref için savaşacak.\n\nTaş ve Metal kaynaklar bolca vardır, özellikle taş, ama ahşap oldukça kıttır."
 
-#: maps/skirmishes/neareastern_badlands_2p.xml:Name:38
-msgid "Neareastern Badlands (2)"
-msgstr "Yakındoğu Çorak arazileri (2)"
-
-#: maps/skirmishes/neareastern_badlands_4p.xml:Name:38
+#: maps/skirmishes/neareastern_badlands_4p.xml:38
 msgid "Neareastern Badlands (4)"
 msgstr "Yakındoğu Çorak arazileri (4)"
 
-#: maps/skirmishes/nile_river_4p.xml:Description:38
+#: maps/skirmishes/nile_river_4p.xml:38
 msgid ""
 "An Egyptian desert map bisected by the broad Nile River. Organic resources "
 "cluster near the river, while mineral resources can be found in the desert "
 "hinterlands."
 msgstr "Geniş Nil Nehri tarafından ikiye bölünmüş bir Mısır çöl haritası.Nehri yakınında organik kaynaklar kümelenmiştir,maden kaynakları çöl merkezlerinde bulunabilir."
 
-#: maps/skirmishes/nile_river_4p.xml:Name:38
+#: maps/skirmishes/nile_river_4p.xml:38
 msgid "Nile River (4)"
 msgstr "Nil Nehri (4)"
 
-#: maps/skirmishes/north_african_savanna_2p.xml:Description:39
+#: maps/skirmishes/north_african_savanna_2p.xml:39
 msgid ""
 "The Savanna is open and foreboding, chock full of animal, both huntable and hunter. \n"
 "\n"
 "Here we have an example of the two seasons prevelant on the savanna: The wet season and the dry season."
 msgstr "Savanna açık ve önsezili, hem avlanabilir hem de avcı hayvanlarla dolu. \n\nBurada savanada hüküm süren iki mevsime bir örnek var: Yağışlı mevsim ve kurak mevsim."
 
-#: maps/skirmishes/north_african_savanna_2p.xml:Name:39
+#: maps/skirmishes/north_african_savanna_2p.xml:39
 msgid "North African Savanna (2 players)"
 msgstr "Kuzey Afrika Savanı (2 oyuncu)"
 
-#: maps/skirmishes/northern_island_2p.xml:Description:39
+#: maps/skirmishes/northern_island_2p.xml:39
 msgid ""
 "Stranded in the cold North, 2 players fight for supremacy over the Island. "
 "One player starts in the Mountains to the West, the other player starts near"
 " the Bay in the East."
 msgstr "Soğuk Kuzeyde karaya oturmuş 2 oyuncu adanın hakimiyeti için savaşır. Bir oyuncu Batının Dağlarında, diğer oyuncu ise Doğudaki körfezin yakınında başlar."
 
-#: maps/skirmishes/northern_island_2p.xml:Name:39
+#: maps/skirmishes/northern_island_2p.xml:39
 msgid "Northern Island (2)"
 msgstr "Kuzey Adası (2)"
 
-#: maps/skirmishes/nubian_frontier_2p.xml:Description:39
+#: maps/skirmishes/nubian_frontier_2p.xml:39
 msgid "The arid and treacherous frontier between Nubia and Egypt."
 msgstr "Nubia ve Mısır arasındaki kurak ve tehlikeli sınır."
 
-#: maps/skirmishes/nubian_frontier_2p.xml:Name:39
+#: maps/skirmishes/nubian_frontier_2p.xml:39
 msgid "Nubian Frontier (2)"
 msgstr "Nubiyalı Öncüler (2)"
 
-#: maps/skirmishes/obedska_bog_4p.xml:Description:39
-#: maps/skirmishes/obedska_bog_night_4p.xml:Description:39
+#: maps/skirmishes/obedska_bog_4p.xml:39
+msgid "Obedska Bog (4)"
+msgstr "Obedska Bog (4)"
+
+#: maps/skirmishes/obedska_bog_4p.xml:39
+#: maps/skirmishes/obedska_bog_night_4p.xml:39
 msgid ""
 "A lazy river meanders through these Serbian wetlands. Stone is scarce, but many lumps of bog iron sit waiting to be found.\n"
 "\n"
 "*This map makes heavy use of grass actors which may adversely affect performance."
 msgstr "Tembel bir nehir bu Sırp sulak alanlarından geçiyor. Taş azdır, ancak birçok bataklık demir parçası bulunur.\n\n* Bu harita performansı olumsuz etkileyebilecek çim aktörlerini yoğun olarak kullanmaktadır."
 
-#: maps/skirmishes/obedska_bog_4p.xml:Name:39
-msgid "Obedska Bog (4)"
-msgstr "Obedska Bog (4)"
-
-#: maps/skirmishes/obedska_bog_night_4p.xml:Name:39
+#: maps/skirmishes/obedska_bog_night_4p.xml:39
 msgid "Obedska Bog Night (4)"
 msgstr "Obedska Bog Gecesi (4)"
 
-#: maps/skirmishes/oceanside_2p.xml:Description:39
+#: maps/skirmishes/oceanside_2p.xml:39
 msgid "A Lush temperate biome along an ocean. "
 msgstr "Bir okyanus boyunca bereketli ılıman bir bölge."
 
-#: maps/skirmishes/oceanside_2p.xml:Name:39
+#: maps/skirmishes/oceanside_2p.xml:39
 msgid "Oceanside (2)"
 msgstr "Okyanus Kenarı (2)"
 
-#: maps/skirmishes/persian_highlands_4p.xml:Description:38
+#: maps/skirmishes/persian_highlands_4p.xml:38
 msgid ""
 "A dry central basin rich in minerals surrounded by rocky hills and "
 "highlands."
 msgstr "Kayalık tepeler ve yaylaları ile çevrili mineral bakımından zengin bir merkezde kurulu havza."
 
-#: maps/skirmishes/persian_highlands_4p.xml:Name:38
+#: maps/skirmishes/persian_highlands_4p.xml:38
 msgid "Persian Highlands (4)"
 msgstr "Pers Dağları (4)"
 
-#: maps/skirmishes/punjab_2p.xml:Description:39
+#: maps/skirmishes/punjab_2p.xml:39
 msgid ""
 "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\n"
 "\n"
 "The rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight."
 msgstr "Kuzeybatı Hindistan.Yakındaki nehirler muson yağmurları ile kabarıyor, sadece bir kaç yeri tehlikeli geçişler için izin verir.\n\nNehirler yoğun ormanlıkta, kırsal çevreleri meralar kaplamaktadır. Otlar arasındaki Kaplanlara dikkat! Asya filleri de sıkça görülür."
 
-#: maps/skirmishes/punjab_2p.xml:Name:39
+#: maps/skirmishes/punjab_2p.xml:39
 msgid "Punjab (2)"
 msgstr "Pencap (2)"
 
-#: maps/skirmishes/saharan_oases_2p.xml:Description:39
-#: maps/skirmishes/saharan_oases_4p.xml:Description:39
+#: maps/skirmishes/saharan_oases_2p.xml:39
+msgid "Saharan Oases (2)"
+msgstr "Sahra Vahası (2)"
+
+#: maps/skirmishes/saharan_oases_2p.xml:39
+#: maps/skirmishes/saharan_oases_4p.xml:39
 msgid ""
 "In the deep Sahara Desert of Africa lies an  area of rocky outcrops and small oases. \n"
 "\n"
 "Large stone quarries can be found in the cliffs, while wood and animal resources can be found near the oases dotting the landscape. Nearby fruiting Date Palms give an nice initial burst of food."
 msgstr "Afrika'nın derin Sahra Çölü'nde bazı kayalık çıkıntılar ve küçük vahalar bulunur.\n\nKayalıklarda büyük taş ocakları bulunurken, manzarayı süsleyen vahaların yakınında odun ve hayvan kaynakları bulunabilir. Yakınlardında ise meyve veren Hurma Ağaçları bulunur, bunlar başlangıç için iyi yiyeceklerdir."
 
-#: maps/skirmishes/saharan_oases_2p.xml:Name:39
-msgid "Saharan Oases (2)"
-msgstr "Sahra Vahası (2)"
-
-#: maps/skirmishes/saharan_oases_4p.xml:Name:39
+#: maps/skirmishes/saharan_oases_4p.xml:39
 msgid "Saharan Oases (4)"
 msgstr "Sahra Vahası (4)"
 
-#: maps/skirmishes/sahel_4p.xml:Description:38
+#: maps/skirmishes/sahel_4p.xml:38
 msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of animals and mineral resources, while wood is scarce."
 msgstr "Kuzey Afrika'da Atlas dağ sıralarının kuzey tarafında yer alır.\n\nHayvan ve maden kaynaklarının bolluğu ile oldukça açık bir harita, ahşap oldukça azdır."
 
-#: maps/skirmishes/sahel_4p.xml:Name:38
+#: maps/skirmishes/sahel_4p.xml:38
 msgid "Sahel (4)"
 msgstr "Sahel (4)"
 
-#: maps/skirmishes/sahyadri_buttes_5p.xml:Description:39
+#: maps/skirmishes/sahyadri_buttes_5p.xml:39
 msgid ""
 "The diverse rainforests nestled in the Sahyadri mountain range of the west coast of India. It goes without saying, wood is abundant.\n"
 "\n"
@@ -3166,161 +3115,160 @@ msgid ""
 "WARNING: This map uses a lot of floral actors on account of being a rainforest. Expect a drop in framerate, this is taxing on most mid range computers."
 msgstr "Hindistan'ın batı kıyısındaki Sahyadri sıradağlarında çeşitli yağmur ormanları bulunur. Söylemeye gerek yok, odun bol.\n\nİberya oyuncuları tam çevrili duvarları değil, stratejik olarak yerleştirilmiş 5 duvar kulesi alıyorlar.\n\nUYARI: Bu harita yağmur ormanı olması nedeniyle birçok çiçek aktörü kullanıyor. Kare hızında düşüş olmasını bekleyin, bu çoğu orta sınıf bilgisayarı ağırlaştırıyor.."
 
-#: maps/skirmishes/sahyadri_buttes_5p.xml:Name:39
+#: maps/skirmishes/sahyadri_buttes_5p.xml:39
 msgid "Sahyadri Buttes (5)"
 msgstr "Sahyadri Buttes (5)"
 
-#: maps/skirmishes/savanna_river_2p.xml:Description:38
+#: maps/skirmishes/savanna_river_2p.xml:38
 msgid "A large savanna is bisected by a narrow jungle stream."
 msgstr "Büyük bir ova dar bir orman ile ikiye ayrılır."
 
-#: maps/skirmishes/savanna_river_2p.xml:Name:38
+#: maps/skirmishes/savanna_river_2p.xml:38
 msgid "Savanna River (2)"
 msgstr "Savana Dağ geçidi (2)"
 
-#: maps/skirmishes/scythia_4p.xml:Description:39
+#: maps/skirmishes/scythia_4p.xml:39
 msgid ""
 "The steppes of central Asia. A wide open grassland with few trees (about 90%"
 " fewer trees than on a temperate or Aegean map). Animal life is plentiful "
 "though, so take advantage of the hunting available. "
 msgstr "Orta Asya'nın bozkırları. Birkaç ağaç bulunan geniş çayır (ege haritasındakinden yaklaşık %90 daha az ağaç). Hayvan yaşamı çok olduğundan avlanmak yararlı olacaktır."
 
-#: maps/skirmishes/scythia_4p.xml:Name:39
+#: maps/skirmishes/scythia_4p.xml:39
 msgid "Scythian Steppes (4)"
 msgstr "İskit Bozkırları (4)"
 
-#: maps/skirmishes/sicilia_2p.xml:Description:39
+#: maps/skirmishes/sicilia_2p.xml:39
 msgid "The large Mediterranean island of Sicily is open for conquest."
 msgstr "Büyük akdeniz adası sicilya fetihe için açıktır."
 
-#: maps/skirmishes/sicilia_2p.xml:Name:39
+#: maps/skirmishes/sicilia_2p.xml:39
 msgid "Sicilia (2)"
 msgstr "Sicilya (2)"
 
-#: maps/skirmishes/sicilia_nomad_2p.xml:Description:34
+#: maps/skirmishes/sicilia_nomad_2p.xml:34
 msgid ""
 "The large Mediterranean island of Sicily is open for conquest.\n"
 "[color=\"orange\"]Tip: docks are useful dropsite when you have no territory yet.[/color]"
 msgstr "Bu fetihe açık Akdeniz'in büyük Sicilya adası.\n[color=\"orange\"]İpucu: rıhtımlar henüz bir arazinin olmadığı yerlerde kullanışlıdır[/color]"
 
-#: maps/skirmishes/sicilia_nomad_2p.xml:Name:34
+#: maps/skirmishes/sicilia_nomad_2p.xml:34
 msgid "Sicilia Nomad (2)"
 msgstr "Sicilya Göçebesi (2)"
 
-#: maps/skirmishes/skirmish_demo_2p.xml:Description:38
+#: maps/skirmishes/skirmish_demo_2p.xml:38
 msgid "A demo Skirmish map."
 msgstr "Demo Çatışma haritası."
 
-#: maps/skirmishes/skirmish_demo_2p.xml:Name:38
+#: maps/skirmishes/skirmish_demo_2p.xml:38
 msgid "Skirmish Demo (2)"
 msgstr "Çatışma Demosu (2)"
 
-#: maps/skirmishes/sporades_islands_2p.xml:Description:39
+#: maps/skirmishes/sporades_islands_2p.xml:39
 msgid "An islands map designed for intense naval combat."
 msgstr ""
 
-#: maps/skirmishes/sporades_islands_2p.xml:Name:39
+#: maps/skirmishes/sporades_islands_2p.xml:39
 msgid "Sporades Islands (2 player)"
 msgstr ""
 
-#: maps/skirmishes/syria_2p.xml:Description:39
+#: maps/skirmishes/syria_2p.xml:39
 msgid ""
 "A barren land with little wood and few animals. Treasures dot the landscape and will be essential to early growth.\n"
 "\n"
 "The player who sets up a profitable trade caravan earliest may gain a decisive advantage."
 msgstr "Küçük ahşap ve birkaç hayvanlarla bir çorak arazi. Hazineleri peyzajda nokta nokta görünür ve erken büyümesi için gerekli olacaktır.\nErken karlı bir ticaret kervanını kuran oyuncu belirleyici bir avantaj elde edebilir."
 
-#: maps/skirmishes/syria_2p.xml:Name:39
+#: maps/skirmishes/syria_2p.xml:39
 msgid "Coele-Syria (2)"
 msgstr "Coele-Suriye (2)"
 
-#: maps/skirmishes/tarim_basin_2p.xml:Description:39
-#: maps/skirmishes/tarim_basin_4p.xml:Description:39
+#: maps/skirmishes/tarim_basin_2p.xml:39
+msgid "Tarim Basin (2)"
+msgstr "Tarim Basin (2)"
+
+#: maps/skirmishes/tarim_basin_2p.xml:39 maps/skirmishes/tarim_basin_4p.xml:39
 msgid ""
 "A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han, and represents the furthest extent of their power.\n"
 "\n"
 "The basin itself is bereft of life  and offers little in the way of defensibility. The rugged mountain valleys harbor the only life, in the form of hearty shrub and tree species and some goats."
 msgstr "Dağlık vadilerle çevrili çorak bir çöl havzası olan Tarım Havzası, Han tarafından \"Batı Bölgeleri\" olarak da adlandırılır ve güçlerinin en uç noktasını temsil eder.\n\nHavzanın kendisi yaşamdan yoksundur ve çok az savunulabilirlik sunar. Engebeli dağ vadileri, doyurucu çalı ve ağaç türleri ve bazı keçiler şeklinde tek yaşamı barındırır."
 
-#: maps/skirmishes/tarim_basin_2p.xml:Name:39
-msgid "Tarim Basin (2)"
-msgstr "Tarim Basin (2)"
-
-#: maps/skirmishes/tarim_basin_4p.xml:Name:39
+#: maps/skirmishes/tarim_basin_4p.xml:39
 msgid "Tarim Basin (4)"
 msgstr "Tarim Basin (4)"
 
-#: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
+#: maps/skirmishes/team_oasis_2pv2p.xml:38
 msgid ""
 "An oasis surrounded by mountains and desert. Farmlands near the water's edge"
 " provide much-needed boost in farming, but foraging and hunting are in short"
 " supply."
 msgstr "Dağ ve çöl ile çevrili bir vaha.Suyun kenarındaki Tarım Arazisi tarım için çok ihtiyaç duyulan desteği sağlar,ancak toplayıcılık ve avcılık için yetersiz kaynak vardır."
 
-#: maps/skirmishes/team_oasis_2pv2p.xml:Name:38
+#: maps/skirmishes/team_oasis_2pv2p.xml:38
 msgid "Team Oasis (2v2)"
 msgstr "Takım Vahası (2 ye 2)"
 
-#: maps/skirmishes/temperate_roadway_2p.xml:Description:39
+#: maps/skirmishes/temperate_roadway_2p.xml:39
 msgid "Temperate zone map with plentiful resources. Map Size: Small"
 msgstr "Bol kaynaklarla ılıman bölge haritası. Harita Boyutu: Küçük"
 
-#: maps/skirmishes/temperate_roadway_2p.xml:Name:39
+#: maps/skirmishes/temperate_roadway_2p.xml:39
 msgid "Temperate Roadway (2)"
 msgstr "Ilıman Karayolu (2)"
 
-#: maps/skirmishes/thessalian_plains_4p.xml:Description:38
+#: maps/skirmishes/thessalian_plains_4p.xml:38
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
 "starts the match safe atop a large plateau."
 msgstr "Haddeleme Teselya ovası, dar bir akıntıyla geçilir ve kolayca geçer. Geniş açık alanlar büyük genişlemeye izin verirken, her oyuncu büyük bir platoda güvenli bir şekilde maçı başlatır."
 
-#: maps/skirmishes/thessalian_plains_4p.xml:Name:38
+#: maps/skirmishes/thessalian_plains_4p.xml:38
 msgid "Thessalian Plains (4)"
 msgstr "Tesalya Ovaları (4)"
 
-#: maps/skirmishes/tuscan_acropolis_4p.xml:Description:39
+#: maps/skirmishes/tuscan_acropolis_4p.xml:39
 msgid ""
 "Four factions find themselves perched safely atop large rocky plateaus.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
 msgstr "Dört grup kendilerini büyük kayalık platoların tepesinde güvenli bir şekilde tünemiş bulmaktadır.\n\nÜcretsiz hazineler bulmak ve yeni kaynakları güvence altına almak için arazileri araştırın."
 
-#: maps/skirmishes/tuscan_acropolis_4p.xml:Name:39
+#: maps/skirmishes/tuscan_acropolis_4p.xml:39
 msgid "Tuscan Acropolis (4)"
 msgstr "Toskana Akropolis (4)"
 
-#: maps/skirmishes/two_seas_6p.xml:Description:39
+#: maps/skirmishes/two_seas_6p.xml:39
 msgid ""
 "A large tropic map with two seas to the East and to the West. Good for two "
 "teams of three players or three teams of two players."
 msgstr "Doğu ve batıya iki denizle birlikte büyük bir tropik harita. Üç oyunculu iki takım veya iki oyunculu üç takım için idealdir."
 
-#: maps/skirmishes/two_seas_6p.xml:Name:39
+#: maps/skirmishes/two_seas_6p.xml:39
 msgid "Two Seas (6)"
 msgstr "İki Deniz (6)"
 
-#: maps/skirmishes/vesuvius_6p.xml:Description:39
+#: maps/skirmishes/vesuvius_6p.xml:39
 msgid ""
 "Skirmish as ash lightly falls around this recently erupted volcano. The "
 "scorched landscape offers little food, though the blasted forests are still "
 "laden with useful wood."
 msgstr "Yakın zamanda patlak veren bu yanardağın etrafına kül hafifçe düşerken çarpış. Yakılan ormanlar hala yararlı odunlarla dolu olsa da, kavurucu manzara çok az yiyecek sunuyor."
 
-#: maps/skirmishes/vesuvius_6p.xml:Name:39
+#: maps/skirmishes/vesuvius_6p.xml:39
 msgid "Vesuvius (6)"
 msgstr "Vesuvius (6)"
 
-#: maps/skirmishes/via_augusta_4p.xml:Description:39
+#: maps/skirmishes/via_augusta_4p.xml:39
 msgid "All Roads Lead To Rome. Via Julia Augusta a Roman road built in 13 BC."
 msgstr ""
 
-#: maps/skirmishes/via_augusta_4p.xml:Name:39
+#: maps/skirmishes/via_augusta_4p.xml:39
 msgid "Via Augusta (4)"
 msgstr "Agusta Yolu (4)"
 
-#: maps/skirmishes/watering_holes_4p.xml:Description:39
+#: maps/skirmishes/watering_holes_4p.xml:39
 msgid ""
 "A small Savanna map with 4 watering holes. \n"
 "\n"
@@ -3329,11 +3277,11 @@ msgid ""
 "Wood is scattered, but comes in high-yield Baobab trees. The watering holes give life to clusters of trees and life to dangerous fauna, such as crocodiles and elephants."
 msgstr "4 sulama deliği olan küçük bir Savanna haritası. \n\nTüm Savanna haritalarında olduğu gibi, avlanabilir hayvanlar ve aranabilir bitkiler bol miktarda bulunur, ancak haritanın tamamında tarım arazisi yoktur, bu nedenle çiftçilik zordur.\n\nOrman dağınıktır ancak yüksek verimli Baobab ağaçlarından oluşur. Sulama delikleri ağaç kümelerine ve timsahlar ve filler gibi tehlikeli faunaya hayat veriyor."
 
-#: maps/skirmishes/watering_holes_4p.xml:Name:39
+#: maps/skirmishes/watering_holes_4p.xml:39
 msgid "Watering Holes (4 players)"
 msgstr "Sulama Delikleri (4 oyuncu)"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:Description:39
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:39
 msgid ""
 "Foreigners are invading Britannia. The native Britons must fight against a massive enemy invasion force to secure their homeland for the next generation!\n"
 "\n"
@@ -3344,35 +3292,35 @@ msgid ""
 "Assigned civilizations are merely suggestions, and the host should set starting resources to 1000 so that Civic Centers can be built at the start."
 msgstr "Yabancılar Britanya'yı işgal ediyor. Britanyalılar, gelecek nesiller uğruna anavatanlarını güvence altına almak için işgal kuvvetilerine karşı savaşmalıdır!\n\n1. oyuncu Britanyalılar, 2-5. oyuncular ise işgal kuvvetleridir. Dover'ın Beyaz Uçurumları açıklarındaki kanalda sağlam gemilerinde garnizon kurdular.\n\nTakımlar harita scripti tarafından belirlenir, ancak tasarımcı tarafından tanımlanan senaryonun aksine haritayı oynamak isterlerse kurulumdaki oyuncular tarafından değiştirilebilir. Bu durumda, oyun sahibi, teknelerdeki oyuncuların barışçıl bir şekilde karaya çıkabilmeleri ve ilk yerleşimlerini kurmak için uygun bir yer bulmaya çalışabilmeleri için ateşkes sağlamalıdır.\n\nAtanan medeniyetler sadece birer öneridir ve ev sahibi, Şehir Merkezlerinin başlangıçta inşa edilebilmesi için başlangıç ​​kaynaklarını 1000'e ayarlamalıdır."
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:Name:39
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:39
 msgid "White Cliffs of Dover (5)"
 msgstr "Dover'in Beyaz Falezleri (5)"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:39
 msgid "Invader 1"
 msgstr "İstilacı 1"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[3].Name:39
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:39
 msgid "Invader 2"
 msgstr "Istilacı 2"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[4].Name:39
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:39
 msgid "Invader 3"
 msgstr "İstilacı 3"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[5].Name:39
+#: maps/skirmishes/white_cliffs_of_dover_5p.xml:39
 msgid "Invader 4"
 msgstr "İstilacı 4"
 
-#: maps/skirmishes/yangtze_2p.xml:Description:39
+#: maps/skirmishes/yangtze_2p.xml:39
 msgid "The Yangtze River in China. "
 msgstr "Çin'deki Yangtze Nehri."
 
-#: maps/skirmishes/yangtze_2p.xml:Name:39
+#: maps/skirmishes/yangtze_2p.xml:39
 msgid "Chang Jiang (2)"
 msgstr "Chang Jiang (2)"
 
-#: maps/skirmishes/zagros_mountains_2p.xml:Description:39
+#: maps/skirmishes/zagros_mountains_2p.xml:39
 msgid ""
 "The mountains buffering the Persian homeland, straddling Persis, Susiana, and Media. This map simulates the many valleys and choke points that criss cross the mountain range. \n"
 "\n"
@@ -3381,6 +3329,14 @@ msgid ""
 "The central valley is wide open for expansion, with an unclaimed Civic Center, farms, and Trading Posts. Cliffs along the valley's edge may offer vantage points for defensive or offensive fortifications."
 msgstr "Pers anavatanını tamponlayan dağlar, Persis, Susiana ve Media'nın arasında. Bu harita, sıradağları çaprazlamasına kesen birçok vadiyi ve dar noktayı simüle eder.\n\nOyuncular maça kendi bölgelerinde 1 ücretsiz Pers tapınağı ile başlarlar. El değmemiş kaynaklara ve bölgelere erişim, engebeli iç bölgelerden bulunabilir, ancak aynı zamanda Asya ayıları ve Hazar kaplanları gibi tehlikeli hayvanlarla doludur.\n\nSahipsiz Halk Merkezi, çiftlikler ve Ticaret Karakolları ile merkezi vadi genişlemeye tamamen açık. Vadinin kenarındaki kayalıklar, savunma veya saldırı tahkimatları için avantaj noktaları sunabilir."
 
-#: maps/skirmishes/zagros_mountains_2p.xml:Name:39
+#: maps/skirmishes/zagros_mountains_2p.xml:39
 msgid "Zagros Mountains (2 players)"
 msgstr "Zagros Dağları (2 oyuncu)"
+
+#: ⁨maps/scenarios/Ship Combat Demo.xml⁩:39
+msgid "Ship Combat Demo."
+msgstr ""
+
+#: ⁨⁨maps/scenarios/Ship Combat Demo.xml⁩⁩:39
+msgid "Ship Combat Demo"
+msgstr ""

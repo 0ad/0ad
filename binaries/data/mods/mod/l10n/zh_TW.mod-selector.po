@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2023 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2024-07-26 07:08+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
 "Last-Translator: Yuan Chang, 2021-2023\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -50,18 +50,18 @@ msgid "Save"
 msgstr "儲存"
 
 #: gui/colormixer/colormixer.js:91 gui/modio/modio.js:136
-#: gui/modmod/modmod.xml:(caption):197
+#: gui/modmod/modmod.xml:197
 msgid "Cancel"
 msgstr "取消"
 
-#: gui/common/functions_msgbox.js:55
+#: gui/common/functions_msgbox.js:44
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "請稍候，正在使用預設的網頁瀏覽器開啟\n%(url)s ……"
 
-#: gui/common/functions_msgbox.js:58
+#: gui/common/functions_msgbox.js:47
 msgid "Opening page"
 msgstr "正在開啟頁面"
 
@@ -155,11 +155,11 @@ msgstr "不相容的模組會已在啟用的模組列表（底部面板）中顯
 msgid "[/font]"
 msgstr "[/font]"
 
-#: gui/incompatible_mods/incompatible_mods.xml:(caption):12
+#: gui/incompatible_mods/incompatible_mods.xml:12
 msgid "Incompatible mods"
 msgstr "不相容的模組"
 
-#: gui/incompatible_mods/incompatible_mods.xml:(caption):19
+#: gui/incompatible_mods/incompatible_mods.xml:19
 msgid "Ok"
 msgstr "確定"
 
@@ -332,58 +332,54 @@ msgstr "∞"
 msgid "%(number)s %(unit)s/s"
 msgstr "%(number)s%(unit)s/秒"
 
-#: gui/modio/modio.xml:(caption):18
+#: gui/modio/modio.xml:18
 msgid "mod.io Mods"
 msgstr "mod.io 模組"
 
-#: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
+#: gui/modio/modio.xml:25 gui/modmod/modmod.xml:70
 msgid "Available Mods"
 msgstr "可用的模組"
 
-#: gui/modio/modio.xml:(caption):82
-msgid "Filter valid mods"
-msgstr "過濾有效的模組"
-
-#: gui/modio/modio.xml:(caption):88
-msgid "Back"
-msgstr "返回"
-
-#: gui/modio/modio.xml:(caption):93
-msgid "Refresh List"
-msgstr "更新列表"
-
-#: gui/modio/modio.xml:(caption):98
-msgid "Download"
-msgstr "下載"
-
-#: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
-#: gui/modmod/modmod.xml:(heading):131
-msgid "Name"
-msgstr "名稱"
-
-#: gui/modio/modio.xml:(heading):57 gui/modmod/modmod.xml:(heading):93
-#: gui/modmod/modmod.xml:(heading):134
-msgid "Version"
-msgstr "版本"
-
-#: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
-#: gui/modmod/modmod.xml:(heading):140
-msgid "Mod Label"
-msgstr "模組標籤"
-
-#: gui/modio/modio.xml:(heading):63
-msgid "File Size"
-msgstr "檔案大小"
-
-#: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
-#: gui/modmod/modmod.xml:(heading):143
-msgid "Dependencies"
-msgstr "相依性"
-
-#: gui/modio/modio.xml:(placeholder_text):35
+#: gui/modio/modio.xml:35
 msgctxt "placeholder text for input field to filter mods"
 msgid "Filter"
 msgstr "過濾器"
+
+#: gui/modio/modio.xml:54 gui/modmod/modmod.xml:90 gui/modmod/modmod.xml:131
+msgid "Name"
+msgstr "名稱"
+
+#: gui/modio/modio.xml:57 gui/modmod/modmod.xml:93 gui/modmod/modmod.xml:134
+msgid "Version"
+msgstr "版本"
+
+#: gui/modio/modio.xml:60 gui/modmod/modmod.xml:99 gui/modmod/modmod.xml:140
+msgid "Mod Label"
+msgstr "模組標籤"
+
+#: gui/modio/modio.xml:63
+msgid "File Size"
+msgstr "檔案大小"
+
+#: gui/modio/modio.xml:66 gui/modmod/modmod.xml:102 gui/modmod/modmod.xml:143
+msgid "Dependencies"
+msgstr "相依性"
+
+#: gui/modio/modio.xml:82
+msgid "Filter valid mods"
+msgstr "過濾有效的模組"
+
+#: gui/modio/modio.xml:88
+msgid "Back"
+msgstr "返回"
+
+#: gui/modio/modio.xml:93
+msgid "Refresh List"
+msgstr "更新列表"
+
+#: gui/modio/modio.xml:98
+msgid "Download"
+msgstr "下載"
 
 #: gui/modmod/help/help.txt:1
 msgid ""
@@ -416,19 +412,19 @@ msgid ""
 "out and install some!"
 msgstr "mod.io 服務由 IndieDB 和 ModDB 背後的 DBolical 開發。這些網站長期以來宣傳了許多關於 0 A.D. 和其他獨立專案的消息。現在 mod.io 讓我們能夠表列並下載所有經過團隊驗證的模組。點擊「下載模組」試著下載看看！"
 
-#: gui/modmod/help/help.xml:(caption):13
+#: gui/modmod/help/help.xml:13
 msgid "Pyrogenesis Mod Selector"
 msgstr "Pyrogenesis 模組選擇器"
 
-#: gui/modmod/help/help.xml:(caption):21
+#: gui/modmod/help/help.xml:21
 msgid "Close"
 msgstr "關閉"
 
-#: gui/modmod/help/help.xml:(caption):25
+#: gui/modmod/help/help.xml:25
 msgid "Modding Guide"
 msgstr "模組指南"
 
-#: gui/modmod/help/help.xml:(caption):29
+#: gui/modmod/help/help.xml:29
 msgid "Visit mod.io"
 msgstr "造訪 mod.io"
 
@@ -458,63 +454,39 @@ msgstr "尚未選擇模組。"
 msgid "Enable at least 0ad mod"
 msgstr "至少得啟用 0ad 模組"
 
-#: gui/modmod/modmod.xml:(caption):12
+#: gui/modmod/modmod.xml:12
 msgid "Modifications"
 msgstr "模組"
 
-#: gui/modmod/modmod.xml:(caption):37
-msgid "Negate"
-msgstr "排除"
-
-#: gui/modmod/modmod.xml:(caption):51
-msgid "Filter compatible"
-msgstr "過濾相容性"
-
-#: gui/modmod/modmod.xml:(caption):63
-msgid "Description"
-msgstr "描述"
-
-#: gui/modmod/modmod.xml:(caption):114
-msgid "Enabled Mods"
-msgstr "已啟用的模組"
-
-#: gui/modmod/modmod.xml:(caption):183
-msgid "Visit Website"
-msgstr "造訪網站"
-
-#: gui/modmod/modmod.xml:(caption):192
-msgid "Quit"
-msgstr "退出"
-
-#: gui/modmod/modmod.xml:(caption):202
-msgid "Help"
-msgstr "幫助"
-
-#: gui/modmod/modmod.xml:(caption):207
-msgid "Download Mods"
-msgstr "下載模組"
-
-#: gui/modmod/modmod.xml:(caption):212
-msgid "Save Configuration"
-msgstr "儲存設定"
-
-#: gui/modmod/modmod.xml:(caption):217
-msgid "Save and Restart"
-msgstr "儲存並重新啟動"
-
-#: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):137
-msgid "(Folder)"
-msgstr "資料夾"
-
-#: gui/modmod/modmod.xml:(heading):105 gui/modmod/modmod.xml:(heading):146
-msgid "Website"
-msgstr "網站"
-
-#: gui/modmod/modmod.xml:(placeholder_text):24
+#: gui/modmod/modmod.xml:24
 msgid "Filter"
 msgstr "過濾器"
 
-#: gui/modmod/modmod.xml:(tooltip):115
+#: gui/modmod/modmod.xml:37
+msgid "Negate"
+msgstr "排除"
+
+#: gui/modmod/modmod.xml:51
+msgid "Filter compatible"
+msgstr "過濾相容性"
+
+#: gui/modmod/modmod.xml:63
+msgid "Description"
+msgstr "描述"
+
+#: gui/modmod/modmod.xml:96 gui/modmod/modmod.xml:137
+msgid "(Folder)"
+msgstr "資料夾"
+
+#: gui/modmod/modmod.xml:105 gui/modmod/modmod.xml:146
+msgid "Website"
+msgstr "網站"
+
+#: gui/modmod/modmod.xml:114
+msgid "Enabled Mods"
+msgstr "已啟用的模組"
+
+#: gui/modmod/modmod.xml:115
 msgid ""
 "Enabled mods are loaded from top to bottom. Mods loaded later might "
 "overwrite settings of mods loaded earlier. It is advisable to have more "
@@ -522,11 +494,35 @@ msgid ""
 "order."
 msgstr "啟用的模組由上到下載入。稍後載入的模組可能會覆蓋上面載入過的模組。建議將較複雜的模組較晚載入。使用右側的箭頭調整模組的載入順序。"
 
-#: gui/modmod/modmod.xml:(tooltip):161 gui/modmod/modmod.xml:(tooltip):175
+#: gui/modmod/modmod.xml:161 gui/modmod/modmod.xml:175
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
 msgstr "改變模組啟動的順序以符合相依性。"
+
+#: gui/modmod/modmod.xml:183
+msgid "Visit Website"
+msgstr "造訪網站"
+
+#: gui/modmod/modmod.xml:192
+msgid "Quit"
+msgstr "退出"
+
+#: gui/modmod/modmod.xml:202
+msgid "Help"
+msgstr "幫助"
+
+#: gui/modmod/modmod.xml:207
+msgid "Download Mods"
+msgstr "下載模組"
+
+#: gui/modmod/modmod.xml:212
+msgid "Save Configuration"
+msgstr "儲存設定"
+
+#: gui/modmod/modmod.xml:217
+msgid "Save and Restart"
+msgstr "儲存並重新啟動"
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
@@ -556,14 +552,14 @@ msgstr "線上檢視"
 msgid "Open %(url)s in the browser."
 msgstr "在瀏覽器開啟 %(url)s。"
 
-#: gui/termsdialog/termsdialog.xml:(caption):15
+#: gui/termsdialog/termsdialog.xml:15
 msgid "Language"
 msgstr "語言"
 
-#: gui/termsdialog/termsdialog.xml:(caption):33
+#: gui/termsdialog/termsdialog.xml:33
 msgid "Decline"
 msgstr "拒絕"
 
-#: gui/termsdialog/termsdialog.xml:(caption):38
+#: gui/termsdialog/termsdialog.xml:38
 msgid "Accept"
 msgstr "接受"
