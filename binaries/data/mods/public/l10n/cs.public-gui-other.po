@@ -30,7 +30,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-07-26 07:08+0000\n"
+"POT-Creation-Date: 2024-07-26 13:41+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Tomáš Matýs, 2018,2021-2022,2024\n"
 "Language-Team: Czech (http://app.transifex.com/wildfire-games/0ad/language/cs/)\n"
@@ -1482,20 +1482,20 @@ msgid "Voices"
 msgstr "Hlasy"
 
 #: gui/credits/texts/audio.json
-msgid "Greek"
-msgstr "Řecky"
-
-#: gui/credits/texts/audio.json
 msgid "Napatan"
 msgstr "Napatský"
 
-#: gui/credits/texts/audio.json
-msgid "Persian"
-msgstr "Peršan"
+#: gui/credits/texts/audio.json gui/credits/texts/translators.json
+msgid "Greek"
+msgstr "Řecky"
 
 #: gui/credits/texts/audio.json gui/credits/texts/translators.json
 msgid "Latin"
 msgstr "Latinsky"
+
+#: gui/credits/texts/audio.json gui/credits/texts/translators.json
+msgid "Persian"
+msgstr "Peršan"
 
 #: gui/credits/texts/audio.json gui/options/options.json
 msgid "Sound"
@@ -1600,60 +1600,88 @@ msgid "Afrikaans"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "الدارجة (Arabic)"
+msgid "Albanian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Asturianu"
+msgid "Ancient Greek"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Azərbaycan dili"
+msgid "Arabic"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Bairisch"
+msgid "Armenian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Беларуская мова (Belarusian)"
+msgid "Arpitan"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Български (Bulgarian)"
+msgid "Asturian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "বাংলা (Bengali)"
+msgid "Azerbaijani"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Brezhoneg"
+msgid "Bangla"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Català"
+msgid "Basque"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Čeština "
+msgid "Bavarian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Cymraeg"
+msgid "Belarusian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Dansk"
+msgid "Breton"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Deutsch"
+msgid "Bulgarian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Ελληνικά (Greek)"
+msgid "Burmese"
 msgstr ""
+
+#: gui/credits/texts/translators.json
+msgid "Catalan"
+msgstr ""
+
+#: gui/credits/texts/translators.json
+msgid "Chinese"
+msgstr ""
+
+#: gui/credits/texts/translators.json
+msgid "Chinese (Traditional, Taiwan)"
+msgstr ""
+
+#: gui/credits/texts/translators.json
+msgid "Croatian"
+msgstr ""
+
+#: gui/credits/texts/translators.json
+msgid "Czech"
+msgstr "Český"
+
+#: gui/credits/texts/translators.json
+msgid "Danish"
+msgstr ""
+
+#: gui/credits/texts/translators.json
+msgid "Dutch"
+msgstr "Holandský"
 
 #: gui/credits/texts/translators.json
 msgid "English (United Kingdom)"
@@ -1664,91 +1692,103 @@ msgid "Esperanto"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Español"
+msgid "Estonian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Español (Argentina)"
+msgid "Faroese"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Español (Chile)"
+msgid "Filipino"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Español (Mexico)"
+msgid "Filipino (Philippines)"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Eesti keel"
+msgid "Finnish"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Euskara"
+msgid "French"
+msgstr "Francouzský"
+
+#: gui/credits/texts/translators.json
+msgid "French (Canada)"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "فارسی (Farsi)"
+msgid "Galician"
+msgstr "Galicijský"
+
+#: gui/credits/texts/translators.json
+msgid "Georgian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Suomi"
+msgid "German"
+msgstr "Německý"
+
+#: gui/credits/texts/translators.json
+msgid "Gujarati"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Français"
+msgid "Hebrew"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Français (Canada)"
+msgid "Hindi"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Franco-Provençal (Arpitan)"
+msgid "Hungarian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Gaeilge"
+msgid "Indonesian"
+msgstr "Indonézský"
+
+#: gui/credits/texts/translators.json
+msgid "Irish"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Gàidhlig"
+msgid "Italian"
+msgstr "Italský"
+
+#: gui/credits/texts/translators.json
+msgid "Japanese"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Galego"
+msgid "Kannada"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "עברית (Hebrew)"
+msgid "Karelian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "हिन्दी (Hindi)"
+msgid "Korean"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Croatian"
+msgid "Kurdish"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Magyar"
+msgid "Latvian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Հայերէն (Armenian)"
+msgid "Literary Chinese"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Bahasa Indonesia"
-msgstr ""
-
-#: gui/credits/texts/translators.json
-msgid "Italiano"
-msgstr ""
-
-#: gui/credits/texts/translators.json
-msgid "日本語 (Japanese)"
+msgid "Lithuanian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
@@ -1756,135 +1796,147 @@ msgid "Lojban"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "ქართული ენა (Georgian)"
+msgid "Luxembourgish"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "한국어 (Korean)"
+msgid "Macedonian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Karjalan kieli"
+msgid "Malay"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "کوردی (Kurdish)"
+msgid "Malayalam"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Lietuvių kalba"
+msgid "Marathi"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Latviešu valoda"
+msgid "Nepali"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "македонски (Macedonian)"
+msgid "Norwegian Bokmål"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "മലയാളം (Malayalam)"
+msgid "Occitan"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "मराठी (Marathi)"
+msgid "Polish"
+msgstr "Polský"
+
+#: gui/credits/texts/translators.json
+msgid "Portuguese (Brazil)"
+msgstr "Portugalský (Brazílie)"
+
+#: gui/credits/texts/translators.json
+msgid "Portuguese (Portugal)"
+msgstr "Portugalský (Portugalsko)"
+
+#: gui/credits/texts/translators.json
+msgid "Romanian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "بهاس ملايو (Malay)"
+msgid "Russian"
+msgstr "Ruský"
+
+#: gui/credits/texts/translators.json
+msgid "Russian (Ukraine)"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Norsk Bokmål"
+msgid "Scottish Gaelic"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Nederlands"
+msgid "Serbian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Polski"
+msgid "Silesian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Português (Brazil)"
+msgid "Sinhala"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Português (Portugal)"
+msgid "Slovak"
+msgstr "Slovenský"
+
+#: gui/credits/texts/translators.json
+msgid "Slovenian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Românește"
+msgid "Spanish"
+msgstr "Španělský"
+
+#: gui/credits/texts/translators.json
+msgid "Spanish (Argentina)"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Русский язык (Russian)"
+msgid "Spanish (Chile)"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Slovenčina"
+msgid "Spanish (Mexico)"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Slovenščina"
+msgid "Sundanese"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Shqip"
+msgid "Swedish"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Cрпски (Serbian)"
+msgid "Tamil (India)"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Svenska"
+msgid "Tatar"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "ślōnskŏ gŏdka"
+msgid "Telugu"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "தமிழ் (India)"
+msgid "Thai"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "తెలుగు (Telugu)"
+msgid "Turkish"
+msgstr "Turecký"
+
+#: gui/credits/texts/translators.json
+msgid "Ukrainian"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "ภาษาไทย (Thai)"
+msgid "Urdu"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Tagalog"
+msgid "Uzbek"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Türkçe (Turkish)"
+msgid "Vietnamese"
 msgstr ""
 
 #: gui/credits/texts/translators.json
-msgid "Українська (Ukrainian)"
-msgstr ""
-
-#: gui/credits/texts/translators.json
-msgid "Ўзбек тили (Uzbek)"
-msgstr ""
-
-#: gui/credits/texts/translators.json
-msgid "Tiếng Việt (Vietnamese)"
-msgstr ""
-
-#: gui/credits/texts/translators.json
-msgid "中文, 汉语, 漢語 (Chinese)"
-msgstr ""
-
-#: gui/credits/texts/translators.json
-msgid "臺灣話 Chinese (Taiwan)"
+msgid "Welsh"
 msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Tips.txt:1
