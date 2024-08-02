@@ -4,8 +4,8 @@
     <texture>art/textures/particles/sparkle.png</texture>
     <blend mode="add"/>
 
-    <constant name="emissionrate" value="9.0"/>
-    <uniform name="lifetime" min="1.0" max="1.5"/>
+    <constant name="emissionrate" value="10.0"/>
+    <uniform name="lifetime" min="0.75" max="1.0"/>
 
     <uniform name="position.x" min="-7.0" max="7.0"/>
     <uniform name="position.z" min="-7.0" max="7.0"/>
