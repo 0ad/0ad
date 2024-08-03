@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -475,8 +475,7 @@ void rewriteBuffer(u8* buffer, u32& bufferSize)
 		last_names.push_back(item.id);
 		initialTime = (double)item.dt;
 	}
-	int enter = 1;
-	int leaves = 0;
+
 	// Read subsequent events. Flatten hierarchy because it would get too complicated otherwise.
 	// To make sure time doesn't bloat, subtract time from nested events
 	while (readPos < size)
@@ -507,7 +506,6 @@ void rewriteBuffer(u8* buffer, u32& bufferSize)
 		}
 		case CProfiler2::ITEM_ENTER:
 		{
-			enter++;
 			CProfiler2::SItem_dt_id item;
 			memcpy(&item, buffer + readPos, sizeof(item));
 			readPos += sizeof(item);
@@ -522,7 +520,6 @@ void rewriteBuffer(u8* buffer, u32& bufferSize)
 			memcpy(&item_time, buffer + readPos, sizeof(float));
 			readPos += sizeof(float);
 
-			leaves++;
 			if (last_names.empty())
 			{
 				// we somehow lost the first entry in the process

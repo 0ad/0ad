@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -806,7 +806,7 @@ public:
 				files.push_back(f);
 			p = p / GetWstringFromWpath(*it);
 		}
-		return m_TextureConverter.ComputeSettings(GetWstringFromWpath(srcPath.leaf()), files);
+		return m_TextureConverter.ComputeSettings(GetWstringFromWpath(srcPath.filename()), files);
 	}
 
 	/**

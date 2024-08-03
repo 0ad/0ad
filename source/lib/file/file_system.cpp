@@ -1,4 +1,4 @@
-/* Copyright (C) 2023 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -32,6 +32,7 @@
 #include "lib/sysdep/filesystem.h"
 
 #include <boost/filesystem.hpp>
+#include <boost/version.hpp>
 #include <memory>
 
 bool DirectoryExists(const OsPath& path)
@@ -229,7 +230,11 @@ Status CopyFile(const OsPath& path, const OsPath& newPath, bool override_if_exis
 	try
 	{
 		if(override_if_exists)
+#if BOOST_VERSION >=107400
+			fs::copy_file(fs::path(path.string()), fs::path(newPath.string()), boost::filesystem::copy_options::overwrite_existing);
+#else
 			fs::copy_file(fs::path(path.string()), fs::path(newPath.string()), boost::filesystem::copy_option::overwrite_if_exists);
+#endif
 		else
 			fs::copy_file(fs::path(path.string()), fs::path(newPath.string()));
 	}
