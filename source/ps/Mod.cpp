@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -89,10 +89,7 @@ bool LoadModJSON(const PIVFS& vfs, OsPath modsPath, OsPath mod, std::string& tex
 		else
 		{
 			// Print a warning - we'll keep trying, which could have adverse effects.
-			if (L10n::IsInitialised())
-				LOGWARNING(g_L10n.Translate("Could not write external mod.json for zipped mod '%s'. The mod should be reinstalled."), mod.string8());
-			else
-				LOGWARNING("Could not write external mod.json for zipped mod '%s'. The mod should be reinstalled.", mod.string8());
+			LOGWARNING("Could not write external mod.json for zipped mod '%s'. The mod should be reinstalled.", mod.string8());
 		}
 		return true;
 	}

@@ -70,7 +70,7 @@ var g_MainMenuItems = [
 			}
 			catch(err)
 			{
-				error(translate("Error opening campaign run:"));
+				error("Error opening campaign run:");
 				error(err.toString());
 			}
 		},
@@ -127,7 +127,7 @@ var g_MainMenuItems = [
 					}
 					catch(err)
 					{
-						error(translate("Error opening campaign run:"));
+						error("Error opening campaign run:");
 						error(err.toString());
 					}
 				},

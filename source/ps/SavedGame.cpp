@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -139,7 +139,7 @@ Status SavedGames::Save(const CStrW& name, const CStrW& description, CSimulation
 
 	OsPath realPath;
 	WARN_RETURN_STATUS_IF_ERR(g_VFS->GetRealPath(filename, realPath));
-	LOGMESSAGERENDER(g_L10n.Translate("Saved game to '%s'"), realPath.string8());
+	LOGMESSAGERENDER("Saved game to '%s'", realPath.string8());
 	debug_printf("Saved game to '%s'\n", realPath.string8().c_str());
 
 	return INFO::OK;
