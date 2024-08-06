@@ -52,7 +52,7 @@ else
     -G "Unix Makefiles"
 fi
 
-("${MAKE}" clean && "${MAKE}" nvtt "${JOBS}") || die "NVTT build failed"
+"${MAKE}" clean && "${MAKE}" nvtt "${JOBS}"
 cd ../../
 mkdir -p lib/
 LIB_PREFIX=lib

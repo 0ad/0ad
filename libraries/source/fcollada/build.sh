@@ -25,7 +25,7 @@ fi
 rm -f .already-built
 rm -f lib/*.a
 mkdir -p lib
-(cd src && rm -rf "output/" && "${MAKE}" clean && CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" && LDFLAGS="$LDFLAGS" "${MAKE}" "${JOBS}") || die "FCollada build failed"
+(cd src && rm -rf "output/" && "${MAKE}" clean && CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" && LDFLAGS="$LDFLAGS" "${MAKE}" "${JOBS}")
 
 if [ "$(uname -s)" = "Darwin" ]; then
   # Undo Makefile change as we don't want to have it when creating patches.
