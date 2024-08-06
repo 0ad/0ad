@@ -190,7 +190,7 @@ function pollAndHandleNetworkClient()
 		if (!message)
 			break;
 
-		log(sprintf(translate("Net message: %(message)s"), { "message": uneval(message) }));
+		log(sprintf("Net message: %(message)s", { "message": uneval(message) }));
 		// If we're rejoining an active game, we don't want to actually display
 		// the game setup screen, so perform similar processing to gamesetup.js
 		// in this screen

@@ -684,7 +684,7 @@ void CRenderer::RenderScreenShot(const bool needsPresent)
 		OsPath realPath;
 		g_VFS->GetRealPath(filename, realPath);
 
-		LOGMESSAGERENDER(g_L10n.Translate("Screenshot written to '%s'"), realPath.string8());
+		LOGMESSAGERENDER("Screenshot written to '%s'", realPath.string8());
 
 		debug_printf(
 			CStr(g_L10n.Translate("Screenshot written to '%s'") + "\n").c_str(),
@@ -810,7 +810,7 @@ void CRenderer::RenderBigScreenShot(const bool needsPresent)
 		OsPath realPath;
 		g_VFS->GetRealPath(filename, realPath);
 
-		LOGMESSAGERENDER(g_L10n.Translate("Screenshot written to '%s'"), realPath.string8());
+		LOGMESSAGERENDER("Screenshot written to '%s'", realPath.string8());
 
 		debug_printf(
 			CStr(g_L10n.Translate("Screenshot written to '%s'") + "\n").c_str(),
