@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2024 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -821,9 +821,10 @@ void XmppClient::handleMessage(const glooxwrapper::Message& msg, glooxwrapper::M
 
 	CreateGUIMessage(
 		"chat",
-		"private-message",
+		msg.subtype() == gloox::Message::MessageType::Headline ? "headline" : "private-message",
 		ComputeTimestamp(msg),
 		"from", msg.from().resource(),
+		"subject", msg.subject(),
 		"text", msg.body());
 }
 

@@ -300,3 +300,18 @@ async function pageLoop(page, args)
 
 	return completionValue;
 }
+
+function formatXmppAnnouncement(subject, text)
+{
+	var message = "";
+	const subjectTrimmed = subject.trim();
+	const textTrimmed = text.trim();
+	if (subjectTrimmed.length > 0)
+		message += subjectTrimmed;
+	if (subjectTrimmed.length > 0 && textTrimmed.length > 0)
+		message += "\n\n";
+	if (textTrimmed.length > 0)
+		message += textTrimmed;
+
+	return message;
+}

@@ -104,7 +104,8 @@ XmppMessages.prototype.MessageTypes = {
 		"kicked",
 		"banned",
 		"room-message",
-		"private-message"
+		"private-message",
+		"headline"
 	],
 	"game": [
 		"gamelist",
