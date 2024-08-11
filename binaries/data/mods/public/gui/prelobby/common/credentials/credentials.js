@@ -44,22 +44,26 @@ function initRememberPassword()
 		Engine.ConfigDB_GetValue("user", "lobby.rememberpassword") == "true";
 }
 
-function toggleRememberPassword()
+async function toggleRememberPassword()
 {
 	let checkbox = Engine.GetGUIObjectByName("rememberPassword");
 	let enabled = Engine.ConfigDB_GetValue("user", "lobby.rememberpassword") == "true";
 	if (!checkbox.checked && enabled && Engine.ConfigDB_GetValue("user", "lobby.password"))
-		messageBox(
+	{
+		const buttonIndex = await messageBox(
 			360, 160,
 			translate("Are you sure you want to delete the password after connecting?"),
 			translate("Confirmation"),
-			[translate("No"), translate("Yes")],
-			[
-				() => { checkbox.checked = true; },
-				() => { Engine.ConfigDB_CreateAndSaveValue("user", "lobby.rememberpassword", String(!enabled)); }
-			]);
-	else
-		Engine.ConfigDB_CreateAndSaveValue("user", "lobby.rememberpassword", String(!enabled));
+			[translate("No"), translate("Yes")]);
+
+		if (buttonIndex === 0)
+		{
+			checkbox.checked = true;
+			return;
+		}
+	}
+
+	Engine.ConfigDB_CreateAndSaveValue("user", "lobby.rememberpassword", String(!enabled));
 }
 
 function getEncryptedPassword()

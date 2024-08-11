@@ -18,7 +18,7 @@ class SavegameLoader
 		};
 	}
 
-	loadGame(gameId, metadata)
+	async loadGame(gameId, metadata)
 	{
 		// Check compatibility before really loading it
 		let engineInfo = Engine.GetEngineInfo();
@@ -54,11 +54,12 @@ class SavegameLoader
 
 		message += translate("Do you still want to proceed?");
 
-		messageBox(
+		const buttonIndex = await messageBox(
 			500, 250,
 			message,
 			translate("Warning"),
-			[translate("No"), translate("Yes")],
-			[undefined, Engine.PopGuiPage.bind(Engine, gameId)]);
+			[translate("No"), translate("Yes")]);
+		if (buttonIndex === 1)
+			Engine.PopGuiPage(gameId);
 	}
 }

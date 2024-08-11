@@ -27,7 +27,7 @@ class JoinButton
 	/**
 	 * Immediately rejoin and join game setups. Otherwise confirm late-observer join attempt.
 	 */
-	onPress()
+	async onPress()
 	{
 		let game = this.gameList.selectedGame();
 		if (!game)
@@ -37,53 +37,42 @@ class JoinButton
 		let playername = rating ? g_Nickname + " (" + rating + ")" : g_Nickname;
 
 		if (!game.isCompatible)
-			messageBox(
+		{
+			const buttonIndex = await messageBox(
 				400, 200,
 				translate("Your active mods do not match the mods of this game.") + "\n\n" +
 					comparedModsString(game.mods, Engine.GetEngineInfo().mods) + "\n\n" +
 					translate("Do you want to switch to the mod selection page?"),
 				translate("Incompatible mods"),
-				[translate("No"), translate("Yes")],
-				[null, this.openModSelectionPage.bind(this)]
-			);
-		else if (game.stanza.state == "init" || game.players.some(player => player.Name == playername))
-			this.joinSelectedGame();
-		else
-			messageBox(
+				[translate("No"), translate("Yes")]);
+
+			if (buttonIndex === 0)
+				return;
+
+			Engine.StopXmppClient();
+			Engine.SwitchGuiPage("page_modmod.xml", { "cancelbutton": true });
+			return;
+		}
+
+		const stanza = game.stanza;
+		if (stanza.state !== "init" && game.players.every(player => player.Name !== playername))
+		{
+			const buttonIndex = await messageBox(
 				400, 200,
 				translate("The game has already started. Do you want to join as observer?"),
 				translate("Confirmation"),
-				[translate("No"), translate("Yes")],
-				[null, this.joinSelectedGame.bind(this)]);
-	}
+				[translate("No"), translate("Yes")]);
 
-	/**
-	 * Attempt to join the selected game without asking for confirmation.
-	 */
-	joinSelectedGame()
-	{
-		if (this.joinButton.hidden)
-			return;
+			if (buttonIndex === 0)
+				return;
+		}
 
-		let game = this.gameList.selectedGame();
-		if (!game)
-			return;
-
-		let stanza = game.stanza;
 		Engine.PushGuiPage("page_gamesetup_mp.xml", {
 			"multiplayerGameType": "join",
 			"name": g_Nickname,
 			"rating": this.getRejoinRating(stanza),
 			"hasPassword": !!stanza.hasPassword,
 			"hostJID": stanza.hostJID
-		});
-	}
-
-	openModSelectionPage()
-	{
-		Engine.StopXmppClient();
-		Engine.SwitchGuiPage("page_modmod.xml", {
-			"cancelbutton": true
 		});
 	}
 

@@ -173,18 +173,19 @@ var g_OptionType = {
 				control.tooltip = item && item.tooltip || option.tooltip;
 			};
 		},
-		"timeout": (option, oldValue, hasChanges, newValue) => {
+		"timeout": async(option, oldValue, hasChanges, newValue) => {
 			if (!option.timeout)
 				return;
-			timedConfirmation(
+			const buttonIndex = await timedConfirmation(
 				500, 200,
 				translate("Changes will be reverted in %(time)s seconds. Do you want to keep changes?"),
 				"time",
 				option.timeout,
 				translate("Warning"),
-				[translate("No"), translate("Yes")],
-				[() => {this.revertChange(option, +oldValue, hasChanges);}, null]
-			);
+				[translate("No"), translate("Yes")]);
+
+			if (buttonIndex === 0)
+				this.revertChange(option, +oldValue, hasChanges);
 		}
 	},
 	"slider":
@@ -354,19 +355,17 @@ function enableButtons()
 	Engine.GetGUIObjectByName("saveChanges").enabled = hasChanges;
 }
 
-function setDefaults()
+async function setDefaults()
 {
-	messageBox(
+	const buttonIndex = messageBox(
 		500, 200,
 		translate("Resetting the options will erase your saved settings. Do you want to continue?"),
 		translate("Warning"),
-		[translate("No"), translate("Yes")],
-		[null, reallySetDefaults]
-	);
-}
+		[translate("No"), translate("Yes")]);
 
-function reallySetDefaults()
-{
+	if (buttonIndex === 0)
+		return;
+
 	for (let category in g_Options)
 		for (let option of g_Options[category].options)
 		{
@@ -405,37 +404,33 @@ function revertChanges()
 	displayOptions();
 }
 
-function saveChanges()
+async function saveChanges()
 {
-	for (let category in g_Options)
-		for (let i = 0; i < g_Options[category].options.length; ++i)
-		{
-			let option = g_Options[category].options[i];
+	const category = Object.keys(g_Options).find(key => {
+		return g_Options[key].options.some(option => {
 			let optionType = g_OptionType[option.type];
 			if (!optionType.sanitizeValue)
-				continue;
+				return false;
 
 			let value = optionType.configToValue(Engine.ConfigDB_GetValue("user", option.config));
-			if (value == optionType.sanitizeValue(value, undefined, option))
-				continue;
+			return value != optionType.sanitizeValue(value, undefined, option);
+		});
+	});
 
-			selectPanel(category);
+	if (category)
+	{
+		selectPanel(category);
 
-			messageBox(
-				500, 200,
-				translate("Some setting values are invalid! Are you sure you want to save them?"),
-				translate("Warning"),
-				[translate("No"), translate("Yes")],
-				[null, reallySaveChanges]
-			);
+		const buttonIndex = await messageBox(
+			500, 200,
+			translate("Some setting values are invalid! Are you sure you want to save them?"),
+			translate("Warning"),
+			[translate("No"), translate("Yes")]);
+
+		if (buttonIndex === 0)
 			return;
-		}
+	}
 
-	reallySaveChanges();
-}
-
-function reallySaveChanges()
-{
 	Engine.ConfigDB_SaveChanges("user");
 	enableButtons();
 }
@@ -443,20 +438,18 @@ function reallySaveChanges()
 /**
  * Close GUI page and inform the parent GUI page which options changed.
  **/
-function closePage()
+async function closePage()
 {
 	if (Engine.ConfigDB_HasChanges("user"))
-		messageBox(
+	{
+		const buttonIndex = await messageBox(
 			500, 200,
 			translate("You have unsaved changes, do you want to close this window?"),
 			translate("Warning"),
-			[translate("No"), translate("Yes")],
-			[null, closePageWithoutConfirmation]);
-	else
-		closePageWithoutConfirmation();
-}
+			[translate("No"), translate("Yes")]);
+		if (buttonIndex === 0)
+			return;
+	}
 
-function closePageWithoutConfirmation()
-{
 	Engine.PopGuiPage(g_ChangedKeys);
 }

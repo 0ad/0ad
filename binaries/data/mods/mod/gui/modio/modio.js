@@ -23,9 +23,6 @@ var g_RequestCancelled;
 
 var g_RequestStartTime;
 
-/**
- * Returns true if ModIoAdvanceRequest should be called.
- */
 var g_ModIOState = {
 	/**
 	 * Finished status indicators
@@ -34,96 +31,103 @@ var g_ModIOState = {
 		// GameID acquired, ready to fetch mod list
 		if (!g_RequestCancelled)
 			updateModList();
-		return true;
 	},
 	"listed": progressData => {
 		// List of available mods acquired
 
 		// Only run this once (for each update).
 		if (Engine.GetGUIObjectByName("modsAvailableList").list.length)
-			return true;
+			return;
 
 		hideDialog();
 		Engine.GetGUIObjectByName("refreshButton").enabled = true;
 		g_ModsAvailableOnline = Engine.ModIoGetMods();
 		displayMods();
-		return true;
 	},
 	"success": progressData => {
 		// Successfully acquired a mod file
 		hideDialog();
 		Engine.GetGUIObjectByName("downloadButton").enabled = true;
-		return true;
 	},
 	/**
 	 * In-progress status indicators.
 	 */
 	"gameid": progressData => {
 		// Acquiring GameID from mod.io
-		return true;
 	},
 	"listing": progressData => {
 		// Acquiring list of available mods from mod.io
-		return true;
 	},
 	"downloading": progressData => {
 		// Downloading a mod file
 		updateProgressBar(progressData.progress, g_ModsAvailableOnline[selectedModIndex()].filesize);
-		return true;
 	},
 	/**
 	 * Error/Failure status indicators.
 	 */
-	"failed_gameid": progressData => {
+	"failed_gameid": async(progressData) => {
 		// Game ID couldn't be retrieved
-		showErrorMessageBox(
+		const promise = showErrorMessageBox(
 			sprintf(translateWithContext("mod.io error message", "Game ID could not be retrieved.\n\n%(technicalDetails)s"), {
 				"technicalDetails": progressData.error
 			}),
 			translateWithContext("mod.io error message", "Initialization Error"),
-			[translate("Abort"), translate("Retry")],
-			[closePage, init]);
-		return false;
+			[translate("Abort"), translate("Retry")]);
+		if (!promise)
+			return;
+		if (await promise === 0)
+			closePage();
+		else
+			init();
 	},
-	"failed_listing": progressData => {
+	"failed_listing": async(progressData) => {
 		// Mod list couldn't be retrieved
-		showErrorMessageBox(
+		const promise = showErrorMessageBox(
 			sprintf(translateWithContext("mod.io error message", "Mod List could not be retrieved.\n\n%(technicalDetails)s"), {
 				"technicalDetails": progressData.error
 			}),
 			translateWithContext("mod.io error message", "Fetch Error"),
-			[translate("Abort"), translate("Retry")],
-			[cancelModListUpdate, updateModList]);
-		return false;
+			[translate("Abort"), translate("Retry")]);
+		if (!promise)
+			return;
+		if (await promise === 0)
+			cancelModListUpdate();
+		else
+			updateModList();
 	},
-	"failed_downloading": progressData => {
+	"failed_downloading": async(progressData) => {
 		// File couldn't be retrieved
-		showErrorMessageBox(
+		const promise = showErrorMessageBox(
 			sprintf(translateWithContext("mod.io error message", "File download failed.\n\n%(technicalDetails)s"), {
 				"technicalDetails": progressData.error
 			}),
 			translateWithContext("mod.io error message", "Download Error"),
-			[translate("Abort"), translate("Retry")],
-			[cancelRequest, downloadMod]);
-		return false;
+			[translate("Abort"), translate("Retry")]);
+		if (!promise)
+			return;
+		if (await promise === 0)
+			cancelRequest();
+		else
+			downloadMod();
 	},
-	"failed_filecheck": progressData => {
+	"failed_filecheck": async(progressData) => {
 		// The file is corrupted
-		showErrorMessageBox(
+		const promise = showErrorMessageBox(
 			sprintf(translateWithContext("mod.io error message", "File verification error.\n\n%(technicalDetails)s"), {
 				"technicalDetails": progressData.error
 			}),
 			translateWithContext("mod.io error message", "Verification Error"),
-			[translate("Abort")],
-			[cancelRequest]);
-		return false;
+			[translate("Abort")]);
+		if (!promise)
+			return;
+		await promise;
+		cancelRequest();
 	},
 	/**
 	 * Default
 	 */
 	"none": progressData => {
 		// Nothing has happened yet.
-		return true;
 	}
 };
 
@@ -151,7 +155,8 @@ function onTick()
 		return;
 	}
 
-	if (handler(progressData))
+	handler(progressData);
+	if (!progressData.status.startsWith("failed"))
 		Engine.ModIoAdvanceRequest();
 }
 
@@ -290,13 +295,13 @@ function closePage()
 	Engine.PopGuiPage();
 }
 
-function showErrorMessageBox(caption, title, buttonCaptions, buttonActions)
+function showErrorMessageBox(caption, title, buttonCaptions)
 {
 	if (g_Failure)
-		return;
-
-	messageBox(500, 250, caption, title, buttonCaptions, buttonActions);
+		return null;
 	g_Failure = true;
+
+	return messageBox(500, 250, caption, title, buttonCaptions);
 }
 
 function progressDialog(dialogCaption, dialogTitle, showProgressBar, buttonCaption, buttonAction)

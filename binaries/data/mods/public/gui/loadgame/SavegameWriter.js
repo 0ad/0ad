@@ -34,36 +34,29 @@ class SavegameWriter
 		};
 	}
 
-	saveGame(gameID, label)
+	async saveGame(gameID, label)
 	{
 		let desc = this.saveGameDesc.caption;
 		let name = gameID || "savegame";
 
-		if (!gameID)
+		if (gameID)
 		{
-			this.reallySaveGame(name, desc, true);
-			return;
+			const buttonIndex = await messageBox(
+				500, 200,
+				sprintf(translate("\"%(label)s\""), { "label": label }) + "\n" +
+					translate("Saved game will be permanently overwritten, are you sure?"),
+				translate("OVERWRITE SAVE"),
+				[translate("No"), translate("Yes")]);
+
+			if (buttonIndex === 0)
+				return;
 		}
 
-		messageBox(
-			500, 200,
-			sprintf(translate("\"%(label)s\""), { "label": label }) + "\n" +
-				translate("Saved game will be permanently overwritten, are you sure?"),
-			translate("OVERWRITE SAVE"),
-			[translate("No"), translate("Yes")],
-			[null, () => { this.reallySaveGame(name, desc, false); }]);
-	}
-
-	reallySaveGame(name, desc, nameIsPrefix)
-	{
 		let simulationState = Engine.GuiInterfaceCall("GetSimulationState");
 		this.savedGameData.timeElapsed = simulationState.timeElapsed;
 		this.savedGameData.states = simulationState.players.map(pState => pState.state);
 
-		if (nameIsPrefix)
-			Engine.SaveGamePrefix(name, desc, this.savedGameData);
-		else
-			Engine.SaveGame(name, desc, this.savedGameData);
+		Engine[gameID ? "SaveGame" : "SaveGamePrefix"](name, desc, this.savedGameData);
 
 		Engine.PopGuiPage();
 	}

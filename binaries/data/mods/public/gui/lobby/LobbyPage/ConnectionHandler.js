@@ -45,7 +45,7 @@ class ConnectionHandler
 			banned ? translate("BANNED") : translate("KICKED"));
 	}
 
-	askReconnect()
+	async askReconnect()
 	{
 		if (this.kicked)
 			return;
@@ -56,19 +56,14 @@ class ConnectionHandler
 
 		this.askingReconnect = true;
 
-		messageBox(
+		const buttonIndex = await messageBox(
 			400, 200,
 			translate("You have been disconnected from the lobby. Do you want to reconnect?"),
 			translate("Confirmation"),
-			[translate("No"), translate("Yes")],
-			[
-				() => {
-					this.askingReconnect = false;
-				},
-				() => {
-					this.askingReconnect = false;
-					Engine.ConnectXmppClient();
-				}
-			]);
+			[translate("No"), translate("Yes")]);
+
+		this.askingReconnect = false;
+		if (buttonIndex === 1)
+			Engine.ConnectXmppClient();
 	}
 }
