@@ -102,30 +102,15 @@ if [ "`uname -s`" != "Darwin" ]; then
   echo
 fi
 
-# Now run premake to create the makefiles
+# Now build Premake or use system's.
 
 cd ../premake
 premake_command="premake5"
 
 if [ "$with_system_premake5" = "false" ]; then
   # Build bundled premake
-  cd premake5
-  PREMAKE_BUILD_DIR=build/gmake2.unix
-  # BSD and OS X need different Makefiles
-  case "`uname -s`" in
-    "GNU/kFreeBSD" )
-      # use default gmake2.unix (needs -ldl as we have a GNU userland and libc)
-      ;;
-    *"BSD" )
-      PREMAKE_BUILD_DIR=build/gmake2.bsd
-      ;;
-    "Darwin" )
-      PREMAKE_BUILD_DIR=build/gmake2.macosx
-      ;;
-  esac
-  ${MAKE} -C $PREMAKE_BUILD_DIR ${JOBS} || die "Premake build failed"
+  MAKE=${MAKE} JOBS=${JOBS} ./build.sh || die "Premake 5 build failed"
 
-  cd ..
   premake_command="premake5/bin/release/premake5"
 fi
 
@@ -133,7 +118,7 @@ echo
 
 # If we're in bash then make HOSTTYPE available to Premake, for primitive arch-detection
 export HOSTTYPE="$HOSTTYPE"
-
+# Now run Premake to create the makefiles
 echo "Premake args: ${premake_args}"
 if [ "`uname -s`" != "Darwin" ]; then
   ${premake_command} --file="premake5.lua" --outpath="../workspaces/gcc/" ${premake_args} gmake || die "Premake failed"

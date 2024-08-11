@@ -5,16 +5,17 @@ class AnnouncementHandler
 {
 	constructor(xmppMessages)
 	{
-		xmppMessages.registerXmppMessageHandler("chat", "private-message", this.onPrivateMessage.bind(this));
+		xmppMessages.registerXmppMessageHandler("chat", "headline", this.onAnnouncementMessage.bind(this));
 	}
 
-	onPrivateMessage(message)
+	onAnnouncementMessage(message)
 	{
-		// Announcements and the Message of the Day are sent by the server directly
-		if (!message.from && message.text.length > 0)
-			messageBox(
-				400, 250,
-				message.text.trim(),
-				translate("Notice"));
+		if (message.subject.trim().length === 0 && message.text.trim().length === 0)
+			return;
+
+		messageBox(
+			400, 250,
+			formatXmppAnnouncement(message.subject, message.text),
+			translate("Notice"));
 	}
 }

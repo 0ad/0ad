@@ -8,6 +8,7 @@ class ChatMessageFormat
 {
 	constructor()
 	{
+		this.chatMessageFormatAnnouncement = new ChatMessageFormatAnnouncement();
 		this.chatMessageFormatMe = new ChatMessageFormatMe();
 		this.chatMessageFormatSay = new ChatMessageFormatSay();
 		this.chatMessagePrivateWrapper = new ChatMessagePrivateWrapper();
@@ -59,9 +60,12 @@ class ChatMessageFormat
 			}
 		}
 		else
-			formattedMessage = this.chatMessageFormatSay.format(sender, text);
+			if (message.level === "headline")
+				formattedMessage = this.chatMessageFormatAnnouncement.format(message.subject, text);
+			else
+				formattedMessage = this.chatMessageFormatSay.format(sender, text);
 
-		if (message.level == "private-message")
+		if (message.level === "private-message")
 			formattedMessage = this.chatMessagePrivateWrapper.format(formattedMessage);
 
 		return formattedMessage;
