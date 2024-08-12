@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # Translators:
 # Hoàng Văn Khải, 2023
@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2024-08-09 07:17+0000\n"
 "PO-Revision-Date: 2013-06-22 12:54+0000\n"
 "Last-Translator: Khải, 2023\n"
 "Language-Team: Vietnamese (http://app.transifex.com/wildfire-games/0ad/language/vi/)\n"
@@ -22,37 +22,7 @@ msgstr ""
 "Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: graphics/CameraController.cpp:659
-#, c-format
-msgid "Scroll speed increased to %.1f"
-msgstr "Tốc độ cuộn tăng lên %.1f"
-
-#: graphics/CameraController.cpp:665
-#, c-format
-msgid "Scroll speed decreased to %.1f"
-msgstr "Tốc độ cuộn giảm còn %.1f"
-
-#: graphics/CameraController.cpp:672
-#, c-format
-msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr "Tốc độ quay tăng lên X=%.3f, Y=%.3f"
-
-#: graphics/CameraController.cpp:679
-#, c-format
-msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr "Tốc độ quay giảm còn X=%.3f, Y=%.3f"
-
-#: graphics/CameraController.cpp:685
-#, c-format
-msgid "Zoom speed increased to %.1f"
-msgstr "Tốc độ thu phóng tăng lên %.1f"
-
-#: graphics/CameraController.cpp:691
-#, c-format
-msgid "Zoom speed decreased to %.1f"
-msgstr "Tốc độ thu phóng giảm còn %.1f"
-
-#: i18n/L10n.cpp:308
+#: i18n/L10n.cpp:346
 msgid "Long strings"
 msgstr "Đoạn văn dài"
 
@@ -195,76 +165,63 @@ msgstr "Tất cả thông tin cần thiết chưa được cung cấp"
 msgid "Username already exists"
 msgstr "Tên người dùng đã tồn tại"
 
-#: ps/Mod.cpp:93
-#, c-format
-msgid ""
-"Could not write external mod.json for zipped mod '%s'. The mod should be "
-"reinstalled."
-msgstr "Không thể viết tệp mod.json bên ngoài cho mod '%s' định dạng zip. Mod nên được cài đặt lại."
-
-#: ps/ModIo.cpp:264
+#: ps/ModIo.cpp:266
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr "Không thể bắt đầu truy vấn game id. Lỗi: %s; %s."
 
-#: ps/ModIo.cpp:294
+#: ps/ModIo.cpp:296
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr "Không thể bắt đầu truy vấn bản mod. Lỗi: %s; %s."
 
-#: ps/ModIo.cpp:320
+#: ps/ModIo.cpp:322
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr "Không thể tạo thư mục bản mod: %s."
 
-#: ps/ModIo.cpp:345
+#: ps/ModIo.cpp:347
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr "Không thể mở tệp tạm thời để tải xuống bản mod: %s."
 
-#: ps/ModIo.cpp:355
+#: ps/ModIo.cpp:357
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr "Không thể bắt đầu tải xuống. Lỗi: %s; %s."
 
-#: ps/ModIo.cpp:400
+#: ps/ModIo.cpp:402
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr "Tải xuống không đồng bộ: %s, %s."
 
-#: ps/ModIo.cpp:428
+#: ps/ModIo.cpp:430
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "Tải về thất bại. Server phản hồi: %s; %s."
 
-#: ps/ModIo.cpp:534
+#: ps/ModIo.cpp:536
 msgid "Mismatched filesize."
 msgstr "Kích thước tệp không khớp."
 
-#: ps/ModIo.cpp:552
+#: ps/ModIo.cpp:554
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "Tệp không hợp lệ. Yêu cầu md5 %s, được %s."
 
-#: ps/ModIo.cpp:567
+#: ps/ModIo.cpp:569
 msgid "Failed to compute final hash."
 msgstr "Không thể tính toán hash cuối cùng."
 
-#: ps/ModIo.cpp:573
+#: ps/ModIo.cpp:575
 msgid "Failed to verify signature."
 msgstr "Không xác minh được chữ ký."
-
-#: ps/SavedGame.cpp:142
-#, c-format
-msgid "Saved game to '%s'"
-msgstr "Game đã được lưu tại '%s'"
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
 msgstr "custom build"
 
-#: renderer/Renderer.cpp:565 renderer/Renderer.cpp:568
-#: renderer/Renderer.cpp:680 renderer/Renderer.cpp:683
+#: renderer/Renderer.cpp:690 renderer/Renderer.cpp:816
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Ảnh chụp màn hình được lưu tại '%s'"

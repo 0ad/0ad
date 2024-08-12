@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # Translators:
 # Ansh Mishra, 2023
@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2024-08-09 07:17+0000\n"
 "PO-Revision-Date: 2013-06-22 12:54+0000\n"
 "Last-Translator: Ansh Mishra, 2023\n"
 "Language-Team: Hindi (http://app.transifex.com/wildfire-games/0ad/language/hi/)\n"
@@ -24,37 +24,7 @@ msgstr ""
 "Language: hi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: graphics/CameraController.cpp:659
-#, c-format
-msgid "Scroll speed increased to %.1f"
-msgstr "सरकाने की गति %.1f बढ़ी।"
-
-#: graphics/CameraController.cpp:665
-#, c-format
-msgid "Scroll speed decreased to %.1f"
-msgstr "सरकाने की गति %.1f घटी"
-
-#: graphics/CameraController.cpp:672
-#, c-format
-msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr "घुमाने की गति समानांतर=%.3f, लंबवत=%.3f बढ़ी"
-
-#: graphics/CameraController.cpp:679
-#, c-format
-msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr "घुमाने की गति समानांतर=%.3f, लंबवत=%.3f घटी"
-
-#: graphics/CameraController.cpp:685
-#, c-format
-msgid "Zoom speed increased to %.1f"
-msgstr "पास से देखने की गति %.1f बढ़ी"
-
-#: graphics/CameraController.cpp:691
-#, c-format
-msgid "Zoom speed decreased to %.1f"
-msgstr "पास से देखने की गति %.1f घटी"
-
-#: i18n/L10n.cpp:308
+#: i18n/L10n.cpp:346
 msgid "Long strings"
 msgstr "लंबी स्ट्रिंग्स"
 
@@ -197,76 +167,63 @@ msgstr "सभी आवश्यक जानकारी प्रदान �
 msgid "Username already exists"
 msgstr "उपयोगकर्ता का नाम पहले से मौजूद है"
 
-#: ps/Mod.cpp:93
-#, c-format
-msgid ""
-"Could not write external mod.json for zipped mod '%s'. The mod should be "
-"reinstalled."
-msgstr "ज़िप्ड मॉड '%s' के लिए बाहरी mod.json नहीं लिख सका। मॉड को पुनः स्थापित किया जाना चाहिए."
-
-#: ps/ModIo.cpp:264
+#: ps/ModIo.cpp:266
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr "गेम आईडी के लिए पूछताछ शुरू करते समय विफलता। त्रुटि: %s; %s।"
 
-#: ps/ModIo.cpp:294
+#: ps/ModIo.cpp:296
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr "मॉड आईडी के लिए पूछताछ शुरू करते समय विफलता। त्रुटि: %s; %s।"
 
-#: ps/ModIo.cpp:320
+#: ps/ModIo.cpp:322
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr "मॉड निर्देशिका नहीं बना सका: %s"
 
-#: ps/ModIo.cpp:345
+#: ps/ModIo.cpp:347
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr "मॉड डाउनलोड के लिए अस्थायी फ़ाइल नहीं खोल सका: %s"
 
-#: ps/ModIo.cpp:355
+#: ps/ModIo.cpp:357
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr "डाउनलोड शुरू करने में विफल। त्रुटि: %s; %s"
 
-#: ps/ModIo.cpp:400
+#: ps/ModIo.cpp:402
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr "असीमित डाउनलोड विफलता: %s;%s"
 
-#: ps/ModIo.cpp:428
+#: ps/ModIo.cpp:430
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "डाउनलोड विफल। सर्वर प्रतिक्रिया: %s;%s"
 
-#: ps/ModIo.cpp:534
+#: ps/ModIo.cpp:536
 msgid "Mismatched filesize."
 msgstr "बेमेल फ़ाइल आकार।"
 
-#: ps/ModIo.cpp:552
+#: ps/ModIo.cpp:554
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "अवैध फाइल। अपेक्षित md5 %s, मिला %s"
 
-#: ps/ModIo.cpp:567
+#: ps/ModIo.cpp:569
 msgid "Failed to compute final hash."
 msgstr "अंतिम हैश की गणना करने में विफल।"
 
-#: ps/ModIo.cpp:573
+#: ps/ModIo.cpp:575
 msgid "Failed to verify signature."
 msgstr "हस्ताक्षर सत्यापित करने में विफल।"
-
-#: ps/SavedGame.cpp:142
-#, c-format
-msgid "Saved game to '%s'"
-msgstr "गेम को यहा '%s' संरक्षित किया"
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
 msgstr "कस्टम बिल्ड"
 
-#: renderer/Renderer.cpp:565 renderer/Renderer.cpp:568
-#: renderer/Renderer.cpp:680 renderer/Renderer.cpp:683
+#: renderer/Renderer.cpp:690 renderer/Renderer.cpp:816
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "स्क्रीनशॉट '%s' में अंकित कर दिया गया"

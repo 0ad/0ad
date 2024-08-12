@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # Translators:
 # git12a, 2015
@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2024-08-09 07:17+0000\n"
 "PO-Revision-Date: 2013-06-22 12:54+0000\n"
 "Last-Translator: Ridhubharan V, 2021\n"
 "Language-Team: Tamil (India) (http://app.transifex.com/wildfire-games/0ad/language/ta_IN/)\n"
@@ -21,37 +21,7 @@ msgstr ""
 "Language: ta_IN\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: graphics/CameraController.cpp:659
-#, c-format
-msgid "Scroll speed increased to %.1f"
-msgstr "உருள் வேகம் %.1f ஆக அதிகரித்தது"
-
-#: graphics/CameraController.cpp:665
-#, c-format
-msgid "Scroll speed decreased to %.1f"
-msgstr "உருள் வேகம் %.1f ஆக குறைந்தது"
-
-#: graphics/CameraController.cpp:672
-#, c-format
-msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr "சுழலும் வேகம் X=%.3f, Y=%.3f ஆக அதிகரித்தது"
-
-#: graphics/CameraController.cpp:679
-#, c-format
-msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr "சுழலும் வேகம் X=%.3f, Y=%.3f ஆக குறைந்தது"
-
-#: graphics/CameraController.cpp:685
-#, c-format
-msgid "Zoom speed increased to %.1f"
-msgstr "பெரிதாக்க வேகம் %.1f ஆக அதிகரித்தது"
-
-#: graphics/CameraController.cpp:691
-#, c-format
-msgid "Zoom speed decreased to %.1f"
-msgstr "பெரிதாக்க வேகம் %.1f ஆக குறைந்தது"
-
-#: i18n/L10n.cpp:308
+#: i18n/L10n.cpp:346
 msgid "Long strings"
 msgstr "நீண்ட சொற்றொடர்கள்"
 
@@ -194,76 +164,63 @@ msgstr "தேவையான எல்லா தகவல்களும் வ
 msgid "Username already exists"
 msgstr "பயனர் பெயர் ஏற்கனவே உள்ளது"
 
-#: ps/Mod.cpp:93
-#, c-format
-msgid ""
-"Could not write external mod.json for zipped mod '%s'. The mod should be "
-"reinstalled."
-msgstr "சுருக்கப்பட்ட 'மாற்றியமைத்தல்' '%s' கோப்பிற்கு வெளிப்புற mod.json ஐ எழுத முடியவில்லை. 'மாற்றியமைத்தல்' மீண்டும் நிறுவப்பட வேண்டும்."
-
-#: ps/ModIo.cpp:264
+#: ps/ModIo.cpp:266
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr "விளையாட்டு அடையாளத்திற்கான வினவலைத் துவங்கும்போது தோல்வி. பிழை: %s; %s."
 
-#: ps/ModIo.cpp:294
+#: ps/ModIo.cpp:296
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr "'மாற்றியமைத்தல்' வினவலைத் துவங்கும்போது தோல்வி. பிழை: %s; %s."
 
-#: ps/ModIo.cpp:320
+#: ps/ModIo.cpp:322
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr "'மாற்றியமைத்தல்' கோப்பகத்தை உருவாக்க முடியவில்லை: %s."
 
-#: ps/ModIo.cpp:345
+#: ps/ModIo.cpp:347
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr "'மாற்றியமைத்தல்' பதிவிறக்கத்திற்கான தற்காலிக கோப்பைத் திறக்க முடியவில்லை: %s."
 
-#: ps/ModIo.cpp:355
+#: ps/ModIo.cpp:357
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr "பதிவிறக்கத்தைத் தொடங்க முடியவில்லை. பிழை: %s; %s."
 
-#: ps/ModIo.cpp:400
+#: ps/ModIo.cpp:402
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr "ஒத்திசைவற்ற பதிவிறக்க தோல்வி: %s, %s."
 
-#: ps/ModIo.cpp:428
+#: ps/ModIo.cpp:430
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "பதிவிறக்கம் தோல்வி. சேவையக பதில்: %s; %s."
 
-#: ps/ModIo.cpp:534
+#: ps/ModIo.cpp:536
 msgid "Mismatched filesize."
 msgstr "கோப்பு அளவு பொருந்தவில்லை."
 
-#: ps/ModIo.cpp:552
+#: ps/ModIo.cpp:554
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "தவறான கோப்பு. எதிர்பார்க்கப்பட்டது md5 %s, பெற்றது %s."
 
-#: ps/ModIo.cpp:567
+#: ps/ModIo.cpp:569
 msgid "Failed to compute final hash."
 msgstr "இறுதி ஹாஷைக் கணக்கிடுவதில் தோல்வி."
 
-#: ps/ModIo.cpp:573
+#: ps/ModIo.cpp:575
 msgid "Failed to verify signature."
 msgstr "கையொப்பத்தை சரிபார்க்க முடியவில்லை."
-
-#: ps/SavedGame.cpp:142
-#, c-format
-msgid "Saved game to '%s'"
-msgstr "'%s' யில் விளையாட்டு சேமிக்கப்பட்டது"
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
 msgstr "தனிக்கட்டமைப்பு"
 
-#: renderer/Renderer.cpp:565 renderer/Renderer.cpp:568
-#: renderer/Renderer.cpp:680 renderer/Renderer.cpp:683
+#: renderer/Renderer.cpp:690 renderer/Renderer.cpp:816
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "திரைப்பிடிப்பு '%s' யில் எழுதப்பட்டது"

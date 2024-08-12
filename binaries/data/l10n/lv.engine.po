@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # Translators:
 # Beāte Lakševica, 2016
@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2024-08-09 07:17+0000\n"
 "PO-Revision-Date: 2013-06-22 12:54+0000\n"
 "Last-Translator: Rudolph Stickut, 2018\n"
 "Language-Team: Latvian (http://app.transifex.com/wildfire-games/0ad/language/lv/)\n"
@@ -23,37 +23,7 @@ msgstr ""
 "Language: lv\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
-#: graphics/CameraController.cpp:659
-#, c-format
-msgid "Scroll speed increased to %.1f"
-msgstr ""
-
-#: graphics/CameraController.cpp:665
-#, c-format
-msgid "Scroll speed decreased to %.1f"
-msgstr ""
-
-#: graphics/CameraController.cpp:672
-#, c-format
-msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr ""
-
-#: graphics/CameraController.cpp:679
-#, c-format
-msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr ""
-
-#: graphics/CameraController.cpp:685
-#, c-format
-msgid "Zoom speed increased to %.1f"
-msgstr ""
-
-#: graphics/CameraController.cpp:691
-#, c-format
-msgid "Zoom speed decreased to %.1f"
-msgstr ""
-
-#: i18n/L10n.cpp:308
+#: i18n/L10n.cpp:346
 msgid "Long strings"
 msgstr "Garas simbolu virknes"
 
@@ -196,76 +166,63 @@ msgstr "Visa nepieciešamā informācija netika sagādāta"
 msgid "Username already exists"
 msgstr "Lietotājvārds jau eksistē"
 
-#: ps/Mod.cpp:93
-#, c-format
-msgid ""
-"Could not write external mod.json for zipped mod '%s'. The mod should be "
-"reinstalled."
-msgstr ""
-
-#: ps/ModIo.cpp:264
+#: ps/ModIo.cpp:266
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr ""
 
-#: ps/ModIo.cpp:294
+#: ps/ModIo.cpp:296
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr ""
 
-#: ps/ModIo.cpp:320
+#: ps/ModIo.cpp:322
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr ""
 
-#: ps/ModIo.cpp:345
+#: ps/ModIo.cpp:347
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr ""
 
-#: ps/ModIo.cpp:355
+#: ps/ModIo.cpp:357
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr ""
 
-#: ps/ModIo.cpp:400
+#: ps/ModIo.cpp:402
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr ""
 
-#: ps/ModIo.cpp:428
+#: ps/ModIo.cpp:430
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr ""
 
-#: ps/ModIo.cpp:534
+#: ps/ModIo.cpp:536
 msgid "Mismatched filesize."
 msgstr ""
 
-#: ps/ModIo.cpp:552
+#: ps/ModIo.cpp:554
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr ""
 
-#: ps/ModIo.cpp:567
+#: ps/ModIo.cpp:569
 msgid "Failed to compute final hash."
 msgstr ""
 
-#: ps/ModIo.cpp:573
+#: ps/ModIo.cpp:575
 msgid "Failed to verify signature."
 msgstr ""
-
-#: ps/SavedGame.cpp:142
-#, c-format
-msgid "Saved game to '%s'"
-msgstr "Spēle saglabāta '%s'"
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
 msgstr "pielāgots būvējums"
 
-#: renderer/Renderer.cpp:565 renderer/Renderer.cpp:568
-#: renderer/Renderer.cpp:680 renderer/Renderer.cpp:683
+#: renderer/Renderer.cpp:690 renderer/Renderer.cpp:816
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Ekrānuzņēmums saglabāts '%s'"
