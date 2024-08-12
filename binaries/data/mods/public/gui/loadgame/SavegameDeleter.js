@@ -42,22 +42,20 @@ class SavegameDeleter
 		return tooltip;
 	}
 
-	deleteGame(gameID, label)
+	async deleteGame(gameID, label)
 	{
-		if (Engine.HotkeyIsPressed("session.savedgames.noconfirmation"))
-			this.reallyDeleteGame(gameID);
-		else
-			messageBox(
+		if (!Engine.HotkeyIsPressed("session.savedgames.noconfirmation"))
+		{
+			const buttonIndex = await messageBox(
 				500, 200,
 				sprintf(translate("\"%(label)s\""), { "label": label }) + "\n" +
 					translate("Saved game will be permanently deleted, are you sure?"),
 				translate("DELETE"),
-				[translate("No"), translate("Yes")],
-				[null, () => { this.reallyDeleteGame(gameID); }]);
-	}
+				[translate("No"), translate("Yes")]);
+			if (buttonIndex === 0)
+				return;
+		}
 
-	reallyDeleteGame(gameID)
-	{
 		if (!Engine.DeleteSavedGame(gameID))
 			error("Could not delete saved game: " + gameID);
 

@@ -1,24 +1,19 @@
-async function messageBox(mbWidth, mbHeight, mbMessage, mbTitle, mbButtonCaptions, mbBtnCode,
-	mbCallbackArgs)
+function messageBox(width, height, message, title, buttonCaptions)
 {
-	const btnCode = await Engine.PushGuiPage(
+	return Engine.PushGuiPage(
 		"page_msgbox.xml",
 		{
-			"width": mbWidth,
-			"height": mbHeight,
-			"message": mbMessage,
-			"title": mbTitle,
-			"buttonCaptions": mbButtonCaptions
+			"width": width,
+			"height": height,
+			"message": message,
+			"title": title,
+			"buttonCaptions": buttonCaptions
 		});
-
-	if (mbBtnCode !== undefined && mbBtnCode[btnCode])
-		mbBtnCode[btnCode](mbCallbackArgs ? mbCallbackArgs[btnCode] : undefined);
 }
 
-async function timedConfirmation(width, height, message, timeParameter, timeout, title, buttonCaptions,
-	btnCode, callbackArgs)
+function timedConfirmation(width, height, message, timeParameter, timeout, title, buttonCaptions)
 {
-	const button = await Engine.PushGuiPage(
+	return Engine.PushGuiPage(
 		"page_timedconfirmation.xml",
 		{
 			"width": width,
@@ -29,9 +24,6 @@ async function timedConfirmation(width, height, message, timeParameter, timeout,
 			"title": title,
 			"buttonCaptions": buttonCaptions
 		});
-
-	if (btnCode !== undefined && btnCode[button])
-		btnCode[button](callbackArgs ? callbackArgs[button] : undefined);
 }
 
 function openURL(url)

@@ -149,27 +149,25 @@ class HotkeysPage
 		this.setupHotkeyList();
 	}
 
-	resetUserHotkeys()
+	async resetUserHotkeys()
 	{
-		messageBox(
+		const buttonIndex = await messageBox(
 			400, 200,
 			translate("Reset all hotkeys to default values?\nWARNING: this cannot be reversed."),
 			translate("Confirmation"),
-			[translate("No"), translate("Yes")],
-			[
-				() => {},
-				() => {
-					for (let cat in this.categories)
-						this.categories[cat].hotkeys.forEach(([name, _]) => {
-							Engine.ConfigDB_RemoveValue("user", "hotkey." + name);
-						});
-					Engine.ConfigDB_SaveChanges("user");
-					Engine.ReloadHotkeys();
-					this.saveButton.enabled = false;
-					this.setupHotkeyData();
-					this.setupHotkeyList();
-				}
-			]);
+			[translate("No"), translate("Yes")]);
+		if (buttonIndex === 0)
+			return;
+
+		for (const cat in this.categories)
+			this.categories[cat].hotkeys.forEach(([name, _]) => {
+				Engine.ConfigDB_RemoveValue("user", "hotkey." + name);
+			});
+		Engine.ConfigDB_SaveChanges("user");
+		Engine.ReloadHotkeys();
+		this.saveButton.enabled = false;
+		this.setupHotkeyData();
+		this.setupHotkeyList();
 	}
 
 	saveUserHotkeys()

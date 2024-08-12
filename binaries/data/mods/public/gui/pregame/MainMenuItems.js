@@ -259,19 +259,24 @@ var g_MainMenuItems = [
 	{
 		"caption": translate("Scenario Editor"),
 		"tooltip": translate('Open the Atlas Scenario Editor in a new window. You can run this more reliably by starting the game with the command-line argument "-editor".'),
-		"onPress": () => {
-			if (Engine.AtlasIsAvailable())
-				messageBox(
-					400, 200,
-					translate("Are you sure you want to quit 0 A.D. and open the Scenario Editor?"),
-					translate("Confirmation"),
-					[translate("No"), translate("Yes")],
-					[null, Engine.RestartInAtlas]);
-			else
+		"onPress": async() => {
+			if (!Engine.AtlasIsAvailable())
+			{
 				messageBox(
 					400, 200,
 					translate("The scenario editor is not available or failed to load. See the game logs for additional information."),
 					translate("Error"));
+				return;
+			}
+
+			const buttonIndex = await messageBox(
+				400, 200,
+				translate("Are you sure you want to quit 0 A.D. and open the Scenario Editor?"),
+				translate("Confirmation"),
+				[translate("No"), translate("Yes")]);
+
+			if (buttonIndex === 1)
+				Engine.RestartInAtlas();
 		}
 	},
 	{
@@ -284,13 +289,15 @@ var g_MainMenuItems = [
 	{
 		"caption": translate("Exit"),
 		"tooltip": translate("Exit the game."),
-		"onPress": () => {
-			messageBox(
+		"onPress": async() => {
+			const buttonIndex = await messageBox(
 				400, 200,
 				translate("Are you sure you want to quit 0 A.D.?"),
 				translate("Confirmation"),
-				[translate("No"), translate("Yes")],
-				[null, Engine.Exit]);
+				[translate("No"), translate("Yes")]);
+
+			if (buttonIndex === 1)
+				Engine.Exit();
 		}
 	}
 ];

@@ -148,55 +148,31 @@ function reloadCache()
 /**
  * Callback.
  */
-function deleteReplayButtonPressed()
+async function deleteReplayButtonPressed()
 {
 	if (!Engine.GetGUIObjectByName("deleteReplayButton").enabled)
 		return;
 
-	if (Engine.HotkeyIsPressed("session.savedgames.noconfirmation"))
-		deleteReplayWithoutConfirmation();
-	else
-		deleteReplay();
-}
-/**
- * Shows a confirmation dialog and deletes the selected replay from the disk in case.
- */
-function deleteReplay()
-{
 	// Get selected replay
 	var selected = Engine.GetGUIObjectByName("replaySelection").selected;
 	if (selected == -1)
 		return;
 
-	var replay = g_ReplaysFiltered[selected];
+	const replayDirectory = g_ReplaysFiltered[selected].directory;
 
-	messageBox(
-		500, 200,
-		translate("Are you sure you want to delete this replay permanently?") + "\n" +
-			escapeText(Engine.GetReplayDirectoryName(replay.directory)),
-		translate("Delete replay"),
-		[translate("No"), translate("Yes")],
-		[null, function() { reallyDeleteReplay(replay.directory); }]
-	);
-}
+	if (!Engine.HotkeyIsPressed("session.savedgames.noconfirmation"))
+	{
+		const buttonIndex = await messageBox(
+			500, 200,
+			translate("Are you sure you want to delete this replay permanently?") + "\n" +
+				escapeText(Engine.GetReplayDirectoryName(replayDirectory)),
+			translate("Delete replay"),
+			[translate("No"), translate("Yes")]);
 
-/**
- * Attempts to delete the selected replay from the disk.
- */
-function deleteReplayWithoutConfirmation()
-{
-	var selected = Engine.GetGUIObjectByName("replaySelection").selected;
-	if (selected > -1)
-		reallyDeleteReplay(g_ReplaysFiltered[selected].directory);
-}
+		if (buttonIndex === 0)
+			return;
+	}
 
-/**
- * Attempts to delete the given replay directory from the disk.
- *
- * @param replayDirectory {string}
- */
-function reallyDeleteReplay(replayDirectory)
-{
 	var replaySelection = Engine.GetGUIObjectByName("replaySelection");
 	var selectedIndex = replaySelection.selected;
 

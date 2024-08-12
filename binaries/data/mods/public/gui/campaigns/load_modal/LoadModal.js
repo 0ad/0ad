@@ -92,24 +92,23 @@ class LoadModal extends AutoWatcher
 		});
 	}
 
-	deleteSelectedRun()
+	async deleteSelectedRun()
 	{
 		if (this.selectedRun === -1)
 			return;
 
 		let run = this.currentRuns[this.selectedRun];
 
-		messageBox(
+		const buttonIndex = await messageBox(
 			400, 200,
 			sprintf(translate("Are you sure you want to delete run %s? This cannot be undone."), run.getLabel()),
 			translate("Confirmation"),
-			[translate("No"), translate("Yes")],
-			[null, () => {
-				run.destroy();
-				this.currentRuns.splice(this.selectedRun, 1);
-				this.selectedRun = -1;
-			}]
-		);
+			[translate("No"), translate("Yes")]);
+		if (buttonIndex === 0)
+			return;
+		run.destroy();
+		this.currentRuns.splice(this.selectedRun, 1);
+		this.selectedRun = -1;
 	}
 
 	startSelectedRun()
