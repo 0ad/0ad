@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2024 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis project.
 # Translators:
 # LOUKAS SKOUROLIAKOS, 2015
@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2024-08-09 07:17+0000\n"
 "PO-Revision-Date: 2013-06-22 12:54+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS, 2020-2021\n"
 "Language-Team: Greek (http://app.transifex.com/wildfire-games/0ad/language/el/)\n"
@@ -25,37 +25,7 @@ msgstr ""
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: graphics/CameraController.cpp:659
-#, c-format
-msgid "Scroll speed increased to %.1f"
-msgstr "Ταχύτητα κύλισης αυξήθηκε σε %.1f "
-
-#: graphics/CameraController.cpp:665
-#, c-format
-msgid "Scroll speed decreased to %.1f"
-msgstr "Ταχύτητα κύλισης μειώθηκε σε %.1f"
-
-#: graphics/CameraController.cpp:672
-#, c-format
-msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr "Ταχύτητα περιστροφής αυξήθηκε σε  X=%.3f, Y=%.3f"
-
-#: graphics/CameraController.cpp:679
-#, c-format
-msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr "Ταχύτητα περιστροφής μειώθηκε σε  X=%.3f, Y=%.3f"
-
-#: graphics/CameraController.cpp:685
-#, c-format
-msgid "Zoom speed increased to %.1f"
-msgstr "Ταχύτητα εστίασης αυξήθηκε σε %.1f"
-
-#: graphics/CameraController.cpp:691
-#, c-format
-msgid "Zoom speed decreased to %.1f"
-msgstr "Ταχύτητα εστίασης μειώθηκε σε %.1f"
-
-#: i18n/L10n.cpp:308
+#: i18n/L10n.cpp:346
 msgid "Long strings"
 msgstr "Συμβολοσειρές μεγάλου μήκους"
 
@@ -198,76 +168,63 @@ msgstr "Δεν δόθηκαν όλες οι απαιτούμενες πληρο�
 msgid "Username already exists"
 msgstr "Το όνομα χρήστη υπάρχει ήδη"
 
-#: ps/Mod.cpp:93
-#, c-format
-msgid ""
-"Could not write external mod.json for zipped mod '%s'. The mod should be "
-"reinstalled."
-msgstr "Δέν ήταν εφικτή η εγγραφή εξωτερικής λειτουργείας mod.json για την συμπιεσμένη λειτουργία  '%s'.  Η λειτουργία θα πρέπει να ξανα εγκατασταθεί."
-
-#: ps/ModIo.cpp:264
+#: ps/ModIo.cpp:266
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
 msgstr "Αποτυχία κατά την έναρξη της εξέτασης του αναγνωριστικού του παιχνιδιού. Σφάλμα: %s, %s."
 
-#: ps/ModIo.cpp:294
+#: ps/ModIo.cpp:296
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
 msgstr "Αποτυχία κατά την έναρξη της εξέτασης των mods. Σφάλμα: %s,%s."
 
-#: ps/ModIo.cpp:320
+#: ps/ModIo.cpp:322
 #, c-format
 msgid "Could not create mod directory: %s."
 msgstr "Δεν μπορεί να δημιουργηθεί ο φάκελος του mod: %s."
 
-#: ps/ModIo.cpp:345
+#: ps/ModIo.cpp:347
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
 msgstr "Δεν μπορεί να ανοίξει το προσωρινό αρχείο για τη λήψη του mod: %s."
 
-#: ps/ModIo.cpp:355
+#: ps/ModIo.cpp:357
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
 msgstr "Απέτυχε να ξεκινήσει η λήψη. Σφάλμα: %s, %s."
 
-#: ps/ModIo.cpp:400
+#: ps/ModIo.cpp:402
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
 msgstr "Αποτυχία ασύγχρονης λήψης: %s, %s."
 
-#: ps/ModIo.cpp:428
+#: ps/ModIo.cpp:430
 #, c-format
 msgid "Download failure. Server response: %s; %s."
 msgstr "Αποτυχία Λήψης. Απόκριση διακομιστή: %s, %s."
 
-#: ps/ModIo.cpp:534
+#: ps/ModIo.cpp:536
 msgid "Mismatched filesize."
 msgstr "Εσφαλμένο μέγεθος αρχείου."
 
-#: ps/ModIo.cpp:552
+#: ps/ModIo.cpp:554
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
 msgstr "Λάθος αρχείο. Αναμενόταν md5 %s, πίρε %s."
 
-#: ps/ModIo.cpp:567
+#: ps/ModIo.cpp:569
 msgid "Failed to compute final hash."
 msgstr "Αποτυχία υπολογισμού τελικού κατακερματισμού."
 
-#: ps/ModIo.cpp:573
+#: ps/ModIo.cpp:575
 msgid "Failed to verify signature."
 msgstr "Αποτυχία επαλήθευσης υπογραφής."
-
-#: ps/SavedGame.cpp:142
-#, c-format
-msgid "Saved game to '%s'"
-msgstr "Αποθήκευση παιχνιδιού στο  '%s'"
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
 msgstr "προσαρμοσμένη έκδοση"
 
-#: renderer/Renderer.cpp:565 renderer/Renderer.cpp:568
-#: renderer/Renderer.cpp:680 renderer/Renderer.cpp:683
+#: renderer/Renderer.cpp:690 renderer/Renderer.cpp:816
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Το στιγμιότυπο οθόνης αποθηκέυτηκε στο '%s'"

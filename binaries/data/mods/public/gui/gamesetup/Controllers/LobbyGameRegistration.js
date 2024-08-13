@@ -21,7 +21,7 @@ class LobbyGameRegistrationController
 		// Events
 		setupWindow.registerClosePageHandler(this.onClosePage.bind(this));
 		netMessages.registerNetMessageHandler("start", this.onGameStart.bind(this));
-		playerAssignmentsController.registerPlayerAssignmentsChangeHandler(this.sendImmediately.bind(this));
+		playerAssignmentsController.registerPlayerAssignmentsChangeHandler(this.onSettingsChange.bind(this));
 
 		g_GameSettings.map.watch(() => this.onSettingsChange(), ["map", "type"]);
 		g_GameSettings.mapSize.watch(() => this.onSettingsChange(), ["size"]);
@@ -137,4 +137,4 @@ class LobbyGameRegistrationController
 /**
  * Send the current game settings to the lobby bot if the settings didn't change for this number of milliseconds.
  */
-LobbyGameRegistrationController.prototype.Timeout = 2000;
+LobbyGameRegistrationController.prototype.Timeout = 500;
