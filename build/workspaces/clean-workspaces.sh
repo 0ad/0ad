@@ -61,6 +61,7 @@ fi
 (cd ../premake/premake5/build/gmake2.bsd && ${MAKE} clean)
 (cd ../premake/premake5/build/gmake2.macosx && ${MAKE} clean)
 (cd ../premake/premake5/build/gmake2.unix && ${MAKE} clean)
+(cd ../premake/ && rm -f .already-built)
 
 echo "Removing generated stub and test files..."
 
