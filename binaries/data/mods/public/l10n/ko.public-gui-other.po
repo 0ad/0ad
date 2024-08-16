@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-08-09 07:17+0000\n"
+"POT-Creation-Date: 2024-08-12 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Junghee Lee, 2022-2024\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -911,20 +911,20 @@ msgid "Friendly Fire: %(enabled)s"
 msgstr "아군의 포격: %(enabled)s"
 
 #: gui/common/tooltips.js:409 gui/hotkeys/HotkeysPage.js:158
-#: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:53 gui/options/options.js:185
-#: gui/options/options.js:363 gui/options/options.js:428
-#: gui/options/options.js:453 gui/pregame/MainMenuItems.js:268
-#: gui/pregame/MainMenuItems.js:292 gui/replaymenu/replay_actions.js:178
+#: gui/loadgame/SavegameDeleter.js:54 gui/loadgame/SavegameLoader.js:61
+#: gui/loadgame/SavegameWriter.js:49 gui/options/options.js:185
+#: gui/options/options.js:364 gui/options/options.js:428
+#: gui/options/options.js:449 gui/pregame/MainMenuItems.js:276
+#: gui/pregame/MainMenuItems.js:297 gui/replaymenu/replay_actions.js:170
 msgid "Yes"
 msgstr "예"
 
 #: gui/common/tooltips.js:409 gui/hotkeys/HotkeysPage.js:158
-#: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:53 gui/options/options.js:185
-#: gui/options/options.js:363 gui/options/options.js:428
-#: gui/options/options.js:453 gui/pregame/MainMenuItems.js:268
-#: gui/pregame/MainMenuItems.js:292 gui/replaymenu/replay_actions.js:178
+#: gui/loadgame/SavegameDeleter.js:54 gui/loadgame/SavegameLoader.js:61
+#: gui/loadgame/SavegameWriter.js:49 gui/options/options.js:185
+#: gui/options/options.js:364 gui/options/options.js:428
+#: gui/options/options.js:449 gui/pregame/MainMenuItems.js:276
+#: gui/pregame/MainMenuItems.js:297 gui/replaymenu/replay_actions.js:170
 msgid "No"
 msgstr "아니오"
 
@@ -1934,12 +1934,12 @@ msgid ""
 "WARNING: this cannot be reversed."
 msgstr "모든 단축키를 기본값으로 재설정하시겠습니까?\n경고: 되돌릴 수 없습니다."
 
-#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:267
-#: gui/pregame/MainMenuItems.js:291
+#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:275
+#: gui/pregame/MainMenuItems.js:296
 msgid "Confirmation"
 msgstr "확인"
 
-#: gui/hotkeys/HotkeysPage.js:198
+#: gui/hotkeys/HotkeysPage.js:196
 msgid "No tooltip available."
 msgstr "사용 가능한 툴팁 없음"
 
@@ -3838,16 +3838,16 @@ msgstr "%(hotkey)s 키를 사용하여 선택한 저장된 게임을 삭제합�
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr "삭제하는 동안 확인 대화상자를 건너뛰려면 %(hotkey)s 을(를) 유지합니다."
 
-#: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:50
+#: gui/loadgame/SavegameDeleter.js:51 gui/loadgame/SavegameWriter.js:46
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/loadgame/SavegameDeleter.js:53
+#: gui/loadgame/SavegameDeleter.js:52
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "저장된 게임이 완전히 삭제됩니다, 삭제하시겠습니까?"
 
-#: gui/loadgame/SavegameDeleter.js:54
+#: gui/loadgame/SavegameDeleter.js:53
 msgid "DELETE"
 msgstr "삭제하기"
 
@@ -3894,8 +3894,8 @@ msgid "Do you still want to proceed?"
 msgstr "계속 진행하시겠습니까?"
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:184
-#: gui/options/options.js:362 gui/options/options.js:427
-#: gui/options/options.js:452
+#: gui/options/options.js:363 gui/options/options.js:427
+#: gui/options/options.js:448
 msgid "Warning"
 msgstr "경고"
 
@@ -3912,11 +3912,11 @@ msgstr "게임 불러오기"
 msgid "Save"
 msgstr "저장하기"
 
-#: gui/loadgame/SavegameWriter.js:51
+#: gui/loadgame/SavegameWriter.js:47
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "저장된 게임을 영구적으로 덮어 씁니다. 확실합니까?"
 
-#: gui/loadgame/SavegameWriter.js:52
+#: gui/loadgame/SavegameWriter.js:48
 msgid "OVERWRITE SAVE"
 msgstr "저장파일 덮어쓰기"
 
@@ -4217,13 +4217,13 @@ msgid ""
 "Changes will be reverted in %(time)s seconds. Do you want to keep changes?"
 msgstr "변경 사항은 %(time)s초 후에 되돌려집니다. 변경 사항을 유지하시겠습니까?"
 
-#: gui/options/options.js:203
+#: gui/options/options.js:204
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "값: %(val)s (최소: %(min)s, 최대: %(max)s)"
 
-#: gui/options/options.js:361
+#: gui/options/options.js:362
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
@@ -4233,7 +4233,7 @@ msgstr "옵션을 재설정하면 저장된 설정이 지워집니다. 계속하
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr "일부 설정 값은 유효하지 않습니다! 저장하시겠습니까?"
 
-#: gui/options/options.js:451
+#: gui/options/options.js:447
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "바뀐 내용을 저장하지 않으셨습니다. 이 창을 닫으시겠습니까?"
 
@@ -5723,37 +5723,37 @@ msgid ""
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "새로운 창에서 아틀라스 시나리오 편집기를 엽니다. 명령줄 인수 \"-editor\"로 이 게임을 시작하면 이 작업을 더 안정적으로 실행할 수 있습니다."
 
-#: gui/pregame/MainMenuItems.js:266
-msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr "0 A.D.를 종료하고 시나리오 편집기를 여시겠습니까?"
-
-#: gui/pregame/MainMenuItems.js:273
+#: gui/pregame/MainMenuItems.js:267
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "시나리오 편집기를 사용할 수 없거나 불러오지 못했습니다. 추가 정보는 게임 기록을 참조합니다."
 
-#: gui/pregame/MainMenuItems.js:274 gui/replaymenu/replay_actions.js:126
+#: gui/pregame/MainMenuItems.js:268 gui/replaymenu/replay_actions.js:126
 msgid "Error"
 msgstr "오류"
 
-#: gui/pregame/MainMenuItems.js:278
+#: gui/pregame/MainMenuItems.js:274
+msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
+msgstr "0 A.D.를 종료하고 시나리오 편집기를 여시겠습니까?"
+
+#: gui/pregame/MainMenuItems.js:283
 msgid "Credits"
 msgstr "제작진"
 
-#: gui/pregame/MainMenuItems.js:279
+#: gui/pregame/MainMenuItems.js:284
 msgid "Show the 0 A.D. credits."
 msgstr "0 A.D. 제작진을 표시합니다."
 
-#: gui/pregame/MainMenuItems.js:285
+#: gui/pregame/MainMenuItems.js:290
 msgid "Exit"
 msgstr "나가기"
 
-#: gui/pregame/MainMenuItems.js:286
+#: gui/pregame/MainMenuItems.js:291
 msgid "Exit the game."
 msgstr "게임을 나갑니다."
 
-#: gui/pregame/MainMenuItems.js:290
+#: gui/pregame/MainMenuItems.js:295
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "0 A.D.를 종료하시겠습니까?"
 
@@ -6083,11 +6083,11 @@ msgstr "호환되지않는 다시보기"
 msgid "No summary data available."
 msgstr "사용 가능한 요약 데이터가 없습니다."
 
-#: gui/replaymenu/replay_actions.js:175
+#: gui/replaymenu/replay_actions.js:167
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "이 다시보기를 영구적으로 삭제하시겠습니까?"
 
-#: gui/replaymenu/replay_actions.js:177
+#: gui/replaymenu/replay_actions.js:169
 msgid "Delete replay"
 msgstr "다시보기 삭제하기"
 
