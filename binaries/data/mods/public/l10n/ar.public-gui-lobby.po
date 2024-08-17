@@ -18,7 +18,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-07-26 07:08+0000\n"
+"POT-Creation-Date: 2024-08-12 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:50+0000\n"
 "Last-Translator: ahmed t, 2023\n"
 "Language-Team: Arabic (http://app.transifex.com/wildfire-games/0ad/language/ar/)\n"
@@ -51,7 +51,8 @@ msgstr "عُد"
 msgid "Update"
 msgstr "حدّث"
 
-#: gui/lobby/LobbyPage/AnnouncementHandler.js:18
+#: gui/lobby/LobbyPage/AnnouncementHandler.js:19
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatAnnouncement.js:24
 msgid "Notice"
 msgstr "ملاحظة"
 
@@ -67,24 +68,24 @@ msgstr "عدم المصادقة"
 msgid "Host Game"
 msgstr "استضف لعبة"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Your active mods do not match the mods of this game."
 msgstr "تعديلاتك النشطة لا تتطابق مع تعديلات هذه اللعبة."
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:45
 msgid "Do you want to switch to the mod selection page?"
 msgstr "هل تريد الانتقال الى صفحة اختيار الطور"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:45
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:46
 msgid "Incompatible mods"
 msgstr "تعديلات غير متوافقه"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:62
 msgid "The game has already started. Do you want to join as observer?"
 msgstr "بدأت اللعبة قبل الآن. أتريد الانضمام كمراقب؟"
 
 #. Translation: Join the game currently selected in the list.
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:106
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:95
 msgid "Join Game"
 msgstr "انضمّ إلى اللعبة"
 
@@ -178,6 +179,13 @@ msgstr "/قل"
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:161
 msgid "Clear all chat scrollback."
 msgstr "امسح كلّ تأريخ الدّردشة."
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatAnnouncement.js:26
+#, javascript-format
+msgid ""
+"== %(prefix)s:\n"
+"%(message)s"
+msgstr ""
 
 #. Translation: Chat message issued using the ‘/me’ command.
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
@@ -319,23 +327,23 @@ msgstr "مطرود"
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
 msgstr "لقد تم فصلك عن غرفة الانتظار. هل تريد ان تعيد الاتصال؟"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:55
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:63
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
-#: gui/prelobby/common/credentials/credentials.js:55
+#: gui/prelobby/common/credentials/credentials.js:56
 msgid "Confirmation"
 msgstr "أكّد"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:46
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:56
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:47
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:64
 #: gui/lobby/LobbyPage/ConnectionHandler.js:63
-#: gui/prelobby/common/credentials/credentials.js:56
+#: gui/prelobby/common/credentials/credentials.js:57
 msgid "No"
 msgstr "لا"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:46
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:56
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:47
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:64
 #: gui/lobby/LobbyPage/ConnectionHandler.js:63
-#: gui/prelobby/common/credentials/credentials.js:56
+#: gui/prelobby/common/credentials/credentials.js:57
 msgid "Yes"
 msgstr "نعم"
 
@@ -636,7 +644,7 @@ msgstr "رجاءً أعد إدخال كلمة السّر"
 msgid "Passwords do not match"
 msgstr "كلمتا السّرّ لا تتطابقان"
 
-#: gui/prelobby/common/credentials/credentials.js:54
+#: gui/prelobby/common/credentials/credentials.js:55
 msgid "Are you sure you want to delete the password after connecting?"
 msgstr "هل أنت متأكد من أنك تريد حذف كلمة المرور بعد الإتصال؟"
 

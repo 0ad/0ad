@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-07-26 07:08+0000\n"
+"POT-Creation-Date: 2024-08-12 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:50+0000\n"
 "Last-Translator: Junghee Lee, 2020-2021,2023\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -45,7 +45,8 @@ msgstr "뒤로"
 msgid "Update"
 msgstr "새로고침"
 
-#: gui/lobby/LobbyPage/AnnouncementHandler.js:18
+#: gui/lobby/LobbyPage/AnnouncementHandler.js:19
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatAnnouncement.js:24
 msgid "Notice"
 msgstr "공지사항"
 
@@ -61,24 +62,24 @@ msgstr "친구로 표시 취소"
 msgid "Host Game"
 msgstr "호스트 게임"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Your active mods do not match the mods of this game."
 msgstr "사용 중인 모드는 이 게임의 모드와 일치하지 않습니다."
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:45
 msgid "Do you want to switch to the mod selection page?"
 msgstr "모드 선택 페이지로 전환 하시겠습니까?"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:45
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:46
 msgid "Incompatible mods"
 msgstr "호환되지 않는 모드"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:62
 msgid "The game has already started. Do you want to join as observer?"
 msgstr "게임이 이미 시작되었습니다. 관찰자로 참여하시겠습니까?"
 
 #. Translation: Join the game currently selected in the list.
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:106
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:95
 msgid "Join Game"
 msgstr "게임 참여"
 
@@ -172,6 +173,13 @@ msgstr "/say"
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:161
 msgid "Clear all chat scrollback."
 msgstr "모든 대화 스크롤백을 지웁니다."
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatAnnouncement.js:26
+#, javascript-format
+msgid ""
+"== %(prefix)s:\n"
+"%(message)s"
+msgstr ""
 
 #. Translation: Chat message issued using the ‘/me’ command.
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
@@ -313,23 +321,23 @@ msgstr "추방됨"
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
 msgstr "로비에서 연결이 끊어졌습니다. 다시 연결 하시겠습니까?"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:55
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:63
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
-#: gui/prelobby/common/credentials/credentials.js:55
+#: gui/prelobby/common/credentials/credentials.js:56
 msgid "Confirmation"
 msgstr "확인"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:46
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:56
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:47
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:64
 #: gui/lobby/LobbyPage/ConnectionHandler.js:63
-#: gui/prelobby/common/credentials/credentials.js:56
+#: gui/prelobby/common/credentials/credentials.js:57
 msgid "No"
 msgstr "아니요"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:46
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:56
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:47
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:64
 #: gui/lobby/LobbyPage/ConnectionHandler.js:63
-#: gui/prelobby/common/credentials/credentials.js:56
+#: gui/prelobby/common/credentials/credentials.js:57
 msgid "Yes"
 msgstr "예"
 
@@ -630,7 +638,7 @@ msgstr "비밀번호를 다시 입력하세요"
 msgid "Passwords do not match"
 msgstr "비밀번호가 일치하지 않습니다"
 
-#: gui/prelobby/common/credentials/credentials.js:54
+#: gui/prelobby/common/credentials/credentials.js:55
 msgid "Are you sure you want to delete the password after connecting?"
 msgstr "연결한 후 비밀번호를 삭제하시겠습니까?"
 

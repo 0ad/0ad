@@ -18,7 +18,7 @@
 # Luca Luca, 2020
 # Luca Scala, 2018
 # Matteo Cagliari, 2020-2021
-# Matteo Nigro, 2023
+# Matteo Nigro, 2023-2024
 # a107d35d4f804da69108922c38065cac_2e3f0d6, 2022
 # c2ed1e40dec4c77110b8433ca0e8b4a8_488379a, 2016
 # mattia_b89, 2018
@@ -33,9 +33,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-07-26 07:08+0000\n"
+"POT-Creation-Date: 2024-08-12 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:50+0000\n"
-"Last-Translator: Matteo Nigro, 2023\n"
+"Last-Translator: Matteo Nigro, 2023-2024\n"
 "Language-Team: Italian (http://app.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,7 +66,8 @@ msgstr "Indietro"
 msgid "Update"
 msgstr "Aggiorna"
 
-#: gui/lobby/LobbyPage/AnnouncementHandler.js:18
+#: gui/lobby/LobbyPage/AnnouncementHandler.js:19
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatAnnouncement.js:24
 msgid "Notice"
 msgstr "Avviso"
 
@@ -82,24 +83,24 @@ msgstr "Deseleziona come compagno"
 msgid "Host Game"
 msgstr "Ospita una Partita"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Your active mods do not match the mods of this game."
 msgstr "Le tue mod attive non corrispondono alle mod del gioco."
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:45
 msgid "Do you want to switch to the mod selection page?"
 msgstr "Vuoi passare alla pagina di selezione mod?"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:45
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:46
 msgid "Incompatible mods"
 msgstr "Mod incompatibili"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:62
 msgid "The game has already started. Do you want to join as observer?"
 msgstr "La partita è già iniziata. Vuoi partecipare come osservatore?"
 
 #. Translation: Join the game currently selected in the list.
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:106
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:95
 msgid "Join Game"
 msgstr "Partecipa ad una Partita"
 
@@ -193,6 +194,13 @@ msgstr "/say"
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:161
 msgid "Clear all chat scrollback."
 msgstr "Ripulisci la chat."
+
+#: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatAnnouncement.js:26
+#, javascript-format
+msgid ""
+"== %(prefix)s:\n"
+"%(message)s"
+msgstr "== %(prefix)s:\n%(message)s"
 
 #. Translation: Chat message issued using the ‘/me’ command.
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
@@ -334,23 +342,23 @@ msgstr "ESPULSO"
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
 msgstr "Sei stato disconnesso dalla lobby. Vuoi riconnetterti?"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:55
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:63
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
-#: gui/prelobby/common/credentials/credentials.js:55
+#: gui/prelobby/common/credentials/credentials.js:56
 msgid "Confirmation"
 msgstr "Conferma"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:46
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:56
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:47
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:64
 #: gui/lobby/LobbyPage/ConnectionHandler.js:63
-#: gui/prelobby/common/credentials/credentials.js:56
+#: gui/prelobby/common/credentials/credentials.js:57
 msgid "No"
 msgstr "No"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:46
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:56
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:47
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:64
 #: gui/lobby/LobbyPage/ConnectionHandler.js:63
-#: gui/prelobby/common/credentials/credentials.js:56
+#: gui/prelobby/common/credentials/credentials.js:57
 msgid "Yes"
 msgstr "Sì"
 
@@ -651,7 +659,7 @@ msgstr "Inserire nuovamente la password"
 msgid "Passwords do not match"
 msgstr "Le password non corrispondono"
 
-#: gui/prelobby/common/credentials/credentials.js:54
+#: gui/prelobby/common/credentials/credentials.js:55
 msgid "Are you sure you want to delete the password after connecting?"
 msgstr "Vuoi davvero cancellare la password dopo la connessione?"
 

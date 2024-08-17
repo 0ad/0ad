@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-08-09 07:17+0000\n"
+"POT-Creation-Date: 2024-08-12 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Lars Henrik Ørn, 2022\n"
 "Language-Team: Danish (http://app.transifex.com/wildfire-games/0ad/language/da/)\n"
@@ -911,20 +911,20 @@ msgid "Friendly Fire: %(enabled)s"
 msgstr ""
 
 #: gui/common/tooltips.js:409 gui/hotkeys/HotkeysPage.js:158
-#: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:53 gui/options/options.js:185
-#: gui/options/options.js:363 gui/options/options.js:428
-#: gui/options/options.js:453 gui/pregame/MainMenuItems.js:268
-#: gui/pregame/MainMenuItems.js:292 gui/replaymenu/replay_actions.js:178
+#: gui/loadgame/SavegameDeleter.js:54 gui/loadgame/SavegameLoader.js:61
+#: gui/loadgame/SavegameWriter.js:49 gui/options/options.js:185
+#: gui/options/options.js:364 gui/options/options.js:428
+#: gui/options/options.js:449 gui/pregame/MainMenuItems.js:276
+#: gui/pregame/MainMenuItems.js:297 gui/replaymenu/replay_actions.js:170
 msgid "Yes"
 msgstr "Ja"
 
 #: gui/common/tooltips.js:409 gui/hotkeys/HotkeysPage.js:158
-#: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:53 gui/options/options.js:185
-#: gui/options/options.js:363 gui/options/options.js:428
-#: gui/options/options.js:453 gui/pregame/MainMenuItems.js:268
-#: gui/pregame/MainMenuItems.js:292 gui/replaymenu/replay_actions.js:178
+#: gui/loadgame/SavegameDeleter.js:54 gui/loadgame/SavegameLoader.js:61
+#: gui/loadgame/SavegameWriter.js:49 gui/options/options.js:185
+#: gui/options/options.js:364 gui/options/options.js:428
+#: gui/options/options.js:449 gui/pregame/MainMenuItems.js:276
+#: gui/pregame/MainMenuItems.js:297 gui/replaymenu/replay_actions.js:170
 msgid "No"
 msgstr "Nej"
 
@@ -1940,12 +1940,12 @@ msgid ""
 "WARNING: this cannot be reversed."
 msgstr ""
 
-#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:267
-#: gui/pregame/MainMenuItems.js:291
+#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:275
+#: gui/pregame/MainMenuItems.js:296
 msgid "Confirmation"
 msgstr "Bekræftelse"
 
-#: gui/hotkeys/HotkeysPage.js:198
+#: gui/hotkeys/HotkeysPage.js:196
 msgid "No tooltip available."
 msgstr ""
 
@@ -3844,16 +3844,16 @@ msgstr ""
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr ""
 
-#: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:50
+#: gui/loadgame/SavegameDeleter.js:51 gui/loadgame/SavegameWriter.js:46
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/loadgame/SavegameDeleter.js:53
+#: gui/loadgame/SavegameDeleter.js:52
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Det gemte spil vil blive slettet permanent, er du sikker?"
 
-#: gui/loadgame/SavegameDeleter.js:54
+#: gui/loadgame/SavegameDeleter.js:53
 msgid "DELETE"
 msgstr "SLET"
 
@@ -3900,8 +3900,8 @@ msgid "Do you still want to proceed?"
 msgstr "Vil du stadig fortsætte?"
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:184
-#: gui/options/options.js:362 gui/options/options.js:427
-#: gui/options/options.js:452
+#: gui/options/options.js:363 gui/options/options.js:427
+#: gui/options/options.js:448
 msgid "Warning"
 msgstr "Advarsel"
 
@@ -3918,11 +3918,11 @@ msgstr "Indlæs Spil"
 msgid "Save"
 msgstr "Gem"
 
-#: gui/loadgame/SavegameWriter.js:51
+#: gui/loadgame/SavegameWriter.js:47
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "Det gemte spil vil blive overskrevet permanent, er du sikker?"
 
-#: gui/loadgame/SavegameWriter.js:52
+#: gui/loadgame/SavegameWriter.js:48
 msgid "OVERWRITE SAVE"
 msgstr "OVERSKRIV GEMT SPIL"
 
@@ -4223,13 +4223,13 @@ msgid ""
 "Changes will be reverted in %(time)s seconds. Do you want to keep changes?"
 msgstr ""
 
-#: gui/options/options.js:203
+#: gui/options/options.js:204
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr ""
 
-#: gui/options/options.js:361
+#: gui/options/options.js:362
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
@@ -4239,7 +4239,7 @@ msgstr ""
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr ""
 
-#: gui/options/options.js:451
+#: gui/options/options.js:447
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 
@@ -5729,37 +5729,37 @@ msgid ""
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Åbn Atlas Scenarieeditoren i et nyt vindue. Du kan køre den mere pålideligt ved at starte spillet med kommandolinjeargumentet \"-editor\"."
 
-#: gui/pregame/MainMenuItems.js:266
-msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
-
-#: gui/pregame/MainMenuItems.js:273
+#: gui/pregame/MainMenuItems.js:267
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr " \nScenarieeditoren er ikke tilgængelig eller kunne ikke indlæses. Se spilloggen for yderligere information."
 
-#: gui/pregame/MainMenuItems.js:274 gui/replaymenu/replay_actions.js:126
+#: gui/pregame/MainMenuItems.js:268 gui/replaymenu/replay_actions.js:126
 msgid "Error"
 msgstr "Fejl"
 
-#: gui/pregame/MainMenuItems.js:278
+#: gui/pregame/MainMenuItems.js:274
+msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:283
 msgid "Credits"
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:279
+#: gui/pregame/MainMenuItems.js:284
 msgid "Show the 0 A.D. credits."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:285
+#: gui/pregame/MainMenuItems.js:290
 msgid "Exit"
 msgstr "Afslut"
 
-#: gui/pregame/MainMenuItems.js:286
+#: gui/pregame/MainMenuItems.js:291
 msgid "Exit the game."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:290
+#: gui/pregame/MainMenuItems.js:295
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr ""
 
@@ -6094,11 +6094,11 @@ msgstr ""
 msgid "No summary data available."
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:175
+#: gui/replaymenu/replay_actions.js:167
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr ""
 
-#: gui/replaymenu/replay_actions.js:177
+#: gui/replaymenu/replay_actions.js:169
 msgid "Delete replay"
 msgstr ""
 

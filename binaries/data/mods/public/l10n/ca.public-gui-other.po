@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2024-08-09 07:17+0000\n"
+"POT-Creation-Date: 2024-08-12 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Stanislas Dolcini, 2021,2023\n"
 "Language-Team: Catalan (http://app.transifex.com/wildfire-games/0ad/language/ca/)\n"
@@ -922,20 +922,20 @@ msgid "Friendly Fire: %(enabled)s"
 msgstr "Foc amic: %(enabled)s"
 
 #: gui/common/tooltips.js:409 gui/hotkeys/HotkeysPage.js:158
-#: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:53 gui/options/options.js:185
-#: gui/options/options.js:363 gui/options/options.js:428
-#: gui/options/options.js:453 gui/pregame/MainMenuItems.js:268
-#: gui/pregame/MainMenuItems.js:292 gui/replaymenu/replay_actions.js:178
+#: gui/loadgame/SavegameDeleter.js:54 gui/loadgame/SavegameLoader.js:61
+#: gui/loadgame/SavegameWriter.js:49 gui/options/options.js:185
+#: gui/options/options.js:364 gui/options/options.js:428
+#: gui/options/options.js:449 gui/pregame/MainMenuItems.js:276
+#: gui/pregame/MainMenuItems.js:297 gui/replaymenu/replay_actions.js:170
 msgid "Yes"
 msgstr "Si"
 
 #: gui/common/tooltips.js:409 gui/hotkeys/HotkeysPage.js:158
-#: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:53 gui/options/options.js:185
-#: gui/options/options.js:363 gui/options/options.js:428
-#: gui/options/options.js:453 gui/pregame/MainMenuItems.js:268
-#: gui/pregame/MainMenuItems.js:292 gui/replaymenu/replay_actions.js:178
+#: gui/loadgame/SavegameDeleter.js:54 gui/loadgame/SavegameLoader.js:61
+#: gui/loadgame/SavegameWriter.js:49 gui/options/options.js:185
+#: gui/options/options.js:364 gui/options/options.js:428
+#: gui/options/options.js:449 gui/pregame/MainMenuItems.js:276
+#: gui/pregame/MainMenuItems.js:297 gui/replaymenu/replay_actions.js:170
 msgid "No"
 msgstr "No"
 
@@ -1951,12 +1951,12 @@ msgid ""
 "WARNING: this cannot be reversed."
 msgstr "Restablir totes les dreceres als valors per defecte?\nAVÍS: No és reversible."
 
-#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:267
-#: gui/pregame/MainMenuItems.js:291
+#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:275
+#: gui/pregame/MainMenuItems.js:296
 msgid "Confirmation"
 msgstr "Confirmació"
 
-#: gui/hotkeys/HotkeysPage.js:198
+#: gui/hotkeys/HotkeysPage.js:196
 msgid "No tooltip available."
 msgstr "Descripció no disponible."
 
@@ -3855,16 +3855,16 @@ msgstr "Premeu %(hotkey)s per eliminar la partida seleccionada."
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
 msgstr "Mantingueu premut %(hotkey)s per eliminar-la sense diàleg de confirmació."
 
-#: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:50
+#: gui/loadgame/SavegameDeleter.js:51 gui/loadgame/SavegameWriter.js:46
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/loadgame/SavegameDeleter.js:53
+#: gui/loadgame/SavegameDeleter.js:52
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "La partida desada s'esborrarà permanentment, segur que voleu fer-ho?"
 
-#: gui/loadgame/SavegameDeleter.js:54
+#: gui/loadgame/SavegameDeleter.js:53
 msgid "DELETE"
 msgstr "ESBORRA"
 
@@ -3911,8 +3911,8 @@ msgid "Do you still want to proceed?"
 msgstr "Encara voleu continuar?"
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:184
-#: gui/options/options.js:362 gui/options/options.js:427
-#: gui/options/options.js:452
+#: gui/options/options.js:363 gui/options/options.js:427
+#: gui/options/options.js:448
 msgid "Warning"
 msgstr "Advertència"
 
@@ -3929,11 +3929,11 @@ msgstr "Carrega una partida"
 msgid "Save"
 msgstr "Desa"
 
-#: gui/loadgame/SavegameWriter.js:51
+#: gui/loadgame/SavegameWriter.js:47
 msgid "Saved game will be permanently overwritten, are you sure?"
 msgstr "La partida desada es sobreescriurà permanentment, segur que voleu fer-ho?"
 
-#: gui/loadgame/SavegameWriter.js:52
+#: gui/loadgame/SavegameWriter.js:48
 msgid "OVERWRITE SAVE"
 msgstr "SOBREESCRIU LA PARTIDA DESADA"
 
@@ -4234,13 +4234,13 @@ msgid ""
 "Changes will be reverted in %(time)s seconds. Do you want to keep changes?"
 msgstr ""
 
-#: gui/options/options.js:203
+#: gui/options/options.js:204
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Valor: %(val)s (mín: %(min)s, màx: %(max)s)"
 
-#: gui/options/options.js:361
+#: gui/options/options.js:362
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
@@ -4250,7 +4250,7 @@ msgstr "Restablir les opcions esborrarà la configuració desada. Voleu continua
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr "Alguns dels valors de la configuració són invàlids. Segur que els voleu desar?"
 
-#: gui/options/options.js:451
+#: gui/options/options.js:447
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "Hi ha canvis sense desar, voleu tancar aquesta finestra?"
 
@@ -5740,37 +5740,37 @@ msgid ""
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Obre l'Editor d'escenaris Atlas en una nova finestra. Podeu executar-lo de manera més fiable iniciant el joc des de la línia d'ordres amb l'argument \"-editor\"."
 
-#: gui/pregame/MainMenuItems.js:266
-msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
-
-#: gui/pregame/MainMenuItems.js:273
+#: gui/pregame/MainMenuItems.js:267
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "L'editor d'escenaris no està disponible o no s'ha pogut carregar. Consulteu els registres del joc per obtenir més informació."
 
-#: gui/pregame/MainMenuItems.js:274 gui/replaymenu/replay_actions.js:126
+#: gui/pregame/MainMenuItems.js:268 gui/replaymenu/replay_actions.js:126
 msgid "Error"
 msgstr "Error"
 
-#: gui/pregame/MainMenuItems.js:278
+#: gui/pregame/MainMenuItems.js:274
+msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
+msgstr ""
+
+#: gui/pregame/MainMenuItems.js:283
 msgid "Credits"
 msgstr "Crèdits"
 
-#: gui/pregame/MainMenuItems.js:279
+#: gui/pregame/MainMenuItems.js:284
 msgid "Show the 0 A.D. credits."
 msgstr ""
 
-#: gui/pregame/MainMenuItems.js:285
+#: gui/pregame/MainMenuItems.js:290
 msgid "Exit"
 msgstr "Surt"
 
-#: gui/pregame/MainMenuItems.js:286
+#: gui/pregame/MainMenuItems.js:291
 msgid "Exit the game."
 msgstr "Surt del joc."
 
-#: gui/pregame/MainMenuItems.js:290
+#: gui/pregame/MainMenuItems.js:295
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr ""
 
@@ -6105,11 +6105,11 @@ msgstr "Gravació incompatible"
 msgid "No summary data available."
 msgstr "No hi ha dades de resum disponibles."
 
-#: gui/replaymenu/replay_actions.js:175
+#: gui/replaymenu/replay_actions.js:167
 msgid "Are you sure you want to delete this replay permanently?"
 msgstr "Segur que voleu suprimir permanentment la gravació?"
 
-#: gui/replaymenu/replay_actions.js:177
+#: gui/replaymenu/replay_actions.js:169
 msgid "Delete replay"
 msgstr "Suprimeix la gravació"
 
